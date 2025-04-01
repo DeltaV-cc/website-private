@@ -27,7 +27,7 @@ function drawTriangle(canvasId) {
         ctx.beginPath();
         ctx.moveTo(top[0], top[1]);
         ctx.lineTo(bottomLeft[0], bottomLeft[1]);
-        ctx.lineTo(customRight[0], bottomRight[1]);
+        ctx.lineTo(bottomRight[0], bottomRight[1]);
         ctx.closePath();
 
         ctx.strokeStyle = '#D3D3D3';
