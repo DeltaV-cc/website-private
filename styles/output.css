@@ -339,6 +339,9 @@
       margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
+  .justify-self-center {
+    justify-self: center;
+  }
   .justify-self-end {
     justify-self: flex-end;
   }
@@ -553,6 +556,26 @@
   .md\:grid-cols-3 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .md\:justify-self-end {
+    @media (width >= 48rem) {
+      justify-self: flex-end;
+    }
+  }
+  .md\:justify-self-start {
+    @media (width >= 48rem) {
+      justify-self: flex-start;
+    }
+  }
+  .md\:text-end {
+    @media (width >= 48rem) {
+      text-align: end;
+    }
+  }
+  .md\:text-start {
+    @media (width >= 48rem) {
+      text-align: start;
     }
   }
 }
