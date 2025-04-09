@@ -309,5 +309,18 @@
             </ul>
         </div>
     </dialog>
+
+    <script>
+        // javascript to close modals when clicking outside
+        const modals = document.querySelectorAll('dialog.modal');
+        
+        modals.forEach(modal => {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.close();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
