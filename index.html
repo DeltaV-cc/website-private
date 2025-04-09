@@ -26,13 +26,13 @@
         </a>
         <nav class="flex gap-4">
             <a href="#services" class="link">Services</a>
-            <a href="#why-us" class="link">Why-us</a>
-            <a href="#contact" class="link">Engage</a>
+            <a href="#why-us" class="link">Why us?</a>
+            <a href="#engage" class="link">Engage</a>
         </nav>
     </header>
 
     <main class="max-w-6xl mx-auto px-8 sm:px-16">
-        <section id="hero" class="flex flex-col gap-16 items-center justify-center py-32">
+        <section id="hero" class="flex flex-col gap-16 items-center justify-center pt-32">
             <iframe 
                 src="https://joannezichenpeng.github.io/amaranth/" 
                 title="Delta V Interactive Demo" 
@@ -47,7 +47,7 @@
             </div>
         </section>
 
-        <section id="services">
+        <section class="pt-32" id="services">
             <h2 class="section-title">Our Services</h2>
             <div class="grid grid-rows-4 sm:grid-cols-3 sm:grid-rows-2 gap-8">
                 <div 
@@ -81,7 +81,7 @@
             </div>
         </section>
 
-        <section class="mt-32" id="why-us">
+        <section class="pt-32" id="why-us">
             <h2 class="section-title">Why Us?</h2>
             <div class="grid md:grid-cols-3 gap-12 items-center justify-center">
                 <div class="justify-self-end text-end">
@@ -109,137 +109,38 @@
         </section>
 
         <section 
-            id="contact"
-            class="mt-32"
+            id="engage"
+            class="pt-32 flex flex-col items-center"
         >
             <h2 class="section-title">Ready to Accelerate?</h2>
-            <div class="signal-contact">
-                <p>Or reach us directly on <a email="engage@deltav.cc" class="signal-link">engage@deltav.cc </a> or on <a href="https://signal.org/download/" class="signal-link">Signal</a> @DeltaV.01</p>
-                <img src="/assets/SignalUsernameQr.png" alt="Signal QR Code" loading="lazy">
-            </div>
-            <div class="legal">
-                <p class="copyright">© <a href="#">2025 Delta V</a></p>
-                <p class="privacy-policy"><a href="/cgu.html">CGU</a></p>
-                <p class="privacy-policy"><a href="/privacy-policy.html">Privacy Policy</a></p>
-                <p class="privacy-policy"><a href="https://aaronrolston.com/">credit</a></p>
+            <p>
+                Reach us directly on 
+                <a href="mailto:engage@deltav.cc" class="link">engage@deltav.cc </a>
+                 or on 
+                 <a href="https://signal.org/download/" class="link">Signal</a> @DeltaV.01
+            </p>
+            <div class="mt-8">
+                <img 
+                    src="/assets/SignalUsernameQr.png" 
+                    alt="Signal QR Code" 
+                    loading="lazy"
+                    class="w-full max-w-64 rounded-2xl"
+                >
             </div>
         </section>
+    </main>
 
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('modal1')">×</span>
-                <h3>Tech Foundations</h3>
-                <ul>
-                    <li>
-                        <div class="service-text"><strong>Web & Mobile Apps</strong> Tailored solutions for your business</div>
-                        <div class="prices">
-                            <span>100-500$ per page</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Secure Private AI</strong> Set up your own Generative AI and Agents locally or encrypted</div>
-                        <div class="prices">
-                            <span>Contact us - starts at 80$</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Scalable Web3 Integration</strong> Future-proof your business with Blockchain, DeFi, and Decentralized solutions</div>
-                        <div class="prices">
-                            <span>Contact us</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Web3 Apps</strong> Build Blockchains, Layer 2, DeFi protocols, or Dapp with crypto natives</div>
-                        <div class="prices">
-                            <span>Contact us</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="modal2" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('modal2')">×</span>
-                <h3>AiSec & CryptoSec</h3>
-                <ul>
-                    <li>
-                        <div class="service-text"><strong>Cybersecurity and Privacy</strong> Audits and fixes in your cyberspace</div>
-                        <div class="prices">
-                            <span>Retail: 100$</span>
-                            <span>Business: contact us</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>AISec & MLSec</strong> Audits and best practices to use open source models</div>
-                        <div class="prices">
-                            <span>Retail: 50$ hourly</span>
-                            <span>Business: TBD</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>CryptoSec</strong> Decentralization, self-custody and privacy best practices</div>
-                        <div class="prices">
-                            <span>Retail: $50/month or 10% profits</span>
-                            <span>Business: $500/month or 10% profits</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Threat Monitoring</strong> Automated systems that watch your back on and offline</div>
-                        <div class="prices">
-                            <span>Retail: $50-$5,000/month</span>
-                            <span>Business: $500-$5,000/month</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="modal3" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('modal3')">×</span>
-                <h3>Research Services</h3>
-                <ul>
-                    <li>
-                        <div class="service-text"><strong>Markets in-depth research and Risk Assessments</strong> Digital Assets, AI, Energy, Mining, and more commodities</div>
-                        <div class="prices">
-                            <span>2000$/report</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>On-chain and OSINT</strong> Blockchain, DeFi, and Cyberspace forensics (Financial Monitoring, Incident analysis and report, Source of Funds, Transaction & Wallet analysis/tracing, Darknet monitoring)</div>
-                        <div class="prices">
-                            <span>10% funds and/or 80$ hourly</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Training</strong> Financial education, Tech, Crypto and AI training</div>
-                        <div class="prices">
-                            <span>80$ hourly</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="modal4" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('modal4')">×</span>
-                <h3>Growth Boost</h3>
-                <ul>
-                    <li>
-                        <div class="service-text"><strong>Strategic Expansion Support</strong> In EU and Swiss markets</div>
-                        <div class="prices">
-                            <span>TBD - First consultation's Free</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="service-text"><strong>Public Good Advocacy and Fundraising</strong></div>
-                        <div class="prices">
-                            <span>Probably Free! Contact us!</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <script src="/js/script.js" defer></script>
+    <footer 
+        id="footer" 
+        class="pt-32 py-8 gap-8 flex justify-center items-center"
+    >
+        <p class="copyright">© <a href="/">2025 Delta V</a></p>
+        <div class="w-[1px] h-8 bg-white"></div>
+        <ul>
+            <li class="privacy-policy"><a href="/legal/cgu.html">CGU</a></li>
+            <li class="privacy-policy"><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+            <li class="privacy-policy"><a href="https://aaronrolston.com/">Credit</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
