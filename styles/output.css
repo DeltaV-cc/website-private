@@ -205,6 +205,12 @@
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
   .flex {
     display: flex;
   }
@@ -314,6 +320,9 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .list-disc {
+    list-style-type: disc;
+  }
   .grid-rows-4 {
     grid-template-rows: repeat(4, minmax(0, 1fr));
   }
@@ -371,6 +380,9 @@
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
   }
+  .pl-8 {
+    padding-left: calc(var(--spacing) * 8);
+  }
   .text-center {
     text-align: center;
   }
@@ -412,6 +424,9 @@
   }
   .text-primary {
     color: var(--color-primary);
+  }
+  .italic {
+    font-style: italic;
   }
   .sm\:col-start-1 {
     @media (width >= 40rem) {
