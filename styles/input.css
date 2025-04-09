@@ -39,7 +39,7 @@
 .header {
   @apply
     bg-[rgba(0,0,0,0.5)] backdrop-blur-sm 
-    fixed top-0 left-0 w-screen max-w-4xl mx-auto px-8 py-6
+    fixed top-0 left-0 w-screen max-w-6xl left-1/2 -translate-x-1/2 px-8 py-6
     flex justify-between items-center;
 }
 
@@ -53,6 +53,23 @@
 
 .section-title {
   @apply 
-    text-3xl font-bold font-[Orbitron] 
+    text-3xl font-bold font-[Orbitron] mb-8 
+    text-shadow-[0_0_5px_var(--accent-color)] no-underline;
+}
+
+.triangle {
+  --b:5px; /* control the border thickness */
+
+  width: 150px;
+  aspect-ratio: 1/cos(30deg);
+  clip-path: polygon(50% 0,100% 100%,0 100%,50% 0,50% var(--b),calc(var(--b)*cos(30deg)) calc(100% - var(--b)/2),calc(100% - var(--b)*cos(30deg)) calc(100% - var(--b)/2),50% var(--b));
+  background: white;
+}
+
+.section-subtitle {
+  @apply 
+    text-xl 
+    font-[Orbitron] 
+    font-semibold mb-2
     text-shadow-[0_0_5px_var(--accent-color)] no-underline;
 }

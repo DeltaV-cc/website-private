@@ -16,7 +16,7 @@
     <!-- <link rel="stylesheet" href="/styles/styles.css"> -->
     <link rel="stylesheet" href="/styles/output.css">
 </head>
-<body class="text-primary bg-primary-bg line-height-relaxed font-size-lg">
+<body class="font-[Inter] text-primary bg-primary-bg line-height-relaxed font-size-lg">
     <header class="header">
         <div class="text-xl font-bold default-text-shadow"><a href="#hero">ΔV</a></div>
         <a href="#hero" class="text-3xl font-bold font-[Orbitron] default-text-shadow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -31,7 +31,7 @@
         </nav>
     </header>
 
-    <main class="max-w-4xl mx-auto px-8 sm:px-16">
+    <main class="max-w-6xl mx-auto px-8 sm:px-16">
         <section id="hero" class="flex flex-col gap-16 items-center justify-center py-32">
             <iframe 
                 src="https://joannezichenpeng.github.io/amaranth/" 
@@ -49,30 +49,30 @@
 
         <section id="services">
             <h2 class="section-title">Our Services</h2>
-            <div class="mt-8 grid grid-rows-4 sm:grid-cols-3 sm:grid-rows-2 gap-8">
+            <div class="grid grid-rows-4 sm:grid-cols-3 sm:grid-rows-2 gap-8">
                 <div 
-                    class="md:col-start-2 md:col-end-2 service-box" 
+                    class="sm:col-start-2 sm:col-end-2 service-box" 
                     onclick="openModal('modal1')"
                 >
                     <h3>Tech Foundations</h3>
                     <p>Build IT systems ready for tomorrow's challenge</p>
                 </div>
                 <div 
-                    class="md:col-start-1 md:col-end-1 md:row-start-2 service-box" 
+                    class="sm:col-start-1 sm:col-end-1 sm:row-start-2 service-box" 
                     onclick="openModal('modal4')"
                 >
                     <h3>Growth Boost</h3>
                     <p>Expand your reach across regions with confidence</p>
                 </div>
                 <div 
-                    class="md:col-start-2 md:col-end-2 md:row-start-2 service-box" 
+                    class="sm:col-start-2 sm:col-end-2 sm:row-start-2 service-box" 
                     onclick="openModal('modal2')"
                 >
                     <h3>AiSec & CryptoSec</h3>
                     <p>Secure operations with state-of-the-art solutions.</p>
                 </div>
                 <div 
-                    class="md:col-start-3 md:col-end-3 md:row-start-2 service-box" 
+                    class="sm:col-start-3 sm:col-end-3 sm:row-start-2 service-box" 
                     onclick="openModal('modal3')"
                 >
                     <h3>Research Services</h3>
@@ -83,30 +83,36 @@
 
         <section class="mt-32" id="why-us">
             <h2 class="section-title">Why Us?</h2>
-            <div class="why-us-content">
-                <div class="value-props">
-                    <div class="prop">
-                        <h3>Ownership focused</h3>
-                        <p>Building to let you remain in control</p>
+            <div class="grid md:grid-cols-3 gap-12 items-center justify-center">
+                <div class="justify-self-end text-end">
+                    <h3 class="section-subtitle">Ownership focused</h3>
+                    <p>Building to let you remain in control</p>
+                </div>
+
+                <div class="flex flex-col gap-2 items-center w-[250px] h-[200px]">
+                    <div class="text-center">Speed</div>
+
+                    <!-- css triangle hack -->
+                    <div class="triangle"></div>
+
+                    <div class="flex justify-between w-full">
+                        <div class="translate-x-6">Open</div>
+                        <div class="-translate-x-2">Innovation</div>
                     </div>
                 </div>
-                <div class="triangle-container">
-                    <canvas id="triangleCanvas" aria-label="Core Values Triangle"></canvas>
-                    <div class="triangle-label label-speed">Speed</div>
-                    <div class="triangle-label label-innovation">Open</div>
-                    <div class="triangle-label label-open">Innovation</div>
-                </div>
-                <div class="value-props">
-                    <div class="prop">
-                        <h3>Tech Natives</h3>
-                        <p>Passionate pros with a sense of duty</p>
-                    </div>
+
+                <div class="justify-self-start text-start">
+                    <h3 class="section-subtitle">Tech Natives</h3>
+                    <p>Passionate pros with a sense of duty</p>
                 </div>
             </div>
         </section>
 
-        <footer id="contact">
-            <h2>Ready to Accelerate?</h2>
+        <section 
+            id="contact"
+            class="mt-32"
+        >
+            <h2 class="section-title">Ready to Accelerate?</h2>
             <div class="signal-contact">
                 <p>Or reach us directly on <a email="engage@deltav.cc" class="signal-link">engage@deltav.cc </a> or on <a href="https://signal.org/download/" class="signal-link">Signal</a> @DeltaV.01</p>
                 <img src="/assets/SignalUsernameQr.png" alt="Signal QR Code" loading="lazy">
@@ -117,7 +123,7 @@
                 <p class="privacy-policy"><a href="/privacy-policy.html">Privacy Policy</a></p>
                 <p class="privacy-policy"><a href="https://aaronrolston.com/">credit</a></p>
             </div>
-        </footer>
+        </section>
 
         <div id="modal1" class="modal">
             <div class="modal-content">
