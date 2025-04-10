@@ -254,12 +254,6 @@
   .max-w-46 {
     max-width: calc(var(--spacing) * 46);
   }
-  .max-w-48 {
-    max-width: calc(var(--spacing) * 48);
-  }
-  .max-w-64 {
-    max-width: calc(var(--spacing) * 64);
-  }
   .max-w-lg {
     max-width: var(--container-lg);
   }
@@ -318,9 +312,6 @@
       margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
     }
-  }
-  .self-center {
-    align-self: center;
   }
   .justify-self-center {
     justify-self: center;
@@ -474,6 +465,11 @@
   .sm\:row-start-2 {
     @media (width >= 40rem) {
       grid-row-start: 2;
+    }
+  }
+  .sm\:max-w-46 {
+    @media (width >= 40rem) {
+      max-width: calc(var(--spacing) * 46);
     }
   }
   .sm\:grid-cols-3 {
@@ -641,6 +637,9 @@ dialog:focus {
 }
 .text-accent {
   color: #4f9eff;
+}
+.loading-placeholder {
+  background: url("/assets/placeholder.png") no-repeat center center;
 }
 @property --tw-translate-x {
   syntax: "*";

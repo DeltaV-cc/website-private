@@ -79,3 +79,7 @@ dialog:focus {
 .text-accent {
   color: #4f9eff;
 }
+
+.loading-placeholder {
+  background: url("/assets/placeholder.png") no-repeat center center;
+}
