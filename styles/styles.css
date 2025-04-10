@@ -251,9 +251,6 @@
   .max-w-32 {
     max-width: calc(var(--spacing) * 32);
   }
-  .max-w-46 {
-    max-width: calc(var(--spacing) * 46);
-  }
   .max-w-lg {
     max-width: var(--container-lg);
   }
@@ -554,6 +551,7 @@
   position: fixed;
   top: calc(var(--spacing) * 0);
   left: calc(1/2 * 100%);
+  z-index: 20;
   display: flex;
   width: 100vw;
   max-width: var(--container-6xl);
