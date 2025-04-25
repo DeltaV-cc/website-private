@@ -23,11 +23,11 @@
 }
 
 .default-text-shadow {
-  @apply text-shadow-[0_0_5px_var(--accent-color)] no-underline;
+  @apply text-shadow-[0px_0px_30px_var(--accent-color)] no-underline;
 }
 
 .link {
-  @apply text-secondary font-medium hover:text-hover transition-all;
+  @apply text-secondary hover:text-hover transition-all;
 }
 
 .header {
@@ -44,7 +44,7 @@
 }
 
 .section-title {
-  @apply text-3xl font-bold font-[Orbitron] mb-8 text-shadow-[0_0_5px_var(--accent-color)] no-underline;
+  @apply text-3xl font-bold font-[Orbitron] mb-8 text-shadow-[5px_5px_30px_var(--accent-color)] no-underline;
 }
 
 .triangle {
@@ -58,7 +58,7 @@
 }
 
 .section-subtitle {
-  @apply text-xl font-[Orbitron] font-semibold mb-2 text-shadow-[0_0_5px_var(--accent-color)] no-underline;
+  @apply text-xl font-[Orbitron] font-semibold mb-2 text-shadow-[5px_5px_30px_var(--accent-color)] no-underline;
 }
 
 dialog::backdrop {
@@ -82,4 +82,26 @@ dialog:focus {
 
 .loading-placeholder {
   background: url("/assets/placeholder.png") no-repeat center center;
+  background-size: cover;
+}
+
+.service-button {
+  @apply border p-4 rounded-lg relative overflow-hidden;
+  box-shadow: 0 0 10px var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.service-button:hover {
+  box-shadow: 0 0 10px var(--accent-color), 0 0 40px var(--accent-color);
+  transform: translateY(-5px);
+}
+
+.service-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 5px var(--accent-color);
+}
+
+.click-hint {
+  @apply text-xs mt-4 block text-accent opacity-80;
+  text-shadow: 0 0 10px var(--accent-color);
 }

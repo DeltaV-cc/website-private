@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-size: 110%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,36 +52,40 @@
             <div class="grid grid-rows-4 sm:grid-cols-3 sm:grid-rows-2 gap-8">
                 <button 
                     type="button"
-                    class="sm:col-start-2 sm:col-end-2 service-box hover:cursor-pointer"
+                    class="sm:col-start-2 sm:col-end-2 service-box hover:cursor-pointer service-button"
                     onclick="document.getElementById('tech-foundations-modal').showModal()"
                 >
                     <h3>Tech Foundations</h3>
                     <p>Build IT systems ready for tomorrow's challenge</p>
+                    <span class="click-hint">Click to learn more</span>
                 </button>
 
                 <button 
                     type="button"
-                    class="sm:col-start-1 sm:col-end-1 sm:row-start-2 service-box hover:cursor-pointer"
+                    class="sm:col-start-1 sm:col-end-1 sm:row-start-2 service-box hover:cursor-pointer service-button"
                     onclick="document.getElementById('growth-boost-modal').showModal()"
                 >
                     <h3>Growth Boost</h3>
                     <p>Expand your reach across regions with confidence</p>
+                    <span class="click-hint">Click to learn more</span>
                 </button>
                 <button 
                     type="button"
-                    class="sm:col-start-2 sm:col-end-2 sm:row-start-2 service-box hover:cursor-pointer"
+                    class="sm:col-start-2 sm:col-end-2 sm:row-start-2 service-box hover:cursor-pointer service-button"
                     onclick="document.getElementById('aisec-cryptosec-modal').showModal()"
                 >
                     <h3>OpSec: ML & Crypto</h3>
                     <p>Secure operations with state-of-the-art solutions.</p>
+                    <span class="click-hint">Click to learn more</span>
                 </button>
                 <button 
                     type="button"
-                    class="sm:col-start-3 sm:col-end-3 sm:row-start-2 service-box hover:cursor-pointer"
+                    class="sm:col-start-3 sm:col-end-3 sm:row-start-2 service-box hover:cursor-pointer service-button"
                     onclick="document.getElementById('research-services-modal').showModal()"
                 >
                     <h3>Research Services</h3>
                     <p>Uncover market trends with data-driven insights</p>
+                    <span class="click-hint">Click to learn more</span>
                 </button>
             </div>
         </section>
@@ -129,7 +133,7 @@
                     src="/assets/SignalUsernameQr.png" 
                     alt="Signal QR Code" 
                     loading="lazy"
-                    class="w-full max-w-32 sm:max-w-46 rounded-2xl"
+                    class="w-full max-w-46 rounded-2xl"
                 >
             </div>
         </section>
@@ -137,11 +141,10 @@
 
     <footer 
         id="footer" 
-        class="pt-32 py-8 gap-8 flex justify-center items-center"
+        class="mt-32 py-8 flex flex-col items-center text-center bg-zinc-950 border-t border-zinc-800 text-sm"
     >
-        <p class="copyright">© <a class="link" href="/">2025 Delta V</a></p>
-        <div class="w-[1px] h-8 bg-white"></div>
-        <ul>
+        <p class="copyright font-semibold mb-4">© 2025 Delta V</p>
+        <ul class="flex gap-8">
             <li class="privacy-policy"><a class="link" href="/legal/cgu.html">CGU</a></li>
             <li class="privacy-policy"><a class="link" href="/legal/privacy-policy.html">Privacy Policy</a></li>
             <li class="privacy-policy"><a class="link" href="https://aaronrolston.com/">Credit</a></li>
