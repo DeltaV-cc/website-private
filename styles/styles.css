@@ -9,11 +9,15 @@
     monospace;
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-zinc-800: oklch(27.4% 0.006 286.033);
+    --color-zinc-950: oklch(14.1% 0.005 285.823);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-lg: 32rem;
     --container-2xl: 42rem;
     --container-6xl: 72rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-xl: 1.25rem;
@@ -24,7 +28,6 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
-    --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --radius-lg: 0.5rem;
@@ -200,11 +203,11 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .my-auto {
-    margin-block: auto;
-  }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+  }
+  .mt-32 {
+    margin-top: calc(var(--spacing) * 32);
   }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
@@ -242,14 +245,11 @@
   .w-full {
     width: 100%;
   }
-  .max-w-2xl {
-    max-width: var(--container-2xl);
-  }
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
-  .max-w-32 {
-    max-width: calc(var(--spacing) * 32);
+  .max-w-46 {
+    max-width: calc(var(--spacing) * 46);
   }
   .max-w-lg {
     max-width: var(--container-lg);
@@ -303,32 +303,18 @@
   .gap-16 {
     gap: calc(var(--spacing) * 16);
   }
-  .space-y-6 {
-    :where(& > :not(:last-child)) {
-      --tw-space-y-reverse: 0;
-      margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
-      margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
-    }
-  }
   .justify-self-center {
     justify-self: center;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
-  .rounded-lg {
-    border-radius: var(--radius-lg);
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
-  .border-b {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
-  .border-gray-700 {
-    border-color: var(--color-gray-700);
+  .border-zinc-800 {
+    border-color: var(--color-zinc-800);
   }
   .bg-primary-bg {
     background-color: var(--color-primary-bg);
@@ -336,8 +322,8 @@
   .bg-white {
     background-color: var(--color-white);
   }
-  .p-8 {
-    padding: calc(var(--spacing) * 8);
+  .bg-zinc-950 {
+    background-color: var(--color-zinc-950);
   }
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
@@ -347,9 +333,6 @@
   }
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
-  }
-  .pb-4 {
-    padding-bottom: calc(var(--spacing) * 4);
   }
   .pl-8 {
     padding-left: calc(var(--spacing) * 8);
@@ -391,43 +374,14 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
-  .text-accent {
-    color: var(--color-accent);
-  }
-  .text-gray-400 {
-    color: var(--color-gray-400);
-  }
   .text-primary {
     color: var(--color-primary);
   }
   .italic {
     font-style: italic;
   }
-  .shadow-xl {
-    --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .transition-colors {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .hover\:cursor-pointer {
-    &:hover {
-      @media (hover: hover) {
-        cursor: pointer;
-      }
-    }
-  }
-  .hover\:text-gray-400 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-gray-400);
-      }
-    }
   }
   .sm\:col-start-1 {
     @media (width >= 40rem) {
@@ -464,11 +418,6 @@
       grid-row-start: 2;
     }
   }
-  .sm\:max-w-46 {
-    @media (width >= 40rem) {
-      max-width: calc(var(--spacing) * 46);
-    }
-  }
   .sm\:grid-cols-3 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -477,6 +426,11 @@
   .sm\:grid-rows-2 {
     @media (width >= 40rem) {
       grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .sm\:gap-16 {
+    @media (width >= 40rem) {
+      gap: calc(var(--spacing) * 16);
     }
   }
   .sm\:px-16 {
@@ -532,11 +486,9 @@
 }
 .default-text-shadow {
   text-decoration-line: none;
-  text-shadow: 0 0 5px var(--tw-text-shadow-color, var(--accent-color));
+  text-shadow: 0px 0px 30px var(--tw-text-shadow-color, var(--accent-color));
 }
 .link {
-  --tw-font-weight: var(--font-weight-medium);
-  font-weight: var(--font-weight-medium);
   color: var(--color-secondary);
   transition-property: all;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -602,7 +554,7 @@
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
   text-decoration-line: none;
-  text-shadow: 0 0 5px var(--tw-text-shadow-color, var(--accent-color));
+  text-shadow: 5px 5px 30px var(--tw-text-shadow-color, var(--accent-color));
 }
 .triangle {
   --b: 5px;
@@ -619,7 +571,7 @@
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
   text-decoration-line: none;
-  text-shadow: 0 0 5px var(--tw-text-shadow-color, var(--accent-color));
+  text-shadow: 5px 5px 30px var(--tw-text-shadow-color, var(--accent-color));
 }
 dialog::backdrop {
   background-color: rgba(255, 255, 255, 0.05);
@@ -638,6 +590,18 @@ dialog:focus {
 }
 .loading-placeholder {
   background: url("/assets/placeholder.png") no-repeat center center;
+  background-size: cover;
+}
+.service-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border-style: var(--tw-border-style);
+  border-width: 0.5px;
+  border-color: var(--color-accent);
+  padding: calc(var(--spacing) * 4);
+  box-shadow: 0 0 5px var(--accent-color);
+  transition: all 0.3s ease;
 }
 @property --tw-translate-x {
   syntax: "*";
@@ -654,11 +618,6 @@ dialog:focus {
   inherits: false;
   initial-value: 0;
 }
-@property --tw-space-y-reverse {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -667,71 +626,6 @@ dialog:focus {
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
-}
-@property --tw-shadow {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0 #0000;
-}
-@property --tw-shadow-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-shadow-alpha {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 100%;
-}
-@property --tw-inset-shadow {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0 #0000;
-}
-@property --tw-inset-shadow-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-inset-shadow-alpha {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 100%;
-}
-@property --tw-ring-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-ring-shadow {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0 #0000;
-}
-@property --tw-inset-ring-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-inset-ring-shadow {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0 #0000;
-}
-@property --tw-ring-inset {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-ring-offset-width {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-@property --tw-ring-offset-color {
-  syntax: "*";
-  inherits: false;
-  initial-value: #fff;
-}
-@property --tw-ring-offset-shadow {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0 #0000;
 }
 @property --tw-blur {
   syntax: "*";
@@ -831,6 +725,11 @@ dialog:focus {
   syntax: "*";
   inherits: false;
 }
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -856,23 +755,8 @@ dialog:focus {
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
-      --tw-space-y-reverse: 0;
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-shadow: 0 0 #0000;
-      --tw-shadow-color: initial;
-      --tw-shadow-alpha: 100%;
-      --tw-inset-shadow: 0 0 #0000;
-      --tw-inset-shadow-color: initial;
-      --tw-inset-shadow-alpha: 100%;
-      --tw-ring-color: initial;
-      --tw-ring-shadow: 0 0 #0000;
-      --tw-inset-ring-color: initial;
-      --tw-inset-ring-shadow: 0 0 #0000;
-      --tw-ring-inset: initial;
-      --tw-ring-offset-width: 0px;
-      --tw-ring-offset-color: #fff;
-      --tw-ring-offset-shadow: 0 0 #0000;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -897,6 +781,7 @@ dialog:focus {
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
+      --tw-space-y-reverse: 0;
       --tw-duration: initial;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
