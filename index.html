@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" style="font-size: 110%;">
 <head>
     <meta charset="UTF-8">
@@ -50,23 +50,39 @@
         <section class="pt-32" id="services">
             <h2 class="section-title">Our Services</h2>
             <div class="grid grid-rows-4 sm:grid-cols-3 sm:grid-rows-2 gap-8 sm:gap-16">
-                <div class="sm:col-start-2 sm:col-end-2 service-box service-button">
+                <button 
+                    type="button"
+                    class="sm:col-start-2 sm:col-end-2 service-box hover:cursor-pointer service-button"
+                    onclick="document.getElementById('tech-foundations-modal').showModal()"
+                >
                     <h3>Tech Foundations</h3>
                     <p>Build IT systems ready for tomorrow's challenge</p>
-                </div>
+                </button>
 
-                <div class="sm:col-start-1 sm:col-end-1 sm:row-start-2 service-box service-button">
+                <button 
+                    type="button"
+                    class="sm:col-start-1 sm:col-end-1 sm:row-start-2 service-box hover:cursor-pointer service-button"
+                    onclick="document.getElementById('growth-boost-modal').showModal()"
+                >
                     <h3>Growth Boost</h3>
                     <p>Expand your reach across regions with confidence</p>
-                </div>
-                <div class="sm:col-start-2 sm:col-end-2 sm:row-start-2 service-box service-button">
-                    <h3>OpSec: ML & Crypto</h3>
+                </button>
+                <button 
+                    type="button"
+                    class="sm:col-start-2 sm:col-end-2 sm:row-start-2 service-box hover:cursor-pointer service-button"
+                    onclick="document.getElementById('aisec-cryptosec-modal').showModal()"
+                >
+                    <h3>Cybersecurity</h3>
                     <p>Secure operations with state-of-the-art solutions.</p>
-                </div>
-                <div class="sm:col-start-3 sm:col-end-3 sm:row-start-2 service-box service-button">
+                </button>
+                <button 
+                    type="button"
+                    class="sm:col-start-3 sm:col-end-3 sm:row-start-2 service-box hover:cursor-pointer service-button"
+                    onclick="document.getElementById('research-services-modal').showModal()"
+                >
                     <h3>Research Services</h3>
                     <p>Uncover market trends with data-driven insights</p>
-                </div>
+                </button>
             </div>
         </section>
 
@@ -130,5 +146,180 @@
             <li class="privacy-policy"><a class="link" href="https://aaronrolston.com/">Credit</a></li>
         </ul>
     </footer>
+
+    <dialog 
+        id="tech-foundations-modal" 
+        class="modal mx-auto my-auto bg-primary-bg text-primary p-8 rounded-lg shadow-xl max-w-2xl w-full border border-gray-700"
+    >
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold font-[Orbitron]">Tech Foundations</h3>
+                <button 
+                    onclick="document.getElementById('tech-foundations-modal').close()" 
+                    class="text-xl hover:text-gray-400 transition-colors"
+                    aria-label="Close modal"
+                >
+                    ×
+                </button>
+            </div>
+            <ul class="space-y-6">
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">Web & Mobile Apps</strong> All in one and tailored solutions for your business</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>100-500$ per page</span>
+                    </div>
+                </li>
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">IT Infra </strong> Set up your IT infrastructure with security (networks, data compute & storage, IoT and more) </div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Contact us - starts at 80$</span>
+                    </div>
+                </li>
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">Scalable Web3 Integration</strong> Future-proof your business with Decentralized and Interoperable Data, DeFi and Tokenization solutions</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Contact us</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-text mb-2"><strong class="text-accent">Web3 Apps</strong> Build Blockchains, Tokenomics, smartcontracts, Layer 2, DeFi protocols, or any Dapp with crypto natives</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Contact us</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+
+    <dialog 
+        id="aisec-cryptosec-modal" 
+        class="modal mx-auto my-auto bg-primary-bg text-primary p-8 rounded-lg shadow-xl max-w-2xl w-full border border-gray-700"
+    >
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold font-[Orbitron]">AiSec & CryptoSec</h3>
+                <button 
+                    onclick="document.getElementById('aisec-cryptosec-modal').close()" 
+                    class="text-xl hover:text-gray-400 transition-colors"
+                    aria-label="Close modal"
+                >
+                    ×
+                </button>
+            </div>
+            <ul class="space-y-6">
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">Cybersecurity and Privacy</strong> Audits and fixes in your apps, AI, ML, blockchain ops. Penetration Testing, Stress Testing, Cloud Security, and Source code review</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Retail: 100$</span>
+                        <span>Business: contact us</span>
+                    </div>
+                </li>
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">GenAI & Agent Development</strong> Integrate GenAI solutions and Agents with open source and audited models. LLM/Agent Security Assessment and MLOps pipeline threat analysis.</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Retail: 50$ hourly</span>
+                        <span>Business: TBD</span>
+                    </div>
+                </li>
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">CryptoSec</strong> Decentralized architecture, self-custody and privacy best practices, L1/L2 Security review, DevSecOps Advisory</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Retail: $50/month or 10% profits</span>
+                        <span>Business: $500/month or 10% profits</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-text mb-2"><strong class="text-accent">Threat Monitoring</strong> Automated systems that watch your back on and offline</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Retail: $50-$5,000/month</span>
+                        <span>Business: $500-$5,000/month</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+
+    <dialog 
+        id="growth-boost-modal" 
+        class="modal mx-auto my-auto bg-primary-bg text-primary p-8 rounded-lg shadow-xl max-w-2xl w-full border border-gray-700"
+    >
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold font-[Orbitron]">Growth Boost</h3>
+                <button 
+                    onclick="document.getElementById('growth-boost-modal').close()" 
+                    class="text-xl hover:text-gray-400 transition-colors"
+                    aria-label="Close modal"
+                >
+                    ×
+                </button>
+            </div>
+            <ul class="space-y-6">
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">Strategic Expansion Support</strong> In EU and Swiss markets</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>TBD - First consultation's Free</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-text mb-2"><strong class="text-accent">Public Good Advocacy and Fundraising</strong> Universal rights, Decentralization of technologies, Localism and Pluralism</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>Probably Free! Contact us!</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+
+    <dialog 
+        id="research-services-modal" 
+        class="modal mx-auto my-auto bg-primary-bg text-primary p-8 rounded-lg shadow-xl max-w-2xl w-full border border-gray-700"
+    >
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold font-[Orbitron]">Research Services</h3>
+                <button 
+                    onclick="document.getElementById('research-services-modal').close()" 
+                    class="text-xl hover:text-gray-400 transition-colors"
+                    aria-label="Close modal"
+                >
+                    ×
+                </button>
+            </div>
+            <ul class="space-y-6">
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">Markets in-depth research and Risk Assessments</strong> Digital Assets, AI, Energy, Mining, and more commodities</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>2000$/report</span>
+                    </div>
+                </li>
+                <li class="border-b border-gray-700 pb-4">
+                    <div class="service-text mb-2"><strong class="text-accent">On-chain and OSINT</strong> Blockchain, DeFi, and Cyberspace forensics (Financial Monitoring, Incident analysis and report, Source of Funds, Transaction & Wallet analysis/tracing, Darknet monitoring, Data poisoning.)</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>10% funds and/or 80$ hourly</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-text mb-2"><strong class="text-accent">Training</strong> Financial education, Tech, Crypto and/or AI upskilling</div>
+                    <div class="prices text-sm text-gray-400">
+                        <span>80$ hourly</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+
+    <script>
+        // javascript to close modals when clicking outside
+        const modals = document.querySelectorAll('dialog.modal');
+        
+        modals.forEach(modal => {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.close();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
