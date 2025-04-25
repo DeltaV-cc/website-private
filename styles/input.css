@@ -86,7 +86,17 @@ dialog:focus {
 }
 
 .service-button {
-  @apply p-4 border-[0.5px] border-accent rounded-lg relative overflow-hidden;
-  box-shadow: 0 0 5px var(--accent-color);
+  @apply border-[0.5px] border-accent p-4 rounded-lg relative overflow-hidden;
+  box-shadow: 0 0 10px var(--accent-color);
   transition: all 0.3s ease;
+}
+
+.service-button:hover {
+  box-shadow: 0 0 10px var(--accent-color), 0 0 40px var(--accent-color);
+  transform: translateY(-5px);
+}
+
+.service-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 5px var(--accent-color);
 }
