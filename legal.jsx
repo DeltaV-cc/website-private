@@ -417,7 +417,7 @@ function LegalPage() {
               <a href="privacy.html">Privacy Policy</a>
             </div>
             <div className="footer-col footer-col-meta">
-              <span className="mono">© 2025 Delta V</span>
+              <span className="mono">© 2026 Delta V</span>
             </div>
           </div>
         </div>
