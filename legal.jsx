@@ -25,16 +25,16 @@ function LegalNav() {
   return (
     <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="container nav-inner">
-        <a href="Delta V.html" className="nav-brand">
+        <a href="index.html" className="nav-brand">
           <DeltaMark size={18} />
           <span className="mono nav-brand-txt">DELTA V</span>
         </a>
         <div className="nav-links mono">
-          <a href="Delta V.html#services">Services</a>
-          <a href="Delta V.html#why">Why us</a>
-          <a href="Delta V.html#engage">Engage</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#why">Why us</a>
+          <a href="index.html#engage">Engage</a>
         </div>
-        <a href="Delta V.html" className="nav-cta mono">← Back to site</a>
+        <a href="index.html" className="nav-cta mono">← Back to site</a>
       </div>
     </nav>
   );
@@ -344,7 +344,7 @@ function LegalPage() {
         <div className="legal-watermark" aria-hidden>CGU</div>
         <div className="container legal-head-inner">
           <div className="legal-crumbs mono">
-            <a href="Delta V.html">
+            <a href="index.html">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
                 <path d="M6 2L3 5l3 3" stroke="currentColor" strokeWidth="1.2" fill="none"/>
               </svg>
@@ -407,14 +407,14 @@ function LegalPage() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-col">
-              <a href="Delta V.html" className="footer-brand">
+              <a href="index.html" className="footer-brand">
                 <DeltaMark size={22} />
                 <span className="mono" style={{ letterSpacing: '.14em', fontWeight: 600 }}>DELTA V</span>
               </a>
             </div>
             <div className="footer-col">
-              <a href="CGU.html" style={{ color: 'var(--accent)' }}>CGU</a>
-              <a href="Privacy.html">Privacy Policy</a>
+              <a href="cgu.html" style={{ color: 'var(--accent)' }}>CGU</a>
+              <a href="privacy.html">Privacy Policy</a>
             </div>
             <div className="footer-col footer-col-meta">
               <span className="mono">© 2025 Delta V</span>

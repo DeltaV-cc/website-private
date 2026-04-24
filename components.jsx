@@ -302,8 +302,8 @@ function Footer() {
             </a>
           </div>
           <div className="footer-col">
-            <a href="CGU.html">CGU</a>
-            <a href="Privacy.html">Privacy Policy</a>
+            <a href="cgu.html">CGU</a>
+            <a href="privacy.html">Privacy Policy</a>
           </div>
           <div className="footer-col footer-col-meta">
             <span className="mono">© 2025 Delta V</span>
