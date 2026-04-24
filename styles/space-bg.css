@@ -1,0 +1,191 @@
+/* space-bg — page-wide blurred nebula parallax */
+
+/* SpaceBG sits BELOW all content. The flower HeroBloom stays further
+   below. Orbs are visible through transparent section backgrounds. */
+.space-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nav { z-index: 100; }
+
+/* All page content above SpaceBG */
+.hero,
+.section,
+.footer,
+.transition-band,
+.mq-band,
+.hero-end-sep,
+.side-rail,
+.scroll-progress {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero-inner explicitly above HeroBloom inside the hero */
+.hero-inner { position: relative; z-index: 5; }
+
+/* HeroBloom sits above SpaceBG so the flower/glow is visible on hero */
+.hero-bloom { z-index: 3 !important; }
+
+/* ─── Base gradient ─────────────────────────────────────────── */
+.space-bg-base {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 50%,
+      oklch(0.16 0.02 240) 0%,
+      oklch(0.12 0.012 240) 60%,
+      oklch(0.09 0.008 240) 100%);
+  opacity: 0.55;
+  /* Subtle hue/saturation drift as the page scrolls. Tiny values keep
+     the atmosphere minimal — you feel it more than you see it. */
+  filter:
+    hue-rotate(calc(var(--sbg-progress, 0) * 10deg))
+    saturate(calc(1 + var(--sbg-progress, 0) * 0.08));
+  transition: filter 900ms ease;
+}
+
+/* ─── Orbs ──────────────────────────────────────────────────── */
+.space-orb {
+  position: absolute;
+  border-radius: 50%;
+  /* Brightness nudges up during fast scrolls, settles when idle. */
+  filter: blur(130px) brightness(calc(1 + var(--sbg-vabs, 0) * 0.04));
+  will-change: transform, filter;
+  mix-blend-mode: screen;
+  transition: filter 900ms ease;
+}
+
+.space-orb-1 {
+  width: 60vw; height: 60vw;
+  left: -10vw; top: 2vh;
+  background: radial-gradient(closest-side,
+    oklch(0.62 0.17 220) 0%,
+    oklch(0.44 0.14 228) 42%,
+    transparent 72%);
+  opacity: 0.17;
+}
+.space-orb-2 {
+  width: 55vw; height: 55vw;
+  right: -12vw; top: 110vh;
+  background: radial-gradient(closest-side,
+    oklch(0.55 0.16 282) 0%,
+    oklch(0.40 0.13 298) 44%,
+    transparent 72%);
+  opacity: 0.13;
+}
+.space-orb-3 {
+  width: 70vw; height: 70vw;
+  left: -15vw; top: 220vh;
+  background: radial-gradient(closest-side,
+    oklch(0.62 0.16 192) 0%,
+    oklch(0.46 0.13 204) 42%,
+    transparent 72%);
+  opacity: 0.15;
+}
+.space-orb-4 {
+  width: 50vw; height: 50vw;
+  right: -5vw; top: 330vh;
+  background: radial-gradient(closest-side,
+    oklch(0.56 0.18 322) 0%,
+    oklch(0.40 0.14 308) 44%,
+    transparent 72%);
+  opacity: 0.13;
+}
+.space-orb-5 {
+  width: 65vw; height: 65vw;
+  left: 10vw; top: 440vh;
+  background: radial-gradient(closest-side,
+    oklch(0.60 0.15 242) 0%,
+    oklch(0.42 0.12 238) 42%,
+    transparent 72%);
+  opacity: 0.15;
+}
+
+/* ─── Aurora beam ───────────────────────────────────────────── */
+/* A single luminous horizon streak — very subtle. Drifts vertically as
+   the scroll progresses and brightens briefly on fast scrolls. One
+   line, tinted with the current accent, blends into the nebula. */
+.space-aurora {
+  position: absolute;
+  left: -20vw;
+  width: 140vw;
+  height: 1px;
+  top: 42%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in oklch, var(--accent) 18%, transparent) 28%,
+    color-mix(in oklch, var(--accent) 55%, transparent) 50%,
+    color-mix(in oklch, var(--accent) 18%, transparent) 72%,
+    transparent 100%);
+  filter: blur(1.4px);
+  opacity: calc(0.18 + var(--sbg-vabs, 0) * 0.14);
+  transform: translateY(calc((var(--sbg-progress, 0) - 0.5) * 30vh));
+  transition: transform 600ms linear, opacity 900ms ease;
+  will-change: transform, opacity;
+}
+.space-aurora::after {
+  content: '';
+  position: absolute;
+  inset: -22px -6vw;
+  background: radial-gradient(60% 100% at 50% 50%,
+    color-mix(in oklch, var(--accent) 14%, transparent) 0%,
+    transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  filter: blur(10px);
+}
+
+/* ─── Starfield (static background image) ───────────────────── */
+.space-bg-stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.8) 50%, transparent 100%),
+    radial-gradient(1px 1px at 78% 32%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 42% 60%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 88% 80%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 12% 72%, rgba(255,255,255,0.9) 50%, transparent 100%),
+    radial-gradient(1px 1px at 64% 8%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 8% 45%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 95% 52%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 35% 88%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 72% 95%, rgba(255,255,255,0.8) 50%, transparent 100%);
+  opacity: 0.22;
+}
+
+/* ─── Twinkling stars (independent animated dots) ───────────── */
+.space-bg-twinkle { position: absolute; inset: 0; pointer-events: none; }
+.twinkle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 3px rgba(255,255,255,0.4);
+  animation-name: sbg-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: opacity, transform;
+}
+@keyframes sbg-twinkle {
+  0%, 100% { opacity: 0.08; transform: scale(0.5); }
+  50%      { opacity: 0.6;  transform: scale(1.05); }
+}
+
+.space-bg-grain {
+  position: absolute; inset: 0;
+  opacity: 0.03;
+  background-image: radial-gradient(rgba(255,255,255,0.8) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .space-orb { transform: none !important; filter: blur(120px) !important; }
+  .space-aurora { transform: none !important; transition: none !important; opacity: 0.4 !important; }
+  .space-bg-base { filter: none !important; transition: none !important; }
+  .twinkle { animation: none !important; opacity: 0.55; transform: none !important; }
+}
