@@ -12,5 +12,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: `${base}/cgu`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${base}/privacy`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
   ];
 }

@@ -12,8 +12,6 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "public/amaranth/**",
-    "public/legal.jsx",
-    "public/privacy.jsx",
     "next-env.d.ts",
   ]),
 ]);

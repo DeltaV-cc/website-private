@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "./reveal";
 
 const services = [
@@ -280,8 +281,8 @@ function Footer() {
             </a>
           </div>
           <div className="footer-col">
-            <a href="https://deltav.cc/cgu.html">CGU</a>
-            <a href="https://deltav.cc/privacy.html">Privacy Policy</a>
+            <Link href="/cgu">CGU</Link>
+            <Link href="/privacy">Privacy Policy</Link>
           </div>
           <div className="footer-col footer-col-meta">
             <span className="mono">© 2026 Delta V</span>
