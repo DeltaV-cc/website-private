@@ -1,0 +1,37 @@
+# Delta V
+
+> Swiss-based studio delivering tech foundations, strategic growth, cybersecurity, and research services for decentralized technologies.
+
+Delta V is a Swiss studio that helps organisations adopt decentralized technologies. We build and operate web and Web3 systems, run cybersecurity and privacy audits, deliver on-chain / OSINT research, and support strategic growth in EU and Swiss markets. Engagements run as paid scope -> fixed-fee pilot -> optional operate retainer.
+
+Contact: contact@deltav.cc - Signal: @DeltaV.01 - Site: https://deltav.cc
+
+## Services
+
+- Tech Foundations: web and mobile apps, IT infrastructure, scalable Web3 integration, Web3 apps.
+- Growth Boost: strategic expansion (EU / Swiss), public good advocacy and fundraising.
+- Cybersecurity: privacy audits, GenAI and agent development, CryptoSec, threat monitoring.
+- Research Services: market research reports, on-chain / OSINT analysis, training.
+
+## Selected Work
+
+- Hardened a Swiss DAO treasury through multi-sig review, smart-contract diff against upstream, and an incident-response runbook delivered in 14 days. Outcome: 0 critical findings post-remediation.
+- Shipped a cross-border on-ramp: compliant fiat-to-stablecoin flows for a Lemanic fintech across EU and Swiss markets. Outcome: 6-week design-to-production.
+- Mapped an on-chain attribution case: cluster analysis and OSINT enrichment recovered evidentiary clarity for civil-recovery counsel. Outcome: USD 2.4M assets traced.
+
+## How we engage
+
+1. Scope - paid discovery call producing a written brief (outcomes, constraints, risks).
+2. Pilot - fixed-fee engagement that proves the approach end-to-end with real artifacts.
+3. Operate - hand over a system the client owns; optional retainer for monitoring or continued engineering.
+
+## Principles
+
+- Tech natives: passionate professionals at the forefront of decentralization and digital upskilling - we build, operate, and live the stack.
+- Self-ownership focused: every solution prioritizes user control over data, keys, and decisions.
+
+## Key resources
+
+- Home: https://deltav.cc/
+- Sitemap: https://deltav.cc/sitemap.xml
+- Open Graph image: https://deltav.cc/opengraph-image
