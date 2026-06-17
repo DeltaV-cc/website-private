@@ -145,25 +145,43 @@ export default function IntelHubPage(){
              MACRO DASHBOARD
              ================================================================ */}
         {active==='macro'&&(<div className="space-y-8">
-          {/* Fear & Greed + Top Stocks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Fear & Greed */}
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5">
-              <div className="text-[11px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fear & Greed Index</div>
-              {dd?.fearGreed?(
-                <div className="flex items-center gap-4">
-                  <div className={`text-4xl font-bold ${Number(dd.fearGreed.value)>50?'text-emerald-400':Number(dd.fearGreed.value)<30?'text-red-400':'text-amber-400'}`}>{dd.fearGreed.value}</div>
-                  <div><div className="text-sm font-medium text-white/80">{dd.fearGreed.value_classification}</div><div className="text-[11px] text-white/25 mt-0.5">Crypto Market</div></div>
+          {/* Fear & Greed + World Bank */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Fear & Greed with history */}
+            <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-[11px] text-amber-400 uppercase tracking-[.15em] font-bold">Fear & Greed Index</div>
+                <span className="text-[10px] text-white/20">7-day</span>
+              </div>
+              {dd?.fearGreed?.data?(
+                <div className="flex items-end gap-2 h-24">
+                  {dd.fearGreed.data.slice().reverse().map((d:any,i:number)=>{
+                    const v=Number(d.value);
+                    const h=Math.max(4,(v/100)*80);
+                    const color=v>50?'bg-emerald-500/60':v<30?'bg-red-500/60':'bg-amber-500/60';
+                    return(<div key={i} className="flex-1 flex flex-col items-center gap-1"><span className="text-[9px] text-white/30">{v}</span><div className={`w-full ${color} rounded-t transition-all duration-500`} style={{height:`${h}px`}}/><div className="text-[8px] text-white/15">{new Date(Number(d.timestamp)*1000).toLocaleString([],{month:'short',day:'numeric'})}</div></div>);
+                  })}
                 </div>
               ):<div className="text-white/15 text-sm italic">Loading...</div>}
+              {dd?.fearGreed?.data?.[0]&&<div className="mt-3 text-[11px] text-white/30">Current: <span className="font-semibold text-white/60">{dd.fearGreed.data[0].value} — {dd.fearGreed.data[0].value_classification}</span></div>}
             </div>
-            {/* AI / Hardware / Energy / Patent boxes */}
-            <div className="grid grid-cols-2 gap-3">
-              {[{label:'AI',color:'text-blue-400',icon:'🤖',kw:['ai','machine learning','llm']},{label:'Hardware',color:'text-green-400',icon:'💻',kw:['chip','gpu','cpu','compute']},{label:'Energy',color:'text-lime-400',icon:'⚡',kw:['energy','nuclear','solar','grid','oil']},{label:'Patents',color:'text-pink-400',icon:'📜',kw:['patent','uspto','trademark','ip']}].map(box=>{
-                const count=items.filter(i=>box.kw.some(k=>(i.title+' '+i.summary).toLowerCase().includes(k))).length;
-                return(<div key={box.label} className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-4 hover:border-white/15 transition-all"><div className="text-lg mb-1">{box.icon}</div><div className={`text-[12px] font-semibold ${box.color}`}>{box.label}</div><div className="text-2xl font-bold tabular-nums mt-1 text-white/60">{count}</div><div className="text-[10px] text-white/20 mt-0.5">items</div></div>);
-              })}
+            {/* World Bank snapshot */}
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 flex flex-col justify-between">
+              <div className="text-[11px] text-sky-400 uppercase tracking-[.15em] font-bold mb-3">World Bank</div>
+              {dd?.worldBankGDP?.[1]?.[0]?(
+                <div className="space-y-2">
+                  <div><div className="text-[10px] text-white/25">US GDP</div><div className="text-lg font-bold text-white/70">{dd.worldBankGDP[1][0].value?`$${(Number(dd.worldBankGDP[1][0].value)/1e12).toFixed(1)}T`:'N/A'}</div><div className="text-[9px] text-white/15">{dd.worldBankGDP[1][0].date}</div></div>
+                </div>
+              ):<div className="text-white/15 text-sm italic">Loading...</div>}
+              <div className="text-[9px] text-white/10 mt-2">Source: data.worldbank.org</div>
             </div>
+          </div>
+          {/* AI / Hardware / Energy / Patent boxes */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[{label:'AI',color:'text-blue-400',icon:'🤖',kw:['ai','machine learning','llm']},{label:'Hardware',color:'text-green-400',icon:'💻',kw:['chip','gpu','cpu','compute']},{label:'Energy',color:'text-lime-400',icon:'⚡',kw:['energy','nuclear','solar','grid','oil']},{label:'Patents',color:'text-pink-400',icon:'📜',kw:['patent','uspto','trademark','ip']}].map(box=>{
+              const count=items.filter(i=>box.kw.some(k=>(i.title+' '+i.summary).toLowerCase().includes(k))).length;
+              return(<div key={box.label} className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-4 hover:border-white/15 transition-all"><div className="text-lg mb-1">{box.icon}</div><div className={`text-[12px] font-semibold ${box.color}`}>{box.label}</div><div className="text-2xl font-bold tabular-nums mt-1 text-white/60">{count}</div><div className="text-[10px] text-white/20 mt-0.5">items</div></div>);
+            })}
           </div>
           {/* Source Tiles */}
           <div><div className="flex items-center gap-2 mb-4"><span className="text-[11px] text-white/20 uppercase tracking-[.15em] font-bold">Sources</span><span className="text-[10px] text-white/15">{activeSources(macroTiles)} active</span></div>
