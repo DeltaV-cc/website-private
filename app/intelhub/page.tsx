@@ -78,7 +78,6 @@ export default function IntelHubPage(){
   const [patents,setPatents]=useState<any>(null);
   const loadPatents=async()=>{try{const r=await fetch('/api/intel/patent-data');if(r.ok)setPatents(await r.json());}catch(e){}};
   useEffect(()=>{loadPatents();},[]);
-  const [dd2,setDd2]=useState<any>(null);
   const loadInfosec=async()=>{try{const r=await fetch('/api/intel/infosec-data');if(r.ok)setDd2(await r.json());}catch(e){}};
   useEffect(()=>{loadInfosec();const i=setInterval(loadInfosec,10*60_000);return()=>clearInterval(i);},[]);
   const scrollRef=useRef<HTMLDivElement>(null);
