@@ -202,15 +202,40 @@ export default function IntelHubPage(){
                 <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ Check</div><div className="text-white/50">Audit exposed ports. Rotate keys.</div></div>
               </div>
             </div>
-            {/* Cat box */}
-            {infosecCats.map(cat=>(
-              <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-                <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{cat.count}</span></div>
-                <div className="divide-y divide-white/[0.02] max-h-[400px] overflow-y-auto scrollbar-hide">
-                  {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no threats</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-2 leading-snug">{it.title}</div>{it.summary&&<div className="text-[9px] text-white/15 mt-0.5 line-clamp-1">{it.summary.slice(0,90)}</div>}<div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div></a>))}
-                </div>
-              </div>
-            ))}
+            {/* Sitdeck Source Boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                {name:'CISA Advisories',color:'border-l-emerald-400',match:['cisa']},
+                {name:'Krebs on Security',color:'border-l-red-400',match:['krebs']},
+                {name:'The Hacker News',color:'border-l-amber-400',match:['hacker news']},
+                {name:'BleepingComputer',color:'border-l-orange-400',match:['bleeping']},
+                {name:'Dark Reading',color:'border-l-rose-400',match:['dark reading']},
+                {name:'Schneier on Security',color:'border-l-blue-400',match:['schneier']},
+                {name:'NIST NVD',color:'border-l-purple-400',match:['nist','nvd']},
+                {name:'ICS-CERT',color:'border-l-cyan-400',match:['ics-cert']},
+                {name:'Have I Been Pwned',color:'border-l-pink-400',match:['hibp','pwned']},
+              ].map(src=>{
+                const srcItems=items.filter(i=>src.match.some(m=>i.source?.toLowerCase().includes(m))).slice(0,6);
+                return(
+                  <div key={src.name} className={`rounded-2xl border border-white/[0.06] bg-white/[0.01] border-l-2 ${src.color} overflow-hidden`}>
+                    <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between">
+                      <span className="text-[13px] font-semibold text-white/80">{src.name}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{srcItems.length}</span>
+                    </div>
+                    <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
+                      {srcItems.length===0?<div className="px-4 py-5 text-[11px] text-white/10 italic text-center">no alerts</div>:
+                        srcItems.map((it,j)=>(
+                          <a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group">
+                            <div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-2 leading-snug">{it.title}</div>
+                            <div className="text-[9px] text-white/20 mt-1">{ago(it.published_at)}</div>
+                          </a>
+                        ))
+                      }
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
