@@ -1,0 +1,6 @@
+name = "deltav-proxy"
+main = "workers/proxy.js"
+compatibility_date = "2026-06-17"
+
+[env.production]
+routes = [{ pattern = "proxy.hub.deltav.cc/*", zone_name = "deltav.cc" }]
