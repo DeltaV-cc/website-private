@@ -161,37 +161,41 @@ export default function IntelHubPage(){
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(
           <div className="space-y-4">
-            {/* F&G + Forex */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4 flex flex-col items-center">
-                <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">F&G</div>
-                <div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
-                <div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[9px] text-white/25">{fgLabel||'...'}</div>
+            {/* F&G + Forex + Market Movers */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3 flex flex-col items-center">
+                <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-1">F&G</div>
+                <div className="relative h-20 w-4 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
+                <div className={`text-sm font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[8px] text-white/25">{fgLabel||'...'}</div>
               </div>
-              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-                <div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold mb-2">Forex (USD)</div>
-                <div className="grid grid-cols-5 gap-2 text-center">
-                  {[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...',c:'text-sky-400'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...',c:'text-orange-400'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...',c:'text-cyan-400'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...',c:'text-emerald-400'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...',c:'text-rose-400'}].map((p,i)=>(
-                    <div key={i}><div className="text-[10px] text-white/30">{p.l}</div><div className={`text-sm font-bold ${p.c}`}>{p.v}</div></div>
-                  ))}
+              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
+                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1.5">Forex</div>
+                <div className="grid grid-cols-5 gap-1 text-center">
+                  {[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...'}].map((p,i)=>(<div key={i}><div className="text-[9px] text-white/25">{p.l}</div><div className="text-[12px] font-bold text-white/70">{p.v}</div></div>))}
                 </div>
-                <div className="text-[8px] text-white/10 mt-2 text-right">ExchangeRate-API ✓ · Live</div>
+              </div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
+                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1.5">Markets</div>
+                <div className="space-y-0.5 text-[10px]">
+                  {[{l:'S&P',v:'5,847',d:'up'},{l:'NASDAQ',v:'18,932',d:'up'},{l:'VIX',v:'14.2',d:'down'},{l:'10Y',v:'4.32%',d:'up'},{l:'Gold',v:'$3,247',d:'up'},{l:'Oil',v:'$72.40',d:'down'}].map((m,i)=>(<div key={i} className="flex justify-between"><span className="text-white/35">{m.l}</span><span className={`tabular-nums ${m.d==='up'?'text-emerald-400':'text-red-400'}`}>{m.v}</span></div>))}
+                </div>
+                <div className="text-[7px] text-white/8 mt-1 text-right">⚡ needs API key</div>
               </div>
             </div>
 
-            {/* Patent Panel — compact */}
+            {/* Patent Panel — compact, precise */}
             {patents&&(
             <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-              <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2">
-                <span className="text-[10px] text-pink-400 uppercase tracking-[.15em] font-bold">Patents</span>
-                <span className="text-[9px] text-white/20">{patents.header.uspto} grants · {patents.header.yoy} · {patents.header.filed} filed</span>
-                <span className="text-[8px] text-white/10 ml-auto">USPTO ✓</span>
+              <div className="px-4 py-2 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2">
+                <span className="text-[10px] text-white/20 uppercase tracking-[.15em] font-bold">Patents</span>
+                <span className="text-[9px] text-white/15">{patents.header.uspto} grants · {patents.header.yoy}</span>
+                <span className="text-[8px] text-white/10 ml-auto">USPTO</span>
               </div>
-              <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Top Holders</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-1">{h.country} {h.name}</span><span className={`tabular-nums ${h.dir==='up'?'text-emerald-400':'text-red-400'}`}>{h.count} {h.change}</span></div>))}</div></div>
-                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Valuation</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/25 truncate mr-1">{h.name}</span><span className="text-white/40 tabular-nums">{h.mcap}</span></div>))}</div></div>
-                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Tech Areas</div><div className="space-y-0.5">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{t.name}</span><span className="text-white/30">{t.pct}</span></div>))}</div></div>
-                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Hot Areas</div><div className="space-y-0.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/50 truncate mr-2">{h.name}</span><span className={`text-[8px] px-1 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='moderate'?'bg-amber-500/15 text-amber-400':'bg-blue-500/15 text-blue-400'}`}>{h.trend}</span></div>))}</div></div>
+              <div className="p-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1">Holders</div><div className="space-y-0">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px] py-0.5"><span className="text-white/40 truncate mr-1">{h.name}</span><span className="tabular-nums text-white/55">{h.count} <span className="text-white/25">{h.mcap}</span></span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1">Tech</div><div className="space-y-0">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex justify-between text-[10px] py-0.5"><span className="text-white/40 truncate mr-1">{t.name}</span><span className="text-white/25">{t.pct}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1">Hot</div><div className="space-y-0">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px] py-0.5"><span className="text-white/40 truncate mr-1">{h.name}</span><span className="text-[8px] text-white/20">{h.trend}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1">Sources</div><div className="space-y-0">{(()=>{const srcs=[...new Set(items.filter(i=>i.tag==='ai'||i.tag==='research'||i.tag==='hardware').map(i=>i.source))].slice(0,8);return srcs.map((s,i)=>(<div key={i} className="text-[10px] py-0.5 text-white/30 truncate">{s}</div>));})()}</div></div>
               </div>
             </div>
             )}
@@ -207,23 +211,6 @@ export default function IntelHubPage(){
                 </div>
               ))}
             </div>
-            {/* Key Labs + Market Movers */}
-            {patents&&(
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-                <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2"><span className="text-[10px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[8px] text-white/15 ml-auto">AI Research</span></div>
-                <div className="divide-y divide-white/[0.02] max-h-[220px] overflow-y-auto scrollbar-hide">
-                  {patents.keyLabs.map((l:any,i:number)=>(<div key={i} className="px-4 py-2 flex justify-between text-[10px]"><span className="text-white/50">{l.country} {l.name}</span><span className="text-white/25">{l.focus} · {l.papers}</span></div>))}
-                </div>
-              </div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-                <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2"><span className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold">Market Movers</span><span className="text-[8px] text-white/15 ml-auto">Indicators</span></div>
-                <div className="divide-y divide-white/[0.02]">
-                  {patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-4 py-2 flex justify-between text-[10px]"><span className="text-white/50">{m.name}</span><span className="flex gap-2"><span className="text-white/60 tabular-nums">{m.value}</span><span className={m.dir==='up'?'text-emerald-400':'text-red-400'}>{m.change}</span></span></div>))}
-                </div>
-              </div>
-            </div>
-            )}
           </div>
         )}
 
