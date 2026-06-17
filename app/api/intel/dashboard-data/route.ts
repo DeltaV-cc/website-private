@@ -10,12 +10,21 @@ export async function GET() {
 
   // Fear & Greed Index (free, no key)
   try {
-    const fg = await fetch('https://api.alternative.me/fng/?limit=1');
-    if (fg.ok) {
-      const d = await fg.json();
-      result.fearGreed = d.data?.[0] || null;
-    }
+    const fg = await fetch('https://api.alternative.me/fng/?limit=7');
+    if (fg.ok) result.fearGreed = await fg.json();
   } catch (e) { console.error('F&G:', e); }
+
+  // World Bank GDP (free, no key)
+  try {
+    const wb = await fetch('https://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD?format=json&per_page=3');
+    if (wb.ok) result.worldBankGDP = await wb.json();
+  } catch (e) {}
+
+  // World Bank Inflation
+  try {
+    const inf = await fetch('https://api.worldbank.org/v2/country/US/indicator/FP.CPI.TOTL.ZG?format=json&per_page=3');
+    if (inf.ok) result.worldBankInflation = await inf.json();
+  } catch (e) {}
 
   // DeFiLlama TVL
   try {
