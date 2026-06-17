@@ -28,8 +28,8 @@ export async function GET() {
   // World Bank: Real Interest Rate
   try { const ir = await fetch('https://api.worldbank.org/v2/country/US/indicator/FR.INR.RINR?format=json&per_page=2'); if (ir.ok) result.worldBankInterest = await ir.json(); } catch (e) {}
 
-  // DeFiLlama TVL
-  try { const r = await fetch('https://api.llama.fi/v2/chains'); if (r.ok) { const chains = await r.json(); result.defiLlama.tvl = chains.filter((c:any)=>c.tvl>0).sort((a:any,b:any)=>b.tvl-a.tvl).slice(0,12); } } catch (e) {}
+  // DeFiLlama TVL + Dominance
+  try { const r = await fetch('https://api.llama.fi/v2/chains'); if (r.ok) { const chains = await r.json(); const sorted = chains.filter((c:any)=>c.tvl>0).sort((a:any,b:any)=>b.tvl-a.tvl); result.defiLlama.tvl = sorted.slice(0,12); const totalTvl = sorted.reduce((s:number,c:any)=>s+c.tvl,0)||1; result.defiLlama.dominance = sorted.slice(0,5).map((c:any)=>({name:c.name,tvl:c.tvl,pct:((c.tvl/totalTvl)*100).toFixed(1)+'%'})); } } catch (e) {}
 
   // DeFiLlama DEX volume
   try { const r = await fetch('https://api.llama.fi/overview/dexs?dataType=dailyVolume'); if (r.ok) { const d = await r.json(); result.defiLlama.volume = (d.allChains||[]).slice(0,10).map((n:string)=>({name:n,volume24h:d.breakdown24h?.[n]||d.total24hBreakdown?.[n]||0})).filter((x:any)=>x.volume24h>0).sort((a:any,b:any)=>b.volume24h-a.volume24h); result.defiLlama.totalVolume24h=d.total24h||0; } } catch (e) {}
