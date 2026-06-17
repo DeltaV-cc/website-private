@@ -231,13 +231,10 @@ export default function IntelHubPage(){
             <div id="infosec-data" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* CISA Alerts — from RSS items */}
               <TileBox title="CISA Alerts" accent="text-emerald-400" color="border-l-emerald-400" count={items.filter(i=>i.source?.toLowerCase().includes('cisa')).length}>
-                {items.filter(i=>i.source?.toLowerCase().includes('cisa')).slice(0,6).map((it,j)=>(
-                  <TileRow key={j} it={it} ago={ago} />
-                ))}
+                {(()=>{const cisaItems=items.filter(i=>i.source?.toLowerCase().includes('cisa')).slice(0,6);return cisaItems.length===0?<div className="px-4 py-4 text-[11px] text-white/10 italic">RSS feed pending</div>:cisaItems.map((it,j)=>(<TileRow key={j} it={it} ago={ago} />));})()}
               </TileBox>
 
-              {/* CISA KEV — from API */}
-              <TileBox title="CISA KEV" accent="text-red-400" color="border-l-red-400" count={dd2?.kev?.length||0}>
+              <TileBox title="KEV — Known Exploited" accent="text-red-400" color="border-l-red-400" count={dd2?.kev?.length||0}>
                 {(dd2?.kev||[]).map((v:any,j:number)=>(
                   <div key={j} className="px-4 py-2.5 border-b border-white/[0.02] last:border-0">
                     <div className="text-[12px] font-medium text-white/70">{v.cve}</div>
@@ -248,8 +245,8 @@ export default function IntelHubPage(){
               </TileBox>
 
               {/* Latest CVEs */}
-              <TileBox title="Latest CVEs" accent="text-orange-400" color="border-l-orange-400" count={dd2?.cves?.length||0}>
-                {(dd2?.cves||[]).map((c:any,j:number)=>(
+              <TileBox title="NVD — Latest CVEs" accent="text-orange-400" color="border-l-orange-400" count={dd2?.cves?.length||0}>
+                {(dd2?.cves||[]).length===0?<div className="px-4 py-4 text-[11px] text-white/10 italic">NVD API unavailable — retrying</div>:dd2.cves.map((c:any,j:number)=>(
                   <div key={j} className="px-4 py-2.5 border-b border-white/[0.02] last:border-0">
                     <div className="flex items-center gap-2"><span className="text-[12px] font-medium text-white/70">{c.id}</span><SeverityBadge sev={c.severity} score={c.score}/></div>
                     <div className="text-[10px] text-white/30 mt-0.5 line-clamp-2">{c.description}</div>
