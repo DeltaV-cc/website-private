@@ -15,6 +15,10 @@ export async function GET() {
   // Fear & Greed Index
   try { const fg = await fetch('https://api.alternative.me/fng/?limit=7'); if (fg.ok) result.fearGreed = await fg.json(); } catch (e) {}
 
+  // CoinGecko global (dominance + market cap)
+  try { const cg = await fetch('https://api.coingecko.com/api/v3/global'); if (cg.ok) { const g = await cg.json(); result.coinGeckoGlobal = g.data; } } catch (e) {}
+
+
   // World Bank: GDP
   try { const wb = await fetch('https://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD?format=json&per_page=3'); if (wb.ok) result.worldBankGDP = await wb.json(); } catch (e) {}
   // World Bank: Inflation
