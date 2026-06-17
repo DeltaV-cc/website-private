@@ -65,11 +65,18 @@ function rel(it:{title:string;source:string}){if(it.source?.toLowerCase().includ
 interface Item{title:string;url:string;source:string;published_at:string;summary:string;tag?:string}
 interface DashData{fearGreed:any;defiLlama:{tvl:any[];volume:any[];fees:any[];stablecoins:any[];totalVolume24h?:number};polymarket:any[]}
 
+function SeverityBadge({sev,score}:{sev:string;score:number}){const c=sev==='CRITICAL'?'bg-red-500/20 text-red-400':sev==='HIGH'?'bg-orange-500/20 text-orange-400':sev==='MEDIUM'?'bg-yellow-500/20 text-yellow-400':'bg-blue-500/20 text-blue-400';return<span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${c}`}>{score||sev}</span>;}
+function TileBox({title,accent,color,count,children}:{title:string;accent:string;color:string;count:number;children:React.ReactNode}){return<div className={`rounded-2xl border border-white/[0.06] bg-white/[0.01] border-l-2 ${color} overflow-hidden`}><div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${accent}`}>{title}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{count}</span></div><div className="divide-y divide-white/[0.02] max-h-[320px] overflow-y-auto scrollbar-hide">{children}</div></div>;}
+function TileRow({it,ago}:{it:Item;ago:(iso:string)=>string}){return<a href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-2 leading-snug">{it.title}</div><div className="text-[9px] text-white/20 mt-1">{ago(it.published_at)}</div></a>;}
+
 export default function IntelHubPage(){
   const [items,setItems]=useState<Item[]>([]);
   const [loading,setLoading]=useState(true);
   const [active,setActive]=useState<'macro'|'infosec'|'web3'>('web3');
   const [dd,setDd]=useState<DashData|null>(null);
+  const [dd2,setDd2]=useState<any>(null);
+  const loadInfosec=async()=>{try{const r=await fetch('/api/intel/infosec-data');if(r.ok)setDd2(await r.json());}catch(e){}};
+  useEffect(()=>{loadInfosec();const i=setInterval(loadInfosec,10*60_000);return()=>clearInterval(i);},[]);
   const scrollRef=useRef<HTMLDivElement>(null);
   const socialRef=useRef<HTMLDivElement>(null);
   const speed=useRef(1.2);
@@ -194,6 +201,7 @@ export default function IntelHubPage(){
         {/* ============ INFOSEC TAB ============ */}
         {active==='infosec'&&(
           <div className="space-y-5">
+            {/* Red Notice */}
             <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.03] p-5">
               <div className="flex items-center gap-2 mb-3"><span className="text-[11px] text-red-400 uppercase tracking-[.15em] font-bold">⚠ Active Threats</span><span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/></div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[12px]">
@@ -202,39 +210,47 @@ export default function IntelHubPage(){
                 <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ Check</div><div className="text-white/50">Audit exposed ports. Rotate keys.</div></div>
               </div>
             </div>
-            {/* Sitdeck Source Boxes */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                {name:'CISA Advisories',color:'border-l-emerald-400',match:['cisa']},
-                {name:'Krebs on Security',color:'border-l-red-400',match:['krebs']},
-                {name:'The Hacker News',color:'border-l-amber-400',match:['hacker news']},
-                {name:'BleepingComputer',color:'border-l-orange-400',match:['bleeping']},
-                {name:'Dark Reading',color:'border-l-rose-400',match:['dark reading']},
-                {name:'Schneier on Security',color:'border-l-blue-400',match:['schneier']},
-                {name:'NIST NVD',color:'border-l-purple-400',match:['nist','nvd']},
-                {name:'ICS-CERT',color:'border-l-cyan-400',match:['ics-cert']},
-                {name:'Have I Been Pwned',color:'border-l-pink-400',match:['hibp','pwned']},
-              ].map(src=>{
-                const srcItems=items.filter(i=>src.match.some(m=>i.source?.toLowerCase().includes(m))).slice(0,6);
-                return(
-                  <div key={src.name} className={`rounded-2xl border border-white/[0.06] bg-white/[0.01] border-l-2 ${src.color} overflow-hidden`}>
-                    <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between">
-                      <span className="text-[13px] font-semibold text-white/80">{src.name}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{srcItems.length}</span>
-                    </div>
-                    <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
-                      {srcItems.length===0?<div className="px-4 py-5 text-[11px] text-white/10 italic text-center">no alerts</div>:
-                        srcItems.map((it,j)=>(
-                          <a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group">
-                            <div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-2 leading-snug">{it.title}</div>
-                            <div className="text-[9px] text-white/20 mt-1">{ago(it.published_at)}</div>
-                          </a>
-                        ))
-                      }
-                    </div>
+
+            {/* Infosec Data Tiles */}
+            <div id="infosec-data" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* CISA Alerts — from RSS items */}
+              <TileBox title="CISA Alerts" accent="text-emerald-400" color="border-l-emerald-400" count={items.filter(i=>i.source?.toLowerCase().includes('cisa')).length}>
+                {items.filter(i=>i.source?.toLowerCase().includes('cisa')).slice(0,6).map((it,j)=>(
+                  <TileRow key={j} it={it} ago={ago} />
+                ))}
+              </TileBox>
+
+              {/* CISA KEV — from API */}
+              <TileBox title="CISA KEV" accent="text-red-400" color="border-l-red-400" count={dd2?.kev?.length||0}>
+                {(dd2?.kev||[]).map((v:any,j:number)=>(
+                  <div key={j} className="px-4 py-2.5 border-b border-white/[0.02] last:border-0">
+                    <div className="text-[12px] font-medium text-white/70">{v.cve}</div>
+                    <div className="text-[10px] text-white/30 mt-0.5 line-clamp-2">{v.vendor} — {v.product}: {v.name}</div>
+                    <div className="text-[9px] text-red-400/60 mt-1">Due: {v.dueDate?.slice(0,10)}</div>
                   </div>
-                );
-              })}
+                ))}
+              </TileBox>
+
+              {/* Latest CVEs */}
+              <TileBox title="Latest CVEs" accent="text-orange-400" color="border-l-orange-400" count={dd2?.cves?.length||0}>
+                {(dd2?.cves||[]).map((c:any,j:number)=>(
+                  <div key={j} className="px-4 py-2.5 border-b border-white/[0.02] last:border-0">
+                    <div className="flex items-center gap-2"><span className="text-[12px] font-medium text-white/70">{c.id}</span><SeverityBadge sev={c.severity} score={c.score}/></div>
+                    <div className="text-[10px] text-white/30 mt-0.5 line-clamp-2">{c.description}</div>
+                  </div>
+                ))}
+              </TileBox>
+
+              {/* Breaches (HIBP) */}
+              <TileBox title="Recent Breaches" accent="text-pink-400" color="border-l-pink-400" count={dd2?.breaches?.length||0}>
+                {(dd2?.breaches||[]).map((b:any,j:number)=>(
+                  <div key={j} className="px-4 py-2.5 border-b border-white/[0.02] last:border-0">
+                    <div className="text-[12px] font-medium text-white/70">{b.name}</div>
+                    <div className="text-[10px] text-white/30 mt-0.5">{b.domain} · {b.count?.toLocaleString()} accounts · {b.data}</div>
+                    <div className="text-[9px] text-white/15 mt-0.5">{b.date}</div>
+                  </div>
+                ))}
+              </TileBox>
             </div>
           </div>
         )}
