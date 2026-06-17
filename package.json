@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "python scripts/copy-data.py",
     "build": "next build",
+    "export": "next build",
     "start": "next start",
     "lint": "eslint"
   },
