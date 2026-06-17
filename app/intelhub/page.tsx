@@ -92,6 +92,9 @@ const DASHES: Record<string, DashDef> = {
       {name:'HIBP',color:'border-l-pink-400',match:['hibp','pwned']},
       {name:'pcaversaccio',color:'border-l-red-400',match:['pcaversaccio']},
       {name:'Hypernative',color:'border-l-orange-400',match:['hypernative']},
+      {name:'defimon',color:'border-l-yellow-400',match:['defimon']},
+      {name:'Leviathan',color:'border-l-rose-400',match:['leviathan']},
+      {name:'Investigations',color:'border-l-cyan-400',match:['investigations']},
     ],
   },
   web3: {
@@ -116,6 +119,11 @@ const DASHES: Record<string, DashDef> = {
       {name:'Glassnode',color:'border-l-pink-400',match:['glassnode']},
       {name:'Lookonchain',color:'border-l-green-400',match:['lookonchain']},
       {name:'ki_young_ju',color:'border-l-yellow-400',match:['ki_young_ju']},
+      {name:'L2Beat',color:'border-l-blue-400',match:['l2beat']},
+      {name:'Pharos',color:'border-l-teal-400',match:['pharos']},
+      {name:'CryptoQuant Alert',color:'border-l-amber-400',match:['cryptoquant_alert']},
+      {name:'GrantWire',color:'border-l-green-400',match:['cryptograntwire']},
+      {name:'MarketFeed',color:'border-l-purple-400',match:['marketfeed']},
     ],
   },
 };
