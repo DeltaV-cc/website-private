@@ -188,7 +188,8 @@ export default function IntelHubPage(){
                 <span className="text-[8px] text-white/10 ml-auto">USPTO ✓</span>
               </div>
               <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Top Holders</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{h.name}</span><span className={`tabular-nums ${h.dir==='up'?'text-emerald-400':'text-red-400'}`}>{h.count} {h.change}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Top Holders</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-1">{h.country} {h.name}</span><span className={`tabular-nums ${h.dir==='up'?'text-emerald-400':'text-red-400'}`}>{h.count} {h.change}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Valuation</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/25 truncate mr-1">{h.name}</span><span className="text-white/40 tabular-nums">{h.mcap}</span></div>))}</div></div>
                 <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Tech Areas</div><div className="space-y-0.5">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{t.name}</span><span className="text-white/30">{t.pct}</span></div>))}</div></div>
                 <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Origin</div><div className="space-y-0.5">{patents.originCountries.map((c:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{c.name}</span><span className={`tabular-nums ${c.dir==='up'?'text-emerald-400':'text-red-400'}`}>{c.pct} {c.change}</span></div>))}</div></div>
                 <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Hot Areas</div><div className="space-y-0.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/50 truncate mr-2">{h.name}</span><span className={`text-[8px] px-1 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='moderate'?'bg-amber-500/15 text-amber-400':'bg-blue-500/15 text-blue-400'}`}>{h.trend}</span></div>))}</div></div>
@@ -207,6 +208,23 @@ export default function IntelHubPage(){
                 </div>
               ))}
             </div>
+            {/* Key Labs + Market Movers */}
+            {patents&&(
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
+                <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2"><span className="text-[10px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[8px] text-white/15 ml-auto">AI Research</span></div>
+                <div className="divide-y divide-white/[0.02] max-h-[220px] overflow-y-auto scrollbar-hide">
+                  {patents.keyLabs.map((l:any,i:number)=>(<div key={i} className="px-4 py-2 flex justify-between text-[10px]"><span className="text-white/50">{l.country} {l.name}</span><span className="text-white/25">{l.focus} · {l.papers}</span></div>))}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
+                <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2"><span className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold">Market Movers</span><span className="text-[8px] text-white/15 ml-auto">Indicators</span></div>
+                <div className="divide-y divide-white/[0.02]">
+                  {patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-4 py-2 flex justify-between text-[10px]"><span className="text-white/50">{m.name}</span><span className="flex gap-2"><span className="text-white/60 tabular-nums">{m.value}</span><span className={m.dir==='up'?'text-emerald-400':'text-red-400'}>{m.change}</span></span></div>))}
+                </div>
+              </div>
+            </div>
+            )}
           </div>
         )}
 
