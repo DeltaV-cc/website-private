@@ -76,8 +76,10 @@ export default function IntelHubPage(){
   const [dd,setDd]=useState<DashData|null>(null);
   const [dd2,setDd2]=useState<any>(null);
   const [patents,setPatents]=useState<any>(null);
+  const [forex,setForex]=useState<any>(null);
   const loadPatents=async()=>{try{const r=await fetch('/api/intel/patent-data');if(r.ok)setPatents(await r.json());}catch(e){}};
-  useEffect(()=>{loadPatents();},[]);
+  const loadForex=async()=>{try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');if(r.ok)setForex(await r.json());}catch(e){}};
+  useEffect(()=>{loadPatents();loadForex();},[]);
   const loadInfosec=async()=>{try{const r=await fetch('/api/intel/infosec-data');if(r.ok)setDd2(await r.json());}catch(e){}};
   useEffect(()=>{loadInfosec();const i=setInterval(loadInfosec,10*60_000);return()=>clearInterval(i);},[]);
   const scrollRef=useRef<HTMLDivElement>(null);
@@ -111,7 +113,7 @@ export default function IntelHubPage(){
 
   const macroCats=dashCats(['macro','science']);
   const infosecCats=dashCats(['cybersec']);
-  const web3Cats=dashCats(['crypto','ai']);
+  const web3Cats=dashCats(['crypto']);
 
   const top3=items.slice(0,3);
 
@@ -154,61 +156,20 @@ export default function IntelHubPage(){
           {tabs.map(d=>(<button key={d} onClick={()=>setActive(d)} className={`px-6 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${active===d?`${tabAccent(d)} bg-white/[0.08] shadow-sm`:'text-white/25 hover:text-white/50'}`}>{tabLabel(d)}</button>))}
         </div>
 
-        {/* Social feed */}
-        <div className="mb-6">
-          <div ref={socialRef} className="flex gap-3" style={{overflowX:'scroll',scrollbarWidth:'none',WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)'}}>
-            {(SOCIAL[active]||[]).map((ac,i)=>(
-              <div key={i} className={`flex-shrink-0 rounded-xl border border-white/[0.05] bg-white/[0.01] border-l-2 ${ac.color} px-4 py-2.5 min-w-[150px]`}>
-                <div className="text-[12px] font-medium text-white/70">{ac.name}</div>
-                <div className="text-[10px] text-white/25 mt-0.5">{ac.handle}</div>
-                <div className="text-[9px] text-white/13 mt-1 italic">no posts yet</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(
           <div className="space-y-4">
-            {/* F&G + Economic Data Row */}
+            {/* F&G + Forex Row */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-              {/* F&G Thermometer */}
               <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4 flex flex-col items-center">
                 <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">F&G</div>
-                <div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1">
-                  <div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/>
-                </div>
-                <div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div>
-                <div className="text-[9px] text-white/25">{fgLabel||'...'}</div>
+                <div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
+                <div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[9px] text-white/25">{fgLabel||'...'}</div>
               </div>
-              {/* GDP */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-                <div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold">US GDP</div>
-                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankGDP?.[1]?.[0]?.value?`$${(Number(dd.worldBankGDP[1][0].value)/1e12).toFixed(1)}T`:'...'}</div>
-                <div className="text-[9px] text-white/20">{dd?.worldBankGDP?.[1]?.[0]?.date||''}</div>
-                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
-              </div>
-              {/* Inflation */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-                <div className="text-[9px] text-orange-400 uppercase tracking-[.1em] font-bold">Inflation</div>
-                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankInflation?.[1]?.[0]?.value?`${Number(dd.worldBankInflation[1][0].value).toFixed(1)}%`:'...'}</div>
-                <div className="text-[9px] text-white/20">CPI YoY</div>
-                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
-              </div>
-              {/* Trade */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-                <div className="text-[9px] text-cyan-400 uppercase tracking-[.1em] font-bold">Trade</div>
-                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankTrade?.[1]?.[0]?.value?`${Number(dd.worldBankTrade[1][0].value).toFixed(1)}%`:'...'}</div>
-                <div className="text-[9px] text-white/20">% of GDP</div>
-                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
-              </div>
-              {/* Real Interest Rate */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-                <div className="text-[9px] text-rose-400 uppercase tracking-[.1em] font-bold">Real Rate</div>
-                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankInterest?.[1]?.[0]?.value?`${Number(dd.worldBankInterest[1][0].value).toFixed(1)}%`:'...'}</div>
-                <div className="text-[9px] text-white/20">Real interest</div>
-                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
-              </div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold">EUR/USD</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-orange-400 uppercase tracking-[.1em] font-bold">USD/JPY</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-cyan-400 uppercase tracking-[.1em] font-bold">GBP/USD</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-rose-400 uppercase tracking-[.1em] font-bold">USD/CNY</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
             </div>
 
             {/* Patent Panel — compact */}
@@ -245,13 +206,13 @@ export default function IntelHubPage(){
         {/* ============ INFOSEC TAB ============ */}
         {active==='infosec'&&(
           <div className="space-y-5">
-            {/* Red Notice */}
+            {/* Red Notice — dynamic */}
             <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.03] p-5">
               <div className="flex items-center gap-2 mb-3"><span className="text-[11px] text-red-400 uppercase tracking-[.15em] font-bold">⚠ Active Threats</span><span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/></div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[12px]">
-                <div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3"><div className="font-semibold text-red-300 mb-1">🔐 Revoke</div><div className="text-white/50">Check wallet approvals. Use revoke.cash</div></div>
-                <div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3"><div className="font-semibold text-orange-300 mb-1">📦 Update</div><div className="text-white/50">Run audit. Patch compromised packages.</div></div>
-                <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ Check</div><div className="text-white/50">Audit exposed ports. Rotate keys.</div></div>
+                {dd2?.kev?.length>0?<div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3"><div className="font-semibold text-red-300 mb-1">🔐 {dd2.kev.length} KEV Active</div><div className="text-white/50">CISA Known Exploited. Apply patches within due dates.</div></div>:<div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3"><div className="font-semibold text-red-300 mb-1">🔐 Revoke</div><div className="text-white/50">Check wallet approvals. Use revoke.cash</div></div>}
+                {dd2?.cves?.filter((c:any)=>c.severity==='CRITICAL'||c.severity==='HIGH').length>0?<div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3"><div className="font-semibold text-orange-300 mb-1">📦 {dd2.cves.filter((c:any)=>c.severity==='CRITICAL'||c.severity==='HIGH').length} Critical CVEs</div><div className="text-white/50">Update affected systems immediately.</div></div>:<div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3"><div className="font-semibold text-orange-300 mb-1">📦 Update</div><div className="text-white/50">Run audit. Patch compromised packages.</div></div>}
+                {dd2?.breaches?.length>0?<div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ {dd2.breaches.length} Breaches</div><div className="text-white/50">Change passwords. Enable 2FA on exposed accounts.</div></div>:<div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ Check</div><div className="text-white/50">Audit exposed ports. Rotate keys.</div></div>}
               </div>
             </div>
 
