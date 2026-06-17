@@ -161,25 +161,25 @@ export default function IntelHubPage(){
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(
           <div className="space-y-4">
-            {/* F&G + Forex + Market Movers */}
+            {/* Fear & Greed + Forex + Markets */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
               <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3 flex flex-col items-center">
-                <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-1">F&G</div>
-                <div className="relative h-20 w-4 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
+                <div className="text-[9px] text-amber-400 uppercase tracking-[.1em] font-bold mb-1">Fear & Greed</div>
+                <div className="relative h-16 w-4 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
                 <div className={`text-sm font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[8px] text-white/25">{fgLabel||'...'}</div>
               </div>
-              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
-                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1.5">Forex</div>
-                <div className="grid grid-cols-5 gap-1 text-center">
-                  {[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...'}].map((p,i)=>(<div key={i}><div className="text-[9px] text-white/25">{p.l}</div><div className="text-[12px] font-bold text-white/70">{p.v}</div></div>))}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
+                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1">Forex</div>
+                <div className="space-y-0.5">
+                  {[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...'}].map((p,i)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/25">{p.l}</span><span className="text-white/55 font-medium tabular-nums">{p.v}</span></div>))}
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
-                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1.5">Markets</div>
-                <div className="space-y-0.5 text-[10px]">
-                  {[{l:'S&P',v:'5,847',d:'up'},{l:'NASDAQ',v:'18,932',d:'up'},{l:'VIX',v:'14.2',d:'down'},{l:'10Y',v:'4.32%',d:'up'},{l:'Gold',v:'$3,247',d:'up'},{l:'Oil',v:'$72.40',d:'down'}].map((m,i)=>(<div key={i} className="flex justify-between"><span className="text-white/35">{m.l}</span><span className={`tabular-nums ${m.d==='up'?'text-emerald-400':'text-red-400'}`}>{m.v}</span></div>))}
+              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-3">
+                <div className="text-[9px] text-white/20 uppercase tracking-[.1em] font-bold mb-1">Markets</div>
+                <div className="grid grid-cols-3 gap-x-2 gap-y-0.5 text-[10px]">
+                  {[{l:'S&P 500',v:'5,847',d:'up'},{l:'NASDAQ',v:'18,932',d:'up'},{l:'VIX',v:'14.2',d:'down'},{l:'US 10Y',v:'4.32%',d:'up'},{l:'Gold',v:'$3,247',d:'up'},{l:'WTI Oil',v:'$72.40',d:'down'},{l:'BTC',v:'$96.2K',d:'up'},{l:'ETH',v:'$3,847',d:'up'},{l:'DXY',v:'104.3',d:'down'}].map((m,i)=>(<div key={i} className="flex justify-between"><span className="text-white/30">{m.l}</span><span className={`tabular-nums ${m.d==='up'?'text-emerald-400':'text-red-400'}`}>{m.v}</span></div>))}
                 </div>
-                <div className="text-[7px] text-white/8 mt-1 text-right">⚡ needs API key</div>
+                <div className="text-[7px] text-white/8 mt-1 text-right">needs API key for live</div>
               </div>
             </div>
 
