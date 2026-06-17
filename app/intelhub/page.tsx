@@ -33,6 +33,12 @@ const TC: Record<string,string> = {
   legal:'bg-rose-500/20 text-rose-300',
 };
 
+const DASHBOARD_COLORS: Record<string, {bg:string, border:string, accent:string, title:string}> = {
+  macro:   {bg:'from-amber-500/5 to-amber-500/0', border:'border-amber-500/10', accent:'text-amber-400', title:'Macro & Geopolitical'},
+  infosec: {bg:'from-orange-500/5 to-orange-500/0', border:'border-orange-500/10', accent:'text-orange-400', title:'Cybersecurity & Infrastructure'},
+  web3:    {bg:'from-purple-500/5 to-purple-500/0', border:'border-purple-500/10', accent:'text-purple-400', title:'Crypto & DeFi'},
+};
+
 interface Item { title:string; url:string; source:string; published_at:string; summary:string; tag?:string; }
 
 export default function IntelHubPage() {
@@ -44,27 +50,22 @@ export default function IntelHubPage() {
   const speed=useRef(1.2);
   const af=useRef(0);
 
-  useEffect(()=>{
-    const load=async()=>{
-      setLoading(true);
-      try {
-        const r = await fetch('/api/intel/raw-items');
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const d = await r.json();
-        if (!Array.isArray(d)) throw new Error('Not an array');
-        setItems(d.map((x:any)=>({...x, tag: getTag(x.title||'', x.summary||'')})));
-        setError('');
-      } catch(e:any) {
-        console.error('[IntelHub] Fetch failed:', e);
-        setError(e.message || 'Failed to load');
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-    const i=setInterval(load, 5*60_000);
-    return ()=>clearInterval(i);
-  },[]);
+  const load=async()=>{
+    setLoading(true);
+    try {
+      const r = await fetch('/api/intel/raw-items');
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      if (!Array.isArray(d)) throw new Error('Not an array');
+      setItems(d.map((x:any)=>({...x, tag: getTag(x.title||'', x.summary||'')})));
+      setError('');
+    } catch(e:any) {
+      console.error('[IntelHub] Fetch failed:', e);
+      setError(e.message || 'Failed to load');
+    } finally { setLoading(false); }
+  };
+
+  useEffect(()=>{ load(); const i=setInterval(load, 5*60_000); return ()=>clearInterval(i); },[]);
 
   useEffect(()=>{
     const el=scrollRef.current; if(!el)return;
@@ -86,10 +87,13 @@ export default function IntelHubPage() {
   const di=items.filter(i=>ds[active]?.some(s=>i.source?.toLowerCase().includes(s.toLowerCase()))).slice(0,9);
   const top3=items.slice(0,3);
 
+  const dc = DASHBOARD_COLORS[active];
+
   return (
     <div className="min-h-screen bg-[#050508] text-white">
       <Navbar/>
 
+      {/* Hero */}
       <div className="border-b border-white/5 bg-black/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-[1400px] mx-auto px-8 py-6 flex items-end justify-between">
           <div>
@@ -106,6 +110,7 @@ export default function IntelHubPage() {
         </div>
       )}
 
+      {/* Raw Pulse */}
       <div className="border-b border-white/5 py-4 bg-[#0a0a10]">
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="flex items-center gap-3 mb-3">
@@ -114,7 +119,7 @@ export default function IntelHubPage() {
             <span className="text-xs text-white/20">{items.length} items</span>
           </div>
           <div ref={scrollRef} className="flex gap-3 overflow-x-auto no-scrollbar" style={{scrollBehavior:'auto'}}>
-            {loading&&<span className="text-white/30 text-sm py-8">Loading...</span>}
+            {loading&&<span className="text-white/30 text-sm py-8">Loading pulse…</span>}
             {!loading&&!error&&items.length===0&&<span className="text-white/30 text-sm py-8">No items yet.</span>}
             {items.slice(0,50).map((it,i)=>(
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
@@ -132,16 +137,17 @@ export default function IntelHubPage() {
         </div>
       </div>
 
+      {/* Top 3 Picks */}
       <div className="max-w-[1400px] mx-auto px-8 py-10">
         <div className="flex items-center gap-2 mb-5">
           <span className="text-[10px] text-white/25 uppercase tracking-[.25em] font-bold">Today's Top Picks</span>
-          <span className="text-[10px] text-white/15">— chiefstaff selected</span>
+          <span className="text-[10px] text-white/15">— chiefstaff</span>
         </div>
         {top3.length===0&&<div className="text-white/25 text-sm">No picks yet.</div>}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {top3.map((it,i)=>(
             <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-               className="border border-white/[0.08] hover:border-white/25 rounded-3xl p-6 bg-gradient-to-b from-white/[0.04] to-transparent transition-all group">
+               className="border border-white/[0.08] hover:border-white/25 rounded-3xl p-6 bg-gradient-to-b from-white/[0.04] to-transparent transition-all duration-300 group">
               <div className="text-lg font-semibold leading-snug group-hover:underline">{it.title}</div>
               <p className="text-white/45 text-sm mt-3 line-clamp-3 leading-relaxed">{it.summary}</p>
               <div className="flex items-center gap-2 mt-4 text-xs text-white/35">
@@ -154,27 +160,35 @@ export default function IntelHubPage() {
         </div>
       </div>
 
+      {/* Dashboards */}
       <div className="max-w-[1400px] mx-auto px-8 pb-24">
         <div className="flex gap-1.5 mb-6 bg-white/[0.03] p-1 rounded-2xl w-fit">
-          {(['macro','infosec','web3']as const).map(d=>(
-            <button key={d} onClick={()=>setActive(d)}
-              className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                active===d?'bg-white/10 text-white shadow-sm':'text-white/40 hover:text-white/70'}`}>
-              {d==='macro'?'Macro':d==='infosec'?'Infosec':'Web3'}
-            </button>
-          ))}
+          {(['macro','infosec','web3']as const).map(d=>{
+            const style = DASHBOARD_COLORS[d];
+            return (
+              <button key={d} onClick={()=>setActive(d)}
+                className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  active===d
+                    ? `${style.accent} bg-white/10 shadow-sm`
+                    : 'text-white/40 hover:text-white/70'}`}>
+                {d==='macro'?'Macro':d==='infosec'?'Infosec':'Web3'}
+              </button>
+            );
+          })}
         </div>
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-[10px] text-white/25 uppercase tracking-[.2em] font-bold">
-            {active==='macro'?'Macro & Geopolitical':active==='infosec'?'Cybersecurity & Infrastructure':'Crypto & DeFi'}
-          </span>
-          <span className="text-[10px] text-white/15">{di.length} high‑signal</span>
+
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className={`text-[10px] uppercase tracking-[.2em] font-bold ${dc.accent}`}>{dc.title}</span>
+            <span className="text-[10px] text-white/15">{di.length} high‑signal</span>
+          </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {di.length===0&&<div className="text-white/25 text-sm col-span-full">No high‑signal items yet.</div>}
+          {di.length===0&&<div className="text-white/25 text-sm col-span-full py-8 text-center">No high‑signal items yet.</div>}
           {di.map((it,i)=>(
             <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-               className="border border-white/[0.08] hover:border-white/20 rounded-2xl p-5 bg-white/[0.02] transition-all group">
+               className={`border ${dc.border} hover:border-white/20 rounded-2xl p-5 bg-gradient-to-b ${dc.bg} transition-all duration-300 group`}>
               <div className="text-sm font-semibold leading-snug group-hover:underline line-clamp-2">{it.title}</div>
               <p className="text-white/40 text-xs mt-2 line-clamp-2 leading-relaxed">{it.summary}</p>
               <div className="flex items-center gap-2 mt-3 text-[11px] text-white/30">
@@ -186,6 +200,7 @@ export default function IntelHubPage() {
           ))}
         </div>
       </div>
+
     </div>
   );
 }
