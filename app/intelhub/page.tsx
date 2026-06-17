@@ -169,50 +169,76 @@ export default function IntelHubPage(){
 
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 flex items-center gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fear & Greed</div>
-                  <div className="relative h-36 w-6 bg-white/[0.04] rounded-full overflow-hidden mb-2">
-                    <div className={`absolute bottom-0 w-full rounded-full transition-all duration-700 ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/>
-                  </div>
-                  <div className={`text-2xl font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div>
-                  <div className="text-[10px] text-white/25 mt-0.5">{fgLabel||'Loading...'}</div>
+          <div className="space-y-4">
+            {/* F&G + Economic Data Row */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+              {/* F&G Thermometer */}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4 flex flex-col items-center">
+                <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">F&G</div>
+                <div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1">
+                  <div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/>
                 </div>
-                <div className="flex-1 space-y-3">
-                  <div className="text-[11px] text-white/20 uppercase tracking-[.15em]">World Bank</div>
-                  {dd?.worldBankGDP?.[1]?.[0]?<div><div className="text-[10px] text-white/25">US GDP</div><div className="text-lg font-bold text-white/70">{dd.worldBankGDP[1][0].value?`$${(Number(dd.worldBankGDP[1][0].value)/1e12).toFixed(1)}T`:'N/A'}</div><div className="text-[9px] text-white/15">{dd.worldBankGDP[1][0].date}</div></div>:<div className="text-white/15 text-sm">Loading...</div>}
-                </div>
+                <div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div>
+                <div className="text-[9px] text-white/25">{fgLabel||'...'}</div>
               </div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5"><div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Active Topics</div><div className="space-y-2 text-[12px] text-white/40"><div>Sanctions {items.filter(i=>(i.title||'').toLowerCase().includes('sanction')).length}</div><div>Tariffs {items.filter(i=>(i.title||'').toLowerCase().includes('tariff')).length}</div><div>Inflation {items.filter(i=>(i.title||'').toLowerCase().includes('inflation')).length}</div><div>GDP {items.filter(i=>(i.title||'').toLowerCase().includes('gdp')).length}</div></div></div>
+              {/* GDP */}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+                <div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold">US GDP</div>
+                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankGDP?.[1]?.[0]?.value?`$${(Number(dd.worldBankGDP[1][0].value)/1e12).toFixed(1)}T`:'...'}</div>
+                <div className="text-[9px] text-white/20">{dd?.worldBankGDP?.[1]?.[0]?.date||''}</div>
+                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
+              </div>
+              {/* Inflation */}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+                <div className="text-[9px] text-orange-400 uppercase tracking-[.1em] font-bold">Inflation</div>
+                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankInflation?.[1]?.[0]?.value?`${Number(dd.worldBankInflation[1][0].value).toFixed(1)}%`:'...'}</div>
+                <div className="text-[9px] text-white/20">CPI YoY</div>
+                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
+              </div>
+              {/* Trade */}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+                <div className="text-[9px] text-cyan-400 uppercase tracking-[.1em] font-bold">Trade</div>
+                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankTrade?.[1]?.[0]?.value?`${Number(dd.worldBankTrade[1][0].value).toFixed(1)}%`:'...'}</div>
+                <div className="text-[9px] text-white/20">% of GDP</div>
+                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
+              </div>
+              {/* Real Interest Rate */}
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+                <div className="text-[9px] text-rose-400 uppercase tracking-[.1em] font-bold">Real Rate</div>
+                <div className="text-lg font-bold text-white/80 mt-1">{dd?.worldBankInterest?.[1]?.[0]?.value?`${Number(dd.worldBankInterest[1][0].value).toFixed(1)}%`:'...'}</div>
+                <div className="text-[9px] text-white/20">Real interest</div>
+                <div className="text-[8px] text-white/10 mt-1">World Bank ✓</div>
+              </div>
             </div>
+
+            {/* Patent Panel — compact */}
+            {patents&&(
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
+              <div className="px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-2">
+                <span className="text-[10px] text-pink-400 uppercase tracking-[.15em] font-bold">Patents</span>
+                <span className="text-[9px] text-white/20">{patents.header.uspto} grants · {patents.header.yoy} · {patents.header.filed} filed</span>
+                <span className="text-[8px] text-white/10 ml-auto">USPTO ✓</span>
+              </div>
+              <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Top Holders</div><div className="space-y-0.5">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{h.name}</span><span className={`tabular-nums ${h.dir==='up'?'text-emerald-400':'text-red-400'}`}>{h.count} {h.change}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Tech Areas</div><div className="space-y-0.5">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{t.name}</span><span className="text-white/30">{t.pct}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Origin</div><div className="space-y-0.5">{patents.originCountries.map((c:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{c.name}</span><span className={`tabular-nums ${c.dir==='up'?'text-emerald-400':'text-red-400'}`}>{c.pct} {c.change}</span></div>))}</div></div>
+                <div><div className="text-[9px] text-white/15 uppercase tracking-[.1em] mb-1.5">Hot Areas</div><div className="space-y-0.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/50 truncate mr-2">{h.name}</span><span className={`text-[8px] px-1 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='moderate'?'bg-amber-500/15 text-amber-400':'bg-blue-500/15 text-blue-400'}`}>{h.trend}</span></div>))}</div></div>
+              </div>
+            </div>
+            )}
+
             {/* Cat boxes */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {macroCats.map(cat=>(
                 <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-                  <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{cat.count}</span></div>
+                  <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30 tabular-nums">{cat.count}</span></div>
                   <div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">
-                    {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div></a>))}
+                    {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}
                   </div>
                 </div>
               ))}
             </div>
-            {/* Patent Panel */}
-            {patents&&(
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-              <div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-3">
-                <span className="text-[11px] text-pink-400 uppercase tracking-[.15em] font-bold">Patents</span>
-                <span className="text-[10px] text-white/20">{patents.header.uspto} · {patents.header.wipo} · {patents.header.yoy}</span>
-              </div>
-              <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
-                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Top Patent Holders</div><div className="space-y-1">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{h.name}</span><span className="flex items-center gap-2"><span className="text-white/70 tabular-nums">{h.count}</span><span className={h.dir==='up'?'text-emerald-400':'text-red-400'}>{h.change}</span></span></div>))}</div></div>
-                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Technology Areas</div><div className="space-y-1">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{t.name}</span><span className="text-white/40">{t.pct}</span></div>))}</div></div>
-                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Origin Countries</div><div className="space-y-1">{patents.originCountries.map((c:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{c.name}</span><span className="flex items-center gap-2"><span className="text-white/70">{c.pct}</span><span className={c.dir==='up'?'text-emerald-400':'text-red-400'}>{c.change}</span></span></div>))}</div></div>
-                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Hot Patent Areas</div><div className="space-y-1.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="text-[11px]"><div className="flex items-center justify-between"><span className="text-white/60 font-medium">{h.name}</span><span className={`text-[9px] px-1.5 py-0.5 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='moderate'?'bg-amber-500/15 text-amber-400':'bg-blue-500/15 text-blue-400'}`}>{h.trend}</span></div><div className="text-[9px] text-white/25 mt-0.5">{h.sector}</div></div>))}</div></div>
-              </div>
-            </div>
-            )}
           </div>
         )}
 
