@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" fill="none">
+  <!-- Delta V Logo for privacy-first opsec AI/Web3 company -->
+  <defs>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F5FF"/>
+      <stop offset="100%" stop-color="#00B8CC"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6B5B95"/>
+      <stop offset="100%" stop-color="#4A3F6B"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background subtle -->
+  <rect width="400" height="200" fill="#0A0A0F"/>
+  
+  <!-- Delta symbol (triangle) stylized -->
+  <polygon points="80,50 160,170 80,170" fill="#0A0A0F" stroke="url(#cyanGrad)" stroke-width="8"/>
+  <polygon points="90,60 150,160 90,160" fill="#0A0A0F"/>
+  
+  <!-- V integrated -->
+  <path d="M200 50 L240 170 L280 50" fill="none" stroke="url(#cyanGrad)" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M210 65 L240 155 L270 65" fill="none" stroke="#0A0A0F" stroke-width="6" stroke-linejoin="round"/>
+  
+  <!-- Text DELTA V -->
+  <text x="300" y="110" font-family="monospace, sans-serif" font-size="48" font-weight="bold" fill="#C0C0C0" letter-spacing="4">DELTA</text>
+  <text x="300" y="155" font-family="monospace, sans-serif" font-size="48" font-weight="bold" fill="url(#cyanGrad)" letter-spacing="8">V</text>
+  
+  <!-- Opsec accent line -->
+  <line x1="80" y1="185" x2="320" y2="185" stroke="#6B5B95" stroke-width="2" stroke-opacity="0.6"/>
+  
+  <!-- Subtle circuit lines for tech feel -->
+  <circle cx="80" cy="170" r="4" fill="#00F5FF" fill-opacity="0.8"/>
+  <circle cx="280" cy="50" r="3" fill="#00F5FF" fill-opacity="0.6"/>
+</svg>
