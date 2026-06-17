@@ -4,13 +4,55 @@ import { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 
 /* ================================================================
-   CATEGORIES
+   CATEGORIES — precise, non-leaking
    ================================================================ */
-const CATS=[{id:'ai',label:'AI',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',kw:['ai','llm','transformer','gpt','claude','deepseek','agent','model','inference','training','fine-tuning','neural','dataset','benchmark','machine learning','deep learning','lora','qlora','sovereign','local-first']},{id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',kw:['bitcoin','ethereum','blockchain','defi','token','yield','dex','amm','stablecoin','staking','validator','rollup','l2','on-chain','polymarket','orderbook','perp','nft','dao','evm']},{id:'cybersec',label:'Sec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',kw:['vulnerability','exploit','cve','zero-day','breach','ransomware','malware','ddos','outage','bgp','cisa','kev','opsec','privacy','hardening','threat','infosec']},{id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',kw:['sanction','tariff','ofac','federal reserve','inflation','gdp','rate hike','treasury','sec','regulation','export control','trade war','geopolitic']},{id:'hardware',label:'HW',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',kw:['chip','gpu','cpu','npu','tpu','h100','a100','b200','compute cluster','semiconductor','fabrication','meshtastic','iot']},{id:'science',label:'Sci',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',kw:['physics','quantum','fusion','astrophysics','energy','nuclear','solar','space','spacex','nasa','biology','genome','crispr','medical','fda']}];
+const CATEGORIES = [
+  {id:'ai',label:'AI/ML',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',
+   kw:['llm','transformer','gpt','claude','deepseek','lora','qlora','sovereign ai','rlhf','alignment','neural network','attention mechanism','fine-tuning','machine learning','deep learning','training','benchmark']},
+  {id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',
+   kw:['wallet','defi','stablecoin','dex','amm','yield','token','staking','liquidity','privacy tech','zk','zero-knowledge','rollup','l2','on-chain','smart contract','dao','evm','solidity','polymarket','perp','orderbook','validator']},
+  {id:'cybersec',label:'Cybersec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',
+   kw:['vulnerability','cve','zero-day','breach','ransomware','malware','ddos','outage','bgp','cisa','kev','opsec','hardening','threat model','air-gapped','pentest','infosec','hibp','pwned','exploit']},
+  {id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',
+   kw:['sanction','tariff','ofac','federal reserve','inflation','gdp','rate hike','treasury','sec regulation','export control','trade war','geopolitic','bis','imf','world bank','un security','compliance','antitrust']},
+  {id:'hardware',label:'Hardware',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',
+   kw:['gpu','cpu','npu','tpu','h100','a100','b200','compute cluster','semiconductor','fabrication','lithography','asic','fpga','meshtastic','iot','edge device']},
+  {id:'science',label:'Science',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',
+   kw:['physics','quantum','fusion','fission','astrophysics','cosmology','nuclear','renewable','solar','wind','grid','battery','spacex','nasa','satellite','biology','genome','crispr','mrna','neuroscience','fda','clinical trial','pharma']},
+];
 
-const KW:Record<string,string>={ai:'ai,llm,transformer,gpt,claude,deepseek,agent,model,inference,training',crypto:'bitcoin,ethereum,defi,token,yield,dex,amm,stablecoin,polymarket',cybersec:'vulnerability,cve,zero-day,breach,ransomware,malware,opsec',macro:'sanction,tariff,ofac,federal reserve,inflation,gdp,treasury,sec',hardware:'chip,gpu,cpu,npu,h100,semiconductor,iot',science:'physics,quantum,fusion,astrophysics,energy,nuclear,solar,biology',ip:'patent,uspto,trademark,copyright',};
-const TC:Record<string,string>={ai:'bg-blue-500/15 text-blue-400',crypto:'bg-yellow-500/15 text-yellow-400',cybersec:'bg-orange-500/15 text-orange-400',macro:'bg-amber-500/15 text-amber-400',hardware:'bg-green-500/15 text-green-400',science:'bg-violet-500/15 text-violet-400',ip:'bg-pink-500/15 text-pink-400',};
-function tag(t:string):string{const txt=t.toLowerCase();for(const[k,v]of Object.entries(KW))if(v.split(',').some(x=>txt.includes(x.trim())))return k;return'';}
+const TAG_MAP:Record<string,string>={};
+CATEGORIES.forEach(c=>c.kw.forEach(k=>{TAG_MAP[k]=c.id;}));
+function getTag(t:string):string{const txt=t.toLowerCase();for(const c of CATEGORIES)if(c.kw.some(k=>txt.includes(k.trim())))return c.id;return'';}
+const TC:Record<string,string>={ai:'bg-blue-500/15 text-blue-400',crypto:'bg-yellow-500/15 text-yellow-400',cybersec:'bg-orange-500/15 text-orange-400',macro:'bg-amber-500/15 text-amber-400',hardware:'bg-green-500/15 text-green-400',science:'bg-violet-500/15 text-violet-400'};
+
+/* ================================================================
+   SOCIAL ACCOUNTS PER TAB
+   ================================================================ */
+const SOCIAL:Record<string,{name:string;handle:string;color:string}[]> = {
+  macro:[
+    {name:'Reuters',handle:'@Reuters',color:'border-l-amber-400'},
+    {name:'Bloomberg',handle:'@business',color:'border-l-amber-400'},
+    {name:'IMF',handle:'@IMFNews',color:'border-l-blue-400'},
+    {name:'World Bank',handle:'@WorldBank',color:'border-l-sky-400'},
+    {name:'Fed',handle:'@federalreserve',color:'border-l-emerald-400'},
+  ],
+  infosec:[
+    {name:'Krebs',handle:'@briankrebs',color:'border-l-red-400'},
+    {name:'Schneier',handle:'@schneierblog',color:'border-l-blue-400'},
+    {name:'Hacker News',handle:'@thehackernews',color:'border-l-amber-400'},
+    {name:'Bleeping',handle:'@BleepinComputer',color:'border-l-orange-400'},
+    {name:'Troy Hunt',handle:'@troyhunt',color:'border-l-pink-400'},
+  ],
+  web3:[
+    {name:'Vitalik',handle:'@VitalikButerin',color:'border-l-blue-400'},
+    {name:'Polymarket',handle:'@Polymarket',color:'border-l-pink-400'},
+    {name:'DeFiLlama',handle:'@DefiLlama',color:'border-l-cyan-400'},
+    {name:'L2Beat',handle:'@l2beat',color:'border-l-purple-400'},
+    {name:'Balaji',handle:'@balajis',color:'border-l-amber-400'},
+    {name:'CoinDesk',handle:'@CoinDesk',color:'border-l-orange-400'},
+  ],
+};
 
 /* ================================================================
    FILTERS
@@ -26,30 +68,46 @@ interface DashData{fearGreed:any;defiLlama:{tvl:any[];volume:any[];fees:any[];st
 export default function IntelHubPage(){
   const [items,setItems]=useState<Item[]>([]);
   const [loading,setLoading]=useState(true);
+  const [active,setActive]=useState<'macro'|'infosec'|'web3'>('web3');
   const [dd,setDd]=useState<DashData|null>(null);
   const scrollRef=useRef<HTMLDivElement>(null);
+  const socialRef=useRef<HTMLDivElement>(null);
   const speed=useRef(1.2);
   const af=useRef(0);
 
-  const load=async()=>{try{const r=await fetch('/api/intel/raw-items');if(r.ok){const d=await r.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,tag:tag(x.title||'')})).filter(rel));}}catch(e){}finally{setLoading(false);}};
+  const load=async()=>{try{const r=await fetch('/api/intel/raw-items');if(r.ok){const d=await r.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,tag:getTag(x.title||'')})).filter(rel));}}catch(e){}finally{setLoading(false);}};
   const loadDash=async()=>{try{const r=await fetch('/api/intel/dashboard-data');if(r.ok)setDd(await r.json());}catch(e){}};
   useEffect(()=>{setLoading(true);Promise.all([load(),loadDash()]).finally(()=>setLoading(false));const i=setInterval(()=>{load();loadDash();},5*60_000);return()=>clearInterval(i);},[]);
 
   useEffect(()=>{const el=scrollRef.current;if(!el)return;const mv=(e:MouseEvent)=>{const rx=(e.clientX-el.getBoundingClientRect().left)/el.offsetWidth;if(rx<.15)speed.current=-0.6;else if(rx<.35)speed.current=0.25;else if(rx<.65)speed.current=1.0;else if(rx<.85)speed.current=2.8;else speed.current=4.5;};el.addEventListener('mousemove',mv);el.addEventListener('mouseleave',()=>{speed.current=1.2;});const tick=()=>{if(el)el.scrollLeft+=speed.current;af.current=requestAnimationFrame(tick);};af.current=requestAnimationFrame(tick);return()=>{el.removeEventListener('mousemove',mv);cancelAnimationFrame(af.current);};},[]);
 
+  useEffect(()=>{const el=socialRef.current;if(!el||active!=='web3')return;let pos=0;const tick=()=>{if(el){pos+=0.3;if(pos>=el.scrollWidth/2)pos=0;el.scrollLeft=pos;}af.current=requestAnimationFrame(tick);};af.current=requestAnimationFrame(tick);return()=>cancelAnimationFrame(af.current);},[active]);
+
   const ts=(iso:string)=>{try{return new Date(iso).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch{return'';}};
   const ago=(iso:string)=>{try{const m=(Date.now()-new Date(iso).getTime())/60000;return m<1?'now':m<60?`${Math.round(m)}m`:m<1440?`${Math.round(m/60)}h`:`${Math.round(m/1440)}d`;}catch{return'';}};
   const isNew=(iso:string)=>{try{return Date.now()-new Date(iso).getTime()<3_600_000;}catch{return false;}};
   const fmt=(n:number)=>{if(n>=1e9)return`$${(n/1e9).toFixed(2)}B`;if(n>=1e6)return`$${(n/1e6).toFixed(2)}M`;if(n>=1e3)return`$${(n/1e3).toFixed(1)}K`;return`$${n.toFixed(2)}`;};
-  const fmtNum=(n:number)=>{if(n>=1e9)return`${(n/1e9).toFixed(2)}B`;if(n>=1e6)return`${(n/1e6).toFixed(1)}M`;return`${n.toFixed(0)}`;};
-
-  const catBoxes=CATS.map(cat=>({...cat,items:items.filter(i=>cat.kw.some(k=>(i.title+' '+i.summary).toLowerCase().includes(k))).slice(0,15),count:0}));
-  catBoxes.forEach(c=>c.count=c.items.length);
+  const fmtN=(n:number)=>{if(n>=1e9)return`${(n/1e9).toFixed(1)}B`;if(n>=1e6)return`${(n/1e6).toFixed(1)}M`;return`${n}`;};
 
   const fgVal=dd?.fearGreed?.data?.[0]?Number(dd.fearGreed.data[0].value)||0:0;
   const fgLabel=dd?.fearGreed?.data?.[0]?.value_classification||'';
   const totalVol=dd?.defiLlama?.totalVolume24h||0;
+
+  // Items per dashboard category
+  const dashCats=(ids:string[])=>CATEGORIES.filter(c=>ids.includes(c.id)).map(c=>{
+    const catItems=items.filter(i=>c.kw.some(k=>(i.title+' '+i.summary).toLowerCase().includes(k))).slice(0,12);
+    return{...c,items:catItems,count:catItems.length};
+  });
+
+  const macroCats=dashCats(['macro','science']);
+  const infosecCats=dashCats(['cybersec']);
+  const web3Cats=dashCats(['crypto','ai']);
+
   const top3=items.slice(0,3);
+
+  const tabs=['macro','infosec','web3']as const;
+  const tabLabel=(t:string)=>t==='macro'?'Macro':t==='infosec'?'Infosec':'Web3';
+  const tabAccent=(t:string)=>t==='macro'?'text-amber-400':t==='infosec'?'text-orange-400':'text-purple-400';
 
   /* ============================================================== */
   return(
@@ -80,115 +138,119 @@ export default function IntelHubPage(){
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">{top3.map((it,i)=>(<a key={i} href={it.url} target="_blank" rel="noopener noreferrer" className="group rounded-2xl p-5 border border-white/[0.06] hover:border-white/15 bg-gradient-to-b from-white/[0.03] to-white/[0.005] hover:from-white/[0.06] transition-all duration-300"><div className="text-[16px] font-semibold leading-snug text-white/90 group-hover:text-white group-hover:underline decoration-white/20 underline-offset-4">{it.title}</div><p className="text-white/35 text-sm mt-2 line-clamp-2 leading-relaxed">{it.summary}</p><div className="flex items-center gap-2 mt-3 text-[11px] text-white/25">{it.tag&&<span className={`px-2 py-0.5 rounded-lg font-semibold text-[10px] ${TC[it.tag]||''}`}>#{it.tag}</span>}<span>{it.source}</span><span className="ml-auto tabular-nums">{ts(it.published_at)}</span></div></a>))}</div>}
       </div>
 
-      {/* ==================== WEB3: DeFiLlama Feed Style ==================== */}
-      <div className="max-w-[1440px] mx-auto px-8 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {/* TVL Leaderboard */}
-          <div className="lg:col-span-1 rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-            <div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015]">
-              <div className="text-[11px] text-purple-400 uppercase tracking-[.15em] font-bold">TVL by Chain</div>
-            </div>
-            <div className="grid grid-cols-[28px_1fr_80px] gap-3 px-5 py-2.5 border-b border-white/[0.03] bg-white/[0.02] text-[10px] text-white/20 uppercase tracking-wider font-semibold"><div>#</div><div>Chain</div><div className="text-right">TVL</div></div>
-            {dd?.defiLlama?.tvl?.slice(0,12).map((c:any,i:number)=>(
-              <div key={i} className={`grid grid-cols-[28px_1fr_80px] gap-3 px-5 py-2.5 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.02] transition-all ${i%2===1?'bg-white/[0.005]':''}`}>
-                <div className="text-[11px] text-white/25 tabular-nums">{i+1}</div>
-                <div className="text-[12px] font-medium text-white/75 truncate">{c.name}</div>
-                <div className="text-[12px] font-semibold text-right tabular-nums text-purple-400/80">{fmt(c.tvl)}</div>
-              </div>
-            ))||<div className="p-5 text-white/15 text-xs italic text-center">Loading...</div>}
-          </div>
-
-          {/* Metrics column */}
-          <div className="lg:col-span-2 space-y-5">
-            {/* Total Volume + Fear & Greed */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* Total Volume */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5">
-                <div className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold mb-2">Total Volume</div>
-                <div className="text-2xl font-bold tabular-nums text-white/80">{fmt(totalVol)}</div>
-                <div className="text-[10px] text-white/20 mt-1">24h DEX volume</div>
-                <div className="mt-3 space-y-1">
-                  {dd?.defiLlama?.volume?.slice(0,5).map((v:any,i:number)=>(
-                    <div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/30 truncate">{v.name}</span><span className="text-white/50 tabular-nums">{fmt(v.volume24h)}</span></div>
-                  ))}
-                </div>
-              </div>
-              {/* Fear & Greed */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 flex flex-col items-center">
-                <div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-4">Fear & Greed</div>
-                <div className="relative h-32 w-6 bg-white/[0.04] rounded-full overflow-hidden mb-3">
-                  <div className={`absolute bottom-0 w-full rounded-full transition-all duration-700 ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(2,fgVal)}%`}}/>
-                </div>
-                <div className={`text-xl font-bold tabular-nums ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div>
-                <div className="text-[10px] text-white/30 mt-0.5">{fgLabel||'Loading...'}</div>
-              </div>
-            </div>
-
-            {/* Stablecoins + Fees */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* Stablecoins */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5">
-                <div className="text-[10px] text-emerald-400 uppercase tracking-[.15em] font-bold mb-3">Stablecoins</div>
-                <div className="space-y-2">
-                  {dd?.defiLlama?.stablecoins?.slice(0,6).map((s:any,i:number)=>(
-                    <div key={i} className="flex items-center justify-between"><span className="text-[12px] text-white/50">{s.name}</span><span className="text-[11px] text-white/70 tabular-nums">{fmt(s.circulating)}</span></div>
-                  ))||<div className="text-white/15 text-xs italic">Loading...</div>}
-                </div>
-              </div>
-              {/* Fees */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5">
-                <div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fees (24h)</div>
-                <div className="space-y-2">
-                  {dd?.defiLlama?.fees?.slice(0,6).map((f:any,i:number)=>(
-                    <div key={i} className="flex items-center justify-between"><span className="text-[12px] text-white/50 truncate">{f.name}</span><span className="text-[11px] text-white/70 tabular-nums">{fmt(f.fees24h)}</span></div>
-                  ))||<div className="text-white/15 text-xs italic">Loading...</div>}
-                </div>
-              </div>
-            </div>
-
-            {/* Polymarket */}
-            {dd?.polymarket?.length>0&&(
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
-                <div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015]">
-                  <div className="text-[11px] text-pink-400 uppercase tracking-[.15em] font-bold">Polymarket</div>
-                </div>
-                <div className="grid grid-cols-[1fr_80px_80px] gap-3 px-5 py-2.5 border-b border-white/[0.03] bg-white/[0.02] text-[10px] text-white/20 uppercase tracking-wider font-semibold"><div>Market</div><div className="text-right">Volume</div><div className="text-right">Liq.</div></div>
-                {dd.polymarket.slice(0,5).map((m:any,i:number)=>(
-                  <a key={i} href={`https://polymarket.com/event/${m.slug}`} target="_blank" rel="noopener noreferrer" className={`grid grid-cols-[1fr_80px_80px] gap-3 px-5 py-2.5 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.02] transition-all ${i%2===1?'bg-white/[0.005]':''}`}>
-                    <div className="text-[12px] text-white/60 hover:text-white/80 truncate">{m.title}</div>
-                    <div className="text-[11px] text-right text-white/30 tabular-nums">{fmtNum(m.volume)}</div>
-                    <div className="text-[11px] text-right text-white/20 tabular-nums">{fmtNum(m.liquidity)}</div>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* ==================== CATEGORY BOXES ==================== */}
+      {/* ==================== TABS ==================== */}
       <div className="max-w-[1440px] mx-auto px-8 pb-24">
-        <div className="flex items-center gap-2 mb-5"><span className="text-[10px] text-white/15 uppercase tracking-[.15em]">Signals by Category</span><span className="text-[9px] text-white/10">max 15 · 5min</span></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {catBoxes.map(cat=>(
-            <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-              <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between">
-                <span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30 tabular-nums">{cat.count}</span>
+        <div className="flex gap-1 bg-white/[0.02] p-1 rounded-2xl w-fit mb-6 border border-white/[0.04]">
+          {tabs.map(d=>(<button key={d} onClick={()=>setActive(d)} className={`px-6 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${active===d?`${tabAccent(d)} bg-white/[0.08] shadow-sm`:'text-white/25 hover:text-white/50'}`}>{tabLabel(d)}</button>))}
+        </div>
+
+        {/* Social feed */}
+        <div className="mb-6">
+          <div ref={socialRef} className="flex gap-3" style={{overflowX:'scroll',scrollbarWidth:'none',WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)'}}>
+            {(SOCIAL[active]||[]).map((ac,i)=>(
+              <div key={i} className={`flex-shrink-0 rounded-xl border border-white/[0.05] bg-white/[0.01] border-l-2 ${ac.color} px-4 py-2.5 min-w-[150px]`}>
+                <div className="text-[12px] font-medium text-white/70">{ac.name}</div>
+                <div className="text-[10px] text-white/25 mt-0.5">{ac.handle}</div>
+                <div className="text-[9px] text-white/13 mt-1 italic">no posts yet</div>
               </div>
-              <div className="divide-y divide-white/[0.02] max-h-[280px] overflow-y-auto scrollbar-hide">
-                {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no signals</div>:
-                  cat.items.map((it,j)=>(
-                    <a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] transition-all group">
-                      <div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-1 leading-snug">{it.title}</div>
-                      <div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div>
-                    </a>
-                  ))
-                }
+            ))}
+          </div>
+        </div>
+
+        {/* ============ MACRO TAB ============ */}
+        {active==='macro'&&(
+          <div className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 flex items-center gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fear & Greed</div>
+                  <div className="relative h-36 w-6 bg-white/[0.04] rounded-full overflow-hidden mb-2">
+                    <div className={`absolute bottom-0 w-full rounded-full transition-all duration-700 ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/>
+                  </div>
+                  <div className={`text-2xl font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div>
+                  <div className="text-[10px] text-white/25 mt-0.5">{fgLabel||'Loading...'}</div>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="text-[11px] text-white/20 uppercase tracking-[.15em]">World Bank</div>
+                  {dd?.worldBankGDP?.[1]?.[0]?<div><div className="text-[10px] text-white/25">US GDP</div><div className="text-lg font-bold text-white/70">{dd.worldBankGDP[1][0].value?`$${(Number(dd.worldBankGDP[1][0].value)/1e12).toFixed(1)}T`:'N/A'}</div><div className="text-[9px] text-white/15">{dd.worldBankGDP[1][0].date}</div></div>:<div className="text-white/15 text-sm">Loading...</div>}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5"><div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Active Topics</div><div className="space-y-2 text-[12px] text-white/40"><div>Sanctions {items.filter(i=>(i.title||'').toLowerCase().includes('sanction')).length}</div><div>Tariffs {items.filter(i=>(i.title||'').toLowerCase().includes('tariff')).length}</div><div>Inflation {items.filter(i=>(i.title||'').toLowerCase().includes('inflation')).length}</div><div>GDP {items.filter(i=>(i.title||'').toLowerCase().includes('gdp')).length}</div></div></div>
+            </div>
+            {/* Cat boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {macroCats.map(cat=>(
+                <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
+                  <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{cat.count}</span></div>
+                  <div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">
+                    {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div></a>))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ============ INFOSEC TAB ============ */}
+        {active==='infosec'&&(
+          <div className="space-y-5">
+            <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.03] p-5">
+              <div className="flex items-center gap-2 mb-3"><span className="text-[11px] text-red-400 uppercase tracking-[.15em] font-bold">⚠ Active Threats</span><span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/></div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[12px]">
+                <div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3"><div className="font-semibold text-red-300 mb-1">🔐 Revoke</div><div className="text-white/50">Check wallet approvals. Use revoke.cash</div></div>
+                <div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3"><div className="font-semibold text-orange-300 mb-1">📦 Update</div><div className="text-white/50">Run audit. Patch compromised packages.</div></div>
+                <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3"><div className="font-semibold text-yellow-300 mb-1">🛡️ Check</div><div className="text-white/50">Audit exposed ports. Rotate keys.</div></div>
               </div>
             </div>
-          ))}
-        </div>
+            {/* Cat box */}
+            {infosecCats.map(cat=>(
+              <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
+                <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{cat.count}</span></div>
+                <div className="divide-y divide-white/[0.02] max-h-[400px] overflow-y-auto scrollbar-hide">
+                  {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no threats</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-2 leading-snug">{it.title}</div>{it.summary&&<div className="text-[9px] text-white/15 mt-0.5 line-clamp-1">{it.summary.slice(0,90)}</div>}<div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div></a>))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ============ WEB3 TAB ============ */}
+        {active==='web3'&&(
+          <div className="space-y-5">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+              {/* TVL Leaderboard */}
+              <div className="lg:col-span-1 rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
+                <div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015]"><div className="text-[11px] text-purple-400 uppercase tracking-[.15em] font-bold">TVL by Chain</div></div>
+                <div className="grid grid-cols-[28px_1fr_80px] gap-3 px-5 py-2.5 border-b border-white/[0.03] bg-white/[0.02] text-[10px] text-white/20 uppercase tracking-wider font-semibold"><div>#</div><div>Chain</div><div className="text-right">TVL</div></div>
+                {dd?.defiLlama?.tvl?.slice(0,12).map((c:any,i:number)=>(<div key={i} className={`grid grid-cols-[28px_1fr_80px] gap-3 px-5 py-2.5 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.02] ${i%2===1?'bg-white/[0.005]':''}`}><div className="text-[11px] text-white/25 tabular-nums">{i+1}</div><div className="text-[12px] font-medium text-white/75 truncate">{c.name}</div><div className="text-[12px] font-semibold text-right tabular-nums text-purple-400/80">{fmt(c.tvl)}</div></div>))||<div className="p-5 text-white/15 text-xs italic text-center">Loading...</div>}
+              </div>
+              {/* Metrics */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5"><div className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold mb-2">Total Volume</div><div className="text-2xl font-bold tabular-nums text-white/80">{fmt(totalVol)}</div><div className="text-[10px] text-white/20 mt-1">24h DEX</div><div className="mt-3 space-y-1">{dd?.defiLlama?.volume?.slice(0,5).map((v:any,i:number)=>(<div key={i} className="flex justify-between text-[11px]"><span className="text-white/30 truncate">{v.name}</span><span className="text-white/50 tabular-nums">{fmt(v.volume24h)}</span></div>))}</div></div>
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5"><div className="text-[10px] text-emerald-400 uppercase tracking-[.15em] font-bold mb-3">Stablecoins</div><div className="space-y-2">{dd?.defiLlama?.stablecoins?.slice(0,6).map((s:any,i:number)=>(<div key={i} className="flex justify-between"><span className="text-[12px] text-white/50">{s.name}</span><span className="text-[11px] text-white/70 tabular-nums">{fmt(s.circulating)}</span></div>))||<div className="text-white/15 text-xs italic">Loading...</div>}</div></div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5"><div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fees (24h)</div><div className="space-y-2">{dd?.defiLlama?.fees?.slice(0,6).map((f:any,i:number)=>(<div key={i} className="flex justify-between"><span className="text-[12px] text-white/50 truncate">{f.name}</span><span className="text-[11px] text-white/70 tabular-nums">{fmt(f.fees24h)}</span></div>))||<div className="text-white/15 text-xs italic">Loading...</div>}</div></div>
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 flex flex-col items-center"><div className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-3">Fear & Greed</div><div className="relative h-32 w-6 bg-white/[0.04] rounded-full overflow-hidden mb-2"><div className={`absolute bottom-0 w-full rounded-full transition-all duration-700 ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div><div className={`text-xl font-bold mt-2 ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[10px] text-white/25 mt-0.5">{fgLabel||'...'}</div></div>
+                </div>
+                {/* Polymarket */}
+                {dd?.polymarket?.length>0&&(<div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden"><div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015]"><div className="text-[11px] text-pink-400 uppercase tracking-[.15em] font-bold">Polymarket</div></div><div className="grid grid-cols-[1fr_80px_80px] gap-3 px-5 py-2.5 border-b border-white/[0.03] bg-white/[0.02] text-[10px] text-white/20 uppercase tracking-wider font-semibold"><div>Market</div><div className="text-right">Vol</div><div className="text-right">Liq</div></div>{dd.polymarket.slice(0,5).map((m:any,i:number)=>(<a key={i} href={`https://polymarket.com/event/${m.slug}`} target="_blank" rel="noopener noreferrer" className={`grid grid-cols-[1fr_80px_80px] gap-3 px-5 py-2.5 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.02] ${i%2===1?'bg-white/[0.005]':''}`}><div className="text-[12px] text-white/60 hover:text-white/80 truncate">{m.title}</div><div className="text-[11px] text-right text-white/30 tabular-nums">{fmtN(m.volume)}</div><div className="text-[11px] text-right text-white/20 tabular-nums">{fmtN(m.liquidity)}</div></a>))}</div>)}
+              </div>
+            </div>
+            {/* Cat boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {web3Cats.map(cat=>(
+                <div key={cat.id} className={`rounded-2xl border border-white/[0.06] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
+                  <div className="px-4 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-white/30">{cat.count}</span></div>
+                  <div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">
+                    {cat.items.length===0?<div className="px-4 py-6 text-[11px] text-white/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-white/60 group-hover:text-white/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-white/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto">{ago(it.published_at)}</span></div></a>))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
