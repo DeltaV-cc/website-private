@@ -67,13 +67,15 @@ export default function IntelHubPage(){
 
   const loadInfosec=async()=>{
     try{
-      const result:any={kev:[],cves:[],breaches:[]};
-      // CISA KEV
+      let result:any={kev:[],cves:[],breaches:[]};
+      // Try live APIs first
       try{const r=await fetch('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json');if(r.ok){const d=await r.json();result.kev=(d.vulnerabilities||[]).slice(0,6).map((v:any)=>({cve:v.cveID,product:v.product,vendor:v.vendorProject,name:v.vulnerabilityName,dateAdded:v.dateAdded,dueDate:v.dueDate}));}}catch(e){}
-      // NVD CVEs
       try{const r=await fetch('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=6');if(r.ok){const d=await r.json();result.cves=(d.vulnerabilities||[]).map((v:any)=>{const cve=v.cve||{};const m=cve.metrics?.cvssMetricV31?.[0]?.cvssData||cve.metrics?.cvssMetricV30?.[0]?.cvssData||{};const desc=(cve.descriptions||[]).find((x:any)=>x.lang==='en');return{id:cve.id,severity:m.baseSeverity||'N/A',score:m.baseScore||0,description:(desc?.value||'').slice(0,140),published:cve.published};});}}catch(e){}
-      // HIBP breaches
       try{const r=await fetch('https://haveibeenpwned.com/api/v3/breaches');if(r.ok){const d=await r.json();result.breaches=(Array.isArray(d)?d:[]).slice(0,8).map((b:any)=>({name:b.Name||b.Title,domain:b.Domain,date:b.BreachDate,count:b.PwnCount,data:(b.DataClasses||[]).slice(0,5).join(', ')}));}}catch(e){}
+      // Fallback to cached data if live APIs returned empty
+      if(!result.kev.length||!result.cves.length||!result.breaches.length){
+        try{const r=await fetch('/data/infosec.json');if(r.ok){const c=await r.json();if(!result.kev.length)result.kev=c.kev||[];if(!result.cves.length)result.cves=c.cves||[];if(!result.breaches.length)result.breaches=c.breaches||[];}}catch(e){}
+      }
       setDd2(result);
     }catch(e){}
   };
