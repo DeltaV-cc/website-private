@@ -75,6 +75,10 @@ export default function IntelHubPage(){
   const [active,setActive]=useState<'macro'|'infosec'|'web3'>('web3');
   const [dd,setDd]=useState<DashData|null>(null);
   const [dd2,setDd2]=useState<any>(null);
+  const [patents,setPatents]=useState<any>(null);
+  const loadPatents=async()=>{try{const r=await fetch('/api/intel/patent-data');if(r.ok)setPatents(await r.json());}catch(e){}};
+  useEffect(()=>{loadPatents();},[]);
+  const [dd2,setDd2]=useState<any>(null);
   const loadInfosec=async()=>{try{const r=await fetch('/api/intel/infosec-data');if(r.ok)setDd2(await r.json());}catch(e){}};
   useEffect(()=>{loadInfosec();const i=setInterval(loadInfosec,10*60_000);return()=>clearInterval(i);},[]);
   const scrollRef=useRef<HTMLDivElement>(null);
@@ -195,6 +199,21 @@ export default function IntelHubPage(){
                 </div>
               ))}
             </div>
+            {/* Patent Panel */}
+            {patents&&(
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] overflow-hidden">
+              <div className="px-5 py-3 border-b border-white/[0.04] bg-white/[0.015] flex items-center gap-3">
+                <span className="text-[11px] text-pink-400 uppercase tracking-[.15em] font-bold">Patents</span>
+                <span className="text-[10px] text-white/20">{patents.header.uspto} · {patents.header.wipo} · {patents.header.yoy}</span>
+              </div>
+              <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Top Patent Holders</div><div className="space-y-1">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{h.name}</span><span className="flex items-center gap-2"><span className="text-white/70 tabular-nums">{h.count}</span><span className={h.dir==='up'?'text-emerald-400':'text-red-400'}>{h.change}</span></span></div>))}</div></div>
+                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Technology Areas</div><div className="space-y-1">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{t.name}</span><span className="text-white/40">{t.pct}</span></div>))}</div></div>
+                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Origin Countries</div><div className="space-y-1">{patents.originCountries.map((c:any,i:number)=>(<div key={i} className="flex items-center justify-between text-[11px]"><span className="text-white/50">{c.name}</span><span className="flex items-center gap-2"><span className="text-white/70">{c.pct}</span><span className={c.dir==='up'?'text-emerald-400':'text-red-400'}>{c.change}</span></span></div>))}</div></div>
+                <div><div className="text-[10px] text-white/20 uppercase tracking-[.1em] mb-2">Hot Patent Areas</div><div className="space-y-1.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="text-[11px]"><div className="flex items-center justify-between"><span className="text-white/60 font-medium">{h.name}</span><span className={`text-[9px] px-1.5 py-0.5 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='moderate'?'bg-amber-500/15 text-amber-400':'bg-blue-500/15 text-blue-400'}`}>{h.trend}</span></div><div className="text-[9px] text-white/25 mt-0.5">{h.sector}</div></div>))}</div></div>
+              </div>
+            </div>
+            )}
           </div>
         )}
 
