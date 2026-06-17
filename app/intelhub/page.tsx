@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 
+// ============================
+//  Category detection + colors
+// ============================
 const KEYWORDS: Record<string, string> = {
   ai: 'ai,llm,agent,model,inference,transformer,gpt,claude,local-first,sovereign',
   opsec: 'opsec,security,privacy,hardening,threat,vulnerability,exploit,zero-day,cve',
@@ -25,20 +28,21 @@ function getTag(title: string, summary: string): string {
 }
 
 const TC: Record<string,string> = {
-  ai:'bg-blue-500/20 text-blue-300', opsec:'bg-red-500/20 text-red-300',
-  cybersec:'bg-orange-500/20 text-orange-300', web3:'bg-purple-500/20 text-purple-300',
-  crypto:'bg-yellow-500/20 text-yellow-300', hardware:'bg-green-500/20 text-green-300',
-  macro:'bg-amber-500/20 text-amber-300', ip:'bg-pink-500/20 text-pink-300',
-  prediction:'bg-cyan-500/20 text-cyan-300', research:'bg-indigo-500/20 text-indigo-300',
-  legal:'bg-rose-500/20 text-rose-300',
+  ai:'bg-blue-500/15 text-blue-400', opsec:'bg-red-500/15 text-red-400',
+  cybersec:'bg-orange-500/15 text-orange-400', web3:'bg-purple-500/15 text-purple-400',
+  crypto:'bg-yellow-500/15 text-yellow-400', hardware:'bg-green-500/15 text-green-400',
+  macro:'bg-amber-500/15 text-amber-400', ip:'bg-pink-500/15 text-pink-400',
+  prediction:'bg-cyan-500/15 text-cyan-400', research:'bg-indigo-500/15 text-indigo-400',
+  legal:'bg-rose-500/15 text-rose-400',
 };
 
-const DASHBOARD_COLORS: Record<string, {bg:string, border:string, accent:string, title:string}> = {
-  macro:   {bg:'from-amber-500/5 to-amber-500/0', border:'border-amber-500/10', accent:'text-amber-400', title:'Macro & Geopolitical'},
-  infosec: {bg:'from-orange-500/5 to-orange-500/0', border:'border-orange-500/10', accent:'text-orange-400', title:'Cybersecurity & Infrastructure'},
-  web3:    {bg:'from-purple-500/5 to-purple-500/0', border:'border-purple-500/10', accent:'text-purple-400', title:'Crypto & DeFi'},
+const DASH: Record<string, {bg:string, border:string, accent:string, title:string, glow:string}> = {
+  macro:   {bg:'from-amber-500/[0.04] to-transparent', border:'border-amber-500/10', accent:'text-amber-400', title:'Macro & Geopolitical', glow:'shadow-amber-500/5'},
+  infosec: {bg:'from-orange-500/[0.04] to-transparent', border:'border-orange-500/10', accent:'text-orange-400', title:'Cybersecurity & Infrastructure', glow:'shadow-orange-500/5'},
+  web3:    {bg:'from-purple-500/[0.04] to-transparent', border:'border-purple-500/10', accent:'text-purple-400', title:'Crypto & DeFi', glow:'shadow-purple-500/5'},
 };
 
+// ============================
 interface Item { title:string; url:string; source:string; published_at:string; summary:string; tag?:string; }
 
 export default function IntelHubPage() {
@@ -60,19 +64,20 @@ export default function IntelHubPage() {
       setItems(d.map((x:any)=>({...x, tag: getTag(x.title||'', x.summary||'')})));
       setError('');
     } catch(e:any) {
-      console.error('[IntelHub] Fetch failed:', e);
-      setError(e.message || 'Failed to load');
+      console.error('[IntelHub]', e);
+      setError(e.message||'Failed to load');
     } finally { setLoading(false); }
   };
 
-  useEffect(()=>{ load(); const i=setInterval(load, 5*60_000); return ()=>clearInterval(i); },[]);
+  useEffect(()=>{ load(); const i=setInterval(load,5*60_000); return ()=>clearInterval(i); },[]);
 
+  // ================ mouse‑directed auto‑scroll ================
   useEffect(()=>{
     const el=scrollRef.current; if(!el)return;
     const mv=(e:MouseEvent)=>{
       const rx=(e.clientX-el.getBoundingClientRect().left)/el.offsetWidth;
-      if(rx<.15)speed.current=-.8; else if(rx<.35)speed.current=.2;
-      else if(rx<.65)speed.current=1.0; else if(rx<.85)speed.current=2.5; else speed.current=4.0;
+      if(rx<.15) speed.current=-0.6; else if(rx<.35) speed.current=0.25;
+      else if(rx<.65) speed.current=1.0; else if(rx<.85) speed.current=2.8; else speed.current=4.5;
     };
     el.addEventListener('mousemove',mv);
     el.addEventListener('mouseleave',()=>{speed.current=1.2;});
@@ -82,54 +87,104 @@ export default function IntelHubPage() {
   },[]);
 
   const ts=(iso:string)=>{try{const d=new Date(iso);return d.toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch{return'';}};
+  const isNew=(iso:string)=>{try{return (Date.now()-new Date(iso).getTime())<3_600_000;}catch{return false;}};  // <1h
 
-  const ds:Record<string,string[]>={macro:['OFAC','BIS','ITA','UN'],infosec:['CISA','ICS-CERT','NIST','HIBP','IODA','BGP'],web3:['DeFiLlama','Polymarket','IPFS','Protocol Labs','Filecoin']};
+  const ds:Record<string,string[]>={
+    macro:['OFAC','BIS','ITA','UN'],
+    infosec:['CISA','ICS-CERT','NIST','HIBP','IODA','BGP'],
+    web3:['DeFiLlama','Polymarket','IPFS','Protocol Labs','Filecoin'],
+  };
   const di=items.filter(i=>ds[active]?.some(s=>i.source?.toLowerCase().includes(s.toLowerCase()))).slice(0,9);
   const top3=items.slice(0,3);
+  const dc=DASH[active];
 
-  const dc = DASHBOARD_COLORS[active];
-
+  // ================================================================
   return (
-    <div className="min-h-screen bg-[#050508] text-white">
+    <div className="min-h-screen bg-[#040407] text-white">
       <Navbar/>
 
-      {/* Hero */}
-      <div className="border-b border-white/5 bg-black/80 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-[1400px] mx-auto px-8 py-6 flex items-end justify-between">
+      {/* ==================== HERO ==================== */}
+      <div className="border-b border-white/[0.04] bg-black/90 backdrop-blur-xl sticky top-0 z-40">
+        <div className="max-w-[1440px] mx-auto px-8 py-6 flex items-end justify-between">
           <div>
-            <h1 className="text-5xl font-bold tracking-[-1px] bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Intel Hub</h1>
-            <p className="text-white/40 mt-1 text-base">High‑signal intelligence for Delta V ZHC</p>
+            <h1 className="text-[42px] font-bold tracking-[-1.5px] bg-gradient-to-r from-white via-white/90 to-white/60 bg-clip-text text-transparent">
+              Intel Hub
+            </h1>
+            <p className="text-white/30 mt-1.5 text-[15px] font-light tracking-wide">
+              High‑signal intelligence for Delta&nbsp;V&nbsp;ZHC
+            </p>
           </div>
-          <span className="text-xs px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50">Updates every 5 min</span>
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.4)]"/>
+            <span className="text-[11px] text-white/30 uppercase tracking-[.15em]">Live</span>
+          </div>
         </div>
       </div>
 
       {error && (
-        <div className="max-w-[1400px] mx-auto px-8 py-3 bg-red-500/10 border-b border-red-500/20 text-red-400 text-sm">
-          Error: {error}
+        <div className="max-w-[1440px] mx-auto px-8 py-3 bg-red-500/10 border-b border-red-500/20 text-red-400 text-sm animate-in fade-in">
+          ⚠ {error}
         </div>
       )}
 
-      {/* Raw Pulse */}
-      <div className="border-b border-white/5 py-4 bg-[#0a0a10]">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>
-            <span className="text-xs text-white/30 uppercase tracking-[.2em] font-medium">Raw Pulse</span>
-            <span className="text-xs text-white/20">{items.length} items</span>
+      {/* ==================== RAW PULSE RIVER ==================== */}
+      <div className="border-b border-white/[0.04] py-5 bg-[#080810]">
+        <div className="max-w-[1440px] mx-auto px-8">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-[11px] text-white/20 uppercase tracking-[.2em] font-semibold select-none">Raw Pulse</span>
+            <span className="w-px h-3 bg-white/5"/>
+            <span className="text-[11px] text-white/15 tabular-nums">{items.length} items</span>
           </div>
-          <div ref={scrollRef} className="flex gap-3 overflow-x-auto no-scrollbar" style={{scrollBehavior:'auto'}}>
-            {loading&&<span className="text-white/30 text-sm py-8">Loading pulse…</span>}
-            {!loading&&!error&&items.length===0&&<span className="text-white/30 text-sm py-8">No items yet.</span>}
+
+          <div
+            ref={scrollRef}
+            className="flex gap-3 overflow-x-auto no-scrollbar smooth-scroll"
+            style={{scrollBehavior:'auto', WebkitMaskImage:'linear-gradient(to right, transparent, black 2%, black 98%, transparent)'}}
+          >
+            {/* loading skeleton */}
+            {loading && Array.from({length:6}).map((_,i)=>(
+              <div key={i} className="flex-shrink-0 w-[300px] rounded-2xl p-4 bg-white/[0.02] border border-white/[0.04] animate-pulse">
+                <div className="h-3 bg-white/[0.05] rounded w-3/4 mb-3"/>
+                <div className="h-3 bg-white/[0.05] rounded w-1/2"/>
+                <div className="flex gap-2 mt-4">
+                  <div className="h-2.5 bg-white/[0.05] rounded w-12"/>
+                  <div className="h-2.5 bg-white/[0.05] rounded w-16"/>
+                </div>
+              </div>
+            ))}
+            {/* empty */}
+            {!loading && !error && items.length===0 && (
+              <div className="text-white/15 text-sm italic py-6 px-2">Awaiting first signals…</div>
+            )}
+            {/* items */}
             {items.slice(0,50).map((it,i)=>(
-              <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-                 className="flex-shrink-0 w-[300px] border border-white/[0.06] hover:border-white/20
-                            rounded-2xl p-4 bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-200 group">
-                <div className="text-sm font-medium leading-snug line-clamp-2 group-hover:text-white/90">{it.title}</div>
-                <div className="flex items-center gap-2 mt-3 text-[11px] text-white/35">
-                  {it.tag&&<span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] tracking-wide ${TC[it.tag]||''}`}>#{it.tag}</span>}
-                  <span className="truncate max-w-[100px]">{it.source}</span>
-                  <span className="ml-auto tabular-nums">{ts(it.published_at)}</span>
+              <a
+                key={i}
+                href={it.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 w-[300px] rounded-2xl p-4 border border-white/[0.05]
+                           bg-white/[0.015] hover:bg-white/[0.05] hover:border-white/15
+                           transition-all duration-300 ease-out group cursor-pointer"
+              >
+                <div className="flex items-start gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[13px] font-medium leading-snug line-clamp-2 text-white/85 group-hover:text-white transition-colors duration-200">
+                      {it.title}
+                    </div>
+                  </div>
+                  {isNew(it.published_at) && (
+                    <span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)]"/>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 mt-3 text-[11px] text-white/25">
+                  {it.tag && (
+                    <span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] tracking-wide ${TC[it.tag]||''}`}>
+                      #{it.tag}
+                    </span>
+                  )}
+                  <span className="truncate max-w-[90px]">{it.source}</span>
+                  <span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span>
                 </div>
               </a>
             ))}
@@ -137,21 +192,36 @@ export default function IntelHubPage() {
         </div>
       </div>
 
-      {/* Top 3 Picks */}
-      <div className="max-w-[1400px] mx-auto px-8 py-10">
-        <div className="flex items-center gap-2 mb-5">
-          <span className="text-[10px] text-white/25 uppercase tracking-[.25em] font-bold">Today's Top Picks</span>
-          <span className="text-[10px] text-white/15">— chiefstaff</span>
+      {/* ==================== TOP 3 PICKS ==================== */}
+      <div className="max-w-[1440px] mx-auto px-8 py-12">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-[11px] text-white/20 uppercase tracking-[.25em] font-bold select-none">Today's Top Picks</span>
+          <span className="w-px h-3 bg-white/[0.06]"/>
+          <span className="text-[11px] text-white/10">chiefstaff</span>
         </div>
-        {top3.length===0&&<div className="text-white/25 text-sm">No picks yet.</div>}
+
+        {top3.length===0 && (
+          <div className="text-white/15 text-sm italic py-4">Top picks will appear after chiefintel triage.</div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {top3.map((it,i)=>(
-            <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-               className="border border-white/[0.08] hover:border-white/25 rounded-3xl p-6 bg-gradient-to-b from-white/[0.04] to-transparent transition-all duration-300 group">
-              <div className="text-lg font-semibold leading-snug group-hover:underline">{it.title}</div>
-              <p className="text-white/45 text-sm mt-3 line-clamp-3 leading-relaxed">{it.summary}</p>
-              <div className="flex items-center gap-2 mt-4 text-xs text-white/35">
-                {it.tag&&<span className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] ${TC[it.tag]||''}`}>#{it.tag}</span>}
+            <a
+              key={i}
+              href={it.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-3xl p-6 border border-white/[0.06] hover:border-white/15
+                         bg-gradient-to-b from-white/[0.03] to-white/[0.005]
+                         hover:from-white/[0.06] hover:to-white/[0.015]
+                         transition-all duration-300 ease-out"
+            >
+              <div className="text-[17px] font-semibold leading-snug text-white/90 group-hover:text-white group-hover:underline decoration-white/20 underline-offset-4 transition-all">
+                {it.title}
+              </div>
+              <p className="text-white/35 text-sm mt-3 line-clamp-3 leading-relaxed">{it.summary}</p>
+              <div className="flex items-center gap-2 mt-5 text-[12px] text-white/25">
+                {it.tag && (<span className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] ${TC[it.tag]||''}`}>#{it.tag}</span>)}
                 <span>{it.source}</span>
                 <span className="ml-auto tabular-nums">{ts(it.published_at)}</span>
               </div>
@@ -160,47 +230,63 @@ export default function IntelHubPage() {
         </div>
       </div>
 
-      {/* Dashboards */}
-      <div className="max-w-[1400px] mx-auto px-8 pb-24">
-        <div className="flex gap-1.5 mb-6 bg-white/[0.03] p-1 rounded-2xl w-fit">
+      {/* ==================== DASHBOARDS ==================== */}
+      <div className="max-w-[1440px] mx-auto px-8 pb-24">
+        {/* tabs */}
+        <div className="flex gap-1 bg-white/[0.02] p-1 rounded-2xl w-fit mb-8 border border-white/[0.04]">
           {(['macro','infosec','web3']as const).map(d=>{
-            const style = DASHBOARD_COLORS[d];
+            const s = DASH[d];
             return (
               <button key={d} onClick={()=>setActive(d)}
-                className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`px-6 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${
                   active===d
-                    ? `${style.accent} bg-white/10 shadow-sm`
-                    : 'text-white/40 hover:text-white/70'}`}>
+                    ? `${s.accent} bg-white/[0.08] shadow-sm`
+                    : 'text-white/25 hover:text-white/50'}`}>
                 {d==='macro'?'Macro':d==='infosec'?'Infosec':'Web3'}
               </button>
             );
           })}
         </div>
 
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className={`text-[10px] uppercase tracking-[.2em] font-bold ${dc.accent}`}>{dc.title}</span>
-            <span className="text-[10px] text-white/15">{di.length} high‑signal</span>
+        {/* section header */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <span className={`text-[11px] uppercase tracking-[.2em] font-bold ${dc.accent}`}>{dc.title}</span>
+            <span className="w-px h-3 bg-white/[0.06]"/>
+            <span className="text-[11px] text-white/15 tabular-nums">{di.length} high‑signal</span>
           </div>
         </div>
 
+        {/* cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {di.length===0&&<div className="text-white/25 text-sm col-span-full py-8 text-center">No high‑signal items yet.</div>}
+          {di.length===0 && (
+            <div className="col-span-full text-center py-12 text-white/15 text-sm italic">
+              No high‑signal items yet — triage layer is processing.
+            </div>
+          )}
           {di.map((it,i)=>(
-            <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-               className={`border ${dc.border} hover:border-white/20 rounded-2xl p-5 bg-gradient-to-b ${dc.bg} transition-all duration-300 group`}>
-              <div className="text-sm font-semibold leading-snug group-hover:underline line-clamp-2">{it.title}</div>
-              <p className="text-white/40 text-xs mt-2 line-clamp-2 leading-relaxed">{it.summary}</p>
-              <div className="flex items-center gap-2 mt-3 text-[11px] text-white/30">
-                {it.tag&&<span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] ${TC[it.tag]||''}`}>#{it.tag}</span>}
-                <span className="truncate max-w-[100px]">{it.source}</span>
-                <span className="ml-auto tabular-nums">{ts(it.published_at)}</span>
+            <a
+              key={i}
+              href={it.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group rounded-2xl p-5 border ${dc.border} hover:border-white/15
+                         bg-gradient-to-b ${dc.bg} hover:from-white/[0.06] hover:to-transparent
+                         transition-all duration-300 ease-out ${dc.glow}`}
+            >
+              <div className="text-[14px] font-semibold leading-snug text-white/85 group-hover:text-white group-hover:underline decoration-white/15 underline-offset-4 line-clamp-2 transition-all">
+                {it.title}
+              </div>
+              <p className="text-white/30 text-[12px] mt-2.5 line-clamp-2 leading-relaxed">{it.summary}</p>
+              <div className="flex items-center gap-2 mt-4 text-[11px] text-white/20">
+                {it.tag && (<span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] ${TC[it.tag]||''}`}>#{it.tag}</span>)}
+                <span className="truncate max-w-[90px]">{it.source}</span>
+                <span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span>
               </div>
             </a>
           ))}
         </div>
       </div>
-
     </div>
   );
 }
