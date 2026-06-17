@@ -72,14 +72,16 @@ function TileRow({it,ago}:{it:Item;ago:(iso:string)=>string}){return<a href={it.
 export default function IntelHubPage(){
   const [items,setItems]=useState<Item[]>([]);
   const [loading,setLoading]=useState(true);
-  const [active,setActive]=useState<'macro'|'infosec'|'web3'>('web3');
+  const [active,setActive]=useState<'macro'|'infosec'|'web3'>('macro');
   const [dd,setDd]=useState<DashData|null>(null);
   const [dd2,setDd2]=useState<any>(null);
   const [patents,setPatents]=useState<any>(null);
   const [forex,setForex]=useState<any>(null);
+  const [storedPicks,setStoredPicks]=useState<Item[]>([]);
   const loadPatents=async()=>{try{const r=await fetch('/api/intel/patent-data');if(r.ok)setPatents(await r.json());}catch(e){}};
   const loadForex=async()=>{try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');if(r.ok)setForex(await r.json());}catch(e){}};
-  useEffect(()=>{loadPatents();loadForex();},[]);
+  const loadPicks=async()=>{try{const r=await fetch('/api/intel/picks');if(r.ok){const d=await r.json();setStoredPicks(d.picks||[]);}}catch(e){}};
+  useEffect(()=>{loadPatents();loadForex();loadPicks();const i=setInterval(loadForex,5*60_000);return()=>clearInterval(i);},[]);
   const loadInfosec=async()=>{try{const r=await fetch('/api/intel/infosec-data');if(r.ok)setDd2(await r.json());}catch(e){}};
   useEffect(()=>{loadInfosec();const i=setInterval(loadInfosec,10*60_000);return()=>clearInterval(i);},[]);
   const scrollRef=useRef<HTMLDivElement>(null);
@@ -115,7 +117,7 @@ export default function IntelHubPage(){
   const infosecCats=dashCats(['cybersec']);
   const web3Cats=dashCats(['crypto']);
 
-  const top3=items.slice(0,3);
+  const top3=storedPicks.length>0?storedPicks.slice(0,3):items.slice(0,3);
 
   const tabs=['macro','infosec','web3']as const;
   const tabLabel=(t:string)=>t==='macro'?'Macro':t==='infosec'?'Infosec':'Web3';
@@ -159,17 +161,22 @@ export default function IntelHubPage(){
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(
           <div className="space-y-4">
-            {/* F&G + Forex Row */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+            {/* F&G + Forex */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4 flex flex-col items-center">
                 <div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">F&G</div>
                 <div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div>
                 <div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[9px] text-white/25">{fgLabel||'...'}</div>
               </div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold">EUR/USD</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-orange-400 uppercase tracking-[.1em] font-bold">USD/JPY</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-cyan-400 uppercase tracking-[.1em] font-bold">GBP/USD</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4"><div className="text-[9px] text-rose-400 uppercase tracking-[.1em] font-bold">USD/CNY</div><div className="text-lg font-bold text-white/80 mt-1">{forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...'}</div><div className="text-[8px] text-white/10 mt-1">Forex ✓</div></div>
+              <div className="md:col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+                <div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold mb-2">Forex (USD)</div>
+                <div className="grid grid-cols-5 gap-2 text-center">
+                  {[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...',c:'text-sky-400'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...',c:'text-orange-400'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...',c:'text-cyan-400'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...',c:'text-emerald-400'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...',c:'text-rose-400'}].map((p,i)=>(
+                    <div key={i}><div className="text-[10px] text-white/30">{p.l}</div><div className={`text-sm font-bold ${p.c}`}>{p.v}</div></div>
+                  ))}
+                </div>
+                <div className="text-[8px] text-white/10 mt-2 text-right">ExchangeRate-API ✓ · Live</div>
+              </div>
             </div>
 
             {/* Patent Panel — compact */}
