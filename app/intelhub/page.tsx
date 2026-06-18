@@ -6,10 +6,24 @@ import Navbar from '../components/Navbar';
 /* ================================================================
    CATEGORIES & COLORS
    ================================================================ */
-const CATS=[{id:'ai',label:'AI/ML',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',kw:['llm','transformer','gpt','claude','deepseek','lora','qlora','sovereign ai','rlhf','alignment','neural network','attention mechanism','fine-tuning','machine learning','deep learning','training','benchmark']},{id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',kw:['wallet','defi','stablecoin','dex','amm','yield','token','staking','liquidity','privacy tech','zk','zero-knowledge','rollup','l2','on-chain','smart contract','dao','evm','solidity','polymarket','perp','orderbook','validator']},{id:'cybersec',label:'Cybersec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',kw:['vulnerability','cve','zero-day','breach','ransomware','malware','ddos','outage','bgp','cisa','kev','opsec','hardening','threat model','pentest','infosec','hibp','pwned','exploit']},{id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',kw:['sanction','tariff','ofac','federal reserve','inflation','gdp','rate hike','treasury','sec regulation','export control','trade war','geopolitic','bis','imf','world bank']},{id:'hardware',label:'HW',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',kw:['gpu','cpu','npu','tpu','h100','a100','b200','compute cluster','semiconductor','fabrication','lithography','asic','fpga','meshtastic','iot','edge device']},{id:'science',label:'Sci',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',kw:['physics','quantum','fusion','fission','astrophysics','nuclear','renewable','solar','wind','battery','spacex','nasa','biology','genome','crispr','neuroscience']}];
+const CATS=[{id:'ai',label:'AI/ML',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',kw:['llm','transformer','gpt','claude','deepseek','lora','qlora','sovereign ai','rlhf','alignment','neural network','attention mechanism','fine-tuning','machine learning','deep learning','training','benchmark','embedding','token','prompt','model','inference','agent','ai','openai','anthropic','mistral','gemini','generative','rag','vector',' semantic','copilot','chatbot','reasoning','sora','diffusion','transformer']},{id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',kw:['wallet','defi','stablecoin','dex','amm','yield','token','staking','liquidity','privacy tech','zk','zero-knowledge','rollup','l2','on-chain','smart contract','dao','evm','solidity','polymarket','perp','orderbook','validator','bitcoin','ethereum','solana','crypto','blockchain','web3','nft','bridge',' oracles','mev','airdrop','lending','borrow','swap','pool','farm','cex','dapp','multisig','signature','ecdsa','bls','threshold','tss','mpc']},{id:'cybersec',label:'Cybersec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',kw:['vulnerability','cve','zero-day','breach','ransomware','malware','ddos','outage','bgp','cisa','kev','opsec','hardening','threat model','pentest','infosec','hibp','pwned','exploit','hack','phish','spoof','patch','firewall','encrypt','auth','credential','backdoor','trojan','worm','rootkit','sandbox','isolation','airgap','soc','incident response','forensic']},{id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',kw:['sanction','tariff','ofac','federal reserve','inflation','gdp','rate hike','treasury','sec regulation','export control','trade war','geopolitic','bis','imf','world bank','fed','interest rate','cpi','recession','yield curve','debt ceiling','central bank','monetary','fiscal','dollar','reserve','bond','equity','stock','index','s&p','nasdaq','dow','etf','commodity','oil','gold']},{id:'hardware',label:'HW',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',kw:['gpu','cpu','npu','tpu','h100','a100','b200','compute cluster','semiconductor','fabrication','lithography','asic','fpga','meshtastic','iot','edge device','nvidia','amd','intel','tsmc','samsung','chip','processor','memory','ddr','ssd','storage','server','datacenter','quantum']},{id:'science',label:'Sci',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',kw:['physics','quantum','fusion','fission','astrophysics','nuclear','renewable','solar','wind','battery','spacex','nasa','biology','genome','crispr','neuroscience','research','paper','study','experiment','lab','scientific','discovery','breakthrough','climate','environment']}];
+
+// Helper: strip "RT by @username:" or "RT @username:" prefix from titles
+const cleanTitle=(t:string)=>{
+  return t.replace(/^RT\s+by\s+@\S+?:\s*/i,'').replace(/^RT\s+@\S+?:\s*/i,'');
+};
+
+// Helper: strip HTML tags from a string
+const stripHtml=(s:string)=>s.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
 
 const TC:Record<string,string>={ai:'bg-blue-500/15 text-blue-400',crypto:'bg-yellow-500/15 text-yellow-400',cybersec:'bg-orange-500/15 text-orange-400',macro:'bg-amber-500/15 text-amber-400',hardware:'bg-green-500/15 text-green-400',science:'bg-violet-500/15 text-violet-400'};
-function getTag(t:string):string{const txt=t.toLowerCase();for(const c of CATS)if(c.kw.some(k=>txt.includes(k.trim())))return c.id;return'';}
+// Border color per tag for pulse cards
+const BCOL:Record<string,string>={ai:'border-l-blue-500/40',crypto:'border-l-yellow-500/40',cybersec:'border-l-orange-500/40',macro:'border-l-amber-500/40',hardware:'border-l-green-500/40',science:'border-l-violet-500/40'};
+function getTag(title:string,summary?:string):string{
+  const txt=(title+' '+(summary||'')).toLowerCase();
+  for(const c of CATS)if(c.kw.some(k=>txt.includes(k.trim())))return c.id;
+  return '';
+}
 
 const PJ=['nba','nfl','mlb','ufc','soccer','formula','grammy','oscar','celebrity','rihanna','kardashian','super bowl','olympics','tiktok'];
 const JHN=[/^Ask HN:/i,/^Tell HN:/i,/^Show HN:/i,/Who is hiring/i];
@@ -36,7 +50,7 @@ export default function IntelHubPage(){
   const loadAll=async()=>{
     try{
       const rawRes=await fetch('/data/raw-items.json');
-      if(rawRes.ok){const d=await rawRes.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,tag:getTag(x.title||'')})).filter(rel));}
+      if(rawRes.ok){const d=await rawRes.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,title:cleanTitle(x.title||''),tag:getTag(x.title||'',x.summary||'')})).filter(rel));}
       const picksRes=await fetch('/data/picks.json');
       if(picksRes.ok)setPicks(await picksRes.json());
       const patRes=await fetch('/data/patents.json');
@@ -111,11 +125,23 @@ export default function IntelHubPage(){
   return(
     <div className="min-h-screen bg-[#0a0a0a] text-white"><Navbar/>
       <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl sticky top-0 z-40">
-        <div className="max-w-[1440px] mx-auto px-8 py-6 flex items-end justify-between">
-          <div><h1 className="text-[42px] font-bold tracking-[-1.5px] bg-gradient-to-r from-[#ededed] via-[#ededed]/90 to-[#ededed]/60 bg-clip-text text-transparent">Intel Hub</h1><p className="text-[#ededed]/30 mt-1.5 text-[15px] font-light tracking-wide">High‑signal intelligence for Delta V ZHC</p></div>
+        {/* Animated gradient bar */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-[length:400%_100%] animate-[gradient_6s_ease_infinite]"/>
+        <div className="max-w-[1440px] mx-auto px-8 py-6 flex items-end justify-between relative">
+          <div>
+            <h1 className="text-[42px] font-bold tracking-[-1.5px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-clip-text text-transparent">IntelHub</h1>
+            <p className="text-[#ededed]/30 mt-1.5 text-[15px] font-light tracking-wide">Live threat surface · Market intel · Signal triage</p>
+            {/* Color-coded stat pills */}
+            <div className="flex items-center gap-3 mt-3">
+              <span className="flex items-center gap-1.5 text-[10px] text-[#ededed]/20"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60"/>Macro</span>
+              <span className="flex items-center gap-1.5 text-[10px] text-[#ededed]/20"><span className="w-1.5 h-1.5 rounded-full bg-orange-400/60"/>Infosec</span>
+              <span className="flex items-center gap-1.5 text-[10px] text-[#ededed]/20"><span className="w-1.5 h-1.5 rounded-full bg-purple-400/60"/>Web3</span>
+            </div>
+          </div>
           <div className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.4)]"/><span className="text-[11px] text-[#ededed]/30 uppercase tracking-[.15em]">Live</span></div>
         </div>
       </div>
+      <style>{`@keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}`}</style>
 
       {/* Pulse */}
       <div className="border-b border-[#222] py-4 bg-[#080810]">
@@ -124,7 +150,7 @@ export default function IntelHubPage(){
           <div ref={scrollRef} className="flex gap-3" style={{overflowX:'scroll',scrollbarWidth:'none',WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)',maskImage:'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)'}}>
             {loading&&Array.from({length:6}).map((_,i)=>(<div key={i} className="flex-shrink-0 w-[260px] rounded-2xl p-4 bg-[#111] border border-[#222] animate-pulse"><div className="h-3 bg-white/[0.05] rounded w-3/4 mb-3"/><div className="h-3 bg-white/[0.05] rounded w-1/2"/></div>))}
             {!loading&&items.length===0&&<div className="text-[#ededed]/15 text-sm italic py-6 px-2">Awaiting first signals</div>}
-            {items.slice(0,40).map((it,i)=>(<a key={i} href={it.url} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-[#111] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group"><div className="flex items-start gap-2"><div className="flex-1 min-w-0"><div className="text-[13px] font-medium leading-snug line-clamp-2 text-[#ededed]/85 group-hover:text-white">{it.title}</div></div>{isNew(it.published_at)&&<span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400"/>}</div><div className="flex items-center gap-2 mt-3 text-[11px] text-[#ededed]/25">{it.tag&&<span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] ${TC[it.tag]||''}`}>#{it.tag}</span>}<span className="truncate max-w-[90px]">{it.source}</span><span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span></div></a>))}
+            {items.slice(0,60).map((it,i)=>(<a key={i} href={it.url} target="_blank" rel="noopener noreferrer" className={`flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-[#111] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group ${it.tag?(BCOL[it.tag]||'border-l-white/5'):'border-l-white/5'} border-l-2`}><div className="flex items-start gap-2"><div className="flex-1 min-w-0"><div className="text-[13px] font-medium leading-snug line-clamp-2 text-[#ededed]/85 group-hover:text-white">{it.title}</div></div>{isNew(it.published_at)&&<span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400"/>}</div><div className="flex items-center gap-2 mt-3 text-[11px] text-[#ededed]/25">{it.tag?<span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] ${TC[it.tag]||''}`}>#{it.tag}</span>:<span className="px-2 py-0.5 rounded-md text-[10px] bg-white/[0.04] text-[#ededed]/20">#unranked</span>}<span className="truncate max-w-[85px]">{it.source}</span><span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span></div></a>))}
           </div>
         </div>
       </div>

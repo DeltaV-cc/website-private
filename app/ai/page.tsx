@@ -19,7 +19,7 @@ export default function AIPage() {
 
       <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
         <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">PILLAR 01 • AI</div>
-        <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">AI Agent Forge</h1>
+        <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">AI Engineering</h1>
         <p className="max-w-2xl text-xl text-[#aaa]">
           We help ambitious teams move from generic AI tools to production-grade systems that actually fit their workflows.
         </p>
