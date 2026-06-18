@@ -24,13 +24,13 @@ export default function DeltaVSite() {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-8 pt-12 pb-10 text-center">
+      <div className="max-w-5xl mx-auto px-8 pt-16 pb-14">
         
-        <h1 className="text-5xl md:text-6xl font-semibold tracking-[-3px] leading-none mb-4">
+        <h1 className="text-7xl md:text-8xl font-semibold tracking-[-4px] leading-none mb-6">
           We don't sell tools.<br />We forge capabilities.
         </h1>
         
-        <p className="max-w-[620px] mx-auto text-lg text-[#aaa]">
+        <p className="max-w-[620px] text-lg text-[#aaa]">
           We operate at the frontier of AI and Web3 with OpSec as our core principle — we build, integrate, and upskill with sovereignty in mind.
         </p>
       </div>
