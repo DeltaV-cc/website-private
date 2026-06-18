@@ -20,6 +20,11 @@ export default function Web3Page() {
       <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
         <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-3">PILLAR 02 • WEB3</div>
         <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">Web3</h1>
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-12 h-[3px] rounded-full bg-[#C2410C]" />
+          <span className="w-8 h-[3px] rounded-full bg-[#F59E0B]/60" />
+          <span className="w-4 h-[3px] rounded-full bg-[#F59E0B]/30" />
+        </div>
         <p className="max-w-2xl text-xl text-[#aaa]">
           We help builders and operators navigate complexity with clarity, sovereignty, and real technical depth.
         </p>
@@ -28,20 +33,22 @@ export default function Web3Page() {
       <div className="max-w-5xl mx-auto px-8 pb-24 space-y-8">
 
         {/* 1. SOTA Setup & Architecture Advisory */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10">
+        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C] via-[#F59E0B]/40 to-transparent" />
           <h3 className="text-3xl font-semibold mb-4">SOTA Setup &amp; Architecture Advisory</h3>
           <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
             Many individuals and companies in Web3 lack access to proper infrastructure and execution security. 
             We help you implement <span className="font-semibold text-[#ededed]">best-in-class transaction execution, 
             secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting and data infrastructure</span>.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 bg-[#00f0ff] text-black rounded-xl font-medium hover:bg-white transition-colors">
+          <a href="/contact" className="inline-block px-8 py-3 bg-[#F59E0B] text-black rounded-xl font-medium hover:bg-amber-400 transition-colors">
             Describe your problem
           </a>
         </div>
 
         {/* 2. Web3 Intelligence & OSINT */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10">
+        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/60 via-[#F59E0B]/20 to-transparent" />
           <h3 className="text-3xl font-semibold mb-4">Web3 Intelligence &amp; OSINT</h3>
           <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
             Decision-making in Web3 requires high-signal intelligence. We conduct <span className="font-semibold text-[#ededed]">onchain and offchain 
@@ -53,7 +60,8 @@ export default function Web3Page() {
         </div>
 
         {/* 3. Growth Boost */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10">
+        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C]/40 via-[#F59E0B]/20 to-transparent" />
           <h3 className="text-3xl font-semibold mb-4">Growth Boost</h3>
           <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
             Web3 was born as a plural community of cypherpunks. We help protect and foster this ethos by supporting 
