@@ -60,7 +60,7 @@ export default function DeltaVSite() {
             </div>
             <div className="mt-8 flex justify-end">
               <span className="px-6 py-2.5 bg-[#00f0ff] text-black rounded-xl text-sm font-medium group-hover:bg-white transition-colors">
-                Explore AI →
+                Upgrade with AI →
               </span>
             </div>
           </a>
@@ -86,7 +86,7 @@ export default function DeltaVSite() {
             </div>
             <div className="mt-8 flex justify-end">
               <span className="px-6 py-2.5 border border-[#C2410C] text-[#C2410C] rounded-xl text-sm font-medium group-hover:bg-[#C2410C] group-hover:text-white transition-colors">
-                Explore Web3 →
+                Build on Web3 →
               </span>
             </div>
           </a>
@@ -112,7 +112,7 @@ export default function DeltaVSite() {
             </div>
             <div className="mt-8 flex justify-end">
               <span className="px-6 py-2.5 bg-[#00f0ff] text-black rounded-xl text-sm font-medium group-hover:bg-white transition-colors">
-                Explore Forge →
+                Forge skills →
               </span>
             </div>
           </a>

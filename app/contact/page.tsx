@@ -52,14 +52,14 @@ export default function ContactPage() {
             <div className="flex flex-col flex-1">
               <div>
                 <div className="text-[#00f0ff] text-xs font-semibold tracking-[2px] mb-1">SIGNAL</div>
-                <div className="text-base md:text-lg font-semibold tracking-tight text-white/80 mb-1">
-                  @DeltaV.01
-                </div>
                 <p className="text-xs text-[#888] leading-relaxed max-w-[200px] mb-4">
                   Prefer encrypted communications? Signal ensures end-to-end privacy for sensitive inquiries.
                 </p>
               </div>
-              <div className="flex justify-end">
+              <div className="flex flex-col items-end">
+                <div className="text-base md:text-lg font-semibold tracking-tight text-white/80 mb-2">
+                  @DeltaV.01
+                </div>
                 <img src="/images/signal-qr.png" alt="Signal QR Code — @DeltaV.01" className="w-24 h-24 rounded-xl" />
               </div>
             </div>
