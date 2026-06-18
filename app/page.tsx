@@ -24,13 +24,13 @@ export default function DeltaVSite() {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-8 pt-24 pb-20 text-center">
+      <div className="max-w-5xl mx-auto px-8 pt-12 pb-10 text-center">
         
-        <h1 className="text-7xl md:text-8xl font-semibold tracking-[-4.5px] leading-none mb-8">
+        <h1 className="text-5xl md:text-6xl font-semibold tracking-[-3px] leading-none mb-4">
           We don't sell tools.<br />We forge capabilities.
         </h1>
         
-        <p className="max-w-[620px] mx-auto text-xl text-[#aaa]">
+        <p className="max-w-[620px] mx-auto text-lg text-[#aaa]">
           We operate at the frontier of AI and Web3 with OpSec as our core principle — we build, integrate, and upskill with sovereignty in mind.
         </p>
       </div>
@@ -50,10 +50,12 @@ export default function DeltaVSite() {
                 <div className="text-[#aaa]">Custom multi-agent architectures for internal operations, business processes, marketing, and intelligence.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> Inference & Model Engineering</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Inference & Model Engineering</div>
+                <div className="text-[#aaa]">Production-grade model deployment using Hugging Face and custom frameworks.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> AI Engineer Retainer</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> AI Engineer Retainer</div>
+                <div className="text-[#aaa]">Ongoing development, optimization, and security for your agent systems.</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
@@ -74,10 +76,12 @@ export default function DeltaVSite() {
                 <div className="text-[#aaa]">High-signal architecture guidance and development for DeFi protocols, on-chain agents, and Web3 infrastructure.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#C2410C]">~</span> Web3 Intelligence & OSINT</div>
+                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> Web3 Intelligence & OSINT</div>
+                <div className="text-[#aaa]">Continuous monitoring of DeFi, privacy tech, on-chain agents, EIPs, GitHub activity, and emerging ecosystem signals.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#C2410C]">~</span> Growth Boost</div>
+                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> Growth Boost</div>
+                <div className="text-[#aaa]">Strategic expansion support across regions with strong OpSec foundations. Focus on EU & Swiss markets, public good advocacy, and fundraising.</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
@@ -98,10 +102,12 @@ export default function DeltaVSite() {
                 <div className="text-[#aaa]">Self-sovereign program for building and running personal AI systems with strong OpSec.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> AI Engineering Bootcamp</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> AI Engineering Bootcamp</div>
+                <div className="text-[#aaa]">5-day intensive focused on building real production systems.</div>
               </div>
               <div>
-                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> OpSec Training & Auditing</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> OpSec Training & Auditing</div>
+                <div className="text-[#aaa]">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
