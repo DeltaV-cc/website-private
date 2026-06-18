@@ -44,18 +44,16 @@ export default function DeltaVSite() {
             <div className="text-[#00f0ff] text-xs font-medium tracking-[2px] mb-4">PILLAR 01</div>
             <h3 className="text-3xl font-semibold tracking-tight mb-6">AI Engineering</h3>
             
-            <div className="space-y-6 text-sm flex-1">
+            <div className="space-y-4 text-sm flex-1">
               <div>
-                <div className="font-medium mb-1">Tailored Multi-Agent Systems</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Tailored Multi-Agent Systems</div>
                 <div className="text-[#aaa]">Custom multi-agent architectures for internal operations, business processes, marketing, and intelligence.</div>
               </div>
               <div>
-                <div className="font-medium mb-1">Inference & Model Engineering</div>
-                <div className="text-[#aaa]">Production-grade model deployment using Hugging Face and custom frameworks.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> Inference & Model Engineering</div>
               </div>
               <div>
-                <div className="font-medium mb-1">AI Engineer Retainer</div>
-                <div className="text-[#aaa]">Ongoing development, optimization, and security for your agent systems.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> AI Engineer Retainer</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
@@ -70,18 +68,16 @@ export default function DeltaVSite() {
             <div className="text-[#C2410C] text-xs font-medium tracking-[2px] mb-4">PILLAR 02</div>
             <h3 className="text-3xl font-semibold tracking-tight mb-6">Web3</h3>
             
-            <div className="space-y-6 text-sm flex-1">
+            <div className="space-y-4 text-sm flex-1">
               <div>
-                <div className="font-medium mb-1">SOTA Setup & Architecture Advisory</div>
+                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> SOTA Setup & Architecture Advisory</div>
                 <div className="text-[#aaa]">High-signal architecture guidance and development for DeFi protocols, on-chain agents, and Web3 infrastructure.</div>
               </div>
               <div>
-                <div className="font-medium mb-1">Web3 Intelligence & OSINT</div>
-                <div className="text-[#aaa]">Continuous monitoring of DeFi, privacy tech, on-chain agents, EIPs, GitHub activity, and emerging ecosystem signals.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#C2410C]">~</span> Web3 Intelligence & OSINT</div>
               </div>
               <div>
-                <div className="font-medium mb-1">Growth Boost</div>
-                <div className="text-[#aaa]">Strategic expansion support across regions with strong OpSec foundations. Focus on EU & Swiss markets, public good advocacy, and fundraising.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#C2410C]">~</span> Growth Boost</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
@@ -96,18 +92,16 @@ export default function DeltaVSite() {
             <div className="text-[#00f0ff] text-xs font-medium tracking-[2px] mb-4">PILLAR 03</div>
             <h3 className="text-3xl font-semibold tracking-tight mb-6">Skill Forge</h3>
             
-            <div className="space-y-6 text-sm flex-1">
+            <div className="space-y-4 text-sm flex-1">
               <div>
-                <div className="font-medium mb-1">Personal AI Mastery Course</div>
+                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Personal AI Mastery Course</div>
                 <div className="text-[#aaa]">Self-sovereign program for building and running personal AI systems with strong OpSec.</div>
               </div>
               <div>
-                <div className="font-medium mb-1">AI Engineering Bootcamp</div>
-                <div className="text-[#aaa]">5-day intensive focused on building real production systems.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> AI Engineering Bootcamp</div>
               </div>
               <div>
-                <div className="font-medium mb-1">OpSec Training & Auditing</div>
-                <div className="text-[#aaa]">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</div>
+                <div className="font-medium mb-1 text-[#aaa]"><span className="text-[#00f0ff]">~</span> OpSec Training & Auditing</div>
               </div>
             </div>
             <div className="mt-8 flex justify-end">
