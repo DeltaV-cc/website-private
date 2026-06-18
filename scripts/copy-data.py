@@ -35,7 +35,7 @@ if os.path.exists(raw_dir):
                     if isinstance(data, list):
                         for item in data:
                             if isinstance(item, list) and len(item) >= 3:
-                                all_items.append({'title': str(item[0])[:200], 'url': str(item[1])[:500], 'source': str(item[2])[:100], 'timestamp': str(item[3]) if len(item) > 3 else '', 'summary': str(item[4])[:300] if len(item) > 4 else ''})
+                                all_items.append({'title': str(item[0])[:200], 'url': str(item[1])[:500], 'source': str(item[2])[:100], 'published_at': str(item[3]) if len(item) > 3 else '', 'summary': str(item[4])[:300] if len(item) > 4 else ''})
             except: pass
     seen = set()
     unique = []

@@ -10,6 +10,7 @@ export default function Web3Page() {
             <a href="/ai" className="hover:text-[#00f0ff] transition-colors">AI</a>
             <a href="/web3" className="hover:text-[#00f0ff] transition-colors">Web3</a>
             <a href="/forge" className="hover:text-[#00f0ff] transition-colors">Forge</a>
+            <a href="/blog" className="hover:text-[#00f0ff] transition-colors">Blog</a>
             <a href="/intelhub" className="hover:text-[#00f0ff] transition-colors">IntelHub</a>
             <a href="/contact" className="hover:text-[#00f0ff] transition-colors">Contact</a>
           </div>
@@ -17,7 +18,7 @@ export default function Web3Page() {
       </nav>
 
       <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
-        <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">PILLAR 02 • WEB3</div>
+        <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-3">PILLAR 02 • WEB3</div>
         <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">Web3</h1>
         <p className="max-w-2xl text-xl text-[#aaa]">
           We help builders and operators navigate complexity with clarity, sovereignty, and real technical depth.

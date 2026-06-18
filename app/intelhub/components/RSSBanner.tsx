@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 interface IntelItem {
   source: string;
   category: string;
-  ingested_at: string;
+  published_at: string;
 }
 
 interface RSSBannerProps {
