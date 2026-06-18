@@ -24,7 +24,7 @@ export default function DeltaVSite() {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-8 pt-16 pb-14">
+      <div className="max-w-6xl mx-auto px-8 pt-16 pb-14">
         
         <h1 className="text-7xl md:text-8xl font-semibold tracking-[-4px] leading-none mb-6">
           We don't sell tools.<br />We forge capabilities.
@@ -124,7 +124,7 @@ export default function DeltaVSite() {
 
       {/* Offerings Section - Harmonized CTAs */}
       <div id="offerings" className="bg-[#111] py-24">
-        <div className="max-w-5xl mx-auto px-8">
+        <div className="max-w-6xl mx-auto px-8">
           <div className="mb-16">
             <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">FLAGSHIP OFFERINGS</div>
             <h2 className="text-4xl font-semibold tracking-[-2px] max-w-3xl">Precision-built systems for serious builders.</h2>
@@ -161,7 +161,7 @@ export default function DeltaVSite() {
       </div>
 
       {/* Past Clients - Trusted by */}
-      <div className="max-w-5xl mx-auto px-8 py-16 border-t border-[#222]">
+      <div className="max-w-6xl mx-auto px-8 py-16 border-t border-[#222]">
         <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-8">TRUSTED BY</div>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           <a href="https://www.defiscan.info/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
@@ -178,7 +178,7 @@ export default function DeltaVSite() {
       </div>
 
       {/* Newsletter Banner */}
-      <div className="max-w-5xl mx-auto px-8 py-24 border-t border-[#222]">
+      <div className="max-w-6xl mx-auto px-8 py-24 border-t border-[#222]">
         <div className="bg-[#111] border border-[#222] rounded-3xl p-14 text-center">
           <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-3">STAY IN THE LOOP</div>
           <h3 className="text-4xl font-semibold tracking-tight mb-4">High-signal updates only.</h3>
