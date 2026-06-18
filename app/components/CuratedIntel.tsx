@@ -7,9 +7,19 @@ interface IntelItem {
   url: string;
   source: string;
   category: string;
-  ingested_at: string;
+  published_at: string;
   summary: string;
 }
+
+const isNew = (iso: string) => {
+  try { return Date.now() - new Date(iso).getTime() < 3_600_000; } catch { return false; }
+};
+
+const ts = (iso: string) => {
+  try {
+    return new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
+  } catch { return ''; }
+};
 
 export default function CuratedIntel() {
   const scrollRef1 = useRef<HTMLDivElement>(null);
@@ -19,7 +29,7 @@ export default function CuratedIntel() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/intel/raw-items');
+        const res = await fetch('/data/raw-items.json');
         const data = await res.json();
         if (Array.isArray(data)) {
           setItems(data.slice(0, 20));
@@ -42,8 +52,8 @@ export default function CuratedIntel() {
     let animationFrame1: number;
     let animationFrame2: number;
 
-    const scrollSpeed1 = 0.5; // pixels per frame
-    const scrollSpeed2 = 0.8; // slightly faster for second row
+    const scrollSpeed1 = 0.5;
+    const scrollSpeed2 = 0.8;
 
     const animateScroll = () => {
       if (scrollContainer1) {
@@ -68,9 +78,33 @@ export default function CuratedIntel() {
     };
   }, [items]);
 
-  // Split items into two rows
   const row1 = items.slice(0, 10);
   const row2 = items.slice(10, 20);
+
+  const renderCard = (item: IntelItem, index: number) => (
+    <a
+      key={index}
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-white/[0.015] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group"
+    >
+      <div className="flex items-start gap-2">
+        <div className="flex-1 min-w-0">
+          <div className="text-[13px] font-medium leading-snug line-clamp-2 text-white/85 group-hover:text-white">
+            {item.title}
+          </div>
+        </div>
+        {isNew(item.published_at) && (
+          <span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400" />
+        )}
+      </div>
+      <div className="flex items-center gap-2 mt-3 text-[11px] text-white/25">
+        <span className="truncate max-w-[90px]">{item.source}</span>
+        <span className="ml-auto tabular-nums whitespace-nowrap">{ts(item.published_at)}</span>
+      </div>
+    </a>
+  );
 
   return (
     <div className="max-w-6xl mx-auto px-8 pb-16">
@@ -81,59 +115,19 @@ export default function CuratedIntel() {
 
       <div className="space-y-4 overflow-hidden">
         {/* Row 1 - Auto scrolling */}
-        <div 
+        <div
           ref={scrollRef1}
           className="flex gap-5 overflow-x-hidden scrollbar-hide"
         >
-          {[...row1, ...row1].map((item, index) => (
-            <a 
-              key={index} 
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-[260px] flex-shrink-0 bg-[#111] border border-[#222] rounded-xl p-5 hover:border-[#00f0ff] transition-colors"
-            >
-              <div className="flex items-center gap-2 text-[10px] text-[#666] mb-2">
-                <span>{new Date(item.ingested_at).toLocaleDateString()}</span>
-                <span>•</span>
-                <span className="text-[#00f0ff]">{item.source}</span>
-              </div>
-              <h4 className="font-semibold text-sm mb-2 leading-snug line-clamp-2 pr-1">
-                {item.title}
-              </h4>
-              <p className="text-xs text-[#aaa] line-clamp-2">
-                {item.summary}
-              </p>
-            </a>
-          ))}
+          {[...row1, ...row1].map((item, index) => renderCard(item, index))}
         </div>
 
-        {/* Row 2 - Auto scrolling (opposite direction) */}
-        <div 
+        {/* Row 2 - Auto scrolling */}
+        <div
           ref={scrollRef2}
           className="flex gap-5 overflow-x-hidden scrollbar-hide"
         >
-          {[...row2, ...row2].map((item, index) => (
-            <a 
-              key={index} 
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-[260px] flex-shrink-0 bg-[#111] border border-[#222] rounded-xl p-5 hover:border-[#00f0ff] transition-colors"
-            >
-              <div className="flex items-center gap-2 text-[10px] text-[#666] mb-2">
-                <span>{new Date(item.ingested_at).toLocaleDateString()}</span>
-                <span>•</span>
-                <span className="text-[#00f0ff]">{item.source}</span>
-              </div>
-              <h4 className="font-semibold text-sm mb-2 leading-snug line-clamp-2 pr-1">
-                {item.title}
-              </h4>
-              <p className="text-xs text-[#aaa] line-clamp-2">
-                {item.summary}
-              </p>
-            </a>
-          ))}
+          {[...row2, ...row2].map((item, index) => renderCard(item, index))}
         </div>
       </div>
     </div>

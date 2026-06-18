@@ -13,6 +13,7 @@ export default function Navbar() {
           <a href="/ai" className="hover:text-[#00f0ff] transition-colors">AI</a>
           <a href="/web3" className="hover:text-[#00f0ff] transition-colors">Web3</a>
           <a href="/forge" className="hover:text-[#00f0ff] transition-colors">Forge</a>
+          <a href="/blog" className="hover:text-[#00f0ff] transition-colors">Blog</a>
           <a href="/intelhub" className="hover:text-[#00f0ff] transition-colors">IntelHub</a>
           <a href="/contact" className="hover:text-[#00f0ff] transition-colors">Contact</a>
         </div>

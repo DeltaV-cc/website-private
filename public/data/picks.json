@@ -1,1 +1,26 @@
-{"picks": [], "updatedAt": ""}
+{
+  "picks": [
+    {
+      "title": "Embedding Forbidden Text in Spyware to Discourage AI Analysis",
+      "source": "Schneier on Security",
+      "category": "ai",
+      "url": "https://www.schneier.com/blog/archives/2026/06/embedding-forbidden-text-in-spyware-to-discourage-ai-analysis.html",
+      "published_at": "2026-06-18T11:16:20.404049"
+    },
+    {
+      "title": "EU Gets a Head Start in Developing 6G Network Security",
+      "source": "Dark Reading",
+      "category": "ai",
+      "url": "https://www.darkreading.com/cybersecurity-operations/eu-6g-network-security",
+      "published_at": "2026-06-18T10:01:12.721486"
+    },
+    {
+      "title": "Agents are under-elicited: A case study in optimization tasks",
+      "source": "LessWrong",
+      "category": "ai",
+      "url": "https://www.lesswrong.com/posts/cnHojP3CcAycR7D6F/agents-are-under-elicited-a-case-study-in-optimization-tasks-1",
+      "published_at": "2026-06-18T10:00:41.098820"
+    }
+  ],
+  "updatedAt": "2026-06-18T17:29:54.289197+00:00"
+}
