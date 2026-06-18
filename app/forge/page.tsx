@@ -22,6 +22,11 @@ export default function ForgePage() {
       <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
         <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">PILLAR 03 • EDUCATION</div>
         <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">Forge Skills</h1>
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-12 h-[3px] rounded-full bg-[#00f0ff]" />
+          <span className="w-8 h-[3px] rounded-full bg-[#F59E0B]/60" />
+          <span className="w-4 h-[3px] rounded-full bg-[#F59E0B]/30" />
+        </div>
         <p className="max-w-2xl text-xl text-[#aaa]">
           We upskill, upgrade, and keep you at the frontier. 
           Sovereign systems, practical curricula, and high-signal Web3 intelligence.
@@ -34,7 +39,8 @@ export default function ForgePage() {
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Personal AI Mastery Course */}
-          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10">
+          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#F59E0B]/40 to-transparent" />
             <h3 className="text-3xl font-semibold mb-4">Personal AI Mastery Course</h3>
             <p className="text-[#aaa] mb-8">
               Self-sovereign program for building and running personal AI systems with strong OpSec and long-term autonomy.
@@ -46,7 +52,8 @@ export default function ForgePage() {
           </div>
 
           {/* AI Engineering Bootcamp */}
-          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10">
+          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/60 via-[#F59E0B]/20 to-transparent" />
             <h3 className="text-3xl font-semibold mb-4">AI Engineering Bootcamp</h3>
             <p className="text-[#aaa] mb-6">
               5-day intensive where participants leave with fully functional production systems.
@@ -72,7 +79,8 @@ export default function ForgePage() {
         <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-6">OP SEC FOUNDATION</div>
         
         <div className="grid md:grid-cols-1 gap-6">
-          <a href="/opsec" className="block bg-[#111] border border-[#222] rounded-3xl p-8 hover:border-[#00f0ff] transition-colors group">
+          <a href="/opsec" className="block bg-[#111] border border-[#222] rounded-3xl p-8 hover:border-[#00f0ff] transition-colors group relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C] via-[#F59E0B]/20 to-transparent" />
             <h4 className="font-semibold mb-3 group-hover:text-[#00f0ff] transition-colors">OS Hardening</h4>
             <p className="text-sm text-[#aaa]">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
           </a>
@@ -83,7 +91,8 @@ export default function ForgePage() {
       <div className="max-w-5xl mx-auto px-8 pb-24">
         <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-6">TUTORIALS</div>
         <div className="grid md:grid-cols-2 gap-6">
-          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group">
+          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff]/40 via-[#F59E0B]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tutorial</span>
               <span className="text-xs text-[#666]">TECH</span>
@@ -92,7 +101,8 @@ export default function ForgePage() {
             <p className="text-sm text-[#aaa] line-clamp-2">Full hardware + software setup tutorial with step-by-step guide for deploying Qwen 3.6 on NVIDIA DGX Spark with Hermes Agent Framework and 3-layer memory.</p>
             <div className="text-[#00f0ff] text-xs mt-3">View full tutorial →</div>
           </a>
-          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group">
+          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/40 via-[#F59E0B]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tutorial</span>
               <span className="text-xs text-[#666]">OP SEC</span>
