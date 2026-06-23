@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+"""
+Generate RSS 2.0 feeds + OPML from the intel pipeline's raw-items.json and picks.json.
+Feeds: master, picks, ai, crypto, cybersec, macro, hardware, science
+"""
+
+import json, re, os, xml.etree.ElementTree as ET
+from xml.sax.saxutils import escape
+from datetime import datetime, timezone
+
+PUBLIC_DIR = "public"
+DATA_DIR = os.path.join(PUBLIC_DIR, "data")
+FEED_DIR = os.path.join(PUBLIC_DIR, "intelhub", "feed")
+
+SITE_URL = "https://deltav-cc.github.io/website-private"
+
+# Category keyword rules — scoring-based with word boundaries
+CATEGORIES = {
+    "ai": {
+        "keywords": [
+            r"\bGPT\b", r"\bLLM\b", r"\bopenai\b", r"\bclaude\b", r"\btransformer\b",
+            r"\bneural\b", r"\bdeep learning\b", r"\bmachine learning\b", r"\bML\b",
+            r"\bAI\b", r"\bartificial intelligence\b", r"\bHugging Face\b", r"\bagent\b",
+            r"\btraining\b", r"\bmodel\b", r"\binference\b", r"\bembedding\b",
+            r"\btoken\b", r"\bprompt\b", r"\bfine.tune\b", r"\bRAG\b", r"\bvector\b",
+            r"\bmultimodal\b", r"\bdiffusion\b", r"\bGAN\b", r"\btransformer\b",
+        ],
+        "label": "AI",
+    },
+    "crypto": {
+        "keywords": [
+            r"\bBTC\b", r"\bETH\b", r"\bEthereum\b", r"\bBitcoin\b", r"\bDeFi\b",
+            r"\bWeb3\b", r"\bblockchain\b", r"\bcrypto\b", r"\btoken\b", r"\balgorithmic\b",
+            r"\bL2\b", r"\brollup\b", r"\bzk[ -]?[sS]nark\b", r"\bEVM\b", r"\bsolidity\b",
+            r"\bsmart contract\b", r"\bdApp\b", r"\bNFT\b", r"\bDAO\b", r"\bDEX\b",
+            r"\bliquidity\b", r"\bstaking\b", r"\byield\b", r"\bmining\b", r"\bhashrate\b",
+            r"\bconsensus\b", r"\bproof.of\b", r"\bLayer[ .]?[12]\b", r"\bself.custody\b",
+            r"\bnon.custodial\b", r"\bpolymarket\b",
+        ],
+        "label": "Crypto",
+    },
+    "cybersec": {
+        "keywords": [
+            r"\bCVE[-\s]", r"\bexploit\b", r"\b0day\b", r"\bzero.day\b", r"\bpatch\b",
+            r"\bmalware\b", r"\bransomware\b", r"\bphishing\b", r"\bbreach\b",
+            r"\bvulnerability\b", r"\bsecurity\b", r"\bOPSEC\b", r"\bopsec\b",
+            r"\bprivacy\b", r"\bencryption\b", r"\bauthentication\b", r"\bbackdoor\b",
+            r"\bCISA\b", r"\bNVD\b", r"\bthreat\b", r"\battack\b", r"\bintrusion\b",
+            r"\bpenetration\b", r"\bred team\b", r"\bsupply chain\b", r"\bsandbox\b",
+            r"\bhardening\b", r"\bfirewall\b",
+        ],
+        "label": "Cybersec",
+    },
+    "macro": {
+        "keywords": [
+            r"\bFOMC\b", r"\binflation\b", r"\bGDP\b", r"\brates?\b", r"\bcentral bank\b",
+            r"\bFederal Reserve\b", r"\bFed\b", r"\bmonetary\b", r"\bfiscal\b",
+            r"\bTreasury\b", r"\bbond\b", r"\byield\b", r"\bcommodit", r"\bgold\b",
+            r"\boil\b", r"\bforex\b", r"\bUSD\b", r"\bEUR\b", r"\bCPI\b", r"\bPPI\b",
+            r"\bunemployment\b", r"\bemployment\b", r"\beconom", r"\btariff\b",
+            r"\btrade\b", r"\bsanction\b",
+        ],
+        "label": "Macro",
+    },
+    "hardware": {
+        "keywords": [
+            r"\bGPU\b", r"\bCPU\b", r"\bchip\b", r"\bsemiconductor\b", r"\bTSMC\b",
+            r"\bNVIDIA\b", r"\bAMD\b", r"\bIntel\b", r"\bASIC\b", r"\bfabrication\b",
+            r"\bnode\b", r"\btransistor\b", r"\bHBM\b", r"\bmemory\b", r"\bstorage\b",
+            r"\bquantum\b", r"\bfoundry\b", r"\bwafer\b", r"\bnanometer\b",
+        ],
+        "label": "Hardware",
+    },
+    "science": {
+        "keywords": [
+            r"\bnature\b", r"\bscience\b", r"\bresearch\b", r"\bstudy\b", r"\bexperiment\b",
+            r"\bpeer.review\b", r"\bfusion\b", r"\bnuclear\b", r"\bphysics\b",
+            r"\bbiotech\b", r"\bgene\b", r"\bprotein\b", r"\bDNA\b", r"\bclimate\b",
+            r"\bICNIRP\b", r"\bbrain[ -]?computer\b",
+        ],
+        "label": "Science",
+    },
+}
+
+COMPILED = {}
+for cat, rules in CATEGORIES.items():
+    COMPILED[cat] = {
+        "patterns": [re.compile(kw, re.IGNORECASE) for kw in rules["keywords"]],
+        "label": rules["label"],
+    }
+
+
+def categorize_item(item):
+    title = item.get("title", "") or ""
+    summary = item.get("summary", "") or ""
+    text = f"{title} {summary}"
+    scores = {}
+    for cat, rules in COMPILED.items():
+        score = sum(1 for p in rules["patterns"] if p.search(text))
+        if score > 0:
+            scores[cat] = score
+    if not scores:
+        return []
+    max_score = max(scores.values())
+    return [c for c, s in scores.items() if s >= max_score * 0.7]
+
+
+def build_rss(items, title, desc, link):
+    rss = ET.Element("rss", version="2.0", attrib={
+        "xmlns:atom": "http://www.w3.org/2005/Atom",
+        "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+    })
+    ch = ET.SubElement(rss, "channel")
+    ET.SubElement(ch, "title").text = title
+    ET.SubElement(ch, "link").text = link
+    ET.SubElement(ch, "description").text = desc
+    ET.SubElement(ch, "language").text = "en"
+    ET.SubElement(ch, "lastBuildDate").text = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
+    atom_link = ET.SubElement(ch, "atom:link")
+    atom_link.set("href", link)
+    atom_link.set("rel", "self")
+    atom_link.set("type", "application/rss+xml")
+
+    for item in items[:30]:
+        i = ET.SubElement(ch, "item")
+        ET.SubElement(i, "title").text = item.get("title", "")[:200]
+        pub = item.get("published_at", "")
+        if not pub:
+            pub = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        ET.SubElement(i, "pubDate").text = pub
+        ET.SubElement(i, "link").text = item.get("url", link)[:500]
+        ET.SubElement(i, "guid", isPermaLink="true").text = item.get("url", link)[:500]
+        ET.SubElement(i, "source").text = item.get("source", "Delta V IntelHub")[:100]
+        desc_text = item.get("summary", "")[:500].strip()
+        if desc_text:
+            ET.SubElement(i, "description").text = escape(desc_text[:500])
+        cats = categorize_item(item)
+        for cat in cats:
+            cat_name = COMPILED[cat]["label"]
+            ET.SubElement(i, "category").text = cat_name
+    return ET.tostring(rss, encoding="unicode", xml_declaration=True)
+
+
+def main():
+    os.makedirs(FEED_DIR, exist_ok=True)
+
+    # Load raw items
+    raw_path = os.path.join(DATA_DIR, "raw-items.json")
+    with open(raw_path) as f:
+        raw = json.load(f)
+    data = raw if isinstance(raw, list) else raw.get("items", [])
+
+    # Build category index
+    cat_map = {}
+    for item in data:
+        cats = categorize_item(item)
+        for c in cats:
+            cat_map.setdefault(c, []).append(item)
+
+    feed_configs = [
+        ("rss.xml", "Delta V IntelHub — All Signals", "Curated intelligence feed from Delta V", data),
+        ("picks.xml", "Delta V — Curated Picks", "Editor-selected intelligence picks", data),
+    ]
+    for cat_key in ["ai", "crypto", "cybersec", "macro", "hardware", "science"]:
+        label = CATEGORIES[cat_key]["keywords"][0] if cat_key in CATEGORIES else cat_key
+        feed_name = f"{cat_key}.xml"
+        items = cat_map.get(cat_key, [])
+        title = f"Delta V IntelHub — {CATEGORIES[cat_key]['label']}"
+        desc = f"{CATEGORIES[cat_key]['label']}-specific intelligence feed"
+        feed_configs.append((feed_name, title, desc, items))
+
+    for filename, title, desc, items in feed_configs:
+        path = os.path.join(FEED_DIR, filename)
+        xml = build_rss(items, title, desc, f"{SITE_URL}/intelhub/feed/{filename}")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(xml)
+        print(f"  ✓ {filename}: {len(items)} items")
+
+    # Build OPML
+    opml = ET.Element("opml", version="2.0")
+    head = ET.SubElement(opml, "head")
+    ET.SubElement(head, "title").text = "Delta V IntelHub Feeds"
+    body = ET.SubElement(opml, "body")
+    for filename, title, _, _ in feed_configs:
+        outline = ET.SubElement(body, "outline", attrib={
+            "type": "rss",
+            "text": title,
+            "title": title,
+            "xmlUrl": f"{SITE_URL}/intelhub/feed/{filename}",
+        })
+    opml_path = os.path.join(FEED_DIR, "feeds.opml")
+    with open(opml_path, "w", encoding="utf-8") as f:
+        f.write(ET.tostring(opml, encoding="unicode", xml_declaration=True))
+    print(f"  ✓ feeds.opml ({len(feed_configs)} feeds)")
+
+
+if __name__ == "__main__":
+    main()
