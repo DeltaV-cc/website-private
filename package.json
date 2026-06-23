@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py",
-    "build": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py && next build",
+    "build": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py && next build && python scripts/patch-basepath.py",
     "export": "next build",
     "start": "next start",
     "lint": "eslint"
