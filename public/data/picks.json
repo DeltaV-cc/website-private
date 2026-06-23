@@ -1,26 +1,26 @@
 {
   "picks": [
     {
-      "title": "Functional Emotions and The Pope’s Encyclical on AI — Digital Minds Newsletter #3",
-      "source": "LessWrong",
-      "category": "ai",
-      "url": "https://www.lesswrong.com/posts/xDDhrq2eJs5onARBW/functional-emotions-and-the-pope-s-encyclical-on-ai-digital",
-      "published_at": "2026-06-22T20:00:06.900605"
-    },
-    {
-      "title": "A Mechanistic Explanation of Prompt Injection (and why you should study roles)",
-      "source": "LessWrong",
-      "category": "ai",
-      "url": "https://www.lesswrong.com/posts/d8xDGzCEYE639qqEv/a-mechanistic-explanation-of-prompt-injection-and-why-you",
-      "published_at": "2026-06-22T16:01:00.959899"
-    },
-    {
-      "title": "Morning Minute: Bitcoin at $65,000 as Iran Deal Wobbles",
+      "title": "Bitcoin Tests Two-Week Low at $62K as Tech Stocks Waver on Wall Street",
       "source": "Decrypt",
       "category": "ai",
-      "url": "https://decrypt.co/371759/morning-minute-bitcoin-at-65000-as-iran-deal-wobbles",
-      "published_at": "2026-06-22T15:31:56.211280"
+      "url": "https://decrypt.co/371867/bitcoin-tests-two-week-low-at-62k-as-tech-stocks-waver-on-wall-street",
+      "published_at": "2026-06-23T16:01:52.948650"
+    },
+    {
+      "title": "Bitcoin's recent drop below $60,000 signals Fed, ETF and AI pressures: Deutsche Bank",
+      "source": "CoinDesk",
+      "category": "ai",
+      "url": "https://www.coindesk.com/markets/2026/06/23/bitcoin-s-recent-drop-below-usd60-000-signals-fed-etf-and-ai-pressures-deutsche-bank",
+      "published_at": "2026-06-23T15:01:34.818205"
+    },
+    {
+      "title": "LastPass confirms data breach in Klue supply chain attack",
+      "source": "BleepingComputer",
+      "category": "ai",
+      "url": "https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/",
+      "published_at": "2026-06-23T14:01:03.158930"
     }
   ],
-  "updatedAt": "2026-06-23T07:58:51.816653+00:00"
+  "updatedAt": "2026-06-23T18:17:19.883771+00:00"
 }
