@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "python scripts/copy-data.py",
-    "build": "python scripts/copy-data.py && next build",
+    "prebuild": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py",
+    "build": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py && next build",
     "export": "next build",
     "start": "next start",
     "lint": "eslint"
