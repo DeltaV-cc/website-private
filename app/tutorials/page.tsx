@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import Navbar from '../components/Navbar';
 
 export default function Tutorials() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
       <div className="max-w-5xl mx-auto px-8 py-16">
         <a href="/" className="text-[#00f0ff] text-sm hover:underline">← Back to home</a>
 
@@ -233,5 +236,6 @@ export default function Tutorials() {
         </div>
       </div>
     </div>
+    </>
   );
 }

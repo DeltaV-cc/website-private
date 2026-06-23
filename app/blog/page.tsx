@@ -1,7 +1,25 @@
 'use client';
 
+import Navbar from '../components/Navbar';
+
 export default function Blog() {
   const posts = [
+    {
+      title: "638 ETH for Ethereum Security: The Largest QF Round in History",
+      date: "June 23, 2026",
+      category: "Web3",
+      type: "Deep Dive",
+      excerpt: "The Ethereum Security QF Round wrapped with 638+ ETH distributed to 134 projects. What this means for security infrastructure, risk dashboards like DeFiScan, L2Beat, and AntiCapture, and the teams building them.",
+      slug: "ethereum-security-qf-round"
+    },
+    {
+      title: "Qwen3.6-35B-A3B: Uncensored VLM Meets MoE Efficiency",
+      date: "June 22, 2026",
+      category: "AI",
+      type: "Thought",
+      excerpt: "Alibaba's latest drops with 35B total parameters but only 3B active — and zero refusal filters. What this means for local-first, sovereign multimodal AI.",
+      slug: "qwen3-6-uncensored-vlm-moe"
+    },
     {
       title: "Risk Dashboards & OpSec Tooling for Web3",
       date: "June 10, 2026",
@@ -11,11 +29,11 @@ export default function Blog() {
       slug: "risk-dashboards-opsec"
     },
     {
-      title: "Inside a $292M DeFi Crisis: Lessons from KPK&apos;s rsETH War Room",
+      title: "Inside a $292M DeFi Crisis: Lessons from KPK's rsETH War Room",
       date: "June 18, 2026",
       category: "OpSec",
       type: "Deep Dive",
-      excerpt: "A rare inside account of institutional incident response during a live DeFi exploit. KPK&apos;s war room activated in 20 minutes, 97 new monitors shipped post-incident, and actionable steps for Web3 teams.",
+      excerpt: "A rare inside account of institutional incident response during a live DeFi exploit. KPK's war room activated in 20 minutes, 97 new monitors shipped post-incident, and actionable steps for Web3 teams.",
       slug: "lessons-from-kpk-war-room"
     },
     {
@@ -35,31 +53,7 @@ export default function Blog() {
       slug: "#"
     },
     {
-      title: "Web3 OpSec SOTA: Complementary Sources & Threat Models",
-      date: "June 2026",
-      category: "OpSec",
-      type: "Deep Dive",
-      excerpt: "How opsek.io and seal911 work together as high-signal references. Wallet security, agent OpSec with Latch, on-chain monitoring, and 2026 threat models.",
-      slug: "#"
-    },
-    {
-      title: "Sovereign AI Agent Frameworks: 2026 Landscape",
-      date: "June 2026",
-      category: "Research",
-      type: "Deep Dive",
-      excerpt: "Comparative analysis of Hermes, Sovyx, Letta/Mem0, LangGraph and emerging bio-mimetic approaches. Recommendations for Delta V's Agent Forge pillar.",
-      slug: "#"
-    },
-    {
-      title: "IntelHub Dashboard Architecture: Multi-Source Intelligence Fusion",
-      date: "June 2026",
-      category: "Infrastructure",
-      type: "Dashboard",
-      excerpt: "How IntelHub ingests, normalizes, and surfaces high-signal intelligence across Macro, Infosec, and Web3 dashboards — with automated cron pipelines and DeFiLlama-style data density.",
-      slug: "#"
-    },
-    {
-      title: "Global Liquidity & Macro Dashboard: Key Readings for H2 2026",
+      title: "Macro Landscape Q3 2026: Policy Divergence and Market Fragmentation",
       date: "June 2026",
       category: "Markets",
       type: "Macro",
@@ -70,21 +64,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <nav className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <a href="/" className="text-2xl font-semibold tracking-[-1px]">Delta V</a>
-          </div>
-          <div className="flex items-center gap-8 text-sm">
-            <a href="/ai" className="hover:text-[#00f0ff] transition-colors">AI</a>
-            <a href="/web3" className="hover:text-[#00f0ff] transition-colors">Web3</a>
-            <a href="/forge" className="hover:text-[#00f0ff] transition-colors">Forge</a>
-            <a href="/blog" className="hover:text-[#00f0ff] transition-colors">Blog</a>
-            <a href="/intelhub" className="hover:text-[#00f0ff] transition-colors">IntelHub</a>
-            <a href="/contact" className="hover:text-[#00f0ff] transition-colors">Contact</a>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       <div className="max-w-5xl mx-auto px-8 py-16">
         <a href="/" className="text-[#00f0ff] text-sm hover:underline">← Back to home</a>
         <h1 className="text-6xl font-semibold tracking-[-2px] mt-4 mb-2">Blog</h1>

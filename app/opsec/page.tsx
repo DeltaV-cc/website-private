@@ -1,8 +1,12 @@
 'use client';
 
+import Navbar from '../components/Navbar';
+
 export default function OpSec() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
       <div className="max-w-5xl mx-auto px-8 py-16">
         <a href="/" className="text-[#00f0ff] text-sm hover:underline">← Back to home</a>
         
@@ -55,6 +59,7 @@ export default function OpSec() {
           Full playbooks and hardening guides produced through the Content Forge.
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
