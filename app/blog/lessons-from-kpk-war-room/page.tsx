@@ -1,8 +1,11 @@
 import DynamicMermaid from '@/app/components/DynamicMermaid';
+import Navbar from '../../components/Navbar';
 
 export default function KPKWarRoomArticle() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
       <div className="max-w-3xl mx-auto px-8 py-16">
         <a href="/blog" className="text-[#00f0ff] text-sm hover:underline">← Back to blog</a>
         
@@ -173,5 +176,6 @@ export default function KPKWarRoomArticle() {
         </div>
       </div>
     </div>
+    </>
   );
 }
