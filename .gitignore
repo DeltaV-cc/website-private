@@ -5,3 +5,12 @@ out/
 *.log
 .env.local
 .cache/
+
+# Platform-specific AI skill installs
+.claude/
+.cursor/
+.windsurf/
+.kiro/
+.factory/
+.agents/
+.continue/
