@@ -13,7 +13,7 @@ export default function ContactPage() {
             Stay up to speed
           </h2>
           <div className="flex justify-center">
-            <img src="/images/lotusbloom.gif" alt="" className="w-20 h-20 md:w-24 md:h-24 rounded-full opacity-60" />
+            <img src="/website-private/images/lotusbloom.gif" alt="" className="w-20 h-20 md:w-24 md:h-24 rounded-full opacity-60" />
           </div>
         </div>
 
@@ -48,7 +48,7 @@ export default function ContactPage() {
                 <div className="text-base md:text-lg font-semibold tracking-tight text-white/80 mb-2">
                   @DeltaV.01
                 </div>
-                <img src="/images/signal-qr.png" alt="Signal QR Code — @DeltaV.01" className="w-24 h-24 rounded-xl" />
+                <img src="/website-private/images/signal-qr.png" alt="Signal QR Code — @DeltaV.01" className="w-24 h-24 rounded-xl" />
               </div>
             </div>
           </div>

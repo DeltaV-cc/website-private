@@ -1,26 +1,29 @@
 {
   "picks": [
     {
-      "title": "Bitcoin Tests Two-Week Low at $62K as Tech Stocks Waver on Wall Street",
-      "source": "Decrypt",
-      "category": "ai",
-      "url": "https://decrypt.co/371867/bitcoin-tests-two-week-low-at-62k-as-tech-stocks-waver-on-wall-street",
-      "published_at": "2026-06-23T16:01:52.948650"
-    },
-    {
-      "title": "Bitcoin's recent drop below $60,000 signals Fed, ETF and AI pressures: Deutsche Bank",
-      "source": "CoinDesk",
-      "category": "ai",
-      "url": "https://www.coindesk.com/markets/2026/06/23/bitcoin-s-recent-drop-below-usd60-000-signals-fed-etf-and-ai-pressures-deutsche-bank",
-      "published_at": "2026-06-23T15:01:34.818205"
-    },
-    {
       "title": "LastPass confirms data breach in Klue supply chain attack",
       "source": "BleepingComputer",
       "category": "ai",
       "url": "https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/",
-      "published_at": "2026-06-23T14:01:03.158930"
+      "published_at": "2026-06-23T14:01:03.158930",
+      "score": 292.5
+    },
+    {
+      "title": "Ethereum Layer-2 Taiko Warns Users to Withdraw Bridge Funds After Security Breach",
+      "source": "Decrypt",
+      "category": "ai",
+      "url": "https://decrypt.co/371769/ethereum-layer-2-taiko-withdraw-bridge-funds-security-breach",
+      "published_at": "2026-06-22T15:31:56.210281",
+      "score": 234.0
+    },
+    {
+      "title": "Trump's Quantum Push Wins Praise, But Experts Warn Bitcoin Isn't Ready",
+      "source": "Decrypt",
+      "category": "ai",
+      "url": "https://decrypt.co/371916/trump-quantum-praise-experts-warn-bitcoin-not-ready",
+      "published_at": "2026-06-23T21:31:43.201079",
+      "score": 121.5
     }
   ],
-  "updatedAt": "2026-06-23T18:17:19.883771+00:00"
+  "updatedAt": "2026-06-24T09:30:19.154670+00:00"
 }

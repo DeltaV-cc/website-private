@@ -36,7 +36,7 @@ export default function Tutorials() {
           <div className="text-sm text-[#00f0ff] mb-2">Visual Architecture</div>
           <div className="border border-[#333] rounded-xl overflow-hidden mb-4">
             <img 
-              src="/images/hermes-qwen-dgx-stack.jpg" 
+              src="/website-private/images/hermes-qwen-dgx-stack.jpg" 
               alt="Hermes + Qwen 3.6 Local AI Stack on DGX Spark - Technical Blueprint" 
               className="w-full h-auto"
             />
