@@ -5,6 +5,14 @@ import Navbar from '../components/Navbar';
 export default function Blog() {
   const posts = [
     {
+      title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
+      date: "June 23, 2026",
+      category: "Web3",
+      type: "Thought",
+      excerpt: "Fed Governor Waller just acknowledged what the data shows: dollar-backed stablecoins are becoming a structural demand channel for US government debt. Tether alone is the 17th-largest holder.",
+      slug: "stablecoins-fed-treasury-channel"
+    },
+    {
       title: "638 ETH for Ethereum Security: The Largest QF Round in History",
       date: "June 23, 2026",
       category: "Web3",

@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 
 /* ================================================================
-   CATEGORIES & COLORS
+   CATEGORIES & COLORS — sharper keywords, with source hints & noise filters
    ================================================================ */
-const CATS=[{id:'ai',label:'AI/ML',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',kw:['llm','transformer','gpt','claude','deepseek','lora','qlora','sovereign ai','rlhf','alignment','neural network','attention mechanism','fine-tuning','machine learning','deep learning','training','benchmark','embedding','token','prompt','model','inference','agent','ai','openai','anthropic','mistral','gemini','generative','rag','vector',' semantic','copilot','chatbot','reasoning','sora','diffusion','transformer']},{id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',kw:['wallet','defi','stablecoin','dex','amm','yield','token','staking','liquidity','privacy tech','zk','zero-knowledge','rollup','l2','on-chain','smart contract','dao','evm','solidity','polymarket','perp','orderbook','validator','bitcoin','ethereum','solana','crypto','blockchain','web3','nft','bridge',' oracles','mev','airdrop','lending','borrow','swap','pool','farm','cex','dapp','multisig','signature','ecdsa','bls','threshold','tss','mpc']},{id:'cybersec',label:'Cybersec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',kw:['vulnerability','cve','zero-day','breach','ransomware','malware','ddos','outage','bgp','cisa','kev','opsec','hardening','threat model','pentest','infosec','hibp','pwned','exploit','hack','phish','spoof','patch','firewall','encrypt','auth','credential','backdoor','trojan','worm','rootkit','sandbox','isolation','airgap','soc','incident response','forensic']},{id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',kw:['sanction','tariff','ofac','federal reserve','inflation','gdp','rate hike','treasury','sec regulation','export control','trade war','geopolitic','bis','imf','world bank','fed','interest rate','cpi','recession','yield curve','debt ceiling','central bank','monetary','fiscal','dollar','reserve','bond','equity','stock','index','s&p','nasdaq','dow','etf','commodity','oil','gold']},{id:'hardware',label:'HW',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',kw:['gpu','cpu','npu','tpu','h100','a100','b200','compute cluster','semiconductor','fabrication','lithography','asic','fpga','meshtastic','iot','edge device','nvidia','amd','intel','tsmc','samsung','chip','processor','memory','ddr','ssd','storage','server','datacenter','quantum']},{id:'science',label:'Sci',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',kw:['physics','quantum','fusion','fission','astrophysics','nuclear','renewable','solar','wind','battery','spacex','nasa','biology','genome','crispr','neuroscience','research','paper','study','experiment','lab','scientific','discovery','breakthrough','climate','environment']}];
+const CATS=[{id:'ai',label:'AI/ML',color:'border-l-blue-400',accent:'text-blue-400',bg:'bg-blue-500/5',kw:['gpt','llm','transformer','neural','deep learning','machine learning','hugging face','agent','inference','embedding','token','prompt','fine.tun','rag','vector database','multimodal','diffusion','gan','lora','qlora','rlhf','alignment','artificial intelligence','openai','anthropic','claude','deepseek','mistral','gemini','cohere','copilot','chatbot','reasoning','sora','attention mechanism','model card','frontier model','foundation model']},{id:'crypto',label:'Crypto',color:'border-l-yellow-400',accent:'text-yellow-400',bg:'bg-yellow-500/5',kw:['btc','eth','ethereum','bitcoin','defi','web3','blockchain','crypto','algorithmic','l2','rollup','zk','zero.knowledge','evm','solidity','smart contract','dapp','nft','dao','dex','liquidity','staking','yield','hashrate','consensus','proof.of','self.custody','non.custodial','polymarket','perp','orderbook','validator','solana','airdrop','lending','borrow','swap','pool','farm','cex','multisig','tokenomics','tvl','mev','circulating supply','market cap']},{id:'cybersec',label:'Cybersec',color:'border-l-orange-400',accent:'text-orange-400',bg:'bg-orange-500/5',kw:['cve','exploit','0day','zero.day','patch','malware','ransomware','phishing','breach','vulnerability','opsec','privacy','encryption','backdoor','cisa','nvd','threat intelligence','intrusion','penetration test','red team','supply chain attack','sandbox','hardening','firewall','infosec','hibp','pwned','soc','incident response','c2','credential stuffing','social engineering']},{id:'macro',label:'Macro',color:'border-l-amber-400',accent:'text-amber-400',bg:'bg-amber-500/5',kw:['fomc','inflation','gdp','central bank','federal reserve','fed','monetary policy','fiscal policy','treasury','bond','yield curve','commodit','gold','oil','forex','cpi','ppi','unemployment','econom','tariff','sanction','interest rate','recession','debt ceiling','geopolitic','trade war']},{id:'hardware',label:'Hardware',color:'border-l-green-400',accent:'text-green-400',bg:'bg-green-500/5',kw:['gpu','cpu','chip','semiconductor','tsmc','nvidia','amd','intel','asic','fabrication','hbm','quantum','foundry','wafer','nanometer','processor','dgx','data center']},{id:'science',label:'Science',color:'border-l-violet-400',accent:'text-violet-400',bg:'bg-violet-500/5',kw:['nature','science','research','study','experiment','peer.review','fusion','nuclear','physics','biotech','gene','protein','dna','climate','icnirp','brain.computer','neuroscience','crispr','clinical trial','space']}];
 
 // Helper: strip "RT by @username:" or "RT @username:" prefix from titles
 const cleanTitle=(t:string)=>{
@@ -19,10 +19,61 @@ const stripHtml=(s:string)=>s.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim()
 const TC:Record<string,string>={ai:'bg-blue-500/15 text-blue-400',crypto:'bg-yellow-500/15 text-yellow-400',cybersec:'bg-orange-500/15 text-orange-400',macro:'bg-amber-500/15 text-amber-400',hardware:'bg-green-500/15 text-green-400',science:'bg-violet-500/15 text-violet-400'};
 // Border color per tag for pulse cards
 const BCOL:Record<string,string>={ai:'border-l-blue-500/40',crypto:'border-l-yellow-500/40',cybersec:'border-l-orange-500/40',macro:'border-l-amber-500/40',hardware:'border-l-green-500/40',science:'border-l-violet-500/40'};
-function getTag(title:string,summary?:string):string{
+// Source-based category hints
+const SOURCE_HINTS:{[key:string]:string[]}={
+  'cryptoquant':['crypto'],'lookonchain':['crypto'],'glassnode':['crypto'],'l2beat':['crypto'],'defi':['crypto'],'polymarket':['crypto'],'coindesk':['crypto'],'cointelegraph':['crypto'],'theblock':['crypto'],
+  'y combinator':['science','ai'],'hacker news':['science','ai'],'arxiv':['science','ai'],'nature':['science'],'sciencedaily':['science'],
+  'nist':['cybersec'],'cisa':['cybersec'],'haveibeenpwned':['cybersec'],'bleepingcomputer':['cybersec'],'krebs':['cybersec'],'threatpost':['cybersec'],
+  'federal reserve':['macro'],'treasury':['macro'],'imf':['macro'],'world bank':['macro'],'bis':['macro'],'bloomberg':['macro'],'reuters':['macro'],
+  'nvidia':['hardware'],'intel':['hardware'],'amd':['hardware'],'tsmc':['hardware'],'semiconductor':['hardware'],'hugging face':['hardware'],
+  'anthropic':['ai'],'openai':['ai'],'deepmind':['ai'],'moonshot':['ai'],'baichuan':['ai'],'teknium':['ai'],'stepfun':['ai'],
+};
+function getTag(title:string,summary?:string,source?:string):string{
   const txt=(title+' '+(summary||'')).toLowerCase();
-  for(const c of CATS)if(c.kw.some(k=>txt.includes(k.trim())))return c.id;
-  return '';
+  // Title matches count double
+  const titleLow=title.toLowerCase();
+  const scores:{[key:string]:number}={};
+  for(const c of CATS){
+    let score=0;
+    for(const kw of c.kw){
+      const kwl=kw.toLowerCase().replace(/\./g,'');
+      const rx=new RegExp('\\b'+kwl.replace(/\*/g,'\\w*')+'\\b','i');
+      const matches=txt.match(rx);
+      if(matches){
+        const inTitle=titleLow.includes(kwl);
+        score+=inTitle?2:1;
+      }
+    }
+    if(score>0)scores[c.id]=score;
+  }
+  // Source-based boost
+  if(source){
+    const srcLow=source.toLowerCase();
+    for(const [hint, cats] of Object.entries(SOURCE_HINTS)){
+      if(srcLow.includes(hint)){
+        for(const cid of cats){
+          scores[cid]=(scores[cid]||0)+2;
+        }
+      }
+    }
+  }
+  // Noise filter: penalize sports/entertainment
+  const noiseRX=/\b(nba|nfl|mlb|ufc|soccer|football|basketball|grammy|oscar|celebrity|kardashian|rihanna|tiktok|super bowl|olympics)\b/i;
+  const noiseMatch=txt.match(noiseRX);
+  const penalty=noiseMatch?-5:0;
+
+  // Apply penalty and filter
+  let best='';let bestScore=2; // min threshold 2
+  for(const [cid,score] of Object.entries(scores)){
+    const adjusted=score+penalty;
+    if(adjusted>=bestScore&&adjusted>=2){
+      // Break ties: prefer macro over crypto, crypto over ai
+      if(adjusted>bestScore||(adjusted===bestScore&&['macro','crypto','cybersec','ai'].indexOf(cid)<['macro','crypto','cybersec','ai'].indexOf(best))){
+        best=cid;bestScore=adjusted;
+      }
+    }
+  }
+  return best;
 }
 
 const PJ=['nba','nfl','mlb','ufc','soccer','formula','grammy','oscar','celebrity','rihanna','kardashian','super bowl','olympics','tiktok'];
@@ -42,6 +93,7 @@ export default function IntelHubPage(){
   const [forex,setForex]=useState<any>(null);
   const [patents,setPatents]=useState<any>(null);
   const [picks,setPicks]=useState<any>(null);
+  const [watchlist,setWatchlist]=useState<any[]>([]);
   const scrollRef=useRef<HTMLDivElement>(null);
   const speed=useRef(1.2);
   const af=useRef(0);
@@ -50,9 +102,11 @@ export default function IntelHubPage(){
   const loadAll=async()=>{
     try{
       const rawRes=await fetch('/data/raw-items.json');
-      if(rawRes.ok){const d=await rawRes.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,title:cleanTitle(x.title||''),tag:getTag(x.title||'',x.summary||'')})).filter(rel));}
+      if(rawRes.ok){const d=await rawRes.json();if(Array.isArray(d))setItems(d.map((x:any)=>({...x,title:cleanTitle(x.title||''),tag:getTag(x.title||'',x.summary||'',x.source||'')})).filter(rel));}
       const picksRes=await fetch('/data/picks.json');
       if(picksRes.ok)setPicks(await picksRes.json());
+      const wlRes=await fetch('/data/cybersec-watchlist.json');
+      if(wlRes.ok){const wl=await wlRes.json();const now=Date.now();setWatchlist(wl.filter((x:any)=>new Date(x.expires).getTime()>now));}
       const patRes=await fetch('/data/patents.json');
       if(patRes.ok)setPatents(await patRes.json());
     }catch(e){}
@@ -144,14 +198,15 @@ export default function IntelHubPage(){
     </a>;
   }
 
-  function BarChart({data,max}:{data:{name:string;value:number}[];max?:number}){
+  function BarChart({data,max,color}:{data:{name:string;value:number}[];max?:number;color?:string}){
     const m=max||Math.max(...data.map(d=>d.value),1);
+    const barColor=color||'#a855f7';
     return<div className="space-y-1.5">{data.map((d,i)=><div key={i} className="flex items-center gap-2 text-[11px]">
-      <span className="w-20 text-[#ededed]/40 truncate flex-shrink-0">{d.name}</span>
-      <div className="flex-1 h-4 rounded bg-white/[0.04] overflow-hidden">
-        <div className="h-full rounded bg-gradient-to-r from-current to-current/60" style={{width:`${((d.value/m)*100).toFixed(0)}%`,color:'#a855f7'}}/>
+      <span className="w-20 text-[#ededed]/40 truncate flex-shrink-0 leading-none">{d.name}</span>
+      <div className="flex-1 h-3 rounded-full bg-white/[0.04] overflow-hidden">
+        <div className="h-full rounded-full transition-all duration-500" style={{width:`${((d.value/m)*100).toFixed(0)}%`,background:barColor}}/>
       </div>
-      <span className="w-16 text-right text-[#ededed]/70 tabular-nums font-medium flex-shrink-0">{fmt(d.value)}</span>
+      <span className="w-16 text-right text-[#ededed]/70 tabular-nums font-medium flex-shrink-0 leading-none">{fmt(d.value)}</span>
     </div>)}</div>;
   }
 
@@ -204,18 +259,99 @@ export default function IntelHubPage(){
 
         {/* ============ MACRO TAB ============ */}
         {active==='macro'&&(<div className="space-y-4">
-          {/* Top row: F&G + Forex chart + Market Movers */}
+          {/* Top row: F&G + Forex + Market Movers — redesigned compact */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4 flex flex-col items-center"><div className="text-[9px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">F&G</div><div className="relative h-24 w-5 bg-white/[0.04] rounded-full overflow-hidden mb-1"><div className={`absolute bottom-0 w-full rounded-full ${fgVal>50?'bg-emerald-500/60':fgVal<30?'bg-red-500/60':'bg-amber-500/60'}`} style={{height:`${Math.max(3,fgVal)}%`}}/></div><div className={`text-lg font-bold ${fgVal>50?'text-emerald-400':fgVal<30?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</div><div className="text-[9px] text-[#ededed]/25">{fgLabel||'...'}</div></div>
-            {/* Forex as compact chart */}
-            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4"><div className="text-[9px] text-sky-400 uppercase tracking-[.1em] font-bold mb-2">Forex (USD)</div><div className="space-y-2">{[{l:'EUR/USD',v:forex?.rates?.EUR?(1/forex.rates.EUR).toFixed(4):'...',c:'text-sky-400'},{l:'USD/JPY',v:forex?.rates?.JPY?forex.rates.JPY.toFixed(2):'...',c:'text-orange-400'},{l:'GBP/USD',v:forex?.rates?.GBP?(1/forex.rates.GBP).toFixed(4):'...',c:'text-cyan-400'},{l:'USD/CHF',v:forex?.rates?.CHF?forex.rates.CHF.toFixed(4):'...',c:'text-emerald-400'},{l:'USD/CNY',v:forex?.rates?.CNY?forex.rates.CNY.toFixed(2):'...',c:'text-rose-400'}].map((p,i)=>(<div key={i} className="flex items-center gap-2 text-[10px]"><span className="w-16 text-[#ededed]/30 truncate">{p.l}</span><div className="flex-1 h-3 rounded-full bg-white/[0.04] overflow-hidden"><div className={`h-full rounded-full ${p.c} opacity-60`} style={{width:`${Math.min(100,Math.abs(Number(p.v)||1)*20)}%`}}/></div><span className={`w-14 text-right font-bold tabular-nums ${p.c}`}>{p.v}</span></div>))}</div></div>
-            {/* Market Movers */}
-            <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-4 py-2.5 border-b border-[#222] bg-[#111]"><span className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold">Market Movers</span></div><div className="divide-y divide-white/[0.02]">{patents?.marketMovers?.length?patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-4 py-2 flex justify-between text-[10px]"><span className="text-[#ededed]/50 truncate mr-2">{m.name}</span><span className="flex gap-2 flex-shrink-0"><span className="text-[#ededed]/60 tabular-nums">{m.value}</span><span className={m.dir==='up'?'text-emerald-400':'text-red-400'}>{m.change}</span></span></div>)):<div className="px-4 py-6 text-[10px] text-[#ededed]/15 italic text-center">Loading...</div>}</div></div>
+            {/* F&G — horizontal gradient gauge */}
+            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-5 flex flex-col justify-between">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold">Fear & Greed</span>
+                <span className={`text-[22px] font-bold tabular-nums ${fgVal>60?'text-emerald-400':fgVal<35?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</span>
+              </div>
+              <div className="relative h-4 bg-gradient-to-r from-red-500/30 via-amber-500/30 to-emerald-500/30 rounded-full overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center text-[9px] text-[#ededed]/50 font-medium">
+                  {fgLabel||'...'}
+                </div>
+                <div className="h-full w-2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-700" style={{marginLeft:`${Math.max(2,Math.min(98,fgVal))}%`,transform:'translateX(-4px)'}}/>
+              </div>
+              <div className="flex justify-between mt-1 text-[9px] text-[#ededed]/15"><span>Fear</span><span>Greed</span></div>
+            </div>
+            {/* Forex — deviation-from-parity bars */}
+            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-5">
+              <div className="text-[10px] text-sky-400 uppercase tracking-[.1em] font-bold mb-3">Forex (vs USD)</div>
+              <div className="space-y-2">
+                {(()=>{
+                  const pairs=[
+                    {l:'EUR/USD',v:forex?.rates?.EUR?((1/forex.rates.EUR)-1)*100:0,c:'text-sky-400'},
+                    {l:'USD/JPY',v:forex?.rates?.JPY?((forex.rates.JPY-100)/4):0,c:'text-orange-400'},
+                    {l:'GBP/USD',v:forex?.rates?.GBP?((1/forex.rates.GBP)-1)*100:0,c:'text-cyan-400'},
+                    {l:'USD/CHF',v:forex?.rates?.CHF?((forex.rates.CHF-0.9)/0.02):0,c:'text-emerald-400'},
+                  ];
+                  const maxDev=Math.max(...pairs.map(p=>Math.abs(p.v)),0.5);
+                  return pairs.map((p,i)=><div key={i} className="flex items-center gap-2 text-[10px]">
+                    <span className="w-14 text-[#ededed]/30 truncate shrink-0">{p.l}</span>
+                    <div className="flex-1 h-1.5 rounded-full bg-white/[0.04] relative overflow-hidden">
+                      <div className={`absolute h-full rounded-full transition-all duration-500 ${Number(p.v)>=0?'bg-emerald-500/60 right-1/2':'bg-red-500/60 left-1/2'}`}
+                        style={{width:`${(Math.abs(p.v)/maxDev*45).toFixed(0)}%`}}/>
+                    </div>
+                    <span className={`w-12 text-right font-bold tabular-nums shrink-0 ${p.v>0.5?'text-emerald-400':p.v<-0.5?'text-red-400':'text-[#ededed]/40'}`}>
+                      {forex?.rates?`${p.v>0?'+':''}${p.v.toFixed(1)}%`:'...'}
+                    </span>
+                  </div>);
+                })()}
+              </div>
+            </div>
+            {/* Market Movers — compact list */}
+            <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+              <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center gap-2">
+                <svg className="w-3 h-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+                <span className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold">Market</span>
+              </div>
+              <div className="divide-y divide-white/[0.02]">{patents?.marketMovers?.length?patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-4 py-3 flex items-center justify-between text-[13px]"><span className="text-[#ededed]/60 truncate mr-2 font-medium">{m.name}</span><div className="flex items-center gap-3 shrink-0"><span className="text-[#ededed]/70 tabular-nums font-semibold">{m.value}</span><span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${m.dir==='up'?'bg-emerald-500/15 text-emerald-400':'bg-red-500/15 text-red-400'}`}>{m.change}</span></div></div>)):<div className="px-4 py-6 text-[13px] text-[#ededed]/20 italic text-center">Awaiting data...</div>}</div>
+            </div>
           </div>
           {/* Patent Panel — merged Top Holders + Valuation, no repeating names */}
-          {patents&&(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center gap-2"><span className="text-[10px] text-pink-400 uppercase tracking-[.15em] font-bold">Patents</span><span className="text-[9px] text-[#ededed]/20">{patents.header.uspto} grants · {patents.header.yoy}</span></div><div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4"><div><div className="text-[9px] text-[#ededed]/15 uppercase tracking-[.1em] mb-1.5">Top Firms</div><div className="space-y-1">{patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center gap-1 text-[10px]"><span className="text-white/75 w-14 truncate font-medium">{h.name}</span><span className="text-[#ededed]/50 tabular-nums">{h.count}</span><span className="text-[#ededed]/30">·</span><span className="text-[#ededed]/40 tabular-nums">{h.mcap}</span></div>))}</div></div><div><div className="text-[9px] text-[#ededed]/15 uppercase tracking-[.1em] mb-1.5">Tech Areas</div><div className="space-y-1">{patents.techAreas.map((t:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-white/45 truncate mr-2">{t.name}</span><span className="text-[#ededed]/30">{t.pct}</span></div>))}</div></div><div><div className="text-[9px] text-[#ededed]/15 uppercase tracking-[.1em] mb-1.5">Hot Areas</div><div className="space-y-1">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className="flex justify-between text-[10px]"><span className="text-[#ededed]/50 truncate mr-2">{h.name}</span><span className={`text-[8px] px-1 rounded ${h.trend==='rapid'?'bg-emerald-500/15 text-emerald-400':h.trend==='growing'?'bg-amber-500/15 text-amber-400':'bg-white/5 text-[#ededed]/30'}`}>{h.trend}</span></div>))}</div></div></div></div>)}
+          {patents&&(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+  <div className="px-5 py-3.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
+    <div className="flex items-center gap-3">
+      <span className="text-[14px] text-pink-400 uppercase tracking-[.15em] font-bold">Patent Landscape</span>
+      <span className="text-[12px] text-[#ededed]/30">· {patents.header.uspto} grants</span>
+    </div>
+    <span className="text-[11px] text-[#ededed]/20">{patents.header.yoy}</span>
+  </div>
+  <div className="p-5 space-y-5">
+    {/* Top Firms with bar visualization */}
+    <div>
+      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2">Top Filers</div>
+      <div className="space-y-2">{(()=>{const max=Math.max(...patents.topHolders.map((h:any)=>h.count),1);return patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center gap-3 text-[13px]">
+        <span className="w-1 text-[#ededed]/20 tabular-nums shrink-0">{i+1}</span>
+        <span className="w-32 text-white/80 truncate font-medium">{h.name}</span>
+        <div className="flex-1 h-5 rounded-md bg-white/[0.04] overflow-hidden">
+          <div className="h-full rounded-md bg-gradient-to-r from-pink-500/50 to-pink-400/30" style={{width:`${(h.count/max)*100}%`}}/>
+        </div>
+        <span className="w-20 text-right text-[#ededed]/70 tabular-nums font-semibold">{h.count}</span>
+        <span className="w-24 text-right text-[#ededed]/40 tabular-nums">{h.mcap}</span>
+      </div>))})()}</div>
+    </div>
+    {/* Tech Areas as horizontal bars */}
+    <div>
+      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2">Tech Areas</div>
+      <div className="space-y-2.5">{(()=>{const max=Math.max(...patents.techAreas.map((t:any)=>parseInt(t.pct)),1);return patents.techAreas.map((t:any,i:number)=>(<div key={i}>
+        <div className="flex justify-between text-[12px] mb-1"><span className="text-[#ededed]/60">{t.name}</span><span className="text-[#ededed]/40 tabular-nums">{t.pct}</span></div>
+        <div className="h-4 rounded bg-white/[0.04] overflow-hidden"><div className="h-full rounded bg-gradient-to-r from-cyan-500/50 to-cyan-400/20" style={{width:`${(parseInt(t.pct)/max)*100}%`}}/></div>
+      </div>))})()}</div>
+    </div>
+    {/* Hot Areas as cards */}
+    <div>
+      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2.5">Hot Areas</div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className={`rounded-xl border px-3 py-2.5 ${h.trend==='rapid'?'border-emerald-500/30 bg-emerald-500/[0.06]':h.trend==='growing'?'border-amber-500/30 bg-amber-500/[0.06]':'border-white/5 bg-white/[0.02]'}`}>
+      <div className="text-[13px] font-medium text-[#ededed]/70 truncate">{h.name}</div>
+      <div className={`text-[11px] mt-0.5 ${h.trend==='rapid'?'text-emerald-400':h.trend==='growing'?'text-amber-400':'text-[#ededed]/30'}`}>{h.trend}</div>
+    </div>))}</div>
+    </div>
+  </div>
+</div>)}
           {/* Key Labs & Institutions — RSS feed of latest posts */}
-          {patents&&(()=>{const kw=patents.keyLabs.flatMap((l:any)=>[l.name,...l.name.split(/[\s-]+/).filter((s:string)=>s.length>2)]).map((s:string)=>s.toLowerCase());const labItems=items.filter((it:any)=>{const t=(it.title+' '+it.source).toLowerCase();return kw.some((k:string)=>t.includes(k));}).slice(0,12);return(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className="text-[10px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[9px] text-[#ededed]/20">{labItems.length} posts</span></div><div className="divide-y divide-white/[0.02] max-h-[220px] overflow-y-auto scrollbar-hide">{labItems.length===0?<div className="px-4 py-6 text-[10px] text-[#ededed]/15 italic text-center">Awaiting signal matching...</div>:labItems.map((it:any,j:number)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2 leading-snug">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-[#ededed]/20"><span className="truncate max-w-[100px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>)})()}
+{patents&&(()=>{const kw=patents.keyLabs.flatMap((l:any)=>[l.name,...l.name.split(/[\s-]+/).filter((s:string)=>s.length>2)]).map((s:string)=>s.toLowerCase());const labItems=items.filter((it:any)=>{const t=(it.title+' '+it.source).toLowerCase();return kw.some((k:string)=>t.includes(k));}).slice(0,12);return(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-5 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className="text-[13px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[11px] text-[#ededed]/25">{labItems.length} posts</span></div><div className="divide-y divide-white/[0.02] max-h-[50vh] overflow-y-auto scrollbar-hide">{labItems.length===0?<div className="px-5 py-8 text-[13px] text-[#ededed]/20 italic text-center">Awaiting signal matching...</div>:labItems.map((it:any,j:number)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-5 py-3 hover:bg-white/[0.03] group"><div className="text-[14px] font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{it.title}</div><div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#ededed]/25"><span className="truncate max-w-[120px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>)})()}
           {/* Category boxes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{macroCats.map(cat=>(<div key={cat.id} className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}><div className="px-4 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span></div><div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">{cat.items.length===0?<div className="px-4 py-6 text-[11px] text-[#ededed]/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-[#ededed]/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>))}</div>
         </div>)}
@@ -229,6 +365,12 @@ export default function IntelHubPage(){
             <TileBox title="Latest CVEs" accent="text-orange-400" color="border-l-orange-400" count={dd2?.cves?.length||0}>{(dd2?.cves||[]).map((c:any,j:number)=>(<div key={j} className="px-4 py-2.5 border-b border-[#222] last:border-0"><div className="flex items-center gap-2"><span className="text-[12px] font-medium text-[#ededed]/70">{c.id}</span><SeverityBadge sev={c.severity} score={c.score}/></div><div className="text-[10px] text-[#ededed]/30 mt-0.5 line-clamp-2">{c.description}</div></div>))}</TileBox>
             <TileBox title="Recent Breaches" accent="text-pink-400" color="border-l-pink-400" count={dd2?.breaches?.length||0}>{(dd2?.breaches||[]).map((b:any,j:number)=>(<div key={j} className="px-4 py-2.5 border-b border-[#222] last:border-0"><div className="text-[13px] font-medium text-[#ededed]/70">{b.name}</div><div className="text-[11px] text-[#ededed]/35 mt-0.5">{b.domain} · {b.count?.toLocaleString()} accounts · {b.data}</div><div className="text-[10px] text-[#ededed]/20 mt-0.5">{b.date}</div></div>))}</TileBox>
           </div>
+          {/* Cybersec Watchlist */}
+          {watchlist.length>0&&(<div className="grid grid-cols-1 gap-4">
+            <TileBox title="Cybersec Watchlist" accent="text-rose-400" color="border-l-rose-400" count={watchlist.length}>
+              {watchlist.map((w:any,j:number)=>(<a key={j} href={w.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 hover:bg-white/[0.03] group"><div className="flex items-start gap-2"><div className="flex-1 min-w-0"><div className="text-[13px] font-medium text-[#ededed]/70 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{w.title}</div><div className="text-[10px] text-[#ededed]/25 mt-1">{w.source}{w.summary?<><span className="mx-1.5">·</span><span className="text-[#ededed]/15">{w.summary}</span></>:null}</div></div></div><div className="flex items-center gap-3 mt-1.5 text-[9px]"><span className="text-rose-400/50">Expires {new Date(w.expires).toLocaleDateString()}</span></div></a>))}
+            </TileBox>
+          </div>)}
           {/* Social Media */}
           <div className="grid grid-cols-1 gap-4">
             <TileBox title="Social Media" accent="text-sky-400" color="border-l-sky-400" count={items.filter(i=>SOCMED_SOURCES.some(s=>i.source?.toLowerCase().includes(s))).length}>{items.filter(i=>SOCMED_SOURCES.some(s=>i.source?.toLowerCase().includes(s))).slice(0,12).map((it,j)=>(<TileRow key={j} it={it}/>))}</TileBox>
@@ -238,7 +380,7 @@ export default function IntelHubPage(){
         {/* ============ WEB3 TAB ============ */}
         {active==='web3'&&(<div className="space-y-5">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div className="lg:col-span-1 rounded-2xl border border-[#222] bg-white/[0.01] p-4"><div className="text-[12px] text-purple-400 uppercase tracking-[.15em] font-bold mb-3">TVL by Chain</div>{(dd?.tvl||[]).length>0?<BarChart data={(dd.tvl||[]).slice(0,12).map((c:any)=>({name:c.name,value:c.tvl}))}/>:<div className="text-[#ededed]/15 text-xs italic py-4 text-center">Loading...</div>}</div>
+            <div className="lg:col-span-1 rounded-2xl border border-[#222] bg-white/[0.01] p-5"><div className="text-[12px] text-purple-400 uppercase tracking-[.15em] font-bold mb-4">TVL by Chain</div>{(dd?.tvl||[]).length>0?<BarChart data={(dd.tvl||[]).slice(0,12).map((c:any)=>({name:c.name,value:c.tvl}))} color="linear-gradient(90deg,#a855f7,#6366f1,#3b82f6)"/>:<div className="text-[#ededed]/15 text-xs italic py-4 text-center">Loading...</div>}</div>
             <div className="lg:col-span-2 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-5"><div className="text-[12px] text-cyan-400 uppercase tracking-[.15em] font-bold mb-2">Total Volume</div><div className="text-2xl font-bold tabular-nums text-[#ededed]/80">{fmt(totalVol)}</div><div className="text-[11px] text-[#ededed]/20 mt-1">24h DEX</div><div className="mt-3 space-y-1">{(dd?.volume||[]).slice(0,5).map((v:any,i:number)=>(<div key={i} className="flex justify-between text-[12px]"><span className="text-[#ededed]/40 truncate">{v.name}</span><span className="text-[#ededed]/60 tabular-nums">{fmt(v.volume24h)}</span></div>))}</div></div>

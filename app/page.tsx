@@ -151,14 +151,14 @@ export default function DeltaVSite() {
         <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-8">TRUSTED BY</div>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           <a href="https://www.defiscan.info/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
-            <img src="/images/defiscan-logo.svg" alt="DeFiScan" className="h-8 w-auto max-w-full" />
+            <img src="/website-private/images/defiscan-logo.svg" alt="DeFiScan" className="h-8 w-auto max-w-full" />
           </a>
           <a href="https://storm.partners/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1 w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
-            <img src="/images/storm-partners-logo.svg" alt="STORM Partners" className="h-6 w-auto" />
+            <img src="/website-private/images/storm-partners-logo.svg" alt="STORM Partners" className="h-6 w-auto" />
             <svg width="17" height="24" viewBox="0 0 17 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-4 w-auto flex-shrink-0"><path d="M4.45898 23.999L9.35645 7.99902H16.4336L4.45898 23.999ZM5.60742 16H0L4.89844 0H10.5049L5.60742 16Z" fill="#FFCC00"/></svg>
           </a>
           <a href="https://deficollective.org/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
-            <img src="/images/defi-collective-logo.svg" alt="DeFi Collective" className="h-9 w-auto max-w-full" />
+            <img src="/website-private/images/defi-collective-logo.svg" alt="DeFi Collective" className="h-9 w-auto max-w-full" />
           </a>
         </div>
       </div>
