@@ -5,6 +5,14 @@ import Navbar from '../components/Navbar';
 export default function Blog() {
   const posts = [
     {
+      title: "DeFi Weekly — June 23, 2026",
+      date: "June 23, 2026",
+      category: "Web3",
+      type: "Dashboard",
+      excerpt: "True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg, and the cypherpunk layer.",
+      slug: "defi-weekly-june-23"
+    },
+    {
       title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
       date: "June 23, 2026",
       category: "Web3",

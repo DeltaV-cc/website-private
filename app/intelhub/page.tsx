@@ -261,24 +261,22 @@ export default function IntelHubPage(){
         {active==='macro'&&(<div className="space-y-4">
           {/* Top row: F&G + Forex + Market Movers — redesigned compact */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* F&G — horizontal gradient gauge */}
-            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-5 flex flex-col justify-between">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold">Fear & Greed</span>
-                <span className={`text-[22px] font-bold tabular-nums ${fgVal>60?'text-emerald-400':fgVal<35?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</span>
+            {/* F&G — vertical gauge */}
+            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4 flex flex-col items-center">
+              <span className="text-[10px] text-amber-400 uppercase tracking-[.15em] font-bold mb-2">Fear & Greed</span>
+              <span className="text-[9px] text-emerald-400/50 uppercase font-semibold mb-1">Greed</span>
+              <div className="relative w-5 flex-1 min-h-[90px] bg-gradient-to-t from-red-500/30 via-amber-500/30 to-emerald-500/30 rounded-full overflow-hidden my-1">
+                <div className="absolute left-0 right-0 h-[3px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.7)] transition-all duration-700 z-10 rounded-full"
+                  style={{bottom:`${Math.max(3,Math.min(97,fgVal))}%`}}/>
               </div>
-              <div className="relative h-4 bg-gradient-to-r from-red-500/30 via-amber-500/30 to-emerald-500/30 rounded-full overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center text-[9px] text-[#ededed]/50 font-medium">
-                  {fgLabel||'...'}
-                </div>
-                <div className="h-full w-2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-700" style={{marginLeft:`${Math.max(2,Math.min(98,fgVal))}%`,transform:'translateX(-4px)'}}/>
-              </div>
-              <div className="flex justify-between mt-1 text-[9px] text-[#ededed]/15"><span>Fear</span><span>Greed</span></div>
+              <span className={`text-[22px] font-bold tabular-nums -mb-0.5 ${fgVal>60?'text-emerald-400':fgVal<35?'text-red-400':'text-amber-400'}`}>{fgVal||'--'}</span>
+              <span className="text-[9px] text-red-400/50 uppercase font-semibold mt-0.5">Fear</span>
+              <span className="text-[8px] text-[#ededed]/30 mt-1">{fgLabel||'...'}</span>
             </div>
             {/* Forex — deviation-from-parity bars */}
-            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-5">
-              <div className="text-[10px] text-sky-400 uppercase tracking-[.1em] font-bold mb-3">Forex (vs USD)</div>
-              <div className="space-y-2">
+            <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4">
+              <div className="text-[10px] text-sky-400 uppercase tracking-[.1em] font-bold mb-2">Forex (vs USD)</div>
+              <div className="space-y-1.5">
                 {(()=>{
                   const pairs=[
                     {l:'EUR/USD',v:forex?.rates?.EUR?((1/forex.rates.EUR)-1)*100:0,c:'text-sky-400'},
@@ -302,58 +300,58 @@ export default function IntelHubPage(){
             </div>
             {/* Market Movers — compact list */}
             <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
-              <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center gap-2">
+              <div className="px-3 py-2 border-b border-[#222] bg-[#111] flex items-center gap-2">
                 <svg className="w-3 h-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
                 <span className="text-[10px] text-cyan-400 uppercase tracking-[.15em] font-bold">Market</span>
               </div>
-              <div className="divide-y divide-white/[0.02]">{patents?.marketMovers?.length?patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-4 py-3 flex items-center justify-between text-[13px]"><span className="text-[#ededed]/60 truncate mr-2 font-medium">{m.name}</span><div className="flex items-center gap-3 shrink-0"><span className="text-[#ededed]/70 tabular-nums font-semibold">{m.value}</span><span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${m.dir==='up'?'bg-emerald-500/15 text-emerald-400':'bg-red-500/15 text-red-400'}`}>{m.change}</span></div></div>)):<div className="px-4 py-6 text-[13px] text-[#ededed]/20 italic text-center">Awaiting data...</div>}</div>
+              <div className="divide-y divide-white/[0.02]">{patents?.marketMovers?.length?patents.marketMovers.map((m:any,i:number)=>(<div key={i} className="px-3 py-2 flex items-center justify-between text-[12px]"><span className="text-[#ededed]/60 truncate mr-2 font-medium">{m.name}</span><div className="flex items-center gap-2 shrink-0"><span className="text-[#ededed]/70 tabular-nums font-semibold">{m.value}</span><span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${m.dir==='up'?'bg-emerald-500/15 text-emerald-400':'bg-red-500/15 text-red-400'}`}>{m.change}</span></div></div>)):<div className="px-4 py-6 text-[12px] text-[#ededed]/20 italic text-center">Awaiting data...</div>}</div>
             </div>
           </div>
           {/* Patent Panel — merged Top Holders + Valuation, no repeating names */}
           {patents&&(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
-  <div className="px-5 py-3.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
-    <div className="flex items-center gap-3">
-      <span className="text-[14px] text-pink-400 uppercase tracking-[.15em] font-bold">Patent Landscape</span>
-      <span className="text-[12px] text-[#ededed]/30">· {patents.header.uspto} grants</span>
+  <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
+    <div className="flex items-center gap-2">
+      <span className="text-[12px] text-pink-400 uppercase tracking-[.15em] font-bold">Patent Landscape</span>
+      <span className="text-[10px] text-[#ededed]/30">· {patents.header.uspto} grants</span>
     </div>
-    <span className="text-[11px] text-[#ededed]/20">{patents.header.yoy}</span>
+    <span className="text-[10px] text-[#ededed]/20">{patents.header.yoy}</span>
   </div>
-  <div className="p-5 space-y-5">
+  <div className="p-4 space-y-3">
     {/* Top Firms with bar visualization */}
     <div>
-      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2">Top Filers</div>
-      <div className="space-y-2">{(()=>{const max=Math.max(...patents.topHolders.map((h:any)=>h.count),1);return patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center gap-3 text-[13px]">
+      <div className="text-[10px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-1.5">Top Filers</div>
+      <div className="space-y-1">{(()=>{const max=Math.max(...patents.topHolders.map((h:any)=>h.count),1);return patents.topHolders.map((h:any,i:number)=>(<div key={i} className="flex items-center gap-2 text-[12px]">
         <span className="w-1 text-[#ededed]/20 tabular-nums shrink-0">{i+1}</span>
-        <span className="w-32 text-white/80 truncate font-medium">{h.name}</span>
-        <div className="flex-1 h-5 rounded-md bg-white/[0.04] overflow-hidden">
+        <span className="w-28 text-white/80 truncate font-medium">{h.name}</span>
+        <div className="flex-1 h-4 rounded-md bg-white/[0.04] overflow-hidden">
           <div className="h-full rounded-md bg-gradient-to-r from-pink-500/50 to-pink-400/30" style={{width:`${(h.count/max)*100}%`}}/>
         </div>
-        <span className="w-20 text-right text-[#ededed]/70 tabular-nums font-semibold">{h.count}</span>
-        <span className="w-24 text-right text-[#ededed]/40 tabular-nums">{h.mcap}</span>
+        <span className="w-16 text-right text-[#ededed]/70 tabular-nums font-semibold">{h.count}</span>
+        <span className="w-20 text-right text-white/80 tabular-nums">{h.mcap}</span>
       </div>))})()}</div>
     </div>
     {/* Tech Areas as horizontal bars */}
     <div>
-      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2">Tech Areas</div>
-      <div className="space-y-2.5">{(()=>{const max=Math.max(...patents.techAreas.map((t:any)=>parseInt(t.pct)),1);return patents.techAreas.map((t:any,i:number)=>(<div key={i}>
-        <div className="flex justify-between text-[12px] mb-1"><span className="text-[#ededed]/60">{t.name}</span><span className="text-[#ededed]/40 tabular-nums">{t.pct}</span></div>
-        <div className="h-4 rounded bg-white/[0.04] overflow-hidden"><div className="h-full rounded bg-gradient-to-r from-cyan-500/50 to-cyan-400/20" style={{width:`${(parseInt(t.pct)/max)*100}%`}}/></div>
+      <div className="text-[10px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-1.5">Tech Areas</div>
+      <div className="space-y-2">{(()=>{const max=Math.max(...patents.techAreas.map((t:any)=>parseInt(t.pct)),1);return patents.techAreas.map((t:any,i:number)=>(<div key={i}>
+        <div className="flex justify-between text-[11px] mb-0.5"><span className="text-[#ededed]/60">{t.name}</span><span className="text-[#ededed]/40 tabular-nums">{t.pct.replace('%','')}</span></div>
+        <div className="h-3.5 rounded bg-white/[0.04] overflow-hidden"><div className="h-full rounded bg-gradient-to-r from-cyan-500/50 to-cyan-400/20" style={{width:`${(parseInt(t.pct)/max)*100}%`}}/></div>
       </div>))})()}</div>
     </div>
     {/* Hot Areas as cards */}
     <div>
-      <div className="text-[11px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2.5">Hot Areas</div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className={`rounded-xl border px-3 py-2.5 ${h.trend==='rapid'?'border-emerald-500/30 bg-emerald-500/[0.06]':h.trend==='growing'?'border-amber-500/30 bg-amber-500/[0.06]':'border-white/5 bg-white/[0.02]'}`}>
-      <div className="text-[13px] font-medium text-[#ededed]/70 truncate">{h.name}</div>
-      <div className={`text-[11px] mt-0.5 ${h.trend==='rapid'?'text-emerald-400':h.trend==='growing'?'text-amber-400':'text-[#ededed]/30'}`}>{h.trend}</div>
+      <div className="text-[10px] text-[#ededed]/25 uppercase tracking-[.1em] font-semibold mb-2">Hot Areas</div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">{patents.hotAreas.map((h:any,i:number)=>(<div key={i} className={`rounded-xl border px-2.5 py-2 ${h.trend==='rapid'?'border-emerald-500/30 bg-emerald-500/[0.06]':h.trend==='growing'?'border-amber-500/30 bg-amber-500/[0.06]':'border-white/5 bg-white/[0.02]'}`}>
+      <div className="text-[12px] font-medium text-[#ededed]/70 truncate">{h.name}</div>
+      <div className={`text-[10px] mt-0.5 ${h.trend==='rapid'?'text-emerald-400':h.trend==='growing'?'text-amber-400':'text-[#ededed]/30'}`}>{h.trend}</div>
     </div>))}</div>
     </div>
   </div>
 </div>)}
           {/* Key Labs & Institutions — RSS feed of latest posts */}
-{patents&&(()=>{const kw=patents.keyLabs.flatMap((l:any)=>[l.name,...l.name.split(/[\s-]+/).filter((s:string)=>s.length>2)]).map((s:string)=>s.toLowerCase());const labItems=items.filter((it:any)=>{const t=(it.title+' '+it.source).toLowerCase();return kw.some((k:string)=>t.includes(k));}).slice(0,12);return(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-5 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className="text-[13px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[11px] text-[#ededed]/25">{labItems.length} posts</span></div><div className="divide-y divide-white/[0.02] max-h-[50vh] overflow-y-auto scrollbar-hide">{labItems.length===0?<div className="px-5 py-8 text-[13px] text-[#ededed]/20 italic text-center">Awaiting signal matching...</div>:labItems.map((it:any,j:number)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-5 py-3 hover:bg-white/[0.03] group"><div className="text-[14px] font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{it.title}</div><div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#ededed]/25"><span className="truncate max-w-[120px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>)})()}
+          {patents&&(()=>{const kw=patents.keyLabs.flatMap((l:any)=>[l.name,...l.name.split(/[\s-]+/).filter((s:string)=>s.length>2)]).map((s:string)=>s.toLowerCase());const labItems=items.filter((it:any)=>{const t=(it.title+' '+it.source).toLowerCase();return kw.some((k:string)=>t.includes(k));}).slice(0,12);return(<div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden"><div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className="text-[12px] text-violet-400 uppercase tracking-[.15em] font-bold">Key Labs & Institutions</span><span className="text-[10px] text-[#ededed]/25">{labItems.length} posts</span></div><div className="divide-y divide-white/[0.02] max-h-[50vh] overflow-y-auto scrollbar-hide">{labItems.length===0?<div className="px-4 py-6 text-[12px] text-[#ededed]/20 italic text-center">Awaiting signal matching...</div>:labItems.map((it:any,j:number)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[13px] font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[10px] text-[#ededed]/25"><span className="truncate max-w-[120px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>)})()}
           {/* Category boxes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{macroCats.map(cat=>(<div key={cat.id} className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}><div className="px-4 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className={`text-[13px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span></div><div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">{cat.items.length===0?<div className="px-4 py-6 text-[11px] text-[#ededed]/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-1 text-[9px] text-[#ededed]/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>))}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">{macroCats.map(cat=>(<div key={cat.id} className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}><div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between"><span className={`text-[12px] font-semibold ${cat.accent}`}>{cat.label}</span><span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span></div><div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">{cat.items.length===0?<div className="px-4 py-6 text-[11px] text-[#ededed]/10 italic text-center">no signals</div>:cat.items.map((it,j)=>(<a key={j} href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-2 hover:bg-white/[0.03] group"><div className="text-[11px] font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-1">{it.title}</div><div className="flex items-center gap-2 mt-0.5 text-[9px] text-[#ededed]/20"><span className="truncate max-w-[80px]">{it.source}</span><span className="ml-auto tabular-nums">{ago(it.published_at)}</span></div></a>))}</div></div>))}</div>
         </div>)}
 
         {/* ============ INFOSEC TAB ============ */}

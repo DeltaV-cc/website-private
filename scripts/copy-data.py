@@ -6,6 +6,7 @@ for static site deployment (GitHub Pages). Falls back gracefully.
 import json, os, shutil, re, urllib.request, ssl
 
 PUBLIC_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'data')
+SIGNALS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'wiki', 'signals')
 WORKSPACE_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'DeltaV-persistent-workspace', 'intel')
 
 os.makedirs(PUBLIC_DIR, exist_ok=True)
@@ -47,6 +48,9 @@ if os.path.exists(raw_dir):
     with open(os.path.join(PUBLIC_DIR, 'raw-items.json'), 'w', encoding='utf-8') as f:
         json.dump(unique[-200:], f)
     print(f'✓ {len(unique[-200:])} raw items cached')
+    os.makedirs(SIGNALS_DIR, exist_ok=True)
+    shutil.copy(os.path.join(PUBLIC_DIR, 'raw-items.json'), os.path.join(SIGNALS_DIR, 'raw-items.json'))
+    print(f'✓ raw-items.json copied to signals/')
 
 # --- Copy picks ---
 picks_file = os.path.join(WORKSPACE_DIR, 'picks.json')
@@ -56,6 +60,9 @@ if os.path.exists(picks_file):
 else:
     with open(os.path.join(PUBLIC_DIR, 'picks.json'), 'w') as f:
         json.dump({'picks': [], 'updatedAt': ''}, f)
+os.makedirs(SIGNALS_DIR, exist_ok=True)
+shutil.copy(os.path.join(PUBLIC_DIR, 'picks.json'), os.path.join(SIGNALS_DIR, 'picks.json'))
+print('✓ picks.json copied to signals/')
 
 # --- Fetch CISA KEV ---
 print('Fetching CISA KEV...')

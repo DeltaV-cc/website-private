@@ -6,7 +6,7 @@
       "category": "ai",
       "url": "https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/",
       "published_at": "2026-06-23T14:01:03.158930",
-      "score": 292.5
+      "score": 234.0
     },
     {
       "title": "Ethereum Layer-2 Taiko Warns Users to Withdraw Bridge Funds After Security Breach",
@@ -14,16 +14,16 @@
       "category": "ai",
       "url": "https://decrypt.co/371769/ethereum-layer-2-taiko-withdraw-bridge-funds-security-breach",
       "published_at": "2026-06-22T15:31:56.210281",
-      "score": 234.0
+      "score": 195.0
     },
     {
-      "title": "Trump's Quantum Push Wins Praise, But Experts Warn Bitcoin Isn't Ready",
-      "source": "Decrypt",
-      "category": "ai",
-      "url": "https://decrypt.co/371916/trump-quantum-praise-experts-warn-bitcoin-not-ready",
-      "published_at": "2026-06-23T21:31:43.201079",
-      "score": 121.5
+      "title": "Securing the service desk: Why social engineering attacks keep succeeding",
+      "source": "BleepingComputer",
+      "category": "opsec",
+      "url": "https://www.bleepingcomputer.com/news/security/securing-the-service-desk-why-social-engineering-attacks-keep-succeeding/",
+      "published_at": "2026-06-24T14:16:16.226482",
+      "score": 157.5
     }
   ],
-  "updatedAt": "2026-06-24T09:30:19.154670+00:00"
+  "updatedAt": "2026-06-25T07:01:18.036154+00:00"
 }
