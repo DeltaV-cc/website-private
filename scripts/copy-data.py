@@ -45,9 +45,33 @@ if os.path.exists(raw_dir):
         if url and url not in seen:
             seen.add(url)
             unique.append(item)
-    with open(os.path.join(PUBLIC_DIR, 'raw-items.json'), 'w', encoding='utf-8') as f:
-        json.dump(unique[-200:], f)
-    print(f'✓ {len(unique[-200:])} raw items cached')
+    # Sort by published_at descending (newest first) before taking top 200
+    import re as _re
+    from datetime import datetime as _dt, timezone as _tz
+    def _parse_date(item):
+        raw = item.get('published_at', '')
+        if not raw: return _dt.min.replace(tzinfo=_tz.utc)
+        clean = raw.strip()
+        clean = _re.sub(r'\s+(GMT|UTC|EST|EDT|CST|CDT|PST|PDT)$', '', clean, flags=_re.I)
+        clean = _re.sub(r'[+-]\d{2}:\d{2}$', '', clean)
+        clean = _re.sub(r'Z$', '', clean)
+        clean = _re.sub(r'\.(\d{6})\d+', r'.\1', clean)
+        for fmt in ['%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d',
+                     '%a, %d %b %Y %H:%M:%S', '%d %b %Y %H:%M:%S']:
+            try: return _dt.strptime(clean[:26], fmt).replace(tzinfo=_tz.utc)
+            except ValueError: continue
+        return _dt.min.replace(tzinfo=_tz.utc)
+    unique.sort(key=_parse_date, reverse=True)
+    top200 = unique[:200]
+    # Only overwrite if file is stale (>30 min) or doesn't exist — trust sync-intel-to-site.py
+    out_path = os.path.join(PUBLIC_DIR, 'raw-items.json')
+    if os.path.exists(out_path):
+        age_min = (os.path.getmtime(__file__) - os.path.getmtime(out_path)) / 60 if os.path.getmtime(out_path) else 999
+        # Always write during build — this is the authoritative snapshot
+        pass
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(top200, f)
+    print(f'✓ {len(top200)} raw items cached (newest first)')
     os.makedirs(SIGNALS_DIR, exist_ok=True)
     shutil.copy(os.path.join(PUBLIC_DIR, 'raw-items.json'), os.path.join(SIGNALS_DIR, 'raw-items.json'))
     print(f'✓ raw-items.json copied to signals/')
