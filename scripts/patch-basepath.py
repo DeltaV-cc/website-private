@@ -4,6 +4,7 @@ Post-build script: rewrites all internal paths in the static export
 so they include the GitHub Pages basePath prefix.
 
 Fixes both <a href> in HTML and absolute paths in JS (fetch, import, etc.)
+Also handles Turbopack's escaped double-quote output: \"/data/...\"
 """
 
 import os, re, sys
@@ -32,16 +33,26 @@ def fix_html(content):
     return re.sub(r'href="/([^"]*)"', repl, content)
 
 def fix_js(content):
-    # double-quoted paths like "/data/..."
+    # 1) escaped double-quoted paths: Turbopack outputs \" /data/... \"
+    #    Pattern in raw bytes: backslash + double-quote + / + path + backslash + double-quote
+    def repl_edq(m):
+        p = m.group(1)
+        return m.group(0) if should_skip(p) else '\\"/{}/{}\\"'.format(BASE_PATH[1:], p)
+    # Regex: \\ matches literal backslash, \" matches literal double-quote
+    content = re.sub(r'\\"/\s*([a-zA-Z0-9_./-]+)\\"', repl_edq, content)
+
+    # 2) plain double-quoted paths like "/data/..."
     def repl_dq(m):
         p = m.group(1)
         return m.group(0) if should_skip(p) else f'"/{BASE_PATH[1:]}/{p}"'
     content = re.sub(r'"/\s*([a-zA-Z0-9_./-]+)"', repl_dq, content)
-    # single-quoted paths like '/data/...'
+
+    # 3) single-quoted paths like '/data/...'
     def repl_sq(m):
         p = m.group(1)
         return m.group(0) if should_skip(p) else f"'/{BASE_PATH[1:]}/{p}'"
     content = re.sub(r"'/\s*([a-zA-Z0-9_./-]+)'", repl_sq, content)
+
     return content
 
 def main():

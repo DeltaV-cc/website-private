@@ -1,29 +1,29 @@
 {
   "picks": [
     {
-      "title": "LastPass confirms data breach in Klue supply chain attack",
-      "source": "BleepingComputer",
-      "category": "ai",
-      "url": "https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/",
-      "published_at": "2026-06-23T14:01:03.158930",
-      "score": 234.0
+      "title": "Ethereum treasury firm Sharplink buys ether for the first time in eight months",
+      "source": "CoinDesk",
+      "category": "web3",
+      "url": "https://www.coindesk.com/markets/2026/06/26/ethereum-treasury-firm-sharplink-takes-in-ether-for-the-first-time-in-eight-months",
+      "published_at": "2026-06-26T11:51:20.558642",
+      "score": 180.0
     },
     {
-      "title": "Ethereum Layer-2 Taiko Warns Users to Withdraw Bridge Funds After Security Breach",
+      "title": "Traders Predict More Pain for Bitcoin and Ethereum After Monthly Drops Above 20%",
       "source": "Decrypt",
-      "category": "ai",
-      "url": "https://decrypt.co/371769/ethereum-layer-2-taiko-withdraw-bridge-funds-security-breach",
-      "published_at": "2026-06-22T15:31:56.210281",
-      "score": 195.0
+      "category": "web3",
+      "url": "https://decrypt.co/372091/traders-predict-more-pain-bitcoin-ethereum",
+      "published_at": "2026-06-26T11:51:22.554823",
+      "score": 162.0
     },
     {
-      "title": "Securing the service desk: Why social engineering attacks keep succeeding",
-      "source": "BleepingComputer",
-      "category": "opsec",
-      "url": "https://www.bleepingcomputer.com/news/security/securing-the-service-desk-why-social-engineering-attacks-keep-succeeding/",
-      "published_at": "2026-06-24T14:16:16.226482",
+      "title": "Third-Party Breaches Teach Education Sector a Costly Lesson in Vendor Risk",
+      "source": "Dark Reading",
+      "category": "cybersec",
+      "url": "https://www.darkreading.com/cyber-risk/third-party-breaches-teaches-education-lesson-vendor-risk",
+      "published_at": "2026-06-27T14:16:33.330097",
       "score": 157.5
     }
   ],
-  "updatedAt": "2026-06-25T07:01:18.036154+00:00"
+  "updatedAt": "2026-06-28T08:15:30.697568+00:00"
 }
