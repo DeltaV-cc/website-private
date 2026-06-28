@@ -5,6 +5,30 @@ import Navbar from '../components/Navbar';
 export default function Blog() {
   const posts = [
     {
+      title: "NVIDIA's Fast FoundationStereo: The Compression-to-Edge Pipeline Goes Visual",
+      date: "June 26, 2026",
+      category: "AI",
+      type: "Deep Dive",
+      excerpt: "NVIDIA's compact stereo depth model — 14.6M params, 10× faster, zero-shot, edge-deployable. The compression-to-edge playbook now covers every frontier model across every modality. Implications for robotics, manufacturing, defense.",
+      slug: "nvidia-fast-foundation-stereo"
+    },
+    {
+      title: "0.7 Nanometers: IBM Breaks the Physical Limits of Chip Scaling",
+      date: "June 25, 2026",
+      category: "Hardware",
+      type: "Deep Dive",
+      excerpt: "IBM just unveiled the world's first sub-1nm chip — 0.7nm with a revolutionary 3D nanostack architecture. ~100 billion transistors, 50% faster, 70% more efficient. Production within 5 years.",
+      slug: "ibm-sub-1nm-chip"
+    },
+    {
+      title: "ENS and the Independent Board Question",
+      date: "June 25, 2026",
+      category: "Web3",
+      type: "Thought",
+      excerpt: "A proposal to restructure the ENS Foundation with an independent board and world-class members — without touching the treasury. The DAO is asking hard governance questions.",
+      slug: "ens-independent-board-governance"
+    },
+    {
       title: "DeFi Weekly — June 23, 2026",
       date: "June 23, 2026",
       category: "Web3",
