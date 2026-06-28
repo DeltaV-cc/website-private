@@ -6,6 +6,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Item, PatentsData, IntelData } from './types';
 
+const BASE = '/website-private';
+
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [
   { id: 'ai', label: 'AI/ML', color: 'border-l-blue-400', accent: 'text-blue-400', bg: 'bg-blue-500/5', kw: ['gpt', 'llm', 'transformer', 'neural', 'deep learning', 'machine learning', 'hugging face', 'agent', 'inference', 'embedding', 'token', 'prompt', 'fine.tun', 'rag', 'vector database', 'multimodal', 'diffusion', 'gan', 'lora', 'qlora', 'rlhf', 'alignment', 'artificial intelligence', 'openai', 'anthropic', 'claude', 'deepseek', 'mistral', 'gemini', 'cohere', 'copilot', 'chatbot', 'reasoning', 'sora', 'attention mechanism', 'model card', 'frontier model', 'foundation model'] },
@@ -122,21 +124,21 @@ export function useIntelData() {
 
   const loadAll = useCallback(async () => {
     try {
-      const rawRes = await fetch('/data/raw-items.json');
+      const rawRes = await fetch(`${BASE}/data/raw-items.json`);
       if (rawRes.ok) {
         const d = await rawRes.json();
         if (Array.isArray(d))
           setItems(d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel));
       }
-      const picksRes = await fetch('/data/picks.json');
+      const picksRes = await fetch(`${BASE}/data/picks.json`);
       if (picksRes.ok) setPicks(await picksRes.json());
-      const wlRes = await fetch('/data/cybersec-watchlist.json');
+      const wlRes = await fetch(`${BASE}/data/cybersec-watchlist.json`);
       if (wlRes.ok) {
         const wl = await wlRes.json();
         const now = Date.now();
         setWatchlist(wl.filter((x: any) => new Date(x.expires).getTime() > now));
       }
-      const patRes = await fetch('/data/patents.json');
+      const patRes = await fetch(`${BASE}/data/patents.json`);
       if (patRes.ok) setPatents(await patRes.json());
     } catch { /* ignore */ }
     setLoading(false);
@@ -238,7 +240,7 @@ export function useIntelData() {
       } catch { /* */ }
       if (!result.kev.length || !result.cves.length || !result.breaches.length) {
         try {
-          const r = await fetch('/data/infosec.json');
+          const r = await fetch(`${BASE}/data/infosec.json`);
           if (r.ok) {
             const c = await r.json();
             if (!result.kev.length) result.kev = c.kev || [];
