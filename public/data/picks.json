@@ -1,20 +1,20 @@
 {
   "picks": [
     {
+      "title": "Data breach exposes up to 14.2 million email logins at six ISPs",
+      "source": "BleepingComputer",
+      "category": "cybersec",
+      "url": "https://www.bleepingcomputer.com/news/security/data-breach-exposes-up-to-142-million-email-logins-at-six-isps/",
+      "published_at": "2026-06-28T14:31:05.063309",
+      "score": 180.0
+    },
+    {
       "title": "Ethereum treasury firm Sharplink buys ether for the first time in eight months",
       "source": "CoinDesk",
       "category": "web3",
       "url": "https://www.coindesk.com/markets/2026/06/26/ethereum-treasury-firm-sharplink-takes-in-ether-for-the-first-time-in-eight-months",
       "published_at": "2026-06-26T11:51:20.558642",
-      "score": 180.0
-    },
-    {
-      "title": "Traders Predict More Pain for Bitcoin and Ethereum After Monthly Drops Above 20%",
-      "source": "Decrypt",
-      "category": "web3",
-      "url": "https://decrypt.co/372091/traders-predict-more-pain-bitcoin-ethereum",
-      "published_at": "2026-06-26T11:51:22.554823",
-      "score": 162.0
+      "score": 150.0
     },
     {
       "title": "Third-Party Breaches Teach Education Sector a Costly Lesson in Vendor Risk",
@@ -22,8 +22,8 @@
       "category": "cybersec",
       "url": "https://www.darkreading.com/cyber-risk/third-party-breaches-teaches-education-lesson-vendor-risk",
       "published_at": "2026-06-27T14:16:33.330097",
-      "score": 157.5
+      "score": 126.0
     }
   ],
-  "updatedAt": "2026-06-28T08:15:30.697568+00:00"
+  "updatedAt": "2026-06-28T18:15:05.254074+00:00"
 }

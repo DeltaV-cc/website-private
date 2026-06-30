@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import { useIntelData } from './hooks';
 import PulseFeed from './components/PulseFeed';
 import TopPicks from './components/TopPicks';
+import FeaturedResearch from './components/FeaturedResearch';
 import MacroDashboard from './components/MacroDashboard';
 import InfosecDashboard from './components/InfosecDashboard';
 import Web3Dashboard from './components/Web3Dashboard';
@@ -12,7 +13,7 @@ import Web3Dashboard from './components/Web3Dashboard';
 export default function IntelHubPage() {
   const [active, setActive] = useState<'macro' | 'infosec' | 'web3'>('macro');
   const {
-    items, loading, patents, dd, dd2, forex, watchlist,
+    items, loading, patents, dd, dd2, forex, watchlist, artemis,
     catBoxes, top3, tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN,
     TC, BCOL, SOCMED_SOURCES,
   } = useIntelData();
@@ -61,6 +62,9 @@ export default function IntelHubPage() {
       {/* ── Top Picks ── */}
       <TopPicks top3={top3} TC={TC} ts={ts} />
 
+      {/* ── Featured Research ── */}
+      <FeaturedResearch articles={artemis} />
+
       {/* ── Tabs ── */}
       <div className="max-w-[1440px] mx-auto px-8 pb-24">
         <div className="flex gap-1 bg-[#111] p-1 rounded-2xl w-fit mb-5 border border-[#222]">
@@ -91,6 +95,7 @@ export default function IntelHubPage() {
             ago={ago}
             fmt={fmt}
             fmtN={fmtN}
+            artemis={artemis}
           />
         )}
 
@@ -115,6 +120,7 @@ export default function IntelHubPage() {
             ago={ago}
             fmt={fmt}
             fmtN={fmtN}
+            artemis={artemis}
           />
         )}
       </div>

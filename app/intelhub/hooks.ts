@@ -121,6 +121,7 @@ export function useIntelData() {
   const [dd, setDd] = useState<any>(null);
   const [dd2, setDd2] = useState<any>(null);
   const [forex, setForex] = useState<any>(null);
+  const [artemis, setArtemis] = useState<any[]>([]);
 
   const loadAll = useCallback(async () => {
     try {
@@ -140,6 +141,11 @@ export function useIntelData() {
       }
       const patRes = await fetch(`${BASE}/data/patents.json`);
       if (patRes.ok) setPatents(await patRes.json());
+      const artRes = await fetch(`${BASE}/data/artemis-research.json`);
+      if (artRes.ok) {
+        const d = await artRes.json();
+        if (Array.isArray(d)) setArtemis(d);
+      }
     } catch { /* ignore */ }
     setLoading(false);
   }, []);
@@ -312,7 +318,7 @@ export function useIntelData() {
   };
 
   return {
-    items, loading, picks, patents, dd, dd2, forex, watchlist,
+    items, loading, picks, patents, dd, dd2, forex, watchlist, artemis,
     catBoxes, macroCats, infosecCats, web3Cats, top3, fgVal, fgLabel, totalVol,
     tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES,
   };
