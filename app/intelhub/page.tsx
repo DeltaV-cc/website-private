@@ -1,5 +1,3 @@
-'use client';
-
 export default function IntelHubPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -12,9 +10,6 @@ export default function IntelHubPage() {
             Live threat surface · Market intel · Signal triage
           </p>
         </div>
-      </div>
-      <div className="max-w-[1440px] mx-auto px-8 py-8">
-        <p className="text-[#ededed]/50 text-sm">Page shell — components loading...</p>
       </div>
     </div>
   );
