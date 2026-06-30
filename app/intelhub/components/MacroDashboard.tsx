@@ -8,12 +8,11 @@ import PatentsTable from './PatentsTable';
 import { TileBox, CategoryBox } from './Shared';
 
 export default function MacroDashboard({
-  items, dd, patents, forex, catBoxes, TC, ago, fmt, fmtN, artemis,
+  items, dd, patents, forex, catBoxes, TC, ago, fmt, fmtN,
 }: {
   items: Item[]; dd: any; patents: PatentsData | null; forex: any;
   catBoxes: any[]; TC: Record<string, string>;
   ago: (iso: string) => string; fmt: (n: number) => string; fmtN: (n: number) => string;
-  artemis?: any[];
 }) {
   const fgVal = dd?.fearGreed?.data?.[0] ? Number(dd.fearGreed.data[0].value) || 0 : 0;
   const fgLabel = dd?.fearGreed?.data?.[0]?.value_classification || '';
@@ -103,38 +102,6 @@ export default function MacroDashboard({
 
       {/* ── Key Labs signal feed ── */}
       {patents && <KeyLabsFeed items={items} patents={patents} ago={ago} />}
-
-      {/* ── Artemis Research ── */}
-      {artemis && artemis.length > 0 && (
-        <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-              </svg>
-              <span className="text-sm text-emerald-400 uppercase tracking-[.15em] font-bold">Artemis Macro Research</span>
-            </div>
-            <span className="text-xs text-[#ededed]/25">{artemis.filter((a: any) => a.category === 'macro' || a.category === 'crypto').length} articles</span>
-          </div>
-          <div className="divide-y divide-white/[0.02] max-h-[40vh] overflow-y-auto scrollbar-hide">
-            {artemis.filter((a: any) => a.category === 'macro' || a.category === 'crypto').slice(0, 10).map((art: any, j: number) => (
-              <a key={art.artemis_id || j} href={art.url} target="_blank" rel="noopener noreferrer" className="block px-5 py-3 hover:bg-white/[0.03] group">
-                <div className="text-sm font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{art.title}</div>
-                <div className="flex items-center gap-2 mt-1 text-xs text-[#ededed]/25">
-                  <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${art.category === 'macro' ? 'text-amber-400 bg-amber-500/10' : 'text-yellow-400 bg-yellow-500/10'}`}>
-                    {art.category === 'macro' ? 'MACRO' : 'CRYPTO'}
-                  </span>
-                  <span className="truncate max-w-[120px]">{art.source?.replace('Artemis Research (', '').replace(')', '')}</span>
-                  <span className="ml-auto tabular-nums">{art.published_at ? new Date(art.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
-                </div>
-              </a>
-            ))}
-            {artemis.filter((a: any) => a.category === 'macro' || a.category === 'crypto').length === 0 && (
-              <div className="px-5 py-8 text-sm text-[#ededed]/20 italic text-center">No macro research yet...</div>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* ── Category boxes ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
