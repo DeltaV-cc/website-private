@@ -42,6 +42,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
 
   // Auto-rotate every 12 seconds
   useEffect(() => {
+    if (featured.length < 2) return;
     const t = setInterval(() => setIdx(i => (i + 1) % Math.min(featured.length, 4)), 12000);
     return () => clearInterval(t);
   }, [featured.length]);
