@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntelHub — Delta V</title>
+<style>
+:root{--bg:#06060b;--surface:#0c0c14;--surface2:#111118;--border:#1e1e2a;--text:#d4d4dc;--text-muted:#78788c;--text-dim:#4a4a58;--accent:#f0a030;--accent-dim:#f0a03022;--green:#34d399;--red:#f87171;--blue:#60a5fa;--purple:#a78bfa;--cyan:#22d3ee;--radius:6px;--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;--mono:'JetBrains Mono','Cascadia Code','Fira Code',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+.nav{display:flex;align-items:center;gap:2px;padding:0 20px;height:44px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-brand{font-weight:700;font-size:1.1rem;color:#fff;margin-right:24px;letter-spacing:-.02em;text-decoration:none}
+.nav-brand span{color:var(--accent)}
+.nav-link{padding:6px 14px;border-radius:var(--radius);color:var(--text-muted);text-decoration:none;font-size:.9rem;transition:all .15s}
+.nav-link:hover{color:var(--text);background:var(--surface2)}
+.nav-link.active{color:#fff;background:var(--accent-dim)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.live-text{font-size:.8rem;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.market-banner{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
+.mstat{background:var(--surface);padding:14px 20px;display:flex;flex-direction:column;gap:2px}
+.mstat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);font-weight:600}
+.mstat-value{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+.mstat-change{font-family:var(--mono);font-size:.8rem;font-weight:500}
+.mstat-change.up{color:var(--green)}.mstat-change.down{color:var(--red)}
+.mstat-loading{color:var(--text-dim);font-size:.75rem}
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:1px;background:var(--border);min-height:calc(100vh - 44px)}
+@media(max-width:900px){.main-grid{grid-template-columns:1fr}}
+.col-left,.col-right{background:var(--bg)}
+.col-left{padding:20px 24px;display:flex;flex-direction:column;gap:24px}
+.col-right{padding:20px;display:flex;flex-direction:column;gap:20px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);font-weight:700}
+.section-badge{font-size:.7rem;padding:3px 10px;border-radius:100px;background:var(--surface2);color:var(--text-muted);font-weight:600}
+.pulse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:700px){.pulse-grid{grid-template-columns:repeat(2,1fr)}}
+.pulse-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
+.pulse-card:hover{border-color:#2a2a3a}
+.pulse-card-top{display:flex;align-items:center;justify-content:space-between}
+.pulse-card-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+.pulse-card-icon.btc{background:#f7931a22;color:#f7931a}
+.pulse-card-icon.eth{background:#627eea22;color:#627eea}
+.pulse-card-icon.defi{background:#22d3ee22;color:var(--cyan)}
+.pulse-card-icon.stables{background:#34d39922;color:var(--green)}
+.pulse-card-icon.fgi{background:#a78bfa22;color:var(--purple)}
+.pulse-card-icon.vol{background:#f0a03022;color:var(--accent)}
+.pulse-card-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim)}
+.pulse-card-value{font-family:var(--mono);font-size:1.15rem;font-weight:700;color:#fff}
+.pulse-card-sub{font-family:var(--mono);font-size:.75rem;color:var(--text-muted)}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.filter-pill{padding:5px 14px;border-radius:100px;font-size:.75rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);transition:all .15s;font-weight:500}
+.filter-pill:hover{color:var(--text);border-color:#333}
+.filter-pill.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+.filter-count{font-size:.65rem;color:var(--text-dim);margin-left:2px}
+.signal-feed{display:flex;flex-direction:column}
+.signal-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);cursor:pointer}
+.signal-item:hover{background:var(--surface2);margin:0 -8px;padding:10px 8px;border-radius:4px}
+.signal-tag{font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border-radius:3px;font-weight:700;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.signal-tag.crypto{background:#f0a0301a;color:var(--accent)}
+.signal-tag.ai{background:#a78bfa1a;color:var(--purple)}
+.signal-tag.infosec{background:#f871711a;color:var(--red)}
+.signal-tag.macro{background:#60a5fa1a;color:var(--blue)}
+.signal-tag.web3{background:#22d3ee1a;color:var(--cyan)}
+.signal-tag.research{background:#34d3991a;color:var(--green)}
+.signal-body{flex:1;min-width:0}
+.signal-title{font-size:.88rem;line-height:1.4}
+.signal-meta{font-size:.7rem;color:var(--text-dim);margin-top:3px;display:flex;gap:10px}
+.digest-list{display:flex;flex-direction:column}
+.digest-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text)}
+.digest-item:hover{background:var(--surface2);margin:0 -8px;padding:10px 8px;border-radius:4px}
+.digest-item:last-child{border-bottom:none}
+.digest-source{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:3px;background:var(--surface2);color:var(--text-dim);white-space:nowrap;margin-top:1px;font-weight:600}
+.digest-source.crypto{background:#f0a03018;color:var(--accent)}
+.digest-source.ai{background:#a78bfa18;color:var(--purple)}
+.digest-source.infosec{background:#f8717118;color:var(--red)}
+.digest-source.macro{background:#60a5fa18;color:var(--blue)}
+.digest-source.web3{background:#22d3ee18;color:var(--cyan)}
+.digest-source.research{background:#34d39918;color:var(--green)}
+.digest-body{flex:1;min-width:0}
+.digest-title{font-size:.9rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.digest-meta{font-size:.7rem;color:var(--text-dim);margin-top:3px;display:flex;gap:10px}
+.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.sidebar-card h3{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:12px;font-weight:700}
+.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.featured-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-decoration:none;color:var(--text);transition:border-color .15s}
+.featured-card:hover{border-color:#2a2a3a}
+.featured-card h4{font-size:.85rem;line-height:1.3;margin-bottom:6px}
+.featured-card .meta{font-size:.65rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.empty-state{text-align:center;padding:40px;color:var(--text-dim);font-size:.85rem}
+.status-bar{display:flex;align-items:center;gap:16px;padding:8px 20px;font-size:.7rem;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface)}
+.status-bar .dot{width:5px;height:5px;border-radius:50%}
+.status-bar .dot.ok{background:var(--green)}.status-bar .dot.warn{background:var(--accent)}
+.picks-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.pick-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);text-decoration:none;color:var(--text)}
+.pick-item:hover{border-color:#2a2a3a}
+.pick-rank{font-size:.7rem;color:var(--text-dim);width:16px;font-weight:700;text-align:right;flex-shrink:0}
+.pick-body{flex:1;min-width:0}
+.pick-title{font-size:.85rem;line-height:1.3}
+.pick-meta{font-size:.65rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.shortcut{font-size:.75rem;padding:4px 10px;border-radius:100px;background:var(--surface2);color:var(--text-muted);text-decoration:none}
+.shortcut:hover{color:var(--text);background:var(--border)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:#2a2a3a;border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/website-private/" class="nav-brand">Δ<span>V</span></a>
+  <a href="/website-private/ai" class="nav-link">AI</a>
+  <a href="/website-private/web3" class="nav-link">Web3</a>
+  <a href="/website-private/forge" class="nav-link">Forge</a>
+  <a href="/website-private/blog" class="nav-link">Blog</a>
+  <a href="/website-private/intelhub" class="nav-link active">IntelHub</a>
+  <a href="/website-private/contact" class="nav-link">Contact</a>
+  <div class="nav-right">
+    <div class="live-dot" id="liveDot"></div>
+    <span class="live-text">Live</span>
+  </div>
+</nav>
+
+<div class="market-banner" id="marketBanner">
+  <div class="mstat"><span class="mstat-label">Total Market Cap</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+  <div class="mstat"><span class="mstat-label">24h Volume</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+  <div class="mstat"><span class="mstat-label">BTC Dominance</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+  <div class="mstat"><span class="mstat-label">DeFi TVL</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+  <div class="mstat"><span class="mstat-label">Stablecoin MCap</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+  <div class="mstat"><span class="mstat-label">ETH Price</span><span class="mstat-value mstat-loading">—</span><span class="mstat-change"></span></div>
+</div>
+
+<div class="main-grid">
+  <div class="col-left">
+    <div id="topPicksSection">
+      <div class="section-header"><span class="section-title">▸ Top Picks</span><span class="section-badge" id="picksCount">0</span></div>
+      <div class="picks-grid" id="topPicks"></div>
+    </div>
+    <div id="featuredSection">
+      <div class="section-header"><span class="section-title">▸ Featured Research</span><span class="section-badge" id="researchCount">0</span></div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </div>
+    <div>
+      <div class="section-header"><span class="section-title">▸ Core Pulse</span><span class="section-badge" id="pulseUpdated">loading…</span></div>
+      <div class="pulse-grid" id="pulseGrid">
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon btc">₿</span><span class="pulse-card-label">Bitcoin</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon eth">Ξ</span><span class="pulse-card-label">Ethereum</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon defi">▹</span><span class="pulse-card-label">DeFi TVL</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon stables">$</span><span class="pulse-card-label">Stables MCap</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon fgi">☯</span><span class="pulse-card-label">Fear & Greed</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+        <div class="pulse-card"><div class="pulse-card-top"><span class="pulse-card-icon vol">⌘</span><span class="pulse-card-label">24h Vol</span></div><span class="pulse-card-value mstat-loading">—</span><span class="pulse-card-sub"></span></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-header"><span class="section-title">▸ Signal Feed</span><span class="section-badge" id="signalCount">0 signals</span></div>
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-pill active" data-filter="all">All<span class="filter-count"></span></button>
+        <button class="filter-pill" data-filter="crypto">Crypto<span class="filter-count"></span></button>
+        <button class="filter-pill" data-filter="ai">AI<span class="filter-count"></span></button>
+        <button class="filter-pill" data-filter="infosec">InfoSec<span class="filter-count"></span></button>
+        <button class="filter-pill" data-filter="macro">Macro<span class="filter-count"></span></button>
+        <button class="filter-pill" data-filter="research">Research<span class="filter-count"></span></button>
+      </div>
+      <div class="signal-feed" id="signalFeed"></div>
+    </div>
+  </div>
+  <div class="col-right">
+    <div class="sidebar-card"><h3>📋 Daily Digest</h3><div class="digest-list" id="digestList"></div></div>
+    <div class="sidebar-card"><h3>🔥 Top Movers 24h</h3><div class="digest-list" id="topMovers"></div></div>
+    <div class="sidebar-card"><h3>📐 Artemis Research</h3><div class="digest-list" id="artemisDigest"></div></div>
+    <div class="sidebar-card"><h3>⌕ Shortcuts</h3><div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://defillama.com/" target="_blank" class="shortcut">DeFiLlama</a>
+        <a href="https://www.coingecko.com/" target="_blank" class="shortcut">CoinGecko</a>
+        <a href="https://pharos.watch/" target="_blank" class="shortcut">Pharos</a>
+        <a href="https://l2beat.com/" target="_blank" class="shortcut">L2Beat</a>
+        <a href="https://cryptoquant.com/" target="_blank" class="shortcut">CryptoQuant</a>
+        <a href="https://artemis.ai" target="_blank" class="shortcut">Artemis</a>
+    </div></div>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span class="dot ok"></span> CoinGecko
+  <span class="dot ok" id="defiStatus"></span> DeFiLlama
+  <span class="dot ok" id="pipelineStatus"></span> Pipeline
+  <span style="margin-left:auto;" id="lastUpdated">—</span>
+</div>
+
+<script>
+const CG_BASE='https://api.coingecko.com/api/v3';
+const DL_BASE='https://api.llama.fi';
+const BASE='/website-private';
+const fmt=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',notation:'compact',maximumFractionDigits:2});
+const fmtPct=n=>(n>=0?'+':'')+n.toFixed(1)+'%';
+const fmtBtc=n=>'$'+n.toLocaleString('en-US',{maximumFractionDigits:0});
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+let SIGNALS=[],PICKS=[],ARTEMIS=[];
+
+async function loadPipeline(){
+ try{
+  const[rawRes,picksRes,artRes]=await Promise.all([fetch(BASE+'/data/raw-items.json'),fetch(BASE+'/data/picks.json'),fetch(BASE+'/data/artemis-research.json')]);
+  if(rawRes.ok){const j=await rawRes.json();if(Array.isArray(j))SIGNALS=j}
+  if(picksRes.ok){const j=await picksRes.json();if(Array.isArray(j))PICKS=j}
+  if(artRes.ok){const j=await artRes.json();if(Array.isArray(j))ARTEMIS=j}
+  document.getElementById('pipelineStatus').className='dot ok';
+ }catch(e){document.getElementById('pipelineStatus').className='dot warn';console.warn(e)}
+ renderPicks();renderResearch();renderSignals();renderDigest();renderArtemisDigest();
+}
+
+function guessTag(i){
+ const t=((i.title||'')+' '+(i.summary||'')).toLowerCase();
+ const s=(i.source||'').toLowerCase();
+ if(/btc|bitcoin|eth|ethereum|defi|web3|crypto|blockchain|nft|airdrop|token|tvl|cex|dex|l2|rollup|solana|stablecoin|lookonchain|cryptoquant|glassnode/.test(t))return'crypto';
+ if(/gpt|llm|transformer|neural|ai|model|agent|openai|claude|deepseek|mistral|hugging|inference/.test(t))return'ai';
+ if(/cve|exploit|malware|ransomware|breach|vulnerability|opsec|hack|phishing|patch|0day|backdoor|security|cisa/.test(t))return'infosec';
+ if(/fomc|inflation|gdp|fed|treasury|bond|commodity|forex|recession|tariff|macro/.test(t))return'macro';
+ if(/pharos|defillama|artemis|research|report|analysis/.test(t))return'research';
+ if(s.includes('crypto')||s.includes('coin')||s.includes('lookonchain')||s.includes('cryptoquant'))return'crypto';
+ if(s.includes('hacker')||s.includes('security')||s.includes('bleeping'))return'infosec';
+ return'macro';
+}
+
+function relTime(d){
+ if(!d)return'';
+ const t=new Date(d);if(isNaN(t.getTime()))return d;
+ const m=Math.floor((Date.now()-t)/60000);
+ if(m<1)return'just now';if(m<60)return m+'m';if(m<1440)return Math.floor(m/60)+'h';
+ return Math.floor(m/1440)+'d';
+}
+
+function renderPicks(){
+ const c=document.getElementById('topPicks');
+ document.getElementById('picksCount').textContent=PICKS.length;
+ if(!PICKS.length){c.innerHTML='<div class="empty-state">No picks from chiefstaff yet.</div>';return}
+ c.innerHTML=PICKS.slice(0,5).map((p,i)=>{
+  const t=p.title||p.name||'';
+  const r=p.reason||p.summary||p.tag||'';
+  return'<a href="'+esc(p.link||'#')+'" target="_blank" class="pick-item"><span class="pick-rank">#'+(i+1)+'</span><span class="pick-body"><div class="pick-title">'+esc(t)+'</div>'+(r?'<div class="pick-meta">'+esc(r)+'</div>':'')+'</span></a>';
+ }).join('');
+}
+
+function renderResearch(){
+ const c=document.getElementById('featuredGrid');
+ document.getElementById('researchCount').textContent=ARTEMIS.length;
+ if(!ARTEMIS.length){c.innerHTML='<div class="empty-state">No research loaded.</div>';return}
+ c.innerHTML=ARTEMIS.slice(0,4).map(a=>{
+  const t=a.title||'',cat=(a.category||'').toUpperCase().substring(0,12),au=a.author||'';
+  return'<a href="'+esc(a.link||'#')+'" target="_blank" class="featured-card"><h4>'+esc(t)+'</h4><div class="meta">'+esc(cat)+(au?' · '+esc(au):'')+'</div></a>';
+ }).join('');
+}
+
+let activeFilter='all';
+
+function renderSignals(){
+ const items=[...SIGNALS.map(s=>({title:s.title||'',source:s.source||'',tag:guessTag(s),url:s.link||'#',time:s.date||s.pubDate||'',o:'pipeline'})),...ARTEMIS.slice(0,15).map(a=>({title:a.title||'',source:a.author||'Artemis',tag:'research',url:a.link||'#',time:a.date||'',o:'artemis'}))];
+ const f=activeFilter==='all'?items:items.filter(s=>s.tag===activeFilter);
+ f.sort((a,b)=>new Date(b.time)-new Date(a.time));
+ document.getElementById('signalCount').textContent=items.length+' signals';
+ document.getElementById('signalFeed').innerHTML=f.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener" class="signal-item"><span class="signal-tag '+s.tag+'">'+s.tag+'</span><span class="signal-body"><span class="signal-title">'+esc(s.title)+'</span><span class="signal-meta"><span>'+esc(s.source)+'</span><span>'+relTime(s.time)+'</span></span></span></a>').join('')||'<div class="empty-state">No signals in this filter.</div>';
+ document.querySelectorAll('.filter-pill').forEach(p=>{
+  const f=p.dataset.filter;
+  const n=f==='all'?items.length:items.filter(s=>s.tag===f).length;
+  p.querySelector('.filter-count').textContent=n;
+ });
+}
+
+document.getElementById('filterBar').addEventListener('click',e=>{
+ const p=e.target.closest('.filter-pill');if(!p)return;
+ document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+ p.classList.add('active');activeFilter=p.dataset.filter;renderSignals();
+});
+
+function renderDigest(){
+ const c=document.getElementById('digestList');
+ if(!SIGNALS.length){c.innerHTML='<div class="empty-state">No digest.</div>';return}
+ c.innerHTML=SIGNALS.slice(0,5).map(s=>{
+  const t=guessTag(s);
+  return'<a href="'+esc(s.link||'#')+'" target="_blank" rel="noopener" class="digest-item"><span class="digest-source '+t+'">'+t+'</span><span class="digest-body"><span class="digest-title">'+esc(s.title||'')+'</span><span class="digest-meta">'+esc(s.source||'')+' · '+relTime(s.date||s.pubDate)+'</span></span></a>';
+ }).join('');
+}
+
+function renderArtemisDigest(){
+ const c=document.getElementById('artemisDigest');
+ if(!ARTEMIS.length){c.innerHTML='<div class="empty-state">No research articles.</div>';return}
+ c.innerHTML=ARTEMIS.slice(0,4).map(a=>'<a href="'+esc(a.link||'#')+'" target="_blank" rel="noopener" class="digest-item"><span class="digest-source research">res</span><span class="digest-body"><span class="digest-title">'+esc(a.title||'')+'</span><span class="digest-meta">'+esc(a.author||'Artemis')+' · '+relTime(a.date)+'</span></span></a>').join('');
+}
+
+function setBanner(el,val,chg){
+ el.querySelector('.mstat-value').textContent=val||'—';
+ el.querySelector('.mstat-value').classList.remove('mstat-loading');
+ if(chg!=null){
+  const c=el.querySelector('.mstat-change');
+  c.textContent=fmtPct(chg);c.className='mstat-change '+(chg>=0?'up':'down');
+ }
+}
+function setPulse(idx,val,sub){
+ const d=document.getElementById('pulseGrid').children;
+ if(idx>=d.length)return;
+ d[idx].querySelector('.pulse-card-value').textContent=val;
+ d[idx].querySelector('.pulse-card-value').classList.remove('mstat-loading');
+ if(sub)d[idx].querySelector('.pulse-card-sub').textContent=sub;
+}
+
+async function loadGlobal(){
+ try{
+  const r=await fetch(CG_BASE+'/global');if(!r.ok)throw new Error('CG '+r.status);
+  const d=(await r.json()).data;
+  const b=document.getElementById('marketBanner').children;
+  setBanner(b[0],fmt.format(d.total_market_cap.usd),d.market_cap_change_percentage_24h_usd);
+  setBanner(b[1],fmt.format(d.total_volume.usd),null);
+  setBanner(b[2],d.market_cap_percentage.btc.toFixed(1)+'%',null);
+  setPulse(5,fmt.format(d.total_volume.usd),'');
+  await loadCoins();
+ }catch(e){console.warn('CG global failed:',e)}
+}
+
+async function loadCoins(){
+ try{
+  const r=await fetch(CG_BASE+'/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true');
+  if(!r.ok)throw new Error('CG '+r.status);
+  const d=await r.json();
+  setPulse(0,fmtBtc(d.bitcoin.usd),fmtPct(d.bitcoin.usd_24h_change||0));
+  setPulse(1,fmt.format(d.ethereum.usd),fmtPct(d.ethereum.usd_24h_change||0));
+  setBanner(document.getElementById('marketBanner').children[5],fmt.format(d.ethereum.usd),d.ethereum.usd_24h_change||0);
+  loadFG();
+ }catch(e){console.warn('Coin data failed:',e)}
+}
+
+async function loadFG(){
+ try{
+  const r=await fetch('https://api.alternative.me/fng/?limit=1');
+  if(!r.ok)throw new Error('FNG '+r.status);
+  const d=await r.json();
+  setPulse(4,d.data[0].value,d.data[0].value_classification||'');
+ }catch(e){setPulse(4,'—','')}
+}
+
+async function loadDefi(){
+ try{
+  const r=await fetch(DL_BASE+'/v2/chains',{mode:'cors'});
+  if(!r.ok)throw new Error('DL '+r.status);
+  const ch=await r.json();let t=0;
+  for(const c of ch)if(c.tvl&&typeof c.tvl==='number')t+=c.tvl;
+  setBanner(document.getElementById('marketBanner').children[3],fmt.format(t),null);
+  setPulse(2,fmt.format(t),'');
+  document.getElementById('defiStatus').className='dot ok';
+ }catch(e){console.warn('DeFiLlama failed:',e);document.getElementById('defiStatus').className='dot warn'}
+}
+
+async function loadTrending(){
+ try{
+  const r=await fetch(CG_BASE+'/search/trending');
+  if(!r.ok)throw new Error('CG trending '+r.status);
+  const d=await r.json();
+  document.getElementById('topMovers').innerHTML=d.coins.slice(0,6).map(c=>{
+   const i=c.item;
+   const chg=i.data?.price_change_percentage_24h?.usd;
+   const cs=chg!=null?fmtPct(chg):'';
+   const cc=chg!=null?(chg>=0?'up':'down'):'';
+   return'<a href="https://www.coingecko.com/en/coins/'+i.id+'" target="_blank" class="digest-item" style="padding:6px 0;"><span style="font-size:0.75rem;color:var(--text-dim);width:16px;text-align:right;flex-shrink:0;">'+(i.market_cap_rank||'—')+'</span><span class="digest-body"><span class="digest-title" style="font-size:0.82rem;">'+esc(i.name)+' <span style="color:var(--text-dim);font-size:0.7rem;">'+i.symbol+'</span></span>'+(cs?'<span class="digest-meta"><span class="mstat-change '+cc+'">'+cs+'</span></span>':'')+'</span></a>';
+  }).join('');
+ }catch(e){document.getElementById('topMovers').innerHTML='<div class="empty-state">unavailable</div>'}
+}
+
+function updateTime(){
+ document.getElementById('lastUpdated').textContent='Updated '+new Date().toLocaleTimeString();
+ document.getElementById('pulseUpdated').textContent='live';
+}
+
+async function init(){
+ await loadPipeline();
+ await Promise.allSettled([loadGlobal(),loadDefi(),loadTrending()]);
+ updateTime();
+}
+init();
+setInterval(()=>{loadGlobal();loadDefi();loadTrending();updateTime()},300000);
+</script>
+</body>
+</html>
