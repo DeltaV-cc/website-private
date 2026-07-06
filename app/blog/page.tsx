@@ -21,6 +21,22 @@ const posts = [
     slug: "vllm-semantic-router-mixture-of-models"
   },
   {
+    title: "GitHub Security Audit: Find Leaked Secrets, Overprivileged CI/CD, and Fake Contributors in 30 Minutes",
+    date: "July 1, 2026",
+    category: "OpSec",
+    type: "Tutorial",
+    excerpt: "Your GitHub org is the front door to your codebase. A complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles in their DevSecOps toolkit.",
+    slug: "github-security-audit-tutorial"
+  },
+  {
+    title: "CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts Through Your Own Workflows",
+    date: "July 1, 2026",
+    category: "OpSec",
+    type: "Tutorial",
+    excerpt: "Your CI/CD pipeline has access to deployer keys, RPC endpoints, and production infrastructure. Lock it down with Checkov, Semgrep, Octoscan, and opsec patterns that actually work.",
+    slug: "cicd-pipeline-hardening-web3"
+  },
+  {
     title: "NVIDIA's Fast FoundationStereo: The Compression-to-Edge Pipeline Goes Visual",
     date: "June 26, 2026",
     category: "AI",
