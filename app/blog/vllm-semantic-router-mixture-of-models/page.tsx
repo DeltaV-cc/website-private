@@ -10,7 +10,7 @@ export default function VLLMSemanticRouterPost() {
       excerpt="Hugging Face community project vLLM Semantic Router (vLLM-SR) introduces a signal-driven Mixture-of-Models (MoM) router. 16 signal families and 12 routing strategies intelligently direct LLM requests to the optimal model based on intent, cost, latency, safety, and privacy."
       readingTime="8 min"
       sourceUrl="https://huggingface.co/llm-semantic-router"
-      sourceName="Hugging Face • vLLM Semantic Router"
+      sourceLabel="Hugging Face · vLLM Semantic Router"
     >
       <p>
         Clement Delangue (Hugging Face CEO) highlighted the project on X, pointing to the community org <a href="https://huggingface.co/llm-semantic-router" target="_blank" rel="noopener noreferrer">llm-semantic-router</a> — an open-source LLM router built for vLLM that treats inference as a routed, intent-aware system rather than a monolithic call.
