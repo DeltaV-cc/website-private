@@ -29,7 +29,14 @@ def should_skip(path):
 def fix_html(content):
     def repl(m):
         href = m.group(1)
-        return m.group(0) if should_skip(href) else f'href="{BASE_PATH}/{href}"'
+        if should_skip(href):
+            return m.group(0)
+        # Add basePath
+        new_href = f'{BASE_PATH}/{href}'
+        # Add trailing slash for internal routes (no file extension, not empty, not already ending with /)
+        if new_href != f'{BASE_PATH}/' and '/' not in new_href.rsplit('/', 1)[-1] and not new_href.endswith('/'):
+            new_href += '/'
+        return f'href="{new_href}"'
     return re.sub(r'href="/([^"]*)"', repl, content)
 
 def fix_js(content):
