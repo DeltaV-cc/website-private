@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 
 const NAV_ITEMS = [
-  { href: '/ai', label: 'AI' },
-  { href: '/web3', label: 'Web3' },
-  { href: '/forge', label: 'Forge' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/intelhub', label: 'IntelHub' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/ai/', label: 'AI' },
+  { href: '/web3/', label: 'Web3' },
+  { href: '/forge/', label: 'Forge' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/intelhub/', label: 'IntelHub' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 export default function Navbar() {

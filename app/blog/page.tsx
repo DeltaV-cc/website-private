@@ -217,7 +217,7 @@ export default function Blog() {
             filteredPosts.map((post, index) => (
               <a
                 key={index}
-                href={post.slug !== '#' ? `/blog/${post.slug}` : '#'}
+                href={post.slug !== '#' ? `/blog/${post.slug}/` : '#'}
                 className={`block border border-[#222] rounded-2xl p-6 transition-all duration-200 ${
                   post.slug !== '#' 
                     ? 'hover:border-[#00f0ff] hover:bg-[#111] group cursor-pointer' 
