@@ -1,12 +1,24 @@
 /* ================================================================
-   IntelHub — Macro Dashboard tab
-   Compact F&G in Market box · CSI1000 · Fixed Forex
+   IntelHub — Macro Dashboard (v3)
+   USD/XXX Forex w/ 1M/1Y/10Y · Consolidated Market · Compact Patents
    ================================================================ */
 'use client';
 
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import { TileBox, CategoryBox } from './Shared';
+import { CategoryBox } from './Shared';
+
+function fmtPct(v: number | null): string {
+  if (v === null || v === undefined) return '···';
+  const s = v >= 0 ? '+' : '';
+  return `${s}${v.toFixed(1)}%`;
+}
+
+function Pct({ v }: { v: number | null }) {
+  if (v === null || v === undefined) return <span className="text-[#ededed]/15 tabular-nums">···</span>;
+  const color = v >= 0 ? 'text-emerald-400' : 'text-red-400';
+  return <span className={`${color} tabular-nums`}>{fmtPct(v)}</span>;
+}
 
 export default function MacroDashboard({
   items, dd, patents, forex, catBoxes, TC, ago, fmt, fmtN,
@@ -17,111 +29,121 @@ export default function MacroDashboard({
 }) {
   const fgVal = dd?.fearGreed?.data?.[0] ? Number(dd.fearGreed.data[0].value) || 0 : 0;
   const fgLabel = dd?.fearGreed?.data?.[0]?.value_classification || '';
-  const macroCats = catBoxes.filter((c: any) => ['macro', 'science'].includes(c.id));
   const spx = dd?.indices?.spx;
   const csi = dd?.indices?.csi;
+  const macroCat = catBoxes.find((c: any) => c.id === 'macro');
+  const sciCat = catBoxes.find((c: any) => c.id === 'science');
+  const forexPairs = forex && typeof forex === 'object' && !forex.rates
+    ? ['EUR', 'JPY', 'GBP', 'CHF', 'CNY'].map(k => ({ label: k, ...(forex[k] || {}) }))
+    : [];
 
   return (
     <div className="space-y-4">
-      {/* ── Top row: Market (with inline F&G) + Forex + Indices ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-        {/* Market Movers — with inline F&G mini-gauge */}
-        <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
-          <div className="px-4 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between">
-            <span className="text-xs text-cyan-400 uppercase tracking-[.15em] font-bold">Market</span>
-            <div className="flex items-center gap-3">
-              {/* F&G inline */}
-              <div className="flex items-center gap-1.5">
-                <div className="relative w-4 h-8 bg-gradient-to-t from-red-500/30 via-amber-500/30 to-emerald-500/30 rounded-full overflow-hidden">
-                  <div className="absolute left-0 right-0 h-[3px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.6)] rounded-full"
-                    style={{ bottom: `${Math.max(3, Math.min(97, fgVal))}%` }} />
-                </div>
-                <div className="text-right leading-tight">
-                  <div className={`text-xs font-bold ${fgVal > 60 ? 'text-emerald-400' : fgVal < 35 ? 'text-red-400' : 'text-amber-400'}`}>
-                    {fgVal || '--'}
-                  </div>
-                  <div className="text-[9px] text-[#ededed]/25">{fgLabel || '...'}</div>
-                </div>
+      {/* ── Consolidated Market + Indices + F&G ── */}
+      <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
+          <span className="text-xs text-cyan-400 uppercase tracking-[.15em] font-bold">Market</span>
+          <div className="flex items-center gap-4">
+            {/* F&G inline */}
+            <div className="flex items-center gap-1.5">
+              <div className="relative w-3 h-6 bg-gradient-to-t from-red-500/30 via-amber-500/30 to-emerald-500/30 rounded-full overflow-hidden">
+                <div className="absolute left-0 right-0 h-[2px] bg-white rounded-full"
+                  style={{ bottom: `${Math.max(3, Math.min(97, fgVal))}%` }} />
               </div>
+              <span className={`text-[10px] font-bold ${fgVal > 60 ? 'text-emerald-400' : fgVal < 35 ? 'text-red-400' : 'text-amber-400'}`}>
+                {fgVal || '--'}
+              </span>
             </div>
           </div>
-          <div className="divide-y divide-white/[0.02]">
-            {patents?.marketMovers?.length ? (
-              patents.marketMovers.map((m: any, i: number) => (
-                <div key={i} className="px-4 py-2.5 flex items-center justify-between text-sm">
-                  <span className="text-[#ededed]/60 truncate mr-2 font-medium">{m.name}</span>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-[#ededed]/70 tabular-nums font-semibold">{m.value}</span>
-                    <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${m.dir === 'up' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-red-500/15 text-red-400'}`}>
+        </div>
+        {/* SPX + CSI + Market Movers in one grid */}
+        <div className="grid grid-cols-4 gap-0 divide-x divide-white/[0.04]">
+          {/* SPX */}
+          <div className="px-4 py-3">
+            <div className="text-[10px] text-[#ededed]/30 mb-0.5">S&P 500</div>
+            <div className="text-sm font-semibold text-[#ededed]/80 tabular-nums">{spx?.price || '...'}</div>
+            <div className={`text-[10px] font-semibold mt-0.5 ${(spx?.change || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+              {spx?.changePct || '...'} <span className="text-[#ededed]/20 font-normal">1D</span>
+            </div>
+          </div>
+          {/* CSI 1000 */}
+          <div className="px-4 py-3">
+            <div className="text-[10px] text-[#ededed]/30 mb-0.5">CSI 1000</div>
+            <div className="text-sm font-semibold text-[#ededed]/80 tabular-nums">{csi?.price || '...'}</div>
+            <div className={`text-[10px] font-semibold mt-0.5 ${(csi?.change || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+              {csi?.changePct || '...'} <span className="text-[#ededed]/20 font-normal">1D</span>
+            </div>
+          </div>
+          {/* Market Movers (compact) */}
+          <div className="px-4 py-3 col-span-2">
+            <div className="text-[10px] text-[#ededed]/30 mb-2">Movers (24h)</div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+              {patents?.marketMovers?.length ? (
+                patents.marketMovers.slice(0, 6).map((m: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between text-[11px]">
+                    <span className="text-[#ededed]/50 truncate mr-1">{m.name}</span>
+                    <span className={`font-semibold tabular-nums ${m.dir === 'up' ? 'text-emerald-400' : 'text-red-400'}`}>
                       {m.change}
                     </span>
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className="px-4 py-8 text-sm text-[#ededed]/20 italic text-center">Awaiting data...</div>
-            )}
-          </div>
-        </div>
-
-        {/* Forex — proper display with rates */}
-        <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4">
-          <div className="text-xs text-sky-400 uppercase tracking-[.1em] font-bold mb-3">Forex (vs USD)</div>
-          <div className="space-y-2">
-            {(() => {
-              const pairs = [
-                { l: 'EUR/USD', v: forex?.rates?.EUR ? (1 / forex.rates.EUR) : 0, p: forex?.rates?.EUR, inv: true },
-                { l: 'USD/JPY', v: forex?.rates?.JPY || 0, p: forex?.rates?.JPY },
-                { l: 'GBP/USD', v: forex?.rates?.GBP ? (1 / forex.rates.GBP) : 0, p: forex?.rates?.GBP, inv: true },
-                { l: 'USD/CHF', v: forex?.rates?.CHF || 0, p: forex?.rates?.CHF },
-                { l: 'USD/CNY', v: forex?.rates?.CNY || 0, p: forex?.rates?.CNY },
-              ];
-              return pairs.map((p, i) => (
-                <div key={i} className="flex items-center justify-between text-[11px]">
-                  <span className="text-[#ededed]/60 w-16 truncate">{p.l}</span>
-                  <span className={`tabular-nums font-semibold ${p.p ? 'text-[#ededed]/80' : 'text-[#ededed]/20'}`}>
-                    {p.p ? p.v.toFixed(p.v > 100 ? 2 : 4) : '...'}
-                  </span>
-                  <span className="text-[9px] text-[#ededed]/25 w-10 text-right">live</span>
-                </div>
-              ));
-            })()}
-          </div>
-        </div>
-
-        {/* Indices — SPX + CSI1000 */}
-        <div className="rounded-2xl border border-[#222] bg-white/[0.01] p-4 flex flex-col justify-center">
-          <div className="text-xs text-amber-400 uppercase tracking-[.1em] font-bold mb-3">Indices</div>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-[#ededed]/60">S&P 500</span>
-              <span className="text-sm text-[#ededed]/80 tabular-nums font-semibold">{spx?.price || '...'}</span>
-              <span className={`text-xs font-semibold ${(spx?.change || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                {spx?.changePct || '...'}
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-[#ededed]/60">CSI 1000</span>
-              <span className="text-sm text-[#ededed]/80 tabular-nums font-semibold">{csi?.price || '...'}</span>
-              <span className={`text-xs font-semibold ${(csi?.change || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                {csi?.changePct || '...'}
-              </span>
+                ))
+              ) : (
+                <div className="text-[#ededed]/15 italic col-span-2">Awaiting data...</div>
+              )}
             </div>
           </div>
-          <div className="text-[9px] text-[#ededed]/20 mt-3">Yahoo Finance · delayed</div>
         </div>
       </div>
 
-      {/* ── Patent Landscape (compact + market caps) ── */}
-      {patents && <PatentsTable patents={patents} />}
-
-      {/* ── Category boxes ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {macroCats.map((cat: any) => (
-          <CategoryBox key={cat.id} cat={cat} ago={ago} TC={TC} />
-        ))}
+      {/* ── Forex: USD/XXX with 1M / 1Y / 10Y ── */}
+      <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-[#222] bg-[#111]">
+          <span className="text-xs text-sky-400 uppercase tracking-[.1em] font-bold">Forex (vs USD)</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-[11px]">
+            <thead>
+              <tr className="text-[#ededed]/25 uppercase tracking-wider border-b border-white/[0.03]">
+                <th className="text-left px-4 py-2 font-semibold">Pair</th>
+                <th className="text-right px-3 py-2 font-semibold">Rate</th>
+                <th className="text-right px-3 py-2 font-semibold">Day</th>
+                <th className="text-right px-3 py-2 font-semibold">1M</th>
+                <th className="text-right px-3 py-2 font-semibold">1Y</th>
+                <th className="text-right px-3 py-2 font-semibold">10Y</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/[0.02]">
+              {forexPairs.length > 0 ? forexPairs.map((p: any, i: number) => (
+                <tr key={i} className="hover:bg-white/[0.02]">
+                  <td className="px-4 py-2 text-[#ededed]/60 font-medium">USD/{p.label}</td>
+                  <td className="px-3 py-2 text-right text-[#ededed]/80 font-semibold tabular-nums">{p.rateStr || '...'}</td>
+                  <td className="px-3 py-2 text-right"><Pct v={p.chgPct ? parseFloat(p.chgPct) : null} /></td>
+                  <td className="px-3 py-2 text-right"><Pct v={p.p1M} /></td>
+                  <td className="px-3 py-2 text-right"><Pct v={p.p1Y} /></td>
+                  <td className="px-3 py-2 text-right"><Pct v={p.p10Y} /></td>
+                </tr>
+              )) : (
+                <tr><td colSpan={6} className="px-4 py-6 text-center text-[#ededed]/15 italic">Loading forex data...</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      {/* ── Patents + Macro Feed side by side ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Patents (takes 2/3) */}
+        <div className="md:col-span-2">
+          {patents && <PatentsTable patents={patents} />}
+        </div>
+        {/* Macro feed (takes 1/3) */}
+        <div>
+          {macroCat && <CategoryBox cat={macroCat} ago={ago} TC={TC} compact />}
+        </div>
+      </div>
+
+      {/* ── Science category ── */}
+      {sciCat && <CategoryBox cat={sciCat} ago={ago} TC={TC} />}
     </div>
   );
 }

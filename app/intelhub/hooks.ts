@@ -285,9 +285,50 @@ export function useIntelData() {
   }, []);
 
   const loadForex = useCallback(async () => {
+    const pairs = [
+      { symbol: 'EURUSD=X', label: 'EUR', usdLeft: true },
+      { symbol: 'USDJPY=X', label: 'JPY' },
+      { symbol: 'GBPUSD=X', label: 'GBP', usdLeft: true },
+      { symbol: 'USDCHF=X', label: 'CHF' },
+      { symbol: 'USDCNY=X', label: 'CNY' },
+    ];
     try {
-      const r = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-      if (r.ok) setForex(await r.json());
+      const results: any = {};
+      for (const p of pairs) {
+        try {
+          const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${p.symbol}?interval=1d&range=10y`);
+          if (r.ok) {
+            const d = await r.json();
+            const meta = d?.chart?.result?.[0]?.meta;
+            const quotes = d?.chart?.result?.[0]?.indicators?.quote?.[0];
+            const timestamps = d?.chart?.result?.[0]?.timestamp;
+            if (meta && quotes && timestamps) {
+              const now = meta.regularMarketPrice;
+              const closes = quotes.close.filter((c: any) => c !== null);
+              const ts = timestamps.filter((_: any, i: number) => quotes.close[i] !== null);
+              const findClose = (daysBack: number) => {
+                const cutoff = (Date.now() / 1000) - (daysBack * 86400);
+                for (let i = ts.length - 1; i >= 0; i--) {
+                  if (ts[i] <= cutoff) return closes[i];
+                }
+                return closes[0];
+              };
+              const m1 = findClose(22);
+              const y1 = findClose(252);
+              const y10 = closes[0];
+              const pct = (prev: number) => prev ? ((now - prev) / prev * 100) : null;
+              results[p.label] = {
+                rate: p.usdLeft ? (1 / now) : now,
+                rateStr: p.usdLeft ? (1 / now).toFixed(4) : now.toFixed(2),
+                chg: meta.regularMarketPrice - meta.previousClose,
+                chgPct: ((meta.regularMarketPrice - meta.previousClose) / meta.previousClose * 100).toFixed(2) + '%',
+                p1M: pct(m1), p1Y: pct(y1), p10Y: pct(y10),
+              };
+            }
+          }
+        } catch { /* */ }
+      }
+      if (Object.keys(results).length > 0) setForex(results);
     } catch { /* */ }
   }, []);
 

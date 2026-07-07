@@ -113,17 +113,20 @@ export function BarChart({
 
 /* ── CategoryBox ── */
 export function CategoryBox({
-  cat, ago, TC,
+  cat, ago, TC, compact,
 }: {
-  cat: any; ago: (iso: string) => string; TC: Record<string, string>;
+  cat: any; ago: (iso: string) => string; TC: Record<string, string>; compact?: boolean;
 }) {
+  const maxH = compact ? 'max-h-[320px]' : 'max-h-[260px]';
+  const px = compact ? 'px-3' : 'px-4';
+  const py = compact ? 'py-1.5' : 'py-2.5';
   return (
     <div className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-      <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
+      <div className={`${px} ${py} border-b border-[#222] bg-[#111] flex items-center justify-between`}>
         <span className={`text-sm font-semibold ${cat.accent}`}>{cat.label}</span>
         <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span>
       </div>
-      <div className="divide-y divide-white/[0.02] max-h-[260px] overflow-y-auto scrollbar-hide">
+      <div className={`divide-y divide-white/[0.02] ${maxH} overflow-y-auto scrollbar-hide`}>
         {cat.items.length === 0 ? (
           <div className="px-4 py-6 text-xs text-[#ededed]/10 italic text-center">no signals</div>
         ) : (
@@ -133,9 +136,9 @@ export function CategoryBox({
               href={it.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-4 py-2.5 hover:bg-white/[0.03] group"
+              className={`block ${px} ${py} hover:bg-white/[0.03] group`}
             >
-              <div className="text-xs font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2">{it.title}</div>
+              <div className={`${compact ? 'text-[11px]' : 'text-xs'} font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2`}>{it.title}</div>
               <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
                 <span className="truncate max-w-[80px]">{it.source}</span>
                 <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
