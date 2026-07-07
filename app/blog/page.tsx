@@ -23,7 +23,7 @@ const posts = [
   {
     title: "GitHub Security Audit: Find Leaked Secrets, Overprivileged CI/CD, and Fake Contributors in 30 Minutes",
     date: "July 1, 2026",
-    category: "OpSec",
+    category: "Tutorial",
     type: "Tutorial",
     excerpt: "Your GitHub org is the front door to your codebase. A complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles in their DevSecOps toolkit.",
     slug: "github-security-audit-tutorial"
@@ -31,7 +31,7 @@ const posts = [
   {
     title: "CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts Through Your Own Workflows",
     date: "July 1, 2026",
-    category: "OpSec",
+    category: "Tutorial",
     type: "Tutorial",
     excerpt: "Your CI/CD pipeline has access to deployer keys, RPC endpoints, and production infrastructure. Lock it down with Checkov, Semgrep, Octoscan, and opsec patterns that actually work.",
     slug: "cicd-pipeline-hardening-web3"
@@ -134,7 +134,7 @@ const posts = [
   }
 ];
 
-const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware', 'Intelligence', 'Markets'];
+const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware', 'Intelligence', 'Markets', 'Tutorial'];
 
 const categoryColors: Record<string, string> = {
   'All': 'bg-white/5 text-white/70 border-white/10',
@@ -144,6 +144,7 @@ const categoryColors: Record<string, string> = {
   'Hardware': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
   'Intelligence': 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
   'Markets': 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+  'Tutorial': 'bg-green-500/10 text-green-400 border-green-500/20',
 };
 
 const categoryActiveColors: Record<string, string> = {
@@ -153,8 +154,8 @@ const categoryActiveColors: Record<string, string> = {
   'Hardware': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
   'Intelligence': 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
   'Markets': 'bg-rose-500/20 text-rose-300 border-rose-500/40',
+  'Tutorial': 'bg-green-500/20 text-green-300 border-green-500/40',
 };
-
 const typeBadge: Record<string, string> = {
   'Deep Dive': 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
   'Thought': 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
@@ -234,6 +235,7 @@ export default function Blog() {
                     post.category === 'Hardware' ? 'text-emerald-400' :
                     post.category === 'Intelligence' ? 'text-indigo-400' :
                     post.category === 'Markets' ? 'text-rose-400' :
+                    post.category === 'Tutorial' ? 'text-green-400' :
                     'text-[#00f0ff]'
                   }`}>{post.category}</span>
                   <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase ${typeBadge[post.type] || 'bg-white/5 text-white/40 border border-white/10'}`}>
