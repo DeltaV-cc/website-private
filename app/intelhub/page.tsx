@@ -8,16 +8,17 @@ import TopPicks from './components/TopPicks';
 import MacroDashboard from './components/MacroDashboard';
 import InfosecDashboard from './components/InfosecDashboard';
 import Web3Dashboard from './components/Web3Dashboard';
+import AIDashboard from './components/AIDashboard';
 
 export default function IntelHubPage() {
-  const [active, setActive] = useState<'macro' | 'infosec' | 'web3'>('macro');
+  const [active, setActive] = useState<'macro' | 'infosec' | 'web3' | 'ai'>('macro');
   const {
     items, loading, patents, dd, dd2, forex, watchlist,
     catBoxes, top3, tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN,
     TC, BCOL, SOCMED_SOURCES,
   } = useIntelData();
 
-  const tabs = ['macro', 'infosec', 'web3'] as const;
+  const tabs = ['macro', 'ai', 'infosec', 'web3'] as const;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -37,6 +38,9 @@ export default function IntelHubPage() {
             <div className="flex items-center gap-3 mt-3">
               <span className="flex items-center gap-1.5 text-xs text-[#ededed]/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Macro
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-[#ededed]/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400/60" />AI
               </span>
               <span className="flex items-center gap-1.5 text-xs text-[#ededed]/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400/60" />Infosec
@@ -79,42 +83,28 @@ export default function IntelHubPage() {
           ))}
         </div>
 
-        {/* Macro Tab */}
         {active === 'macro' && (
           <MacroDashboard
-            items={items}
-            dd={dd}
-            patents={patents}
-            forex={forex}
-            catBoxes={catBoxes}
-            TC={TC}
-            ago={ago}
-            fmt={fmt}
-            fmtN={fmtN}
+            items={items} dd={dd} patents={patents} forex={forex}
+            catBoxes={catBoxes} TC={TC} ago={ago} fmt={fmt} fmtN={fmtN}
           />
         )}
-
-        {/* Infosec Tab */}
+        {active === 'ai' && (
+          <AIDashboard
+            items={items} dd={dd} patents={patents}
+            catBoxes={catBoxes} TC={TC} ago={ago}
+          />
+        )}
         {active === 'infosec' && (
           <InfosecDashboard
-            items={items}
-            dd2={dd2}
-            watchlist={watchlist}
-            TC={TC}
-            ago={ago}
-            SOCMED_SOURCES={SOCMED_SOURCES}
+            items={items} dd2={dd2} watchlist={watchlist}
+            TC={TC} ago={ago} SOCMED_SOURCES={SOCMED_SOURCES}
           />
         )}
-
-        {/* Web3 Tab */}
         {active === 'web3' && (
           <Web3Dashboard
-            dd={dd}
-            catBoxes={catBoxes}
-            TC={TC}
-            ago={ago}
-            fmt={fmt}
-            fmtN={fmtN}
+            dd={dd} catBoxes={catBoxes}
+            TC={TC} ago={ago} fmt={fmt} fmtN={fmtN}
           />
         )}
       </div>
