@@ -1,6 +1,5 @@
 /* ================================================================
-   IntelHub — Patents Section (compact)
-   Concentrated: Top Filers table only, very dense
+   IntelHub — Patents Section (compact with market caps)
    ================================================================ */
 'use client';
 
@@ -14,7 +13,6 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
 
   return (
     <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
-      {/* ── Compact header ── */}
       <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-xs text-pink-400 uppercase tracking-[.1em] font-bold">Patents</span>
@@ -27,13 +25,13 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
         </div>
       </div>
 
-      {/* ── Top Filers — ultra-compact rows ── */}
       <div className="px-3 py-2">
-        <div className="grid grid-cols-[20px_1fr_40px_48px] gap-2 px-2 py-1.5 text-[10px] text-[#ededed]/25 uppercase tracking-wider font-semibold">
+        <div className="grid grid-cols-[20px_1fr_40px_48px_56px] gap-2 px-2 py-1.5 text-[10px] text-[#ededed]/25 uppercase tracking-wider font-semibold">
           <span>#</span>
           <span>Company</span>
           <span className="text-right">Grants</span>
           <span className="text-right">Δ</span>
+          <span className="text-right">M.Cap</span>
         </div>
         <div className="space-y-0.5">
           {topHolders.slice(0, 8).map((h, i) => {
@@ -42,7 +40,7 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
             return (
               <div
                 key={i}
-                className="grid grid-cols-[20px_1fr_40px_48px] gap-2 items-center px-2 py-1 rounded hover:bg-white/[0.03] transition-colors"
+                className="grid grid-cols-[20px_1fr_40px_48px_56px] gap-2 items-center px-2 py-1 rounded hover:bg-white/[0.03] transition-colors"
               >
                 <span className="text-[10px] text-[#ededed]/25 tabular-nums">{i + 1}</span>
                 <div className="flex items-center gap-1.5 min-w-0">
@@ -57,6 +55,7 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
                 >
                   {h.change}
                 </span>
+                <span className="text-[10px] text-[#ededed]/50 tabular-nums text-right">{h.mcap || '...'}</span>
               </div>
             );
           })}

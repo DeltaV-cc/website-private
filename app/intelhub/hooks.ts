@@ -118,7 +118,7 @@ export function useIntelData() {
   const [picks, setPicks] = useState<any>(null);
   const [patents, setPatents] = useState<PatentsData | null>(null);
   const [watchlist, setWatchlist] = useState<any[]>([]);
-  const [dd, setDd] = useState<any>(null);
+  const [dd, setDd] = useState<any>({});
   const [dd2, setDd2] = useState<any>(null);
   const [forex, setForex] = useState<any>(null);
 
@@ -201,6 +201,37 @@ export function useIntelData() {
           }).slice(0, 8);
         }
       } catch { /* */ }
+      // Fetch macro indices (SPX, CSI1000) + HF models/spaces
+      try {
+        const spxRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=1d');
+        if (spxRes.ok) {
+          const spxData = await spxRes.json();
+          const spxMeta = spxData?.chart?.result?.[0]?.meta;
+          if (spxMeta) result.indices = { ...(result.indices || {}), spx: { price: spxMeta.regularMarketPrice?.toFixed(0), change: spxMeta.regularMarketPrice - spxMeta.previousClose, changePct: ((spxMeta.regularMarketPrice - spxMeta.previousClose) / spxMeta.previousClose * 100).toFixed(2) + '%' } };
+        }
+      } catch { /* */ }
+      try {
+        const csiRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/000001.SS?interval=1d&range=1d');
+        if (csiRes.ok) {
+          const csiData = await csiRes.json();
+          const csiMeta = csiData?.chart?.result?.[0]?.meta;
+          if (csiMeta) result.indices = { ...(result.indices || {}), csi: { price: csiMeta.regularMarketPrice?.toFixed(0), change: csiMeta.regularMarketPrice - csiMeta.previousClose, changePct: ((csiMeta.regularMarketPrice - csiMeta.previousClose) / csiMeta.previousClose * 100).toFixed(2) + '%' } };
+        }
+      } catch { /* */ }
+      try {
+        const hfModelsRes = await fetch('https://huggingface.co/api/models?sort=trending&limit=6');
+        if (hfModelsRes.ok) {
+          const models = await hfModelsRes.json();
+          result.hfModels = models.map((m: any) => ({ name: m.modelId || m.id, author: m.author, likes: m.likes, downloads: m.downloads, url: `https://huggingface.co/${m.modelId || m.id}` }));
+        }
+      } catch { /* */ }
+      try {
+        const hfSpacesRes = await fetch('https://huggingface.co/api/spaces?sort=trending&limit=5');
+        if (hfSpacesRes.ok) {
+          const spaces = await hfSpacesRes.json();
+          result.hfSpaces = spaces.map((s: any) => ({ name: s.id, author: s.author, likes: s.likes, url: `https://huggingface.co/spaces/${s.id}` }));
+        }
+      } catch { /* */ }
       setDd(result);
     } catch { /* */ }
   }, []);
@@ -278,7 +309,10 @@ export function useIntelData() {
     const da = new Date(a.pubDate || a.date || 0).getTime();
     const db = new Date(b.pubDate || b.date || 0).getTime();
     return db - da;
-  }).slice(0, 3);
+  }).slice(0, 3).map((it: any) => ({
+    ...it,
+    title: (it.title || '').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim(),
+  }));
   const fgVal = dd?.fearGreed?.data?.[0] ? Number(dd.fearGreed.data[0].value) || 0 : 0;
   const fgLabel = dd?.fearGreed?.data?.[0]?.value_classification || '';
   const totalVol = dd?.totalVolume24h || 0;
@@ -286,9 +320,10 @@ export function useIntelData() {
   const macroCats = catBoxes.filter(c => ['macro', 'science'].includes(c.id));
   const infosecCats = catBoxes.filter(c => ['cybersec'].includes(c.id));
   const web3Cats = catBoxes.filter(c => ['crypto'].includes(c.id));
+  const aiCats = catBoxes.filter(c => ['ai', 'hardware'].includes(c.id));
 
-  const tabLabel = (t: string) => t === 'macro' ? 'Macro' : t === 'infosec' ? 'Infosec' : 'Web3';
-  const tabAccent = (t: string) => t === 'macro' ? 'text-amber-400' : t === 'infosec' ? 'text-orange-400' : 'text-purple-400';
+  const tabLabel = (t: string) => t === 'macro' ? 'Macro' : t === 'infosec' ? 'Infosec' : t === 'web3' ? 'Web3' : 'AI';
+  const tabAccent = (t: string) => t === 'macro' ? 'text-amber-400' : t === 'infosec' ? 'text-orange-400' : t === 'web3' ? 'text-purple-400' : 'text-blue-400';
   const SOCMED_SOURCES = ['x: @dinosn', 'x: @pcaversaccio', 'x: @hypernativelabs'];
 
   const ts = (iso: string) => {
@@ -317,7 +352,7 @@ export function useIntelData() {
 
   return {
     items, loading, picks, patents, dd, dd2, forex, watchlist,
-    catBoxes, macroCats, infosecCats, web3Cats, top3, fgVal, fgLabel, totalVol,
+    catBoxes, macroCats, infosecCats, web3Cats, aiCats, top3, fgVal, fgLabel, totalVol,
     tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES,
   };
 }

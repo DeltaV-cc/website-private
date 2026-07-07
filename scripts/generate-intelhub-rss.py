@@ -21,7 +21,7 @@ SOURCE_HINTS = {
     r"(?i)cryptoquant|lookonchain|glassnode|l2beat|defi|polymarket|coindesk|cointelegraph|theblock": "crypto",
     r"(?i)y combinator|hacker.?news|arxiv|researchgate|nature|sciencedaily": "science",
     r"(?i)nist|cisa|haveibeenpwned|bleepingcomputer|krebs|threatpost": "cybersec",
-    r"(?i)federal.re?serve|treasury|imf|world.bank|bis|bloomberg|reuters|wsj|ft\b": "macro",
+    r"(?i)federal.re?serve|treasury|imf|world.bank|bis|bloomberg|reuters|wsj|ft\\b|marketnews": "macro",
     r"(?i)nvidia|intel|amd|tsmc|semiconductor|hugging.?face": "hardware",
     r"(?i)anthropic|openai|deepmind|moonshot|baichuan|teknium|stepfun": "ai",
 }
