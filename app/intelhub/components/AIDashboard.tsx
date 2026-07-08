@@ -1,13 +1,13 @@
 /* ================================================================
-   IntelHub — AI Dashboard (v2)
-   HF from static JSON · Compact Key Labs w/ links · Tweet-displaying X leaders
+   IntelHub — AI Dashboard (v2.1)
+   HF with descriptions · AI Leaders w/ multi-tweet
    ================================================================ */
 'use client';
 
 import { Item, PatentsData } from '../types';
 import { CategoryBox } from './Shared';
 
-/* ── AI Leaders — profiles + latest tweet from feed ── */
+/* ── AI Leaders — profiles + latest 3 tweets from feed ── */
 const AI_LEADERS = [
   { name: 'Sam Altman', handle: 'sama', org: 'OpenAI', role: 'CEO' },
   { name: 'Dario Amodei', handle: 'DarioAmodei', org: 'Anthropic', role: 'CEO' },
@@ -29,30 +29,38 @@ function AILeaders({ items, ts }: { items: Item[]; ts: (iso: string) => string }
       <div className="px-3 py-2 border-b border-[#222] bg-[#111]">
         <span className="text-[11px] text-cyan-400 uppercase tracking-[.1em] font-bold">𝕏 AI Leaders</span>
       </div>
-      <div className="divide-y divide-white/[0.02] max-h-[500px] overflow-y-auto">
+      <div className="divide-y divide-white/[0.02] max-h-[700px] overflow-y-auto">
         {AI_LEADERS.map((p, i) => {
-          // Find latest item from this handle in the feed
-          const latest = items.find((it: any) =>
+          // Find latest items from this handle in the feed (up to 3)
+          const latestItems = items.filter((it: any) =>
             (it.source || '').toLowerCase().includes(p.handle.toLowerCase())
-          );
+          ).slice(0, 3);
           return (
-            <div key={i} className="px-3 py-2 hover:bg-white/[0.02]">
-              <div className="flex items-center justify-between mb-0.5">
+            <div key={i} className="px-3 py-2 hover:bg-white/[0.03]">
+              <div className="flex items-center justify-between mb-1">
                 <a href={`https://x.com/${p.handle}`} target="_blank" rel="noopener noreferrer"
-                  className="text-xs font-medium text-[#ededed]/75 hover:text-white truncate">
+                  className="text-xs font-medium text-[#ededed]/80 hover:text-white truncate">
                   {p.name}
                 </a>
-                <span className="text-[9px] text-[#ededed]/25">{p.org} · {p.role}</span>
+                <span className="text-[9px] text-[#ededed]/25 shrink-0 ml-2">{p.org} · {p.role}</span>
               </div>
-              {latest ? (
-                <a href={latest.url || `https://x.com/${p.handle}`} target="_blank" rel="noopener noreferrer"
-                  className="text-[10px] text-[#ededed]/40 hover:text-[#ededed]/60 line-clamp-2 leading-relaxed">
-                  {(latest.title || '').replace(/https?:\/\/\S+/g, '').trim().slice(0, 140)}
-                </a>
+              {latestItems.length > 0 ? (
+                <div className="space-y-0.5">
+                  {latestItems.map((tweet: any, j: number) => (
+                    <a key={j} href={tweet.url || `https://x.com/${p.handle}`} target="_blank" rel="noopener noreferrer"
+                      className="block text-[10px] text-[#ededed]/35 hover:text-[#ededed]/60 line-clamp-1 leading-relaxed pl-2 border-l border-white/[0.04]">
+                      {(tweet.title || '').replace(/https?:\/\/\S+/g, '').trim().slice(0, 140)}
+                    </a>
+                  ))}
+                </div>
               ) : (
-                <div className="text-[10px] text-[#ededed]/10 italic">no recent tweets in feed</div>
+                <div className="text-[10px] text-[#ededed]/10 italic pl-2">no recent tweets in feed</div>
               )}
-              {latest && <div className="text-[8px] text-[#ededed]/15 mt-0.5 tabular-nums">{ts(latest.published_at)}</div>}
+              {latestItems[0] && (
+                <div className="text-[8px] text-[#ededed]/15 mt-1 tabular-nums pl-2">
+                  {ts(latestItems[latestItems.length - 1].published_at)} — {ts(latestItems[0].published_at)}
+                </div>
+              )}
             </div>
           );
         })}
@@ -85,7 +93,7 @@ function KeyLabs({ patents }: { patents: PatentsData | null }) {
   );
 }
 
-/* ── HF Models + Spaces ── */
+/* ── HF Models + Spaces with descriptions ── */
 function HFTracker({ dd }: { dd: any }) {
   const models = dd?.hfModels || [];
   const spaces = dd?.hfSpaces || [];
@@ -96,21 +104,27 @@ function HFTracker({ dd }: { dd: any }) {
           <span className="text-[11px] text-blue-400 uppercase tracking-[.1em] font-bold">🤗 Trending Models</span>
           <span className="text-[9px] text-[#ededed]/20">24h</span>
         </div>
-        <div className="divide-y divide-white/[0.02]">
+        <div className="divide-y divide-white/[0.02] max-h-[520px] overflow-y-auto">
           {models.length > 0 ? models.map((m: any, i: number) => (
             <a key={i} href={m.url || '#'} target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-between px-3 py-2 hover:bg-white/[0.03]">
-              <div className="min-w-0 flex-1">
-                <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{m.name}</div>
-                <div className="text-[8px] text-[#ededed]/25">{m.author}</div>
-              </div>
-              <div className="flex items-center gap-2 shrink-0 ml-2">
-                <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.likes || 0}♥</span>
-                <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.downloads || 0}↓</span>
+              className="block px-3 py-2 hover:bg-white/[0.03]">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{m.name}</div>
+                  {m.description ? (
+                    <div className="text-[9px] text-[#ededed]/35 line-clamp-1 mt-0.5">{m.description}</div>
+                  ) : (
+                    <div className="text-[9px] text-[#ededed]/20 mt-0.5">{m.author || 'HF'}</div>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 shrink-0 text-right">
+                  <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.likes || 0}♥</span>
+                  <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.downloads || 0}↓</span>
+                </div>
               </div>
             </a>
           )) : (
-            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading...</div>
+            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading…</div>
           )}
         </div>
       </div>
@@ -118,18 +132,24 @@ function HFTracker({ dd }: { dd: any }) {
         <div className="px-3 py-2 border-b border-[#222] bg-[#111]">
           <span className="text-[11px] text-purple-400 uppercase tracking-[.1em] font-bold">🚀 Trending Spaces</span>
         </div>
-        <div className="divide-y divide-white/[0.02]">
+        <div className="divide-y divide-white/[0.02] max-h-[520px] overflow-y-auto">
           {spaces.length > 0 ? spaces.map((s: any, i: number) => (
             <a key={i} href={s.url || '#'} target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-between px-3 py-2 hover:bg-white/[0.03]">
-              <div className="min-w-0 flex-1">
-                <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{s.name}</div>
-                <div className="text-[8px] text-[#ededed]/25">{s.author}</div>
+              className="block px-3 py-2 hover:bg-white/[0.03]">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{s.name}</div>
+                  {s.description ? (
+                    <div className="text-[9px] text-[#ededed]/35 line-clamp-1 mt-0.5">{s.description}</div>
+                  ) : (
+                    <div className="text-[9px] text-[#ededed]/20 mt-0.5">{s.author || 'HF'}</div>
+                  )}
+                </div>
+                <span className="text-[9px] text-[#ededed]/35 tabular-nums shrink-0">{s.likes || 0}♥</span>
               </div>
-              <span className="text-[9px] text-[#ededed]/35 tabular-nums ml-2">{s.likes || 0}♥</span>
             </a>
           )) : (
-            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading...</div>
+            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading…</div>
           )}
         </div>
       </div>
