@@ -93,6 +93,42 @@ function KeyLabs({ patents }: { patents: PatentsData | null }) {
   );
 }
 
+/* ── HF Organizations — social cards linking to AI lab HuggingFace orgs ── */
+const HF_ORGS = [
+  { name: 'xAI', handle: 'xai-org', desc: 'Grok · RealworldQA' },
+  { name: 'Meta', handle: 'meta-llama', desc: 'Llama · SAM · Seamless' },
+  { name: 'Google', handle: 'google', desc: 'Gemma · T5 · ViT' },
+  { name: 'Microsoft', handle: 'microsoft', desc: 'Phi · Florence · DeepSpeed' },
+  { name: 'NVIDIA', handle: 'nvidia', desc: 'Nemotron · Cosmos · NeMo' },
+  { name: 'Nous Research', handle: 'NousResearch', desc: 'Hermes · DisTrO' },
+  { name: 'Mistral AI', handle: 'mistralai', desc: 'Mistral · Mixtral · Codestral' },
+  { name: 'DeepSeek', handle: 'deepseek-ai', desc: 'DeepSeek-V4 · R1 · Coder' },
+  { name: 'Anthropic', handle: 'Anthropic', desc: 'Model Context Protocol' },
+];
+
+function HFOrgs() {
+  return (
+    <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
+      <div className="px-3 py-2 border-b border-[#222] bg-[#111] flex items-center justify-between">
+        <span className="text-[11px] text-amber-400 uppercase tracking-[.1em] font-bold">🤗 HF Organizations</span>
+        <span className="text-[9px] text-[#ededed]/15">{HF_ORGS.length} labs</span>
+      </div>
+      <div className="grid grid-cols-3 gap-1.5 p-2">
+        {HF_ORGS.map((org, i) => (
+          <a key={i} href={`https://huggingface.co/${org.handle}`} target="_blank" rel="noopener noreferrer"
+            className="rounded-lg border border-[#222] bg-white/[0.02] px-2.5 py-2 hover:bg-white/[0.05] hover:border-amber-500/20 transition-colors group">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] text-[#ededed]/80 font-medium truncate group-hover:text-white">{org.name}</span>
+              <span className="text-[8px] text-[#ededed]/20 shrink-0">@{org.handle}</span>
+            </div>
+            <div className="text-[8px] text-[#ededed]/25 mt-0.5 truncate">{org.desc}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── HF Models + Spaces with descriptions ── */
 function HFTracker({ dd }: { dd: any }) {
   const models = dd?.hfModels || [];
@@ -171,6 +207,7 @@ export default function AIDashboard({
     <div className="space-y-4">
       <HFTracker dd={dd} />
       <KeyLabs patents={patents} />
+      <HFOrgs />
       <AILeaders items={items} ts={ts} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {aiCats.map((cat: any) => (
