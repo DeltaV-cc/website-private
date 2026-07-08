@@ -82,7 +82,7 @@ if os.path.exists(raw_dir):
         # (regex pattern, tag)
         (r'(?i)coindesk|decrypt|defiant|santiment|cryptoquant|lookonchain|glassnode|l2beat|defillama|polymarket|theblock|cointelegraph|hypernativelabs|polymutex', 'crypto'),
         (r'(?i)bleepingcomputer|dark.reading|krebs|schneier|threatpost|pcaversaccio|dinosn', 'cybersec'),
-        (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf', 'ai'),
+        (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf|elder_plinius|teknium', 'ai'),
         (r'(?i)mit\s|science\sdaily|ieee|ars\stechnica|nature|researchgate|sciencedaily', 'science'),
         (r'(?i)nvidia|intel|amd|tsmc|semiconductor', 'hardware'),
         (r'(?i)federal\\s?reserve|bloomberg|reuters|wsj\\b|financial\\stimes|michaeljburry|hacker\\snews', 'macro'),
@@ -234,5 +234,32 @@ try:
         print(f'✓ Forex cached: {len(forex_data)} pairs')
 except Exception as e:
     print(f'⚠ Forex fetch failed: {e}')
+
+# --- Pre-fetch HF Trending Models + Spaces ---
+print('Fetching HF models...')
+try:
+    hf = fetch_json('https://huggingface.co/api/models?sort=downloads&direction=-1&limit=6')
+    if hf and isinstance(hf, list):
+        models = [{'name': m.get('modelId') or m.get('id',''), 'author': m.get('author',''), 'likes': m.get('likes',0), 'downloads': m.get('downloads',0), 'url': f'https://huggingface.co/{m.get("modelId") or m.get("id","")}'} for m in hf]
+        with open(os.path.join(PUBLIC_DIR, 'hf.json'), 'w') as f:
+            json.dump({'models': models}, f)
+        print(f'✓ HF models cached: {len(models)}')
+except Exception as e:
+    print(f'⚠ HF models fetch failed: {e}')
+
+print('Fetching HF spaces...')
+try:
+    hs = fetch_json('https://huggingface.co/api/spaces?sort=likes&direction=-1&limit=5')
+    if hs and isinstance(hs, list):
+        spaces = [{'name': s.get('id',''), 'author': s.get('author',''), 'likes': s.get('likes',0), 'url': f'https://huggingface.co/spaces/{s.get("id","")}'} for s in hs]
+        existing = {}
+        hf_path = os.path.join(PUBLIC_DIR, 'hf.json')
+        if os.path.exists(hf_path):
+            with open(hf_path) as f: existing = json.load(f)
+        existing['spaces'] = spaces
+        with open(hf_path, 'w') as f: json.dump(existing, f)
+        print(f'✓ HF spaces cached: {len(spaces)}')
+except Exception as e:
+    print(f'⚠ HF spaces fetch failed: {e}')
 
 print('\nPre-build complete.')
