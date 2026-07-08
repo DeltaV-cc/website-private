@@ -107,9 +107,9 @@ export default function IntelHubPage() {
         </div>
 
         {active === 'macro' && <MacroDashboard items={items} dd={dd} patents={patents} forex={forex} catBoxes={catBoxes} TC={TC} ago={ago} />}
-        {active === 'ai' && <AIDashboard items={items} dd={dd} patents={patents} catBoxes={catBoxes} TC={TC} ago={ago} />}
+        {active === 'ai' && <AIDashboard items={items} dd={dd} patents={patents} catBoxes={catBoxes} TC={TC} ago={ago} ts={ts} />}
         {active === 'infosec' && <InfosecDashboard items={items} dd2={dd2} watchlist={watchlist} TC={TC} ago={ago} SOCMED_SOURCES={SOCMED_SOURCES} />}
-        {active === 'web3' && <Web3Dashboard dd={dd} catBoxes={catBoxes} TC={TC} ago={ago} fmt={fmt} fmtN={fmtN} />}
+        {active === 'web3' && <Web3Dashboard dd={dd} catBoxes={catBoxes} TC={TC} ago={ago} fmt={fmt} fmtN={fmtN} items={items} ts={ts} />}
       </div>
     </div>
   );

@@ -214,18 +214,13 @@ export function useIntelData() {
         const fxRes = await fetch(`${BASE}/data/forex.json`);
         if (fxRes.ok) setForex(await fxRes.json());
       } catch { /* */ }
+      // Load HF from static JSON (no CORS)
       try {
-        const hfModelsRes = await fetch('https://huggingface.co/api/models?sort=trending&limit=6');
-        if (hfModelsRes.ok) {
-          const models = await hfModelsRes.json();
-          result.hfModels = models.map((m: any) => ({ name: m.modelId || m.id, author: m.author, likes: m.likes, downloads: m.downloads, url: `https://huggingface.co/${m.modelId || m.id}` }));
-        }
-      } catch { /* */ }
-      try {
-        const hfSpacesRes = await fetch('https://huggingface.co/api/spaces?sort=trending&limit=5');
-        if (hfSpacesRes.ok) {
-          const spaces = await hfSpacesRes.json();
-          result.hfSpaces = spaces.map((s: any) => ({ name: s.id, author: s.author, likes: s.likes, url: `https://huggingface.co/spaces/${s.id}` }));
+        const hfRes = await fetch(`${BASE}/data/hf.json`);
+        if (hfRes.ok) {
+          const hf = await hfRes.json();
+          if (hf.models) result.hfModels = hf.models;
+          if (hf.spaces) result.hfSpaces = hf.spaces;
         }
       } catch { /* */ }
       setDd(result);

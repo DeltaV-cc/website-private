@@ -4,12 +4,14 @@
 'use client';
 
 import { BarChart, CategoryBox } from './Shared';
+import CryptoLeaders from './CryptoLeaders';
 
 export default function Web3Dashboard({
-  dd, catBoxes, TC, ago, fmt, fmtN,
+  dd, catBoxes, TC, ago, fmt, fmtN, items, ts,
 }: {
   dd: any; catBoxes: any[]; TC: Record<string, string>;
   ago: (iso: string) => string; fmt: (n: number) => string; fmtN: (n: number) => string;
+  items: any[]; ts: (iso: string) => string;
 }) {
   const web3Cats = catBoxes.filter((c: any) => ['crypto'].includes(c.id));
   const totalVol = dd?.totalVolume24h || 0;
@@ -135,6 +137,8 @@ export default function Web3Dashboard({
           <CategoryBox key={cat.id} cat={cat} ago={ago} TC={TC} />
         ))}
       </div>
+
+      <CryptoLeaders items={items} ts={ts} />
     </div>
   );
 }
