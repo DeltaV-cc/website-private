@@ -228,6 +228,11 @@ export function useIntelData() {
         const cRes = await fetch(`${BASE}/data/crypto.json`);
         if (cRes.ok) result.crypto = await cRes.json();
       } catch { /* */ }
+      // Load BTC trend (sparkline)
+      try {
+        const btcRes = await fetch(`${BASE}/data/btc-trend.json`);
+        if (btcRes.ok) result.btcTrend = await btcRes.json();
+      } catch { /* */ }
       setDd(result);
     } catch { /* */ }
   }, []);

@@ -283,4 +283,22 @@ try:
 except Exception as e:
     print(f'⚠ Crypto fetch failed: {e}')
 
+# --- Pre-fetch BTC Market Cap Trend (all-time, downsampled) ---
+print('Fetching BTC trend...')
+try:
+    btc = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
+    if btc and btc.get('market_caps'):
+        caps = btc['market_caps']  # [[timestamp_ms, mcap], ...]
+        # Downsample to ~150 points
+        step = max(1, len(caps) // 150)
+        trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
+        # Also include last point
+        if trend[-1]['t'] != caps[-1][0]:
+            trend.append({'t': caps[-1][0], 'v': caps[-1][1]})
+        with open(os.path.join(PUBLIC_DIR, 'btc-trend.json'), 'w') as f:
+            json.dump(trend, f)
+        print(f'✓ BTC trend cached: {len(trend)} points')
+except Exception as e:
+    print(f'⚠ BTC trend fetch failed: {e}')
+
 print('\nPre-build complete.')

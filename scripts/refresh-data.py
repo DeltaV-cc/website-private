@@ -10,7 +10,7 @@ import json, os, shutil, tempfile, subprocess, sys, time, urllib.request, ssl
 
 REPO = 'https://github.com/DeltaV-cc/website-private.git'
 BRANCH = 'gh-pages'
-DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json']
+DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'btc-trend.json']
 USER_AGENT = 'Mozilla/5.0 (compatible; DeltaV-Refresh/1.0)'
 
 ctx = ssl.create_default_context()
@@ -118,11 +118,22 @@ if cg and cg.get('data'):
     crypto['active_cryptos'] = d.get('active_cryptocurrencies', 0)
 
 # ── 5. Clone gh-pages, update files, push ──
+# Also fetch BTC trend for the sparkline
+btc_trend = []
+try:
+    btcd = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
+    if btcd and btcd.get('market_caps'):
+        caps = btcd['market_caps']
+        step = max(1, len(caps) // 150)
+        btc_trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
+except: pass
+
 new_data = {
     'indices.json': json.dumps(indices, indent=2) if indices else None,
     'forex.json': json.dumps(forex) if forex else None,
     'hf.json': json.dumps(hf_data) if hf_data else None,
     'crypto.json': json.dumps(crypto) if crypto else None,
+    'btc-trend.json': json.dumps(btc_trend) if btc_trend else None,
 }
 
 tmpdir = tempfile.mkdtemp(prefix='dv-refresh-')
