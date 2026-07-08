@@ -25,17 +25,30 @@ export default function IntelHubPage() {
     TC, BCOL, SOCMED_SOURCES,
   } = useIntelData();
 
-  // Filter items by active tab's categories
+  // Filter items by active tab's categories — strict: exclude conflicting tags
   const tabKws = TAB_CATS[active] || [];
   const activeCatBox = catBoxes.filter((c: any) => tabKws.includes(c.id));
   const activeKwSet = useMemo(() => new Set(activeCatBox.flatMap((c: any) => c.kw)), [active]);
+  // Tags that should never appear outside their home tab
+  const TAB_EXCLUSIVE: Record<string, string[]> = {
+    macro: ['crypto', 'cybersec'],
+    ai: ['crypto', 'cybersec'],
+    infosec: ['crypto', 'macro', 'ai', 'hardware'],
+    web3: ['cybersec', 'science'],
+  };
+  const excludedTags = TAB_EXCLUSIVE[active] || [];
   const filteredItems = useMemo(() =>
-    items.filter((it: any) =>
-      activeKwSet.size === 0 ? true :
-      activeKwSet.has(it.tag) || activeCatBox.some((c: any) =>
+    items.filter((it: any) => {
+      if (activeKwSet.size === 0) return true;
+      // Block items tagged for other exclusive tabs
+      if (it.tag && excludedTags.includes(it.tag)) return false;
+      // Include if tag matches active categories
+      if (it.tag && tabKws.includes(it.tag)) return true;
+      // Include if keyword match passes (title/summary)
+      return activeCatBox.some((c: any) =>
         c.kw.some((k: string) => (it.title + ' ' + (it.summary || '')).toLowerCase().includes(k))
-      )
-    ), [items, activeKwSet, activeCatBox]);
+      );
+    }), [items, activeKwSet, activeCatBox, excludedTags, tabKws]);
 
   const filteredTop3 = useMemo(() =>
     [...filteredItems].sort((a: any, b: any) => {
