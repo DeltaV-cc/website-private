@@ -85,7 +85,9 @@ if os.path.exists(raw_dir):
         (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf', 'ai'),
         (r'(?i)mit\s|science\sdaily|ieee|ars\stechnica|nature|researchgate|sciencedaily', 'science'),
         (r'(?i)nvidia|intel|amd|tsmc|semiconductor', 'hardware'),
-        (r'(?i)federal\s?reserve|bloomberg|reuters|wsj\b|financial\stimes|michaeljburry|hacker\snews', 'macro'),
+        (r'(?i)federal\\s?reserve|bloomberg|reuters|wsj\\b|financial\\stimes|michaeljburry|hacker\\snews', 'macro'),
+        (r'(?i)0xngmi|defillama|ki_young_ju|delphi_digital|nero_eth|backthebunny', 'crypto'),
+        (r'(?i)alignment.forum', 'ai'),
     ]
     for item in top200:
         src = (item.get('source') or item.get('feedTitle') or '').strip()
@@ -160,5 +162,77 @@ if hibp and isinstance(hibp, list):
     with open(os.path.join(PUBLIC_DIR, 'infosec.json'), 'w') as f:
         json.dump(existing, f)
     print(f'✓ {len(breaches)} breaches cached')
+
+# --- Pre-fetch indices (SPX + CSI1000) ---
+print('Fetching indices...')
+indices = {}
+try:
+    for sym, key in [('%5EGSPC', 'spx'), ('000001.SS', 'csi')]:
+        d = fetch_json(f'https://query1.finance.yahoo.com/v8/finance/chart/{sym}?interval=1d&range=5d')
+        if d:
+            r = (d.get('chart', {}).get('result', [{}]) or [{}])[0]
+            meta = r.get('meta', {})
+            q = (r.get('indicators', {}).get('quote', [{}]) or [{}])[0]
+            closes = [c for c in q.get('close', []) if c is not None]
+            now = closes[-1] if closes else meta.get('regularMarketPrice', 0)
+            prev = closes[-2] if len(closes) >= 2 else meta.get('previousClose', 0)
+            indices[key] = {
+                'price': f'{now:.0f}',
+                'change': now - prev,
+                'changePct': f'{(now - prev) / prev * 100:+.2f}%' if prev else '...'
+            }
+    if indices:
+        with open(os.path.join(PUBLIC_DIR, 'indices.json'), 'w') as f:
+            json.dump(indices, f)
+        s = indices.get('spx', {})
+        c = indices.get('csi', {})
+        print(f'✓ Indices cached: SPX {s.get("price","?")} ({s.get("changePct","?")})  CSI {c.get("price","?")} ({c.get("changePct","?")})')
+except Exception as e:
+    print(f'⚠ Indices fetch failed: {e}')
+
+# --- Pre-fetch Forex (5 pairs, 10y history for performance) ---
+print('Fetching forex...')
+forex_data = {}
+pairs = [
+    ('EURUSD=X', 'EUR', True),
+    ('USDJPY=X', 'JPY', False),
+    ('GBPUSD=X', 'GBP', True),
+    ('USDCHF=X', 'CHF', False),
+    ('USDCNY=X', 'CNY', False),
+]
+try:
+    for symbol, label, usdLeft in pairs:
+        try:
+            r = fetch_json(f'https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=10y')
+            if r:
+                result = r.get('chart', {}).get('result', [{}]) or [{}]
+                meta = result[0].get('meta', {})
+                quotes = result[0].get('indicators', {}).get('quote', [{}]) or [{}]
+                timestamps = result[0].get('timestamp', [])
+                if meta and quotes[0] and timestamps:
+                    now = meta.get('regularMarketPrice', 0)
+                    closes = [c for c in quotes[0].get('close', []) if c is not None]
+                    ts = [timestamps[i] for i, c in enumerate(quotes[0].get('close', [])) if c is not None]
+                    prevClose = closes[-2] if len(closes) >= 2 else meta.get('previousClose', 0)
+                    chgPct = f'{((now - prevClose) / prevClose * 100):+.2f}%' if prevClose else '···'
+                    def find_close(days_back):
+                        cutoff = (__import__('time').time()) - (days_back * 86400)
+                        for i in range(len(ts) - 1, -1, -1):
+                            if ts[i] <= cutoff: return closes[i]
+                        return closes[0] if closes else 0
+                    m1 = find_close(22)
+                    y1 = find_close(252)
+                    y10 = closes[0] if closes else 0
+                    def pct(prev): return ((now - prev) / prev * 100) if prev else None
+                    rate = (1 / now) if usdLeft else now
+                    rateStr = f'{rate:.4f}' if usdLeft else f'{rate:.2f}'
+                    forex_data[label] = {'rate': rate, 'rateStr': rateStr, 'chgPct': chgPct, 'p1M': pct(m1), 'p1Y': pct(y1), 'p10Y': pct(y10)}
+        except: pass
+    if forex_data:
+        with open(os.path.join(PUBLIC_DIR, 'forex.json'), 'w') as f:
+            json.dump(forex_data, f)
+        print(f'✓ Forex cached: {len(forex_data)} pairs')
+except Exception as e:
+    print(f'⚠ Forex fetch failed: {e}')
 
 print('\nPre-build complete.')

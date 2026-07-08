@@ -201,22 +201,18 @@ export function useIntelData() {
           }).slice(0, 8);
         }
       } catch { /* */ }
-      // Fetch macro indices (SPX, CSI1000) + HF models/spaces
+      // Load indices + forex from pre-fetched static JSON (no CORS)
       try {
-        const spxRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=1d');
-        if (spxRes.ok) {
-          const spxData = await spxRes.json();
-          const spxMeta = spxData?.chart?.result?.[0]?.meta;
-          if (spxMeta) result.indices = { ...(result.indices || {}), spx: { price: spxMeta.regularMarketPrice?.toFixed(0), change: spxMeta.regularMarketPrice - spxMeta.previousClose, changePct: ((spxMeta.regularMarketPrice - spxMeta.previousClose) / spxMeta.previousClose * 100).toFixed(2) + '%' } };
+        const idxRes = await fetch(`${BASE}/data/indices.json`);
+        if (idxRes.ok) {
+          const idx = await idxRes.json();
+          if (idx.spx || idx.csi) result.indices = idx;
         }
       } catch { /* */ }
+      // Load pre-fetched forex data
       try {
-        const csiRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/000001.SS?interval=1d&range=1d');
-        if (csiRes.ok) {
-          const csiData = await csiRes.json();
-          const csiMeta = csiData?.chart?.result?.[0]?.meta;
-          if (csiMeta) result.indices = { ...(result.indices || {}), csi: { price: csiMeta.regularMarketPrice?.toFixed(0), change: csiMeta.regularMarketPrice - csiMeta.previousClose, changePct: ((csiMeta.regularMarketPrice - csiMeta.previousClose) / csiMeta.previousClose * 100).toFixed(2) + '%' } };
-        }
+        const fxRes = await fetch(`${BASE}/data/forex.json`);
+        if (fxRes.ok) setForex(await fxRes.json());
       } catch { /* */ }
       try {
         const hfModelsRes = await fetch('https://huggingface.co/api/models?sort=trending&limit=6');
