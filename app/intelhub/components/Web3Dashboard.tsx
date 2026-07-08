@@ -156,37 +156,47 @@ export default function Web3Dashboard({
             </div>
           </div>
 
-          {/* Exchange Volume Ranking (CoinGecko) */}
+          {/* Exchange Volume Ranking (CoinGecko) — USD total + chart */}
           <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
             <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
-              <span className="text-xs text-yellow-400 uppercase tracking-[.1em] font-bold">Exchange Volume (24h)</span>
+              <span className="text-xs text-yellow-400 uppercase tracking-[.1em] font-bold">Total Volume (24h)</span>
               <span className="text-[10px] text-[#ededed]/25">
-                {dd?.exchangeVol?.total_vol_btc_24h ? `${(dd.exchangeVol.total_vol_btc_24h / 1000).toFixed(1)}K BTC` : '...'}
+                {cmc.total_volume ? fmtBig(cmc.total_volume) : '...'}
               </span>
             </div>
+            {/* Volume history chart — USD */}
             {dd?.exchangeVol?.vol_history?.length > 2 && (
-              <div className="px-4 py-2 border-b border-white/[0.02]">
-                <svg className="w-full h-8" viewBox={`0 0 ${dd.exchangeVol.vol_history.length} 32`} preserveAspectRatio="none">
+              <div className="px-4 py-3 border-b border-white/[0.02]">
+                <div className="text-[9px] text-[#ededed]/20 uppercase mb-1">Crypto Volume History (1 Year, USD)</div>
+                <svg className="w-full h-20" viewBox={`0 0 ${dd.exchangeVol.vol_history.length} 80`} preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="volGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#eab308" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#eab308" stopOpacity="0.02" />
+                    </linearGradient>
+                  </defs>
                   {(() => {
                     const pts = dd.exchangeVol.vol_history;
                     const max = Math.max(...pts.map((d: any) => d.v));
                     const min = Math.min(...pts.map((d: any) => d.v));
                     const range = max - min || 1;
                     const points = pts.map((d: any, i: number) =>
-                      `${(i / (pts.length - 1)) * pts.length},${32 - ((d.v - min) / range) * 28 - 2}`
+                      `${(i / (pts.length - 1)) * pts.length},${80 - ((d.v - min) / range) * 72 - 4}`
                     ).join(' ');
-                    const area = points + ` ${pts.length - 1},32 0,32`;
+                    const area = points + ` ${pts.length - 1},80 0,80`;
                     return (
                       <>
-                        <polygon points={area} fill="#eab308" fillOpacity="0.08" />
-                        <polyline points={points} fill="none" stroke="#eab308" strokeWidth="1" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
+                        <polygon points={area} fill="url(#volGrad)" />
+                        <polyline points={points} fill="none" stroke="#eab308" strokeWidth="1.2" strokeOpacity="0.7" vectorEffect="non-scaling-stroke" />
                       </>
                     );
                   })()}
                 </svg>
               </div>
             )}
+            {/* Top 10 exchanges */}
             <div className="px-3 py-2 space-y-1.5">
+              <div className="text-[9px] text-[#ededed]/20 uppercase px-1 mb-1">Top Exchanges</div>
               {(dd?.exchangeVol?.exchanges || []).length > 0 ? (
                 (dd.exchangeVol.exchanges as any[]).slice(0, 10).map((e: any, i: number) => {
                   const maxVol = (dd.exchangeVol.exchanges as any[])[0]?.vol_btc || 1;
