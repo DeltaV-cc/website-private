@@ -339,9 +339,22 @@ export function useIntelData() {
   }, [loadAll, loadLive, loadInfosec, loadForex]);
 
   /* ---- Derived ---- */
+  // Category → tags that don't belong (e.g. macro box shouldn't show crypto-tagged items)
+  const CAT_TAG_BLOCK: Record<string, string[]> = {
+    macro: ['crypto', 'cybersec'],
+    science: ['crypto', 'cybersec'],
+    ai: ['crypto', 'cybersec'],
+    hardware: ['crypto', 'cybersec'],
+    crypto: ['cybersec', 'science'],
+    cybersec: ['crypto', 'macro', 'science', 'hardware'],
+  };
   const catBoxes = CATS.map(cat => ({
     ...cat,
-    items: items.filter(i => cat.kw.some(k => (i.title + ' ' + i.summary).toLowerCase().includes(k))).slice(0, 15),
+    items: items.filter(i => {
+      const blockTags = CAT_TAG_BLOCK[cat.id] || [];
+      if (i.tag && blockTags.includes(i.tag)) return false;
+      return cat.kw.some(k => (i.title + ' ' + i.summary).toLowerCase().includes(k));
+    }).slice(0, 15),
     count: 0,
   }));
   catBoxes.forEach(c => { c.count = c.items.length; });
