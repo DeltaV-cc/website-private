@@ -21,9 +21,17 @@ const posts = [
     slug: "vllm-semantic-router-mixture-of-models"
   },
   {
+    title: "FAST-AR: NVIDIA Cracks the Video Diffusion Bottleneck — 10× Faster Generation with Constant Memory",
+    date: "July 6, 2026",
+    category: "AI",
+    type: "Deep Dive",
+    excerpt: "NVIDIA Research's FAST-AR framework eliminates the KV-cache bottleneck in autoregressive video diffusion, enabling 5-10x speedups with near-identical quality and constant GPU memory over arbitrarily long rollouts. Accepted at ICML 2026.",
+    slug: "fast-ar-video-diffusion"
+  },
+  {
     title: "GitHub Security Audit: Find Leaked Secrets, Overprivileged CI/CD, and Fake Contributors in 30 Minutes",
     date: "July 1, 2026",
-    category: "Tutorial",
+    category: "OpSec",
     type: "Tutorial",
     excerpt: "Your GitHub org is the front door to your codebase. A complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles in their DevSecOps toolkit.",
     slug: "github-security-audit-tutorial"
@@ -31,7 +39,7 @@ const posts = [
   {
     title: "CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts Through Your Own Workflows",
     date: "July 1, 2026",
-    category: "Tutorial",
+    category: "OpSec",
     type: "Tutorial",
     excerpt: "Your CI/CD pipeline has access to deployer keys, RPC endpoints, and production infrastructure. Lock it down with Checkov, Semgrep, Octoscan, and opsec patterns that actually work.",
     slug: "cicd-pipeline-hardening-web3"
