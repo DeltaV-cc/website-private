@@ -262,4 +262,25 @@ try:
 except Exception as e:
     print(f'⚠ HF spaces fetch failed: {e}')
 
+# --- Pre-fetch Crypto Market Cap ---
+print('Fetching crypto market cap...')
+try:
+    cg = fetch_json('https://api.coingecko.com/api/v3/global')
+    if cg and cg.get('data'):
+        d = cg['data']
+        crypto = {
+            'total_mcap': d.get('total_market_cap', {}).get('usd', 0),
+            'total_volume': d.get('total_volume', {}).get('usd', 0),
+            'btc_dominance': d.get('market_cap_percentage', {}).get('btc', 0),
+            'eth_dominance': d.get('market_cap_percentage', {}).get('eth', 0),
+            'mcap_change_24h': d.get('market_cap_change_percentage_24h_usd', 0),
+            'active_cryptos': d.get('active_cryptocurrencies', 0),
+        }
+        with open(os.path.join(PUBLIC_DIR, 'crypto.json'), 'w') as f:
+            json.dump(crypto, f)
+        mcap_t = crypto.get('total_mcap', 0) / 1e12
+        print(f'✓ Crypto cached: ${mcap_t:.2f}T mcap')
+except Exception as e:
+    print(f'⚠ Crypto fetch failed: {e}')
+
 print('\nPre-build complete.')

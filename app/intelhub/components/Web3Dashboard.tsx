@@ -15,9 +15,36 @@ export default function Web3Dashboard({
 }) {
   const web3Cats = catBoxes.filter((c: any) => ['crypto'].includes(c.id));
   const totalVol = dd?.totalVolume24h || 0;
+  const cmc = dd?.crypto || {};
+  const mcap = cmc.total_mcap || 0;
+  const mcapChg = cmc.mcap_change_24h || 0;
+
+  function fmtBig(n: number): string {
+    if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
+    if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
+    if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
+    return `$${n.toLocaleString()}`;
+  }
 
   return (
     <div className="space-y-5">
+      {/* ── Total Market Cap Banner ── */}
+      <div className="rounded-2xl border border-[#222] bg-gradient-to-r from-purple-500/5 via-cyan-500/5 to-blue-500/5 p-5">
+        <div className="flex items-end justify-between">
+          <div>
+            <div className="text-xs text-[#ededed]/30 uppercase tracking-[.15em] mb-1">Total Crypto Market Cap</div>
+            <div className="text-2xl font-bold text-[#ededed]/90 tabular-nums">{mcap ? fmtBig(mcap) : '...'}</div>
+            <div className={`text-xs font-semibold mt-1 ${mcapChg >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+              {mcapChg ? `${mcapChg >= 0 ? '+' : ''}${mcapChg.toFixed(1)}%` : ''} <span className="text-[#ededed]/20 font-normal">24h</span>
+            </div>
+          </div>
+          <div className="text-right space-y-1">
+            <div className="text-[11px] text-[#ededed]/30">BTC Dominance <span className="text-[#ededed]/50 tabular-nums">{cmc.btc_dominance?.toFixed(1) || '...'}%</span></div>
+            <div className="text-[11px] text-[#ededed]/30">ETH Dominance <span className="text-[#ededed]/50 tabular-nums">{cmc.eth_dominance?.toFixed(1) || '...'}%</span></div>
+            <div className="text-[11px] text-[#ededed]/30">24h Volume <span className="text-[#ededed]/50 tabular-nums">{cmc.total_volume ? fmtBig(cmc.total_volume) : '...'}</span></div>
+          </div>
+        </div>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* ── TVL by Chain ── */}
         <div className="lg:col-span-1 rounded-2xl border border-[#222] bg-white/[0.01] p-5">
