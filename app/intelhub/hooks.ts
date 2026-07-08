@@ -233,6 +233,11 @@ export function useIntelData() {
         const btcRes = await fetch(`${BASE}/data/btc-trend.json`);
         if (btcRes.ok) result.btcTrend = await btcRes.json();
       } catch { /* */ }
+      // Load exchange volume ranking
+      try {
+        const exRes = await fetch(`${BASE}/data/exchange-vol.json`);
+        if (exRes.ok) result.exchangeVol = await exRes.json();
+      } catch { /* */ }
       setDd(result);
     } catch { /* */ }
   }, []);

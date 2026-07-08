@@ -283,22 +283,52 @@ try:
 except Exception as e:
     print(f'⚠ Crypto fetch failed: {e}')
 
-# --- Pre-fetch BTC Market Cap Trend (all-time, downsampled) ---
-print('Fetching BTC trend...')
+# --- Pre-fetch BTC Market Data (trend + volume history, shared fetch) ---
+print('Fetching BTC market data...')
+btc_data = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
+
+# BTC market cap trend for sparkline
 try:
-    btc = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
-    if btc and btc.get('market_caps'):
-        caps = btc['market_caps']  # [[timestamp_ms, mcap], ...]
-        # Downsample to ~150 points
+    if btc_data and btc_data.get('market_caps'):
+        caps = btc_data['market_caps']
         step = max(1, len(caps) // 150)
         trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
-        # Also include last point
         if trend[-1]['t'] != caps[-1][0]:
             trend.append({'t': caps[-1][0], 'v': caps[-1][1]})
         with open(os.path.join(PUBLIC_DIR, 'btc-trend.json'), 'w') as f:
             json.dump(trend, f)
         print(f'✓ BTC trend cached: {len(trend)} points')
 except Exception as e:
-    print(f'⚠ BTC trend fetch failed: {e}')
+    print(f'⚠ BTC trend failed: {e}')
+
+# Top exchange volumes + volume history from same BTC data
+print('Fetching exchange volumes...')
+try:
+    ex = fetch_json('https://api.coingecko.com/api/v3/exchanges?per_page=10')
+    exchanges = []
+    total_vol_btc = 0
+    if ex and isinstance(ex, list):
+        for e in ex[:10]:
+            vol_btc = e.get('trade_volume_24h_btc', 0) or 0
+            exchanges.append({
+                'name': e.get('name', '')[:30],
+                'score': e.get('trust_score', 0),
+                'vol_btc': vol_btc,
+                'year_est': e.get('year_established', '') or '',
+                'country': e.get('country', '') or '',
+            })
+            total_vol_btc += vol_btc
+    # Volume history from BTC total_volumes
+    vol_history = []
+    if btc_data and btc_data.get('total_volumes'):
+        vols = btc_data['total_volumes']
+        step = max(1, len(vols) // 100)
+        vol_history = [{'t': vols[i][0], 'v': vols[i][1]} for i in range(0, len(vols), step)]
+    ex_data = {'exchanges': exchanges, 'total_vol_btc_24h': total_vol_btc, 'vol_history': vol_history}
+    with open(os.path.join(PUBLIC_DIR, 'exchange-vol.json'), 'w') as f:
+        json.dump(ex_data, f)
+    print(f'✓ Exchange vols: {len(exchanges)} exchanges, {len(vol_history)} vol history pts')
+except Exception as e:
+    print(f'⚠ Exchange fetch failed: {e}')
 
 print('\nPre-build complete.')

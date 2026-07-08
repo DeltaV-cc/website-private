@@ -10,7 +10,7 @@ import json, os, shutil, tempfile, subprocess, sys, time, urllib.request, ssl
 
 REPO = 'https://github.com/DeltaV-cc/website-private.git'
 BRANCH = 'gh-pages'
-DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'btc-trend.json']
+DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'btc-trend.json', 'exchange-vol.json']
 USER_AGENT = 'Mozilla/5.0 (compatible; DeltaV-Refresh/1.0)'
 
 ctx = ssl.create_default_context()
@@ -118,14 +118,36 @@ if cg and cg.get('data'):
     crypto['active_cryptos'] = d.get('active_cryptocurrencies', 0)
 
 # ── 5. Clone gh-pages, update files, push ──
-# Also fetch BTC trend for the sparkline
+# ── 5. Fetch BTC trend + exchange volumes ──
 btc_trend = []
+exchange_vol = {}
 try:
     btcd = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
-    if btcd and btcd.get('market_caps'):
-        caps = btcd['market_caps']
-        step = max(1, len(caps) // 150)
-        btc_trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
+    if btcd:
+        # BTC mcap trend
+        if btcd.get('market_caps'):
+            caps = btcd['market_caps']
+            step = max(1, len(caps) // 150)
+            btc_trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
+        # Volume history
+        if btcd.get('total_volumes'):
+            vols = btcd['total_volumes']
+            step = max(1, len(vols) // 100)
+            exchange_vol['vol_history'] = [{'t': vols[i][0], 'v': vols[i][1]} for i in range(0, len(vols), step)]
+except: pass
+
+# Exchange rankings
+try:
+    ex = fetch_json('https://api.coingecko.com/api/v3/exchanges?per_page=10')
+    exchanges = []
+    total_btc = 0
+    if ex and isinstance(ex, list):
+        for e in ex[:10]:
+            vb = e.get('trade_volume_24h_btc', 0) or 0
+            exchanges.append({'name': e.get('name','')[:30], 'score': e.get('trust_score',0), 'vol_btc': vb})
+            total_btc += vb
+    exchange_vol['exchanges'] = exchanges
+    exchange_vol['total_vol_btc_24h'] = total_btc
 except: pass
 
 new_data = {
@@ -134,6 +156,7 @@ new_data = {
     'hf.json': json.dumps(hf_data) if hf_data else None,
     'crypto.json': json.dumps(crypto) if crypto else None,
     'btc-trend.json': json.dumps(btc_trend) if btc_trend else None,
+    'exchange-vol.json': json.dumps(exchange_vol) if exchange_vol else None,
 }
 
 tmpdir = tempfile.mkdtemp(prefix='dv-refresh-')
