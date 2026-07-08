@@ -223,6 +223,11 @@ export function useIntelData() {
           if (hf.spaces) result.hfSpaces = hf.spaces;
         }
       } catch { /* */ }
+      // Load crypto market cap from static JSON
+      try {
+        const cRes = await fetch(`${BASE}/data/crypto.json`);
+        if (cRes.ok) result.crypto = await cRes.json();
+      } catch { /* */ }
       setDd(result);
     } catch { /* */ }
   }, []);
