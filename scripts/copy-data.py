@@ -75,6 +75,31 @@ if os.path.exists(raw_dir):
     os.makedirs(SIGNALS_DIR, exist_ok=True)
     shutil.copy(os.path.join(PUBLIC_DIR, 'raw-items.json'), os.path.join(SIGNALS_DIR, 'raw-items.json'))
     print(f'✓ raw-items.json copied to signals/')
+    
+    # --- Assign tags to raw items via source matching ---
+    import re as _r
+    SOURCE_TAG_MAP = [
+        # (regex pattern, tag)
+        (r'(?i)coindesk|decrypt|defiant|santiment|cryptoquant|lookonchain|glassnode|l2beat|defillama|polymarket|theblock|cointelegraph|hypernativelabs|polymutex', 'crypto'),
+        (r'(?i)bleepingcomputer|dark.reading|krebs|schneier|threatpost|pcaversaccio|dinosn', 'cybersec'),
+        (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf', 'ai'),
+        (r'(?i)mit\s|science\sdaily|ieee|ars\stechnica|nature|researchgate|sciencedaily', 'science'),
+        (r'(?i)nvidia|intel|amd|tsmc|semiconductor', 'hardware'),
+        (r'(?i)federal\s?reserve|bloomberg|reuters|wsj\b|financial\stimes|michaeljburry|hacker\snews', 'macro'),
+    ]
+    for item in top200:
+        src = (item.get('source') or item.get('feedTitle') or '').strip()
+        for pattern, tag in SOURCE_TAG_MAP:
+            if _r.search(pattern, src):
+                item['tag'] = tag
+                break
+    # Re-write with tags
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(top200, f)
+    # Re-copy to signals
+    shutil.copy(os.path.join(PUBLIC_DIR, 'raw-items.json'), os.path.join(SIGNALS_DIR, 'raw-items.json'))
+    tagged = sum(1 for it in top200 if it.get('tag'))
+    print(f'✓ tags assigned: {tagged}/{len(top200)} items')
 
 # --- Copy picks ---
 picks_file = os.path.join(WORKSPACE_DIR, 'picks.json')
