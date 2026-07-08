@@ -120,7 +120,7 @@ if cg and cg.get('data'):
 # ── 5. Clone gh-pages, update files, push ──
 # ── 5. Fetch BTC trend + exchange volumes ──
 btc_trend = []
-exchange_vol = {}
+exchange_vol = {'vol_history': []}
 try:
     btcd = fetch_json('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365')
     if btcd:
@@ -129,11 +129,15 @@ try:
             caps = btcd['market_caps']
             step = max(1, len(caps) // 150)
             btc_trend = [{'t': caps[i][0], 'v': caps[i][1]} for i in range(0, len(caps), step)]
-        # Volume history
-        if btcd.get('total_volumes'):
+        # Volume history — convert BTC volume to USD using prices
+        if btcd.get('total_volumes') and btcd.get('prices'):
             vols = btcd['total_volumes']
+            px = {p[0]: p[1] for p in btcd['prices']}
             step = max(1, len(vols) // 100)
-            exchange_vol['vol_history'] = [{'t': vols[i][0], 'v': vols[i][1]} for i in range(0, len(vols), step)]
+            for i in range(0, len(vols), step):
+                t, v = vols[i]
+                p = px.get(t, px.get(min(px.keys(), key=lambda k: abs(k-t)), 0))
+                exchange_vol['vol_history'].append({'t': t, 'v': v * p})
 except: pass
 
 # Exchange rankings

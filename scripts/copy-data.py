@@ -318,12 +318,16 @@ try:
                 'country': e.get('country', '') or '',
             })
             total_vol_btc += vol_btc
-    # Volume history from BTC total_volumes
+    # Volume history from BTC total_volumes — convert to USD using prices
     vol_history = []
-    if btc_data and btc_data.get('total_volumes'):
+    if btc_data and btc_data.get('total_volumes') and btc_data.get('prices'):
         vols = btc_data['total_volumes']
+        prices = {p[0]: p[1] for p in btc_data['prices']}  # timestamp -> price
         step = max(1, len(vols) // 100)
-        vol_history = [{'t': vols[i][0], 'v': vols[i][1]} for i in range(0, len(vols), step)]
+        for i in range(0, len(vols), step):
+            t, v_btc = vols[i]
+            price = prices.get(t, prices.get(min(prices.keys(), key=lambda k: abs(k-t)), 0))
+            vol_history.append({'t': t, 'v': v_btc * price})  # USD volume
     ex_data = {'exchanges': exchanges, 'total_vol_btc_24h': total_vol_btc, 'vol_history': vol_history}
     with open(os.path.join(PUBLIC_DIR, 'exchange-vol.json'), 'w') as f:
         json.dump(ex_data, f)
