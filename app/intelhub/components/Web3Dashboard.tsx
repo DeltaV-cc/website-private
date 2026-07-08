@@ -156,6 +156,59 @@ export default function Web3Dashboard({
             </div>
           </div>
 
+          {/* Exchange Volume Ranking (CoinGecko) */}
+          <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+            <div className="px-4 py-2.5 border-b border-[#222] bg-[#111] flex items-center justify-between">
+              <span className="text-xs text-yellow-400 uppercase tracking-[.1em] font-bold">Exchange Volume (24h)</span>
+              <span className="text-[10px] text-[#ededed]/25">
+                {dd?.exchangeVol?.total_vol_btc_24h ? `${(dd.exchangeVol.total_vol_btc_24h / 1000).toFixed(1)}K BTC` : '...'}
+              </span>
+            </div>
+            {dd?.exchangeVol?.vol_history?.length > 2 && (
+              <div className="px-4 py-2 border-b border-white/[0.02]">
+                <svg className="w-full h-8" viewBox={`0 0 ${dd.exchangeVol.vol_history.length} 32`} preserveAspectRatio="none">
+                  {(() => {
+                    const pts = dd.exchangeVol.vol_history;
+                    const max = Math.max(...pts.map((d: any) => d.v));
+                    const min = Math.min(...pts.map((d: any) => d.v));
+                    const range = max - min || 1;
+                    const points = pts.map((d: any, i: number) =>
+                      `${(i / (pts.length - 1)) * pts.length},${32 - ((d.v - min) / range) * 28 - 2}`
+                    ).join(' ');
+                    const area = points + ` ${pts.length - 1},32 0,32`;
+                    return (
+                      <>
+                        <polygon points={area} fill="#eab308" fillOpacity="0.08" />
+                        <polyline points={points} fill="none" stroke="#eab308" strokeWidth="1" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
+                      </>
+                    );
+                  })()}
+                </svg>
+              </div>
+            )}
+            <div className="px-3 py-2 space-y-1.5">
+              {(dd?.exchangeVol?.exchanges || []).length > 0 ? (
+                (dd.exchangeVol.exchanges as any[]).slice(0, 10).map((e: any, i: number) => {
+                  const maxVol = (dd.exchangeVol.exchanges as any[])[0]?.vol_btc || 1;
+                  const pct = ((e.vol_btc / maxVol) * 100).toFixed(0);
+                  return (
+                    <div key={i} className="flex items-center gap-2 text-[10px]">
+                      <span className="w-4 text-right text-[#ededed]/25 tabular-nums">{i + 1}</span>
+                      <span className="w-20 text-[#ededed]/50 truncate">{e.name}</span>
+                      <div className="flex-1 h-2.5 rounded-full bg-white/[0.03] overflow-hidden">
+                        <div className="h-full rounded-full bg-gradient-to-r from-yellow-500/50 to-amber-500/30"
+                          style={{ width: `${pct}%` }} />
+                      </div>
+                      <span className="w-14 text-right tabular-nums text-[#ededed]/45">{e.score || '...'}</span>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="text-[#ededed]/15 text-xs italic py-4 text-center">Exchange data loading...</div>
+              )}
+            </div>
+          </div>
+
           {/* Polymarket */}
           {dd?.polymarket?.length > 0 && (
             <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
