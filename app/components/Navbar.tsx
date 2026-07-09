@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const NAV_ITEMS = [
   { href: '/ai/', label: 'AI' },
@@ -18,20 +19,20 @@ export default function Navbar() {
     <nav className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-5 md:py-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="text-xl md:text-2xl font-semibold tracking-[-1px]">
+        <Link href="/" className="text-xl md:text-2xl font-semibold tracking-[-1px]">
           Delta V
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="hover:text-[#00f0ff] transition-colors whitespace-nowrap"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -52,14 +53,14 @@ export default function Navbar() {
         <div className="md:hidden border-t border-[#222] bg-[#0a0a0a]">
           <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="block px-4 py-3 rounded-xl text-sm hover:bg-[#1a1a1a] hover:text-[#00f0ff] transition-colors"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

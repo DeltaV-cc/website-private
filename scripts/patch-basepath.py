@@ -31,34 +31,31 @@ def fix_html(content):
         href = m.group(1)
         if should_skip(href):
             return m.group(0)
-        # Add basePath
         new_href = f'{BASE_PATH}/{href}'
-        # Add trailing slash for internal routes (no file extension, not empty, not already ending with /)
         if new_href != f'{BASE_PATH}/' and '/' not in new_href.rsplit('/', 1)[-1] and not new_href.endswith('/'):
             new_href += '/'
-        return f'href="{new_href}"'
-    return re.sub(r'href="/([^"]*)"', repl, content)
+        return f'href="\\"{new_href}\\""' if m.group(0).startswith('href=\\"') else f'href="{new_href}"'
+    # Match href="/..." and href=\"/...\" (escaped quotes from inlined JS in static export)
+    return re.sub(r'href=(?:\")?\/?([^"\\]+)(?:\"|\\)?', repl, content)
 
 def fix_js(content):
-    # 1) escaped double-quoted paths: Turbopack outputs \" /data/... \"
-    #    Pattern in raw bytes: backslash + double-quote + / + path + backslash + double-quote
+    # 1) escaped double-quoted paths: Turbopack outputs \\" /data/... \\"
     def repl_edq(m):
         p = m.group(1)
-        return m.group(0) if should_skip(p) else '\\"/{}/{}\\"'.format(BASE_PATH[1:], p)
-    # Regex: \\ matches literal backslash, \" matches literal double-quote
-    content = re.sub(r'\\"/\s*([a-zA-Z0-9_./-]+)\\"', repl_edq, content)
+        return m.group(0) if should_skip(p) else '\\\\"/{}/{}\\\\"'.format(BASE_PATH[1:], p)
+    content = re.sub(r'\\\\"/\\s*([a-zA-Z0-9_./-]+)\\\\\\"', repl_edq, content)
 
     # 2) plain double-quoted paths like "/data/..."
     def repl_dq(m):
         p = m.group(1)
         return m.group(0) if should_skip(p) else f'"/{BASE_PATH[1:]}/{p}"'
-    content = re.sub(r'"/\s*([a-zA-Z0-9_./-]+)"', repl_dq, content)
+    content = re.sub(r'"/\\s*([a-zA-Z0-9_./-]+)"', repl_dq, content)
 
     # 3) single-quoted paths like '/data/...'
     def repl_sq(m):
         p = m.group(1)
         return m.group(0) if should_skip(p) else f"'/{BASE_PATH[1:]}/{p}'"
-    content = re.sub(r"'/\s*([a-zA-Z0-9_./-]+)'", repl_sq, content)
+    content = re.sub(r"'/\\s*([a-zA-Z0-9_./-]+)'", repl_sq, content)
 
     return content
 
