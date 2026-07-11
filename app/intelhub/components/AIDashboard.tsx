@@ -1,9 +1,10 @@
 /* ================================================================
-   IntelHub — AI Dashboard (v2.1)
-   HF with descriptions · AI Leaders w/ multi-tweet
+   IntelHub — AI Dashboard (v2.2)
+   Frontier Watch tab: HF models/spaces + AI Leaders with filters
    ================================================================ */
 'use client';
 
+import { useState } from 'react';
 import { Item, PatentsData } from '../types';
 import { CategoryBox } from './Shared';
 
@@ -31,7 +32,6 @@ function AILeaders({ items, ts }: { items: Item[]; ts: (iso: string) => string }
       </div>
       <div className="divide-y divide-white/[0.02] max-h-[700px] overflow-y-auto">
         {AI_LEADERS.map((p, i) => {
-          // Find latest items from this handle in the feed (up to 3)
           const latestItems = items.filter((it: any) =>
             (it.source || '').toLowerCase().includes(p.handle.toLowerCase())
           ).slice(0, 3);
@@ -69,125 +69,117 @@ function AILeaders({ items, ts }: { items: Item[]; ts: (iso: string) => string }
   );
 }
 
-/* ── Key Labs — compact with research links ── */
-function KeyLabs({ patents }: { patents: PatentsData | null }) {
-  if (!patents?.keyLabs?.length) return null;
-  return (
-    <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
-      <div className="px-3 py-2 border-b border-[#222] bg-[#111]">
-        <span className="text-[11px] text-pink-400 uppercase tracking-[.1em] font-bold">Key Labs & Institutions</span>
-      </div>
-      <div className="grid grid-cols-3 gap-1.5 p-2">
-        {patents.keyLabs.slice(0, 9).map((l: any, i: number) => (
-          <a key={i} href={l.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(l.name)}`} target="_blank" rel="noopener noreferrer"
-            className="rounded-lg border border-[#222] bg-white/[0.02] px-2.5 py-2 hover:bg-white/[0.05] transition-colors">
-            <div className="text-[10px] text-[#ededed]/70 font-medium truncate">{l.name}</div>
-            <div className="text-[8px] text-[#ededed]/30 mt-0.5 flex items-center justify-between">
-              <span>{l.country}</span>
-              <span className="tabular-nums">{l.papers} papers</span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
+/* ── Frontier Watch: HF Models + Spaces with filters + AI Leaders ── */
+function FrontierWatch({ dd, items, ts }: { dd: any; items: Item[]; ts: (iso: string) => string }) {
+  const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
 
-/* ── HF Organizations — social cards linking to AI lab HuggingFace orgs ── */
-const HF_ORGS = [
-  { name: 'xAI', handle: 'xai-org', desc: 'Grok · RealworldQA' },
-  { name: 'Meta', handle: 'meta-llama', desc: 'Llama · SAM · Seamless' },
-  { name: 'Google', handle: 'google', desc: 'Gemma · T5 · ViT' },
-  { name: 'Microsoft', handle: 'microsoft', desc: 'Phi · Florence · DeepSpeed' },
-  { name: 'NVIDIA', handle: 'nvidia', desc: 'Nemotron · Cosmos · NeMo' },
-  { name: 'Nous Research', handle: 'NousResearch', desc: 'Hermes · DisTrO' },
-  { name: 'Mistral AI', handle: 'mistralai', desc: 'Mistral · Mixtral · Codestral' },
-  { name: 'DeepSeek', handle: 'deepseek-ai', desc: 'DeepSeek-V4 · R1 · Coder' },
-  { name: 'Anthropic', handle: 'Anthropic', desc: 'Model Context Protocol' },
-];
+  const models = (dd?.hfModels || []).map((m: any) => ({ ...m, type: 'model' }));
+  const spaces = (dd?.hfSpaces || []).map((s: any) => ({ ...s, type: 'space' }));
+  let allItems = [...models, ...spaces];
 
-function HFOrgs() {
-  return (
-    <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
-      <div className="px-3 py-2 border-b border-[#222] bg-[#111] flex items-center justify-between">
-        <span className="text-[11px] text-amber-400 uppercase tracking-[.1em] font-bold">🤗 HF Organizations</span>
-        <span className="text-[9px] text-[#ededed]/15">{HF_ORGS.length} labs</span>
-      </div>
-      <div className="grid grid-cols-3 gap-1.5 p-2">
-        {HF_ORGS.map((org, i) => (
-          <a key={i} href={`https://huggingface.co/${org.handle}`} target="_blank" rel="noopener noreferrer"
-            className="rounded-lg border border-[#222] bg-white/[0.02] px-2.5 py-2 hover:bg-white/[0.05] hover:border-amber-500/20 transition-colors group">
-            <div className="flex items-center gap-1.5">
-              <span className="text-[10px] text-[#ededed]/80 font-medium truncate group-hover:text-white">{org.name}</span>
-              <span className="text-[8px] text-[#ededed]/20 shrink-0">@{org.handle}</span>
-            </div>
-            <div className="text-[8px] text-[#ededed]/25 mt-0.5 truncate">{org.desc}</div>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
+  // Apply filters
+  if (filter === 'new') {
+    allItems = allItems.filter((x: any) => (x.downloads || 0) < 50000);
+  }
+  if (filter === 'downloads') {
+    allItems = allItems.sort((a: any, b: any) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 20);
+  }
+  if (filter === 'agent') {
+    allItems = allItems.filter((x: any) =>
+      (x.description || '').toLowerCase().includes('agent') ||
+      (x.pipeline || '').toLowerCase().includes('text-generation')
+    );
+  }
+  if (filter === 'vision') {
+    allItems = allItems.filter((x: any) =>
+      (x.pipeline || '').toLowerCase().includes('image') ||
+      (x.description || '').toLowerCase().includes('vision') ||
+      (x.description || '').toLowerCase().includes('vlm')
+    );
+  }
+  if (filter === 'moe') {
+    allItems = allItems.filter((x: any) =>
+      (x.description || '').toLowerCase().includes('moe') ||
+      (x.description || '').toLowerCase().includes('mixture')
+    );
+  }
 
-/* ── HF Models + Spaces with descriptions ── */
-function HFTracker({ dd }: { dd: any }) {
-  const models = dd?.hfModels || [];
-  const spaces = dd?.hfSpaces || [];
+  const filtered = allItems.slice(0, 16);
+
   return (
-    <div className="grid grid-cols-2 gap-3">
-      <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
-        <div className="px-3 py-2 border-b border-[#222] bg-[#111] flex items-center justify-between">
-          <span className="text-[11px] text-blue-400 uppercase tracking-[.1em] font-bold">🤗 Trending Models</span>
-          <span className="text-[9px] text-[#ededed]/20">24h</span>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      {/* Main Frontier Cards */}
+      <div className="lg:col-span-8 rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden">
+        <div className="px-4 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between">
+          <div>
+            <span className="text-[11px] text-emerald-400 uppercase tracking-[.1em] font-bold">Frontier Watch</span>
+            <span className="ml-3 text-[10px] text-[#ededed]/30">Trending models &amp; spaces • 24h</span>
+          </div>
+          <div className="flex gap-1 text-[10px]">
+            {[
+              { key: 'all', label: 'All' },
+              { key: 'new', label: 'New' },
+              { key: 'downloads', label: 'Popular' },
+              { key: 'agent', label: 'Agent' },
+              { key: 'vision', label: 'Vision' },
+              { key: 'moe', label: 'MoE' },
+            ].map(f => (
+              <button
+                key={f.key}
+                onClick={() => setFilter(f.key as any)}
+                className={`px-3 py-0.5 rounded-full transition ${filter === f.key ? 'bg-white text-black' : 'bg-white/[0.04] text-[#ededed]/50 hover:text-white'}`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="divide-y divide-white/[0.02] max-h-[520px] overflow-y-auto">
-          {models.length > 0 ? models.map((m: any, i: number) => (
-            <a key={i} href={m.url || '#'} target="_blank" rel="noopener noreferrer"
-              className="block px-3 py-2 hover:bg-white/[0.03]">
-              <div className="flex items-start justify-between gap-2">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#222]">
+          {filtered.length > 0 ? filtered.map((item: any, i: number) => (
+            <a
+              key={i}
+              href={item.url || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-4 bg-[#0a0a0a] hover:bg-white/[0.015] border-b border-r border-[#222] group"
+            >
+              <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
-                  <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{m.name}</div>
-                  {m.description ? (
-                    <div className="text-[9px] text-[#ededed]/35 line-clamp-1 mt-0.5">{m.description}</div>
-                  ) : (
-                    <div className="text-[9px] text-[#ededed]/20 mt-0.5">{m.author || 'HF'}</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-[#ededed] group-hover:text-white truncate">
+                      {item.name}
+                    </span>
+                    {item.pipeline && (
+                      <span className="text-[9px] px-1.5 py-px rounded bg-white/[0.06] text-[#ededed]/40 shrink-0">
+                        {item.pipeline}
+                      </span>
+                    )}
+                  </div>
+                  {item.description && (
+                    <div className="text-xs text-[#ededed]/45 mt-1.5 line-clamp-2 leading-snug">
+                      {item.description}
+                    </div>
                   )}
                 </div>
-                <div className="flex items-center gap-2 shrink-0 text-right">
-                  <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.likes || 0}♥</span>
-                  <span className="text-[9px] text-[#ededed]/35 tabular-nums">{m.downloads || 0}↓</span>
+                <div className="text-right shrink-0 text-[10px] tabular-nums text-[#ededed]/35">
+                  {item.likes || 0}♥<br />
+                  {item.downloads || 0}↓
                 </div>
+              </div>
+              <div className="mt-3 text-[9px] text-emerald-400/60">
+                {item.type === 'model' ? 'Model' : 'Space'} · {item.author || 'HF'}
               </div>
             </a>
           )) : (
-            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading…</div>
+            <div className="col-span-2 p-8 text-center text-[#ededed]/20">No items match this filter</div>
           )}
         </div>
       </div>
-      <div className="rounded-xl border border-[#222] bg-white/[0.01] overflow-hidden">
-        <div className="px-3 py-2 border-b border-[#222] bg-[#111]">
-          <span className="text-[11px] text-purple-400 uppercase tracking-[.1em] font-bold">🚀 Trending Spaces</span>
-        </div>
-        <div className="divide-y divide-white/[0.02] max-h-[520px] overflow-y-auto">
-          {spaces.length > 0 ? spaces.map((s: any, i: number) => (
-            <a key={i} href={s.url || '#'} target="_blank" rel="noopener noreferrer"
-              className="block px-3 py-2 hover:bg-white/[0.03]">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0 flex-1">
-                  <div className="text-[10px] text-[#ededed]/80 truncate font-medium">{s.name}</div>
-                  {s.description ? (
-                    <div className="text-[9px] text-[#ededed]/35 line-clamp-1 mt-0.5">{s.description}</div>
-                  ) : (
-                    <div className="text-[9px] text-[#ededed]/20 mt-0.5">{s.author || 'HF'}</div>
-                  )}
-                </div>
-                <span className="text-[9px] text-[#ededed]/35 tabular-nums shrink-0">{s.likes || 0}♥</span>
-              </div>
-            </a>
-          )) : (
-            <div className="px-3 py-5 text-[10px] text-[#ededed]/12 italic text-center">Loading…</div>
-          )}
-        </div>
+
+      {/* AI Leaders Sidebar */}
+      <div className="lg:col-span-4">
+        <AILeaders items={items} ts={ts} />
       </div>
     </div>
   );
@@ -204,11 +196,8 @@ export default function AIDashboard({
   const aiCats = catBoxes.filter((c: any) => ['ai', 'hardware'].includes(c.id));
 
   return (
-    <div className="space-y-4">
-      <HFTracker dd={dd} />
-      <KeyLabs patents={patents} />
-      <HFOrgs />
-      <AILeaders items={items} ts={ts} />
+    <div className="space-y-5">
+      <FrontierWatch dd={dd} items={items} ts={ts} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {aiCats.map((cat: any) => (
           <CategoryBox key={cat.id} cat={cat} ago={ago} TC={TC} />
