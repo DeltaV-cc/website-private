@@ -78,7 +78,7 @@ const posts = [
   {
     title: "DeFi Weekly — June 23, 2026",
     date: "June 23, 2026",
-    category: "Web3",
+    category: "DeFi Weekly",
     type: "Dashboard",
     excerpt: "True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg.",
     slug: "defi-weekly-june-23"
@@ -133,13 +133,14 @@ const posts = [
   },
 ];
 
-const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware'];
+const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'DeFi Weekly', 'Hardware'];
 
 const categoryConfig: Record<string, { color: string; active: string }> = {
   'All':    { color: 'border-[var(--border-default)] bg-white/[0.03] text-[var(--text-tertiary)]', active: 'border-white/20 bg-white/8 text-white' },
   'AI':     { color: 'border-[var(--accent-cyan)]/15 bg-[var(--accent-cyan)]/5 text-[var(--accent-cyan)]/60', active: 'border-[var(--accent-cyan)]/35 bg-[var(--accent-cyan)]/12 text-[var(--accent-cyan)]' },
   'Web3':   { color: 'border-[var(--accent-orange)]/15 bg-[var(--accent-orange)]/5 text-[var(--accent-orange)]/60', active: 'border-[var(--accent-orange)]/35 bg-[var(--accent-orange)]/12 text-[var(--accent-orange)]' },
   'OpSec':  { color: 'border-[var(--accent-amber)]/15 bg-[var(--accent-amber)]/5 text-[var(--accent-amber)]/60', active: 'border-[var(--accent-amber)]/35 bg-[var(--accent-amber)]/12 text-[var(--accent-amber)]' },
+  'DeFi Weekly': { color: 'border-[var(--accent-gold)]/20 bg-[var(--accent-gold)]/5 text-[var(--accent-gold)]/70', active: 'border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]' },
   'Hardware':{ color: 'border-[var(--accent-purple)]/15 bg-[var(--accent-purple)]/5 text-[var(--accent-purple)]/60', active: 'border-[var(--accent-purple)]/35 bg-[var(--accent-purple)]/12 text-[var(--accent-purple)]' },
 };
 
@@ -219,6 +220,7 @@ export default function Blog() {
                     post.category === 'AI' ? 'text-[var(--accent-cyan)]' :
                     post.category === 'Web3' ? 'text-[var(--accent-orange)]' :
                     post.category === 'OpSec' ? 'text-[var(--accent-amber)]' :
+                    post.category === 'DeFi Weekly' ? 'text-[var(--accent-gold)]' :
                     'text-[var(--accent-purple)]'
                   }`}>{post.category}</span>
                   <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold tracking-[1px] uppercase border ${typeConfig[post.type] || 'border-white/5 bg-white/[0.03] text-[var(--text-muted)]'}`}>
