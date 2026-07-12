@@ -63,7 +63,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
       </div>
 
       {/* Carousel Cards */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         {carousel.map((art, i) => (
           <a
             key={art.artemis_id || i}
@@ -90,7 +90,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
 
               {/* Summary */}
               {art.summary && (
-                <p className="text-[11px] text-white/40 leading-relaxed line-clamp-2 group-hover:text-white/50 transition-colors">
+                <p className="text-xs text-white/40 leading-relaxed line-clamp-2 group-hover:text-white/50 transition-colors">
                   {art.summary}
                 </p>
               )}

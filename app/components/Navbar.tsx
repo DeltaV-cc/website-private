@@ -12,51 +12,66 @@ const NAV_ITEMS = [
   { href: '/contact/', label: 'Contact' },
 ];
 
+/* Inline SVG icons — no icon library */
+const LogoIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="flex-shrink-0">
+    <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" strokeWidth="2" fill="none" />
+    <path d="M9 20V8l10 6-10 6z" fill="currentColor" />
+  </svg>
+);
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-5 md:py-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="text-xl md:text-2xl font-semibold tracking-[-1px]">
-          Delta V
-        </Link>
+    <nav className="fixed top-0 w-full z-50 border-b border-[var(--border-default)] bg-[var(--bg-deep)]/80 backdrop-blur-xl">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors duration-200 group">
+            <span className="text-[var(--accent-cyan)] group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.3)] transition-all">
+              <LogoIcon />
+            </span>
+            <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>
+          </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="hover:text-[#00f0ff] transition-colors whitespace-nowrap"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Hamburger (mobile) */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Close navigation' : 'Open navigation'}
-        >
-          <span className={`block w-5 h-[2px] bg-[#ededed] transition-all duration-200 ${open ? 'rotate-45 translate-y-[5px]' : ''}`} />
-          <span className={`block w-5 h-[2px] bg-[#ededed] transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-[2px] bg-[#ededed] transition-all duration-200 ${open ? '-rotate-45 -translate-y-[5px]' : ''}`} />
-        </button>
-      </div>
-
-      {/* Mobile dropdown */}
-      {open && (
-        <div className="md:hidden border-t border-[#222] bg-[#0a0a0a]">
-          <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-3 rounded-xl text-sm hover:bg-[#1a1a1a] hover:text-[#00f0ff] transition-colors"
+                className="relative px-3.5 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-150 rounded-lg hover:bg-white/[0.04]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/[0.04] transition-colors"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={open}
+          >
+            <span className={`block w-5 h-[2px] bg-[var(--text-primary)] transition-all duration-200 origin-center ${open ? 'rotate-45 translate-y-[5px]' : ''}`} />
+            <span className={`block w-5 h-[2px] bg-[var(--text-primary)] transition-all duration-200 ${open ? 'opacity-0 translate-x-2' : ''}`} />
+            <span className={`block w-5 h-[2px] bg-[var(--text-primary)] transition-all duration-200 origin-center ${open ? '-rotate-45 -translate-y-[5px]' : ''}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="md:hidden border-t border-[var(--border-default)] bg-[var(--bg-deep)]/95 backdrop-blur-xl animate-fade-in">
+          <div className="max-w-[1440px] mx-auto px-6 py-3">
+            {NAV_ITEMS.map((item, i) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-4 py-3 rounded-xl text-sm text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] hover:bg-white/[0.04] transition-all duration-150 animate-fade-in-up"
+                style={{ animationDelay: `${i * 40}ms` }}
                 onClick={() => setOpen(false)}
               >
                 {item.label}

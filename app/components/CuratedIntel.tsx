@@ -21,6 +21,14 @@ const ts = (iso: string) => {
   } catch { return ''; }
 };
 
+const categoryColor = (cat: string) => {
+  const c = cat.toLowerCase();
+  if (c.includes('ai') || c.includes('model')) return 'text-[var(--accent-cyan)] border-[var(--accent-cyan)]/20 bg-[var(--accent-cyan)]/8';
+  if (c.includes('crypto') || c.includes('web3') || c.includes('defi')) return 'text-[var(--accent-orange)] border-[var(--accent-orange)]/20 bg-[var(--accent-orange)]/8';
+  if (c.includes('sec') || c.includes('opsec')) return 'text-[var(--accent-amber)] border-[var(--accent-amber)]/20 bg-[var(--accent-amber)]/8';
+  return 'text-[var(--accent-purple)] border-[var(--accent-purple)]/20 bg-[var(--accent-purple)]/8';
+};
+
 export default function CuratedIntel() {
   const scrollRef1 = useRef<HTMLDivElement>(null);
   const scrollRef2 = useRef<HTMLDivElement>(null);
@@ -34,48 +42,32 @@ export default function CuratedIntel() {
         if (Array.isArray(data)) {
           setItems(data.slice(0, 20));
         }
-      } catch (error) {
-        console.error('Failed to fetch curated intel');
+      } catch {
+        // Silent fail — component gracefully degrades
       }
     };
-
     fetchData();
   }, []);
 
-  // Auto-scrolling effect
   useEffect(() => {
-    const scrollContainer1 = scrollRef1.current;
-    const scrollContainer2 = scrollRef2.current;
+    const c1 = scrollRef1.current;
+    const c2 = scrollRef2.current;
+    if (!c1 || !c2) return;
 
-    if (!scrollContainer1 || !scrollContainer2) return;
-
-    let animationFrame1: number;
-    let animationFrame2: number;
-
-    const scrollSpeed1 = 0.5;
-    const scrollSpeed2 = 0.8;
-
-    const animateScroll = () => {
-      if (scrollContainer1) {
-        scrollContainer1.scrollLeft += scrollSpeed1;
-        if (scrollContainer1.scrollLeft >= scrollContainer1.scrollWidth / 2) {
-          scrollContainer1.scrollLeft = 0;
-        }
+    let raf: number;
+    const animate = () => {
+      if (c1) {
+        c1.scrollLeft += 0.4;
+        if (c1.scrollLeft >= c1.scrollWidth / 2) c1.scrollLeft = 0;
       }
-      if (scrollContainer2) {
-        scrollContainer2.scrollLeft += scrollSpeed2;
-        if (scrollContainer2.scrollLeft >= scrollContainer2.scrollWidth / 2) {
-          scrollContainer2.scrollLeft = 0;
-        }
+      if (c2) {
+        c2.scrollLeft += 0.7;
+        if (c2.scrollLeft >= c2.scrollWidth / 2) c2.scrollLeft = 0;
       }
-      animationFrame1 = requestAnimationFrame(animateScroll);
+      raf = requestAnimationFrame(animate);
     };
-
-    animationFrame1 = requestAnimationFrame(animateScroll);
-
-    return () => {
-      cancelAnimationFrame(animationFrame1);
-    };
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
   }, [items]);
 
   const row1 = items.slice(0, 10);
@@ -87,47 +79,44 @@ export default function CuratedIntel() {
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-white/[0.015] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group"
+      className="flex-shrink-0 w-[280px] rounded-xl p-4 border border-[var(--border-default)] bg-[var(--bg-surface)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-elevated)] transition-all duration-200 group"
     >
       <div className="flex items-start gap-2">
         <div className="flex-1 min-w-0">
-          <div className="text-[13px] font-medium leading-snug line-clamp-2 text-white/85 group-hover:text-white">
+          <div className="text-[13px] font-medium leading-snug line-clamp-2 text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
             {item.title}
           </div>
         </div>
         {isNew(item.published_at) && (
-          <span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400" />
+          <span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-[var(--accent-green)] shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
         )}
       </div>
-      <div className="flex items-center gap-2 mt-3 text-[11px] text-white/25">
-        <span className="truncate max-w-[90px]">{item.source}</span>
-        <span className="ml-auto tabular-nums whitespace-nowrap">{ts(item.published_at)}</span>
+      <div className="flex items-center gap-2 mt-3">
+        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium tracking-wide uppercase border ${categoryColor(item.category)}`}>
+          {item.category}
+        </span>
+        <span className="text-[11px] text-[var(--text-muted)] tabular-nums ml-auto">{ts(item.published_at)}</span>
       </div>
     </a>
   );
 
+  if (!items.length) return null;
+
   return (
-    <div className="max-w-6xl mx-auto px-8 pb-16">
-      <div className="mb-4">
-        <div className="text-[#00f0ff] text-xs font-medium tracking-[2px]">CURATED INTEL</div>
-        <h3 className="text-xl font-semibold tracking-tight">Latest from the pipeline</h3>
+    <div>
+      <div className="flex items-end justify-between mb-6">
+        <div>
+          <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-2">Curated Intel</div>
+          <h3 className="text-xl md:text-2xl font-semibold tracking-tight">Latest from the pipeline</h3>
+        </div>
       </div>
 
-      <div className="space-y-4 overflow-hidden">
-        {/* Row 1 - Auto scrolling */}
-        <div
-          ref={scrollRef1}
-          className="flex gap-5 overflow-x-hidden scrollbar-hide"
-        >
-          {[...row1, ...row1].map((item, index) => renderCard(item, index))}
+      <div className="space-y-3 overflow-hidden">
+        <div ref={scrollRef1} className="flex gap-3 overflow-x-hidden">
+          {[...row1, ...row1].map((item, i) => renderCard(item, i))}
         </div>
-
-        {/* Row 2 - Auto scrolling */}
-        <div
-          ref={scrollRef2}
-          className="flex gap-5 overflow-x-hidden scrollbar-hide"
-        >
-          {[...row2, ...row2].map((item, index) => renderCard(item, index))}
+        <div ref={scrollRef2} className="flex gap-3 overflow-x-hidden">
+          {[...row2, ...row2].map((item, i) => renderCard(item, i))}
         </div>
       </div>
     </div>

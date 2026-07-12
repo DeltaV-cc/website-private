@@ -5,6 +5,29 @@
 
 import { Item } from '../types';
 
+/* ── Skeleton Screens ── */
+export function SkeletonBlock({ className }: { className?: string }) {
+  return (
+    <div className={`rounded relative overflow-hidden bg-white/[0.03] ${className || ''}`}>
+      <div className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
+          animation: 'shimmer 1.5s infinite',
+        }} />
+    </div>
+  );
+}
+
+export function SkeletonPrice() {
+  return (
+    <div className="px-4 py-3 space-y-2">
+      <SkeletonBlock className="h-3 w-12 mb-1" />
+      <SkeletonBlock className="h-6 w-24" />
+      <SkeletonBlock className="h-3 w-16" />
+    </div>
+  );
+}
+
 /* ── SVG Icons (inline Heroicons) ── */
 export function ShieldIcon() {
   return (
@@ -64,7 +87,7 @@ export function TileBox({
 }) {
   return (
     <div className={`rounded-2xl border border-[#222] bg-white/[0.01] border-l-2 ${color} overflow-hidden`}>
-      <div className="px-4 py-3 border-b border-[#222] bg-[#111] flex items-center justify-between">
+      <div className="px-4 py-3 border-b border-[#222] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
         <span className={`text-sm font-semibold ${accent}`}>{title}</span>
         <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/40 tabular-nums">{count}</span>
       </div>
@@ -76,7 +99,7 @@ export function TileBox({
 /* ── TileRow ── */
 export function TileRow({ it, ago }: { it: Item; ago: (iso: string) => string }) {
   return (
-    <a href={it.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 hover:bg-white/[0.03] group">
+    <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-4 py-3 hover:bg-white/[0.03] group">
       <div className="text-sm font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{it.title}</div>
       <div className="text-xs text-[#ededed]/25 mt-1 tabular-nums">{ago(it.published_at)}</div>
     </a>
@@ -122,7 +145,7 @@ export function CategoryBox({
   const py = compact ? 'py-1.5' : 'py-2.5';
   return (
     <div className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-      <div className={`${px} ${py} border-b border-[#222] bg-[#111] flex items-center justify-between`}>
+      <div className={`${px} ${py} border-b border-[#222] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between`}>
         <span className={`text-sm font-semibold ${cat.accent}`}>{cat.label}</span>
         <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span>
       </div>
@@ -136,9 +159,10 @@ export function CategoryBox({
               href={it.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={it.title}
               className={`block ${px} ${py} hover:bg-white/[0.03] group`}
             >
-              <div className={`${compact ? 'text-[11px]' : 'text-xs'} font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2`}>{it.title}</div>
+              <div className={`${compact ? 'text-xs' : 'text-xs'} font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2`}>{it.title}</div>
               <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
                 <span className="truncate max-w-[80px]">{it.source}</span>
                 <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
@@ -152,6 +176,11 @@ export function CategoryBox({
 }
 
 /* ── helpers ── */
+export function fmtNum(n: number | null | undefined, decimals = 0): string {
+  if (n == null || isNaN(n)) return '...';
+  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
 function fmtShort(n: number) {
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
   if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;

@@ -143,7 +143,7 @@ export default function WeeklyDeFi1() {
       {/* Sources appendix */}
       <div className="border-t border-[#222] pt-6 mt-8">
         <h3 className="text-sm font-semibold text-[#666] mb-3">Sources</h3>
-        <div className="grid grid-cols-2 gap-2 text-xs text-[#555]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#555]">
           <div>• Artemis Research (artemis.xyz)</div>
           <div>• DeFiLlama / LlamaAI</div>
           <div>• TokenTerminal</div>

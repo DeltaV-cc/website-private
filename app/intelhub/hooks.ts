@@ -6,15 +6,16 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Item, PatentsData, IntelData } from './types';
 
-const BASE = '/website-private';
+// Fetch from canonical GitHub Pages URL (bypasses domain/CNAME issues)
+const BASE = 'https://deltav-cc.github.io/website-private';
 
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [
-  { id: 'ai', label: 'AI/ML', color: 'border-l-blue-400', accent: 'text-blue-400', bg: 'bg-blue-500/5', kw: ['gpt', 'llm', 'transformer', 'neural', 'deep learning', 'machine learning', 'hugging face', 'agent', 'inference', 'embedding', 'token', 'prompt', 'fine.tun', 'rag', 'vector database', 'multimodal', 'diffusion', 'gan', 'lora', 'qlora', 'rlhf', 'alignment', 'artificial intelligence', 'openai', 'anthropic', 'claude', 'deepseek', 'mistral', 'gemini', 'cohere', 'copilot', 'chatbot', 'reasoning', 'sora', 'attention mechanism', 'model card', 'frontier model', 'foundation model'] },
+  { id: 'ai', label: 'AI/ML', color: 'border-l-blue-400', accent: 'text-blue-400', bg: 'bg-blue-500/5', kw: ['gpt', 'llm', 'transformer', 'neural', 'deep learning', 'machine learning', 'hugging face', 'agent', 'inference', 'embedding', 'prompt engineering', 'fine.tun', 'rag', 'vector database', 'multimodal', 'diffusion model', 'gan', 'lora', 'qlora', 'rlhf', 'ai alignment', 'artificial intelligence', 'openai', 'anthropic', 'claude', 'deepseek', 'mistral', 'gemini', 'cohere', 'copilot', 'chatbot', 'reasoning model', 'sora', 'attention mechanism', 'model card', 'frontier model', 'foundation model', 'large language model', 'mixture of experts', 'moe', 'text-to-image', 'text-to-video', 'image generation', 'speech recognition', 'whisper', 'wav2vec', 'tokenizer', 'quantization', 'gguf', 'onnx', 'safetensors', 'modeltraining', 'neurips', 'icml', 'iclr', 'cvpr'] },
   { id: 'crypto', label: 'Crypto', color: 'border-l-yellow-400', accent: 'text-yellow-400', bg: 'bg-yellow-500/5', kw: ['btc', 'eth', 'ethereum', 'bitcoin', 'defi', 'web3', 'blockchain', 'crypto', 'algorithmic', 'l2', 'rollup', 'zk', 'zero.knowledge', 'evm', 'solidity', 'smart contract', 'dapp', 'nft', 'dao', 'dex', 'liquidity', 'staking', 'yield', 'hashrate', 'consensus', 'proof.of', 'self.custody', 'non.custodial', 'polymarket', 'perp', 'orderbook', 'validator', 'solana', 'airdrop', 'lending', 'borrow', 'swap', 'pool', 'farm', 'cex', 'multisig', 'tokenomics', 'tvl', 'mev', 'circulating supply', 'market cap'] },
   { id: 'cybersec', label: 'Cybersec', color: 'border-l-orange-400', accent: 'text-orange-400', bg: 'bg-orange-500/5', kw: ['cve', 'exploit', '0day', 'zero.day', 'patch', 'malware', 'ransomware', 'phishing', 'breach', 'vulnerability', 'opsec', 'privacy', 'encryption', 'backdoor', 'cisa', 'nvd', 'threat intelligence', 'intrusion', 'penetration test', 'red team', 'supply chain attack', 'sandbox', 'hardening', 'firewall', 'infosec', 'hibp', 'pwned', 'soc', 'incident response', 'c2', 'credential stuffing', 'social engineering'] },
   { id: 'macro', label: 'Macro', color: 'border-l-amber-400', accent: 'text-amber-400', bg: 'bg-amber-500/5', kw: ['fomc', 'inflation', 'gdp', 'central bank', 'federal reserve', 'fed', 'monetary policy', 'fiscal policy', 'treasury', 'bond', 'yield curve', 'commodit', 'gold', 'oil', 'forex', 'cpi', 'ppi', 'unemployment', 'econom', 'tariff', 'sanction', 'interest rate', 'recession', 'debt ceiling', 'geopolitic', 'trade war', 'policy', 'regulation', 'sovereign wealth', 'equity', 'stock market', 'dollar', 'yuan', 'euro', 'yen', 'cbdc', 'digital currency', 'war', 'conflict', 'military', 'defense', 'weapon', 'technology war', 'chip war', 'trade dispute', 'supply chain', 'reshoring', 'invention', 'breakthrough', 'discovery', 'innovation', 'r&d', 'patent', 'startup', 'fundraising', 'venture capital', 'ipo', 'merger', 'acquisition', 'big tech', 'apple', 'google', 'microsoft', 'amazon', 'meta', 'nvidia', 'ceo', 'executive', 'leadership', 'board', 'restructuring', 'layoff', 'energy market', 'copper', 'lithium', 'rare earth', 'imf', 'world bank', 'bis', 'ecb', 'pboc', 'bank of japan', 'stimulus', 'quantitative easing', 'balance sheet', 'credit', 'liquidity', 'sovereign debt'] },
-  { id: 'hardware', label: 'Hardware', color: 'border-l-green-400', accent: 'text-green-400', bg: 'bg-green-500/5', kw: ['nvidia', 'intel', 'amd', 'tsmc', 'gpu', 'cpu', 'chip', 'semiconductor', 'transistor', 'foundry', 'node', 'nanometer', 'processor', 'fpga', 'asic', 'hpc', 'compute', 'datacenter', 'server', 'storage', 'memory', 'ddr', 'hbm', 'pcie', 'cuda', 'rocm', 'oneapi', 'soc', 'chiplet', 'packaging'] },
+  { id: 'hardware', label: 'Hardware', color: 'border-l-green-400', accent: 'text-green-400', bg: 'bg-green-500/5', kw: ['nvidia', 'intel', 'amd', 'tsmc', 'samsung foundry', 'micron', 'asml', 'qualcomm', 'broadcom', 'arm chip', 'gpu', 'cpu', 'npu', 'tpu', 'fpga', 'asic', 'soc', 'h100', 'a100', 'b200', 'gh200', 'mi300', 'semiconductor', 'transistor', 'foundry', 'lithography', 'fabrication', 'wafer', 'finfet', 'gaa', 'nanometer', 'chiplet', 'packaging', 'interposer', 'hbm', 'ddr5', 'pcie gen', 'cxl', 'hpc', 'datacenter', 'supercomputer', 'server farm', 'processor architecture', 'chip design', 'next-gen chip', 'tape-out', 'silicon photonics', 'quantum computing', 'quantum processor', 'qubit', 'photonic chip', 'spintronic', 'neuromorphic', 'computing cluster'] },
   { id: 'science', label: 'Science', color: 'border-l-violet-400', accent: 'text-violet-400', bg: 'bg-violet-500/5', kw: ['arxiv', 'nature', 'science', 'research', 'publication', 'study', 'biotech', 'genomics', 'crispr', 'quantum', 'fusion', 'nuclear', 'battery', 'solar', 'renewable', 'climate', 'protein', 'drug', 'clinical', 'trial', 'vaccine', 'biology', 'chemistry', 'physics', 'material'] },
 ];
 
@@ -36,18 +37,47 @@ const BCOL: Record<string, string> = {
 };
 
 const SOURCE_HINTS: Record<string, string[]> = {
+  // ── Crypto / Web3 ──
   cryptoquant: ['crypto'], lookonchain: ['crypto'], glassnode: ['crypto'], l2beat: ['crypto'],
   defi: ['crypto'], polymarket: ['crypto'], coindesk: ['crypto'], cointelegraph: ['crypto'], theblock: ['crypto'],
-  'y combinator': ['science', 'ai'], 'hacker news': ['science', 'ai'], arxiv: ['science', 'ai'],
+  defillama: ['crypto'], santimentdata: ['crypto'], polymutex: ['crypto'],
+  ki_young_ju: ['crypto'], nero_eth: ['crypto'], backthebunny: ['crypto'],
+  zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
+  // ── Science / Research ──
+  'y combinator': ['science', 'ai'], 'hacker news': ['science', 'ai'], arxiv: ['ai'],
   nature: ['science'], sciencedaily: ['science'],
+  // ── Cybersec ──
   nist: ['cybersec'], cisa: ['cybersec'], haveibeenpwned: ['cybersec'], bleepingcomputer: ['cybersec'],
   krebs: ['cybersec'], threatpost: ['cybersec'],
+  dinosn: ['cybersec'], pcaversaccio: ['cybersec'],
+  // ── Macro ──
   'federal reserve': ['macro'], treasury: ['macro'], imf: ['macro'], 'world bank': ['macro'], bis: ['macro'],
   bloomberg: ['macro'], reuters: ['macro'],
-  nvidia: ['hardware'], intel: ['hardware'], amd: ['hardware'], tsmc: ['hardware'], semiconductor: ['hardware'],
-  'hugging face': ['hardware'],
+  michaeljburry: ['macro'], delphi_digital: ['crypto', 'macro'],
+  marketnews_feed: ['macro'],
+  // ── Hardware / Chips / Physics ──
+  nvidia: ['hardware'], intel: ['hardware'], amd: ['hardware'], tsmc: ['hardware'],
+  samsung: ['hardware'], micron: ['hardware'], asml: ['hardware'], qualcomm: ['hardware'],
+  broadcom: ['hardware'], 'arm holdings': ['hardware'], semiconductor: ['hardware'],
+  // ── AI / ML ──
+  'hugging face': ['ai'],
   anthropic: ['ai'], openai: ['ai'], deepmind: ['ai'], moonshot: ['ai'], baichuan: ['ai'], teknium: ['ai'], stepfun: ['ai'],
+  'google research': ['ai'], 'meta ai': ['ai'], 'stanford hai': ['ai'], 'alignment forum': ['ai'],
+  'gwern': ['ai'], 'the batch': ['ai'],
+  // X/Twitter — AI leaders & labs
+  sama: ['ai'], darioamodei: ['ai'], demishassabis: ['ai'],
+  ylecun: ['ai'], karpathy: ['ai'], clementdelangue: ['ai'],
+  arthurmensch: ['ai'], aidangomez: ['ai'], emostaque: ['ai'],
+  drjimfan: ['ai'], elder_plinius: ['ai'], teknium1: ['ai'],
+  xai: ['ai'], metaai: ['ai'], mistralai: ['ai'],
+  lerobothf: ['ai'], alibaba_qwen: ['ai'], '01ai_yi': ['ai'],
 };
+
+// Hardware exclusion — items matching these patterns should never appear in Hardware box
+const HW_EXCLUDE = ['anti-fraud', 'fraud detection', 'biology', 'biotech', 'dna sequenc', 'genome',
+  'protein fold', 'cell therapy', 'gene therapy', 'neuron', 'brain scan', 'medical device',
+  'drug discover', 'clinical trial', 'social media', 'font render', 'text-to-speech', 'tts',
+  'language model', 'takeoff', 'deny ai', 'capital spent', 'overlooked corner of ai'];
 
 function cleanTitle(t: string) {
   return t.replace(/^RT\s+by\s+@\S+?:\s*/i, '').replace(/^RT\s+@\S+?:\s*/i, '');
@@ -83,11 +113,11 @@ function getTag(title: string, summary?: string, source?: string): string {
   const noiseMatch = txt.match(noiseRX);
   const penalty = noiseMatch ? -5 : 0;
   let best = '';
-  let bestScore = 2;
+  let bestScore = 1;  // lowered from 2 so SOURCE_HINTS-only items (score=2) get tagged
   for (const [cid, score] of Object.entries(scores)) {
     const adjusted = score + penalty;
     if (adjusted >= bestScore && adjusted >= 2) {
-      if (adjusted > bestScore || (adjusted === bestScore && ['macro', 'crypto', 'cybersec', 'ai'].indexOf(cid) < ['macro', 'crypto', 'cybersec', 'ai'].indexOf(best))) {
+      if (best === '' || adjusted > bestScore || (adjusted === bestScore && ['macro', 'crypto', 'cybersec', 'ai'].indexOf(cid) < ['macro', 'crypto', 'cybersec', 'ai'].indexOf(best))) {
         best = cid; bestScore = adjusted;
       }
     }
@@ -121,14 +151,17 @@ export function useIntelData() {
   const [dd, setDd] = useState<any>({});
   const [dd2, setDd2] = useState<any>(null);
   const [forex, setForex] = useState<any>(null);
+  const [lastFetch, setLastFetch] = useState<Date | null>(null);
 
   const loadAll = useCallback(async () => {
     try {
       const rawRes = await fetch(`${BASE}/data/raw-items.json`);
       if (rawRes.ok) {
         const d = await rawRes.json();
-        if (Array.isArray(d))
+        if (Array.isArray(d)) {
           setItems(d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel));
+          setLastFetch(new Date());
+        }
       }
       const picksRes = await fetch(`${BASE}/data/picks.json`);
       if (picksRes.ok) setPicks(await picksRes.json());
@@ -148,15 +181,29 @@ export function useIntelData() {
     try {
       const result: any = {};
       try {
-        const r = await fetch('https://api.alternative.me/fng/?limit=7');
-        if (r.ok) result.fearGreed = await r.json();
+        // TradFi Fear & Greed (independent index, free API)
+        const r = await fetch('https://feargreedchart.com/api/?action=history');
+        if (r.ok) {
+          const history = await r.json();
+          if (Array.isArray(history) && history.length > 0) {
+            const latest = history[history.length - 1];
+            const score = latest.score || 0;
+            const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
+            result.fearGreed = { score, rating, date: latest.date };
+          }
+        }
+      } catch { /* */ }
+      try {
+        // Crypto Fear & Greed (alternative.me)
+        const r = await fetch('https://api.alternative.me/fng/?limit=1');
+        if (r.ok) result.cryptoFG = await r.json();
       } catch { /* */ }
       try {
         const r = await fetch('https://api.llama.fi/v2/chains');
         if (r.ok) {
           const chains = await r.json();
           const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
-          result.tvl = sorted.slice(0, 12);
+          result.tvl = sorted.slice(0, 12).map((c: any) => ({ name: c.name, tvl: c.tvl, change_1d: c.change_1d || 0, change_7d: c.change_7d || 0 }));
           const total = sorted.reduce((s: number, c: any) => s + c.tvl, 0) || 1;
           result.dominance = sorted.slice(0, 5).map((c: any) => ({ name: c.name, pct: ((c.tvl / total) * 100).toFixed(1) + '%' }));
         }
@@ -165,19 +212,33 @@ export function useIntelData() {
         const r = await fetch('https://api.llama.fi/overview/dexs?dataType=dailyVolume');
         if (r.ok) {
           const d = await r.json();
-          result.volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
-            name: n, volume24h: d.breakdown24h?.[n] || d.total24hBreakdown?.[n] || 0,
-          })).filter((x: any) => x.volume24h > 0).sort((a: any, b: any) => b.volume24h - a.volume24h);
           result.totalVolume24h = d.total24h || 0;
+          // Use totalDataChartBreakdown (last entry) since breakdown24h is null in v2
+          const chart = d.totalDataChartBreakdown;
+          const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+          const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
+          result.volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
+            name: n, volume24h: bd[n] || 0,
+          })).filter((x: any) => x.volume24h > 0).sort((a: any, b: any) => b.volume24h - a.volume24h);
+          if (result.volume.length === 0) {
+            // Fallback: show chain names with placeholder
+            result.volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
+          }
         }
       } catch { /* */ }
       try {
         const r = await fetch('https://api.llama.fi/overview/fees?dataType=dailyFees');
         if (r.ok) {
           const d = await r.json();
+          const chart = d.totalDataChartBreakdown;
+          const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+          const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
           result.fees = (d.allChains || []).slice(0, 10).map((n: string) => ({
-            name: n, fees24h: d.breakdown24h?.[n] || d.total24hBreakdown?.[n] || 0,
+            name: n, fees24h: bd[n] || 0,
           })).filter((x: any) => x.fees24h > 0).sort((a: any, b: any) => b.fees24h - a.fees24h);
+          if (result.fees.length === 0) {
+            result.fees = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, fees24h: 0 }));
+          }
         }
       } catch { /* */ }
       try {
@@ -227,6 +288,26 @@ export function useIntelData() {
       try {
         const cRes = await fetch(`${BASE}/data/crypto.json`);
         if (cRes.ok) result.crypto = await cRes.json();
+      } catch { /* */ }
+      // Load gold price from static JSON
+      try {
+        const gRes = await fetch(`${BASE}/data/gold.json`);
+        if (gRes.ok) result.gold = await gRes.json();
+      } catch { /* */ }
+      // Load 10Y Treasury yield from static JSON
+      try {
+        const yRes = await fetch(`${BASE}/data/us10y.json`);
+        if (yRes.ok) result.us10y = await yRes.json();
+      } catch { /* */ }
+      // Load CNN Fear & Greed (stock market sentiment)
+      try {
+        const cnnRes = await fetch(`${BASE}/data/cnn-fg.json`);
+        if (cnnRes.ok) result.cnnFG = await cnnRes.json();
+      } catch { /* */ }
+      // Load Arena leaderboard
+      try {
+        const arenaRes = await fetch(`${BASE}/data/arena-leaderboard.json`);
+        if (arenaRes.ok) result.arenaLB = await arenaRes.json();
       } catch { /* */ }
       // Load BTC trend (sparkline)
       try {
@@ -350,16 +431,35 @@ export function useIntelData() {
     macro: ['crypto', 'cybersec'],
     science: ['crypto', 'cybersec'],
     ai: ['crypto', 'cybersec'],
-    hardware: ['crypto', 'cybersec'],
+    hardware: ['crypto', 'cybersec', 'macro', 'science', 'ai'],
     crypto: ['cybersec', 'science'],
     cybersec: ['crypto', 'macro', 'science', 'hardware'],
+  };
+  // Word-boundary keyword matcher — prevents "asic" matching "basic"
+  const kwMatch = (text: string, kw: string): boolean => {
+    const kl = kw.toLowerCase().replace(/\./g, '');
+    return new RegExp('\\b' + kl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
   };
   const catBoxes = CATS.map(cat => ({
     ...cat,
     items: items.filter(i => {
       const blockTags = CAT_TAG_BLOCK[cat.id] || [];
       if (i.tag && blockTags.includes(i.tag)) return false;
-      return cat.kw.some(k => (i.title + ' ' + i.summary).toLowerCase().includes(k));
+      // Hardware-specific exclusion: block items matching noise patterns
+      if (cat.id === 'hardware') {
+        const txt = (i.title + ' ' + (i.summary || '')).toLowerCase();
+        if (HW_EXCLUDE.some(k => txt.includes(k))) return false;
+      }
+      // Exclude MarketNews_Feed from macro box — has its own dedicated ticker
+      if (cat.id === 'macro') {
+        const src = (i.source || '').toLowerCase();
+        if (src.includes('marketnews_feed')) return false;
+      }
+      const txt = (i.title + ' ' + (i.summary || '')).toLowerCase();
+      // Include if tagged as this category (catches AI leader tweets etc.)
+      if (i.tag === cat.id) return true;
+      // Include if content matches category keywords (word-boundary)
+      return cat.kw.some(k => kwMatch(txt, k));
     }).slice(0, 15),
     count: 0,
   }));
@@ -373,8 +473,11 @@ export function useIntelData() {
     ...it,
     title: (it.title || '').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim(),
   }));
-  const fgVal = dd?.fearGreed?.data?.[0] ? Number(dd.fearGreed.data[0].value) || 0 : 0;
-  const fgLabel = dd?.fearGreed?.data?.[0]?.value_classification || '';
+  // TradFi F&G: {score, rating, date}
+  const fgVal = (typeof dd?.fearGreed?.score === 'number') ? dd.fearGreed.score : 0;
+  const fgLabel = dd?.fearGreed?.rating || '';
+  // Crypto F&G: alternative.me format
+  const cryptoFG = dd?.cryptoFG || {};
   const totalVol = dd?.totalVolume24h || 0;
 
   const macroCats = catBoxes.filter(c => ['macro', 'science'].includes(c.id));
@@ -413,7 +516,7 @@ export function useIntelData() {
   return {
     items, loading, picks, patents, dd, dd2, forex, watchlist,
     catBoxes, macroCats, infosecCats, web3Cats, aiCats, top3, fgVal, fgLabel, totalVol,
-    tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES,
+    tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES, lastFetch,
   };
 }
 

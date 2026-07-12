@@ -113,3 +113,49 @@ else:
     print("  · no picks.json to sync")
 
 print(f"  ({datetime.now().strftime('%H:%M:%S')})")
+# ══ Push to gh-pages ══════════════════════════════════════════════════════
+import subprocess, tempfile, time
+
+REPO = 'https://github.com/DeltaV-cc/website-private.git'
+BRANCH = 'gh-pages'
+
+DATA_FILES = ['raw-items.json', 'picks.json', 'artemis-research.json']
+tmpdir = tempfile.mkdtemp(prefix='dv-sync-')
+try:
+    subprocess.run(['git', 'clone', '--depth', '1', '--branch', BRANCH, REPO, tmpdir],
+                   check=True, capture_output=True, timeout=30)
+    changed = False
+    for fname in DATA_FILES:
+        src = WEBSITE_DATA / fname
+        if not src.exists():
+            continue
+        with open(src, 'r') as f:
+            new_content = f.read()
+        fpath = os.path.join(tmpdir, 'website-private', 'data', fname)
+        old_content = None
+        if os.path.exists(fpath):
+            with open(fpath, 'r') as f:
+                old_content = f.read()
+        if old_content != new_content:
+            os.makedirs(os.path.dirname(fpath), exist_ok=True)
+            with open(fpath, 'w') as f:
+                f.write(new_content)
+            changed = True
+
+    if changed:
+        subprocess.run(['git', '-C', tmpdir, 'config', 'user.email', 'deltav.go@gmail.com'], check=True)
+        subprocess.run(['git', '-C', tmpdir, 'config', 'user.name', 'Delta V ZHC'], check=True)
+        existing = [f for f in ['website-private/data/' + f for f in DATA_FILES] if os.path.exists(os.path.join(tmpdir, f))]
+        if existing:
+            subprocess.run(['git', '-C', tmpdir, 'add'] + existing, check=True)
+            subprocess.run(['git', '-C', tmpdir, 'commit', '-m',
+                            'intel sync: items+picks+artemis ' + time.strftime('%H:%M')], check=True)
+            subprocess.run(['git', '-C', tmpdir, 'push', '-f', 'origin', BRANCH], check=True,
+                           capture_output=True, timeout=30)
+        print('  pushed to gh-pages')
+    else:
+        print('  no changes')
+finally:
+    import shutil
+    shutil.rmtree(tmpdir, ignore_errors=True)
+

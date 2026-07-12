@@ -34,27 +34,12 @@ export default function BlogPostLayout({
   sourceUrl,
 }: BlogPostProps) {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
+    <>
       {/* Animated gradient bar */}
       <div className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-[length:400%_100%] z-[100] pointer-events-none"
         style={{ animation: 'gradientSweep 6s ease infinite' }}
       />
       <style>{`@keyframes gradientSweep{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}`}</style>
-
-      {/* Nav */}
-      <nav className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
-          <a href="/" className="text-2xl font-semibold tracking-[-1px]">Delta V</a>
-          <div className="flex items-center gap-8 text-sm">
-            <a href="/ai" className="hover:text-[#00f0ff] transition-colors">AI</a>
-            <a href="/web3" className="hover:text-[#00f0ff] transition-colors">Web3</a>
-            <a href="/forge" className="hover:text-[#00f0ff] transition-colors">Forge</a>
-            <a href="/blog" className="text-[#00f0ff] transition-colors">Blog</a>
-            <a href="/intelhub" className="hover:text-[#00f0ff] transition-colors">IntelHub</a>
-            <a href="/contact" className="hover:text-[#00f0ff] transition-colors">Contact</a>
-          </div>
-        </div>
-      </nav>
 
       <article className="max-w-4xl mx-auto px-8 pt-20 pb-24">
         {/* Back link */}
@@ -138,13 +123,6 @@ export default function BlogPostLayout({
           </a>
         </div>
       </article>
-
-      {/* Footer */}
-      <footer className="border-t border-[#222] py-8">
-        <div className="max-w-6xl mx-auto px-8 text-center text-sm text-[#666]">
-          <span className="text-[#00f0ff]">Delta V</span> — Zero Headcount Company
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

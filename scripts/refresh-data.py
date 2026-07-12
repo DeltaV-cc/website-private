@@ -7,10 +7,11 @@ Trigger: every 15 min
 Output: stdout goes to cron delivery (silent when no changes)
 """
 import json, os, shutil, tempfile, subprocess, sys, time, urllib.request, ssl
+from pathlib import Path
 
 REPO = 'https://github.com/DeltaV-cc/website-private.git'
 BRANCH = 'gh-pages'
-DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'btc-trend.json', 'exchange-vol.json']
+DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'gold.json', 'us10y.json', 'cnn-fg.json', 'btc-trend.json', 'exchange-vol.json']
 USER_AGENT = 'Mozilla/5.0 (compatible; DeltaV-Refresh/1.0)'
 
 ctx = ssl.create_default_context()
@@ -50,6 +51,26 @@ for sym, key in [('%5EGSPC', 'spx'), ('000001.SS', 'csi')]:
             'change': c['now'] - c['prev'],
             'changePct': f"{(c['now'] - c['prev']) / c['prev'] * 100:+.2f}%" if c['prev'] else '...'
         }
+
+# ── 1b. Fetch Gold (XAU/USD) via Yahoo Finance ──
+gold = {}
+gc = fetch_chart('GC=F', '5d')
+if gc and gc['now']:
+    gold = {
+        'price': f"{gc['now']:.2f}",
+        'change': gc['now'] - gc['prev'],
+        'changePct': f"{(gc['now'] - gc['prev']) / gc['prev'] * 100:+.2f}%" if gc['prev'] else '...'
+    }
+
+# ── 1c. Fetch 10Y US Treasury Yield via Yahoo Finance ──
+us10y = {}
+ty = fetch_chart('%5ETNX', '5d')
+if ty and ty['now']:
+    us10y = {
+        'price': f"{ty['now']:.2f}%",
+        'change': ty['now'] - ty['prev'],
+        'changePct': f"{(ty['now'] - ty['prev']) / ty['prev'] * 100:+.2f}%" if ty['prev'] else '...'
+    }
 
 # ── 2. Fetch forex ──
 forex = {}
@@ -105,7 +126,7 @@ if spaces and isinstance(spaces, list):
         'url': f"https://huggingface.co/spaces/{s.get('id', '')}"
     } for s in spaces]
 
-# ── 4. Fetch crypto market cap ──
+# ── 4. Fetch crypto market cap + BTC/ETH prices ──
 crypto = {}
 cg = fetch_json('https://api.coingecko.com/api/v3/global')
 if cg and cg.get('data'):
@@ -117,7 +138,33 @@ if cg and cg.get('data'):
     crypto['mcap_change_24h'] = d.get('market_cap_change_percentage_24h_usd', 0)
     crypto['active_cryptos'] = d.get('active_cryptocurrencies', 0)
 
-# ── 5. Clone gh-pages, update files, push ──
+time.sleep(2)  # avoid CoinGecko rate limit
+# Fetch BTC + ETH prices from Yahoo Finance (no rate limit)
+btc_chart = fetch_chart('BTC-USD', '5d')
+if btc_chart and btc_chart['now']:
+    crypto['btc_price'] = btc_chart['now']
+    crypto['btc_change_24h'] = ((btc_chart['now'] - btc_chart['prev']) / btc_chart['prev'] * 100) if btc_chart['prev'] else 0
+eth_chart = fetch_chart('ETH-USD', '5d')
+if eth_chart and eth_chart['now']:
+    crypto['eth_price'] = eth_chart['now']
+    crypto['eth_change_24h'] = ((eth_chart['now'] - eth_chart['prev']) / eth_chart['prev'] * 100) if eth_chart['prev'] else 0
+
+# ── 4b. CNN Fear & Greed (stock market sentiment) ──
+cnn_fg = {}
+try:
+    req = urllib.request.Request('https://production.dataviz.cnn.io/index/fearandgreed/graphdata',
+                                  headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, timeout=12, context=ctx) as r:
+        cnn = json.loads(r.read().decode())
+    if cnn and cnn.get('fear_and_greed'):
+        latest = cnn['fear_and_greed'][-1] if cnn['fear_and_greed'] else {}
+        cnn_fg = {
+            'value': int(latest.get('y', 0)),
+            'label': latest.get('rating', 'neutral'),
+            'timestamp': latest.get('x', '')
+        }
+except: pass
+
 # ── 5. Fetch BTC trend + exchange volumes ──
 btc_trend = []
 exchange_vol = {'vol_history': []}
@@ -145,13 +192,19 @@ try:
     ex = fetch_json('https://api.coingecko.com/api/v3/exchanges?per_page=10')
     exchanges = []
     total_btc = 0
+    btc_price = crypto.get('btc_price', 0)
     if ex and isinstance(ex, list):
         for e in ex[:10]:
             vb = e.get('trade_volume_24h_btc', 0) or 0
-            exchanges.append({'name': e.get('name','')[:30], 'score': e.get('trust_score',0), 'vol_btc': vb})
+            item = {'name': e.get('name','')[:30], 'score': e.get('trust_score',0), 'vol_btc': vb}
+            if btc_price:
+                item['vol_usd'] = round(vb * btc_price, 2)
+            exchanges.append(item)
             total_btc += vb
     exchange_vol['exchanges'] = exchanges
     exchange_vol['total_vol_btc_24h'] = total_btc
+    if btc_price:
+        exchange_vol['total_vol_usd_24h'] = round(total_btc * btc_price, 2)
 except: pass
 
 new_data = {
@@ -159,6 +212,9 @@ new_data = {
     'forex.json': json.dumps(forex) if forex else None,
     'hf.json': json.dumps(hf_data) if hf_data else None,
     'crypto.json': json.dumps(crypto) if crypto else None,
+    'gold.json': json.dumps(gold) if gold else None,
+    'us10y.json': json.dumps(us10y) if us10y else None,
+    'cnn-fg.json': json.dumps(cnn_fg) if cnn_fg else None,
     'btc-trend.json': json.dumps(btc_trend) if btc_trend else None,
     'exchange-vol.json': json.dumps(exchange_vol) if exchange_vol else None,
 }
@@ -172,7 +228,7 @@ try:
         new_content = new_data.get(fname)
         if not new_content:
             continue
-        fpath = os.path.join(tmpdir, 'data', fname)
+        fpath = os.path.join(tmpdir, 'website-private', 'data', fname)
         old_content = None
         if os.path.exists(fpath):
             with open(fpath, 'r') as f:
@@ -186,14 +242,25 @@ try:
     if changed:
         subprocess.run(['git', '-C', tmpdir, 'config', 'user.email', 'deltav.go@gmail.com'], check=True)
         subprocess.run(['git', '-C', tmpdir, 'config', 'user.name', 'Delta V ZHC'], check=True)
-        subprocess.run(['git', '-C', tmpdir, 'add'] + [f'data/{f}' for f in DATA_FILES], check=True)
-        subprocess.run(['git', '-C', tmpdir, 'commit', '-m',
-                        f'data refresh: indices+forex+HF {time.strftime("%H:%M")}'], check=True)
-        subprocess.run(['git', '-C', tmpdir, 'push', '-f', 'origin', BRANCH], check=True,
-                       capture_output=True, timeout=30)
+        # Only add files that exist
+        existing = [f for f in [f'website-private/data/{f}' for f in DATA_FILES] if os.path.exists(os.path.join(tmpdir, f))]
+        if existing:
+            subprocess.run(['git', '-C', tmpdir, 'add'] + existing, check=True)
+            subprocess.run(['git', '-C', tmpdir, 'commit', '-m',
+                            f'data refresh: indices+forex+HF {time.strftime("%H:%M")}'], check=True)
+            subprocess.run(['git', '-C', tmpdir, 'push', '-f', 'origin', BRANCH], check=True,
+                           capture_output=True, timeout=30)
         spx = indices.get('spx', {}).get('price', '?')
         csi = indices.get('csi', {}).get('price', '?')
-        print(f'✓ Data refreshed: SPX {spx} CSI {csi} | Forex {len(forex)}p | HF {len(hf_data.get("models",[]))}m+{len(hf_data.get("spaces",[]))}s')
+        print(f'✓ Data refreshed: SPX {spx} CSI {csi} | Gold {gold.get("price","?")} | Forex {len(forex)}p | HF {len(hf_data.get("models",[]))}m+{len(hf_data.get("spaces",[]))}s | BTC {crypto.get("btc_price","?")} | CNN-FG {cnn_fg.get("value","?")}')
+
+        # Also write to local public/data/ so full deploys include fresh data
+        LOCAL_DATA = Path(__file__).resolve().parent.parent / 'public' / 'data'
+        os.makedirs(LOCAL_DATA, exist_ok=True)
+        for fname, content in new_data.items():
+            if content:
+                with open(LOCAL_DATA / fname, 'w') as f:
+                    f.write(content)
     else:
         # Silent — no changes, nothing delivered to user
         pass

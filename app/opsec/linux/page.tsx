@@ -1,18 +1,13 @@
+import Link from 'next/link';
 export default function LinuxHardeningPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <nav className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-8 py-5 flex items-center justify-between">
-          <a href="/" className="text-xl font-semibold tracking-[-1px]">Delta V</a>
-          <a href="/opsec" className="text-sm hover:text-[#00f0ff]">← Back to OpSec</a>
-        </div>
-      </nav>
+    <div className="max-w-3xl mx-auto px-8 pt-12 pb-20">
+      <Link href="/opsec/" className="text-sm text-[#666] hover:text-[#00f0ff] inline-block mb-8">← Back to OpSec</Link>
 
-      <div className="max-w-3xl mx-auto px-8 pt-12 pb-20">
-        <div className="text-[#00f0ff] text-xs tracking-[3px] mb-2">OPSEC • LINUX</div>
+      <div className="text-[#00f0ff] text-xs tracking-[3px] mb-2">OPSEC • LINUX</div>
         <h1 className="text-4xl font-semibold tracking-[-2px] mb-8">Linux Hardening Guide</h1>
 
-        <div className="prose prose-invert max-w-none text-[#ddd]">
+        <div className="prose prose-invert max-w-none text-[#ededed]">
           <p className="text-lg text-[#aaa]">Based on Opsek/OSs-security • Factory reset &amp; hardening for sovereignty-focused setups.</p>
 
           <h2>1. Factory Reset / Clean Install</h2>
@@ -47,7 +42,6 @@ sudo ufw enable</code></pre>
 
           <p className="text-sm text-[#666] mt-12">Source: https://github.com/Opsek/OSs-security</p>
         </div>
-      </div>
     </div>
   );
 }

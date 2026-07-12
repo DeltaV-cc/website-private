@@ -1,70 +1,66 @@
 'use client';
+import Link from 'next/link';
 
-import Navbar from '../components/Navbar';
+const ArrowRight = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
 
 export default function AIPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <Navbar />
-
-      <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
-        <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">PILLAR 01 • AI</div>
-        <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">AI Engineering</h1>
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-12 h-[3px] rounded-full bg-[#00f0ff]" />
-          <span className="w-8 h-[3px] rounded-full bg-[#F59E0B]/60" />
-          <span className="w-4 h-[3px] rounded-full bg-[#F59E0B]/30" />
+    <>
+      {/* Hero */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-12">
+        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 01 · AI Engineering</div>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">AI Engineering</h1>
+        <div className="flex items-center gap-2 mb-8">
+          <span className="w-12 h-[2px] rounded-full bg-[var(--accent-cyan)]" />
+          <span className="w-8 h-[2px] rounded-full bg-[var(--accent-amber)]/50" />
+          <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
         </div>
-        <p className="max-w-2xl text-xl text-[#aaa]">
-          We help ambitious teams move from generic AI tools to production-grade systems that actually fit their workflows.
+        <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+          From generic AI tools to production-grade systems that actually fit your workflows.
         </p>
-      </div>
+      </section>
 
-      <div className="max-w-5xl mx-auto px-8 pb-24 space-y-8">
-
-        {/* 1. Tailored Multi-Agent Systems */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#F59E0B]/40 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">Tailored Multi-Agent Systems</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            Most teams waste time and budget trying to force generic AI tools into complex operations. 
-            We embed with your team for a focused period, <span className="font-semibold text-[#ededed]">map your real workflows and data</span>, 
+      {/* Services */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24 space-y-5">
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-amber)]/30 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Tailored Multi-Agent Systems</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            We embed with your team, <span className="font-medium text-[var(--text-primary)]">map your real workflows and data</span>, 
             then design and ship custom single or multi-agent systems built around the models that actually perform best for your use case.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 bg-[#00f0ff] text-black rounded-xl font-medium hover:bg-white transition-colors">
-            Book a call
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-cyan)] text-black rounded-xl text-sm font-semibold hover:bg-white transition-colors">
+            Book a call <ArrowRight />
+          </Link>
         </div>
 
-        {/* 2. Inference & Model Engineering */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/60 via-[#F59E0B]/20 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">Inference &amp; Model Engineering</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            Running AI reliably in production requires more than prompting. We support teams that need serious 
-            model work — <span className="font-semibold text-[#ededed]">fine-tuning, inference optimization across providers</span>, 
-            provider selection, Hugging Face organization, and MLOps infrastructure.
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/60 via-[var(--accent-amber)]/20 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Inference & Model Engineering</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            Running AI reliably in production requires more than prompting. We support teams with 
+            <span className="font-medium text-[var(--text-primary)]"> fine-tuning, inference optimization, provider selection</span>, 
+            Hugging Face organization, and MLOps infrastructure.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 bg-[#F59E0B] text-black rounded-xl font-medium hover:bg-amber-400 transition-colors">
-            Discuss Your Model Needs
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-amber)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-gold)] transition-colors">
+            Discuss Your Model Needs <ArrowRight />
+          </Link>
         </div>
 
-        {/* 3. AI Engineer Retainer */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff]/40 via-[#F59E0B]/20 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">AI Engineer Retainer</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            You need reliable, high-quality AI engineering capacity on an ongoing basis without hiring full-time. 
-            Our retainer gives you direct access to a <span className="font-semibold text-[#ededed]">Delta V AI Engineer</span> 
-            (supported by dedicated ZHC subagents) on a monthly hourly basis.
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/15 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">AI Engineer Retainer</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            Direct access to a <span className="font-medium text-[var(--text-primary)]">Delta V AI Engineer</span> 
+            (supported by dedicated ZHC subagents) on a monthly hourly basis. Ongoing optimization, security, and capability expansion.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 border border-[#333] rounded-xl font-medium hover:bg-[#222] transition-colors">
-            Explore Retainer Options
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">
+            View Retainer Plans <ArrowRight />
+          </Link>
         </div>
-
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

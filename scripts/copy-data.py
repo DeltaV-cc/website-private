@@ -82,11 +82,11 @@ if os.path.exists(raw_dir):
         # (regex pattern, tag)
         (r'(?i)coindesk|decrypt|defiant|santiment|cryptoquant|lookonchain|glassnode|l2beat|defillama|polymarket|theblock|cointelegraph|hypernativelabs|polymutex', 'crypto'),
         (r'(?i)bleepingcomputer|dark.reading|krebs|schneier|threatpost|pcaversaccio|dinosn', 'cybersec'),
-        (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf|elder_plinius|teknium', 'ai'),
+        (r'(?i)arxiv\s|hugging\s?face|lesswrong|anthropic|openai|deepmind|lerobothf|elder_plinius|teknium|sama\b|darioamodei|demishassabis|ylecun|karpathy|clementdelangue|arthurmensch|aidangomez|emostaque|drjimfan|xai\b|metaai|mistralai|alibaba_qwen|01ai_yi', 'ai'),
         (r'(?i)mit\s|science\sdaily|ieee|ars\stechnica|nature|researchgate|sciencedaily', 'science'),
-        (r'(?i)nvidia|intel|amd|tsmc|semiconductor', 'hardware'),
-        (r'(?i)federal\\s?reserve|bloomberg|reuters|wsj\\b|financial\\stimes|michaeljburry|hacker\\snews', 'macro'),
-        (r'(?i)0xngmi|defillama|ki_young_ju|delphi_digital|nero_eth|backthebunny', 'crypto'),
+        (r'(?i)nvidia|intel|amd|tsmc|samsung\s+(foundry|electronics|semiconductor)|micron\s+technology|asml|qualcomm|broadcom|arm\s+holdings|semiconductor|foundry|lithography', 'hardware'),
+        (r'(?i)federal\s?reserve|bloomberg|reuters|wsj\b|financial\stimes|michaeljburry|delphi_digital|hacker\snews', 'macro'),
+        (r'(?i)0xngmi|defillama|ki_young_ju|nero_eth|backthebunny|polymutex|santimentdata', 'crypto'),
         (r'(?i)alignment.forum', 'ai'),
     ]
     for item in top200:

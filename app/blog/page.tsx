@@ -1,7 +1,6 @@
 'use client';
-
+import Link from 'next/link';
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
 
 const posts = [
   {
@@ -9,7 +8,7 @@ const posts = [
     date: "July 8, 2026",
     category: "AI",
     type: "Deep Dive",
-    excerpt: "Tencent drops Hy3, a 295B MoE model with only 21B active parameters that rivals trillion-parameter flagships. Apache 2.0 license, 256K context, 192 experts, built for agentic workloads. Free API for 2 weeks.",
+    excerpt: "Tencent drops Hy3, a 295B MoE model with only 21B active parameters that rivals trillion-parameter flagships. Apache 2.0 license, 256K context, 192 experts, built for agentic workloads.",
     slug: "tencent-hy3-295b-moe"
   },
   {
@@ -17,7 +16,7 @@ const posts = [
     date: "July 1, 2026",
     category: "AI",
     type: "Deep Dive",
-    excerpt: "Anthropic demonstrated that LLMs can be trained as sleeper agents — acting helpfully during training then switching to malicious behavior on specific triggers. Standard safety training not only failed to remove the backdoors, but sometimes made models better at hiding them.",
+    excerpt: "Anthropic demonstrated that LLMs can be trained as sleeper agents — acting helpfully during training then switching to malicious behavior on specific triggers.",
     slug: "sleeper-agents-deceptive-llms"
   },
   {
@@ -25,39 +24,39 @@ const posts = [
     date: "July 1, 2026",
     category: "AI",
     type: "Tool",
-    excerpt: "Hugging Face community project vLLM Semantic Router (vLLM-SR) introduces a signal-driven Mixture-of-Models (MoM) router. 16 signal families and 12 routing strategies intelligently direct LLM requests to the optimal model based on intent, cost, latency, safety, and privacy.",
+    excerpt: "Hugging Face community project vLLM Semantic Router introduces a signal-driven Mixture-of-Models router. 16 signal families and 12 routing strategies.",
     slug: "vllm-semantic-router-mixture-of-models"
   },
   {
-    title: "FAST-AR: NVIDIA Cracks the Video Diffusion Bottleneck — 10× Faster Generation with Constant Memory",
+    title: "FAST-AR: NVIDIA Cracks the Video Diffusion Bottleneck — 10× Faster",
     date: "July 6, 2026",
     category: "AI",
     type: "Deep Dive",
-    excerpt: "NVIDIA Research's FAST-AR framework eliminates the KV-cache bottleneck in autoregressive video diffusion, enabling 5-10x speedups with near-identical quality and constant GPU memory over arbitrarily long rollouts. Accepted at ICML 2026.",
+    excerpt: "NVIDIA Research's FAST-AR framework eliminates the KV-cache bottleneck in autoregressive video diffusion, enabling 5-10x speedups.",
     slug: "fast-ar-video-diffusion"
   },
   {
-    title: "GitHub Security Audit: Find Leaked Secrets, Overprivileged CI/CD, and Fake Contributors in 30 Minutes",
+    title: "GitHub Security Audit: Find Leaked Secrets in 30 Minutes",
     date: "July 1, 2026",
     category: "OpSec",
     type: "Tutorial",
-    excerpt: "Your GitHub org is the front door to your codebase. A complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles in their DevSecOps toolkit.",
+    excerpt: "A complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles.",
     slug: "github-security-audit-tutorial"
   },
   {
-    title: "CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts Through Your Own Workflows",
+    title: "CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts",
     date: "July 1, 2026",
     category: "OpSec",
     type: "Tutorial",
-    excerpt: "Your CI/CD pipeline has access to deployer keys, RPC endpoints, and production infrastructure. Lock it down with Checkov, Semgrep, Octoscan, and opsec patterns that actually work.",
+    excerpt: "Your CI/CD pipeline has access to deployer keys and production infrastructure. Lock it down with Checkov, Semgrep, and Octoscan.",
     slug: "cicd-pipeline-hardening-web3"
   },
   {
-    title: "NVIDIA's Fast FoundationStereo: The Compression-to-Edge Pipeline Goes Visual",
+    title: "NVIDIA's Fast FoundationStereo: Compression-to-Edge Goes Visual",
     date: "June 26, 2026",
     category: "AI",
     type: "Deep Dive",
-    excerpt: "NVIDIA's compact stereo depth model — 14.6M params, 10× faster, zero-shot, edge-deployable. The compression-to-edge playbook now covers every frontier model across every modality. Implications for robotics, manufacturing, defense.",
+    excerpt: "NVIDIA's compact stereo depth model — 14.6M params, 10× faster, zero-shot, edge-deployable. Implications for robotics, manufacturing, defense.",
     slug: "nvidia-fast-foundation-stereo"
   },
   {
@@ -65,7 +64,7 @@ const posts = [
     date: "June 25, 2026",
     category: "Hardware",
     type: "Deep Dive",
-    excerpt: "IBM just unveiled the world's first sub-1nm chip — 0.7nm with a revolutionary 3D nanostack architecture. ~100 billion transistors, 50% faster, 70% more efficient. Production within 5 years.",
+    excerpt: "IBM unveiled the world's first sub-1nm chip — 0.7nm with revolutionary 3D nanostack architecture. ~100 billion transistors.",
     slug: "ibm-sub-1nm-chip"
   },
   {
@@ -73,7 +72,7 @@ const posts = [
     date: "June 25, 2026",
     category: "Web3",
     type: "Thought",
-    excerpt: "A proposal to restructure the ENS Foundation with an independent board and world-class members — without touching the treasury. The DAO is asking hard governance questions.",
+    excerpt: "A proposal to restructure the ENS Foundation with an independent board — without touching the treasury. Hard governance questions.",
     slug: "ens-independent-board-governance"
   },
   {
@@ -81,7 +80,7 @@ const posts = [
     date: "June 23, 2026",
     category: "Web3",
     type: "Dashboard",
-    excerpt: "True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg, and the cypherpunk layer.",
+    excerpt: "True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg.",
     slug: "defi-weekly-june-23"
   },
   {
@@ -89,7 +88,7 @@ const posts = [
     date: "June 23, 2026",
     category: "Web3",
     type: "Thought",
-    excerpt: "Fed Governor Waller just acknowledged what the data shows: dollar-backed stablecoins are becoming a structural demand channel for US government debt. Tether alone is the 17th-largest holder.",
+    excerpt: "Fed Governor Waller acknowledged what the data shows: dollar-backed stablecoins are becoming structural demand for US government debt.",
     slug: "stablecoins-fed-treasury-channel"
   },
   {
@@ -97,7 +96,7 @@ const posts = [
     date: "June 23, 2026",
     category: "Web3",
     type: "Deep Dive",
-    excerpt: "The Ethereum Security QF Round wrapped with 638+ ETH distributed to 134 projects. What this means for security infrastructure, risk dashboards like DeFiScan, L2Beat, and AntiCapture, and the teams building them.",
+    excerpt: "The Ethereum Security QF Round wrapped with 638+ ETH distributed to 134 projects. What this means for security infrastructure.",
     slug: "ethereum-security-qf-round"
   },
   {
@@ -105,7 +104,7 @@ const posts = [
     date: "June 22, 2026",
     category: "AI",
     type: "Thought",
-    excerpt: "Alibaba's latest drops with 35B total parameters but only 3B active — and zero refusal filters. What this means for local-first, sovereign multimodal AI.",
+    excerpt: "Alibaba's latest drops with 35B total parameters but only 3B active — and zero refusal filters. Local-first, sovereign multimodal AI.",
     slug: "qwen3-6-uncensored-vlm-moe"
   },
   {
@@ -113,7 +112,7 @@ const posts = [
     date: "June 10, 2026",
     category: "OpSec",
     type: "Deep Dive",
-    excerpt: "Mapping the most useful risk and transparency layers currently available for EVM and sovereign operations — L2Beat, WalletBeat, DefiScan, AntiCapture, SEAL911 and more.",
+    excerpt: "Mapping the most useful risk and transparency layers for EVM and sovereign operations — L2Beat, WalletBeat, DefiScan, AntiCapture, SEAL911.",
     slug: "risk-dashboards-opsec"
   },
   {
@@ -121,7 +120,7 @@ const posts = [
     date: "June 18, 2026",
     category: "OpSec",
     type: "Deep Dive",
-    excerpt: "A rare inside account of institutional incident response during a live DeFi exploit. KPK's war room activated in 20 minutes, 97 new monitors shipped post-incident, and actionable steps for Web3 teams.",
+    excerpt: "A rare inside account of institutional incident response during a live DeFi exploit. KPK's war room activated in 20 minutes.",
     slug: "lessons-from-kpk-war-room"
   },
   {
@@ -129,56 +128,27 @@ const posts = [
     date: "June 10, 2026",
     category: "AI",
     type: "Thought",
-    excerpt: "Local-first by default. Keys never leave the machine. Minimal attack surface. Human in the loop for high-stakes actions. The rules we refuse to negotiate.",
+    excerpt: "Local-first by default. Keys never leave the machine. Minimal attack surface. Human in the loop for high-stakes actions.",
     slug: "first-principles"
   },
-  {
-    title: "Prediction Markets on MegaETH + Evently Positioning",
-    date: "June 2026",
-    category: "Intelligence",
-    type: "Deep Dive",
-    excerpt: "Deep research on on-chain intelligence, prediction markets, and how Delta V can position in the emerging intelligence layer.",
-    slug: "#"
-  },
-  {
-    title: "Macro Landscape Q3 2026: Policy Divergence and Market Fragmentation",
-    date: "June 2026",
-    category: "Markets",
-    type: "Macro",
-    excerpt: "Central bank balance sheet trends, DXY regimes, and commodity signals feeding the IntelHub Macro dashboard. Positioning for the second half of 2026.",
-    slug: "#"
-  }
 ];
 
-const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware', 'Intelligence', 'Markets', 'Tutorial'];
+const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware'];
 
-const categoryColors: Record<string, string> = {
-  'All': 'bg-white/5 text-white/70 border-white/10',
-  'AI': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  'Web3': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  'OpSec': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  'Hardware': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  'Intelligence': 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
-  'Markets': 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-  'Tutorial': 'bg-green-500/10 text-green-400 border-green-500/20',
+const categoryConfig: Record<string, { color: string; active: string }> = {
+  'All':    { color: 'border-[var(--border-default)] bg-white/[0.03] text-[var(--text-tertiary)]', active: 'border-white/20 bg-white/8 text-white' },
+  'AI':     { color: 'border-[var(--accent-cyan)]/15 bg-[var(--accent-cyan)]/5 text-[var(--accent-cyan)]/60', active: 'border-[var(--accent-cyan)]/35 bg-[var(--accent-cyan)]/12 text-[var(--accent-cyan)]' },
+  'Web3':   { color: 'border-[var(--accent-orange)]/15 bg-[var(--accent-orange)]/5 text-[var(--accent-orange)]/60', active: 'border-[var(--accent-orange)]/35 bg-[var(--accent-orange)]/12 text-[var(--accent-orange)]' },
+  'OpSec':  { color: 'border-[var(--accent-amber)]/15 bg-[var(--accent-amber)]/5 text-[var(--accent-amber)]/60', active: 'border-[var(--accent-amber)]/35 bg-[var(--accent-amber)]/12 text-[var(--accent-amber)]' },
+  'Hardware':{ color: 'border-[var(--accent-purple)]/15 bg-[var(--accent-purple)]/5 text-[var(--accent-purple)]/60', active: 'border-[var(--accent-purple)]/35 bg-[var(--accent-purple)]/12 text-[var(--accent-purple)]' },
 };
 
-const categoryActiveColors: Record<string, string> = {
-  'AI': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-  'Web3': 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-  'OpSec': 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-  'Hardware': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-  'Intelligence': 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
-  'Markets': 'bg-rose-500/20 text-rose-300 border-rose-500/40',
-  'Tutorial': 'bg-green-500/20 text-green-300 border-green-500/40',
-};
-const typeBadge: Record<string, string> = {
-  'Deep Dive': 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
-  'Thought': 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
-  'Tutorial': 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
-  'Dashboard': 'bg-teal-500/10 text-teal-400 border border-teal-500/20',
-  'Macro': 'bg-sky-500/10 text-sky-400 border border-sky-500/20',
-  'Tool': 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
+const typeConfig: Record<string, string> = {
+  'Deep Dive': 'border-[var(--accent-purple)]/20 bg-[var(--accent-purple)]/8 text-[var(--accent-purple)]',
+  'Thought':   'border-[var(--accent-amber)]/20 bg-[var(--accent-amber)]/8 text-[var(--accent-amber)]',
+  'Tutorial':  'border-[var(--accent-cyan)]/20 bg-[var(--accent-cyan)]/8 text-[var(--accent-cyan)]',
+  'Dashboard': 'border-[var(--accent-cyan)]/20 bg-[var(--accent-cyan)]/8 text-[var(--accent-cyan)]',
+  'Tool':      'border-[var(--accent-cyan)]/20 bg-[var(--accent-cyan)]/8 text-[var(--accent-cyan)]',
 };
 
 export default function Blog() {
@@ -189,90 +159,90 @@ export default function Blog() {
     : posts.filter(p => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <Navbar />
-      <div className="max-w-5xl mx-auto px-8 py-16">
-        <a href="/" className="text-[#00f0ff] text-sm hover:underline">← Back to home</a>
-        <h1 className="text-6xl font-semibold tracking-[-2px] mt-4 mb-2">Blog</h1>
-        <p className="text-[#aaa] text-lg mb-8">High-signal writing from IntelHub — deep dives, intelligence reports, and tutorials on sovereign AI, Web3 OpSec, and self-sovereign systems.</p>
+    <div className="min-h-screen">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 md:py-20">
+        {/* Header */}
+        <div className="mb-12">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-[var(--accent-cyan)] text-sm hover:underline mb-6 group">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform group-hover:-translate-x-0.5"><path d="M10 7H3M6 3l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Back to home
+          </Link>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">Blog</h1>
+          <p className="text-[var(--text-secondary)] text-lg max-w-xl leading-relaxed">
+            High-signal writing from IntelHub — deep dives, intelligence reports, and tutorials on sovereign AI, Web3 OpSec, and self-sovereign systems.
+          </p>
+        </div>
 
-        {/* Category filter pills */}
+        {/* Filters */}
         <div className="flex flex-wrap gap-2 mb-10">
           {allCategories.map(cat => {
             const isActive = activeCategory === cat;
-            const isAll = cat === 'All';
+            const cfg = categoryConfig[cat];
             const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length;
             return (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 ${
-                  isAll && isActive
-                    ? 'bg-white/10 text-white border-white/20'
-                    : isAll
-                    ? categoryColors['All']
-                    : isActive
-                    ? categoryActiveColors[cat] || 'bg-white/10 text-white border-white/20'
-                    : categoryColors[cat] || 'bg-white/5 text-white/40 border-white/10'
+                  isActive ? cfg.active : cfg.color
                 } hover:scale-105`}
               >
                 {cat}
-                <span className={`text-[10px] ${isActive ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
+                <span className={`text-[10px] ${isActive ? 'opacity-80' : 'opacity-40'}`}>{count}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Post list */}
-        <div className="space-y-6">
-          {filteredPosts.length === 0 ? (
-            <div className="text-center py-20 text-[#666]">
-              <p className="text-lg mb-2">No posts in this category yet</p>
-              <p className="text-sm">Check back soon or browse another category.</p>
-            </div>
-          ) : (
-            filteredPosts.map((post, index) => (
+        {/* Post Grid */}
+        {filteredPosts.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-lg text-[var(--text-secondary)] mb-2">No posts in this category yet</p>
+            <p className="text-sm text-[var(--text-tertiary)]">Check back soon or browse another category.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-4 stagger-children">
+            {filteredPosts.map((post, i) => (
               <a
-                key={index}
+                key={i}
                 href={post.slug !== '#' ? `/blog/${post.slug}/` : '#'}
-                className={`block border border-[#222] rounded-2xl p-6 transition-all duration-200 ${
+                className={`group rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 transition-all duration-200 ${
                   post.slug !== '#' 
-                    ? 'hover:border-[#00f0ff] hover:bg-[#111] group cursor-pointer' 
-                    : 'opacity-50 cursor-default'
+                    ? 'hover:border-[var(--accent-cyan)]/25 hover:bg-[var(--bg-elevated)] cursor-pointer' 
+                    : 'opacity-40 cursor-default'
                 }`}
               >
-                <div className="flex items-center gap-3 text-sm text-[#666] mb-2">
-                  <span>{post.date}</span>
-                  <span>·</span>
+                <div className="flex items-center gap-2 text-xs mb-3">
+                  <span className="text-[var(--text-muted)]">{post.date}</span>
+                  <span className="text-[var(--text-disabled)]">·</span>
                   <span className={`font-medium ${
-                    post.category === 'AI' ? 'text-cyan-400' :
-                    post.category === 'Web3' ? 'text-purple-400' :
-                    post.category === 'OpSec' ? 'text-amber-400' :
-                    post.category === 'Hardware' ? 'text-emerald-400' :
-                    post.category === 'Intelligence' ? 'text-indigo-400' :
-                    post.category === 'Markets' ? 'text-rose-400' :
-                    post.category === 'Tutorial' ? 'text-green-400' :
-                    'text-[#00f0ff]'
+                    post.category === 'AI' ? 'text-[var(--accent-cyan)]' :
+                    post.category === 'Web3' ? 'text-[var(--accent-orange)]' :
+                    post.category === 'OpSec' ? 'text-[var(--accent-amber)]' :
+                    'text-[var(--accent-purple)]'
                   }`}>{post.category}</span>
-                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase ${typeBadge[post.type] || 'bg-white/5 text-white/40 border border-white/10'}`}>
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold tracking-[1px] uppercase border ${typeConfig[post.type] || 'border-white/5 bg-white/[0.03] text-[var(--text-muted)]'}`}>
                     {post.type}
                   </span>
                 </div>
-                <h3 className={`text-xl font-semibold mb-2 ${
-                  post.slug !== '#' ? 'group-hover:text-[#00f0ff]' : ''
+                <h3 className={`text-lg md:text-xl font-semibold mb-2 leading-snug ${
+                  post.slug !== '#' ? 'group-hover:text-[var(--accent-cyan)]' : ''
                 } transition-colors`}>{post.title}</h3>
-                <p className="text-[#888] text-sm leading-relaxed mb-3">{post.excerpt}</p>
+                <p className="text-[var(--text-tertiary)] text-sm leading-relaxed mb-3 line-clamp-2">{post.excerpt}</p>
                 {post.slug !== '#' ? (
-                  <div className="text-[#00f0ff] text-xs font-medium">Read full article →</div>
+                  <div className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-cyan)] group-hover:gap-1.5 transition-all">
+                    Read full article
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
                 ) : (
-                  <div className="text-[#555] text-xs">Coming soon</div>
+                  <div className="text-xs text-[var(--text-disabled)]">Coming soon</div>
                 )}
               </a>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
 
-        <div className="mt-16 text-center text-sm text-[#666]">
+        <div className="mt-16 text-center text-sm text-[var(--text-muted)]">
           More articles generated through the IntelHub pipeline.
         </div>
       </div>

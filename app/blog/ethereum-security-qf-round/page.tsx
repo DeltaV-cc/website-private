@@ -26,7 +26,7 @@ export default function EthereumSecurityQFPost() {
       </p>
 
       {/* Stats highlight */}
-      <div className="grid grid-cols-3 gap-4 my-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-8">
         {[
           { value: '638+', label: 'ETH Raised', color: 'from-[#00f0ff] to-[#00f0ff]/50' },
           { value: '134', label: 'Projects Funded', color: 'from-[#a855f7] to-[#a855f7]/50' },

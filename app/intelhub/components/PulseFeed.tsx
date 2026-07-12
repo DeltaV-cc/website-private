@@ -79,6 +79,7 @@ export default function PulseFeed({
               <div className="flex items-start gap-2">
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium leading-snug line-clamp-2 text-[#ededed]/85 group-hover:text-white">{it.title}</div>
+                  <div className="mt-2 text-[10px] text-[#ededed]/30 line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-200 max-h-0 group-hover:max-h-12 overflow-hidden">{it.summary}</div>
                 </div>
                 {isNew(it.published_at) && <span className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full bg-emerald-400" />}
               </div>
