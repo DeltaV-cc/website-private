@@ -1,69 +1,65 @@
 'use client';
+import Link from 'next/link';
 
-import Navbar from '../components/Navbar';
+const ArrowRight = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
 
 export default function Web3Page() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <Navbar />
-
-      <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
-        <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-3">PILLAR 02 • WEB3</div>
-        <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">Web3</h1>
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-12 h-[3px] rounded-full bg-[#C2410C]" />
-          <span className="w-8 h-[3px] rounded-full bg-[#F59E0B]/60" />
-          <span className="w-4 h-[3px] rounded-full bg-[#F59E0B]/30" />
+    <>
+      {/* Hero */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-12">
+        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 02 · Web3</div>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">Web3</h1>
+        <div className="flex items-center gap-2 mb-8">
+          <span className="w-12 h-[2px] rounded-full bg-[var(--accent-orange)]" />
+          <span className="w-8 h-[2px] rounded-full bg-[var(--accent-amber)]/50" />
+          <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
         </div>
-        <p className="max-w-2xl text-xl text-[#aaa]">
-          We help builders and operators navigate complexity with clarity, sovereignty, and real technical depth.
+        <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+          Navigate complexity with clarity, sovereignty, and real technical depth.
         </p>
-      </div>
+      </section>
 
-      <div className="max-w-5xl mx-auto px-8 pb-24 space-y-8">
-
-        {/* 1. SOTA Setup & Architecture Advisory */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C] via-[#F59E0B]/40 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">SOTA Setup &amp; Architecture Advisory</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            Many individuals and companies in Web3 lack access to proper infrastructure and execution security. 
-            We help you implement <span className="font-semibold text-[#ededed]">best-in-class transaction execution, 
-            secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting and data infrastructure</span>.
+      {/* Services */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24 space-y-5">
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-amber)]/30 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">SOTA Setup & Architecture Advisory</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            We help you implement <span className="font-medium text-[var(--text-primary)]">best-in-class transaction execution, 
+            secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting</span> infrastructure.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 bg-[#F59E0B] text-black rounded-xl font-medium hover:bg-amber-400 transition-colors">
-            Describe your problem
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-amber)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-gold)] transition-colors">
+            Describe your problem <ArrowRight />
+          </Link>
         </div>
 
-        {/* 2. Web3 Intelligence & OSINT */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/60 via-[#F59E0B]/20 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">Web3 Intelligence &amp; OSINT</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            Decision-making in Web3 requires high-signal intelligence. We conduct <span className="font-semibold text-[#ededed]">onchain and offchain 
-            investigations</span> to help you assess risks, understand protocol dynamics, and gather the information needed to make informed decisions.
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/60 via-[var(--accent-amber)]/20 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Web3 Intelligence & OSINT</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            We conduct <span className="font-medium text-[var(--text-primary)]">onchain and offchain investigations</span> 
+            to help you assess risks, understand protocol dynamics, and make informed decisions.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 border border-[#333] rounded-xl font-medium hover:bg-[#222] transition-colors">
-            Request Research Support
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">
+            Request Research Support <ArrowRight />
+          </Link>
         </div>
 
-        {/* 3. Growth Boost */}
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C]/40 via-[#F59E0B]/20 to-transparent" />
-          <h3 className="text-3xl font-semibold mb-4">Growth Boost</h3>
-          <p className="text-[#aaa] mb-8 max-w-3xl leading-relaxed">
-            Web3 was born as a plural community of cypherpunks. We help protect and foster this ethos by supporting 
-            <span className="font-semibold text-[#ededed]"> community building, public good initiatives, and fundraising efforts</span> — 
-            both online and through in-person presence at conferences and events.
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)]/40 via-[var(--accent-amber)]/15 to-transparent" />
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Growth Boost</h3>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
+            We help protect and foster the cypherpunk ethos by supporting 
+            <span className="font-medium text-[var(--text-primary)]"> community building, public good initiatives, and fundraising efforts</span>.
           </p>
-          <a href="/contact" className="inline-block px-8 py-3 border border-[#333] rounded-xl font-medium hover:bg-[#222] transition-colors">
-            Explore Growth Support
-          </a>
+          <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">
+            Start Growth Support <ArrowRight />
+          </Link>
         </div>
-
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

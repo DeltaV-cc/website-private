@@ -1,241 +1,174 @@
 'use client';
-
+import Link from 'next/link';
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
 
 export default function Tutorials() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <div className="max-w-5xl mx-auto px-8 py-16">
-        <a href="/" className="text-[#00f0ff] text-sm hover:underline">← Back to home</a>
+    <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 md:py-20">
+      <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors mb-8 group">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform group-hover:-translate-x-0.5">
+          <path d="M10 7H3M6 3l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        Back to home
+      </Link>
 
-        <h1 className="text-6xl font-semibold tracking-[-2px] mt-4 mb-2">Tutorials & Technical Resources</h1>
-        <p className="text-xl text-[#aaa] max-w-2xl">High-signal technical breakdowns with clear architecture and setup details.</p>
+      <div className="mb-12">
+        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Resources</div>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">Tutorials & Technical Resources</h1>
+        <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
+          High-signal technical breakdowns with clear architecture and setup details.
+        </p>
+      </div>
 
-        {/* Entry 1 - Clickable Tutorial */}
-        <div 
-          className="mt-12 border border-[#222] rounded-2xl p-8 cursor-pointer hover:border-[#00f0ff] transition-all"
-          onClick={() => setExpanded(!expanded)}
-        >
-          <div className="text-[#00f0ff] text-xs tracking-[2px] mb-1">SOURCE</div>
-          <div className="text-sm text-[#666] mb-4">leopardracer • June 2026</div>
+      {/* Tutorial 1 */}
+      <div
+        className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 cursor-pointer hover:border-[var(--accent-cyan)]/25 transition-all group"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-1">Source</div>
+        <div className="text-sm text-[var(--text-muted)] mb-4">leopardracer · June 2026</div>
 
-          <h2 className="text-3xl font-semibold mb-4">Hermes + Qwen 3.6 + NVIDIA DGX Spark: The Local AI Convergence</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 group-hover:text-[var(--accent-cyan)] transition-colors">Hermes + Qwen 3.6 + NVIDIA DGX Spark: The Local AI Convergence</h2>
 
-          <div className="prose prose-invert text-[#aaa] max-w-none mb-6">
-            <p><strong>Hardware:</strong> NVIDIA DGX Spark (128GB unified memory, 1 petaflop) — purpose-built for 24/7 local agent operation.</p>
-            <p><strong>Models:</strong> Qwen 3.6 (Alibaba) — strong open-weight performance with low VRAM requirements.</p>
-            <p><strong>Agent Framework:</strong> Hermes Agent — self-evolving skills, 3-layer memory, OpenShell sandbox.</p>
-            <p><strong>Key Architecture:</strong> Self-evolving loop + full local execution with no external data sharing.</p>
-          </div>
-
-          <div className="text-sm text-[#00f0ff] mb-2">Visual Architecture</div>
-          <div className="border border-[#333] rounded-xl overflow-hidden mb-4">
-            <img 
-              src="/website-private/images/hermes-qwen-dgx-stack.jpg" 
-              alt="Hermes + Qwen 3.6 Local AI Stack on DGX Spark - Technical Blueprint" 
-              className="w-full h-auto"
-            />
-          </div>
-
-          <div className="flex items-center justify-between mt-4">
-            <div className="text-[#00f0ff] text-sm font-medium flex items-center gap-2">
-              {expanded ? 'Hide Full Tutorial' : 'Click to view Full Tutorial & Setup Guide'} 
-              <span className="text-lg">{expanded ? '↑' : '↓'}</span>
-            </div>
-            <div className="text-xs text-[#666]">Software + Hardware Summary • Step-by-Step Setup</div>
-          </div>
-
-          {/* Expanded Content - Summary (Soft/Hard) + Setup Tutorial */}
-          {expanded && (
-            <div className="mt-8 pt-8 border-t border-[#333] space-y-8" onClick={e => e.stopPropagation()}>
-              
-              {/* Software Summary */}
-              <div>
-                <div className="text-[#00f0ff] text-xs tracking-[2px] mb-3">SOFTWARE SUMMARY</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-[#111] border border-[#222] rounded-xl p-6">
-                    <h4 className="font-semibold mb-3 text-lg">Qwen 3.6 Model</h4>
-                    <ul className="text-[#aaa] space-y-2 text-sm">
-                      <li>• 35B full precision or 27B quantized variant</li>
-                      <li>• Runs efficiently on ~20GB VRAM</li>
-                      <li>• Excellent reasoning and tool-use capabilities</li>
-                      <li>• Fully open-weight (Alibaba)</li>
-                    </ul>
-                  </div>
-                  <div className="bg-[#111] border border-[#222] rounded-xl p-6">
-                    <h4 className="font-semibold mb-3 text-lg">Hermes Agent Framework</h4>
-                    <ul className="text-[#aaa] space-y-2 text-sm">
-                      <li>• 3-layer persistent memory system</li>
-                      <li>• Self-evolving loop: Observe → Reflect → Tool Use → Code Generation → Deploy</li>
-                      <li>• NVIDIA OpenShell sandbox for safe execution</li>
-                      <li>• Skills auto-improve over time without human intervention</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Hardware Summary */}
-              <div>
-                <div className="text-[#00f0ff] text-xs tracking-[2px] mb-3">HARDWARE SUMMARY</div>
-                <div className="bg-[#111] border border-[#222] rounded-xl p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-                    <div>
-                      <div className="text-[#666] mb-1">Device</div>
-                      <div className="font-semibold">NVIDIA DGX Spark</div>
-                    </div>
-                    <div>
-                      <div className="text-[#666] mb-1">Memory</div>
-                      <div className="font-semibold">128GB Unified Memory</div>
-                    </div>
-                    <div>
-                      <div className="text-[#666] mb-1">Performance</div>
-                      <div className="font-semibold">1 Petaflop</div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-[#222] text-[#aaa] text-sm">
-                    Purpose-built workstation for continuous local AI agent operation with massive unified memory for large context windows and multi-agent workloads.
-                  </div>
-                </div>
-              </div>
-
-              {/* Thorough Setup Tutorial */}
-              <div>
-                <div className="text-[#00f0ff] text-xs tracking-[2px] mb-3">SETUP TUTORIAL</div>
-                <div className="bg-[#111] border border-[#222] rounded-xl p-8 text-sm">
-                  
-                  <div className="mb-6 text-[#888] italic">
-                    This guide combines verified signals from high-quality sources with practical engineering. 
-                    When sources are incomplete (the common case), we cross-reference hardware specs, model cards, 
-                    framework docs, and real deployment patterns to build a reliable path.
-                  </div>
-
-                  <ol className="space-y-8">
-                    {/* Step 1 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">01 — Hardware & Base Environment</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Confirm DGX Spark is provisioned with 128GB unified memory and 1 petaflop capability.</div>
-                        <div>• Install latest NVIDIA drivers + CUDA 12.4+ toolkit.</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded">nvidia-smi  # verify 128GB and CUDA version</div>
-                        <div>• Set up a dedicated user + persistent storage volume for models and memory logs.</div>
-                        <div className="text-[#666] text-xs">Pitfall: Unified memory on DGX Spark behaves differently from discrete VRAM — test large context windows early.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 2 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">02 — Install Hermes Agent Core</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Clone the Hermes repository into <span className="font-mono">/opt/hermes</span> or your preferred persistent path.</div>
-                        <div>• Install dependencies and create a dedicated Python environment.</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded">git clone https://github.com/.../hermes-agent.git<br />cd hermes-agent && uv venv && source .venv/bin/activate</div>
-                        <div>• Copy the default <span className="font-mono">config.yaml</span> and set <span className="font-mono">MEMORY_PATH</span> and <span className="font-mono">OUTPUT_PATH</span> to your persistent volume.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 3 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">03 — Configure 3-Layer Memory System</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Edit <span className="font-mono">config.yaml</span> to enable the three memory layers:</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded">memory:<br />  short_term: true<br />  long_term: true<br />  skills: true<br />  retrieval_depth: 20</div>
-                        <div>• Set <span className="font-mono">SCHEDULER_TIMEZONE</span> and enable <span className="font-mono">SKILLS_WATCH: true</span> for the self-evolving loop.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 4 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">04 — Deploy Qwen 3.6 Model</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Choose variant: 35B (full) or 27B (quantized for lower VRAM).</div>
-                        <div>• Recommended: Use Ollama or llama.cpp backend for best compatibility.</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded">ollama run qwen3.6:27b-q4  # or equivalent GGUF</div>
-                        <div>• Target memory footprint: ~18–22GB to leave headroom for Hermes memory layers.</div>
-                        <div className="text-[#666] text-xs">Verification: Run a small inference test and monitor with nvidia-smi.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 5 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">05 — Enable NVIDIA OpenShell Sandbox</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Install and configure OpenShell integration in Hermes.</div>
-                        <div>• Restrict execution to the sandbox only — never allow direct host shell access.</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded"># In hermes config<br />tools:<br />  open_shell: enabled<br />  sandbox_mode: strict</div>
-                      </div>
-                    </li>
-
-                    {/* Step 6 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">06 — Activate Self-Evolving Loop</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Enable the core loop in the agent runtime:</div>
-                        <div className="font-mono text-xs bg-[#0a0a0a] p-2 rounded">loop:<br />  enabled: true<br />  stages: [observe, reflect, tool_use, code_gen, deploy]</div>
-                        <div>• Set a daily cron or internal scheduler to trigger skill improvement cycles.</div>
-                        <div className="text-[#666] text-xs">Note: This is where most of the "magic" happens. Start with conservative limits before going fully autonomous.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 7 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">07 — Initial Skill Seeding & Testing</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Seed the agent with 3–5 core skills (file ops, web search, code execution).</div>
-                        <div>• Run a controlled test task (e.g., “research and summarize latest Qwen releases”).</div>
-                        <div>• Monitor memory growth and loop iterations in the logs.</div>
-                      </div>
-                    </li>
-
-                    {/* Step 8 */}
-                    <li>
-                      <div className="font-mono text-[#00f0ff] mb-1">08 — Security & OpSec Hardening</div>
-                      <div className="text-[#aaa] pl-8 space-y-2">
-                        <div>• Disable all external telemetry and logging to third parties.</div>
-                        <div>• Set strict firewall rules — only allow outbound on necessary ports.</div>
-                        <div>• Verify zero data leakage by inspecting network activity during a full loop cycle.</div>
-                      </div>
-                    </li>
-                  </ol>
-
-                  <div className="mt-8 pt-6 border-t border-[#333] text-[#aaa]">
-                    <div className="font-semibold mb-2">Verification Checklist</div>
-                    <ul className="list-disc pl-5 space-y-1 text-sm">
-                      <li>Model loads within target VRAM</li>
-                      <li>3 memory layers persist across restarts</li>
-                      <li>Self-evolving loop produces at least one improved skill within 24h</li>
-                      <li>No outbound connections except for intentional tool use</li>
-                      <li>Agent can safely execute code inside OpenShell sandbox</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center pt-4">
-                <button 
-                  onClick={() => setExpanded(false)}
-                  className="text-sm px-6 py-2 border border-[#333] hover:border-[#00f0ff] rounded-full transition-all"
-                >
-                  Close Tutorial
-                </button>
-              </div>
-            </div>
-          )}
+        <div className="prose prose-invert text-[var(--text-secondary)] max-w-none mb-6 text-sm">
+          <p><strong className="text-[var(--text-primary)]">Hardware:</strong> NVIDIA DGX Spark (128GB unified memory, 1 petaflop) — purpose-built for 24/7 local agent operation.</p>
+          <p><strong className="text-[var(--text-primary)]">Models:</strong> Qwen 3.6 (Alibaba) — strong open-weight performance with low VRAM requirements.</p>
+          <p><strong className="text-[var(--text-primary)]">Agent Framework:</strong> Hermes Agent — self-evolving skills, 3-layer memory, OpenShell sandbox.</p>
+          <p><strong className="text-[var(--text-primary)]">Key Architecture:</strong> Self-evolving loop + full local execution with no external data sharing.</p>
         </div>
 
-        {/* Entry 2 - Placeholder */}
-        <div className="mt-8 border border-[#222] rounded-2xl p-8">
-          <div className="text-[#00f0ff] text-xs tracking-[2px] mb-1">SOURCE</div>
-          <div className="text-sm text-[#666] mb-4">Coming soon</div>
-          <h2 className="text-3xl font-semibold mb-4">Next High-Signal Resource</h2>
-          <p className="text-[#aaa]">Summary with hardware, software, architecture, and OpSec details will be added here.</p>
+        <div className="border border-[var(--border-default)] rounded-xl overflow-hidden mb-4">
+          <img
+            src="/website-private/images/hermes-qwen-dgx-stack.jpg"
+            alt="Hermes + Qwen 3.6 Local AI Stack on DGX Spark"
+            className="w-full h-auto"
+          />
         </div>
+
+        <div className="flex items-center justify-between">
+          <div className="text-[var(--accent-cyan)] text-sm font-medium inline-flex items-center gap-1.5">
+            {expanded ? 'Hide Full Tutorial' : 'View Full Tutorial & Setup Guide'}
+            <span className="text-lg transition-transform">{expanded ? '↑' : '↓'}</span>
+          </div>
+          <div className="text-xs text-[var(--text-muted)]">Software + Hardware Summary · Step-by-Step Setup</div>
+        </div>
+
+        {/* Expanded Content */}
+        {expanded && (
+          <div className="mt-8 pt-8 border-t border-[var(--border-default)] space-y-8" onClick={e => e.stopPropagation()}>
+            {/* Software Summary */}
+            <div>
+              <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-3">Software Summary</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-6">
+                  <h4 className="font-semibold mb-3">Qwen 3.6 Model</h4>
+                  <ul className="text-[var(--text-secondary)] space-y-2 text-sm">
+                    <li>35B full precision or 27B quantized variant</li>
+                    <li>Runs efficiently on ~20GB VRAM</li>
+                    <li>Excellent reasoning and tool-use capabilities</li>
+                    <li>Fully open-weight (Alibaba)</li>
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-6">
+                  <h4 className="font-semibold mb-3">Hermes Agent Framework</h4>
+                  <ul className="text-[var(--text-secondary)] space-y-2 text-sm">
+                    <li>3-layer persistent memory system</li>
+                    <li>Self-evolving loop without human intervention</li>
+                    <li>NVIDIA OpenShell sandbox for safe execution</li>
+                    <li>Skills auto-improve over time</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Hardware Summary */}
+            <div>
+              <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-3">Hardware Summary</div>
+              <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                  <div>
+                    <div className="text-[var(--text-muted)] mb-1">Device</div>
+                    <div className="font-semibold text-[var(--text-primary)]">NVIDIA DGX Spark</div>
+                  </div>
+                  <div>
+                    <div className="text-[var(--text-muted)] mb-1">Memory</div>
+                    <div className="font-semibold text-[var(--text-primary)]">128GB Unified</div>
+                  </div>
+                  <div>
+                    <div className="text-[var(--text-muted)] mb-1">Performance</div>
+                    <div className="font-semibold text-[var(--text-primary)]">1 Petaflop</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Setup Tutorial */}
+            <div>
+              <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-3">Setup Tutorial</div>
+              <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-6 md:p-8 text-sm">
+                <div className="mb-6 text-[var(--text-tertiary)] italic text-xs">
+                  Verified signals from high-quality sources cross-referenced with hardware specs, model cards, framework docs, and real deployment patterns.
+                </div>
+
+                <ol className="space-y-6">
+                  {[
+                    { step: '01', title: 'Hardware & Base Environment', content: ['Confirm DGX Spark provisioned with 128GB unified memory.', 'Install latest NVIDIA drivers + CUDA 12.4+ toolkit.', 'Set up dedicated user + persistent storage volume.'], code: 'nvidia-smi  # verify 128GB and CUDA version' },
+                    { step: '02', title: 'Install Hermes Agent Core', content: ['Clone repository into /opt/hermes or preferred path.', 'Install dependencies and create Python environment.'], code: 'git clone https://github.com/.../hermes-agent.git\ncd hermes-agent && uv venv && source .venv/bin/activate' },
+                    { step: '03', title: 'Configure 3-Layer Memory System', content: ['Edit config.yaml to enable memory layers.'], code: 'memory:\n  short_term: true\n  long_term: true\n  skills: true' },
+                    { step: '04', title: 'Deploy Qwen 3.6 Model', content: ['Choose variant: 35B (full) or 27B (quantized).', 'Use Ollama or llama.cpp backend.'], code: 'ollama run qwen3.6:27b-q4' },
+                    { step: '05', title: 'Enable NVIDIA OpenShell Sandbox', content: ['Restrict execution to sandbox only.'], code: 'tools:\n  open_shell: enabled\n  sandbox_mode: strict' },
+                    { step: '06', title: 'Activate Self-Evolving Loop', content: ['Enable core loop in agent runtime.'], code: 'loop:\n  enabled: true\n  stages: [observe, reflect, tool_use, code_gen, deploy]' },
+                    { step: '07', title: 'Initial Skill Seeding & Testing', content: ['Seed with 3–5 core skills.', 'Run controlled test task.', 'Monitor memory growth and loop iterations.'] },
+                    { step: '08', title: 'Security & OpSec Hardening', content: ['Disable all external telemetry.', 'Set strict firewall rules.', 'Verify zero data leakage.'] },
+                  ].map((section) => (
+                    <li key={section.step}>
+                      <div className="font-mono text-[var(--accent-cyan)] text-xs mb-2">{section.step} — {section.title}</div>
+                      <div className="text-[var(--text-secondary)] pl-4 space-y-1">
+                        {section.content.map((line, i) => (
+                          <div key={i}>{line}</div>
+                        ))}
+                        {section.code && (
+                          <div className="font-mono text-xs bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-default)] text-[var(--text-primary)] mt-2 whitespace-pre-wrap">{section.code}</div>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                <div className="mt-8 pt-6 border-t border-[var(--border-default)]">
+                  <div className="font-semibold text-[var(--text-primary)] mb-2 text-sm">Verification Checklist</div>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-[var(--text-secondary)]">
+                    <li>Model loads within target VRAM</li>
+                    <li>3 memory layers persist across restarts</li>
+                    <li>Self-evolving loop produces improved skill within 24h</li>
+                    <li>No outbound connections except intentional tool use</li>
+                    <li>Agent safely executes code inside OpenShell sandbox</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button
+                onClick={() => setExpanded(false)}
+                className="text-sm px-6 py-2.5 border border-[var(--border-default)] hover:border-[var(--accent-cyan)]/30 rounded-full transition-all"
+              >
+                Close Tutorial
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Placeholder */}
+      <div className="mt-6 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8">
+        <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-1">Source</div>
+        <div className="text-sm text-[var(--text-muted)] mb-4">Coming soon</div>
+        <h2 className="text-2xl font-semibold mb-4">Next High-Signal Resource</h2>
+        <p className="text-[var(--text-tertiary)]">Summary with hardware, software, architecture, and OpSec details will be added here.</p>
       </div>
     </div>
-    </>
   );
 }

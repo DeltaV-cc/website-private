@@ -1,12 +1,11 @@
-import Navbar from '../../components/Navbar';
+import Link from 'next/link';
 
 export default function RiskDashboardsArticle() {
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
       <div className="max-w-3xl mx-auto px-8 py-16">
-        <a href="/blog" className="text-[#00f0ff] text-sm hover:underline">← Back to blog</a>
+        <Link href="/blog/" className="text-[#00f0ff] text-sm hover:underline">← Back to blog</Link>
         
         <div className="mt-8">
           <div className="flex items-center gap-3 text-sm text-[#666] mb-4">

@@ -1,4 +1,4 @@
-import BlogPostLayout from '../../../components/BlogPostLayout';
+import BlogPostLayout from '@/components/BlogPostLayout';
 
 export default function FastARVideoDiffusionPost() {
   return (

@@ -1,199 +1,306 @@
 'use client';
 
 import React from 'react';
-import Navbar from './components/Navbar';
+import Link from 'next/link';
 import CuratedIntel from './components/CuratedIntel';
+
+/* Inline SVG decorative icons — no icon library */
+const ArrowRight = ({ className = '' }: { className?: string }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={className}>
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ChevronDown = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-[var(--text-muted)]">
+    <path d="M5 7.5l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export default function DeltaVSite() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <Navbar />
+    <>
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="ambient-glow ambient-glow-cyan -top-20 left-1/4 w-[500px] h-[500px]" />
+        <div className="ambient-glow ambient-glow-orange top-20 right-0 w-[400px] h-[400px]" />
 
-      {/* Hero */}
-      <div className="max-w-6xl mx-auto px-8 pt-16 pb-14">
-        
-        <h1 className="text-7xl md:text-8xl font-semibold tracking-[-4px] leading-none mb-6">
-          We don't sell tools.<br />We forge capabilities.
-        </h1>
-        
-        <p className="max-w-[620px] text-lg text-[#aaa]">
-          We operate at the frontier of AI and Web3 with OpSec as our core principle — we build, integrate, and upskill with sovereignty in mind.
-        </p>
-      </div>
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 md:pb-20 relative">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--accent-cyan)]/20 bg-[var(--accent-cyan)]/[0.04] text-[var(--accent-cyan)] text-xs font-medium tracking-wide mb-8 animate-fade-in">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
+              Zero-Headcount Intelligence Company
+            </div>
 
-      {/* Three Pillars - Clickable */}
-      <div id="pillars" className="max-w-6xl mx-auto px-8 pb-24">
-        <div className="grid md:grid-cols-3 gap-8">
-          
-          {/* Pillar 1: AI */}
-          <a href="/ai" className="group flex flex-col bg-[#111] border border-[#222] hover:border-[#00f0ff] rounded-3xl p-10 transition-all duration-300">
-            <div className="text-[#00f0ff] text-xs font-medium tracking-[2px] mb-4">PILLAR 01</div>
-            <h3 className="text-3xl font-semibold tracking-tight mb-6">AI Engineering</h3>
-            
-            <div className="space-y-4 text-sm flex-1">
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Tailored Multi-Agent Systems</div>
-                <div className="text-[#aaa]">Custom multi-agent architectures for internal operations, business processes, marketing, and intelligence.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Inference & Model Engineering</div>
-                <div className="text-[#aaa]">Production-grade model deployment using Hugging Face and custom frameworks.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> AI Engineer Retainer</div>
-                <div className="text-[#aaa]">Ongoing development, optimization, and security for your agent systems.</div>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-end">
-              <span className="px-6 py-2.5 bg-[#00f0ff] text-black rounded-xl text-sm font-medium group-hover:bg-white transition-colors">
-                Upgrade with AI →
-              </span>
-            </div>
-          </a>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-[-3px] leading-[0.95] mb-8 animate-fade-in-up">
+              We don't sell tools.
+              <br />
+              <span className="text-[var(--text-secondary)]">We forge</span>{' '}
+              <span className="gradient-text">capabilities.</span>
+            </h1>
 
-          {/* Pillar 2: Web3 */}
-          <a href="/web3" className="group flex flex-col bg-[#111] border border-[#222] hover:border-[#C2410C] rounded-3xl p-10 transition-all duration-300">
-            <div className="text-[#C2410C] text-xs font-medium tracking-[2px] mb-4">PILLAR 02</div>
-            <h3 className="text-3xl font-semibold tracking-tight mb-6">Web3</h3>
-            
-            <div className="space-y-4 text-sm flex-1">
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> SOTA Setup & Architecture Advisory</div>
-                <div className="text-[#aaa]">High-signal architecture guidance and development for DeFi protocols, on-chain agents, and Web3 infrastructure.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> Web3 Intelligence & OSINT</div>
-                <div className="text-[#aaa]">Continuous monitoring of DeFi, privacy tech, on-chain agents, EIPs, GitHub activity, and emerging ecosystem signals.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#C2410C]">~</span> Growth Boost</div>
-                <div className="text-[#aaa]">Strategic expansion support across regions with strong OpSec foundations. Focus on EU & Swiss markets, public good advocacy, and fundraising.</div>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-end">
-              <span className="px-6 py-2.5 border border-[#C2410C] text-[#C2410C] rounded-xl text-sm font-medium group-hover:bg-[#C2410C] group-hover:text-white transition-colors">
-                Build on Web3 →
-              </span>
-            </div>
-          </a>
+            <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl leading-relaxed mb-10 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+              Sovereign AI, Web3, and OpSec engineering for high-stakes operators. 
+              Local-first by default. Keys never leave the machine.
+            </p>
 
-          {/* Pillar 3: Education / Forge */}
-          <a href="/forge" className="group flex flex-col bg-[#111] border border-[#222] hover:border-[#00f0ff] rounded-3xl p-10 transition-all duration-300">
-            <div className="text-[#00f0ff] text-xs font-medium tracking-[2px] mb-4">PILLAR 03</div>
-            <h3 className="text-3xl font-semibold tracking-tight mb-6">Skill Forge</h3>
-            
-            <div className="space-y-4 text-sm flex-1">
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> Personal AI Mastery Course</div>
-                <div className="text-[#aaa]">Self-sovereign program for building and running personal AI systems with strong OpSec.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> AI Engineering Bootcamp</div>
-                <div className="text-[#aaa]">5-day intensive focused on building real production systems.</div>
-              </div>
-              <div>
-                <div className="font-medium mb-1"><span className="text-[#00f0ff]">~</span> OpSec Training & Auditing</div>
-                <div className="text-[#aaa]">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</div>
-              </div>
+            <div className="flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+              <Link
+                href="/intelhub/"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-cyan)] text-black rounded-xl text-sm font-semibold hover:bg-white transition-all duration-200"
+              >
+                Explore IntelHub
+                <ArrowRight />
+              </Link>
+              <Link
+                href="/contact/"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:border-[var(--accent-cyan)]/30 hover:text-[var(--accent-cyan)] transition-all duration-200"
+              >
+                Get in Touch
+              </Link>
             </div>
-            <div className="mt-8 flex justify-end">
-              <span className="px-6 py-2.5 bg-[#00f0ff] text-black rounded-xl text-sm font-medium group-hover:bg-white transition-colors">
-                Forge skills →
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      {/* RSS Feed */}
-      <CuratedIntel />
-
-      {/* Offerings Section - Harmonized CTAs */}
-      <div id="offerings" className="bg-[#111] py-24">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="mb-16">
-            <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">FLAGSHIP OFFERINGS</div>
-            <h2 className="text-4xl font-semibold tracking-[-2px] max-w-3xl">Precision-built systems for serious builders.</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Offering 1 */}
-            <a href="/forge" className="flex flex-col bg-[#0a0a0a] border border-[#222] rounded-3xl p-10 group hover:border-[#00f0ff] transition-all">
-              <h3 className="text-3xl font-semibold mb-4">Personal AI Mastery Course</h3>
-              <p className="text-[#aaa] text-base leading-relaxed flex-1">
+          {/* Scroll indicator */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[var(--text-disabled)] animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <span className="text-[10px] tracking-[2px] uppercase">Scroll</span>
+            <ChevronDown />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Three Pillars ─────────────────────────────────────── */}
+      <section id="pillars" className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
+        <div className="mb-10">
+          <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">What We Do</div>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-1.5px]">Three pillars. One mission.</h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5 stagger-children">
+          {/* AI Pillar */}
+          <Link href="/ai/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
+            <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 01</div>
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">AI Engineering</h3>
+            <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Tailored Multi-Agent Systems</div>
+                  <div className="text-[var(--text-tertiary)]">Custom architectures for operations, business, marketing, and intelligence.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Inference & Model Engineering</div>
+                  <div className="text-[var(--text-tertiary)]">Production-grade deployment with Hugging Face and custom frameworks.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">AI Engineer Retainer</div>
+                  <div className="text-[var(--text-tertiary)]">Ongoing optimization and security for your agent systems.</div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-cyan)] group-hover:gap-2.5 transition-all">
+                Upgrade with AI <ArrowRight />
+              </span>
+            </div>
+          </Link>
+
+          {/* Web3 Pillar */}
+          <Link href="/web3/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-orange)]/30 hover:shadow-[var(--glow-orange)] hover:-translate-y-1">
+            <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 02</div>
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Web3</h3>
+            <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-orange)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">SOTA Setup & Architecture</div>
+                  <div className="text-[var(--text-tertiary)]">High-signal guidance for DeFi protocols, on-chain agents, and infrastructure.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-orange)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Web3 Intelligence & OSINT</div>
+                  <div className="text-[var(--text-tertiary)]">Continuous monitoring of DeFi, privacy tech, EIPs, and ecosystem signals.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-orange)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Growth Boost</div>
+                  <div className="text-[var(--text-tertiary)]">Strategic expansion with OpSec foundations.</div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-orange)] group-hover:gap-2.5 transition-all">
+                Build on Web3 <ArrowRight />
+              </span>
+            </div>
+          </Link>
+
+          {/* Forge Pillar */}
+          <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
+            <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 03</div>
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Skill Forge</h3>
+            <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Personal AI Mastery</div>
+                  <div className="text-[var(--text-tertiary)]">Self-sovereign program for building and running personal AI systems with strong OpSec.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">AI Engineering Bootcamp</div>
+                  <div className="text-[var(--text-tertiary)]">5-day intensive focused on building real production systems.</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <span className="text-[var(--accent-cyan)] mt-0.5 flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">OpSec Training & Auditing</div>
+                  <div className="text-[var(--text-tertiary)]">Platform-specific hardening: Windows, Linux, macOS.</div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-cyan)] group-hover:gap-2.5 transition-all">
+                Forge skills <ArrowRight />
+              </span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Curated Intel ────────────────────────────────────── */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
+        <CuratedIntel />
+      </section>
+
+      {/* ── Flagship Offerings ────────────────────────────── */}
+      <section id="offerings" className="bg-[var(--bg-surface)] border-y border-[var(--border-default)]">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-20 md:py-28">
+          <div className="mb-14">
+            <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-3">Flagship Offerings</div>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-1.5px] max-w-2xl">
+              Precision-built systems for serious builders.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5 stagger-children">
+            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl md:text-3xl font-semibold">Personal AI Mastery</h3>
+                <span className="w-10 h-10 rounded-xl bg-[var(--accent-cyan)]/10 flex items-center justify-center text-[var(--accent-cyan)] group-hover:bg-[var(--accent-cyan)]/20 transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </span>
+              </div>
+              <p className="text-[var(--text-secondary)] text-base leading-relaxed flex-1">
                 A practical program for building and running your own personal AI systems with extreme operational security and long-term autonomy.
               </p>
               <div className="mt-8 flex justify-end">
-                <span className="px-6 py-2.5 bg-[#00f0ff] text-black rounded-xl text-sm font-medium group-hover:bg-white transition-colors">
-                  Explore Curriculum
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-cyan)] group-hover:gap-2.5 transition-all">
+                  View Curriculum <ArrowRight />
                 </span>
               </div>
-            </a>
+            </Link>
 
-            {/* Offering 2 */}
-            <a href="/forge" className="flex flex-col bg-[#0a0a0a] border border-[#222] rounded-3xl p-10 group hover:border-[#00f0ff] transition-all">
-              <h3 className="text-3xl font-semibold mb-4">AI Engineering Bootcamp</h3>
-              <p className="text-[#aaa] text-base leading-relaxed flex-1">
-                5-day intensive program where participants leave with fully functional production systems.
+            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-orange)]/30 hover:shadow-[var(--glow-orange)] hover:-translate-y-1">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl md:text-3xl font-semibold">AI Engineering Bootcamp</h3>
+                <span className="w-10 h-10 rounded-xl bg-[var(--accent-orange)]/10 flex items-center justify-center text-[var(--accent-orange)] group-hover:bg-[var(--accent-orange)]/20 transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l8 8-8 8L2 10l8-8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                </span>
+              </div>
+              <p className="text-[var(--text-secondary)] text-base leading-relaxed flex-1">
+                5-day intensive program where participants leave with fully functional production systems. Zero to deployed.
               </p>
               <div className="mt-8 flex justify-end">
-                <span className="px-6 py-2.5 border border-[#C2410C] text-[#C2410C] rounded-xl text-sm font-medium group-hover:bg-[#C2410C] group-hover:text-white transition-colors">
-                  Apply for Next Cohort
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-orange)] group-hover:gap-2.5 transition-all">
+                  Apply for Next Cohort <ArrowRight />
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Past Clients - Trusted by */}
-      <div className="max-w-6xl mx-auto px-8 py-16 border-t border-[#222]">
-        <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-8">TRUSTED BY</div>
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-          <a href="https://www.defiscan.info/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
-            <img src="/website-private/images/defiscan-logo.svg" alt="DeFiScan" className="h-8 w-auto max-w-full" />
+      {/* ── Trusted By ─────────────────────────────────────────── */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 md:py-20">
+        <div className="text-center mb-10">
+          <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-3">Trusted By</div>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+          <a href="https://www.defiscan.info/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+            <img src="/website-private/images/defiscan-logo.svg" alt="DeFiScan" className="h-8 w-auto max-w-[140px]" />
           </a>
-          <a href="https://storm.partners/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1 w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
+          <a href="https://storm.partners/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
             <img src="/website-private/images/storm-partners-logo.svg" alt="STORM Partners" className="h-6 w-auto" />
-            <svg width="17" height="24" viewBox="0 0 17 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-4 w-auto flex-shrink-0"><path d="M4.45898 23.999L9.35645 7.99902H16.4336L4.45898 23.999ZM5.60742 16H0L4.89844 0H10.5049L5.60742 16Z" fill="#FFCC00"/></svg>
+            <svg width="17" height="24" viewBox="0 0 17 24" fill="none" className="h-4 w-auto flex-shrink-0"><path d="M4.459 24L9.356 8h7.078L4.459 24zM5.607 16H0l4.898-16h5.607L5.607 16z" fill="#FFCC00"/></svg>
           </a>
-          <a href="https://deficollective.org/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-36 h-10 opacity-50 hover:opacity-100 transition-opacity duration-300">
-            <img src="/website-private/images/defi-collective-logo.svg" alt="DeFi Collective" className="h-9 w-auto max-w-full" />
+          <a href="https://deficollective.org/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+            <img src="/website-private/images/defi-collective-logo.svg" alt="DeFi Collective" className="h-9 w-auto max-w-[140px]" />
           </a>
         </div>
-      </div>
+      </section>
 
-      {/* Newsletter Banner */}
-      <div className="max-w-6xl mx-auto px-8 py-24 border-t border-[#222]">
-        <div className="bg-[#111] border border-[#222] rounded-3xl p-14 text-center">
-          <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-3">STAY IN THE LOOP</div>
-          <h3 className="text-4xl font-semibold tracking-tight mb-4">High-signal updates only.</h3>
-          <p className="text-[#aaa] max-w-md mx-auto mb-8">
-            Curated intelligence, technical breakdowns, and new tutorials delivered directly.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <a href="/intelhub" className="flex-1 px-8 py-4 bg-[#C2410C] text-white rounded-xl font-medium hover:bg-[#e04e1a] transition-colors text-center">
-              Browse IntelHub
-            </a>
-            <a href="/contact" className="flex-1 px-8 py-4 border border-[#00f0ff] text-[#00f0ff] rounded-xl hover:bg-[#00f0ff] hover:text-black transition-colors text-center">
-              Get in Touch
-            </a>
+      {/* ── CTA ─────────────────────────────────────────────────── */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-10 md:p-14 text-center relative overflow-hidden">
+          {/* Subtle ambient */}
+          <div className="ambient-glow ambient-glow-orange -top-32 left-1/2 -translate-x-1/2 w-[400px] h-[300px]" />
+
+          <div className="relative">
+            <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-3">Stay in the Loop</div>
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">High-signal updates only.</h3>
+            <p className="text-[var(--text-secondary)] max-w-md mx-auto mb-8">
+              Curated intelligence, technical breakdowns, and new tutorials delivered directly.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+              <Link
+                href="/intelhub/"
+                className="flex-1 px-6 py-3.5 bg-[var(--accent-orange)] text-white rounded-xl font-medium hover:bg-[#d94d0f] transition-colors text-center text-sm"
+              >
+                Browse IntelHub
+              </Link>
+              <Link
+                href="/contact/"
+                className="flex-1 px-6 py-3.5 border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] rounded-xl hover:bg-[var(--accent-cyan)]/10 hover:border-[var(--accent-cyan)]/50 transition-all text-center text-sm font-medium"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="max-w-6xl mx-auto px-8 py-16 border-t border-[#222]">
-        <div className="flex flex-col md:flex-row items-center justify-between text-sm text-[#666]">
-          <div>
-            All work is grounded in open-source foundations, extreme privacy, and long-term autonomy.
-          </div>
-          <div className="mt-4 md:mt-0 text-[#444]">
-            Delta V • 2026
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

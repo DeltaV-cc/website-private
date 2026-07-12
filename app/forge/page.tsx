@@ -1,107 +1,106 @@
 'use client';
+import Link from 'next/link';
 
-import Navbar from '../components/Navbar';
+const ArrowRight = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
 
 export default function ForgePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans">
-      <Navbar />
-
+    <>
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-8 pt-20 pb-16">
-        <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-3">PILLAR 03 • EDUCATION</div>
-        <h1 className="text-6xl font-semibold tracking-[-2.5px] mb-6">Forge Skills</h1>
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-12 h-[3px] rounded-full bg-[#00f0ff]" />
-          <span className="w-8 h-[3px] rounded-full bg-[#F59E0B]/60" />
-          <span className="w-4 h-[3px] rounded-full bg-[#F59E0B]/30" />
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-12">
+        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 03 · Education</div>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">Forge Skills</h1>
+        <div className="flex items-center gap-2 mb-8">
+          <span className="w-12 h-[2px] rounded-full bg-[var(--accent-cyan)]" />
+          <span className="w-8 h-[2px] rounded-full bg-[var(--accent-amber)]/50" />
+          <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
         </div>
-        <p className="max-w-2xl text-xl text-[#aaa]">
-          We upskill, upgrade, and keep you at the frontier. 
-          Sovereign systems, practical curricula, and high-signal Web3 intelligence.
+        <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+          We upskill, upgrade, and keep you at the frontier. Sovereign systems, practical curricula, high-signal intelligence.
         </p>
-      </div>
+      </section>
 
       {/* Flagship Curriculums */}
-      <div className="max-w-5xl mx-auto px-8 pb-20">
-        <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-6">FLAGSHIP CURRICULUMS</div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Personal AI Mastery Course */}
-          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#F59E0B]/40 to-transparent" />
-            <h3 className="text-3xl font-semibold mb-4">Personal AI Mastery Course</h3>
-            <p className="text-[#aaa] mb-8">
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16">
+        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">Flagship Curriculums</div>
+        <div className="grid md:grid-cols-2 gap-5">
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden flex flex-col transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-amber)]/30 to-transparent" />
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Personal AI Mastery</h3>
+            <p className="text-[var(--text-secondary)] mb-4 flex-1">
               Self-sovereign program for building and running personal AI systems with strong OpSec and long-term autonomy.
             </p>
-            <div className="text-sm text-[#666] mb-6">Foundation: Hermes + open-source models</div>
-            <button className="mt-auto px-6 py-3 bg-[#00f0ff] text-black rounded-xl text-sm font-medium hover:bg-white transition-colors self-start">
-              View Full Curriculum
-            </button>
+            <div className="text-sm text-[var(--text-muted)] mb-6">Foundation: Hermes + open-source models</div>
+            <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-cyan)] text-black rounded-xl text-sm font-semibold hover:bg-white transition-colors self-start">
+              Request Info <ArrowRight />
+            </Link>
           </div>
 
-          {/* AI Engineering Bootcamp */}
-          <div className="flex flex-col bg-[#111] border border-[#222] rounded-3xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/60 via-[#F59E0B]/20 to-transparent" />
-            <h3 className="text-3xl font-semibold mb-4">AI Engineering Bootcamp</h3>
-            <p className="text-[#aaa] mb-6">
-              5-day intensive where participants leave with fully functional production systems.
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden flex flex-col transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/60 via-[var(--accent-amber)]/20 to-transparent" />
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">AI Engineering Bootcamp</h3>
+            <p className="text-[var(--text-secondary)] mb-6 flex-1">
+              5-day intensive where participants leave with fully functional production systems. Zero to deployed.
             </p>
             <div className="mb-6">
-              <div className="text-sm text-[#00f0ff] mb-3 tracking-[1px]">EXPANDED ENGINEERING TRACK</div>
-              <ul className="space-y-2 text-sm text-[#aaa]">
-                <li>• Hugging Face inference pipelines &amp; production deployment</li>
-                <li>• Designing &amp; fine-tuning your own models</li>
-                <li>• Data engineering for sovereign AI systems</li>
-                <li>• Advanced agent orchestration &amp; benchmarking</li>
+              <div className="text-xs text-[var(--accent-cyan)] font-semibold tracking-[2px] uppercase mb-3">Expanded Engineering Track</div>
+              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Hugging Face inference pipelines & production deployment</li>
+                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Designing & fine-tuning your own models</li>
+                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Data engineering for sovereign AI systems</li>
+                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Advanced agent orchestration & benchmarking</li>
               </ul>
             </div>
-            <button className="mt-auto px-6 py-3 border border-[#333] rounded-xl text-sm font-medium hover:bg-[#222] transition-colors self-start">
-              Apply for Next Cohort
-            </button>
+            <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all self-start">
+              Apply for Next Cohort <ArrowRight />
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* OpSec Foundation */}
-      <div className="max-w-5xl mx-auto px-8 pb-20 border-t border-[#222] pt-16">
-        <div className="text-[#C2410C] text-sm font-medium tracking-[2px] mb-6">OP SEC FOUNDATION</div>
-        
-        <div className="grid md:grid-cols-1 gap-6">
-          <a href="/opsec" className="block bg-[#111] border border-[#222] rounded-3xl p-8 hover:border-[#00f0ff] transition-colors group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C2410C] via-[#F59E0B]/20 to-transparent" />
-            <h4 className="font-semibold mb-3 group-hover:text-[#00f0ff] transition-colors">OS Hardening</h4>
-            <p className="text-sm text-[#aaa]">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
-          </a>
-        </div>
-      </div>
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16 border-t border-[var(--border-default)] pt-12">
+        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">OpSec Foundation</div>
+        <Link href="/opsec/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-amber)]/20 to-transparent" />
+          <h4 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-cyan)] transition-colors">OS Hardening</h4>
+          <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
+        </Link>
+      </section>
 
       {/* Tutorials */}
-      <div className="max-w-5xl mx-auto px-8 pb-24">
-        <div className="text-[#00f0ff] text-sm font-medium tracking-[2px] mb-6">TUTORIALS</div>
-        <div className="grid md:grid-cols-2 gap-6">
-          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00f0ff]/40 via-[#F59E0B]/20 to-transparent" />
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
+        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-6">Tutorials</div>
+        <div className="grid md:grid-cols-2 gap-5">
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tutorial</span>
-              <span className="text-xs text-[#666]">TECH</span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
+              <span className="text-xs text-[var(--text-muted)]">TECH</span>
             </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[#00f0ff] transition-colors">Hermes + Qwen 3.6 + DGX Spark: The Local AI Convergence</h4>
-            <p className="text-sm text-[#aaa] line-clamp-2">Full hardware + software setup tutorial with step-by-step guide for deploying Qwen 3.6 on NVIDIA DGX Spark with Hermes Agent Framework and 3-layer memory.</p>
-            <div className="text-[#00f0ff] text-xs mt-3">View full tutorial →</div>
-          </a>
-          <a href="/tutorials" className="block bg-[#111] border border-[#222] rounded-2xl p-6 hover:border-[#00f0ff] transition-all group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#F59E0B]/40 via-[#F59E0B]/20 to-transparent" />
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Hermes + Qwen 3.6 + DGX Spark: The Local AI Convergence</h4>
+            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">Full hardware + software setup tutorial for deploying Qwen 3.6 on NVIDIA DGX Spark with Hermes Agent.</p>
+            <div className="text-[var(--accent-cyan)] text-xs mt-3 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+              View full tutorial <ArrowRight />
+            </div>
+          </Link>
+
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tutorial</span>
-              <span className="text-xs text-[#666]">OP SEC</span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
+              <span className="text-xs text-[var(--text-muted)]">OP SEC</span>
             </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[#00f0ff] transition-colors">Platform OS Hardening Guides</h4>
-            <p className="text-sm text-[#aaa] line-clamp-2">Step-by-step hardening procedures for Windows, Linux, and macOS. Tailored threat models, audits, and operational security protocols.</p>
-            <div className="text-[#00f0ff] text-xs mt-3">Browse OS Hardening →</div>
-          </a>
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Platform OS Hardening Guides</h4>
+            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">Step-by-step hardening procedures for Windows, Linux, and macOS with tailored threat models.</p>
+            <div className="text-[var(--accent-cyan)] text-xs mt-3 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+              Browse OS Hardening <ArrowRight />
+            </div>
+          </Link>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

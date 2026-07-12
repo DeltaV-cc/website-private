@@ -1,5 +1,89 @@
 [
   {
+    "title": "Meta Platforms: The AI Monetization Story Is Just Getting Started",
+    "url": "https://www.artemis.ai/articles/333753001408232547",
+    "source": "Artemis Research (steven.fiorillo)",
+    "published_at": "2026-07-09T23:39:02.156693+00:00",
+    "summary": "Meta Platforms (META) has been one of the most frustrating members of the Magnificent Seven to own over the past year. Shares trade around $600, down roughly 17% over the trailing twelve months and about 24% below the 52-week high of $796.25, while the broader indexes sit near record levels. The mar",
+    "category": "general",
+    "artemis_id": "e5ebe0c6-8d73-4b20-8c94-699a3c1ace9d",
+    "tags": [],
+    "categories": []
+  },
+  {
+    "title": "Stablecoins and the Hierarchy of Money",
+    "url": "https://www.artemis.ai/articles/305041098216900830",
+    "source": "Artemis Research (Qorban)",
+    "published_at": "2026-07-07T16:12:42.003788+00:00",
+    "summary": "I started writing this piece because the bear market left me with a measure of existential dread about the sector I was most bullish on. I found myself asking why adoption hadn’t taken off the way I expected. That question compelled me to map the contours of the monetary system and identify where st",
+    "category": "crypto",
+    "artemis_id": "891752f8-80a6-4862-a65c-ddb2465ea0f0",
+    "tags": [],
+    "categories": [
+      "fundamental",
+      "stablecoins",
+      "infrastructure"
+    ]
+  },
+  {
+    "title": "How I Would Audit Aave as a CPA",
+    "url": "https://www.artemis.ai/articles/330703151413900474",
+    "source": "Artemis Research (Dhru Patel)",
+    "published_at": "2026-07-07T13:00:28.181780+00:00",
+    "summary": "Hello, my name is Dhru Patel. I am a Certified Public Accountant (CPA), current blockchain specialist at a top-20 audit firm in Singapore, and previous big-4 financial auditor. This report is an exercise in understanding blockchain native protocols from a financial auditor perspective. It combines b",
+    "category": "crypto",
+    "artemis_id": "7a1b7773-5e16-4c30-b4ad-41a283900cdb",
+    "tags": [],
+    "categories": [
+      "fundamental",
+      "macro",
+      "fintech",
+      "crypto",
+      "regulation",
+      "infrastructure",
+      "defi",
+      "quant",
+      "portfolio"
+    ]
+  },
+  {
+    "title": "This article costs $0.001 a word",
+    "url": "https://www.artemis.ai/articles/331910440964822498",
+    "source": "Artemis Research (feuter)",
+    "published_at": "2026-07-04T21:42:15.698168+00:00",
+    "summary": "In the early Republic, aes grave (cast bronze) was Rome's medium of exchange, too unwieldy to spend on anything small, and so the smallest trades never happened; an entire stratum of commerce sat dormant. Then, as Rome's economy grew more complex, it began minting smaller coins. The moment a tiny pa",
+    "category": "ai",
+    "artemis_id": "ed3f81b9-ec7b-46e0-ba5f-8269e0acf789",
+    "tags": [],
+    "categories": [
+      "fintech",
+      "ai",
+      "payments"
+    ]
+  },
+  {
+    "title": "Qualcomm: The Market Is Pricing A Phone Company While An AI Infrastructure Business Builds Underneath It",
+    "url": "https://www.artemis.ai/articles/331202867745983677",
+    "source": "Artemis Research (steven.fiorillo)",
+    "published_at": "2026-07-02T22:48:12.222816+00:00",
+    "summary": "On June 24, Qualcomm (QCOM) filled the Ziegfield Ballroom in New York and put Satya Nadella and Mark Zuckerberg on the screen to vouch for its data center silicon. Microsoft (MSFT) committed to deploying Qualcomm's new memory architecture inside Azure while Meta Platforms (META) announced a multigen",
+    "category": "general",
+    "artemis_id": "e5ea2ec0-8952-4c4c-859d-0d7ddf72184d",
+    "tags": [],
+    "categories": []
+  },
+  {
+    "title": "Is Palantir a buy?",
+    "url": "https://www.artemis.ai/articles/325455601056764535",
+    "source": "Artemis Research (Dr. Crossroads)",
+    "published_at": "2026-07-01T00:15:28.630033+00:00",
+    "summary": "Palantir was one of the market's best-performing stocks over the past several years. However, after peaking late last year, has declined more than 44% and its shares are down 31% year-to-date.",
+    "category": "general",
+    "artemis_id": "c65cb2ce-bdfc-432a-85b2-1248fa711277",
+    "tags": [],
+    "categories": []
+  },
+  {
     "title": "BNB Chain DeFi: Deconstructing Capital Efficiency Amid the 2026 Drawdown",
     "url": "https://www.artemis.ai/articles/329950045587469066",
     "source": "Artemis Research (Leve | Web3 & DeFi Insights)",
