@@ -1,7 +1,5 @@
-/* ================================================================
-   IntelHub — AI Dashboard (v2.5)
-   X+HF ticker + Frontier Watch grid + AI/ML boxes
-   ================================================================ */
+/* IntelHub — AI Dashboard v3
+   Frontier Watch + Arena Leaderboard + AI/ML feeds */
 'use client';
 
 import { useState } from 'react';
@@ -10,7 +8,6 @@ import { CategoryBox, fmtNum } from './Shared';
 import AIFrontierSignals from './AIFrontierSignals';
 import ArenaLeaderboard from './ArenaLeaderboard';
 
-/* ── Pipeline to human-readable description ── */
 const PIPELINE_DESC: Record<string, string> = {
   'text-generation': 'Text generation & chat',
   'text-to-image': 'Generates images from text',
@@ -62,10 +59,9 @@ function describe(item: any): string {
   return pipeline ? pipeline.replace(/-/g, ' ') : (desc || 'ML model / space').slice(0, 60);
 }
 
-/* ── Frontier Watch — compact grid ── */
+/* ── Frontier Watch — compact 2-col grid ── */
 function FrontierWatch({ dd }: { dd: any }) {
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
-
   const models = (dd?.hfModels || []).map((m: any) => ({ ...m, type: 'model' }));
   const spaces = (dd?.hfSpaces || []).map((s: any) => ({ ...s, type: 'space' }));
   let allItems = [...models, ...spaces];
@@ -75,50 +71,47 @@ function FrontierWatch({ dd }: { dd: any }) {
   if (filter === 'agent') allItems = allItems.filter((x: any) => (x.description || '').toLowerCase().includes('agent'));
   if (filter === 'vision') allItems = allItems.filter((x: any) => (x.pipeline || '').toLowerCase().includes('image') || (x.description || '').toLowerCase().includes('vision'));
   if (filter === 'moe') allItems = allItems.filter((x: any) => (x.description || '').toLowerCase().includes('moe'));
-
   const filtered = allItems.slice(0, 16);
 
   return (
-    <div className="rounded-2xl border border-[#222] bg-white/[0.01] overflow-hidden mb-4">
-      <div className="px-4 py-2.5 border-b border-[#222] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center gap-2">
-        <span className="text-[10px] text-emerald-400 uppercase tracking-[.1em] font-bold shrink-0">
-          🔬 Frontier Watch
-        </span>
-        <span className="text-[10px] text-[#ededed]/25 shrink-0">Trending models &amp; spaces • 24h</span>
-        <div className="flex gap-1 text-[10px] ml-auto shrink-0">
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-green)]/[0.04] to-transparent">
+        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
+        <span className="text-[10px] text-[var(--text-muted)] shrink-0">Trending models & spaces • 24h</span>
+        <div className="flex gap-1 text-[10px] ml-auto">
           {[
             { key: 'all', label: 'All' }, { key: 'new', label: 'New' }, { key: 'downloads', label: 'Popular' },
             { key: 'agent', label: 'Agent' }, { key: 'vision', label: 'Vision' }, { key: 'moe', label: 'MoE' },
           ].map(f => (
             <button key={f.key} onClick={() => setFilter(f.key as any)}
-              className={`px-2.5 py-0.5 rounded-full transition ${filter === f.key ? 'bg-white text-black' : 'bg-white/[0.04] text-[#ededed]/50 hover:text-white'}`}>
-              {f.label}
-            </button>
+              className={`px-2.5 py-0.5 rounded-full transition-colors duration-150 ${
+                filter === f.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10]'
+              }`}>{f.label}</button>
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#222]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
         {filtered.length > 0 ? filtered.map((item: any, i: number) => (
           <a key={i} href={item.url || '#'} target="_blank" rel="noopener noreferrer"
-            className="block p-3 bg-[#0a0a0a] hover:bg-white/[0.015] border-b border-r border-[#222] group">
+            className="block p-3.5 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-[#ededed] group-hover:text-white truncate">{item.name}</span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 ${item.type === 'model' ? 'text-emerald-400/60 bg-emerald-400/[0.08]' : 'text-purple-400/60 bg-purple-400/[0.08]'}`}>
-                    {item.type === 'model' ? 'M' : 'S'}
-                  </span>
+                  <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] truncate transition-colors">{item.name}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-medium ${
+                    item.type === 'model' ? 'text-[var(--accent-green)] bg-[var(--accent-green)]/[0.08]' : 'text-[var(--accent-purple)] bg-[var(--accent-purple)]/[0.08]'
+                  }`}>{item.type === 'model' ? 'M' : 'S'}</span>
                 </div>
-                <div className="text-[10px] text-[#ededed]/40 mt-0.5 leading-snug">{describe(item)}</div>
+                <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 leading-snug">{describe(item)}</div>
               </div>
-              <div className="text-right shrink-0 text-[10px] tabular-nums text-[#ededed]/25 flex flex-col gap-0.5">
+              <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
                 <span>{item.likes || 0} ♥</span>
                 <span>{fmtNum(item.downloads || 0)} ↓</span>
               </div>
             </div>
-            <div className="mt-1.5 text-[10px] text-[#ededed]/20">{item.author || 'HF'}</div>
+            <div className="mt-1.5 text-[10px] text-[var(--text-muted)]">{item.author || 'HF'}</div>
           </a>
-        )) : <div className="col-span-2 p-8 text-center text-[#ededed]/20">No items match this filter</div>}
+        )) : <div className="col-span-2 p-8 text-center text-[var(--text-disabled)] text-xs">No items match this filter</div>}
       </div>
     </div>
   );
@@ -139,7 +132,7 @@ export default function AIDashboard({
       <AIFrontierSignals items={items} ts={ts} />
       <FrontierWatch dd={dd} />
       <ArenaLeaderboard lb={dd?.arenaLB} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {aiCats.map((cat: any) => (
           <CategoryBox key={cat.id} cat={cat} ago={ago} TC={TC} />
         ))}
