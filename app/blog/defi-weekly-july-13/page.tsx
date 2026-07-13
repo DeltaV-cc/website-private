@@ -106,6 +106,13 @@ export default function DeFiWeeklyJuly13() {
           <div className="flex gap-3">
             <span className="w-2 h-2 rounded-full bg-[#ef4444] mt-1.5 flex-shrink-0" />
             <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">Four Stablecoins in Deep Depeg — USX Isn't Alone Anymore</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">USX at 525+ hours, 5,783 bps below peg — now joined by pmUSD, apxUSD, and USDA at critical severity. Pharos PSI at 93.4 (BEDROCK for 20th consecutive day) despite 4 active depegs. YLDS liquidity depth collapsed. The stablecoin market is bifurcating: institutional assets ($337B total) are structurally sound, while small-cap algorithmic pegs enter systemic failure mode.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[#ef4444] mt-1.5 flex-shrink-0" />
+            <div>
               <p className="text-sm text-[#ededed] font-semibold mb-1">BonkDAO Governance Attack — $19.3M Drained With No Exploit</p>
               <p className="text-xs text-[#aaa] leading-relaxed">The largest hack of the summer used zero broken code. Attacker spent $4.4M to buy 1% of BONK, buried a treasury transfer inside an innocuous proposal, and passed it with 2.9% turnout on Solana's Realms platform with no timelock. This is a systemic governance failure, not a smart contract vulnerability — every token-weighted DAO with low participation is exposed.</p>
             </div>
