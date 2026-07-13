@@ -289,7 +289,7 @@ try:
         new_content = new_data.get(fname)
         if not new_content:
             continue
-        fpath = os.path.join(tmpdir, 'website-private', 'data', fname)
+        fpath = os.path.join(tmpdir, 'data', fname)
         old_content = None
         if os.path.exists(fpath):
             with open(fpath, 'r') as f:
@@ -304,7 +304,7 @@ try:
         subprocess.run(['git', '-C', tmpdir, 'config', 'user.email', 'deltav.go@gmail.com'], check=True)
         subprocess.run(['git', '-C', tmpdir, 'config', 'user.name', 'Delta V ZHC'], check=True)
         # Only add files that exist
-        existing = [f for f in [f'website-private/data/{f}' for f in DATA_FILES] if os.path.exists(os.path.join(tmpdir, f))]
+        existing = [f for f in [f'data/{f}' for f in DATA_FILES] if os.path.exists(os.path.join(tmpdir, f))]
         if existing:
             subprocess.run(['git', '-C', tmpdir, 'add'] + existing, check=True)
             subprocess.run(['git', '-C', tmpdir, 'commit', '-m',
