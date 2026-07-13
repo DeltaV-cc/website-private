@@ -70,6 +70,51 @@ export default function DeFiWeeklyJuly13() {
       </div>
 
       {/* ════════════════════════════════════════════════════════
+          TODAY WE HIGHLIGHT — Merged: Artemis + Delta V
+          ════════════════════════════════════════════════════════ */}
+      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
+        <div className="text-xs text-[#666] uppercase tracking-[1px] mb-4">Today We Highlight</div>
+        <div className="space-y-5">
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[#f59e0b] mt-1.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">Bitcoin Breaks $60K — Spot ETFs Bleed 6th Straight Week</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">BTC touched $59,300 — the first sub-$60K print since 2024 — before reclaiming $64K. Spot ETFs recorded their 6th consecutive weekly outflow, totaling $7.2B in aggregate redemptions. BTC dominance sits at 56%, signaling risk-off capital rotation out of alts.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[#3b82f6] mt-1.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">Strategy (MSTR) Treasury $13.3B Underwater — 23-Month Low</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">MSTR trades at a 23-month low. Treasury: 847,363 BTC at $64.10B cost basis ($75,651 avg). Mark-to-market loss: ~$13.3B. Saylor's STRK convertible coverage dropped to 9.8 months as Schiff escalated his "sell MSTR" campaign. A BTC recovery above $76K would change the narrative instantly.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] mt-1.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">Robinhood Raises $2.2B Zero-Coupon Convertible — 2024 Playbook Redux</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">HOOD dropped 5% after the raise. Repeat of the 2024 zero-coupon convertible strategy — institutional buyers get a hedge fund-style short-vol position on Robinhood equity. The crypto division's Q1 2026 notional volume jumped 187% YoY before the raise.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)] mt-1.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">Ambire Enables Self-Hosted RPC — A Quiet Privacy Win</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">Ambire Wallet now lets users set their own RPC endpoints (Settings → Networks → Edit → custom node URL). Default RPCs are surveillance chokepoints logging every transaction and balance query. Self-hosted RPC breaks that chain. Combined with account abstraction, this pushes Ambire into the top tier of sovereignty-respecting smart wallets.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="w-2 h-2 rounded-full bg-[#ef4444] mt-1.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-[#ededed] font-semibold mb-1">BonkDAO Governance Attack — $19.3M Drained With No Exploit</p>
+              <p className="text-xs text-[#aaa] leading-relaxed">The largest hack of the summer used zero broken code. Attacker spent $4.4M to buy 1% of BONK, buried a treasury transfer inside an innocuous proposal, and passed it with 2.9% turnout on Solana's Realms platform with no timelock. This is a systemic governance failure, not a smart contract vulnerability — every token-weighted DAO with low participation is exposed.</p>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-[#444] mt-4 pt-3 border-t border-[#1a1a1a]">Sources: Artemis, Glassnode, Rekt News, Ambire, WalletBeat</p>
+      </div>
+
+      {/* ════════════════════════════════════════════════════════
           ARTEMIS BIG FUNDAMENTALS — Full newsletter body first
           ════════════════════════════════════════════════════════ */}
       <div className="my-6">
@@ -83,31 +128,6 @@ export default function DeFiWeeklyJuly13() {
               className="text-[10px] text-[var(--accent-gold)] hover:underline ml-auto">
               Original on Substack →
             </a>
-          </div>
-        </div>
-
-        {/* ── Our Highlights — stacked with Artemis Today We Highlight ── */}
-        <div className="bg-[#111] border border-[#222] rounded-2xl p-5 mb-4">
-          <div className="text-xs text-[var(--accent-gold)] uppercase tracking-[1px] mb-3 font-bold">+ Today We Also Highlight</div>
-          <div className="space-y-4">
-            <div className="flex gap-3">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)] mt-1.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-[#ededed] font-semibold mb-1">Ambire Enables Self-Hosted RPC — A Quiet Privacy Win</p>
-                <p className="text-xs text-[#aaa] leading-relaxed">
-                  Ambire Wallet now lets users set their own RPC endpoints (Settings → Networks → Edit → custom node URL). Default RPCs are surveillance chokepoints — self-hosted breaks the chain. Combined with account abstraction, this pushes Ambire into the top tier of sovereignty-respecting smart wallets. WalletBeat reflects the privacy score boost in their latest matrix.
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent-purple)] mt-1.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-[#ededed] font-semibold mb-1">WalletBeat Ships Stage 0–2 Framework — A New Standard for Wallet Security</p>
-                <p className="text-xs text-[#aaa] leading-relaxed">
-                  Modeled on L2BEAT: Stage 0 (Verifiable) → Stage 1 (Operationally Trust-minimized) → Stage 2 (Trust-minimized). Built on CROPS principles. No wallet achieves Stage 2 yet. Ambire, Rabby, and Rainbow lead Stage 1. New Slice Gradients make attribute scoring visual. New data for Rainbow, Zerion, and Base.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
