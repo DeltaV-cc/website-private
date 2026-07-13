@@ -319,6 +319,11 @@ export function useIntelData() {
         const exRes = await fetch(`${BASE}/data/exchange-vol.json`);
         if (exRes.ok) result.exchangeVol = await exRes.json();
       } catch { /* */ }
+      // Load Artemis newsletter (weekly Substack)
+      try {
+        const artRes = await fetch(`${BASE}/data/artemis-newsletter.json`);
+        if (artRes.ok) result.artemisNewsletter = await artRes.json();
+      } catch { /* */ }
       setDd(result);
     } catch { /* */ }
   }, []);

@@ -17,6 +17,48 @@ function fmtBig(n: number): string {
   return `$${n.toFixed(2)}`;
 }
 
+/* ── Artemis Weekly Newsletter Card ── */
+function ArtemisWeeklyCard({ dd }: { dd: any }) {
+  const nl = dd?.artemisNewsletter;
+  const latest = nl?.latest_weekly;
+  if (!latest) return null;
+
+  const date = latest.date ? new Date(latest.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+  return (
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-gold)]/[0.06] to-transparent">
+        <div className="flex items-center gap-2.5">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-[var(--accent-gold)]">
+            <path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="13" cy="11" r="2" fill="var(--accent-gold)" opacity="0.3"/>
+          </svg>
+          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">Artemis Weekly</span>
+          {date && <span className="text-[10px] text-[var(--text-muted)]">· {date}</span>}
+        </div>
+        <span className="text-[10px] text-[var(--text-disabled)]">research.artemis.ai</span>
+      </div>
+      <div className="p-5">
+        <a href={latest.link} target="_blank" rel="noopener noreferrer"
+          className="text-lg font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors leading-snug block mb-2">
+          {latest.title}
+        </a>
+        <p className="text-sm text-[var(--text-tertiary)] leading-relaxed mb-3 line-clamp-3">
+          {latest.excerpt}
+        </p>
+        <div className="flex items-center justify-between">
+          {latest.author && <span className="text-[10px] text-[var(--text-muted)]">by {latest.author}</span>}
+          <a href={latest.link} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-gold)] hover:underline">
+            Read on Artemis
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Web3Dashboard({
   dd, catBoxes, TC, ago, fmt, fmtN, items, ts,
 }: {
@@ -55,6 +97,9 @@ export default function Web3Dashboard({
   return (
     <div className="space-y-5">
       <CryptoFrontierSignals items={items} ts={ts} />
+
+      {/* ── Artemis Weekly Newsletter ── */}
+      <ArtemisWeeklyCard dd={dd} />
 
       {/* ── Market Cap Banner ── */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-purple)]/[0.04] via-[var(--accent-cyan)]/[0.04] to-transparent">
