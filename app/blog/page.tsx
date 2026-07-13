@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react';
 
 const posts = [
   {
+    title: "DeFi Weekly — July 13, 2026",
+    date: "July 13, 2026",
+    category: "DeFi Weekly",
+    type: "Dashboard",
+    excerpt: "BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.",
+    slug: "defi-weekly-july-13"
+  },
+  {
     title: "Tencent's Hy3: 295B MoE That Punches at Trillion-Scale — Apache 2.0, 256K Context, Agent-First",
     date: "July 8, 2026",
     category: "AI",
@@ -92,14 +100,6 @@ const posts = [
     slug: "defi-weekly-june-27"
   },
   {
-    title: "DeFi Weekly — July 13, 2026",
-    date: "July 13, 2026",
-    category: "DeFi Weekly",
-    type: "Dashboard",
-    excerpt: "BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.",
-    slug: "defi-weekly-july-13"
-  },
-  {
     title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
     date: "June 23, 2026",
     category: "Web3",
@@ -149,7 +149,7 @@ const posts = [
   },
 ];
 
-const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'DeFi Weekly', 'Hardware'];
+const allCategories = ['All', 'AI', 'Web3', 'OpSec', 'Hardware', 'DeFi Weekly'];
 
 const categoryConfig: Record<string, { color: string; active: string }> = {
   'All':    { color: 'border-[var(--border-default)] bg-white/[0.03] text-[var(--text-tertiary)]', active: 'border-white/20 bg-white/8 text-white' },
