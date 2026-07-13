@@ -169,25 +169,81 @@ export default function DeFiWeeklyJuly10() {
       </div>
 
       {/* ════════════════════════════════════════════════════════
-          REKT WATCH
+          REKT WATCH — last 7 days
           ════════════════════════════════════════════════════════ */}
-      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — Hack of the Week</h2>
+      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — Last 7 Days</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
-        <div className="border-l-2 border-[#ef4444] pl-4">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-semibold text-[#ededed]">BonkDAO — $19.3M</span>
-            <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Governance Attack</span>
-            <span className="text-[10px] text-[#666]">July 6</span>
+        <div className="space-y-4">
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">BonkDAO — $19.3M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Governance Attack</span>
+              <span className="text-[10px] text-[#666]">July 6</span>
+            </div>
+            <p className="text-xs text-[#888]">$4.4M to buy 1% of BONK supply. No-exploit treasury drain via governance on Solana Realms. 2.9% turnout, zero timelock. Every DAO exposed.{' '}
+              <a href="https://rekt.news/bonkdao-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
           </div>
-          <p className="text-xs text-[#888]">$4.4M to buy 1% of BONK supply. No-exploit treasury drain via governance on Solana Realms. 2.9% turnout, zero timelock. The same governance model that Robinhood Chain, Open USD, and every DAO will need to harden against.{' '}
-            <a href="https://rekt.news/bonkdao-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">Summer Finance — $6.04M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">NAV Manipulation</span>
+              <span className="text-[10px] text-[#666]">July 6</span>
+            </div>
+            <p className="text-xs text-[#888]">A capped-for-removal stale Ark asset still counted in vault NAV — attacker donated it back to inflate share price, then drained real liquidity in one atomic transaction. Protocol paused vaults after detection.{' '}
+              <a href="https://rekt.news/summer-finance-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
+          <div className="border-l-2 border-[var(--accent-orange)] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">Altura — $39M Raised, Vault Closed</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]">Investigation</span>
+              <span className="text-[10px] text-[#666]">Early July</span>
+            </div>
+            <p className="text-xs text-[#888]">Gold-backed RWA yield protocol. $39M raised. Funds traced through Tron wallets tied to Kraken. Verifier controlled by COO's own project. Dashboard admitted it verified nothing. Depositors waiting.{' '}
+              <a href="https://rekt.news/digging-for-gold" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">SecondFi — $2.4M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Key Disclosure</span>
+              <span className="text-[10px] text-[#666]">Recent</span>
+            </div>
+            <p className="text-xs text-[#888]">A single missing secret in the signing code made every on-chain transaction a private key disclosure. 374 wallets drained on Cardano. One line of missing code.{' '}
+              <a href="https://rekt.news/secondfi-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">Secret Network Bridge — $4.67M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Bridge</span>
+              <span className="text-[10px] text-[#666]">Recent</span>
+            </div>
+            <p className="text-xs text-[#888]">Two missing validation checks in a forked IBC contract let attacker forge deposits with a fake Cosmos chain. Drain went undetected for 7 days.{' '}
+              <a href="https://rekt.news/secret-network-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">Aztec Bridge — $2.20M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">ZK Verification</span>
+              <span className="text-[10px] text-[#666]">Recent</span>
+            </div>
+            <p className="text-xs text-[#888]">Legacy rollup contract lost funds after a ZK proof passed a broken root-binding check. One deprecated contract, one flawed escape hatch.{' '}
+              <a href="https://rekt.news/aztec-bridge-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
+          <div className="border-l-2 border-[#ef4444] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">TesseraDAO — Admin Privilege Abuse</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Admin Keys</span>
+              <span className="text-[10px] text-[#666]">Recent</span>
+            </div>
+            <p className="text-xs text-[#888]">Admin privilege exploit — classic centralized control failure.{' '}
+              <a href="https://rekt.news/tesseradao-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
+          </div>
         </div>
         <div className="mt-4 p-3 rounded-xl bg-[#1a1a1a] border border-[#222]">
           <p className="text-xs text-[#aaa]">
-            <strong className="text-[#ededed]">This week's takeaway:</strong> as stablecoins consolidate into institutional consortiums (Open USD) and brokerages become L2s (Robinhood Chain), governance attack surfaces expand. Low-turnout token voting is the soft underbelly of every on-chain governance system.
+            <strong className="text-[#ededed]">7 hacks this week · ~$73.6M total.</strong> Zero smart contract bugs in the top losses. The attack surface has shifted: governance (BonkDAO), stale admin state (Summer Finance, Aztec), missing validation (Secret Network, SecondFi), and centralized key/verifier control (Altura, TesseraDAO). As Robinhood Chain launches and Open USD consolidates, these are the exact failure modes every new protocol must defend against.
           </p>
         </div>
-        <p className="text-xs text-[#444] mt-3">Source: Rekt News</p>
+        <p className="text-xs text-[#444] mt-3">Source: Rekt News · <a href="https://rekt.news/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">rekt.news</a></p>
       </div>
 
       {/* ════════════════════════════════════════════════════════
