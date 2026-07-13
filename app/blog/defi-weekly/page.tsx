@@ -12,6 +12,12 @@ interface Edition {
 // ── Latest published editions (hardcoded, updated each Saturday) ──
 const EDITIONS: Edition[] = [
   {
+    title: 'DeFi Weekly — July 10, 2026',
+    slug: '/blog/defi-weekly-july-10/',
+    date: 'July 10, 2026',
+    excerpt: 'The Great Rotation: AI capex doubts, Robinhood Chain L2 launch, Open USD 140-partner consortium — plus BonkDAO $19.3M hack, 13 stablecoin depegs.',
+  },
+  {
     title: 'DeFi Weekly — June 27, 2026',
     slug: '/blog/defi-weekly-june-27/',
     date: 'June 27, 2026',

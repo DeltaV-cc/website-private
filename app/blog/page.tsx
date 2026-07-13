@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react';
 
 const posts = [
   {
+    title: "DeFi Weekly — July 10, 2026",
+    date: "July 10, 2026",
+    category: "DeFi Weekly",
+    type: "Dashboard",
+    excerpt: "The Great Rotation: AI capex doubts trigger a historic pivot to value stocks. Robinhood ships its own Arbitrum L2 with 24/7 tokenized equities. Open USD lands with 140 partners. Plus: BonkDAO $19.3M governance attack, four stablecoin depegs.",
+    slug: "defi-weekly-july-10"
+  },
+  {
     title: "DeFi Weekly — June 27, 2026",
     date: "June 27, 2026",
     category: "DeFi Weekly",
