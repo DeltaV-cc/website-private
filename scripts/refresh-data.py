@@ -6,12 +6,14 @@ Runs standalone via Hermes no_agent cron. Zero tokens. ~3s per run.
 Trigger: every 15 min
 Output: stdout goes to cron delivery (silent when no changes)
 """
-import json, os, shutil, tempfile, subprocess, sys, time, urllib.request, ssl
+import json, os, shutil, tempfile, subprocess, sys, time, urllib.request, ssl, re
 from pathlib import Path
+from xml.etree import ElementTree as ET
+from html import unescape as html_unescape
 
 REPO = 'https://github.com/DeltaV-cc/website-private.git'
 BRANCH = 'gh-pages'
-DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'gold.json', 'us10y.json', 'cnn-fg.json', 'btc-trend.json', 'exchange-vol.json']
+DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'gold.json', 'us10y.json', 'cnn-fg.json', 'btc-trend.json', 'exchange-vol.json', 'artemis-newsletter.json']
 USER_AGENT = 'Mozilla/5.0 (compatible; DeltaV-Refresh/1.0)'
 
 ctx = ssl.create_default_context()
@@ -207,6 +209,64 @@ try:
         exchange_vol['total_vol_usd_24h'] = round(total_btc * btc_price, 2)
 except: pass
 
+# ── 6. Fetch Artemis Substack RSS (weekly newsletter) ──
+artemis_newsletter = {}
+try:
+    req = urllib.request.Request('https://research.artemis.ai/feed',
+                                  headers={'User-Agent': USER_AGENT})
+    with urllib.request.urlopen(req, timeout=15, context=ctx) as r:
+        rss_xml = r.read().decode('utf-8')
+    root = ET.fromstring(rss_xml)
+    ns = {'dc': 'http://purl.org/dc/elements/1.1/', 'content': 'http://purl.org/rss/1.0/modules/content/'}
+
+    items = []
+    for item in root.findall('.//item'):
+        title = item.findtext('title', '')
+        link = item.findtext('link', '')
+        pub_date = item.findtext('pubDate', '')
+        creator = item.findtext('dc:creator', '', ns)
+        desc_raw = item.findtext('description', '')
+        content_raw = item.findtext('content:encoded', '', ns)
+
+        # Use content:encoded if available, otherwise description
+        body_html = content_raw or desc_raw
+
+        # Strip HTML tags for a clean excerpt
+        clean = re.sub(r'<[^>]+>', ' ', html_unescape(body_html or ''))
+        clean = re.sub(r'\s+', ' ', clean).strip()
+        excerpt = clean[:400] + ('...' if len(clean) > 400 else '')
+
+        # Parse pubDate to timestamp
+        try:
+            dt = time.strptime(pub_date[:25], '%a, %d %b %Y %H:%M:%S')
+            ts = time.strftime('%Y-%m-%dT%H:%M:%SZ', dt)
+        except:
+            ts = pub_date
+
+        items.append({
+            'title': title.strip(),
+            'link': link.strip(),
+            'date': ts,
+            'author': creator.strip() if creator else '',
+            'excerpt': excerpt,
+            'body_html': body_html[:50000] if body_html else '',  # cap at 50KB
+        })
+
+    # Separate weekly newsletter from regular articles
+    weekly = [i for i in items if 'This Week in Digital Finance' in i.get('title', '')]
+    research = [i for i in items if 'This Week in Digital Finance' not in i.get('title', '')]
+
+    artemis_newsletter = {
+        'fetched_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+        'latest_weekly': weekly[0] if weekly else None,
+        'recent_weeklies': weekly[:4],       # last 4 weeks
+        'research_articles': research[:10],  # top 10 recent research
+        'substack_url': 'https://research.artemis.ai/',
+        'rss_feed': 'https://research.artemis.ai/feed',
+    }
+except Exception as e:
+    print(f"  ⚠ Artemis RSS: {e}", file=sys.stderr)
+
 new_data = {
     'indices.json': json.dumps(indices, indent=2) if indices else None,
     'forex.json': json.dumps(forex) if forex else None,
@@ -217,6 +277,7 @@ new_data = {
     'cnn-fg.json': json.dumps(cnn_fg) if cnn_fg else None,
     'btc-trend.json': json.dumps(btc_trend) if btc_trend else None,
     'exchange-vol.json': json.dumps(exchange_vol) if exchange_vol else None,
+    'artemis-newsletter.json': json.dumps(artemis_newsletter) if artemis_newsletter else None,
 }
 
 tmpdir = tempfile.mkdtemp(prefix='dv-refresh-')
@@ -252,7 +313,9 @@ try:
                            capture_output=True, timeout=30)
         spx = indices.get('spx', {}).get('price', '?')
         csi = indices.get('csi', {}).get('price', '?')
-        print(f'✓ Data refreshed: SPX {spx} CSI {csi} | Gold {gold.get("price","?")} | Forex {len(forex)}p | HF {len(hf_data.get("models",[]))}m+{len(hf_data.get("spaces",[]))}s | BTC {crypto.get("btc_price","?")} | CNN-FG {cnn_fg.get("value","?")}')
+        nl = artemis_newsletter.get('latest_weekly', {}) or {}
+        nl_title = (nl.get('title', '')[:50] + '...') if nl else 'none'
+        print(f'✓ Data refreshed: SPX {spx} CSI {csi} | Gold {gold.get("price","?")} | Forex {len(forex)}p | HF {len(hf_data.get("models",[]))}m+{len(hf_data.get("spaces",[]))}s | BTC {crypto.get("btc_price","?")} | CNN-FG {cnn_fg.get("value","?")} | Artemis: {nl_title}')
 
         # Also write to local public/data/ so full deploys include fresh data
         LOCAL_DATA = Path(__file__).resolve().parent.parent / 'public' / 'data'
