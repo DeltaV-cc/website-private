@@ -22,6 +22,12 @@ interface Edition {
 // ── Latest published editions (hardcoded, updated each Saturday) ──
 const EDITIONS: Edition[] = [
   {
+    title: 'DeFi Weekly — July 13, 2026',
+    slug: '/blog/defi-weekly-july-13/',
+    date: 'July 13, 2026',
+    excerpt: 'BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.',
+  },
+  {
     title: 'DeFi Weekly — June 27, 2026',
     slug: '/blog/defi-weekly-june-27/',
     date: 'June 27, 2026',
