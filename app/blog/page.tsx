@@ -8,7 +8,7 @@ const posts = [
     date: "July 13, 2026",
     category: "DeFi Weekly",
     type: "Dashboard",
-    excerpt: "BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.",
+    excerpt: "BTC holds $64K after reclaiming from sub-$60K June lows. Spot ETF outflow streak breaks after 6 weeks. AAVE V4 deposits surpass $250M. MSTR navigates first treasury underwater test.",
     slug: "defi-weekly-july-13"
   },
   {
