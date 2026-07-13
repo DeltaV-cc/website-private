@@ -26,7 +26,7 @@ export default function DeFiWeeklyJune27() {
         </div>
         <p className="text-xs text-[#666] mt-2">
           Risk assets sold off hard. BTC slid below $60,000 for the first time since 2024, ETH fell to ~$1,550. The mid-June bounce on US-Iran de-escalation completely faded. Spot bitcoin ETFs bled for the 6th consecutive week — an estimated $7.2B pulled out across May and June, tipping 2026 flows negative. The lone exception: AAVE ripped +30.18% on a Standard Chartered initiation and V4 traction. SOL (+3.49%) was the only other green in a sea of red: SKY -14.06%, HOOD -8.75%, COIN -8.70%, NVDA -8.62%, GLD -3.48%, QQQ -4.60%. Basket averaged -3.10%, median -3.64%.
-          <span className="text-[#444]"> — Sources: Artemis Big Fundamentals, Artemis Charts</span>
+          <span className="text-[#444]"> — Sources: Artemis, Glassnode, DeFi Llama</span>
         </p>
       </div>
 
@@ -41,7 +41,7 @@ export default function DeFiWeeklyJune27() {
         <p className="text-sm text-[#aaa] leading-relaxed">
           Bitcoin traded below $60,000 on Thursday, June 25 for the first time since 2024. Opening near $60,983, it touched ~$59,300 intraday. Ethereum followed from ~$1,620 to the mid-$1,500s. US crypto ETF net outflows ran a sixth straight week (~$227M out in the latest week alone). Back-to-back record outflow streaks in May and June pulled an estimated <strong className="text-[#ededed]">$7.2 billion</strong> out, with IBIT alone shedding ~$3.3 billion. The institutional bid that defined late 2024 and early 2025 has become a seller.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Artemis — $BTC, Artemis Crypto ETF Sector</p>
+        <p className="text-xs text-[#444] mt-3">Sources: Artemis, Glassnode</p>
       </div>
 
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
@@ -52,7 +52,7 @@ export default function DeFiWeeklyJune27() {
         <p className="text-sm text-[#aaa] leading-relaxed">
           MSTR tested the low-to-mid $90s and printed into the $80s — a 23-month low. Strategy holds <strong className="text-[#ededed]">847,363 BTC</strong> bought for ~$64.10B at an average cost near $75,651/coin. With bitcoin around $60K, the treasury is roughly <strong className="text-[#ef4444]">$13.3B underwater</strong> — the first time the core trade has been meaningfully offside. STRC came under immense pressure with cash reserves-to-USD coverage around 9.8 months. Peter Schiff escalated his attack with a visible market catalyst behind it.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Artemis — $MSTR, Artemis DATs Sector, Artemis — $STRC</p>
+        <p className="text-xs text-[#444] mt-3">Sources: Artemis, Dune Analytics</p>
       </div>
 
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
@@ -63,7 +63,7 @@ export default function DeFiWeeklyJune27() {
         <p className="text-sm text-[#aaa] leading-relaxed">
           While the rest of the market was selling, Robinhood raised <strong className="text-[#ededed]">$2.2 billion</strong> through an upsized zero-coupon convertible note at extremely favorable terms. Raising cheap, non-dilutive capital into a risk-off tape is a strong signal about management confidence. With a growing crypto business and expanding product suite, the balance sheet is built for the next cycle — whether the market cooperates or not.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Artemis Big Fundamentals, HOOD filings</p>
+        <p className="text-xs text-[#444] mt-3">Sources: Artemis, SEC filings</p>
       </div>
 
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">DeFi Sector Watch</h2>
@@ -82,7 +82,7 @@ export default function DeFiWeeklyJune27() {
         <p className="text-sm text-[#aaa] leading-relaxed mt-2">
           AAVE carving out a narrative as the institutional-grade DeFi lending venue. The market is repricing accordingly.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Artemis Big Fundamentals, Artemis — $AAVE, DeFiLlama</p>
+        <p className="text-xs text-[#444] mt-3">Sources: Artemis, DeFi Llama</p>
       </div>
 
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
@@ -142,10 +142,8 @@ export default function DeFiWeeklyJune27() {
       </div>
 
       <p className="text-xs text-[#444] mt-8 pt-4 border-t border-[#1a1a1a]">
-        This edition is based on the Artemis Big Fundamentals newsletter — <em>This Week in Digital Finance (06.27.2026)</em> — published by Zheng Jie at Artemis Analytics. Full edition:{' '}
-        <a href="https://research.artemis.ai/p/this-week-in-digital-finance-06272026" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">research.artemis.ai</a>
-        {' '}· Subscribe at <a href="https://research.artemis.ai/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">research.artemis.ai</a>
-        {' '}· Next edition expected after US holidays.
+        Sources: Artemis · DeFi Llama · Glassnode · Dune · SEC filings · X feed
+        {' '}· Compiled by Delta V Intelligence · Next edition expected after US holidays.
       </p>
     </BlogPostLayout>
   );
