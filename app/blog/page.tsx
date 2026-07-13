@@ -217,8 +217,8 @@ export default function Blog() {
             <div className="flex-1 p-6 md:p-8">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] shadow-[0_0_6px_rgba(16,185,129,0.5)] animate-pulse" />
-                <span className="text-[10px] text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">Live from Artemis</span>
-                <span className="text-[10px] text-[var(--text-muted)]">· Every Saturday</span>
+                <span className="text-[10px] text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">DeFi Weekly</span>
+                <span className="text-[10px] text-[var(--text-muted)]">· Latest edition</span>
               </div>
               <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
                 {nlData.latest_weekly.title}

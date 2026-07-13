@@ -17,7 +17,7 @@ function fmtBig(n: number): string {
   return `$${n.toFixed(2)}`;
 }
 
-/* ── Artemis Weekly Newsletter Card ── */
+/* ── DeFi Weekly Card ── */
 function ArtemisWeeklyCard({ dd }: { dd: any }) {
   const nl = dd?.artemisNewsletter;
   const latest = nl?.latest_weekly;
@@ -33,10 +33,9 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
             <path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             <circle cx="13" cy="11" r="2" fill="var(--accent-gold)" opacity="0.3"/>
           </svg>
-          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">Artemis Weekly</span>
+          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">DeFi Weekly</span>
           {date && <span className="text-[10px] text-[var(--text-muted)]">· {date}</span>}
         </div>
-        <span className="text-[10px] text-[var(--text-disabled)]">research.artemis.ai</span>
       </div>
       <div className="p-5">
         <a href={latest.link} target="_blank" rel="noopener noreferrer"
@@ -50,7 +49,7 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
           {latest.author && <span className="text-[10px] text-[var(--text-muted)]">by {latest.author}</span>}
           <a href={latest.link} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-gold)] hover:underline">
-            Read on Artemis
+            Read edition
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </div>

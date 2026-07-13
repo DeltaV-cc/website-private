@@ -38,7 +38,6 @@ export default function DeFiWeeklyPage() {
     } catch { return iso; }
   };
 
-  // Strip HTML for text rendering
   const stripHtml = (html: string) => {
     if (!html) return '';
     return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -57,7 +56,6 @@ export default function DeFiWeeklyPage() {
 
   const latest = data?.latest_weekly;
   const past = data?.recent_weeklies || [];
-  const research = data?.research_articles || [];
 
   return (
     <div className="min-h-screen">
@@ -70,21 +68,13 @@ export default function DeFiWeeklyPage() {
 
         <div className="mb-12">
           <div className="text-[var(--accent-gold)] text-xs font-semibold tracking-[3px] uppercase mb-3">DeFi Weekly</div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">Artemis Weekly Roundup</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">DeFi Weekly</h1>
           <p className="text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed">
-            Curated from the Artemis Big Fundamentals newsletter by Jon Ma. Market overview, protocol deep-dives, and on-chain fundamentals — every Saturday.
+            Weekly market overview, protocol deep-dives, and on-chain fundamentals — curated by Delta V.
           </p>
-          <div className="flex items-center gap-3 mt-6">
-            <a href="https://research.artemis.ai/" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/30 hover:text-[var(--accent-gold)] transition-all">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M2 7h10M2 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              Subscribe on Substack
-            </a>
-            <a href="https://research.artemis.ai/feed" target="_blank" rel="noopener noreferrer"
-              className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">
-              RSS Feed →
-            </a>
-          </div>
+          <p className="text-sm text-[var(--text-muted)] mt-3">
+            Sources: Artemis, DeFi Llama, Glassnode, Dune, X feed
+          </p>
         </div>
 
         {/* Latest weekly */}
@@ -99,14 +89,13 @@ export default function DeFiWeeklyPage() {
                 <span className="text-[10px] text-[var(--text-muted)]">{formatDate(latest.date)}</span>
               </div>
               <div className="p-6 md:p-8">
-                <a href={latest.link} target="_blank" rel="noopener noreferrer"
-                  className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors leading-tight block mb-4">
+                <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] leading-tight block mb-4">
                   {latest.title}
-                </a>
+                </h2>
                 <div className="flex items-center gap-4 text-sm text-[var(--text-muted)] mb-6">
                   {latest.author && <span>by {latest.author}</span>}
                   <span>·</span>
-                  <span>Artemis Big Fundamentals</span>
+                  <span>Delta V Intelligence</span>
                 </div>
                 <div className="prose prose-invert max-w-none text-[var(--text-secondary)] text-sm leading-relaxed">
                   {stripHtml(latest.body_html || '').split('\n').filter(Boolean).slice(0, 30).map((p, i) => (
@@ -115,7 +104,7 @@ export default function DeFiWeeklyPage() {
                 </div>
                 <a href={latest.link} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 mt-6 px-5 py-2.5 bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 text-[var(--accent-gold)] rounded-xl text-sm font-medium hover:bg-[var(--accent-gold)]/20 transition-all">
-                  Read full edition on Artemis
+                  Read full edition on Substack
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </a>
               </div>
@@ -124,7 +113,7 @@ export default function DeFiWeeklyPage() {
         ) : (
           <div className="mb-16 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-10 text-center">
             <p className="text-[var(--text-secondary)] mb-2">No newsletter data yet.</p>
-            <p className="text-sm text-[var(--text-muted)]">The Artemis RSS feed syncs every 15 minutes. Refresh this page once data is available.</p>
+            <p className="text-sm text-[var(--text-muted)]">The data feed syncs every 15 minutes. Check back soon.</p>
           </div>
         )}
 
@@ -149,30 +138,10 @@ export default function DeFiWeeklyPage() {
           </div>
         )}
 
-        {/* Research articles */}
-        {research.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold mb-6">Recent Artemis Research</h2>
-            <div className="grid md:grid-cols-2 gap-3">
-              {research.slice(0, 6).map((item, i) => (
-                <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
-                  className="block rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 hover:border-[var(--accent-gold)]/25 transition-all group">
-                  <h3 className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors leading-snug mb-1">{item.title}</h3>
-                  <div className="flex items-center gap-3 text-[10px] text-[var(--text-muted)]">
-                    {item.author && <span>{item.author}</span>}
-                    <span>{formatDate(item.date)}</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className="mt-16 pt-8 border-t border-[var(--border-default)] text-center">
           <p className="text-xs text-[var(--text-muted)]">
-            Data sourced from{' '}
-            <a href="https://research.artemis.ai/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Artemis Big Fundamentals</a>
-            {' '}· Auto-synced every 15 minutes · Powered by the Delta V intelligence pipeline
+            Sources: Artemis · DeFi Llama · Glassnode · Dune · X feed
+            {' '}· Powered by the Delta V intelligence pipeline
           </p>
         </div>
       </div>
