@@ -32,9 +32,9 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">Resources</h4>
             <div className="space-y-2.5">
-              <Link href="/blog/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Blog</Link>
-              <Link href="/intelhub/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">IntelHub</Link>
-              <Link href="/tutorials/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Tutorials</Link>
+              <Link href="/blog/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Blog</Link>
+              <Link href="/intelhub/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">IntelHub</Link>
+              <Link href="/tutorials/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Tutorials</Link>
             </div>
           </div>
           <div className="md:col-span-2">
