@@ -23,10 +23,10 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">Services</h4>
             <div className="space-y-2.5">
-              <Link href="/ai/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">AI Engineering</Link>
-              <Link href="/web3/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-orange)] transition-colors duration-150 text-sm">Web3</Link>
-              <Link href="/forge/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Skill Forge</Link>
-              <Link href="/opsec/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] transition-colors duration-150 text-sm">OpSec</Link>
+              <Link href="/ai/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">AI Engineering</Link>
+              <Link href="/web3/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-orange)] transition-colors duration-150 text-sm">Web3</Link>
+              <Link href="/forge/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Skill Forge</Link>
+              <Link href="/opsec/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] transition-colors duration-150 text-sm">OpSec</Link>
             </div>
           </div>
           <div className="md:col-span-2">
@@ -40,9 +40,9 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">Connect</h4>
             <div className="space-y-2.5">
-              <a href="mailto:engage@deltav.cc" target="_blank" rel="noopener noreferrer" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">engage@deltav.cc</a>
+              <a href="mailto:engage@deltav.cc" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">engage@deltav.cc</a>
               <div className="text-sm text-[var(--text-tertiary)]">Signal: @DeltaV.01</div>
-              <Link href="/contact/" className="text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Contact</Link>
+              <Link href="/contact/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Contact</Link>
             </div>
           </div>
           <div className="md:col-span-2">
