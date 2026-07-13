@@ -7,9 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  distDir: '.next',
   turbopack: {
-    root: 'C:\\Users\\Admin\\DeltaV\\website',
+    root: 'C:/Users/Admin/DeltaV/website',
   },
 };
 

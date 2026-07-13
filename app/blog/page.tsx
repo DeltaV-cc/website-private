@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const posts = [
   {
@@ -84,6 +84,14 @@ const posts = [
     slug: "defi-weekly-june-23"
   },
   {
+    title: "DeFi Weekly — June 27, 2026",
+    date: "June 27, 2026",
+    category: "DeFi Weekly",
+    type: "Dashboard",
+    excerpt: "BTC breaks below $60K, spot ETFs bleed 6th straight week, MSTR treasury $13.3B underwater, Robinhood raises $2.2B convertible — AAVE +30% stands alone.",
+    slug: "defi-weekly-june-27"
+  },
+  {
     title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
     date: "June 23, 2026",
     category: "Web3",
@@ -154,6 +162,14 @@ const typeConfig: Record<string, string> = {
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [nlData, setNlData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('https://deltav-cc.github.io/website-private/data/artemis-newsletter.json')
+      .then(r => r.json())
+      .then(d => setNlData(d))
+      .catch(() => {});
+  }, []);
 
   const filteredPosts = activeCategory === 'All'
     ? posts
@@ -194,6 +210,31 @@ export default function Blog() {
             );
           })}
         </div>
+
+        {/* Live DeFi Weekly Card */}
+        {nlData?.latest_weekly && (
+          <Link href="/blog/defi-weekly/" className="block mb-8 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden hover:border-[var(--accent-gold)]/30 transition-all group cursor-pointer">
+            <div className="flex-1 p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] shadow-[0_0_6px_rgba(16,185,129,0.5)] animate-pulse" />
+                <span className="text-[10px] text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">Live from Artemis</span>
+                <span className="text-[10px] text-[var(--text-muted)]">· Every Saturday</span>
+              </div>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
+                {nlData.latest_weekly.title}
+              </h2>
+              <p className="text-sm text-[var(--text-tertiary)] line-clamp-2 leading-relaxed mb-3">
+                {nlData.latest_weekly.excerpt}
+              </p>
+              <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+                {nlData.latest_weekly.author && <span>{nlData.latest_weekly.author}</span>}
+                <span>{nlData.last_weekly_date ? new Date(nlData.last_weekly_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
+                <span>·</span>
+                <span className="text-[var(--accent-gold)] font-medium group-hover:underline">View roundup →</span>
+              </div>
+            </div>
+          </Link>
+        )}
 
         {/* Post Grid */}
         {filteredPosts.length === 0 ? (
