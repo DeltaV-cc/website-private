@@ -108,7 +108,7 @@ export default function DeFiWeeklyJuly13() {
 
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <p className="text-sm text-[#aaa] leading-relaxed mb-4">
-          A brutal fortnight for DeFi security. The pattern is striking: <strong className="text-[#ededed]">zero smart contract exploits in the top 5 incidents</strong>. Every major hack this cycle came from governance failures, key management disasters, or unchecked bridge logic — operational and architectural failures, not code bugs.
+          A brutal fortnight for DeFi security. The pattern is striking: <strong className="text-[#ededed]">zero smart contract exploits in the top incidents</strong>. Every major hack this cycle came from governance failures, key management disasters, or unchecked bridge logic — operational and architectural failures, not code bugs.
         </p>
 
         <div className="space-y-4">
@@ -117,8 +117,12 @@ export default function DeFiWeeklyJuly13() {
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-semibold text-[#ededed]">BonkDAO — $19.3M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Governance Attack</span>
+              <span className="text-[10px] text-[#666]">July 6 · Reported July 10</span>
             </div>
-            <p className="text-xs text-[#888]">1% BONK purchased → proposal hidden → 2.9% turnout → treasury drained. The DAO equivalent of slipping a line item into a bill at 3 AM.</p>
+            <p className="text-xs text-[#888]">
+              Pure token-weighted voting exploit on Solana's Realms platform. Attacker spent <strong className="text-[#aaa]">$4.4M to buy 1% of BONK</strong>, buried a treasury transfer in a proposal with no timelock, and passed it with <strong className="text-[#aaa]">2.9% turnout</strong>. No code broke. No keys leaked. Just crooked governance math — the DAO equivalent of slipping a line item into a 1,000-page bill at 3 AM. Full Rekt post-mortem:{' '}
+              <a href="https://rekt.news/bonkdao-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">rekt.news/bonkdao-rekt</a>
+            </p>
           </div>
 
           {/* Hack 2: Humanity Protocol */}
@@ -127,7 +131,7 @@ export default function DeFiWeeklyJuly13() {
               <span className="text-xs font-semibold text-[#ededed]">Humanity Protocol — $36.4M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Key Leak</span>
             </div>
-            <p className="text-xs text-[#888]">Seven private keys on a single laptop. Across ETH and BSC. The device owner was publicly named — rare for a DeFi hack. Code was fine; key management was the catastrophe.</p>
+            <p className="text-xs text-[#888]">Seven private keys on a single laptop. Across ETH and BSC. The device owner was publicly named — rare for a DeFi hack. The largest single loss of the cycle, and the simplest post-mortem.</p>
           </div>
 
           {/* Hack 3: Summer Finance */}
@@ -135,8 +139,12 @@ export default function DeFiWeeklyJuly13() {
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-semibold text-[#ededed]">Summer Finance — $6.04M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">NAV Manipulation</span>
+              <span className="text-[10px] text-[#666]">July 6 · Reported July 9</span>
             </div>
-            <p className="text-xs text-[#888]">A stale asset still counted in vault NAV inflated share price. Donated stale token → inflated the vault's reported value → attacker drained real liquidity from Lazy Summer depositors.</p>
+            <p className="text-xs text-[#888]">
+              Root cause traced back to <strong className="text-[#aaa]">October 2025</strong>: an incomplete offboarding left a capped-for-removal Silo Ark position priced into vaults for eight months. Attacker flash-loaned, donated the stale asset to inflate NAV, and redeemed real liquidity. The bug wasn't in the code — it was in the operational process. Full Rekt post-mortem:{' '}
+              <a href="https://rekt.news/summer-finance-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">rekt.news/summer-finance-rekt</a>
+            </p>
           </div>
 
           {/* Hack 4: Secret Network Bridge */}
@@ -145,7 +153,19 @@ export default function DeFiWeeklyJuly13() {
               <span className="text-xs font-semibold text-[#ededed]">Secret Network Bridge — $4.67M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Bridge Exploit</span>
             </div>
-            <p className="text-xs text-[#888]">Two missing validation checks in a forked IBC contract let attacker forge deposits from a fake Cosmos chain. Undetected for 7 days.</p>
+            <p className="text-xs text-[#888]">Two missing validation checks in a forked IBC contract. Attacker forged deposits from a fake Cosmos chain and minted unbacked tokens. Drain went undetected for 7 days.</p>
+          </div>
+
+          {/* Altura — Digging for Gold */}
+          <div className="border-l-2 border-[var(--accent-orange)] pl-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-semibold text-[#ededed]">Altura — $39M Raised, Vault Closed</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]">Investigation</span>
+              <span className="text-[10px] text-[#666]">July 2</span>
+            </div>
+            <p className="text-xs text-[#888]">
+              Multi-strategy yield protocol raised $39M for gold-backed RWA strategy. Rekt's investigation traced funds through <strong className="text-[#aaa]">Tron wallets tied to Kraken</strong>, revealed a verifier tied to the COO's own project, and a dashboard that admitted it verified nothing. Vault closed, depositors waiting. Not a hack — but the operational red flags are the same pattern.
+            </p>
           </div>
 
           {/* Smaller ones */}
@@ -155,9 +175,8 @@ export default function DeFiWeeklyJuly13() {
             </div>
             <p className="text-xs text-[#888]">
               SecondFi ($2.4M, Cardano — one missing secret in signing code exposed keys for 374 wallets){' · '}
-              Aztec Connect ($2.28M, deprecated ZK-rollup, broken root-binding check in verifier){' · '}
-              Syscoin (5B SYS minted via malformed SPV proof — whitehat recovered){' · '}
-              Altura ($39M raised for gold-backed RWA strategy — closed vault, depositors waiting)
+              Aztec Connect ($2.28M, deprecated ZK-rollup — broken root-binding check in verifier){' · '}
+              Syscoin (5B SYS minted via malformed SPV proof — whitehat recovered)
             </p>
           </div>
         </div>
@@ -166,7 +185,7 @@ export default function DeFiWeeklyJuly13() {
           <p className="text-xs text-[#aaa]">
             <strong className="text-[#ededed]">The meta:</strong> governance attacks and key management failures are now the dominant exploit vector. 
             If you're still only auditing smart contracts, you're protecting against last cycle's threats. 
-            DAOs need quorum minimums. Teams need hardware-enforced key policies. Bridges need formal verification of cross-chain message integrity. 
+            DAOs need quorum minimums and mandatory timelocks. Teams need hardware-enforced key policies. Bridges need formal verification of cross-chain message integrity. 
             The attackers have moved up the stack — defenses need to follow.
           </p>
         </div>
@@ -181,37 +200,43 @@ export default function DeFiWeeklyJuly13() {
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
-          <h3 className="text-base font-semibold text-[#ededed]">USX Depeg Enters Week 4 — 5,783 bps Below Peg</h3>
+          <h3 className="text-base font-semibold text-[#ededed]">USX Isn't Alone Anymore — Four Simultaneous Deep Depegs</h3>
         </div>
         <p className="text-sm text-[#aaa] leading-relaxed">
-          The USX stablecoin depeg is now the longest-running active break in the ecosystem: <strong className="text-[#ededed]">501+ hours</strong> at <strong className="text-[#ef4444]">57.83% below</strong> its $1 target. On a $20.81M supply, contagion risk is contained, but this is a live case study in algorithmic peg failure. Pharos has tracked it daily through digests #134–#138 (July 8–12), and the pattern is consistent: no recovery mechanism firing, no arbitrage restoring the peg, just slow structural bleed.
+          Today's Pharos digest (#139, July 13) delivers the week's biggest stablecoin signal: <strong className="text-[#ededed]">USX is no longer the only deep depeg</strong>. After 525 hours at 5,783 bps below peg ($20.8M float), USX has been joined by <strong className="text-[#ef4444]">pmUSD, apxUSD, and USDA at critical severity levels</strong> — four simultaneous breaks in the long-tail stablecoin market. This is unprecedented breadth for algorithmic/undercollateralized pegs.
         </p>
 
         <div className="grid md:grid-cols-3 gap-3 my-4">
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
             <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USX Depeg</div>
             <div className="text-lg font-mono text-[#ef4444]">-57.83%</div>
-            <div className="text-[10px] text-[#666]">501+ hours | $20.81M supply</div>
+            <div className="text-[10px] text-[#666]">525h · $20.8M · 5,783 bps</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USDT July Burns</div>
-            <div className="text-lg font-mono text-[var(--accent-orange)]">$1.15B</div>
-            <div className="text-[10px] text-[#666]">Large redemptions, not organic contraction</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Active Deep Depegs</div>
+            <div className="text-lg font-mono text-[#ef4444]">4</div>
+            <div className="text-[10px] text-[#666]">USX · pmUSD · apxUSD · USDA</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
             <div className="text-[10px] text-[#666] uppercase tracking-[1px]">PSI Index</div>
-            <div className="text-lg font-mono text-[var(--accent-green)]">92.2</div>
-            <div className="text-[10px] text-[#666]">BEDROCK regime | Bank Run Gauge elevated</div>
+            <div className="text-lg font-mono text-[var(--accent-green)]">93.4</div>
+            <div className="text-[10px] text-[#666]">BEDROCK · 20th consecutive day</div>
           </div>
         </div>
 
         <p className="text-sm text-[#aaa] leading-relaxed mt-3">
-          <strong className="text-[#ededed]">Four pegs broke past 3,000 bps on July 8</strong> — USX (5,783), pmUSD, and two others — signaling broad stress in the long-tail stablecoin market. <strong className="text-[#ededed]">$1.15B in USDT burned</strong> during the same period points to large-scale redemptions rather than organic supply contraction. Blue-chip stablecoins (USDT, USDC, DAI) are absorbing the outflow from experimental pegs.
+          The Pharos Stability Index (PSI) actually <strong className="text-[var(--accent-green)]">rose to 93.4</strong> this week — marking the 20th consecutive day in BEDROCK territory. This seems counterintuitive with four active depegs, but it reflects the broader market reality: the stressed assets are all small-cap (&lt;$50M combined float), while the $337B total stablecoin market cap is dominated by USDT and USDC, which remain structurally sound. The PSI measures systemic risk, not individual asset stress.
         </p>
         <p className="text-sm text-[#aaa] leading-relaxed mt-2">
-          On the positive side: <strong className="text-[var(--accent-green)]">BUIDL supply continues growing</strong> (BlackRock's tokenized treasury fund), APXUSD maintained a clean peg throughout the turbulence, and DAI's bands shifted but held within normal parameters. The stablecoin market is bifurcating — institutional-grade assets gobbling up share while small-cap algorithmic pegs struggle for relevance.
+          <strong className="text-[#ededed]">$1.15B in USDT was burned</strong> in the first half of July — large redemptions, not organic supply contraction. USDT and USDC were flagged for yield anomalies on their combined $257B float (digest #138). <strong className="text-[#ededed]">YLDS liquidity depth collapsed</strong> (digest #139), marking another stress signal in the yield-bearing stablecoin segment.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Pharos Watch (digests #134–#138, July 8–12), DeFi Llama</p>
+        <p className="text-sm text-[#aaa] leading-relaxed mt-2">
+          On the positive side: <strong className="text-[var(--accent-green)]">BUIDL supply continues growing</strong> (BlackRock's tokenized treasury fund), APXUSD briefly depegged to 3,159 bps but recovered, and DAI's bands shifted but held within normal parameters. The stablecoin market is bifurcating at speed — institutional-grade assets absorbing outflows while experimental pegs enter structural failure.
+        </p>
+        <p className="text-xs text-[#444] mt-3">
+          Sources: Pharos Watch (digests #138–#139, July 12–13), DeFi Llama ·{' '}
+          <a href="https://pharos.watch/digest/2026-07-13/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full July 13 digest</a>
+        </p>
       </div>
 
       {/* ════════════════════════════════════════════════════════
