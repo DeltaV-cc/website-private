@@ -320,8 +320,14 @@ body {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
+@keyframes smoothPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  25% { opacity: 0.9; transform: scale(1.15); }
+  50% { opacity: 1; transform: scale(1); }
+  75% { opacity: 0.45; transform: scale(0.95); }
+}
 
-.animate-fade-in-up {
+.animate-fade-in-up
   animation: fadeInUp var(--duration-slow) var(--ease-out-expo) forwards;
 }
 .animate-fade-in {

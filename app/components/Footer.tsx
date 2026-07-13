@@ -59,7 +59,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <span className="text-xs text-[var(--text-disabled)]">Delta V · 2026</span>
             <span className="inline-flex items-center gap-1.5 text-[10px] text-[var(--text-disabled)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />Systems operational
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" style={{ animation: 'smoothPulse 3s ease-in-out infinite' }} />Systems operational
             </span>
           </div>
         </div>
