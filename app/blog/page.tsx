@@ -92,6 +92,14 @@ const posts = [
     slug: "defi-weekly-june-27"
   },
   {
+    title: "DeFi Weekly — July 13, 2026",
+    date: "July 13, 2026",
+    category: "DeFi Weekly",
+    type: "Dashboard",
+    excerpt: "BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.",
+    slug: "defi-weekly-july-13"
+  },
+  {
     title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
     date: "June 23, 2026",
     category: "Web3",
