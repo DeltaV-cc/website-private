@@ -172,7 +172,7 @@ export default function DeFiWeeklyPage() {
               { label: 'WalletBeat', desc: 'Monthly wallet downloads, active users, custody shifts', color: 'var(--accent-cyan)' },
               { label: 'Pharos Watch', desc: 'Stablecoin risk scores & emerging assets (Stages 1-2)', color: 'var(--accent-purple)' },
               { label: 'Rekt News', desc: 'Latest DeFi hacks, exploits, and post-mortems', color: '#ef4444' },
-              { label: 'Sovereign Infra', desc: 'Self-custody, encryption, decentralized comms', color: 'var(--accent-green)' },
+              { label: 'Regulation', desc: 'Chat control, crypto policy, regulatory shifts', color: 'var(--accent-amber)' },
             ].map((item, i) => (
               <div key={i} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4">
                 <div className="flex items-center gap-2 mb-1">
