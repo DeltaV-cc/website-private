@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 
 const posts = [
   {
-    title: "DeFi Weekly — July 13, 2026",
-    date: "July 13, 2026",
+    title: "DeFi Weekly — June 27, 2026",
+    date: "June 27, 2026",
     category: "DeFi Weekly",
     type: "Dashboard",
-    excerpt: "BTC holds $64K after reclaiming from sub-$60K June lows. Spot ETF outflow streak breaks after 6 weeks. AAVE V4 deposits surpass $250M. MSTR navigates first treasury underwater test.",
-    slug: "defi-weekly-july-13"
+    excerpt: "BTC below $60K for first time since 2024, spot ETFs bleed 6th straight week ($7.2B out), MSTR treasury $13.3B underwater, Robinhood raises $2.2B convertible — plus: Ambire self-hosted RPC, four stablecoin depegs, BonkDAO $19.3M governance attack.",
+    slug: "defi-weekly-june-27"
   },
   {
     title: "Tencent's Hy3: 295B MoE That Punches at Trillion-Scale — Apache 2.0, 256K Context, Agent-First",
@@ -90,14 +90,6 @@ const posts = [
     type: "Dashboard",
     excerpt: "True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg.",
     slug: "defi-weekly-june-23"
-  },
-  {
-    title: "DeFi Weekly — June 27, 2026",
-    date: "June 27, 2026",
-    category: "DeFi Weekly",
-    type: "Dashboard",
-    excerpt: "BTC breaks below $60K, spot ETFs bleed 6th straight week, MSTR treasury $13.3B underwater, Robinhood raises $2.2B convertible — AAVE +30% stands alone.",
-    slug: "defi-weekly-june-27"
   },
   {
     title: "Stablecoins: The Fed's Newest Treasury Financing Channel",
