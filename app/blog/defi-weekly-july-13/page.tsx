@@ -20,10 +20,57 @@ export default function DeFiWeeklyJuly13() {
       category="DeFi Weekly"
       type="Dashboard"
       readingTime="10 min read"
-      excerpt="BonkDAO governance attack drains $19.3M, USX isn't alone anymore — four simultaneous stablecoin depegs, WalletBeat ships Stage 2 definitions, Ambire enables self-hosted RPC."
+      excerpt="BTC holds $64K after reclaiming from sub-$60K June lows. Spot ETF outflow streak breaks after 6 weeks. AAVE V4 deposits surpass $250M. MSTR navigates first treasury underwater test."
     >
       {/* ════════════════════════════════════════════════════════
-          ARTEMIS BIG FUNDAMENTALS — Full newsletter body
+          MARKET PULSE — Weekly highs/lows
+          ════════════════════════════════════════════════════════ */}
+      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
+        <div className="text-xs text-[#666] uppercase tracking-[1px] mb-3">Market Pulse — This Week</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px] mb-1">BTC Range</div>
+            <div className="text-sm font-semibold text-[#ededed]">
+              <span className="text-[#ef4444]">$59,300</span>
+              <span className="text-[#444] mx-1">–</span>
+              <span className="text-[var(--accent-green)]">$64,800</span>
+            </div>
+            <div className="text-[10px] text-[#666] mt-0.5">Low · High</div>
+          </div>
+          <div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px] mb-1">ETH Range</div>
+            <div className="text-sm font-semibold text-[#ededed]">
+              <span className="text-[#ef4444]">$1,530</span>
+              <span className="text-[#444] mx-1">–</span>
+              <span className="text-[var(--accent-green)]">$2,140</span>
+            </div>
+            <div className="text-[10px] text-[#666] mt-0.5">Low · High</div>
+          </div>
+          <div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px] mb-1">Total MCap</div>
+            <div className="text-sm font-semibold text-[#ededed]">$2.25T</div>
+            <div className="text-[10px] text-[var(--accent-green)] mt-0.5">+3.2% WoW</div>
+          </div>
+          <div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px] mb-1">24h Volume</div>
+            <div className="text-sm font-semibold text-[#ededed]">$52.5B</div>
+            <div className="flex items-center gap-1 mt-1">
+              <div className="flex-1 h-1 bg-[#222] rounded-full overflow-hidden">
+                <div className="h-full bg-[var(--accent-green)] rounded-full" style={{ width: '68%' }} />
+              </div>
+              <span className="text-[10px] text-[#666]">68%</span>
+            </div>
+            <div className="text-[10px] text-[#666]">of 30d avg</div>
+          </div>
+        </div>
+        <p className="text-xs text-[#666] mt-3">
+          BTC reclaimed $64K after touching a June low of $59,300 — the first sub-$60K print since 2024. ETH recovered from $1,530 to above $2,100. ETF outflows stabilized after 6 consecutive bleeding weeks. Market structure improving but BTC.D at 56% still signals risk-off positioning. Full Artemis breakdown below.
+          <span className="text-[#444]"> — Sources: Artemis, Glassnode, CoinGecko</span>
+        </p>
+      </div>
+
+      {/* ════════════════════════════════════════════════════════
+          ARTEMIS BIG FUNDAMENTALS — Full newsletter body first
           ════════════════════════════════════════════════════════ */}
       <div className="my-6">
         <div className="bg-[#111] border border-[#222] rounded-2xl p-4 mb-4">
@@ -55,9 +102,6 @@ export default function DeFiWeeklyJuly13() {
               [&_hr]:border-[#222] [&_hr]:my-6
               [&_.captioned-image-container]:my-6
               [&_.image-caption]:text-[10px] [&_.image-caption]:text-[#666] [&_.image-caption]:mt-2
-              [&_table]:w-full [&_table]:text-sm [&_table]:border-collapse [&_table]:my-4
-              [&_th]:border-b [&_th]:border-[#222] [&_th]:text-[#666] [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-[1px] [&_th]:py-2 [&_th]:px-3 [&_th]:text-left
-              [&_td]:py-2 [&_td]:px-3 [&_td]:border-b [&_td]:border-[#1a1a1a] [&_td]:text-[#aaa]
             "
             dangerouslySetInnerHTML={{ __html: artemisBody }}
           />
@@ -78,21 +122,47 @@ export default function DeFiWeeklyJuly13() {
       </div>
 
       {/* ════════════════════════════════════════════════════════
+          DELTA V HIGHLIGHTS — Our additions
+          ════════════════════════════════════════════════════════ */}
+      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">This Week's Additional Highlights</h2>
+
+      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)]" />
+          <h3 className="text-base font-semibold text-[#ededed]">Ambire Enables Self-Hosted RPC</h3>
+        </div>
+        <p className="text-sm text-[#aaa] leading-relaxed">
+          Ambire Wallet now lets users set their own RPC endpoints — Settings → Networks → Edit → custom node URL. Default RPCs are surveillance chokepoints logging every transaction and balance query. Self-hosted RPC breaks that chain. Combined with Ambire's account abstraction, this pushes it into the top tier of sovereignty-respecting smart wallets. WalletBeat already reflects the privacy score boost in their latest matrix.
+        </p>
+        <p className="text-xs text-[#444] mt-3">Sources: Ambire Help Center, WalletBeat</p>
+      </div>
+
+      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent-purple)]" />
+          <h3 className="text-base font-semibold text-[#ededed]">WalletBeat Ships Stage 0–2 Wallet Framework</h3>
+        </div>
+        <p className="text-sm text-[#aaa] leading-relaxed">
+          Modeled on L2BEAT's staging system: Stage 0 (Verifiable) → Stage 1 (Operationally Trust-minimized) → Stage 2 (Trust-minimized). Built on CROPS principles. No wallet currently achieves Stage 2. Ambire, Rabby, and Rainbow lead in Stage 1 territory. New Slice Gradients for attribute scoring make comparisons visual. New data added for Rainbow, Zerion, and Base.
+        </p>
+        <p className="text-xs text-[#444] mt-3">Source: WalletBeat</p>
+      </div>
+
+      {/* ════════════════════════════════════════════════════════
           REKT WATCH
           ════════════════════════════════════════════════════════ */}
-      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — Hacks & Exploits</h2>
+      <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Rekt Watch — Hacks & Exploits</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <p className="text-sm text-[#aaa] leading-relaxed mb-4">
-          A brutal fortnight for DeFi security. <strong className="text-[#ededed]">Zero smart contract exploits in the top incidents.</strong> Governance failures, key management disasters, and unchecked bridge logic dominate.
+          <strong className="text-[#ededed]">Zero smart contract exploits in the top incidents.</strong> Governance failures, key management disasters, and unchecked bridge logic dominate.
         </p>
         <div className="space-y-4">
           <div className="border-l-2 border-[#ef4444] pl-4">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-semibold text-[#ededed]">BonkDAO — $19.3M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Governance</span>
-              <span className="text-[10px] text-[#666]">July 6</span>
             </div>
-            <p className="text-xs text-[#888]">$4.4M to buy 1% BONK, proposal with no timelock, 2.9% turnout on Solana Realms — treasury drained.{' '}
+            <p className="text-xs text-[#888]">$4.4M to buy 1% BONK, no-timelock proposal, 2.9% turnout on Solana Realms. Treasury drained.{' '}
               <a href="https://rekt.news/bonkdao-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
           </div>
           <div className="border-l-2 border-[#ef4444] pl-4">
@@ -100,15 +170,14 @@ export default function DeFiWeeklyJuly13() {
               <span className="text-xs font-semibold text-[#ededed]">Humanity Protocol — $36.4M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Key Leak</span>
             </div>
-            <p className="text-xs text-[#888]">Seven private keys on a single laptop across ETH and BSC. Largest single loss this cycle.</p>
+            <p className="text-xs text-[#888]">Seven private keys on one laptop across ETH and BSC. Largest single loss this cycle.</p>
           </div>
           <div className="border-l-2 border-[#ef4444] pl-4">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-semibold text-[#ededed]">Summer Finance — $6.04M</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">NAV Manipulation</span>
-              <span className="text-[10px] text-[#666]">July 6</span>
             </div>
-            <p className="text-xs text-[#888]">Root cause: Oct 2025 incomplete offboarding left stale asset priced into vaults for 8 months.{' '}
+            <p className="text-xs text-[#888]">Oct 2025 incomplete offboarding left stale asset priced into vaults for 8 months.{' '}
               <a href="https://rekt.news/summer-finance-rekt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full post-mortem</a></p>
           </div>
           <div className="border-l-2 border-[#ef4444] pl-4">
@@ -125,14 +194,10 @@ export default function DeFiWeeklyJuly13() {
             </div>
             <p className="text-xs text-[#888]">Gold-backed RWA yield protocol. Funds through Tron wallets tied to Kraken. Self-linked verifier.</p>
           </div>
-          <div className="border-l-2 border-[#666] pl-4">
-            <span className="text-xs font-semibold text-[#aaa]">Also: </span>
-            <span className="text-xs text-[#888]">SecondFi ($2.4M, Cardano) · Aztec Connect ($2.28M) · Syscoin (whitehat)</span>
-          </div>
         </div>
         <div className="mt-4 p-3 rounded-xl bg-[#1a1a1a] border border-[#222]">
           <p className="text-xs text-[#aaa]">
-            <strong className="text-[#ededed]">The meta:</strong> governance attacks and key management failures are the dominant exploit vector. DAOs need quorum minimums + mandatory timelocks. Teams need hardware-enforced key policies. Bridges need formal verification. Attackers have moved up the stack.
+            <strong className="text-[#ededed]">The meta:</strong> DAOs need quorum minimums + mandatory timelocks. Teams need hardware-enforced key policies. Bridges need formal verification.
           </p>
         </div>
         <p className="text-xs text-[#444] mt-3">Source: Rekt News</p>
@@ -145,10 +210,10 @@ export default function DeFiWeeklyJuly13() {
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
-          <h3 className="text-base font-semibold text-[#ededed]">Four Simultaneous Deep Depegs — USX Isn't Alone Anymore</h3>
+          <h3 className="text-base font-semibold text-[#ededed]">Four Simultaneous Deep Depegs</h3>
         </div>
         <p className="text-sm text-[#aaa] leading-relaxed">
-          Today's Pharos digest (#139, July 13): USX at 525 hours, 5,783 bps below peg, $20.8M float — joined by <strong className="text-[#ef4444]">pmUSD, apxUSD, and USDA at critical severity</strong>. Four simultaneous deep depegs is unprecedented for algorithmic/undercollateralized pegs.
+          Pharos digest #139 (July 13): USX at 525 hours, 5,783 bps below peg — now joined by <strong className="text-[#ef4444]">pmUSD, apxUSD, and USDA at critical severity</strong>. Four simultaneous deep depegs is unprecedented.
         </p>
         <div className="grid md:grid-cols-3 gap-3 my-4">
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
@@ -157,21 +222,21 @@ export default function DeFiWeeklyJuly13() {
             <div className="text-[10px] text-[#666]">USX · pmUSD · apxUSD · USDA</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">PSI Index</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">PSI</div>
             <div className="text-lg font-mono text-[var(--accent-green)]">93.4</div>
-            <div className="text-[10px] text-[#666]">BEDROCK · 20th day · $337B mcap</div>
+            <div className="text-[10px] text-[#666]">BEDROCK · 20th day</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USDT Burns</div>
-            <div className="text-lg font-mono text-[var(--accent-orange)]">$1.15B</div>
-            <div className="text-[10px] text-[#666]">Yield anomalies · $257B float</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">YLDS Liquidity</div>
+            <div className="text-lg font-mono text-[#ef4444]">Collapsed</div>
+            <div className="text-[10px] text-[#666]">Yield stablecoin stress</div>
           </div>
         </div>
         <p className="text-sm text-[#aaa] leading-relaxed mt-3">
-          PSI rose to 93.4 despite four depegs — stressed assets are all small-cap (&lt;$50M combined), while the $337B total mcap is structurally sound. <strong className="text-[#ededed]">YLDS liquidity depth collapsed</strong> — stress in yield-bearing stablecoins. BUIDL supply growing, DAI bands stable.{' '}
+          PSI at 93.4 despite four depegs — stressed assets are small-cap (&lt;$50M combined). $337B total mcap remains structurally sound. USDT burns: $1.15B. BUIDL supply growing. DAI bands stable.{' '}
           <a href="https://pharos.watch/digest/2026-07-13/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full digest</a>
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Pharos Watch (digests #138–#139), DeFi Llama</p>
+        <p className="text-xs text-[#444] mt-3">Sources: Pharos Watch, DeFi Llama</p>
       </div>
 
       {/* ════════════════════════════════════════════════════════
@@ -182,10 +247,10 @@ export default function DeFiWeeklyJuly13() {
         <ul className="text-sm text-[#aaa] leading-relaxed space-y-1 list-disc pl-4">
           <li><strong className="text-[#ededed]">Stage 0→2 framework</strong> modeled on L2BEAT. No wallet reaches Stage 2 yet.</li>
           <li><strong className="text-[#ededed]">New data:</strong> Rainbow, Zerion, Rabby, Base. Slice Gradients for attribute scoring.</li>
-          <li><strong className="text-[#ededed]">Ambire self-hosted RPC</strong> scores well — Privacy boost. Settings → Networks → Edit → custom node URL.</li>
-          <li><strong className="text-[#ededed]">CROPS at wallet layer:</strong> Censorship-resistant, Open, Private, Secure ratings applied at the interface.</li>
+          <li><strong className="text-[#ededed]">Ambire self-hosted RPC</strong> scores significant Privacy boost.</li>
+          <li><strong className="text-[#ededed]">CROPS at wallet layer:</strong> Censorship-resistant, Open, Private, Secure applied at the interface.</li>
         </ul>
-        <p className="text-xs text-[#444] mt-3">Source: WalletBeat (beta.walletbeat.eth.limo)</p>
+        <p className="text-xs text-[#444] mt-3">Source: WalletBeat</p>
       </div>
 
       {/* ════════════════════════════════════════════════════════
@@ -194,16 +259,15 @@ export default function DeFiWeeklyJuly13() {
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Regulation</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <p className="text-sm text-[#aaa] leading-relaxed">
-          EU chat control proposals advancing — latest draft expands to end-to-end encrypted messaging. On-chain messaging protocols and encrypted wallet comms next in line. US stablecoin legislation (GENIUS Act) stalled until September.
+          EU chat control advancing — encrypted messaging in scope. On-chain messaging protocols and wallet comms next. US GENIUS Act stalled until September.
         </p>
-        <p className="text-xs text-[#444] mt-3">Sources: EFF, X feed, Congressional tracker</p>
+        <p className="text-xs text-[#444] mt-3">Sources: EFF, Congressional tracker</p>
       </div>
 
-      {/* ── Sources ── */}
       <p className="text-xs text-[#444] mt-8 pt-4 border-t border-[#1a1a1a]">
-        Artemis newsletter: <a href="https://research.artemis.ai/p/this-week-in-digital-finance-06272026" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">This Week in Digital Finance (06.27.2026)</a>
+        Artemis: <a href="https://research.artemis.ai/p/this-week-in-digital-finance-06272026" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">This Week in Digital Finance (06.27.2026)</a>
         {' · '}Sources: DeFi Llama · Glassnode · Dune · Rekt News · Pharos Watch · WalletBeat · X feed
-        {' · '}Compiled by Delta V Intelligence · Published every Saturday.
+        {' · '}Compiled by Delta V Intelligence.
       </p>
     </BlogPostLayout>
   );

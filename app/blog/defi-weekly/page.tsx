@@ -1,16 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
-// ── Types ──
-interface MarketData {
-  btc_price?: number;
-  eth_price?: number;
-  total_mcap?: number;
-  mcap_change_24h?: number;
-  btc_dominance?: number;
-}
 
 interface Edition {
   title: string;
@@ -62,14 +52,6 @@ function fmtBig(n: number): string {
 
 // ── Page ──
 export default function DeFiWeeklyPage() {
-  const [market, setMarket] = useState<MarketData | null>(null);
-
-  useEffect(() => {
-    fetch('https://deltav-cc.github.io/website-private/data/crypto.json')
-      .then(r => r.json())
-      .then(d => setMarket(d))
-      .catch(() => {});
-  }, []);
 
   const latest = EDITIONS[0];
 
@@ -91,43 +73,43 @@ export default function DeFiWeeklyPage() {
           </p>
         </div>
 
-        {/* ── Live Market Bar ── */}
-        {market && (
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 mb-10">
-            <div className="text-xs text-[var(--text-muted)] uppercase tracking-[1px] mb-3">Live Market Snapshot</div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div>
-                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC</div>
-                <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">
-                  ${market.btc_price ? market.btc_price.toLocaleString() : '···'}
-                </div>
+        {/* ── Market Pulse ── */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 mb-10">
+          <div className="text-xs text-[var(--text-muted)] uppercase tracking-[1px] mb-3">Market Pulse — This Week</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC Range</div>
+              <div className="text-sm font-semibold tabular-nums text-[var(--text-primary)]">
+                <span className="text-[#ef4444]">$59.3K</span>{' '}
+                <span className="text-[#444]">–</span>{' '}
+                <span className="text-[var(--accent-green)]">$64.8K</span>
               </div>
-              <div>
-                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">ETH</div>
-                <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">
-                  ${market.eth_price ? market.eth_price.toLocaleString() : '···'}
-                </div>
+              <div className="text-[10px] text-[var(--text-muted)] mt-0.5">Low · High</div>
+            </div>
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">ETH Range</div>
+              <div className="text-sm font-semibold tabular-nums text-[var(--text-primary)]">
+                <span className="text-[#ef4444]">$1,530</span>{' '}
+                <span className="text-[#444]">–</span>{' '}
+                <span className="text-[var(--accent-green)]">$2,140</span>
               </div>
-              <div>
-                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Total MCap</div>
-                <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">
-                  {market.total_mcap ? fmtBig(market.total_mcap) : '···'}
-                </div>
-                {market.mcap_change_24h != null && (
-                  <div className={`text-[10px] mt-0.5 ${market.mcap_change_24h >= 0 ? 'text-[var(--accent-green)]' : 'text-[#ef4444]'}`}>
-                    {market.mcap_change_24h >= 0 ? '+' : ''}{market.mcap_change_24h.toFixed(1)}% 24h
-                  </div>
-                )}
+              <div className="text-[10px] text-[var(--text-muted)] mt-0.5">Low · High</div>
+            </div>
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Total MCap</div>
+              <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">$2.25T</div>
+              <div className="text-[10px] text-[var(--accent-green)] mt-0.5">+3.2% WoW</div>
+            </div>
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">24h Vol / 30d Avg</div>
+              <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">68%</div>
+              <div className="w-full h-1 bg-[#222] rounded-full mt-1 overflow-hidden">
+                <div className="h-full bg-[var(--accent-green)] rounded-full" style={{ width: '68%' }} />
               </div>
-              <div>
-                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC Dominance</div>
-                <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">
-                  {market.btc_dominance ? market.btc_dominance.toFixed(1) + '%' : '···'}
-                </div>
-              </div>
+              <div className="text-[10px] text-[var(--text-muted)] mt-0.5">$52.5B of $77B avg</div>
             </div>
           </div>
-        )}
+        </div>
 
         {/* ── Latest Edition ── */}
         <div className="mb-12">
