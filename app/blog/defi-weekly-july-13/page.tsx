@@ -86,6 +86,31 @@ export default function DeFiWeeklyJuly13() {
           </div>
         </div>
 
+        {/* ── Our Highlights — stacked with Artemis Today We Highlight ── */}
+        <div className="bg-[#111] border border-[#222] rounded-2xl p-5 mb-4">
+          <div className="text-xs text-[var(--accent-gold)] uppercase tracking-[1px] mb-3 font-bold">+ Today We Also Highlight</div>
+          <div className="space-y-4">
+            <div className="flex gap-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)] mt-1.5 flex-shrink-0" />
+              <div>
+                <p className="text-sm text-[#ededed] font-semibold mb-1">Ambire Enables Self-Hosted RPC — A Quiet Privacy Win</p>
+                <p className="text-xs text-[#aaa] leading-relaxed">
+                  Ambire Wallet now lets users set their own RPC endpoints (Settings → Networks → Edit → custom node URL). Default RPCs are surveillance chokepoints — self-hosted breaks the chain. Combined with account abstraction, this pushes Ambire into the top tier of sovereignty-respecting smart wallets. WalletBeat reflects the privacy score boost in their latest matrix.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent-purple)] mt-1.5 flex-shrink-0" />
+              <div>
+                <p className="text-sm text-[#ededed] font-semibold mb-1">WalletBeat Ships Stage 0–2 Framework — A New Standard for Wallet Security</p>
+                <p className="text-xs text-[#aaa] leading-relaxed">
+                  Modeled on L2BEAT: Stage 0 (Verifiable) → Stage 1 (Operationally Trust-minimized) → Stage 2 (Trust-minimized). Built on CROPS principles. No wallet achieves Stage 2 yet. Ambire, Rabby, and Rainbow lead Stage 1. New Slice Gradients make attribute scoring visual. New data for Rainbow, Zerion, and Base.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {artemisBody ? (
           <div 
             className="artemis-body prose prose-invert max-w-none
@@ -119,33 +144,6 @@ export default function DeFiWeeklyJuly13() {
         <div className="flex-1 h-px bg-[#222]" />
         <span className="text-[10px] text-[#666] uppercase tracking-[2px]">Delta V Inputs</span>
         <div className="flex-1 h-px bg-[#222]" />
-      </div>
-
-      {/* ════════════════════════════════════════════════════════
-          DELTA V HIGHLIGHTS — Our additions
-          ════════════════════════════════════════════════════════ */}
-      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">This Week's Additional Highlights</h2>
-
-      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)]" />
-          <h3 className="text-base font-semibold text-[#ededed]">Ambire Enables Self-Hosted RPC</h3>
-        </div>
-        <p className="text-sm text-[#aaa] leading-relaxed">
-          Ambire Wallet now lets users set their own RPC endpoints — Settings → Networks → Edit → custom node URL. Default RPCs are surveillance chokepoints logging every transaction and balance query. Self-hosted RPC breaks that chain. Combined with Ambire's account abstraction, this pushes it into the top tier of sovereignty-respecting smart wallets. WalletBeat already reflects the privacy score boost in their latest matrix.
-        </p>
-        <p className="text-xs text-[#444] mt-3">Sources: Ambire Help Center, WalletBeat</p>
-      </div>
-
-      <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-[var(--accent-purple)]" />
-          <h3 className="text-base font-semibold text-[#ededed]">WalletBeat Ships Stage 0–2 Wallet Framework</h3>
-        </div>
-        <p className="text-sm text-[#aaa] leading-relaxed">
-          Modeled on L2BEAT's staging system: Stage 0 (Verifiable) → Stage 1 (Operationally Trust-minimized) → Stage 2 (Trust-minimized). Built on CROPS principles. No wallet currently achieves Stage 2. Ambire, Rabby, and Rainbow lead in Stage 1 territory. New Slice Gradients for attribute scoring make comparisons visual. New data added for Rainbow, Zerion, and Base.
-        </p>
-        <p className="text-xs text-[#444] mt-3">Source: WalletBeat</p>
       </div>
 
       {/* ════════════════════════════════════════════════════════
