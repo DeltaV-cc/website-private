@@ -139,7 +139,19 @@ export default function DeFiWeeklyJuly13() {
         </div>
 
         {artemisBody ? (
-          <div 
+          <>
+            <style>{`
+              /* Hide redundant Artemis "Today We Highlight" heading — we render our own above */
+              .artemis-body h1:first-child,
+              .artemis-body h1:first-of-type,
+              .artemis-body > *:first-child h1,
+              .artemis-body h2:first-child,
+              .artemis-body h2:first-of-type,
+              .artemis-body h3:first-child,
+              .artemis-body h3:first-of-type { display: none !important; }
+              /* Also hide any heading immediately followed by a figure/chart that matches the highlight pattern */
+            `}</style>
+            <div 
             className="artemis-body prose prose-invert max-w-none
               [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-[#ededed] [&_h2]:mt-8 [&_h2]:mb-4
               [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-[#ededed] [&_h3]:mt-6 [&_h3]:mb-3
@@ -157,6 +169,7 @@ export default function DeFiWeeklyJuly13() {
             "
             dangerouslySetInnerHTML={{ __html: artemisBody }}
           />
+          </>
         ) : (
           <div className="text-center py-12 text-sm text-[var(--text-muted)]">
             Loading Artemis newsletter...
