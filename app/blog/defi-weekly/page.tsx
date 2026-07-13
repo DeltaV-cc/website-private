@@ -12,22 +12,16 @@ interface Edition {
 // ── Latest published editions (hardcoded, updated each Saturday) ──
 const EDITIONS: Edition[] = [
   {
-    title: 'DeFi Weekly — July 13, 2026',
-    slug: '/blog/defi-weekly-july-13/',
-    date: 'July 13, 2026',
-    excerpt: 'BonkDAO governance attack drains $19.3M, USX stablecoin depeg enters week 4 at 57% below peg, WalletBeat ships Stage 2 wallet definitions, Ambire enables self-hosted RPC.',
-  },
-  {
     title: 'DeFi Weekly — June 27, 2026',
     slug: '/blog/defi-weekly-june-27/',
     date: 'June 27, 2026',
-    excerpt: 'BTC breaks below $60K, spot ETFs bleed 6th straight week, MSTR treasury $13.3B underwater, Robinhood raises $2.2B convertible — AAVE +30% stands alone.',
+    excerpt: 'BTC below $60K for first time since 2024, spot ETFs bleed 6th straight week ($7.2B out), MSTR treasury $13.3B underwater, Robinhood raises $2.2B convertible — plus: Ambire, BonkDAO, stablecoin depegs.',
   },
   {
     title: 'DeFi Weekly — June 23, 2026',
     slug: '/blog/defi-weekly-june-23/',
     date: 'June 23, 2026',
-    excerpt: 'True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, the STRC depeg.',
+    excerpt: 'BTC retests $63K support, ETH ETF inflows pick up pace, Aave V4 proposals go live.',
   },
 ];
 
