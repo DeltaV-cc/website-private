@@ -1,14 +1,14 @@
 {
-  "updated": "2026-07-13",
+  "updated": "2026-07-14",
   "models": [
     {
       "rank": 1,
       "name": "claude-fable-5",
       "vendor": "Anthropic",
       "license": "proprietary",
-      "elo": 1509,
-      "ci": 9,
-      "votes": 4299
+      "elo": 1505,
+      "ci": 8,
+      "votes": 7252
     },
     {
       "rank": 2,
