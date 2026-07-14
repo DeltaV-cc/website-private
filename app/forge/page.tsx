@@ -73,29 +73,42 @@ export default function ForgePage() {
       {/* Tutorials */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
         <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-6">Tutorials</div>
-        <div className="grid md:grid-cols-2 gap-5">
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
               <span className="text-xs text-[var(--text-muted)]">TECH</span>
             </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Hermes + Qwen 3.6 + DGX Spark: The Local AI Convergence</h4>
-            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">Full hardware + software setup tutorial for deploying Qwen 3.6 on NVIDIA DGX Spark with Hermes Agent.</p>
-            <div className="text-[var(--accent-cyan)] text-xs mt-3 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Hermes + Qwen 3.6 + DGX Spark</h4>
+            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">Full hardware + software setup for deploying Qwen 3.6 on NVIDIA DGX Spark (128GB unified memory) with Hermes Agent — 8-step setup, OpSec hardening, verification checklist.</p>
+            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
               View full tutorial <ArrowRight />
             </div>
           </Link>
 
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25">
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
               <span className="text-xs text-[var(--text-muted)]">AI / OP SEC</span>
             </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Run Your Own Local RAG & Agent: LangChain-Chatchat + Ollama</h4>
-            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">100% local RAG system with knowledge base Q&A, multi-model support, and full offline operation — no API keys needed.</p>
-            <div className="text-[var(--accent-cyan)] text-xs mt-3 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">LangChain-Chatchat + Ollama RAG</h4>
+            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">100% local RAG system — Streamlit UI + FastAPI + LangChain + Ollama. Full offline knowledge base Q&A, multi-model support, zero API keys, 5-step setup with OpSec hardening.</p>
+            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+              View full tutorial <ArrowRight />
+            </div>
+          </Link>
+
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-purple)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-purple)]/40 via-[var(--accent-purple)]/20 to-transparent" />
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
+              <span className="text-xs text-[var(--text-muted)]">AUDIO / AI</span>
+            </div>
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">MuScriptor: Transcribe Music to MIDI Locally</h4>
+            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">Decoder-only transformer by Kyutai + Mirelo AI — 170K songs trained, multi-instrument. 3 model sizes (103M–1.4B), Pinokio 1-click or Python CLI, API endpoints reference.</p>
+            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
               View full tutorial <ArrowRight />
             </div>
           </Link>
