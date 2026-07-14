@@ -87,16 +87,16 @@ export default function ForgePage() {
             </div>
           </Link>
 
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25">
+          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
-              <span className="text-xs text-[var(--text-muted)]">OP SEC</span>
+              <span className="text-xs text-[var(--text-muted)]">AI / OP SEC</span>
             </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Platform OS Hardening Guides</h4>
-            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">Step-by-step hardening procedures for Windows, Linux, and macOS with tailored threat models.</p>
+            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Run Your Own Local RAG & Agent: LangChain-Chatchat + Ollama</h4>
+            <p className="text-sm text-[var(--text-tertiary)] line-clamp-2">100% local RAG system with knowledge base Q&A, multi-model support, and full offline operation — no API keys needed.</p>
             <div className="text-[var(--accent-cyan)] text-xs mt-3 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
-              Browse OS Hardening <ArrowRight />
+              View full tutorial <ArrowRight />
             </div>
           </Link>
         </div>

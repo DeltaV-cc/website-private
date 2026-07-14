@@ -2,7 +2,7 @@
    Artemis/DefiLlama-level DeFi data: TVL, DEX, CEX, charts */
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { BarChart, CategoryBox, SkeletonPrice, SkeletonBlock } from './Shared';
 import CryptoLeaders from './CryptoLeaders';
 import CryptoFrontierSignals from './CryptoFrontierSignals';
@@ -73,23 +73,10 @@ export default function Web3Dashboard({
   const cmc = dd?.crypto || {};
   const mcap = cmc.total_mcap || 0;
   const mcapChg = cmc.mcap_change_24h || 0;
-  const btcTrend = dd?.btcTrend || [];
-  const btcHover = useChartHover(btcTrend as ChartPoint[]);
   const exVol = dd?.exchangeVol || {};
   const volHistory = exVol.vol_history || [];
   const volHover = useChartHover(volHistory as ChartPoint[]);
   const [chainView, setChainView] = useState<'tvl' | 'dominance'>('tvl');
-  const [btcRange, setBtcRange] = useState<'1W'|'1M'|'3M'|'1Y'|'ALL'>('1Y');
-
-  const filteredBtcTrend = useMemo(() => {
-    if (!btcTrend.length) return [];
-    const ranges: Record<string, number> = { '1W': 7, '1M': 30, '3M': 90, '1Y': 365 };
-    const days = ranges[btcRange];
-    if (!days) return btcTrend;
-    const cutoff = Date.now() - days * 86400 * 1000;
-    return btcTrend.filter((d: any) => new Date(d.t).getTime() >= cutoff);
-  }, [btcTrend, btcRange]);
-  const filteredBtcHover = useChartHover(filteredBtcTrend as ChartPoint[]);
 
   const fgColor = fgVal > 60 ? 'text-[var(--accent-green)]' : fgVal < 35 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-amber)]';
 
@@ -149,53 +136,47 @@ export default function Web3Dashboard({
             <div className="skeleton-shimmer h-3 w-24 rounded" />
           </div>
         )}
-        {filteredBtcTrend.length > 1 && (
+        {volHistory.length > 1 && (
           <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
             <div className="flex items-center justify-between mb-2">
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">BTC Market Cap Trend</div>
-              <div className="flex gap-0.5 bg-[var(--bg-deep)] rounded-lg p-0.5 border border-[var(--border-default)]">
-                {(['1W','1M','3M','1Y','ALL'] as const).map(r => (
-                  <button key={r} onClick={() => setBtcRange(r)}
-                    className={`text-[10px] px-2 py-0.5 rounded-md transition-colors ${
-                      btcRange === r ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
-                    }`}>{r}</button>
-                ))}
-              </div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">Total Crypto Volume (24h)</div>
+              <span className="text-[10px] text-[var(--text-muted)]">{volHistory.length} days</span>
             </div>
-            <div className="relative sparkline-container" onMouseMove={filteredBtcHover.onMove} onMouseLeave={filteredBtcHover.onLeave}>
-              <svg className="w-full h-16" viewBox={`0 0 ${filteredBtcTrend.length} 64`} preserveAspectRatio="none">
+            <div className="relative sparkline-container" onMouseMove={volHover.onMove} onMouseLeave={volHover.onLeave}>
+              <svg className="w-full h-16" viewBox={`0 0 ${volHistory.length} 64`} preserveAspectRatio="none">
                 <defs>
-                  <linearGradient id="btcGrad2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#f7931a" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#f7931a" stopOpacity="0.02" />
+                  <linearGradient id="totalVolGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#eab308" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#eab308" stopOpacity="0.02" />
                   </linearGradient>
                 </defs>
                 {(() => {
-                  const max = Math.max(...filteredBtcTrend.map((d: any) => d.v));
-                  const min = Math.min(...filteredBtcTrend.map((d: any) => d.v));
+                  const pts = volHistory;
+                  const max = Math.max(...pts.map((d: any) => d.v));
+                  const min = Math.min(...pts.map((d: any) => d.v));
                   const range = max - min || 1;
-                  const points = filteredBtcTrend.map((d: any, i: number) =>
-                    `${(i / (filteredBtcTrend.length - 1)) * filteredBtcTrend.length},${64 - ((d.v - min) / range) * 56 - 4}`
+                  const points = pts.map((d: any, i: number) =>
+                    `${(i / (pts.length - 1)) * pts.length},${64 - ((d.v - min) / range) * 56 - 4}`
                   ).join(' ');
-                  const areaPoints = points + ` ${filteredBtcTrend.length - 1},64 0,64`;
+                  const areaPoints = points + ` ${pts.length - 1},64 0,64`;
                   return (
                     <>
-                      <polygon points={areaPoints} fill="url(#btcGrad2)" />
-                      <polyline points={points} fill="none" stroke="#f7931a" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+                      <polygon points={areaPoints} fill="url(#totalVolGrad)" />
+                      <polyline points={points} fill="none" stroke="#eab308" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
                     </>
                   );
                 })()}
               </svg>
-              {filteredBtcHover.hover && (
+              {volHover.hover && (
                 <div className="absolute pointer-events-none bg-[var(--bg-elevated)] border border-[var(--border-hover)] rounded-lg px-2.5 py-1.5 text-[10px] shadow-lg z-10"
-                  style={{ left: Math.min(filteredBtcHover.hover.x + 8, 400), top: Math.max(0, filteredBtcHover.hover.y - 40) }}>
-                  <div className="text-[var(--text-primary)] font-semibold">{formatValue(filteredBtcHover.hover.point.v)}</div>
-                  {filteredBtcHover.hover.changeFromStart != null && (
-                    <div className={`text-[10px] ${filteredBtcHover.hover.changeFromStart >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                      {filteredBtcHover.hover.changeFromStart >= 0 ? '+' : ''}{filteredBtcHover.hover.changeFromStart.toFixed(1)}%
+                  style={{ left: Math.min(volHover.hover.x + 8, 400), top: Math.max(0, volHover.hover.y - 40) }}>
+                  <div className="text-[var(--text-primary)] font-semibold">{formatValue(volHover.hover.point.v)}</div>
+                  {volHover.hover.changeFromStart != null && (
+                    <div className={`text-[10px] ${volHover.hover.changeFromStart >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                      {volHover.hover.changeFromStart >= 0 ? '+' : ''}{volHover.hover.changeFromStart.toFixed(1)}%
                     </div>
                   )}
-                  <div className="text-[var(--text-muted)]">{formatDate(filteredBtcHover.hover.point.t)}</div>
+                  <div className="text-[var(--text-muted)]">{formatDate(volHover.hover.point.t)}</div>
                 </div>
               )}
             </div>
@@ -271,7 +252,7 @@ export default function Web3Dashboard({
 
         <div className="lg:col-span-2 space-y-5">
           {/* DEX + CEX Volume */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 data-tile">
               <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold mb-3">DEX Volume</div>
               <div className="text-xl font-bold tabular-nums text-[var(--text-primary)]">{totalVol ? <AnimatedValue value={totalVol} format={fmt} className="tabular-nums" /> : <div className="skeleton-shimmer h-7 w-28 rounded" />}</div>
@@ -298,7 +279,7 @@ export default function Web3Dashboard({
             <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 data-tile">
               <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold mb-3">CEX Volume</div>
               <div className="text-xl font-bold tabular-nums text-[var(--text-primary)]">
-                {exVol.total_vol_usd_24h ? <AnimatedValue value={exVol.total_vol_usd_24h} format={fmt} className="tabular-nums" /> : exVol.total_vol_btc_24h ? `${(exVol.total_vol_btc_24h).toFixed(0)} BTC` : <div className="skeleton-shimmer h-7 w-28 rounded" />}
+                {exVol.total_vol_usd_24h ? <AnimatedValue value={exVol.total_vol_usd_24h} format={fmtBig} className="tabular-nums" /> : exVol.total_vol_btc_24h ? `${(exVol.total_vol_btc_24h).toFixed(0)} BTC` : <div className="skeleton-shimmer h-7 w-28 rounded" />}
               </div>
               <div className="text-[10px] text-[var(--text-muted)] mt-1">24h</div>
               <div className="mt-4 space-y-1.5">
@@ -308,6 +289,23 @@ export default function Web3Dashboard({
                     <span className="text-[var(--text-secondary)] tabular-nums">{e.vol_usd ? fmt(e.vol_usd) : e.score || <SkeletonBlock className="h-3 w-12 inline-block" />}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 data-tile">
+              <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold mb-3">Stablecoin MCap</div>
+              <div className="text-xl font-bold tabular-nums text-[var(--text-primary)]">$295B+</div>
+              <div className="text-[10px] text-[var(--text-muted)] mt-1">Total stablecoin market cap</div>
+              <div className="text-[9px] text-[var(--text-disabled)] mt-0.5">via Pharos Watch</div>
+              <div className="mt-4 space-y-1.5">
+                <div className="flex justify-between text-xs">
+                  <span className="text-[var(--text-tertiary)]">USDT</span>
+                  <span className="text-[var(--text-secondary)] tabular-nums">$185B</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span className="text-[var(--text-tertiary)]">USDC</span>
+                  <span className="text-[var(--text-secondary)] tabular-nums">$76B</span>
+                </div>
               </div>
             </div>
           </div>
