@@ -97,6 +97,7 @@ function FrontierWatch({ dd }: { dd: any }) {
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
+                  <span className="text-lg font-extrabold text-[var(--accent-cyan)] tabular-nums shrink-0 leading-none">#{i + 1}</span>
                   <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] truncate transition-colors">{item.name}</span>
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-medium ${
                     item.type === 'model' ? 'text-[var(--accent-green)] bg-[var(--accent-green)]/[0.08]' : 'text-[var(--accent-purple)] bg-[var(--accent-purple)]/[0.08]'
