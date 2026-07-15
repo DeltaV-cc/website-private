@@ -328,6 +328,19 @@ try:
             t, v_btc = vols[i]
             price = prices.get(t, prices.get(min(prices.keys(), key=lambda k: abs(k-t)), 0))
             vol_history.append({'t': t, 'v': v_btc * price})  # USD volume
+    # Keep the last known chart history when CoinGecko is unavailable or returns
+    # no market-chart points during the build. Otherwise a transient API failure
+    # silently removes the IntelHub hover chart from the static deployment.
+    if not vol_history:
+        previous_path = os.path.join(PUBLIC_DIR, 'exchange-vol.json')
+        try:
+            with open(previous_path, 'r', encoding='utf-8') as f:
+                previous = json.load(f)
+            vol_history = previous.get('vol_history', []) or []
+            if vol_history:
+                print(f'⚠ Using cached volume history: {len(vol_history)} points')
+        except (OSError, ValueError, TypeError):
+            pass
     ex_data = {'exchanges': exchanges, 'total_vol_btc_24h': total_vol_btc, 'vol_history': vol_history}
     with open(os.path.join(PUBLIC_DIR, 'exchange-vol.json'), 'w') as f:
         json.dump(ex_data, f)
