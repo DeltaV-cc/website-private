@@ -1,0 +1,60 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+
+const ArrowRight = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
+
+const Check = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 flex-shrink-0 text-[var(--accent-primary)]"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
+
+/** Shared detailed offer card for the AI and Web3 pillar pages. */
+export default function OfferCard({
+  title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary,
+}: {
+  title: string;
+  pitch: React.ReactNode;
+  deliverables: string[];
+  process: { step: string; desc: string }[];
+  audience: string;
+  ctaLabel: string;
+  ctaTopic: string;
+  secondary?: { label: string; href: string };
+}) {
+  return (
+    <article className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-primary)]/25 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]">
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-primary)] to-transparent" aria-hidden="true" />
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">{title}</h2>
+      <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">{pitch}</p>
+
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">What you get</div>
+          <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
+            {deliverables.map((d) => <li key={d} className="flex gap-2.5"><Check /> {d}</li>)}
+          </ul>
+        </div>
+        <div>
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">How it works</div>
+          <ol className="space-y-3 text-sm">
+            {process.map((p, i) => (
+              <li key={p.step} className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] text-xs font-semibold flex items-center justify-center">{i + 1}</span>
+                <div><span className="font-medium text-[var(--text-primary)]">{p.step}</span><span className="text-[var(--text-tertiary)]"> — {p.desc}</span></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[var(--border-default)]">
+        <div className="text-xs text-[var(--text-muted)] mr-auto max-w-sm"><span className="font-semibold text-[var(--text-tertiary)]">For:</span> {audience}</div>
+        {secondary && <Link href={secondary.href} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">{secondary.label}</Link>}
+        <Link href={`/contact/?topic=${ctaTopic}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-primary)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors">{ctaLabel} <ArrowRight /></Link>
+      </div>
+    </article>
+  );
+}

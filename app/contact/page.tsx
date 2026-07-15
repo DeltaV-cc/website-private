@@ -1,8 +1,23 @@
 'use client';
 
-import Link from 'next/link';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-export default function ContactPage() {
+// Topic slugs used by the pillar-page CTAs (/contact/?topic=<slug>).
+// Each maps to a pre-selected "I Need" option and a starter description.
+const TOPICS: Record<string, { need: 'Web3' | 'AI' | 'Upskilling'; prompt: string }> = {
+  'agents': { need: 'AI', prompt: 'Tailored multi-agent system — my workflows and goals:\n' },
+  'inference': { need: 'AI', prompt: 'Inference & model engineering — current stack and pain points:\n' },
+  'retainer': { need: 'AI', prompt: 'AI Engineer retainer — systems in production and what I need covered:\n' },
+  'web3-advisory': { need: 'Web3', prompt: 'Setup & architecture advisory — my current setup and concerns:\n' },
+  'osint': { need: 'Web3', prompt: 'Intelligence / OSINT request — what I need investigated:\n' },
+  'growth': { need: 'Web3', prompt: 'Growth support — project stage and objectives:\n' },
+};
+
+function ContactContent() {
+  const params = useSearchParams();
+  const topic = TOPICS[params.get('topic') || ''] || null;
+
   return (
     <div className="min-h-screen">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-24">
@@ -48,9 +63,9 @@ export default function ContactPage() {
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8">
             <div className="text-[var(--accent-orange)] text-[10px] font-semibold tracking-[2px] uppercase mb-2">On Ramp</div>
             <p className="text-sm text-[var(--text-tertiary)] mb-6">
-              Tell us what you're working on and we'll get back to you with a tailored approach.
+              Tell us what you&apos;re working on and we&apos;ll get back to you with a tailored approach.
             </p>
-            <form action="mailto:engage@deltav.cc" method="post" encType="text/plain" className="space-y-3">
+            <form key={params.get('topic') || 'default'} action="mailto:engage@deltav.cc" method="post" encType="text/plain" className="space-y-3">
               <input
                 type="text"
                 name="name"
@@ -62,7 +77,7 @@ export default function ContactPage() {
                 <div className="flex gap-2">
                   {['Web3', 'AI', 'Upskilling'].map((opt) => (
                     <label key={opt} className="flex-1">
-                      <input type="radio" name="need" value={opt} className="sr-only peer" />
+                      <input type="radio" name="need" value={opt} defaultChecked={topic?.need === opt} className="sr-only peer" />
                       <span className="block px-2 py-2.5 text-xs font-medium rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] text-[var(--text-tertiary)] peer-checked:text-[var(--accent-cyan)] peer-checked:border-[var(--accent-cyan)]/40 peer-checked:bg-[var(--accent-cyan)]/5 hover:text-[var(--text-secondary)] transition-all text-center cursor-pointer">
                         {opt}
                       </span>
@@ -74,6 +89,7 @@ export default function ContactPage() {
                 name="description"
                 rows={3}
                 placeholder="Quick description..."
+                defaultValue={topic?.prompt || ''}
                 className="w-full bg-[var(--bg-deep)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-disabled)] focus:outline-none focus:border-[var(--accent-cyan)]/40 focus:shadow-[var(--glow-cyan)] transition-all resize-none"
               />
               <button
@@ -105,5 +121,14 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  // useSearchParams requires a Suspense boundary under static export.
+  return (
+    <Suspense fallback={null}>
+      <ContactContent />
+    </Suspense>
   );
 }
