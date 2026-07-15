@@ -14,6 +14,7 @@ export default function PulseFeed({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const speed = useRef(1.2);
+  const paused = useRef(false);
   const af = useRef(0);
 
   // Duplicate items for seamless infinite loop
@@ -22,18 +23,8 @@ export default function PulseFeed({
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const mv = (e: MouseEvent) => {
-      const rx = (e.clientX - el!.getBoundingClientRect().left) / el!.offsetWidth;
-      if (rx < 0.15) speed.current = -0.6;
-      else if (rx < 0.35) speed.current = 0.25;
-      else if (rx < 0.65) speed.current = 1.0;
-      else if (rx < 0.85) speed.current = 2.8;
-      else speed.current = 4.5;
-    };
-    el.addEventListener('mousemove', mv);
-    el.addEventListener('mouseleave', () => { speed.current = 1.2; });
     const tick = () => {
-      if (el) {
+      if (el && !paused.current) {
         el.scrollLeft += speed.current;
         // Seamless infinite loop reset (no visible jump due to duplication)
         const half = el.scrollWidth / 2;
@@ -47,7 +38,6 @@ export default function PulseFeed({
     };
     af.current = requestAnimationFrame(tick);
     return () => {
-      el.removeEventListener('mousemove', mv);
       cancelAnimationFrame(af.current);
     };
   }, [items.length]); // re-init if items change
@@ -63,6 +53,8 @@ export default function PulseFeed({
         <div
           ref={scrollRef}
           className="flex gap-3"
+          onMouseEnter={() => { paused.current = true; }}
+          onMouseLeave={() => { paused.current = false; }}
           style={{
             overflowX: 'scroll',
             scrollbarWidth: 'none',
