@@ -24,6 +24,21 @@ def fetch_json(url, timeout=15):
         print(f"  ⚠ {url[:60]}... → {e}")
         return None
 
+def fetch_yahoo_quote(symbol):
+    data = fetch_json(f'https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d')
+    try:
+        result = (data.get('chart', {}).get('result', [{}]) or [{}])[0]
+        meta = result.get('meta', {})
+        quote = (result.get('indicators', {}).get('quote', [{}]) or [{}])[0]
+        closes = [value for value in quote.get('close', []) if value is not None]
+        now = closes[-1] if closes else meta.get('regularMarketPrice')
+        previous = closes[-2] if len(closes) >= 2 else meta.get('previousClose')
+        if now is None:
+            return None
+        return {'price': now, 'change': ((now - previous) / previous * 100) if previous else 0}
+    except (AttributeError, IndexError, TypeError, ValueError):
+        return None
+
 # --- Copy raw items from workspace ---
 raw_dir = os.path.join(WORKSPACE_DIR, 'raw')
 if os.path.exists(raw_dir):
@@ -264,24 +279,37 @@ except Exception as e:
 
 # --- Pre-fetch Crypto Market Cap ---
 print('Fetching crypto market cap...')
+crypto = {}
+try:
+    with open(os.path.join(PUBLIC_DIR, 'crypto.json'), 'r', encoding='utf-8') as f:
+        crypto = json.load(f)
+except (OSError, ValueError, TypeError):
+    pass
 try:
     cg = fetch_json('https://api.coingecko.com/api/v3/global')
     if cg and cg.get('data'):
         d = cg['data']
-        crypto = {
+        crypto.update({
             'total_mcap': d.get('total_market_cap', {}).get('usd', 0),
             'total_volume': d.get('total_volume', {}).get('usd', 0),
             'btc_dominance': d.get('market_cap_percentage', {}).get('btc', 0),
             'eth_dominance': d.get('market_cap_percentage', {}).get('eth', 0),
             'mcap_change_24h': d.get('market_cap_change_percentage_24h_usd', 0),
             'active_cryptos': d.get('active_cryptocurrencies', 0),
-        }
-        with open(os.path.join(PUBLIC_DIR, 'crypto.json'), 'w') as f:
-            json.dump(crypto, f)
+        })
         mcap_t = crypto.get('total_mcap', 0) / 1e12
         print(f'✓ Crypto cached: ${mcap_t:.2f}T mcap')
 except Exception as e:
     print(f'⚠ Crypto fetch failed: {e}')
+
+for symbol, prefix in [('BTC-USD', 'btc'), ('ETH-USD', 'eth')]:
+    quote = fetch_yahoo_quote(symbol)
+    if quote:
+        crypto[f'{prefix}_price'] = quote['price']
+        crypto[f'{prefix}_change_24h'] = quote['change']
+if crypto:
+    with open(os.path.join(PUBLIC_DIR, 'crypto.json'), 'w') as f:
+        json.dump(crypto, f)
 
 # --- Pre-fetch BTC Market Data (trend + volume history, shared fetch) ---
 print('Fetching BTC market data...')
