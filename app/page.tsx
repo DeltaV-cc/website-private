@@ -11,11 +11,6 @@ const ArrowRight = ({ className = '' }: { className?: string }) => (
   </svg>
 );
 
-const ChevronDown = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-[var(--text-muted)]">
-    <path d="M5 7.5l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
 
 export default function DeltaVSite() {
   return (
@@ -62,11 +57,6 @@ export default function DeltaVSite() {
             </div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[var(--text-disabled)] animate-fade-in" style={{ animationDelay: '400ms' }}>
-            <span className="text-[10px] tracking-[2px] uppercase">Scroll</span>
-            <ChevronDown />
-          </div>
         </div>
       </section>
 
@@ -79,8 +69,8 @@ export default function DeltaVSite() {
 
         <div className="grid md:grid-cols-3 gap-5 stagger-children">
           {/* AI Pillar */}
-          <Link href="/ai/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
-            <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 01</div>
+          <Link href="/ai/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-vibe-pink)]/30 hover:shadow-[var(--glow-purple)] hover:-translate-y-1">
+            <div className="text-[var(--accent-vibe-pink)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 01</div>
             <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">AI Engineering</h3>
             <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
               <div className="flex gap-3">
@@ -119,8 +109,8 @@ export default function DeltaVSite() {
           </Link>
 
           {/* Web3 Pillar */}
-          <Link href="/web3/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-orange)]/30 hover:shadow-[var(--glow-orange)] hover:-translate-y-1">
-            <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 02</div>
+          <Link href="/web3/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-vibe-purple)]/30 hover:shadow-[var(--glow-purple)] hover:-translate-y-1">
+            <div className="text-[var(--accent-vibe-purple)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 02</div>
             <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Web3</h3>
             <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
               <div className="flex gap-3">
@@ -159,8 +149,8 @@ export default function DeltaVSite() {
           </Link>
 
           {/* Forge Pillar */}
-          <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
-            <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 03</div>
+          <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-vibe-pink)]/30 hover:shadow-[var(--glow-purple)] hover:-translate-y-1">
+            <div className="text-[var(--accent-vibe-pink)] text-xs font-semibold tracking-[2px] uppercase mb-4">Pillar 03</div>
             <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Skill Forge</h3>
             <div className="space-y-4 text-sm flex-1 text-[var(--text-secondary)]">
               <div className="flex gap-3">
@@ -216,7 +206,7 @@ export default function DeltaVSite() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-5 stagger-children">
-            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-cyan)]/30 hover:shadow-[var(--glow-cyan)] hover:-translate-y-1">
+            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-vibe-pink)]/30 hover:shadow-[var(--glow-purple)] hover:-translate-y-1">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl md:text-3xl font-semibold">Personal AI Mastery</h3>
                 <span className="w-10 h-10 rounded-xl bg-[var(--accent-cyan)]/10 flex items-center justify-center text-[var(--accent-cyan)] group-hover:bg-[var(--accent-cyan)]/20 transition-colors">
@@ -233,7 +223,7 @@ export default function DeltaVSite() {
               </div>
             </Link>
 
-            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-orange)]/30 hover:shadow-[var(--glow-orange)] hover:-translate-y-1">
+            <Link href="/forge/" className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 transition-all duration-300 hover:border-[var(--accent-vibe-purple)]/30 hover:shadow-[var(--glow-purple)] hover:-translate-y-1">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl md:text-3xl font-semibold">AI Engineering Bootcamp</h3>
                 <span className="w-10 h-10 rounded-xl bg-[var(--accent-orange)]/10 flex items-center justify-center text-[var(--accent-orange)] group-hover:bg-[var(--accent-orange)]/20 transition-colors">
@@ -296,6 +286,12 @@ export default function DeltaVSite() {
                 className="flex-1 px-6 py-3.5 border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] rounded-xl hover:bg-[var(--accent-cyan)]/10 hover:border-[var(--accent-cyan)]/50 transition-all text-center text-sm font-medium"
               >
                 Get in Touch
+              </Link>
+              <Link
+                href="/blog/"
+                className="flex-1 px-6 py-3.5 border border-[var(--accent-purple)]/30 text-[var(--accent-purple)] rounded-xl hover:bg-[var(--accent-purple)]/10 hover:border-[var(--accent-purple)]/50 transition-all text-center text-sm font-medium"
+              >
+                Read the Blog
               </Link>
             </div>
           </div>
