@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import SpotlightField from '../components/SpotlightField';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -10,16 +11,10 @@ export default function ForgePage() {
     <>
       {/* Hero */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-12">
-        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 03 · Education</div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">Forge Skills</h1>
-        <div className="flex items-center gap-2 mb-8">
-          <span className="w-12 h-[2px] rounded-full bg-[var(--accent-cyan)]" />
-          <span className="w-8 h-[2px] rounded-full bg-[var(--accent-amber)]/50" />
-          <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
+        <div className="grid lg:grid-cols-[1fr_18rem] gap-10 items-end">
+          <div><div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 03 · Education</div><h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">Forge Skills</h1><div className="flex items-center gap-2 mb-8"><span className="w-12 h-px bg-[var(--accent-cyan)]" /><span className="w-8 h-px bg-[var(--accent-orange)]/70" /><span className="w-4 h-px bg-[var(--accent-purple)]/60" /></div><p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">We upskill, upgrade, and keep you at the frontier. Sovereign systems, practical curricula, high-signal intelligence.</p></div>
+          <SpotlightField kind="forge" />
         </div>
-        <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-          We upskill, upgrade, and keep you at the frontier. Sovereign systems, practical curricula, high-signal intelligence.
-        </p>
       </section>
 
       {/* Flagship Curriculums */}

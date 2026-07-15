@@ -26,11 +26,11 @@
 
   /* -- Brand Accents --------------------------- */
   /* Shared service-page accent; category colors remain semantic. */
-  --accent-primary: #d5a84b;
-  --accent-primary-bright: #fbbf24;
+  --accent-primary: var(--accent-cyan);
+  --accent-primary-bright: var(--accent-mist);
   --accent-cyan:   #8de7dc;
-  --accent-orange: #d5a84b;
-  --accent-amber:  #e7b96b;
+  --accent-orange: #d7825a;
+  --accent-amber:  #c7a96b;
   --accent-purple: #78b89a;
   --accent-vibe-pink: #f472b6;
   --accent-vibe-purple: #c084fc;
@@ -260,6 +260,11 @@ body {
 .intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }
 .intelhub-tabs button[aria-selected="true"] { border-bottom-color: currentColor; background: transparent; }
 @keyframes mistOrbit { to { transform: rotate(360deg) translateX(8px) rotate(-360deg); } }
+.spotlight-field { --spot-x: 50%; --spot-y: 50%; position: relative; min-height: 15rem; overflow: hidden; border: 1px solid var(--border-default); background: #0b1210; isolation: isolate; }
+.spotlight-grid { position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(rgba(141,231,220,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(141,231,220,.12) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+.spotlight-glow { position: absolute; inset: 0; background: radial-gradient(180px circle at var(--spot-x) var(--spot-y), rgba(141,231,220,.25), transparent 68%); opacity: .8; transition: opacity .25s ease; }
+.spotlight-glyph { position: absolute; width: 7rem; height: 7rem; left: 50%; top: 50%; transform: translate(-50%, -55%); color: var(--accent-mist); filter: drop-shadow(0 0 18px rgba(141,231,220,.18)); }
+.spotlight-caption { position: absolute; bottom: 1rem; left: 1rem; color: var(--accent-cyan); opacity: .7; font: 600 .58rem var(--font-mono); letter-spacing: .18em; }
 @media (max-width: 640px) { .ascii-mist { min-height: 17rem; } .ascii-mist pre { font-size: .48rem; letter-spacing: .02em; } }
 @media (prefers-reduced-motion: reduce) { .ascii-mist-orbit { animation: none; } }
 

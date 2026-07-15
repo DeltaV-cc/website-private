@@ -2,6 +2,7 @@
 
 import React from 'react';
 import BackLink from './BackLink';
+import SpotlightField from './SpotlightField';
 
 type Accent = 'cyan' | 'orange' | 'purple' | 'amber';
 
@@ -78,22 +79,15 @@ export function PageHero({
             <BackLink fallback={backFallback} label={backLabel} />
           </div>
         )}
-        <div className={`text-xs font-semibold tracking-[3px] uppercase mb-3 ${accentText[accent]}`}>
-          {label}
+        <div className="grid lg:grid-cols-[1fr_18rem] gap-10 items-end">
+          <div>
+            <div className={`text-xs font-semibold tracking-[3px] uppercase mb-3 ${accentText[accent]}`}>{label}</div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6 leading-[0.95]">{title}</h1>
+            <div className="flex items-center gap-2 mb-8" aria-hidden="true"><span className={`w-12 h-[2px] ${accentBar[accent]}`} /><span className="w-8 h-px bg-[var(--accent-cyan)]/40" /><span className="w-4 h-px bg-[var(--accent-purple)]/40" /></div>
+            {description && <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">{description}</p>}
+          </div>
+          <SpotlightField kind={accent === 'orange' ? 'web3' : accent === 'amber' ? 'opsec' : accent === 'purple' ? 'forge' : 'ai'} />
         </div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6 leading-[0.95]">
-          {title}
-        </h1>
-        <div className="flex items-center gap-2 mb-8" aria-hidden="true">
-          <span className={`w-12 h-[2px] rounded-full ${accentBar[accent]}`} />
-          <span className="w-8 h-[2px] rounded-full bg-[var(--accent-amber)]/50" />
-          <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
-        </div>
-        {description && (
-          <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-            {description}
-          </p>
-        )}
         {children}
       </PageContainer>
     </section>
