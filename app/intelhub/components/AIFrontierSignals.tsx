@@ -5,7 +5,9 @@ export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (is
   const scrollRef = useRef<HTMLDivElement>(null);
   const speed = useRef(1.2);
   const af = useRef(0);
-  const dup = items.length > 0 ? [...items, ...items] : [];
+
+  const hasItems = items && items.length > 0;
+  const dup = hasItems ? [...items, ...items] : [];
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -33,7 +35,7 @@ export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (is
     return () => cancelAnimationFrame(af.current);
   }, [items.length]);
 
-  if (!items.length) return null;
+  if (!hasItems) return null;
 
   return (
     <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">

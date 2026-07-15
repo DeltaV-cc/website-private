@@ -6,15 +6,14 @@ export default function MarketNewsTicker({ items, ts }: { items: any[]; ts: (iso
   const speed = useRef(1.2);
   const af = useRef(0);
 
-  if (!items || items.length === 0) return null;
-
-  const filtered = items.filter((it: any) => {
+  const hasItems = items && items.length > 0;
+  const filtered = hasItems ? items.filter((it: any) => {
     const tag = (it.tag || '').toLowerCase();
     const title = (it.title || '').toLowerCase();
     return tag === 'macro' || tag === 'science' || title.includes('market') || title.includes('fed') || title.includes('yield') || title.includes('spx') || title.includes('gold');
-  });
-
-  const dup = filtered.length > 0 ? [...filtered, ...filtered] : [];
+  }) : [];
+  const hasFiltered = filtered.length > 0;
+  const dup = hasFiltered ? [...filtered, ...filtered] : [];
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -42,7 +41,7 @@ export default function MarketNewsTicker({ items, ts }: { items: any[]; ts: (iso
     return () => cancelAnimationFrame(af.current);
   }, [filtered.length]);
 
-  if (!filtered.length) return null;
+  if (!hasFiltered) return null;
 
   return (
     <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
