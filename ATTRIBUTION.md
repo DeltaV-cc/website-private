@@ -10,11 +10,12 @@ Some bundled assets are **not** created by Delta V and retain their original cre
 | Field | Detail |
 |--------|--------|
 | **File** | [`public/images/lotusbloom.gif`](./public/images/lotusbloom.gif) |
-| **Credit** | **Amaranth** |
+| **Creator** | [Aaron Rolston](https://www.aaronrolston.com/) |
+| **Created for** | [Amaranth Foundation](https://amaranth.foundation/) |
 | **Use** | Decorative / brand-adjacent animation retained in the asset library |
-| **Note** | This GIF is associated with **Amaranth** visuals and is included **with attribution**. It is **not** covered as original Delta V work. |
+| **Note** | This GIF is **not** original Delta V work. It is included **with attribution** to Aaron Rolston and Amaranth Foundation. |
 
-If you are Amaranth or otherwise hold rights in this asset and prefer different credit, a link, or removal, contact [engage@deltav.cc](mailto:engage@deltav.cc) and we will correct this notice promptly.
+If you hold rights in this asset and prefer different credit, a license note, or removal, contact [engage@deltav.cc](mailto:engage@deltav.cc) and we will correct this notice promptly.
 
 ---
 
@@ -26,7 +27,7 @@ Logos and marks under `public/images/` for third parties (e.g. DeFiScan, STORM P
 
 ## Design inspiration (non-asset)
 
-The site’s dark, high-signal aesthetic is informed by product and research UIs in the broader ecosystem (including execution bars often associated with tools such as Artemis, DefiLlama, and Amaranth). Inspiration is not a license grant for third-party code or media.
+The site’s dark, high-signal aesthetic is informed by product and research UIs in the broader ecosystem (including execution bars often associated with tools such as Artemis and DefiLlama, and visual craft from studios such as [Aaron Rolston](https://www.aaronrolston.com/) / [Amaranth Foundation](https://amaranth.foundation/)). Inspiration is not a license grant for third-party code or media.
 
 ---
 
