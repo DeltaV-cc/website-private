@@ -37,29 +37,29 @@ const BCOL: Record<string, string> = {
 };
 
 const SOURCE_HINTS: Record<string, string[]> = {
-  // -- Crypto / Web3 --
+  // ── Crypto / Web3 ──
   cryptoquant: ['crypto'], lookonchain: ['crypto'], glassnode: ['crypto'], l2beat: ['crypto'],
   defi: ['crypto'], polymarket: ['crypto'], coindesk: ['crypto'], cointelegraph: ['crypto'], theblock: ['crypto'],
   defillama: ['crypto'], santimentdata: ['crypto'], polymutex: ['crypto'],
   ki_young_ju: ['crypto'], nero_eth: ['crypto'], backthebunny: ['crypto'],
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
-  // -- Science / Research --
+  // ── Science / Research ──
   'y combinator': ['science', 'ai'], 'hacker news': ['science', 'ai'], arxiv: ['ai'],
   nature: ['science'], sciencedaily: ['science'],
-  // -- Cybersec --
+  // ── Cybersec ──
   nist: ['cybersec'], cisa: ['cybersec'], haveibeenpwned: ['cybersec'], bleepingcomputer: ['cybersec'],
   krebs: ['cybersec'], threatpost: ['cybersec'],
   dinosn: ['cybersec'], pcaversaccio: ['cybersec'],
-  // -- Macro --
+  // ── Macro ──
   'federal reserve': ['macro'], treasury: ['macro'], imf: ['macro'], 'world bank': ['macro'], bis: ['macro'],
   bloomberg: ['macro'], reuters: ['macro'],
   michaeljburry: ['macro'], delphi_digital: ['crypto', 'macro'],
   marketnews_feed: ['macro'],
-  // -- Hardware / Chips / Physics --
+  // ── Hardware / Chips / Physics ──
   nvidia: ['hardware'], intel: ['hardware'], amd: ['hardware'], tsmc: ['hardware'],
   samsung: ['hardware'], micron: ['hardware'], asml: ['hardware'], qualcomm: ['hardware'],
   broadcom: ['hardware'], 'arm holdings': ['hardware'], semiconductor: ['hardware'],
-  // -- AI / ML --
+  // ── AI / ML ──
   'hugging face': ['ai'],
   anthropic: ['ai'], openai: ['ai'], deepmind: ['ai'], moonshot: ['ai'], baichuan: ['ai'], teknium: ['ai'], stepfun: ['ai'],
   'google research': ['ai'], 'meta ai': ['ai'], 'stanford hai': ['ai'], 'alignment forum': ['ai'],
@@ -142,6 +142,18 @@ function notTweet(it: { source: string }) { return !XSOURCES.some(s => it.source
 
 const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComponent(url)}`;
 
+// Fetch JSON with a hard timeout so a hanging host can never stall the dashboard.
+// Returns null on any failure (timeout, network, non-2xx, bad JSON).
+const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(ms) });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  }
+};
+
 export function useIntelData() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -155,195 +167,143 @@ export function useIntelData() {
 
   const loadAll = useCallback(async () => {
     try {
-      const rawRes = await fetch(`${BASE}/data/raw-items.json`);
-      if (rawRes.ok) {
-        const d = await rawRes.json();
-        if (Array.isArray(d)) {
-          setItems(d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel));
-          setLastFetch(new Date());
-        }
-      }
-      const picksRes = await fetch(`${BASE}/data/picks.json`);
-      if (picksRes.ok) setPicks(await picksRes.json());
-      const wlRes = await fetch(`${BASE}/data/cybersec-watchlist.json`);
-      if (wlRes.ok) {
-        const wl = await wlRes.json();
-        const now = Date.now();
-        setWatchlist(wl.filter((x: any) => new Date(x.expires).getTime() > now));
-      }
-      const patRes = await fetch(`${BASE}/data/patents.json`);
-      if (patRes.ok) setPatents(await patRes.json());
-    } catch { /* ignore */ }
-    setLoading(false);
+      await Promise.allSettled([
+        fetchJson(`${BASE}/data/raw-items.json`).then((d) => {
+          if (Array.isArray(d)) {
+            setItems(d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel));
+            setLastFetch(new Date());
+          }
+        }),
+        fetchJson(`${BASE}/data/picks.json`).then((d) => { if (d) setPicks(d); }),
+        fetchJson(`${BASE}/data/cybersec-watchlist.json`).then((wl) => {
+          if (Array.isArray(wl)) {
+            const now = Date.now();
+            setWatchlist(wl.filter((x: any) => new Date(x.expires).getTime() > now));
+          }
+        }),
+        fetchJson(`${BASE}/data/patents.json`).then((d) => { if (d) setPatents(d); }),
+      ]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const loadLive = useCallback(async () => {
-    try {
-      const result: any = {};
-      try {
-        // TradFi Fear & Greed (independent index, free API)
-        const r = await fetch('https://feargreedchart.com/api/?action=history');
-        if (r.ok) {
-          const history = await r.json();
-          if (Array.isArray(history) && history.length > 0) {
-            const latest = history[history.length - 1];
-            const score = latest.score || 0;
-            const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
-            result.fearGreed = { score, rating, date: latest.date };
-          }
+    // Each task fetches, transforms, and merges its own patch into `dd` the moment
+    // it lands. Everything runs in parallel with per-fetch timeouts, so one slow or
+    // hanging host can never keep the rest of the dashboard in a skeleton state.
+    const merge = (patch: any) => {
+      if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
+    };
+
+    // ── Static JSON (same-origin mirror, reliable — BTC/ETH, gold, indices…) ──
+    const staticTasks: Array<Promise<void>> = [
+      fetchJson(`${BASE}/data/crypto.json`).then((d) => { if (d) merge({ crypto: d }); }),
+      fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
+      fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
+      fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
+      fetchJson(`${BASE}/data/cnn-fg.json`).then((d) => { if (d) merge({ cnnFG: d }); }),
+      fetchJson(`${BASE}/data/hf.json`).then((d) => {
+        if (d) merge({ ...(d.models ? { hfModels: d.models } : {}), ...(d.spaces ? { hfSpaces: d.spaces } : {}) });
+      }),
+      fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => { if (d) merge({ arenaLB: d }); }),
+      fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
+      fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
+      fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
+      // Pre-fetched forex baseline (loadForex may override with live Yahoo data)
+      fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
+    ];
+
+    // ── Live third-party APIs (CORS/rate-limit prone — never block the statics) ──
+    const liveTasks: Array<Promise<void>> = [
+      // TradFi Fear & Greed
+      fetchJson('https://feargreedchart.com/api/?action=history').then((history) => {
+        if (Array.isArray(history) && history.length > 0) {
+          const latest = history[history.length - 1];
+          const score = latest.score || 0;
+          const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
+          merge({ fearGreed: { score, rating, date: latest.date } });
         }
-      } catch { /* */ }
-      try {
-        // Crypto Fear & Greed (alternative.me)
-        const r = await fetch('https://api.alternative.me/fng/?limit=1');
-        if (r.ok) result.cryptoFG = await r.json();
-      } catch { /* */ }
-      try {
-        const r = await fetch('https://api.llama.fi/v2/chains');
-        if (r.ok) {
-          const chains = await r.json();
-          const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
-          result.tvl = sorted.slice(0, 12).map((c: any) => ({ name: c.name, tvl: c.tvl, change_1d: c.change_1d || 0, change_7d: c.change_7d || 0 }));
-          const total = sorted.reduce((s: number, c: any) => s + c.tvl, 0) || 1;
-          result.dominance = sorted.slice(0, 5).map((c: any) => ({ name: c.name, pct: ((c.tvl / total) * 100).toFixed(1) + '%' }));
+      }),
+      // Crypto Fear & Greed (alternative.me)
+      fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
+      // TVL + dominance
+      fetchJson('https://api.llama.fi/v2/chains').then((chains) => {
+        if (!Array.isArray(chains)) return;
+        const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
+        const total = sorted.reduce((s: number, c: any) => s + c.tvl, 0) || 1;
+        merge({
+          tvl: sorted.slice(0, 12).map((c: any) => ({ name: c.name, tvl: c.tvl, change_1d: c.change_1d || 0, change_7d: c.change_7d || 0 })),
+          dominance: sorted.slice(0, 5).map((c: any) => ({ name: c.name, pct: ((c.tvl / total) * 100).toFixed(1) + '%' })),
+        });
+      }),
+      // DEX volume
+      fetchJson('https://api.llama.fi/overview/dexs?dataType=dailyVolume').then((d) => {
+        if (!d) return;
+        // Use totalDataChartBreakdown (last entry) since breakdown24h is null in v2
+        const chart = d.totalDataChartBreakdown;
+        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
+        let volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
+          name: n, volume24h: bd[n] || 0,
+        })).filter((x: any) => x.volume24h > 0).sort((a: any, b: any) => b.volume24h - a.volume24h);
+        if (volume.length === 0) {
+          volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
         }
-      } catch { /* */ }
-      try {
-        const r = await fetch('https://api.llama.fi/overview/dexs?dataType=dailyVolume');
-        if (r.ok) {
-          const d = await r.json();
-          result.totalVolume24h = d.total24h || 0;
-          // Use totalDataChartBreakdown (last entry) since breakdown24h is null in v2
-          const chart = d.totalDataChartBreakdown;
-          const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
-          const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
-          result.volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
-            name: n, volume24h: bd[n] || 0,
-          })).filter((x: any) => x.volume24h > 0).sort((a: any, b: any) => b.volume24h - a.volume24h);
-          if (result.volume.length === 0) {
-            // Fallback: show chain names with placeholder
-            result.volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
-          }
+        merge({ totalVolume24h: d.total24h || 0, volume });
+      }),
+      // Fees
+      fetchJson('https://api.llama.fi/overview/fees?dataType=dailyFees').then((d) => {
+        if (!d) return;
+        const chart = d.totalDataChartBreakdown;
+        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
+        let fees = (d.allChains || []).slice(0, 10).map((n: string) => ({
+          name: n, fees24h: bd[n] || 0,
+        })).filter((x: any) => x.fees24h > 0).sort((a: any, b: any) => b.fees24h - a.fees24h);
+        if (fees.length === 0) {
+          fees = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, fees24h: 0 }));
         }
-      } catch { /* */ }
-      try {
-        const r = await fetch('https://api.llama.fi/overview/fees?dataType=dailyFees');
-        if (r.ok) {
-          const d = await r.json();
-          const chart = d.totalDataChartBreakdown;
-          const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
-          const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
-          result.fees = (d.allChains || []).slice(0, 10).map((n: string) => ({
-            name: n, fees24h: bd[n] || 0,
-          })).filter((x: any) => x.fees24h > 0).sort((a: any, b: any) => b.fees24h - a.fees24h);
-          if (result.fees.length === 0) {
-            result.fees = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, fees24h: 0 }));
-          }
-        }
-      } catch { /* */ }
-      try {
-        const r = await fetch('https://stablecoins.llama.fi/stablecoins?includePrices=false');
-        if (r.ok) {
-          const d = await r.json();
-          result.stablecoins = (d.peggedAssets || []).map((s: any) => ({
+        merge({ fees });
+      }),
+      // Stablecoins
+      fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false').then((d) => {
+        if (!d) return;
+        merge({
+          stablecoins: (d.peggedAssets || []).map((s: any) => ({
             name: s.name || s.symbol, circulating: s.circulating?.peggedUSD || 0,
-          })).filter((s: any) => s.circulating > 0).sort((a: any, b: any) => b.circulating - a.circulating).slice(0, 6);
-        }
-      } catch { /* */ }
-      try {
-        const r = await fetch('https://gamma-api.polymarket.com/events?limit=50&active=true&closed=false');
-        if (r.ok) {
-          const events = await r.json();
-          const keep = ['crypto', 'bitcoin', 'ethereum', 'solana', 'defi', 'macro', 'fed', 'inflation', 'rate', 'gdp', 'tariff', 'sec', 'regulation', 'treasury', 'election', 'war', 'oil', 'energy', 'ai'];
-          const junk = ['nba', 'nfl', 'mlb', 'ufc', 'soccer', 'formula', 'grammy', 'oscar', 'celebrity', 'rihanna'];
-          result.polymarket = events.filter((e: any) => {
+          })).filter((s: any) => s.circulating > 0).sort((a: any, b: any) => b.circulating - a.circulating).slice(0, 6),
+        });
+      }),
+      // Polymarket
+      fetchJson('https://gamma-api.polymarket.com/events?limit=50&active=true&closed=false').then((events) => {
+        if (!Array.isArray(events)) return;
+        const keep = ['crypto', 'bitcoin', 'ethereum', 'solana', 'defi', 'macro', 'fed', 'inflation', 'rate', 'gdp', 'tariff', 'sec', 'regulation', 'treasury', 'election', 'war', 'oil', 'energy', 'ai'];
+        const junk = ['nba', 'nfl', 'mlb', 'ufc', 'soccer', 'formula', 'grammy', 'oscar', 'celebrity', 'rihanna'];
+        merge({
+          polymarket: events.filter((e: any) => {
             const t = (e.title || '').toLowerCase();
             return !junk.some(k => t.includes(k)) && keep.some(k => t.includes(k));
-          }).slice(0, 8);
-        }
-      } catch { /* */ }
-      // Load indices + forex from pre-fetched static JSON (no CORS)
-      try {
-        const idxRes = await fetch(`${BASE}/data/indices.json`);
-        if (idxRes.ok) {
-          const idx = await idxRes.json();
-          if (idx.spx || idx.csi) result.indices = idx;
-        }
-      } catch { /* */ }
-      // Load pre-fetched forex data
-      try {
-        const fxRes = await fetch(`${BASE}/data/forex.json`);
-        if (fxRes.ok) setForex(await fxRes.json());
-      } catch { /* */ }
-      // Load HF from static JSON (no CORS)
-      try {
-        const hfRes = await fetch(`${BASE}/data/hf.json`);
-        if (hfRes.ok) {
-          const hf = await hfRes.json();
-          if (hf.models) result.hfModels = hf.models;
-          if (hf.spaces) result.hfSpaces = hf.spaces;
-        }
-      } catch { /* */ }
-      // Load crypto market cap from static JSON
-      try {
-        const cRes = await fetch(`${BASE}/data/crypto.json`);
-        if (cRes.ok) result.crypto = await cRes.json();
-      } catch { /* */ }
-      // Load gold price from static JSON
-      try {
-        const gRes = await fetch(`${BASE}/data/gold.json`);
-        if (gRes.ok) result.gold = await gRes.json();
-      } catch { /* */ }
-      // Load 10Y Treasury yield from static JSON
-      try {
-        const yRes = await fetch(`${BASE}/data/us10y.json`);
-        if (yRes.ok) result.us10y = await yRes.json();
-      } catch { /* */ }
-      // Load CNN Fear & Greed (stock market sentiment)
-      try {
-        const cnnRes = await fetch(`${BASE}/data/cnn-fg.json`);
-        if (cnnRes.ok) result.cnnFG = await cnnRes.json();
-      } catch { /* */ }
-      // Load Arena leaderboard
-      try {
-        const arenaRes = await fetch(`${BASE}/data/arena-leaderboard.json`);
-        if (arenaRes.ok) result.arenaLB = await arenaRes.json();
-      } catch { /* */ }
-      // Load BTC trend (sparkline)
-      try {
-        const btcRes = await fetch(`${BASE}/data/btc-trend.json`);
-        if (btcRes.ok) result.btcTrend = await btcRes.json();
-      } catch { /* */ }
-      // Load exchange volume ranking
-      try {
-        const exRes = await fetch(`${BASE}/data/exchange-vol.json`);
-        if (exRes.ok) result.exchangeVol = await exRes.json();
-      } catch { /* */ }
-      // Load Artemis newsletter (weekly Substack)
-      try {
-        const artRes = await fetch(`${BASE}/data/artemis-newsletter.json`);
-        if (artRes.ok) result.artemisNewsletter = await artRes.json();
-      } catch { /* */ }
-      setDd(result);
-    } catch { /* */ }
+          }).slice(0, 8),
+        });
+      }),
+    ];
+
+    await Promise.allSettled([...staticTasks, ...liveTasks]);
   }, []);
 
   const loadInfosec = useCallback(async () => {
-    try {
-      let result: any = { kev: [], cves: [], breaches: [] };
-      try {
-        const r = await fetch(proxy('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json'));
-        if (r.ok) {
-          const d = await r.json();
+    const result: any = { kev: [], cves: [], breaches: [] };
+    await Promise.allSettled([
+      fetchJson(proxy('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json')).then((d) => {
+        if (d) {
           result.kev = (d.vulnerabilities || []).slice(0, 6).map((v: any) => ({
             cve: v.cveID, product: v.product, vendor: v.vendorProject, name: v.vulnerabilityName, dateAdded: v.dateAdded, dueDate: v.dueDate,
           }));
         }
-      } catch { /* */ }
-      try {
-        const r = await fetch(proxy('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=6'));
-        if (r.ok) {
-          const d = await r.json();
+      }),
+      fetchJson(proxy('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=6')).then((d) => {
+        if (d) {
           result.cves = (d.vulnerabilities || []).map((v: any) => {
             const cve = v.cve || {};
             const m = cve.metrics?.cvssMetricV31?.[0]?.cvssData || cve.metrics?.cvssMetricV30?.[0]?.cvssData || {};
@@ -351,29 +311,24 @@ export function useIntelData() {
             return { id: cve.id, severity: m.baseSeverity || 'N/A', score: m.baseScore || 0, description: (desc?.value || '').slice(0, 140), published: cve.published };
           });
         }
-      } catch { /* */ }
-      try {
-        const r = await fetch(proxy('https://haveibeenpwned.com/api/v3/breaches'));
-        if (r.ok) {
-          const d = await r.json();
+      }),
+      fetchJson(proxy('https://haveibeenpwned.com/api/v3/breaches')).then((d) => {
+        if (d) {
           result.breaches = (Array.isArray(d) ? d : []).slice(0, 8).map((b: any) => ({
             name: b.Name || b.Title, domain: b.Domain, date: b.BreachDate, count: b.PwnCount, data: (b.DataClasses || []).slice(0, 5).join(', '),
           }));
         }
-      } catch { /* */ }
-      if (!result.kev.length || !result.cves.length || !result.breaches.length) {
-        try {
-          const r = await fetch(`${BASE}/data/infosec.json`);
-          if (r.ok) {
-            const c = await r.json();
-            if (!result.kev.length) result.kev = c.kev || [];
-            if (!result.cves.length) result.cves = c.cves || [];
-            if (!result.breaches.length) result.breaches = c.breaches || [];
-          }
-        } catch { /* */ }
+      }),
+    ]);
+    if (!result.kev.length || !result.cves.length || !result.breaches.length) {
+      const c = await fetchJson(`${BASE}/data/infosec.json`);
+      if (c) {
+        if (!result.kev.length) result.kev = c.kev || [];
+        if (!result.cves.length) result.cves = c.cves || [];
+        if (!result.breaches.length) result.breaches = c.breaches || [];
       }
-      setDd2(result);
-    } catch { /* */ }
+    }
+    setDd2(result);
   }, []);
 
   const loadForex = useCallback(async () => {
@@ -386,11 +341,10 @@ export function useIntelData() {
     ];
     try {
       const results: any = {};
-      for (const p of pairs) {
-        try {
-          const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${p.symbol}?interval=1d&range=10y`);
-          if (r.ok) {
-            const d = await r.json();
+      await Promise.allSettled(pairs.map(async (p) => {
+        {
+          const d = await fetchJson(`https://query1.finance.yahoo.com/v8/finance/chart/${p.symbol}?interval=1d&range=10y`);
+          if (d) {
             const meta = d?.chart?.result?.[0]?.meta;
             const quotes = d?.chart?.result?.[0]?.indicators?.quote?.[0];
             const timestamps = d?.chart?.result?.[0]?.timestamp;
@@ -418,8 +372,8 @@ export function useIntelData() {
               };
             }
           }
-        } catch { /* */ }
-      }
+        }
+      }));
       if (Object.keys(results).length > 0) setForex(results);
     } catch { /* */ }
   }, []);
@@ -445,7 +399,7 @@ export function useIntelData() {
     const kl = kw.toLowerCase().replace(/\./g, '');
     return new RegExp('\\b' + kl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
   };
-  // -- 7-day window ------------------------------------------------
+  // ── 7-day window ────────────────────────────────────────────────
   // News items must only surface the last 7 days. Dates arrive in mixed
   // formats (RFC-2822 "Tue, 14 Jul 2026 …" and ISO with a spaced offset
   // "2026-07-14T14:31:44 +0000"), so parse defensively.
