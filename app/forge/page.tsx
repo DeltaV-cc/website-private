@@ -74,7 +74,7 @@ export default function ForgePage() {
       <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
         <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-6">Tutorials</div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
+          <Link href="/tutorials/hermes-qwen-dgx-spark/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
@@ -87,7 +87,7 @@ export default function ForgePage() {
             </div>
           </Link>
 
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
+          <Link href="/tutorials/langchain-chatchat-ollama/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/40 via-[var(--accent-amber)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
@@ -100,7 +100,7 @@ export default function ForgePage() {
             </div>
           </Link>
 
-          <Link href="/tutorials/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-purple)]/25 hover:-translate-y-0.5">
+          <Link href="/tutorials/muscriptor-music-to-midi/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-purple)]/25 hover:-translate-y-0.5">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-purple)]/40 via-[var(--accent-purple)]/20 to-transparent" />
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
