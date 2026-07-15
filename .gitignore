@@ -2,10 +2,16 @@ node_modules/
 .next/
 out/
 .env
+.env.*
+!.env.example
 *.log
-.env.local
 .cache/
 tsconfig.tsbuildinfo
+__pycache__/
+*.py[cod]
+.Python
+.DS_Store
+Thumbs.db
 
 # Stale static-export artifacts (real build output lives in out/, rebuilt by CI)
 /_next/
@@ -23,3 +29,5 @@ tsconfig.tsbuildinfo
 .factory/
 .agents/
 .continue/
+.idea/
+.vscode/
