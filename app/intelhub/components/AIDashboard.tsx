@@ -7,6 +7,7 @@ import { Item, PatentsData } from '../types';
 import { CategoryBox, fmtNum } from './Shared';
 import AIFrontierSignals from './AIFrontierSignals';
 import ArenaLeaderboard from './ArenaLeaderboard';
+import AnimatedValue from './AnimatedValue';
 
 const PIPELINE_DESC: Record<string, string> = {
   'text-generation': 'Text generation & chat',
@@ -59,6 +60,14 @@ function describe(item: any): string {
   return pipeline ? pipeline.replace(/-/g, ' ') : (desc || 'ML model / space').slice(0, 60);
 }
 
+function fmtBig(n: number): string {
+  if (n >= 1e12) return `${(n / 1e12).toFixed(2)}T`;
+  if (n >= 1e9) return `${(n / 1e9).toFixed(2)}B`;
+  if (n >= 1e6) return `${(n / 1e6).toFixed(2)}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(1)}K`;
+  return n.toFixed(0);
+}
+
 /* ── Frontier Watch — compact 2-col grid ── */
 function FrontierWatch({ dd }: { dd: any }) {
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
@@ -75,8 +84,8 @@ function FrontierWatch({ dd }: { dd: any }) {
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-green)]/[0.04] to-transparent">
-        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
+        <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
         <span className="text-[10px] text-[var(--text-muted)] shrink-0">Trending models & spaces • 24h</span>
         <div className="flex gap-1 text-[10px] ml-auto">
           {[
@@ -127,10 +136,45 @@ export default function AIDashboard({
   ago: (iso: string) => string; ts: (iso: string) => string;
 }) {
   const aiCats = catBoxes.filter((c: any) => ['ai', 'hardware'].includes(c.id));
+  const totalModels = dd?.hfModels?.length || 0;
+  const totalDownloads = (dd?.hfModels || []).reduce((s: number, m: any) => s + (m.downloads || 0), 0);
+  const totalSpaces = dd?.hfSpaces?.length || 0;
 
   return (
     <div className="space-y-5">
       <AIFrontierSignals items={items} ts={ts} />
+
+      {/* ── HF Stats Banner ── */}
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
+        {totalModels ? (
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">Total HuggingFace Models</div>
+              <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+                <AnimatedValue value={totalModels} format={(n: number) => n.toLocaleString()} className="tabular-nums" />
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="text-right">
+                <div className="text-[10px] text-[var(--text-muted)] uppercase">Total Downloads</div>
+                <div className="text-lg font-bold tabular-nums text-[var(--accent-cyan)]">
+                  <AnimatedValue value={totalDownloads} format={fmtBig} className="tabular-nums" />
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-[10px] text-[var(--text-muted)] uppercase">Spaces</div>
+                <div className="text-lg font-bold tabular-nums text-[var(--accent-purple)]">{totalSpaces.toLocaleString()}</div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3 py-1">
+            <div className="skeleton-shimmer h-3 w-40 rounded" />
+            <div className="skeleton-shimmer h-8 w-48 rounded" />
+          </div>
+        )}
+      </div>
+
       <FrontierWatch dd={dd} />
       <ArenaLeaderboard lb={dd?.arenaLB} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

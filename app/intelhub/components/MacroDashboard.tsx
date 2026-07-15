@@ -1,5 +1,6 @@
-/* IntelHub — Macro Dashboard v6
-   Artemis/DefiLlama-level market data with MetricTile, Sparkline, DataBar */
+/* IntelHub — Macro Dashboard v7
+   Artemis/DefiLlama-level market data with MetricTile, Sparkline, DataBar
+   Restyled to match Web3Dashboard visual language */
 'use client';
 
 import { Item, PatentsData } from '../types';
@@ -21,6 +22,17 @@ const TrendDown = () => (
     <path d="M10 10V6M10 10H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
+
+/* ── Number formatters (matching Web3Dashboard pattern) ── */
+function fmtPrice(n: number): string {
+  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function parsePrice(p: any): number {
+  if (typeof p === 'number') return p;
+  if (typeof p === 'string') return parseFloat(p.replace(/[^0-9.]/g, '')) || 0;
+  return 0;
+}
 
 export default function MacroDashboard({
   items, dd, patents, forex, catBoxes, TC, ago, ts,
@@ -54,9 +66,73 @@ export default function MacroDashboard({
   const fgColor = fgVal <= 20 ? 'text-[var(--accent-red)]' : fgVal <= 40 ? 'text-[var(--accent-orange)]' 
     : fgVal <= 60 ? 'text-[var(--accent-amber)]' : fgVal <= 80 ? 'text-lime-400' : 'text-[var(--accent-green)]';
 
+  // Price formatter color
+  const spxChgColor = spx?.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+
   return (
     <div className="space-y-5">
       <MarketNewsTicker items={items} ts={ts} />
+
+      {/* ── Global Market Overview Banner (Web3-style) ── */}
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
+        {spx ? (
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">S&P 500</div>
+              <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+                <AnimatedValue value={parsePrice(spx.price)} format={fmtPrice} className="tabular-nums" />
+              </div>
+              <div className={`text-xs font-semibold mt-1 ${spxChgColor}`}>
+                {spx.changePct || ''} <span className="text-[var(--text-muted)] font-normal">24h</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              {/* Fear & Greed */}
+              <div className="flex items-center gap-2.5">
+                <div className="text-right">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Fear & Greed</div>
+                  {typeof stockFG.score === 'number' ? (
+                    <>
+                      <div className={`text-lg font-bold tabular-nums ${fgColor}`}>{fgVal}</div>
+                      <div className={`text-[10px] ${fgColor}/60`}>{fgLabel || '···'}</div>
+                    </>
+                  ) : (
+                    <div className="space-y-1">
+                      <div className="skeleton-shimmer h-5 w-10 rounded" />
+                      <div className="skeleton-shimmer h-3 w-12 rounded" />
+                    </div>
+                  )}
+                </div>
+                {typeof stockFG.score === 'number' && (
+                  <div className="relative w-3 h-16 bg-gradient-to-t from-red-500/40 via-amber-500/40 to-emerald-500/40 rounded-full overflow-hidden">
+                    <div className="absolute left-0 right-0 h-[3px] bg-white rounded-full transition-all duration-500"
+                      style={{ bottom: `${Math.max(3, Math.min(97, fgVal))}%` }} />
+                  </div>
+                )}
+              </div>
+              {/* Gold + 10Y */}
+              <div className="text-right space-y-1">
+                {gold && (
+                  <div className="text-xs text-[var(--text-tertiary)]">Gold{' '}
+                    <span className="text-[var(--text-secondary)] tabular-nums">${gold.price}</span>
+                  </div>
+                )}
+                {us10y && (
+                  <div className="text-xs text-[var(--text-tertiary)]">10Y Yield{' '}
+                    <span className="text-[var(--text-secondary)] tabular-nums">{us10y.price}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3 py-1">
+            <div className="skeleton-shimmer h-3 w-32 rounded" />
+            <div className="skeleton-shimmer h-8 w-44 rounded" />
+            <div className="skeleton-shimmer h-3 w-20 rounded" />
+          </div>
+        )}
+      </div>
 
       {/* ── Market Grid — Metric Tiles ── */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
@@ -205,10 +281,10 @@ export default function MacroDashboard({
         </div>
       </div>
 
-      {/* ── Forex ── */}
+      {/* ── Forex table (Web3-style) ── */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-        <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-sky-500/[0.04] to-transparent">
-          <span className="text-xs text-sky-400 uppercase tracking-[1.5px] font-bold">Forex (vs USD)</span>
+        <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
+          <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Forex (vs USD)</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -224,7 +300,7 @@ export default function MacroDashboard({
             </thead>
             <tbody className="divide-y divide-white/[0.02]">
               {forexPairs.length > 0 ? forexPairs.map((p: any, i: number) => (
-                <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                <tr key={i} className="hover:bg-white/[0.02] transition-colors duration-150">
                   <td className="px-5 py-2.5 text-[var(--text-secondary)] font-medium">USD/{p.label}</td>
                   <td className="px-4 py-2.5 text-right text-[var(--text-primary)] font-semibold tabular-nums">{p.rateStr}</td>
                   <td className="px-4 py-2.5 text-right">
@@ -239,7 +315,7 @@ export default function MacroDashboard({
               )) : (
                 <tr><td colSpan={6} className="px-4 py-12 text-center">
                   <div className="flex flex-col items-center gap-3">
-                    <svg className="w-5 h-5 text-sky-400/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <svg className="w-5 h-5 text-[var(--accent-cyan)]/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="text-[var(--text-disabled)] text-xs">Forex data will load after next sync</span>
