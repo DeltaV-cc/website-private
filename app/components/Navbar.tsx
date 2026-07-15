@@ -2,23 +2,18 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 
 const NAV_ITEMS = [
   { href: '/ai/', label: 'AI' },
   { href: '/web3/', label: 'Web3' },
   { href: '/forge/', label: 'Forge' },
+  { href: '/opsec/', label: 'OpSec' },
+  { href: '/tutorials/', label: 'Tutorials' },
   { href: '/blog/', label: 'Blog' },
   { href: '/intelhub/', label: 'IntelHub' },
   { href: '/contact/', label: 'Contact' },
 ];
-
-/* Inline SVG icons — no icon library */
-const LogoIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="flex-shrink-0">
-    <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" strokeWidth="2" fill="none" />
-    <path d="M9 20V8l10 6-10 6z" fill="currentColor" />
-  </svg>
-);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -29,8 +24,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors duration-200 group">
-            <span className="text-[var(--accent-cyan)] group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.3)] transition-all">
-              <LogoIcon />
+            <span className="flex-shrink-0 transition-all group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.35)]">
+              <Logo size={28} />
             </span>
             <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>
           </Link>

@@ -3,66 +3,59 @@ import { useEffect, useRef } from 'react';
 /* AI Frontier Signals — live ticker of trending AI items from X, HF, arXiv (infinite seamless) */
 export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (iso: string) => string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  if (!items || items.length === 0) return null;
-  const filtered = items.filter((it: any) => {
-    const tag = (it.tag || '').toLowerCase();
-    const title = (it.title || '').toLowerCase();
-    return tag === 'ai' || tag === 'hardware' || title.includes('ai ') || title.includes('model') || title.includes('llm');
-  }).slice(0, 8);
-
-  if (filtered.length === 0) return null;
-
-  // Duplicate for seamless infinite loop
-  const loopItems = [...filtered, ...filtered];
+  const speed = useRef(1.2);
+  const af = useRef(0);
+  const dup = items.length > 0 ? [...items, ...items] : [];
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container || loopItems.length <= 1) return;
-
-    let scrolling = true;
-    const cardWidth = 210;
-
-    const interval = setInterval(() => {
-      if (!container || !scrolling) return;
-      const maxScroll = container.scrollWidth / 2; // half because duplicated
-      if (container.scrollLeft >= maxScroll - 5) {
-        container.scrollLeft = 0; // seamless reset (content identical)
-      } else {
-        container.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      }
-    }, 2200);
-
-    const handleEnter = () => { scrolling = false; };
-    const handleLeave = () => { scrolling = true; };
-    container.addEventListener('mouseenter', handleEnter);
-    container.addEventListener('mouseleave', handleLeave);
-
-    return () => {
-      clearInterval(interval);
-      container.removeEventListener('mouseenter', handleEnter);
-      container.removeEventListener('mouseleave', handleLeave);
+    const el = scrollRef.current;
+    if (!el) return;
+    const move = (e: MouseEvent) => {
+      const rx = (e.clientX - el!.getBoundingClientRect().left) / el!.offsetWidth;
+      if (rx < 0.2) speed.current = 0.3;
+      else if (rx < 0.4) speed.current = 0.7;
+      else if (rx < 0.6) speed.current = 1.0;
+      else if (rx < 0.8) speed.current = 1.5;
+      else speed.current = 2.2;
     };
-  }, [loopItems.length]);
+    el.addEventListener('mousemove', move);
+    el.addEventListener('mouseleave', () => { speed.current = 1.2; });
+    const tick = () => {
+      if (el) {
+        el.scrollLeft += speed.current;
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+        else if (el.scrollLeft < 0) el.scrollLeft += half;
+      }
+      af.current = requestAnimationFrame(tick);
+    };
+    af.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(af.current);
+  }, [items.length]);
 
   return (
-    <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-      <div className="px-4 py-2 border-b border-[var(--border-default)] flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
-        <span className="text-[10px] text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-semibold">AI Frontier Signals</span>
-        <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
-      </div>
-      <div ref={scrollRef} className="flex overflow-x-auto gap-1 p-2" style={{ scrollbarWidth: 'none' }}>
-        {loopItems.map((it: any, i: number) => (
-          <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-            className="flex-shrink-0 max-w-[200px] px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-default)] hover:border-[var(--accent-cyan)]/30 transition-all text-xs hover:scale-[1.02]">
-            <div className="text-[var(--text-secondary)] line-clamp-2 leading-snug mb-1">{it.title}</div>
-            <div className="flex items-center gap-2 text-[10px] text-[var(--text-muted)]">
-              <span>{it.source || ''}</span>
-              <span className="tabular-nums ml-auto">{ts(it.published_at)}</span>
-            </div>
-          </a>
-        ))}
+    <div className="border-b border-[#222] py-4 bg-[#080810]">
+      <div className="max-w-[1440px] mx-auto px-8">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-xs text-[#ededed]/25 uppercase tracking-[.2em] font-semibold">AI Frontier</span>
+          <span className="w-px h-3 bg-white/5" />
+          <span className="text-xs text-[#ededed]/20 tabular-nums">{items.length} signals</span>
+          <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
+        </div>
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-none"
+          style={{ WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)' }}>
+          {dup.map((it, i) => (
+            <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
+              className="flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-[#111] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group">
+              <div className="text-sm font-medium leading-snug line-clamp-2 text-[#ededed]/85 group-hover:text-white">{it.title}</div>
+              <div className="mt-2 text-[10px] text-[#ededed]/30 line-clamp-2 leading-relaxed">{it.summary}</div>
+              <div className="flex items-center gap-2 mt-3 text-xs text-[#ededed]/25">
+                <span className="truncate max-w-[120px]">{it.source}</span>
+                <span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

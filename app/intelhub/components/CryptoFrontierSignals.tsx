@@ -19,6 +19,7 @@ export default function CryptoFrontierSignals({ items, ts }: { items: any[]; ts:
         <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-orange)] animate-pulse" />
         <span className="text-[10px] text-[var(--accent-orange)] uppercase tracking-[1.5px] font-semibold">Crypto Frontier</span>
         <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
+        <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
       </div>
       <div className="flex overflow-x-auto gap-1 p-2" style={{ scrollbarWidth: 'none' }}>
         {loopItems.map((it: any, i: number) => (

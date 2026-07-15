@@ -5,6 +5,15 @@ out/
 *.log
 .env.local
 .cache/
+tsconfig.tsbuildinfo
+
+# Stale static-export artifacts (real build output lives in out/, rebuilt by CI)
+/_next/
+/*.html
+/*.txt
+
+# Local reference material (not site source)
+/_Ressources/
 
 # Platform-specific AI skill installs
 .claude/

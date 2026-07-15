@@ -14,7 +14,7 @@ export default function WeeklyDeFi1() {
     >
       {/* Market Pulse — condensed */}
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
-        <div className="text-xs text-[#666] uppercase tracking-[1px] mb-2">Market Pulse</div>
+        <h2 className="!text-lg !font-semibold !mt-0 mb-2">Market Pulse</h2>
         <div className="flex items-center justify-between text-sm">
           <span>BTC <span className="text-[#f59e0b]">$62,900</span></span>
           <span className="text-[#444]">|</span>
