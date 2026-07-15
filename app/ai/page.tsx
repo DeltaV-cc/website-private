@@ -61,6 +61,22 @@ export default function AIPage() {
           </Link>
         </div>
       </section>
+
+      {/* ── Compact Ecosystem Banner (space-efficient horizontal scroll) ───────────── */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16 border-t border-[var(--border-default)] pt-10">
+        <div className="text-center mb-5">
+          <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[3px] uppercase mb-1.5">Ecosystem &amp; Stack</div>
+        </div>
+        <div className="overflow-x-auto scrollbar-thin pb-3">
+          <div className="flex items-center gap-2.5 min-w-max">
+            {['Hugging Face','OpenCode','Hermes','Ollama','OpenRouter','BF6','LM Studio','Cocktail Peanut'].map((name) => (
+              <div key={name} className="flex-shrink-0 px-3.5 py-1 rounded-md border border-[var(--border-default)] bg-[var(--bg-surface)] text-[9px] font-mono tracking-[1.25px] text-[var(--text-tertiary)]/80 hover:text-[var(--accent-cyan)] hover:border-[var(--accent-cyan)]/30 hover:bg-[var(--bg-hover)] transition-all whitespace-nowrap select-none">
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
