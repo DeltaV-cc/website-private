@@ -25,6 +25,9 @@
   --text-disabled:  rgba(237, 237, 237, 0.26);
 
   /* -- Brand Accents --------------------------- */
+  /* Shared service-page accent; category colors remain semantic. */
+  --accent-primary: #f59e0b;
+  --accent-primary-bright: #fbbf24;
   --accent-cyan:   #00f0ff;
   --accent-orange: #C2410C;
   --accent-amber:  #f59e0b;
@@ -211,10 +214,27 @@ body {
 /* -- Utility Classes -------------------------- */
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-amber));
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-bright));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Remove embedded newsletter subscription chrome from injected Artemis HTML. */
+.artemis-body .subscription-widget-wrap-editor,
+.artemis-body .subscription-widget,
+.artemis-body [data-component-name="SubscribeWidgetToDOM"],
+.artemis-body form,
+.artemis-body input[type="email"] {
+  display: none !important;
+}
+.artemis-body h1:first-child,
+.artemis-body h1:first-of-type,
+.artemis-body h2:first-child,
+.artemis-body h2:first-of-type,
+.artemis-body h3:first-child,
+.artemis-body h3:first-of-type {
+  display: none !important;
 }
 
 .gradient-text-subtle {
