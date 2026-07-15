@@ -1,7 +1,14 @@
 {
-  "name": "deltav-full",
+  "name": "deltav-website",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Delta V public website — sovereign AI, Web3, and OpSec. Next.js static export.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeltaV-cc/website-private.git"
+  },
+  "homepage": "https://deltav-cc.github.io/website-private/",
   "scripts": {
     "dev": "next dev",
     "prebuild": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py",
