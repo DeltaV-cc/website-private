@@ -203,6 +203,14 @@ try:
                 item['vol_usd'] = round(vb * btc_price, 2)
             exchanges.append(item)
             total_btc += vb
+    if not exchange_vol['vol_history']:
+        previous_path = os.path.join(PUBLIC_DIR, 'exchange-vol.json')
+        try:
+            with open(previous_path, 'r', encoding='utf-8') as f:
+                previous = json.load(f)
+            exchange_vol['vol_history'] = previous.get('vol_history', []) or []
+        except (OSError, ValueError, TypeError):
+            pass
     exchange_vol['exchanges'] = exchanges
     exchange_vol['total_vol_btc_24h'] = total_btc
     if btc_price:
