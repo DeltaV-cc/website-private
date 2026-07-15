@@ -5,7 +5,7 @@
 
 import { Item } from '../types';
 
-/* ── Skeleton Screens ── */
+/* -- Skeleton Screens -- */
 export function SkeletonBlock({ className }: { className?: string }) {
   return (
     <div className={`rounded relative overflow-hidden bg-white/[0.03] ${className || ''}`}>
@@ -28,7 +28,7 @@ export function SkeletonPrice() {
   );
 }
 
-/* ── SVG Icons (inline Heroicons) ── */
+/* -- SVG Icons (inline Heroicons) -- */
 export function ShieldIcon() {
   return (
     <svg className="w-5 h-5 text-red-400/80 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -61,7 +61,7 @@ export function ExclaimIcon() {
   );
 }
 
-/* ── SeverityBadge ── */
+/* -- SeverityBadge -- */
 export function SeverityBadge({ sev, score }: { sev: string; score: number }) {
   const color =
     sev === 'CRITICAL'
@@ -79,7 +79,7 @@ export function SeverityBadge({ sev, score }: { sev: string; score: number }) {
   );
 }
 
-/* ── TileBox ── */
+/* -- TileBox -- */
 export function TileBox({
   title, accent, color, count, children, maxH,
 }: {
@@ -96,7 +96,7 @@ export function TileBox({
   );
 }
 
-/* ── TileRow ── */
+/* -- TileRow -- */
 export function TileRow({ it, ago }: { it: Item; ago: (iso: string) => string }) {
   return (
     <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-4 py-3 hover:bg-white/[0.03] group">
@@ -106,7 +106,7 @@ export function TileRow({ it, ago }: { it: Item; ago: (iso: string) => string })
   );
 }
 
-/* ── BarChart ── */
+/* -- BarChart -- */
 export function BarChart({
   data, max, color,
 }: {
@@ -134,7 +134,7 @@ export function BarChart({
   );
 }
 
-/* ── CategoryBox ── */
+/* -- CategoryBox -- */
 export function CategoryBox({
   cat, ago, TC, compact,
 }: {
@@ -175,7 +175,7 @@ export function CategoryBox({
   );
 }
 
-/* ── helpers ── */
+/* -- helpers -- */
 export function fmtNum(n: number | null | undefined, decimals = 0): string {
   if (n == null || isNaN(n)) return '...';
   return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });

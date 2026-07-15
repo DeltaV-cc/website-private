@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
 
 export default function MuScriptorTutorial() {
   return (
@@ -12,6 +13,49 @@ export default function MuScriptorTutorial() {
       readingTime="5 min read"
       excerpt="Turn any audio into per-instrument MIDI locally with MuScriptor — a decoder-only transformer trained on 170K songs. 1-click Pinokio or native Python, CPU-capable across all model sizes."
     >
+      <ArchitectureDiagram
+        title="MuScriptor local audio → MIDI pipeline"
+        subtitle="CPU-capable · optional GPU · no cloud required at runtime"
+        layers={[
+          {
+            id: 'input',
+            label: 'Input',
+            accent: 'cyan',
+            nodes: [
+              { title: 'Audio file', subtitle: 'WAV / MP3 / stems', accent: 'cyan' },
+            ],
+          },
+          {
+            id: 'runtime',
+            label: 'Runtime',
+            accent: 'purple',
+            nodes: [
+              { title: 'Pinokio 1-click', subtitle: 'Zero-terminal launcher', accent: 'purple' },
+              { title: 'Native Python / FastAPI', subtitle: 'CLI + localhost:8000' },
+              { title: 'MuScriptor model', subtitle: 'Small 103M · Medium 307M · Large 1.4B', accent: 'amber' },
+            ],
+          },
+          {
+            id: 'output',
+            label: 'Output',
+            accent: 'amber',
+            nodes: [
+              { title: 'Per-instrument MIDI', subtitle: 'Streaming note events · DAW-ready', accent: 'amber' },
+            ],
+          },
+        ]}
+      />
+
+      <ArchitectureFlow
+        title="Two install paths"
+        accent="purple"
+        steps={[
+          { label: 'Pinokio', detail: 'Search · Install · Start' },
+          { label: 'or native', detail: 'HF auth · uvx serve' },
+          { label: 'Transcribe', detail: 'Drop audio → MIDI' },
+        ]}
+      />
+
       <h2>Overview</h2>
       <ul>
         <li><strong>Model:</strong> MuScriptor by Kyutai + Mirelo AI — decoder-only transformer, trained on 170K songs, multi-instrument.</li>

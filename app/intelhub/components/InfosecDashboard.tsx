@@ -15,7 +15,7 @@ export default function InfosecDashboard({
 }) {
   return (
     <div className="space-y-5">
-      {/* ── Active Threats banner ── */}
+      {/* -- Active Threats banner -- */}
       <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.03] p-5">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-sm text-red-400 uppercase tracking-[.15em] font-bold">Active Threats</span>
@@ -79,7 +79,7 @@ export default function InfosecDashboard({
         </div>
       </div>
 
-      {/* ── Intel Grid ── */}
+      {/* -- Intel Grid -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <TileBox
           title="CISA Alerts"
@@ -128,7 +128,7 @@ export default function InfosecDashboard({
         </TileBox>
       </div>
 
-      {/* ── Cybersec Watchlist ── */}
+      {/* -- Cybersec Watchlist -- */}
       {watchlist.length > 0 && (
         <div className="grid grid-cols-1 gap-4">
           <TileBox title="Cybersec Watchlist" accent="text-rose-400" color="border-l-rose-400" count={watchlist.length}>
@@ -165,7 +165,7 @@ export default function InfosecDashboard({
         </div>
       )}
 
-      {/* ── Social Media ── */}
+      {/* -- Social Media -- */}
       <div className="grid grid-cols-1 gap-4">
         <TileBox
           title="Social Media"

@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
 
 export default function LinuxHardeningPage() {
   return (
@@ -11,6 +12,17 @@ export default function LinuxHardeningPage() {
       backLabel="All OpSec guides"
       excerpt="Factory reset and hardening for sovereignty-focused Linux setups — full-disk encryption, firewall lockdown, and layered defense modules."
     >
+      <ArchitectureFlow
+        title="Linux baseline path"
+        accent="amber"
+        steps={[
+          { label: 'Clean install', detail: 'LUKS / FDE' },
+          { label: 'Core harden', detail: 'UFW · updates' },
+          { label: 'Modules', detail: 'SSH · AppArmor' },
+          { label: 'OpSec ops', detail: 'Sandbox · audit' },
+        ]}
+      />
+
       <h2>1. Factory Reset / Clean Install</h2>
       <ul>
         <li>Perform a fresh install of your distribution (Ubuntu, Debian, Fedora, or Arch recommended).</li>

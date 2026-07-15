@@ -17,7 +17,7 @@ function fmtBig(n: number): string {
   return `$${n.toFixed(2)}`;
 }
 
-/* ── DeFi Weekly Card ── */
+/* -- DeFi Weekly Card -- */
 function ArtemisWeeklyCard({ dd }: { dd: any }) {
   const nl = dd?.artemisNewsletter;
   const latest = nl?.latest_weekly;
@@ -84,10 +84,10 @@ export default function Web3Dashboard({
     <div className="space-y-5">
       <CryptoFrontierSignals items={items} ts={ts} />
 
-      {/* ── Artemis Weekly Newsletter ── */}
+      {/* -- Artemis Weekly Newsletter -- */}
       <ArtemisWeeklyCard dd={dd} />
 
-      {/* ── Market Cap Banner ── */}
+      {/* -- Market Cap Banner -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-purple)]/[0.04] via-[var(--accent-cyan)]/[0.04] to-transparent">
         {mcap ? (
           <div className="flex items-end justify-between">
@@ -184,7 +184,7 @@ export default function Web3Dashboard({
         )}
       </div>
 
-      {/* ── TVL + DEX/CEX ── */}
+      {/* -- TVL + DEX/CEX -- */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="lg:col-span-1 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="flex items-center justify-between mb-4">

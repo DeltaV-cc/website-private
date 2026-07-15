@@ -37,29 +37,29 @@ const BCOL: Record<string, string> = {
 };
 
 const SOURCE_HINTS: Record<string, string[]> = {
-  // ── Crypto / Web3 ──
+  // -- Crypto / Web3 --
   cryptoquant: ['crypto'], lookonchain: ['crypto'], glassnode: ['crypto'], l2beat: ['crypto'],
   defi: ['crypto'], polymarket: ['crypto'], coindesk: ['crypto'], cointelegraph: ['crypto'], theblock: ['crypto'],
   defillama: ['crypto'], santimentdata: ['crypto'], polymutex: ['crypto'],
   ki_young_ju: ['crypto'], nero_eth: ['crypto'], backthebunny: ['crypto'],
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
-  // ── Science / Research ──
+  // -- Science / Research --
   'y combinator': ['science', 'ai'], 'hacker news': ['science', 'ai'], arxiv: ['ai'],
   nature: ['science'], sciencedaily: ['science'],
-  // ── Cybersec ──
+  // -- Cybersec --
   nist: ['cybersec'], cisa: ['cybersec'], haveibeenpwned: ['cybersec'], bleepingcomputer: ['cybersec'],
   krebs: ['cybersec'], threatpost: ['cybersec'],
   dinosn: ['cybersec'], pcaversaccio: ['cybersec'],
-  // ── Macro ──
+  // -- Macro --
   'federal reserve': ['macro'], treasury: ['macro'], imf: ['macro'], 'world bank': ['macro'], bis: ['macro'],
   bloomberg: ['macro'], reuters: ['macro'],
   michaeljburry: ['macro'], delphi_digital: ['crypto', 'macro'],
   marketnews_feed: ['macro'],
-  // ── Hardware / Chips / Physics ──
+  // -- Hardware / Chips / Physics --
   nvidia: ['hardware'], intel: ['hardware'], amd: ['hardware'], tsmc: ['hardware'],
   samsung: ['hardware'], micron: ['hardware'], asml: ['hardware'], qualcomm: ['hardware'],
   broadcom: ['hardware'], 'arm holdings': ['hardware'], semiconductor: ['hardware'],
-  // ── AI / ML ──
+  // -- AI / ML --
   'hugging face': ['ai'],
   anthropic: ['ai'], openai: ['ai'], deepmind: ['ai'], moonshot: ['ai'], baichuan: ['ai'], teknium: ['ai'], stepfun: ['ai'],
   'google research': ['ai'], 'meta ai': ['ai'], 'stanford hai': ['ai'], 'alignment forum': ['ai'],
@@ -445,7 +445,7 @@ export function useIntelData() {
     const kl = kw.toLowerCase().replace(/\./g, '');
     return new RegExp('\\b' + kl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
   };
-  // ── 7-day window ────────────────────────────────────────────────
+  // -- 7-day window ------------------------------------------------
   // News items must only surface the last 7 days. Dates arrive in mixed
   // formats (RFC-2822 "Tue, 14 Jul 2026 …" and ISO with a spaced offset
   // "2026-07-14T14:31:44 +0000"), so parse defensively.
