@@ -68,7 +68,7 @@ function fmtBig(n: number): string {
   return n.toFixed(0);
 }
 
-/* ── Frontier Watch — compact 2-col grid ── */
+/* -- Frontier Watch — compact 2-col grid -- */
 function FrontierWatch({ dd }: { dd: any }) {
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
   const models = (dd?.hfModels || []).map((m: any) => ({ ...m, type: 'model' }));
@@ -127,7 +127,7 @@ function FrontierWatch({ dd }: { dd: any }) {
   );
 }
 
-/* ── Main AI Dashboard ── */
+/* -- Main AI Dashboard -- */
 export default function AIDashboard({
   items, dd, catBoxes, TC, ago, ts,
 }: {
@@ -144,7 +144,7 @@ export default function AIDashboard({
     <div className="space-y-5">
       <AIFrontierSignals items={items} ts={ts} />
 
-      {/* ── HF Stats Banner ── */}
+      {/* -- HF Stats Banner -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
         {totalModels ? (
           <div className="flex items-end justify-between">

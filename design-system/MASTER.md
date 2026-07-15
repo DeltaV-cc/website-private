@@ -56,9 +56,11 @@ Hero
 └── Subtitle: Positioning statement
 
 Three Pillars (clickable cards)
-├── AI Engineering (#00f0ff)
-├── Web3 (#C2410C)
-└── Forge Skills (#a855f7)
+├── AI Engineering — cyan (#00f0ff)
+├── Web3 — orange (#C2410C)
+└── Skill Forge — purple (#a855f7)
+
+> **Page scaffolding:** use `app/components/PageShell.tsx` (`PageHero`, `PageContainer`, `ServiceCard`) and follow `design-system/PAGE_TEMPLATE.md` for every new page.
 
 Curated Intel (auto-scrolling feed)
 └── Latest signals from pipeline

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* ═══════════════════════════════════════════════
-   Delta V — Global Design System v2
+/* ===============================================
+   Delta V - Global Design System v2
    Artemis · DefiLlama · Amaranth level execution
    Tailwind CSS v4 · Zero new dependencies
-   ═══════════════════════════════════════════════ */
+   =============================================== */
 
 :root {
-  /* ── Backgrounds ───────────────────────────── */
+  /* -- Backgrounds ----------------------------- */
   /* Widened luminance ramp so cards/surfaces separate from the page */
   --bg-deep:    #0a0a0a;
   --bg-surface: #16161b;
@@ -16,7 +16,7 @@
   --bg-hover:   rgba(255, 255, 255, 0.03);
   --bg-active:  rgba(255, 255, 255, 0.06);
 
-  /* ── Text ──────────────────────────────────── */
+  /* -- Text ------------------------------------ */
   /* Alphas lifted for WCAG-AA legibility on the dark base */
   --text-primary:   #ededed;
   --text-secondary: rgba(237, 237, 237, 0.72);
@@ -24,11 +24,11 @@
   --text-muted:     rgba(237, 237, 237, 0.40);
   --text-disabled:  rgba(237, 237, 237, 0.26);
 
-  /* ── Brand Accents ─────────────────────────── */
+  /* -- Brand Accents --------------------------- */
   --accent-cyan:   #00f0ff;
   --accent-orange: #C2410C;
   --accent-amber:  #f59e0b;
-    --accent-purple: #a855f7;
+  --accent-purple: #a855f7;
   --accent-vibe-pink: #f472b6;
   --accent-vibe-purple: #c084fc;
   --accent-vibe-cyan: #67e8f9;
@@ -36,13 +36,13 @@
   --accent-red:    #ef4444;
   --accent-green:  #10b981;
 
-  /* ── Functional Accents ────────────────────── */
+  /* -- Functional Accents ---------------------- */
   --accent-positive: #10b981;
   --accent-negative: #ef4444;
   --accent-warning:  #f59e0b;
   --accent-info:     #00f0ff;
 
-  /* ── Borders ───────────────────────────────── */
+  /* -- Borders --------------------------------- */
   --border-default: #2a2a30;
   --border-hover:   rgba(255, 255, 255, 0.12);
   --border-active:  rgba(255, 255, 255, 0.20);
@@ -50,7 +50,7 @@
   --border-accent-orange: rgba(194, 65, 12, 0.30);
   --border-accent-purple: rgba(168, 85, 247, 0.25);
 
-  /* ── Shadows & Elevation ───────────────────── */
+  /* -- Shadows & Elevation --------------------- */
   --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.40);
   --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.50);
   --shadow-lg:    0 12px 32px rgba(0, 0, 0, 0.55);
@@ -59,12 +59,12 @@
   --glow-orange:  0 0 24px rgba(194, 65, 12, 0.12);
   --glow-purple:  0 0 24px rgba(168, 85, 247, 0.12);
 
-  /* ── Typography ────────────────────────────── */
+  /* -- Typography ------------------------------ */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-geist-sans);
 
-  /* ── Motion Design Tokens ──────────────────── */
+  /* -- Motion Design Tokens -------------------- */
   --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-cubic:cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -76,7 +76,7 @@
   --duration-slow:    300ms;
   --duration-dramatic:500ms;
 
-  /* ── Spacing Scale (rem-based) ─────────────── */
+  /* -- Spacing Scale (rem-based) --------------- */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
   --space-3:  0.75rem;
@@ -98,7 +98,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* ── Base ───────────────────────────────────── */
+/* -- Base ------------------------------------- */
 
 body {
   background: var(--bg-deep);
@@ -108,14 +108,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Selection ──────────────────────────────── */
+/* -- Selection -------------------------------- */
 
 ::selection {
   background: rgba(0, 240, 255, 0.20);
   color: var(--text-primary);
 }
 
-/* ── Focus ──────────────────────────────────── */
+/* -- Focus ------------------------------------ */
 
 :focus-visible {
   outline: 2px solid var(--accent-cyan);
@@ -123,7 +123,75 @@ body {
   border-radius: 4px;
 }
 
-/* ── Scrollbar ──────────────────────────────── */
+/* Skip link - off-screen until keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--accent-cyan);
+  color: #000;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--duration-fast) var(--ease-smooth);
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Shared layout shell (prefer PageContainer component when possible) */
+.page-container {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .page-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* Interactive surface used by pillar / offering cards */
+.card-interactive {
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  border-radius: 1rem;
+  transition:
+    border-color var(--duration-slow) var(--ease-smooth),
+    box-shadow var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo),
+    background var(--duration-base) var(--ease-smooth);
+}
+.card-interactive:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+.card-interactive:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Pillar-specific hover accents - cyan / orange / purple brand map */
+.card-accent-cyan:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 30%, transparent);
+  box-shadow: var(--glow-cyan), var(--shadow-md);
+}
+.card-accent-orange:hover {
+  border-color: color-mix(in srgb, var(--accent-orange) 30%, transparent);
+  box-shadow: var(--glow-orange), var(--shadow-md);
+}
+.card-accent-purple:hover {
+  border-color: color-mix(in srgb, var(--accent-purple) 30%, transparent);
+  box-shadow: var(--glow-purple), var(--shadow-md);
+}
+
+/* -- Scrollbar -------------------------------- */
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -140,7 +208,7 @@ body {
   background: rgba(255, 255, 255, 0.18);
 }
 
-/* ── Utility Classes ────────────────────────── */
+/* -- Utility Classes -------------------------- */
 
 .gradient-text {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-amber));
@@ -160,7 +228,7 @@ body {
 .glow-orange { box-shadow: var(--glow-orange); }
 .glow-purple { box-shadow: var(--glow-purple); }
 
-/* ── Card Elevation System ─────────────────── */
+/* -- Card Elevation System ------------------- */
 
 .elevated-flat {
   border: 1px solid var(--border-default);
@@ -199,7 +267,7 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
-/* ── Data Visualization Language ───────────── */
+/* -- Data Visualization Language ------------- */
 
 .data-tile {
   position: relative;
@@ -236,7 +304,7 @@ body {
   pointer-events: none;
 }
 
-/* ── Shimmer / Skeleton ─────────────────────── */
+/* -- Shimmer / Skeleton ----------------------- */
 
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
@@ -256,14 +324,14 @@ body {
   animation: shimmer 1.5s infinite;
 }
 
-/* ── Section Divider ────────────────────────── */
+/* -- Section Divider -------------------------- */
 
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border-default), transparent);
 }
 
-/* ── Ambient Glow (subtle page decoration) ───── */
+/* -- Ambient Glow (subtle page decoration) ----- */
 
 .ambient-glow {
   position: absolute;
@@ -278,7 +346,7 @@ body {
 .ambient-glow-orange { background: var(--accent-orange); }
 .ambient-glow-purple { background: var(--accent-purple); }
 
-/* ── Link Accent ───────────────────────────── */
+/* -- Link Accent ----------------------------- */
 
 .link-accent {
   color: var(--text-secondary);
@@ -288,7 +356,7 @@ body {
   color: var(--accent-cyan);
 }
 
-/* ── Reduced Motion ─────────────────────────── */
+/* -- Reduced Motion --------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -297,9 +365,16 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .ecosystem-marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    width: 100% !important;
+    max-width: 100%;
+    justify-content: center;
+  }
 }
 
-/* ── Animations ──────────────────────────────── */
+/* -- Animations -------------------------------- */
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(12px); }
@@ -347,7 +422,7 @@ body {
   animation: gradientShift 6s ease infinite;
 }
 
-/* ── Stagger Children Helper ─────────────────── */
+/* -- Stagger Children Helper ------------------- */
 
 .stagger-children > * {
   opacity: 0;
@@ -360,7 +435,7 @@ body {
 .stagger-children > *:nth-child(5) { animation-delay: 240ms; }
 .stagger-children > *:nth-child(6) { animation-delay: 300ms; }
 
-/* ── Article typography (self-contained, no typography plugin) ──── */
+/* -- Article typography (self-contained, no typography plugin) ---- */
 
 .article-prose {
   color: var(--text-secondary);
@@ -450,7 +525,22 @@ body {
 .dv-copy-btn:hover { color: var(--accent-cyan); border-color: var(--border-accent-cyan); }
 .dv-copy-btn[data-copied="true"] { color: var(--accent-green); opacity: 1; }
 
-/* ── Responsive ──────────────────────────────── */
+/* -- Ecosystem marquee (seamless infinite logo strip) -- */
+
+@keyframes ecosystem-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
+}
+
+.ecosystem-marquee {
+  animation: ecosystem-marquee 40s linear infinite;
+  will-change: transform;
+}
+.ecosystem-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* -- Responsive -------------------------------- */
 
 @media (max-width: 375px) {
   .container-padding {

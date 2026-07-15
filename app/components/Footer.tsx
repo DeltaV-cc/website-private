@@ -54,10 +54,15 @@ export default function Footer() {
         </div>
         <div className="pt-6 border-t border-[var(--border-default)] flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-xs text-[var(--text-disabled)]">All work is grounded in open-source foundations, extreme privacy, and long-term autonomy.</div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {/* Quiet privacy transparency - no trackers, static export only */}
+            <span className="text-[10px] text-[var(--text-disabled)] tracking-wide" title="This site is statically exported. No analytics, cookies, or third-party trackers.">
+              No trackers · Static export
+            </span>
             <span className="text-xs text-[var(--text-disabled)]">Delta V · 2026</span>
             <span className="inline-flex items-center gap-1.5 text-[10px] text-[var(--text-disabled)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" style={{ animation: 'smoothPulse 3s ease-in-out infinite' }} />Systems operational
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" style={{ animation: 'smoothPulse 3s ease-in-out infinite' }} aria-hidden="true" />
+              Systems operational
             </span>
           </div>
         </div>

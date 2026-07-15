@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
 
 export default function WindowsHardeningPage() {
   return (
@@ -11,6 +12,17 @@ export default function WindowsHardeningPage() {
       backLabel="All OpSec guides"
       excerpt="Telemetry reduction and endpoint security for Windows — BitLocker, local accounts, Defender hardening, and firewall lockdown for sovereignty-focused setups."
     >
+      <ArchitectureFlow
+        title="Windows baseline path"
+        accent="amber"
+        steps={[
+          { label: 'Clean ISO', detail: 'Local account' },
+          { label: 'BitLocker', detail: 'Full-disk encrypt' },
+          { label: 'Telemetry cut', detail: 'Defender harden' },
+          { label: 'Firewall', detail: 'Endpoint rules' },
+        ]}
+      />
+
       <h2>1. Factory Reset</h2>
       <ul>
         <li>Clean Windows installation from an official ISO.</li>

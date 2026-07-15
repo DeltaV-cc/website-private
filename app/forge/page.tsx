@@ -60,14 +60,28 @@ export default function ForgePage() {
         </div>
       </section>
 
-      {/* OpSec Foundation */}
+      {/* Workshops + OpSec products */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16 border-t border-[var(--border-default)] pt-12">
-        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">OpSec Foundation</div>
-        <Link href="/opsec/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-amber)]/20 to-transparent" />
-          <h4 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-cyan)] transition-colors">OS Hardening</h4>
-          <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
-        </Link>
+        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">Workshops &amp; OpSec</div>
+        <div className="grid md:grid-cols-2 gap-5">
+          <Link href="/forge/x402-workshop/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-amber)]/20 to-transparent" />
+            <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[var(--accent-orange)] mb-2">Half-day</div>
+            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-orange)] transition-colors">x402 &amp; Agent Payments</h3>
+            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Lab HTTP 402 stablecoin payments, spend caps for agents, and a production dry-run. Facilitated - not a long-read substitute.</p>
+          </Link>
+          <Link href="/opsec/sota-stack/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)] via-[var(--accent-orange)]/20 to-transparent" />
+            <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[var(--accent-amber)] mb-2">Blueprint</div>
+            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-amber)] transition-colors">SOTA Operator Stack</h3>
+            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">DeFi-native blueprint: YubiKey, signer endpoints, Safe treasury key management, DeFi ops runbooks, optional automation float. High-decentralization stage ready.</p>
+          </Link>
+          <Link href="/opsec/" className="group md:col-span-2 block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
+            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-cyan)] transition-colors">OS Hardening</h3>
+            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
+          </Link>
+        </div>
       </section>
 
       {/* Tutorials */}

@@ -32,12 +32,22 @@ const tutorials = [
     excerpt:
       'Turn any audio into per-instrument MIDI locally with MuScriptor — 1-click Pinokio or native Python, CPU-capable across all model sizes.',
   },
+  {
+    slug: 'x402-sota-setup',
+    title: 'x402 SOTA Setup: HTTP-Native Stablecoin Payments for APIs & Agents',
+    date: 'July 2026',
+    readingTime: '12 min',
+    tags: ['Web3', 'Agents', 'OpSec'],
+    excerpt:
+      'Optional deep reference for payment-gated APIs (HTTP 402 + USDC). Prefer the SOTA stack + workshop for the product path.',
+  },
 ];
 
-const TAG_ORDER = ['Local AI', 'Agents', 'RAG', 'Audio', 'OpSec'];
+const TAG_ORDER = ['Web3', 'Local AI', 'Agents', 'RAG', 'Audio', 'OpSec'];
 
 const tagTextClass = (tag: string) =>
   tag === 'Agents' ? 'text-[var(--accent-purple)]' :
+  tag === 'Web3' ? 'text-[var(--accent-orange)]' :
   tag === 'Audio' || tag === 'OpSec' ? 'text-[var(--accent-amber)]' :
   'text-[var(--accent-cyan)]';
 

@@ -1,18 +1,19 @@
 /*
-  # Delta V ZHC - Security Headers (Cloudflare Pages)
-  # Applied to all routes
+  # Delta V ZHC - Security Headers (Cloudflare Pages / static hosting)
+  # Applied to all routes. Site is fully static: no analytics, no third-party scripts.
 
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), bluetooth=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
   # Strict Content-Security-Policy
-  # Allows self + unsafe-inline only for styles (required by Tailwind)
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
+  # Allows self + unsafe-inline for Next.js hydration / Tailwind. No third-party origins.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;
 
   # Additional hardening
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: require-corp
   Cross-Origin-Resource-Policy: same-origin
+  X-DNS-Prefetch-Control: off

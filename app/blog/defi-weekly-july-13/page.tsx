@@ -24,9 +24,9 @@ export default function DeFiWeeklyJuly13() {
       readingTime="10 min read"
       excerpt="BTC holds $64K after reclaiming from sub-$60K June lows. Spot ETF outflow streak breaks after 6 weeks. AAVE V4 deposits surpass $250M. MSTR navigates first treasury underwater test."
     >
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           MARKET PULSE — weekly data only, no text
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
         <h2 className="!text-lg !font-semibold !mt-0 mb-3">Market Pulse — This Week</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -67,9 +67,9 @@ export default function DeFiWeeklyJuly13() {
         </div>
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           TODAY WE HIGHLIGHT — 6 items, unified
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
         <div className="text-xs text-[#666] uppercase tracking-[1px] mb-4">Today We Highlight</div>
         <div className="space-y-5">
@@ -119,9 +119,9 @@ export default function DeFiWeeklyJuly13() {
         <p className="text-xs text-[#444] mt-4 pt-3 border-t border-[#1a1a1a]">Sources: Artemis, Glassnode, Rekt News, Ambire, Pharos Watch</p>
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           ARTEMIS BODY — full newsletter, no banner
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">This Week&apos;s Briefing</h2>
       <div className="my-6">
         {artemisBody ? (
@@ -158,18 +158,18 @@ export default function DeFiWeeklyJuly13() {
         )}
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           DIVIDER
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <div className="flex items-center gap-3 my-10">
         <div className="flex-1 h-px bg-[#222]" />
         <span className="text-[10px] text-[#666] uppercase tracking-[2px]">Delta V Inputs</span>
         <div className="flex-1 h-px bg-[#222]" />
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           REKT WATCH — hack of the week only
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — Hack of the Week</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <div className="border-l-2 border-[#ef4444] pl-4">
@@ -189,9 +189,9 @@ export default function DeFiWeeklyJuly13() {
         <p className="text-xs text-[#444] mt-3">Source: Rekt News</p>
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           PHAROS WATCH — stablecoins
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Pharos Watch — Stablecoins</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <div className="flex items-center gap-2 mb-3">
@@ -225,9 +225,9 @@ export default function DeFiWeeklyJuly13() {
         <p className="text-xs text-[#444] mt-3">Sources: Pharos Watch (digests #138–#139), DeFi Llama</p>
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           UPCOMING EVENTS & UNLOCKS
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Upcoming Events & Unlocks</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <div className="space-y-3">
@@ -282,9 +282,9 @@ export default function DeFiWeeklyJuly13() {
         </p>
       </div>
 
-      {/* ════════════════════════════════════════════════════════
+      {/* ========================================================
           REGULATION
-          ════════════════════════════════════════════════════════ */}
+          ======================================================== */}
       <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Regulation</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
         <p className="text-sm text-[#aaa] leading-relaxed">

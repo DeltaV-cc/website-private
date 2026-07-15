@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import ArchitectureDiagram from '@/app/components/ArchitectureDiagram';
 
 export default function LangChainChatchatTutorial() {
   return (
@@ -12,25 +13,47 @@ export default function LangChainChatchatTutorial() {
       readingTime="7 min read"
       excerpt="Full offline RAG with knowledge-base Q&A and agent tools — Streamlit + FastAPI + LangChain + Ollama (Qwen2, Llama3, GLM-4). 100% local: no API keys, no cloud, FAISS on encrypted disk."
     >
+      <ArchitectureDiagram
+        title="LangChain-Chatchat local RAG stack"
+        subtitle="100% local · no API keys · FAISS on encrypted disk"
+        layers={[
+          {
+            id: 'ui',
+            label: 'Interface',
+            accent: 'cyan',
+            nodes: [
+              { title: 'Streamlit WebUI', subtitle: 'localhost:8501', accent: 'cyan' },
+            ],
+          },
+          {
+            id: 'api',
+            label: 'Application API',
+            accent: 'purple',
+            nodes: [
+              { title: 'FastAPI backend', subtitle: 'localhost:7861', accent: 'purple' },
+              { title: '/chat · /knowledge_base', subtitle: 'RAG endpoints' },
+              { title: '/agent · /tools', subtitle: 'Multi-tool agents' },
+            ],
+          },
+          {
+            id: 'runtime',
+            label: 'Model runtime',
+            accent: 'amber',
+            nodes: [
+              { title: 'Ollama :11434', subtitle: 'qwen2:7b · bge-m3 · glm4:9b', accent: 'amber' },
+              { title: 'Xinference :9997', subtitle: 'Optional multi-model host' },
+              { title: 'LocalAI :8080', subtitle: 'Optional OpenAI-compatible' },
+            ],
+          },
+        ]}
+      />
+
       <h2>The Stack</h2>
       <ul>
         <li><strong>Stack:</strong> Streamlit UI + FastAPI backend + LangChain + Ollama models (Qwen2, Llama3, GLM-4).</li>
         <li><strong>Capability:</strong> full offline RAG with knowledge-base Q&amp;A, agent tools (search, database, arXiv), and multi-model support.</li>
         <li><strong>OpSec:</strong> 100% local — no API keys, no cloud. FAISS vector store on encrypted disk. Apache 2.0 + MIT stack.</li>
       </ul>
-
-      <h2>Architecture</h2>
-      <pre><code>{`Streamlit WebUI (localhost:8501)
-        │
-FastAPI Backend (localhost:7861)
-   /chat  /knowledge_base  /agent  /tools
-        │
-   ┌────┼────┐
-   ▼    ▼     ▼
-Ollama  Xinference  LocalAI
-:11434  :9997      :8080
-   │
-qwen2:7b  bge-m3  glm4:9b`}</code></pre>
 
       <h2>Setup Steps</h2>
 

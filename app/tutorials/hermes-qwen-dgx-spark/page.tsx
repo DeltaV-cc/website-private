@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
 
 export default function HermesQwenDgxTutorial() {
   return (
@@ -12,9 +13,45 @@ export default function HermesQwenDgxTutorial() {
       readingTime="8 min read"
       excerpt="A 24/7 local agent stack: NVIDIA DGX Spark (128GB), Qwen 3.6, and the self-evolving Hermes Agent framework with a 3-layer memory and an OpenShell sandbox — full local execution, no external data sharing."
     >
-      <img
-        src="/website-private/images/hermes-qwen-dgx-stack.jpg"
-        alt="Hermes + Qwen 3.6 Local AI Stack on DGX Spark"
+      <ArchitectureDiagram
+        title="Hermes + Qwen 3.6 Local AI Stack"
+        subtitle="on NVIDIA DGX Spark · full local execution · no external data sharing"
+        layers={[
+          {
+            id: 'hardware',
+            label: 'Hardware layer',
+            accent: 'cyan',
+            nodes: [
+              { title: 'NVIDIA DGX Spark', subtitle: '128GB unified memory · 1 petaflop', accent: 'cyan' },
+              { title: '24/7 local operation', subtitle: 'Purpose-built for agent workloads' },
+              { title: 'Massive context windows', subtitle: 'Multi-agent + long-running tasks' },
+            ],
+          },
+          {
+            id: 'model',
+            label: 'Model layer',
+            accent: 'purple',
+            nodes: [
+              { title: 'Qwen 3.6 (Alibaba)', subtitle: '35B full / 27B quantized · ~20GB VRAM', accent: 'purple' },
+              { title: 'Strong reasoning', subtitle: 'Excellent tool-use & coding' },
+              { title: 'Fully open-weight', subtitle: 'No external model APIs required' },
+            ],
+          },
+          {
+            id: 'hermes',
+            label: 'Hermes agent framework',
+            accent: 'amber',
+            nodes: [
+              {
+                title: 'Self-evolving loop',
+                subtitle: 'Observe → Reflect → Tool use → Code gen → Deploy',
+                accent: 'amber',
+              },
+              { title: '3-layer memory', subtitle: 'Short-term · long-term · skills + retrieval' },
+              { title: 'NVIDIA OpenShell', subtitle: 'Strict sandbox for safe tool execution', accent: 'cyan' },
+            ],
+          },
+        ]}
       />
 
       <h2>The Stack</h2>
@@ -54,6 +91,18 @@ export default function HermesQwenDgxTutorial() {
       </table>
 
       <h2>Setup Tutorial</h2>
+
+      <ArchitectureFlow
+        title="Setup path"
+        accent="cyan"
+        steps={[
+          { label: 'Hardware & CUDA', detail: 'DGX ready + drivers' },
+          { label: 'Hermes core', detail: 'Clone + env' },
+          { label: 'Memory + model', detail: 'Config + Qwen' },
+          { label: 'Sandbox + loop', detail: 'OpenShell + evolve' },
+          { label: 'OpSec verify', detail: 'Zero leakage check' },
+        ]}
+      />
 
       <h3>01 — Hardware &amp; Base Environment</h3>
       <ul>

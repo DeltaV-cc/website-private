@@ -1,4 +1,5 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
 
 export default function MacosHardeningPage() {
   return (
@@ -11,6 +12,17 @@ export default function MacosHardeningPage() {
       backLabel="All OpSec guides"
       excerpt="Privacy-first macOS hardening with MDM profiles — FileVault, telemetry control, and outbound firewalling for sovereignty-focused setups."
     >
+      <ArchitectureFlow
+        title="macOS baseline path"
+        accent="amber"
+        steps={[
+          { label: 'Erase + reinstall', detail: 'Recovery Mode' },
+          { label: 'FileVault', detail: 'Full-disk encrypt' },
+          { label: 'MDM / privacy', detail: 'Telemetry down' },
+          { label: 'Outbound FW', detail: 'Little Snitch-class' },
+        ]}
+      />
+
       <h2>1. Factory Reset</h2>
       <ul>
         <li>Erase the Mac and reinstall macOS via Recovery Mode.</li>

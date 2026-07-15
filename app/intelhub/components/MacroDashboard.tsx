@@ -9,7 +9,7 @@ import { CategoryBox, fmtNum } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 import AnimatedValue from './AnimatedValue';
 
-/* ── Inline SVG Icons ── */
+/* -- Inline SVG Icons -- */
 const TrendUp = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="text-[var(--accent-green)]">
     <path d="M2 8l3-5 2 3 3-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -23,7 +23,7 @@ const TrendDown = () => (
   </svg>
 );
 
-/* ── Number formatters (matching Web3Dashboard pattern) ── */
+/* -- Number formatters (matching Web3Dashboard pattern) -- */
 function fmtPrice(n: number): string {
   return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
@@ -73,7 +73,7 @@ export default function MacroDashboard({
     <div className="space-y-5">
       <MarketNewsTicker items={items} ts={ts} />
 
-      {/* ── Global Market Overview Banner (Web3-style) ── */}
+      {/* -- Global Market Overview Banner (Web3-style) -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
         {spx ? (
           <div className="flex items-end justify-between">
@@ -134,7 +134,7 @@ export default function MacroDashboard({
         )}
       </div>
 
-      {/* ── Market Grid — Metric Tiles ── */}
+      {/* -- Market Grid — Metric Tiles -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
         <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
@@ -281,7 +281,7 @@ export default function MacroDashboard({
         </div>
       </div>
 
-      {/* ── Forex table (Web3-style) ── */}
+      {/* -- Forex table (Web3-style) -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
         <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Forex (vs USD)</span>
@@ -327,7 +327,7 @@ export default function MacroDashboard({
         </div>
       </div>
 
-      {/* ── Patents + Macro feed ── */}
+      {/* -- Patents + Macro feed -- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="md:col-span-2">
           {patents && <PatentsTable patents={patents} />}
