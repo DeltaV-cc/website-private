@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  turbopack: {
-    root: 'C:/Users/Admin/DeltaV/website',
-  },
 };
 
 export default nextConfig;

@@ -1,6 +1,8 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import BackLink from '@/app/components/BackLink';
 
 interface BlogPostProps {
   title: string;
@@ -12,14 +14,32 @@ interface BlogPostProps {
   readingTime?: string;
   sourceLabel?: string;
   sourceUrl?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
-const badgeStyles: Record<string, string> = {
-  'Deep Dive': 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
-  'Thought': 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
-  'Tutorial': 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
-  'Dashboard': 'bg-teal-500/10 text-teal-400 border border-teal-500/20',
-  'Macro': 'bg-sky-500/10 text-sky-400 border border-sky-500/20',
+type TocItem = { id: string; text: string; level: number };
+
+const accentFor = (key: string): string => {
+  const k = key.toLowerCase();
+  if (k === 'ai' || k === 'tutorial' || k === 'dashboard' || k === 'tool') return 'var(--accent-cyan)';
+  if (k === 'web3' || k === 'macro') return 'var(--accent-orange)';
+  if (k === 'opsec' || k === 'thought') return 'var(--accent-amber)';
+  if (k === 'hardware' || k === 'deep dive') return 'var(--accent-purple)';
+  if (k === 'defi weekly') return 'var(--accent-gold)';
+  return 'var(--accent-cyan)';
+};
+
+const badge = (label: string) => {
+  const c = accentFor(label);
+  return (
+    <span
+      className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold tracking-wide uppercase border"
+      style={{ color: c, background: `color-mix(in srgb, ${c} 8%, transparent)`, borderColor: `color-mix(in srgb, ${c} 25%, transparent)` }}
+    >
+      {label}
+    </span>
+  );
 };
 
 export default function BlogPostLayout({
@@ -32,97 +52,291 @@ export default function BlogPostLayout({
   readingTime,
   sourceLabel,
   sourceUrl,
+  backHref = '/blog/',
+  backLabel = 'All articles',
 }: BlogPostProps) {
+  const articleRef = useRef<HTMLElement>(null);
+  const [toc, setToc] = useState<TocItem[]>([]);
+  const [active, setActive] = useState('');
+  const [tocOpen, setTocOpen] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  // Reading-progress bar: fills as the reader scrolls the page.
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.documentElement;
+      const max = el.scrollHeight - el.clientHeight;
+      setProgress(max > 0 ? Math.min(100, (el.scrollTop / max) * 100) : 0);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = articleRef.current;
+    if (!el) return;
+
+    const slug = (s: string) =>
+      s.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').slice(0, 60);
+
+    const used = new Set<string>();
+    // Exclude headings inside dynamically-injected newsletter HTML (.artemis-body)
+    // so the table of contents only reflects the article's own sections.
+    const heads = (Array.from(el.querySelectorAll('h2, h3')) as HTMLElement[]).filter(
+      (h) => !h.closest('.artemis-body')
+    );
+    const items: TocItem[] = heads
+      .map((h, i) => {
+        const text = (h.textContent || '').trim();
+        let id = h.id || slug(text) || `section-${i}`;
+        while (used.has(id)) id = `${id}-${i}`;
+        used.add(id);
+        h.id = id;
+        return { id, text, level: h.tagName === 'H3' ? 3 : 2 };
+      })
+      .filter((it) => it.text);
+    setToc(items);
+
+    // Inject a copy button on every code block.
+    el.querySelectorAll('pre').forEach((pre) => {
+      const p = pre as HTMLElement;
+      if (p.dataset.enhanced) return;
+      p.dataset.enhanced = '1';
+      const original = ((pre.querySelector('code') as HTMLElement) || p).textContent || '';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'dv-copy-btn';
+      btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+      btn.addEventListener('click', () => {
+        const flash = (ok: boolean) => {
+          btn.textContent = ok ? 'Copied' : 'Copy failed';
+          if (ok) btn.dataset.copied = 'true';
+          setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.removeAttribute('data-copied');
+          }, 1600);
+        };
+        const legacyCopy = () => {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = original;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            flash(ok);
+          } catch {
+            flash(false);
+          }
+        };
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(original).then(() => flash(true), legacyCopy);
+        } else {
+          legacyCopy();
+        }
+      });
+      pre.appendChild(btn);
+    });
+
+    // Highlight the section currently in view.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: '-80px 0px -70% 0px' }
+    );
+    heads.forEach((h) => observer.observe(h));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleTocClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', `#${id}`);
+      setActive(id);
+    }
+  };
+
+  const tocList = (
+    <ul className="space-y-1 text-sm border-l border-[var(--border-default)]">
+      {toc.map((t) => (
+        <li key={t.id}>
+          <a
+            href={`#${t.id}`}
+            onClick={(e) => handleTocClick(e, t.id)}
+            className={`block -ml-px border-l pl-3 py-1 leading-snug transition-colors ${
+              t.level === 3 ? 'pl-6' : ''
+            } ${
+              active === t.id
+                ? 'border-[var(--accent-cyan)] text-[var(--accent-cyan)]'
+                : 'border-transparent text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+            }`}
+          >
+            {t.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <>
-      {/* Animated gradient bar */}
-      <div className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-[length:400%_100%] z-[100] pointer-events-none"
-        style={{ animation: 'gradientSweep 6s ease infinite' }}
-      />
-      <style>{`@keyframes gradientSweep{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}`}</style>
+    <div className="min-h-screen">
+      {/* Reading-progress bar — fills as the reader scrolls */}
+      <div className="fixed top-0 left-0 right-0 h-[3px] z-[100] pointer-events-none bg-[var(--bg-surface)]/40">
+        <div
+          className="h-full transition-[width] duration-75 ease-out"
+          style={{
+            width: `${progress}%`,
+            background:
+              'linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-amber), var(--accent-orange))',
+          }}
+        />
+      </div>
 
-      <article className="max-w-4xl mx-auto px-8 pt-20 pb-24">
-        {/* Back link */}
-        <a href="/blog" className="inline-flex items-center gap-1 text-sm text-[#666] hover:text-[#00f0ff] transition-colors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
-          Back to blog
-        </a>
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8 pt-20 pb-24">
+        <BackLink
+          fallback={backHref}
+          label={backLabel}
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors mb-10 group"
+        />
 
-        {/* Metadata row */}
-        <div className="flex items-center flex-wrap gap-3 text-sm mt-8 mb-6">
-          <span className="text-[#666]">{date}</span>
-          <span className="w-1 h-1 rounded-full bg-[#444]" />
-          <span className="text-[#00f0ff]">{category}</span>
-          {type && (
-            <>
-              <span className="w-1 h-1 rounded-full bg-[#444]" />
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase ${badgeStyles[type] || 'bg-white/5 text-white/40 border border-white/10'}`}>
-                {type}
-              </span>
-            </>
-          )}
-          {readingTime && (
-            <>
-              <span className="w-1 h-1 rounded-full bg-[#444]" />
-              <span className="text-[#666]">{readingTime}</span>
-            </>
-          )}
-        </div>
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-14">
+          {/* Main column */}
+          <div className="max-w-[720px] min-w-0">
+            {/* Header */}
+            <div className="mb-8">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {badge(category)}
+                {type && badge(type)}
+              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold tracking-[-1.5px] leading-tight mb-5">
+                {title}
+              </h1>
+              <div className="flex items-center flex-wrap gap-3 text-sm text-[var(--text-muted)]">
+                <span>{date}</span>
+                {readingTime && (
+                  <>
+                    <span className="text-[var(--text-disabled)]">·</span>
+                    <span>{readingTime}</span>
+                  </>
+                )}
+              </div>
+              {excerpt && (
+                <p className="text-lg text-[var(--text-tertiary)] mt-6 leading-relaxed border-l-2 border-[var(--accent-cyan)]/30 pl-5">
+                  {excerpt}
+                </p>
+              )}
+              {(sourceLabel || sourceUrl) && (
+                <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mt-6">
+                  {sourceLabel && (
+                    <span>
+                      Intel source: <span className="text-[var(--text-secondary)]">{sourceLabel}</span>
+                    </span>
+                  )}
+                  {sourceUrl && (
+                    <a
+                      href={sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--accent-cyan)] hover:underline ml-1"
+                    >
+                      View original →
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
 
-        {/* Title with gradient effect */}
-        <h1 className="text-5xl md:text-6xl font-semibold tracking-[-2px] mb-6 leading-tight bg-gradient-to-r from-[#ededed] via-[#ededed] to-[#ededed]/80 bg-clip-text text-transparent">
-          {title}
-        </h1>
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent mb-8" />
 
-        {/* Excerpt */}
-        {excerpt && (
-          <p className="text-xl text-[#888] mb-10 leading-relaxed max-w-3xl border-l-2 border-[#00f0ff]/30 pl-6">
-            {excerpt}
-          </p>
-        )}
-
-        {/* Source attribution */}
-        {(sourceLabel || sourceUrl) && (
-          <div className="flex items-center gap-2 text-sm text-[#666] mb-10 pb-6 border-b border-[#222]">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#00f0ff]/60"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            {sourceLabel && <span>Intel source: <span className="text-[#aaa]">{sourceLabel}</span></span>}
-            {sourceUrl && (
-              <a href={sourceUrl} className="text-[#00f0ff] hover:underline ml-1" target="_blank" rel="noopener noreferrer">
-                View original →
-              </a>
+            {/* Collapsible TOC — mobile / narrow */}
+            {toc.length > 1 && (
+              <details className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3" open>
+                <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)]">
+                  On this page
+                </summary>
+                <div className="mt-3">{tocList}</div>
+              </details>
             )}
-          </div>
-        )}
 
-        {/* Main content */}
-        <div className="prose-container max-w-3xl text-[#ccc] leading-relaxed space-y-6 text-lg">
-          {children}
-        </div>
+            {/* Article body */}
+            <article ref={articleRef} className="article-prose">
+              {children}
+            </article>
 
-        {/* Intel pipeline note */}
-        <div className="border border-[#222] rounded-2xl p-6 mt-16 bg-[#111]">
-          <div className="flex items-start gap-4">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" strokeWidth="2" className="mt-0.5 shrink-0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
-            <div>
-              <p className="text-sm text-[#aaa]">
-                <strong className="text-[#00f0ff]">Delta V Intel pipeline</strong> — This post was informed by the HF Intelligence feed, which tracks new model releases, daily papers, and trending models from 20 top AI orgs.
-              </p>
-              <a href="/intelhub" className="text-[#00f0ff] text-sm hover:underline mt-2 inline-block">
-                Explore IntelHub →
-              </a>
+            {/* Intel pipeline note */}
+            <div className="border border-[var(--border-default)] rounded-2xl p-6 mt-16 bg-[var(--bg-surface)]">
+              <div className="flex items-start gap-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2" className="mt-0.5 shrink-0">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4m0-4h.01" />
+                </svg>
+                <div>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    <strong className="text-[var(--accent-cyan)]">Delta V Intel pipeline</strong> — generated and verified through the Delta V intelligence system.
+                  </p>
+                  <Link href="/intelhub/" className="text-[var(--accent-cyan)] text-sm hover:underline mt-2 inline-block">
+                    Explore IntelHub →
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Newsletter / contact CTA */}
+            <div className="mt-8 border-t border-[var(--border-default)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-[var(--text-tertiary)]">Want high-signal intel like this in your inbox?</p>
+              <Link
+                href="/contact/"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent-orange)] text-white rounded-xl text-sm font-medium hover:bg-[#d94d0f] transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Get in touch
+              </Link>
             </div>
           </div>
-        </div>
 
-        {/* Newsletter CTA */}
-        <div className="mt-12 border-t border-[#222] pt-10 text-center">
-          <p className="text-sm text-[#666] mb-3">Get high-signal Intel in your feed</p>
-          <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-[#C2410C] text-white rounded-xl text-sm font-medium hover:bg-[#a3360a] transition-colors">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Stay up to speed
-          </a>
+          {/* Sticky TOC — desktop */}
+          <aside className="hidden lg:block">
+            {toc.length > 1 && (
+              <nav aria-label="Table of contents" className="sticky top-24">
+                <button
+                  type="button"
+                  onClick={() => setTocOpen((o) => !o)}
+                  className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors mb-3"
+                >
+                  On this page
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    className={`transition-transform ${tocOpen ? '' : '-rotate-90'}`}
+                  >
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {tocOpen && tocList}
+              </nav>
+            )}
+          </aside>
         </div>
-      </article>
-    </>
+      </div>
+    </div>
   );
 }
