@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -10,10 +11,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-12 gap-10 mb-12">
           <div className="md:col-span-4">
             <Link href="/" className="inline-flex items-center gap-2.5 text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors mb-4">
-              <svg width="24" height="24" viewBox="0 0 28 28" fill="none" className="text-[var(--accent-cyan)]">
-                <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" strokeWidth="2" fill="none" />
-                <path d="M9 20V8l10 6-10 6z" fill="currentColor" />
-              </svg>
+              <Logo size={24} className="flex-shrink-0" />
               <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>
             </Link>
             <p className="text-[var(--text-tertiary)] text-sm leading-relaxed max-w-[280px]">

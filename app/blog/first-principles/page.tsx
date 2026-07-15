@@ -1,59 +1,32 @@
-import Link from 'next/link';
+import BlogPostLayout from '@/components/BlogPostLayout';
 
 export default function FirstPrinciplesArticle() {
   return (
-    <>
-      <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
-      <div className="max-w-3xl mx-auto px-8 py-16">
-        <Link href="/blog/" className="text-[#00f0ff] text-sm hover:underline">← Back to blog</Link>
-        
-        <div className="mt-8">
-          <div className="flex items-center gap-3 text-sm text-[#666] mb-4">
-            <span>June 10, 2026</span>
-            <span>•</span>
-            <span className="text-[#00f0ff]">AI</span>
-          </div>
+    <BlogPostLayout
+      title="First Principles for Sovereign AI Agents"
+      date="June 10, 2026"
+      category="AI"
+      type="Thought"
+      readingTime="3 min read"
+      excerpt="We build agents the same way we build everything else at Delta V: from first principles, with OpSec as the foundation."
+    >
+      <h2>Core Rules</h2>
 
-          <h1 className="text-5xl font-semibold tracking-[-2px] mb-8 leading-tight">
-            First Principles for Sovereign AI Agents
-          </h1>
+      <h3>1. Local-first by default</h3>
+      <p>No agent should require cloud connectivity to function.</p>
 
-          <div className="prose prose-invert max-w-none text-[#ccc] leading-relaxed space-y-6">
-            <p className="text-lg">
-              We build agents the same way we build everything else at Delta V: from first principles, with OpSec as the foundation.
-            </p>
+      <h3>2. Keys never leave the machine</h3>
+      <p>Private keys, API tokens, and memory stay on the user&apos;s hardware.</p>
 
-            <h2 className="text-2xl font-semibold text-[#ededed] mt-12 mb-6">Core Rules</h2>
+      <h3>3. Minimal attack surface</h3>
+      <p>Every dependency is a liability. We ruthlessly prune.</p>
 
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold text-[#ededed] mb-2">1. Local-first by default</h3>
-                <p>No agent should require cloud connectivity to function.</p>
-              </div>
+      <h3>4. Human in the loop for high-stakes actions</h3>
+      <p>Agents propose. Humans decide.</p>
 
-              <div>
-                <h3 className="text-xl font-semibold text-[#ededed] mb-2">2. Keys never leave the machine</h3>
-                <p>Private keys, API tokens, and memory stay on the user&apos;s hardware.</p>
-              </div>
+      <hr />
 
-              <div>
-                <h3 className="text-xl font-semibold text-[#ededed] mb-2">3. Minimal attack surface</h3>
-                <p>Every dependency is a liability. We ruthlessly prune.</p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-[#ededed] mb-2">4. Human in the loop for high-stakes actions</h3>
-                <p>Agents propose. Humans decide.</p>
-              </div>
-            </div>
-
-            <hr className="border-[#222] my-12" />
-
-            <p className="text-lg font-semibold text-[#ededed]">This is not negotiable.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
+      <p><strong>This is not negotiable.</strong></p>
+    </BlogPostLayout>
   );
 }

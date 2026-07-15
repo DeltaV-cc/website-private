@@ -445,9 +445,27 @@ export function useIntelData() {
     const kl = kw.toLowerCase().replace(/\./g, '');
     return new RegExp('\\b' + kl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
   };
+  // ── 7-day window ────────────────────────────────────────────────
+  // News items must only surface the last 7 days. Dates arrive in mixed
+  // formats (RFC-2822 "Tue, 14 Jul 2026 …" and ISO with a spaced offset
+  // "2026-07-14T14:31:44 +0000"), so parse defensively.
+  const RECENT_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+  const parseItemDate = (i: any): number => {
+    const s = i.published_at || i.pubDate || i.date;
+    if (!s) return 0;
+    let t = new Date(s).getTime();
+    if (!isNaN(t)) return t;
+    t = new Date(String(s).replace(/ ([+-]\d{4})$/, '$1')).getTime();
+    return isNaN(t) ? 0 : t;
+  };
+  const recentItems = items.filter((i: any) => {
+    const t = parseItemDate(i);
+    return t > 0 && Date.now() - t <= RECENT_WINDOW_MS;
+  });
+
   const catBoxes = CATS.map(cat => ({
     ...cat,
-    items: items.filter(i => {
+    items: recentItems.filter(i => {
       const blockTags = CAT_TAG_BLOCK[cat.id] || [];
       if (i.tag && blockTags.includes(i.tag)) return false;
       // Hardware-specific exclusion: block items matching noise patterns
@@ -470,7 +488,7 @@ export function useIntelData() {
   }));
   catBoxes.forEach(c => { c.count = c.items.length; });
 
-  const top3 = [...items].sort((a: any, b: any) => {
+  const top3 = [...recentItems].sort((a: any, b: any) => {
     const da = new Date(a.pubDate || a.date || 0).getTime();
     const db = new Date(b.pubDate || b.date || 0).getTime();
     return db - da;
@@ -519,7 +537,7 @@ export function useIntelData() {
   };
 
   return {
-    items, loading, picks, patents, dd, dd2, forex, watchlist,
+    items: recentItems, loading, picks, patents, dd, dd2, forex, watchlist,
     catBoxes, macroCats, infosecCats, web3Cats, aiCats, top3, fgVal, fgLabel, totalVol,
     tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES, lastFetch,
   };

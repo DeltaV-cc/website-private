@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import BackLink from '@/app/components/BackLink';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -8,12 +9,7 @@ const ArrowRight = () => (
 export default function OpSec() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 md:py-20">
-      <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors mb-8 group">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform group-hover:-translate-x-0.5">
-          <path d="M10 7H3M6 3l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        Back to home
-      </Link>
+      <BackLink fallback="/" label="Back to home" className="inline-flex items-center gap-1.5 text-sm text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors mb-8 group" />
 
       <div className="mb-12">
         <div className="text-[var(--accent-amber)] text-xs font-semibold tracking-[3px] uppercase mb-3">OpSec</div>
