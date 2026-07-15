@@ -7,6 +7,7 @@ import MacroDashboard from './components/MacroDashboard';
 import AIDashboard from './components/AIDashboard';
 import Web3Dashboard from './components/Web3Dashboard';
 import CryptoFrontierSignals from './components/CryptoFrontierSignals';
+import AsciiMist from '../components/AsciiMist';
 
 // Tab → parent categories
 const CATS_FOR: Record<string, string[]> = {
@@ -91,19 +92,20 @@ export default function IntelHubPage() {
   const tabs = ['macro', 'ai', 'web3'] as const;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
+    <div className="intelhub-shell min-h-screen text-[#ededed]">
 
       <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl sticky top-0 z-40">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-[length:400%_100%] animate-[gradient_6s_ease_infinite]" />
-        <div className="max-w-[1440px] mx-auto px-8 py-6 flex items-end justify-between relative">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-6 flex items-end justify-between relative gap-8">
           <div>
-            <h1 className="text-5xl font-bold tracking-[-1.5px] bg-gradient-to-r from-[#00f0ff] via-[#a855f7] via-[#f59e0b] to-[#C2410C] bg-clip-text text-transparent">
+            <div className="text-[10px] font-mono tracking-[.2em] uppercase text-[var(--accent-cyan)] mb-3">Field intelligence / live surface</div>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-[-.06em] text-[var(--text-primary)]">
               IntelHub
             </h1>
             <p className="text-[#ededed]/30 mt-1.5 text-base font-light tracking-wide">
               Live threat surface · Market intel · Signal triage
             </p>
           </div>
+          <div className="hidden md:block w-56"><AsciiMist compact /></div>
           <div className="flex items-center gap-3">
             {freshnessDot && (
               <span className={`inline-block w-2 h-2 rounded-full ${freshnessDot}`} title={lastFetch ? `Fetched ${ago(lastFetch.toISOString())} ago` : ''} />
@@ -119,7 +121,7 @@ export default function IntelHubPage() {
 
       <PulseFeed items={filteredItems} loading={loading} TC={TC} BCOL={BCOL} ts={ts} isNew={isNew} />
 
-      <div className="max-w-[1440px] mx-auto px-8 pb-24">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
         {loading && !items.length && (
           <div className="flex items-center justify-center py-24">
             <div className="flex flex-col items-center gap-4">
@@ -128,12 +130,12 @@ export default function IntelHubPage() {
             </div>
           </div>
         )}
-        <div className="flex gap-1 bg-[#111] p-1 rounded-2xl w-fit mb-5 border border-[#222]" role="tablist" aria-label="Dashboard tabs">
+        <div className="intelhub-tabs flex gap-6 border-b border-[var(--border-default)] w-full mb-7" role="tablist" aria-label="Dashboard tabs">
           {tabs.map(d => (
             <button key={d} onClick={() => setActive(d)}
               role="tab" aria-selected={active === d} aria-current={active === d ? 'page' : undefined}
-              className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
-                active === d ? `${tabAccent(d)} bg-white/[0.08] shadow-sm` : 'text-[#ededed]/25 hover:text-[#ededed]/50'
+              className={`px-1 pb-3 pt-2 text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
+                active === d ? `${tabAccent(d)}` : 'text-[#ededed]/35 hover:text-[#ededed]/70'
               }`}>{tabLabel(d)}
               {tabCounts[d] != null && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/[0.06] text-[#ededed]/30">{tabCounts[d]}</span>}
             </button>
