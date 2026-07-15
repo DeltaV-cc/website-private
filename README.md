@@ -99,6 +99,6 @@ Issues and PRs welcome on the GitHub repo.
 ## License & credits
 
 - **Code:** [MIT](./LICENSE) © 2026 Delta V  
-- **Third-party assets:** [ATTRIBUTION.md](./ATTRIBUTION.md) — includes **Amaranth** credit for `lotusbloom.gif`
+- **Third-party assets:** [ATTRIBUTION.md](./ATTRIBUTION.md) — includes lotus GIF credit: [Aaron Rolston](https://www.aaronrolston.com/) for [Amaranth Foundation](https://amaranth.foundation/)
 
 Contact: [engage@deltav.cc](mailto:engage@deltav.cc)
