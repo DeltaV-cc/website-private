@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-/* AI Frontier Signals — live ticker of trending AI items from X, HF, arXiv (infinite seamless) */
+/* AI Frontier Signals — live ticker of trending AI items (compact pill style, infinite seamless) */
 export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (iso: string) => string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const speed = useRef(1.2);
@@ -33,29 +33,27 @@ export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (is
     return () => cancelAnimationFrame(af.current);
   }, [items.length]);
 
+  if (!items.length) return null;
+
   return (
-    <div className="border-b border-[#222] py-4 bg-[#080810]">
-      <div className="max-w-[1440px] mx-auto px-8">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-xs text-[#ededed]/25 uppercase tracking-[.2em] font-semibold">AI Frontier</span>
-          <span className="w-px h-3 bg-white/5" />
-          <span className="text-xs text-[#ededed]/20 tabular-nums">{items.length} signals</span>
-          <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
-        </div>
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-none"
-          style={{ WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)' }}>
-          {dup.map((it, i) => (
-            <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-              className="flex-shrink-0 w-[260px] rounded-2xl p-4 border border-white/[0.05] bg-[#111] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 group">
-              <div className="text-sm font-medium leading-snug line-clamp-2 text-[#ededed]/85 group-hover:text-white">{it.title}</div>
-              <div className="mt-2 text-[10px] text-[#ededed]/30 line-clamp-2 leading-relaxed">{it.summary}</div>
-              <div className="flex items-center gap-2 mt-3 text-xs text-[#ededed]/25">
-                <span className="truncate max-w-[120px]">{it.source}</span>
-                <span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span>
-              </div>
-            </a>
-          ))}
-        </div>
+    <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-4 py-2 border-b border-[var(--border-default)] flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
+        <span className="text-[10px] text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-semibold">AI Frontier</span>
+        <span className="text-[10px] text-[var(--text-muted)]">{items.length} signals</span>
+        <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
+      </div>
+      <div ref={scrollRef} className="flex overflow-x-auto gap-1.5 p-2" style={{ scrollbarWidth: 'none' }}>
+        {dup.map((it, i) => (
+          <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
+            className="flex-shrink-0 max-w-[220px] px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-default)] hover:border-[var(--accent-cyan)]/30 transition-all text-xs hover:scale-[1.02]">
+            <div className="text-[var(--text-secondary)] line-clamp-2 leading-snug mb-1">{it.title}</div>
+            <div className="flex items-center gap-2 text-[10px] text-[var(--text-muted)]">
+              <span>{it.source || ''}</span>
+              <span className="tabular-nums ml-auto">{ts(it.published_at)}</span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   );
