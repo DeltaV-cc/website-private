@@ -7,7 +7,6 @@ import MacroDashboard from './components/MacroDashboard';
 import AIDashboard from './components/AIDashboard';
 import Web3Dashboard from './components/Web3Dashboard';
 import CryptoFrontierSignals from './components/CryptoFrontierSignals';
-import AsciiMist from '../components/AsciiMist';
 
 // Tab → parent categories
 const CATS_FOR: Record<string, string[]> = {
@@ -105,7 +104,6 @@ export default function IntelHubPage() {
               Live threat surface · Market intel · Signal triage
             </p>
           </div>
-          <div className="hidden md:block w-56"><AsciiMist compact /></div>
           <div className="flex items-center gap-3">
             {freshnessDot && (
               <span className={`inline-block w-2 h-2 rounded-full ${freshnessDot}`} title={lastFetch ? `Fetched ${ago(lastFetch.toISOString())} ago` : ''} />

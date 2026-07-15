@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import AnimatedBackground from './AnimatedBackground';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -30,7 +31,7 @@ export default function OfferCard({
       <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">{title}</h2>
       <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">{pitch}</p>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <AnimatedBackground><div className="grid md:grid-cols-2 gap-8 mb-8">
         <div>
           <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">What you get</div>
           <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
@@ -48,7 +49,7 @@ export default function OfferCard({
             ))}
           </ol>
         </div>
-      </div>
+      </div></AnimatedBackground>
 
       <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[var(--border-default)]">
         <div className="text-xs text-[var(--text-muted)] mr-auto max-w-sm"><span className="font-semibold text-[var(--text-tertiary)]">For:</span> {audience}</div>

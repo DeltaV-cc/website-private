@@ -28,17 +28,17 @@
   /* Shared service-page accent; category colors remain semantic. */
   --accent-primary: var(--accent-cyan);
   --accent-primary-bright: var(--accent-mist);
-  --accent-cyan:   #8de7dc;
-  --accent-orange: #d7825a;
-  --accent-amber:  #c7a96b;
-  --accent-purple: #78b89a;
+  --accent-cyan:   #8bc8cc;
+  --accent-orange: #a9789d;
+  --accent-amber:  #a18bb8;
+  --accent-purple: #8d79b4;
   --accent-vibe-pink: #f472b6;
   --accent-vibe-purple: #c084fc;
   --accent-vibe-cyan: #67e8f9;
   --accent-gold:   #fbbf24;
   --accent-red:    #ef4444;
   --accent-green:  #8bd5a5;
-  --accent-mist:   #b1e9d2;
+  --accent-mist:   #c5b8e0;
 
   /* -- Functional Accents ---------------------- */
   --accent-positive: #10b981;
@@ -265,6 +265,9 @@ body {
 .spotlight-glow { position: absolute; inset: 0; background: radial-gradient(180px circle at var(--spot-x) var(--spot-y), rgba(141,231,220,.25), transparent 68%); opacity: .8; transition: opacity .25s ease; }
 .spotlight-glyph { position: absolute; width: 7rem; height: 7rem; left: 50%; top: 50%; transform: translate(-50%, -55%); color: var(--accent-mist); filter: drop-shadow(0 0 18px rgba(141,231,220,.18)); }
 .spotlight-caption { position: absolute; bottom: 1rem; left: 1rem; color: var(--accent-cyan); opacity: .7; font: 600 .58rem var(--font-mono); letter-spacing: .18em; }
+.animated-background { position: relative; overflow: hidden; }
+.animated-background-wash { position: absolute; inset: 0; opacity: 0; background: radial-gradient(24rem circle at 0% 0%, rgba(141,121,180,.16), transparent 68%); transform: translateX(-12%); transition: opacity .35s var(--ease-out-expo), transform .55s var(--ease-out-expo); }
+.animated-background.is-active .animated-background-wash { opacity: 1; transform: translateX(0); }
 @media (max-width: 640px) { .ascii-mist { min-height: 17rem; } .ascii-mist pre { font-size: .48rem; letter-spacing: .02em; } }
 @media (prefers-reduced-motion: reduce) { .ascii-mist-orbit { animation: none; } }
 
