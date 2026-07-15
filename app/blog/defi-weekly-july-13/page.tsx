@@ -5,12 +5,14 @@ import BlogPostLayout from '@/components/BlogPostLayout';
 
 export default function DeFiWeeklyJuly13() {
   const [artemisBody, setArtemisBody] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch('https://deltav-cc.github.io/website-private/data/artemis-newsletter.json')
       .then(r => r.json())
       .then(d => setArtemisBody(d?.latest_weekly?.body_html || null))
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setLoaded(true));
   }, []);
 
   return (
@@ -26,7 +28,7 @@ export default function DeFiWeeklyJuly13() {
           MARKET PULSE — weekly data only, no text
           ════════════════════════════════════════════════════════ */}
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-6">
-        <div className="text-xs text-[#666] uppercase tracking-[1px] mb-3">Market Pulse — This Week</div>
+        <h2 className="!text-lg !font-semibold !mt-0 mb-3">Market Pulse — This Week</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div>
             <div className="text-[10px] text-[#666] uppercase tracking-[1px] mb-1">BTC Range</div>
@@ -120,6 +122,7 @@ export default function DeFiWeeklyJuly13() {
       {/* ════════════════════════════════════════════════════════
           ARTEMIS BODY — full newsletter, no banner
           ════════════════════════════════════════════════════════ */}
+      <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">This Week&apos;s Briefing</h2>
       <div className="my-6">
         {artemisBody ? (
           <>
@@ -148,9 +151,9 @@ export default function DeFiWeeklyJuly13() {
               dangerouslySetInnerHTML={{ __html: artemisBody }}
             />
           </>
-        ) : (
+        ) : loaded ? null : (
           <div className="text-center py-12 text-sm text-[var(--text-muted)]">
-            Loading Artemis newsletter...
+            Loading Artemis newsletter…
           </div>
         )}
       </div>
