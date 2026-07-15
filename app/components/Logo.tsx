@@ -22,12 +22,12 @@ export default function Logo({
       role="img"
       aria-label="Delta V"
     >
-      <circle cx="60" cy="60" r="57" fill="#0B1024" stroke="#1c2447" strokeWidth="1.5" />
+      <circle cx="60" cy="60" r="57" fill="#10251D" stroke="#5B9E83" strokeWidth="1.5" />
       {/* Δ — hollow delta */}
       <path
         d="M44 40 L29 82 L59 82 Z"
         fill="none"
-        stroke="#ffffff"
+        stroke="#B1E9D2"
         strokeWidth="7"
         strokeLinejoin="round"
       />
@@ -35,7 +35,7 @@ export default function Logo({
       <path
         d="M63 40 L76 82 L89 40"
         fill="none"
-        stroke="#ffffff"
+        stroke="#B1E9D2"
         strokeWidth="7"
         strokeLinecap="round"
         strokeLinejoin="round"
