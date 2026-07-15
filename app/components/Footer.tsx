@@ -40,6 +40,7 @@ export default function Footer() {
             <div className="space-y-2.5">
               <a href="mailto:engage@deltav.cc" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">engage@deltav.cc</a>
               <div className="text-sm text-[var(--text-tertiary)]">Signal: @DeltaV.01</div>
+              <a href="https://github.com/DeltaV-cc/website-private" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-primary)] transition-colors duration-150 text-sm">GitHub</a>
               <Link href="/contact/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Contact</Link>
             </div>
           </div>
