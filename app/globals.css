@@ -9,10 +9,10 @@
 :root {
   /* -- Backgrounds ----------------------------- */
   /* Widened luminance ramp so cards/surfaces separate from the page */
-  --bg-deep:    #0a0a0a;
-  --bg-surface: #16161b;
-  --bg-elevated:#1e1e25;
-  --bg-card:    #0f0f12;
+  --bg-deep:    #080b0a;
+  --bg-surface: #101714;
+  --bg-elevated:#18221d;
+  --bg-card:    #0b100e;
   --bg-hover:   rgba(255, 255, 255, 0.03);
   --bg-active:  rgba(255, 255, 255, 0.06);
 
@@ -26,18 +26,19 @@
 
   /* -- Brand Accents --------------------------- */
   /* Shared service-page accent; category colors remain semantic. */
-  --accent-primary: #f59e0b;
+  --accent-primary: #d5a84b;
   --accent-primary-bright: #fbbf24;
-  --accent-cyan:   #00f0ff;
-  --accent-orange: #C2410C;
-  --accent-amber:  #f59e0b;
-  --accent-purple: #a855f7;
+  --accent-cyan:   #8de7dc;
+  --accent-orange: #d5a84b;
+  --accent-amber:  #e7b96b;
+  --accent-purple: #78b89a;
   --accent-vibe-pink: #f472b6;
   --accent-vibe-purple: #c084fc;
   --accent-vibe-cyan: #67e8f9;
   --accent-gold:   #fbbf24;
   --accent-red:    #ef4444;
-  --accent-green:  #10b981;
+  --accent-green:  #8bd5a5;
+  --accent-mist:   #b1e9d2;
 
   /* -- Functional Accents ---------------------- */
   --accent-positive: #10b981;
@@ -46,7 +47,7 @@
   --accent-info:     #00f0ff;
 
   /* -- Borders --------------------------------- */
-  --border-default: #2a2a30;
+  --border-default: #26352d;
   --border-hover:   rgba(255, 255, 255, 0.12);
   --border-active:  rgba(255, 255, 255, 0.20);
   --border-accent-cyan:   rgba(0, 240, 255, 0.25);
@@ -58,9 +59,9 @@
   --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.50);
   --shadow-lg:    0 12px 32px rgba(0, 0, 0, 0.55);
   --shadow-xl:    0 24px 48px rgba(0, 0, 0, 0.60);
-  --glow-cyan:    0 0 24px rgba(0, 240, 255, 0.12);
-  --glow-orange:  0 0 24px rgba(194, 65, 12, 0.12);
-  --glow-purple:  0 0 24px rgba(168, 85, 247, 0.12);
+  --glow-cyan:    0 0 24px rgba(141, 231, 220, 0.10);
+  --glow-orange:  0 0 24px rgba(213, 168, 75, 0.10);
+  --glow-purple:  0 0 24px rgba(120, 184, 154, 0.10);
 
   /* -- Typography ------------------------------ */
   --font-sans: var(--font-geist-sans);
@@ -214,11 +215,53 @@ body {
 /* -- Utility Classes -------------------------- */
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-bright));
+  background: linear-gradient(135deg, var(--accent-mist), var(--accent-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.eyebrow { color: var(--accent-cyan); font: 600 .68rem var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+.section-title { font-size: clamp(2rem, 4vw, 3.5rem); line-height: .98; letter-spacing: -.06em; font-weight: 600; }
+.button-primary, .button-secondary { display: inline-flex; align-items: center; gap: .55rem; padding: .8rem 1.1rem; font-size: .82rem; font-weight: 600; transition: all var(--duration-base) var(--ease-smooth); }
+.button-primary { background: var(--accent-cyan); color: #07100d; }
+.button-primary:hover { background: var(--accent-mist); transform: translateY(-1px); }
+.button-secondary { border: 1px solid var(--border-default); color: var(--text-primary); }
+.button-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+.ascii-mist {
+  position: relative;
+  min-height: 23rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent-mist) 20%, var(--border-default));
+  background: radial-gradient(circle at 50% 45%, rgba(81, 150, 119, .16), transparent 58%), var(--bg-card);
+  color: color-mix(in srgb, var(--accent-mist) 78%, white);
+  isolation: isolate;
+}
+.ascii-mist::before, .ascii-mist::after {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(141, 231, 220, .12);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+.ascii-mist::after { inset: 19% 8%; transform: rotate(7deg); border-color: rgba(213, 168, 75, .12); }
+.ascii-mist pre { position: relative; z-index: 1; margin: 0; font: 500 clamp(.52rem, 1.05vw, .78rem)/1.55 var(--font-mono); letter-spacing: .08em; text-align: center; color: inherit; opacity: .85; }
+.ascii-mist-label { position: absolute; top: 1rem; left: 1rem; font: 600 .58rem var(--font-mono); letter-spacing: .18em; color: var(--accent-cyan); opacity: .7; }
+.ascii-mist-orbit { position: absolute; width: 5rem; height: 5rem; border: 1px solid rgba(213,168,75,.25); border-radius: 50%; animation: mistOrbit 12s linear infinite; }
+.orbit-one { right: 12%; top: 16%; }
+.orbit-two { left: 9%; bottom: 13%; width: 3rem; height: 3rem; animation-direction: reverse; animation-duration: 9s; border-color: rgba(141,231,220,.25); }
+.ascii-mist-compact { min-height: 11rem; }
+.ascii-mist-compact pre { font-size: .5rem; }
+.intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), var(--bg-deep); }
+.intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: #294036; background: rgba(16,23,20,.78); }
+.intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }
+.intelhub-tabs button[aria-selected="true"] { border-bottom-color: currentColor; background: transparent; }
+@keyframes mistOrbit { to { transform: rotate(360deg) translateX(8px) rotate(-360deg); } }
+@media (max-width: 640px) { .ascii-mist { min-height: 17rem; } .ascii-mist pre { font-size: .48rem; letter-spacing: .02em; } }
+@media (prefers-reduced-motion: reduce) { .ascii-mist-orbit { animation: none; } }
 
 /* Remove embedded newsletter subscription chrome from injected Artemis HTML. */
 .artemis-body .subscription-widget-wrap-editor,

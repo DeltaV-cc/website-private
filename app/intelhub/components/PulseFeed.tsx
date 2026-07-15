@@ -23,6 +23,7 @@ export default function PulseFeed({
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const tick = () => {
       if (el && !paused.current) {
         el.scrollLeft += speed.current;
@@ -43,10 +44,10 @@ export default function PulseFeed({
   }, [items.length]); // re-init if items change
 
   return (
-    <div className="border-b border-[#222] py-4 bg-[#080810]">
+    <div className="border-b border-[var(--border-default)] py-5 bg-[rgba(8,11,10,.72)]">
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="flex items-center gap-3 mb-3">
-          <span className="text-xs text-[#ededed]/25 uppercase tracking-[.2em] font-semibold">Live Signals</span>
+          <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[.2em] font-semibold">Live Signals</span>
           <span className="w-px h-3 bg-white/5" />
           <span className="text-xs text-[#ededed]/20 tabular-nums">{items.length} signals</span>
         </div>
