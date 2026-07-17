@@ -231,7 +231,7 @@ export default function Blog() {
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">Blog</h1>
           <p className="text-[var(--text-secondary)] text-lg max-w-xl leading-relaxed">
-            High-signal writing from IntelHub — deep dives, intelligence reports, and tutorials on sovereign AI, Web3 OpSec, and self-sovereign systems.
+            Writing about the latest AI and agent research, cybersecurity, hardware, and a weekly DeFi report — straight from the IntelHub pipeline.
           </p>
         </div>
 

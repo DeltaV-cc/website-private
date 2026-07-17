@@ -15,7 +15,7 @@ export default function Web3Page() {
       <PageHero
         label="Pillar 02 · Web3"
         title="Web3"
-        description="Navigate complexity with clarity, sovereignty, and real technical depth — from wallet architecture to onchain investigations, grounded in the risk data we monitor daily."
+        description="Navigate complexity with clarity, sovereignty, and real technical depth — native EVM builders with 10+ years in the space. From wallet architecture to onchain investigations, grounded in the intelligence we monitor daily."
         accent="orange"
         backFallback="/"
         backLabel="Home"
@@ -48,6 +48,7 @@ export default function Web3Page() {
             'Counterparty due diligence: wallets, entities, funding trails, and infrastructure',
             'Protocol deep-dives: governance capture risk, admin keys, and upgrade paths',
             'Incident forensics: trace what happened, quantify exposure, and document it',
+            'Financial services analysis and research — historical data, wallet mapping, deep EVM DeFi ecosystem knowledge',
             'Continuous monitoring briefs on protocols and entities you care about',
             'Confidential reporting — findings never leave your circle',
           ]}
@@ -83,23 +84,8 @@ export default function Web3Page() {
       </PageContainer>
 
       <PageContainer className="pb-24" as="section">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10">
-          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-4">Risk-first, always</div>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
-            {[
-              ['Live monitoring', 'We track exploits, depegs, unlocks, and governance attacks daily through our intelligence pipeline.'],
-              ['Data over narrative', 'Recommendations grounded in TVL quality, audit history, and onchain behavior — not marketing.'],
-              ['Assume breach', 'Every architecture we design assumes active surveillance and plans for compromise.'],
-            ].map(([t, d]) => <div key={t}><div className="font-semibold text-[var(--text-primary)] mb-1">{t}</div><div className="text-[var(--text-tertiary)] leading-relaxed">{d}</div></div>)}
-          </div>
-          <div className="mt-6 pt-6 border-t border-[var(--border-default)] flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-[var(--text-tertiary)]">Our risk radar runs in public — check the live dashboards.</p>
-            <Link href="/intelhub/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-primary)] hover:underline">Explore IntelHub <ArrowRight /></Link>
-          </div>
-        </div>
+        <EcosystemStack items={WEB3_ECOSYSTEM} accent="orange" label="Ecosystem & Stack" />
       </PageContainer>
-
-      <EcosystemStack items={WEB3_ECOSYSTEM} accent="orange" label="Ecosystem & Stack" />
     </>
   );
 }
