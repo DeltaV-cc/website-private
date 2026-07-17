@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { Item, PatentsData } from '../types';
-import { CategoryBox, fmtNum } from './Shared';
+import { CategoryBox, fmtNum, fmtCompact, fmtCurrency } from './Shared';
 import AIFrontierSignals from './AIFrontierSignals';
 import ArenaLeaderboard from './ArenaLeaderboard';
 import AnimatedValue from './AnimatedValue';
@@ -60,13 +60,7 @@ function describe(item: any): string {
   return pipeline ? pipeline.replace(/-/g, ' ') : (desc || 'ML model / space').slice(0, 60);
 }
 
-function fmtBig(n: number): string {
-  if (n >= 1e12) return `${(n / 1e12).toFixed(2)}T`;
-  if (n >= 1e9) return `${(n / 1e9).toFixed(2)}B`;
-  if (n >= 1e6) return `${(n / 1e6).toFixed(2)}M`;
-  if (n >= 1e3) return `${(n / 1e3).toFixed(1)}K`;
-  return n.toFixed(0);
-}
+function fmtBig(n: number): string { return fmtCompact(n); }
 
 /* -- Frontier Watch — compact 2-col grid -- */
 function FrontierWatch({ dd }: { dd: any }) {
