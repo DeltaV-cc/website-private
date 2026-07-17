@@ -141,14 +141,6 @@ export default function IntelHubPage() {
               Curated market data · AI &amp; Web3 signals · Onchain intelligence
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            {freshnessDot && (
-              <span className={`inline-block w-2 h-2 rounded-full ${freshnessDot}`} title={lastFetch ? `Fetched ${ago(lastFetch.toISOString())} ago` : ''} />
-            )}
-            <span className="text-xs text-[#ededed]/30 uppercase tracking-[.15em]">
-              {lastFetch ? `${ago(lastFetch.toISOString())} ago` : 'Loading...'}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -186,7 +178,7 @@ export default function IntelHubPage() {
         </div>
       </div>
 
-      <PulseFeed items={pulseItems} loading={loading} TC={TC} BCOL={BCOL} ts={ts} isNew={isNew} />
+      <PulseFeed items={pulseItems} loading={loading} TC={TC} BCOL={BCOL} ts={ts} isNew={isNew} lastFetch={lastFetch} ago={ago} />
 
       <div className="max-w-[1440px] mx-auto px-8 pb-24">
         {loading && !items.length && (

@@ -1,62 +1,32 @@
-/* ================================================================
-   IntelHub — Pulse scrolling feed (infinite seamless loop + motion)
-   ================================================================ */
+/* IntelHub — Pulse horizontal scroll */
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { Item } from '../types';
 
 export default function PulseFeed({
-  items, loading, TC, BCOL, ts, isNew,
+  items, loading, TC, BCOL, ts, isNew, lastFetch, ago,
 }: {
   items: Item[]; loading: boolean; TC: Record<string, string>; BCOL: Record<string, string>;
   ts: (iso: string) => string; isNew: (iso: string) => boolean;
+  lastFetch: Date | null; ago: (iso: string) => string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const speed = useRef(1.2);
-  const paused = useRef(false);
-  const af = useRef(0);
-
-  // Duplicate items for seamless infinite loop
-  const loopItems = items.length > 0 ? [...items, ...items] : [];
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const tick = () => {
-      if (el && !paused.current) {
-        el.scrollLeft += speed.current;
-        // Seamless infinite loop reset (no visible jump due to duplication)
-        const half = el.scrollWidth / 2;
-        if (el.scrollLeft >= half) {
-          el.scrollLeft -= half;
-        } else if (el.scrollLeft < 0) {
-          el.scrollLeft += half;
-        }
-      }
-      af.current = requestAnimationFrame(tick);
-    };
-    af.current = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(af.current);
-    };
-  }, [items.length]); // re-init if items change
 
   return (
     <div className="border-b border-[#222] py-4 bg-[#080810]">
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="flex items-center gap-3 mb-3">
-          <span className="text-xs text-[#ededed]/25 uppercase tracking-[.2em] font-semibold">Live Signals</span>
+          <span className="text-xs text-[#ededed]/30">
+            {lastFetch ? `Updated ${ago(lastFetch.toISOString())} ago` : 'Loading...'}
+          </span>
           <span className="w-px h-3 bg-white/5" />
           <span className="text-xs text-[#ededed]/20 tabular-nums">{items.length} signals</span>
         </div>
         <div
           ref={scrollRef}
-          className="flex gap-3"
-          onMouseEnter={() => { paused.current = true; }}
-          onMouseLeave={() => { paused.current = false; }}
+          className="flex gap-3 overflow-x-auto"
           style={{
-            overflowX: 'scroll',
             scrollbarWidth: 'none',
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)',
@@ -72,7 +42,7 @@ export default function PulseFeed({
           {!loading && items.length === 0 && (
             <div className="text-[#ededed]/15 text-sm italic py-6 px-2">Awaiting first signals</div>
           )}
-          {loopItems.map((it, i) => (
+          {items.map((it, i) => (
             <a
               key={i}
               href={it.url}
