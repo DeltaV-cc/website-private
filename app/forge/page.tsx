@@ -18,7 +18,7 @@ export default function ForgePage() {
           <span className="w-4 h-[2px] rounded-full bg-[var(--accent-amber)]/25" />
         </div>
         <p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-          We upskill, upgrade, and keep you at the frontier. Sovereign systems, practical curricula, high-signal intelligence.
+          We upskill, upgrade, and keep you at the frontier. Build sovereign systems with our practical curriculums.
         </p>
       </section>
 

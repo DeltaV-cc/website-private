@@ -36,8 +36,8 @@ export default function DeltaVSite() {
             </h1>
 
             <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl leading-relaxed mb-10 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-              Sovereign AI, Web3, and OpSec engineering for high-stakes operators. 
-              Local-first by default. Keys never leave the machine.
+              Sovereign AI, Web3, and OpSec engineering — built for everyone, from builders to operators.
+              Adaptive by design. Privacy and sovereignty without compromise.
             </p>
 
             <div className="flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
@@ -82,7 +82,7 @@ export default function DeltaVSite() {
                 </span>
                 <div>
                   <div className="font-medium text-[var(--text-primary)] mb-0.5">Tailored Multi-Agent Systems</div>
-                  <div className="text-[var(--text-tertiary)]">Custom architectures for operations, business, marketing, and intelligence.</div>
+                  <div className="text-[var(--text-tertiary)]">Custom architectures for operations, business, marketing, academic research, and intelligence.</div>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -90,8 +90,8 @@ export default function DeltaVSite() {
                   <BulletIcon />
                 </span>
                 <div>
-                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Inference & Model Engineering</div>
-                  <div className="text-[var(--text-tertiary)]">Production-grade deployment with Hugging Face and custom frameworks.</div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Inference &amp; Model Engineering</div>
+                  <div className="text-[var(--text-tertiary)]">Custom model engineering for your domain — from fine-tuning and training to production deployment.</div>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -133,8 +133,8 @@ export default function DeltaVSite() {
                   <BulletIcon />
                 </span>
                 <div>
-                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Web3 Intelligence & OSINT</div>
-                  <div className="text-[var(--text-tertiary)]">Continuous monitoring of DeFi, privacy tech, EIPs, and ecosystem signals.</div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">Web3 Intelligence &amp; OSINT</div>
+                  <div className="text-[var(--text-tertiary)]">Continuous monitoring, on-chain investigation, and OSINT across DeFi, privacy tech, EIPs, and ecosystem signals.</div>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -143,7 +143,7 @@ export default function DeltaVSite() {
                 </span>
                 <div>
                   <div className="font-medium text-[var(--text-primary)] mb-0.5">Growth Boost</div>
-                  <div className="text-[var(--text-tertiary)]">Strategic expansion with OpSec foundations.</div>
+                  <div className="text-[var(--text-tertiary)]">Strategic expansion with OpSec foundations, public good support, and community building.</div>
                 </div>
               </div>
             </div>
@@ -185,8 +185,8 @@ export default function DeltaVSite() {
                   <BulletIcon />
                 </span>
                 <div>
-                  <div className="font-medium text-[var(--text-primary)] mb-0.5">OpSec Training & Auditing</div>
-                  <div className="text-[var(--text-tertiary)]">Platform-specific hardening: Windows, Linux, macOS.</div>
+                  <div className="font-medium text-[var(--text-primary)] mb-0.5">OpSec Training &amp; Auditing</div>
+                  <div className="text-[var(--text-tertiary)]">Platform-specific hardening, Web3 operations, and agent OpSec — Windows, Linux, macOS.</div>
                 </div>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function DeltaVSite() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5 stagger-children">
+          <div className="grid md:grid-cols-3 gap-5 stagger-children">
             <Link
               href="/forge/"
               className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 card-interactive card-accent-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-cyan)]"
@@ -236,21 +236,41 @@ export default function DeltaVSite() {
             </Link>
 
             <Link
-              href="/forge/"
+              href="/web3/"
               className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 card-interactive card-accent-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-orange)]"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl md:text-3xl font-semibold">AI Engineering Bootcamp</h3>
+                <h3 className="text-2xl md:text-3xl font-semibold">Growth Boost</h3>
                 <span className="w-10 h-10 rounded-xl bg-[var(--accent-orange)]/10 flex items-center justify-center text-[var(--accent-orange)] group-hover:bg-[var(--accent-orange)]/20 transition-colors" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l8 8-8 8L2 10l8-8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-4 4 4 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </span>
               </div>
               <p className="text-[var(--text-secondary)] text-base leading-relaxed flex-1">
-                5-day intensive program where participants leave with fully functional production systems. Zero to deployed.
+                Strategic Web3 growth — community building, public good initiatives, and fundraising with OpSec foundations baked in.
               </p>
               <div className="mt-8 flex justify-end">
                 <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-orange)] group-hover:gap-2.5 transition-all">
-                  Apply for Next Cohort <ArrowRight />
+                  Explore Web3 <ArrowRight />
+                </span>
+              </div>
+            </Link>
+
+            <Link
+              href="/ai/"
+              className="group flex flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10 card-interactive card-accent-purple focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-purple)]"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl md:text-3xl font-semibold">Tailored Multi-Agent Systems</h3>
+                <span className="w-10 h-10 rounded-xl bg-[var(--accent-purple)]/10 flex items-center justify-center text-[var(--accent-purple)] group-hover:bg-[var(--accent-purple)]/20 transition-colors" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="5" cy="5" r="2" stroke="currentColor" strokeWidth="1.5"/><circle cx="15" cy="5" r="2" stroke="currentColor" strokeWidth="1.5"/><circle cx="10" cy="15" r="2" stroke="currentColor" strokeWidth="1.5"/><path d="M7 5h6M5 7v6M15 7v6M8 13h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </span>
+              </div>
+              <p className="text-[var(--text-secondary)] text-base leading-relaxed flex-1">
+                Custom single and multi-agent architectures built around your workflows, data, and use case — shipped and hardened.
+              </p>
+              <div className="mt-8 flex justify-end">
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-purple)] group-hover:gap-2.5 transition-all">
+                  Explore AI Engineering <ArrowRight />
                 </span>
               </div>
             </Link>

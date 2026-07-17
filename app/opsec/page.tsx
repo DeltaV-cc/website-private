@@ -185,38 +185,23 @@ export default function OpSec() {
                 <div className="text-[var(--text-tertiary)]">Ethereum wallet privacy rankings.</div>
               </div>
               <div>
+                <div className="font-medium text-[var(--text-primary)] mb-0.5">DeFiScan</div>
+                <div className="text-[var(--text-tertiary)]">DeFi protocol risk and transparency assessments.</div>
+              </div>
+              <div>
+                <div className="font-medium text-[var(--text-primary)] mb-0.5">L2Beat</div>
+                <div className="text-[var(--text-tertiary)]">Layer 2 security, risk, and decentralization tracking.</div>
+              </div>
+              <div>
+                <div className="font-medium text-[var(--text-primary)] mb-0.5">AntiCapture</div>
+                <div className="text-[var(--text-tertiary)]">Governance capture detection and DAO risk monitoring.</div>
+              </div>
+              <div>
                 <div className="font-medium text-[var(--text-primary)] mb-0.5">Yubico / FIDO2</div>
                 <div className="text-[var(--text-tertiary)]">Hardware-backed authentication for humans and admin paths.</div>
               </div>
               <div className="text-[var(--text-tertiary)]">Endpoint security research from arXiv & independent labs</div>
             </div>
-          </div>
-        </div>
-      </PageContainer>
-
-      <PageContainer className="pb-20" as="section">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <div className="text-[var(--accent-amber)] text-[10px] font-semibold tracking-[2px] uppercase mb-2">
-              Content Forge
-            </div>
-            <p className="text-sm text-[var(--text-secondary)] max-w-xl leading-relaxed">
-              Full playbooks and hardening guides produced through the Content Forge.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/opsec/sota-stack/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent-amber)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-gold)] transition-colors"
-            >
-              SOTA stack <ArrowRight />
-            </Link>
-            <Link
-              href="/contact/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] rounded-xl text-sm hover:border-[var(--accent-cyan)]/30 hover:text-[var(--accent-cyan)] transition-all"
-            >
-              Request a team audit
-            </Link>
           </div>
         </div>
       </PageContainer>

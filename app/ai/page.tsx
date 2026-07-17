@@ -81,24 +81,8 @@ export default function AIPage() {
       </PageContainer>
 
       <PageContainer className="pb-24" as="section">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-deep)] p-8 md:p-10">
-          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-4">Sovereign by default</div>
-          <div className="grid md:grid-cols-4 gap-6 text-sm">
-            {[
-              ['Local-first', 'No system we ship requires cloud connectivity to function.'],
-              ['Keys stay home', 'Private keys, tokens, and memory live on your hardware.'],
-              ['Minimal surface', 'Every dependency is a liability. We ruthlessly prune.'],
-              ['Human in the loop', 'Agents propose. Humans decide on high-stakes actions.'],
-            ].map(([t, d]) => <div key={t}><div className="font-semibold text-[var(--text-primary)] mb-1">{t}</div><div className="text-[var(--text-tertiary)] leading-relaxed">{d}</div></div>)}
-          </div>
-          <div className="mt-6 pt-6 border-t border-[var(--border-default)] flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-[var(--text-tertiary)]">These principles are non-negotiable — read why.</p>
-            <Link href="/blog/first-principles/" className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-primary)] hover:underline">First Principles for Sovereign AI Agents <ArrowRight /></Link>
-          </div>
-        </div>
+        <EcosystemStack items={AI_ECOSYSTEM} accent="cyan" label="Ecosystem & Stack" />
       </PageContainer>
-
-      <EcosystemStack items={AI_ECOSYSTEM} accent="cyan" label="Ecosystem & Stack" />
     </>
   );
 }
