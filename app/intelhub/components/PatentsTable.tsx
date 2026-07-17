@@ -10,6 +10,7 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
   if (!patents) return null;
 
   const { header, topHolders } = patents;
+  const maxCount = Math.max(...topHolders.map(h => parseInt(h.count) || 0), 1);
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden h-full">
@@ -20,21 +21,23 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
         </div>
         <span className="text-[10px] text-[var(--text-disabled)]">{header.yoy}</span>
       </div>
-      <div className="px-4 py-2.5">
-        <div className="grid grid-cols-[18px_1fr_38px_52px] gap-2 px-1.5 py-1 text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
-          <span>#</span><span>Company</span><span className="text-right">Grants</span><span className="text-right">M.Cap</span>
-        </div>
-        {topHolders.slice(0, 6).map((h, i) => (
-          <div key={i} className="grid grid-cols-[18px_1fr_38px_52px] gap-2 items-center px-1.5 py-1.5 rounded hover:bg-white/[0.02] transition-colors duration-150">
-            <span className="text-[10px] text-[var(--text-disabled)] tabular-nums">{i + 1}</span>
-            <div className="flex items-center gap-1.5 min-w-0">
-              <span className="text-[10px] text-[var(--text-muted)]">{h.country}</span>
-              <span className="text-[10px] text-[var(--text-secondary)] font-medium truncate">{h.name}</span>
+      <div className="p-4 space-y-2.5">
+        {topHolders.slice(0, 8).map((h, i) => {
+          const count = parseInt(h.count) || 0;
+          const pct = Math.max(2, (count / maxCount) * 100);
+          return (
+            <div key={i} className="flex items-center gap-2.5 text-xs">
+              <span className="w-4 text-[10px] text-[var(--text-disabled)] tabular-nums text-right">{i + 1}</span>
+              <span className="w-16 text-[var(--text-secondary)] truncate font-medium">{h.name}</span>
+              <div className="flex-1 h-3 rounded-full bg-white/[0.04] overflow-hidden">
+                <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-vibe-pink)]/80 to-[var(--accent-purple)]/60 transition-all duration-700"
+                  style={{ width: `${pct}%` }} />
+              </div>
+              <span className="w-12 text-right tabular-nums text-[var(--text-primary)] font-semibold">{h.count}</span>
+              <span className="w-12 text-right tabular-nums text-[var(--text-tertiary)] text-[10px]">{h.mcap || ''}</span>
             </div>
-            <span className="text-[10px] text-[var(--text-primary)] tabular-nums font-semibold text-right">{h.count}</span>
-            <span className="text-[10px] text-[var(--text-tertiary)] tabular-nums text-right">{h.mcap || <SkeletonBlock className="h-3 w-12 inline-block" />}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -126,7 +126,7 @@ export function BarChart({
             />
           </div>
           <span className="w-20 text-right text-[#ededed]/70 tabular-nums font-medium flex-shrink-0 leading-none">
-            {fmtShort(d.value)}
+            {fmtCurrency(d.value)}
           </span>
         </div>
       ))}
@@ -176,14 +176,25 @@ export function CategoryBox({
 }
 
 /* -- helpers -- */
-export function fmtNum(n: number | null | undefined, decimals = 0): string {
+export function fmtCompact(n: number | null | undefined): string {
   if (n == null || isNaN(n)) return '...';
-  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  if (n >= 1e12) return `${(n / 1e12).toFixed(1)}T`;
+  if (n >= 1e9) return `${(n / 1e9).toFixed(1)}B`;
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(1)}K`;
+  return n.toFixed(0);
 }
 
-function fmtShort(n: number) {
+export function fmtCurrency(n: number | null | undefined): string {
+  if (n == null || isNaN(n)) return '...';
+  if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
   if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
   if (n >= 1e3) return `$${(n / 1e3).toFixed(1)}K`;
   return `$${n.toFixed(2)}`;
+}
+
+export function fmtNum(n: number | null | undefined, decimals = 0): string {
+  if (n == null || isNaN(n)) return '...';
+  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }

@@ -80,7 +80,14 @@ const HW_EXCLUDE = ['anti-fraud', 'fraud detection', 'biology', 'biotech', 'dna 
   'language model', 'takeoff', 'deny ai', 'capital spent', 'overlooked corner of ai'];
 
 function cleanTitle(t: string) {
-  return t.replace(/^RT\s+by\s+@\S+?:\s*/i, '').replace(/^RT\s+@\S+?:\s*/i, '');
+  let cleaned = t.replace(/^RT\s+by\s+@\S+?:\s*/i, '').replace(/^RT\s+@\S+?:\s*/i, '');
+  // Strip HTML tags and entities that leak from RSS feeds
+  cleaned = cleaned.replace(/<\/?[^>]+(>|$)/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+  // MarketNews_Feed: strip $MACRO / $CRYPTO ticker hashtags from display
+  cleaned = cleaned.replace(/\$[A-Z]{2,}/g, '').replace(/\s{2,}/g, ' ').trim();
+  // Fix truncated <p> prefix from RSS feed stripping (e.g. "pPAYPAL:" → "PAYPAL:")
+  cleaned = cleaned.replace(/^p([A-Z])/, '$1');
+  return cleaned;
 }
 
 function getTag(title: string, summary?: string, source?: string): string {
@@ -170,7 +177,17 @@ export function useIntelData() {
       await Promise.allSettled([
         fetchJson(`${BASE}/data/raw-items.json`).then((d) => {
           if (Array.isArray(d)) {
-            setItems(d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel));
+            const tagged = d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel);
+            // Deduplicate: same source + similar normalized title → keep first
+            const seen = new Set<string>();
+            const deduped = tagged.filter((it: any) => {
+              const norm = (it.title || '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
+              const key = `${(it.source || '').toLowerCase()}|${norm}`;
+              if (seen.has(key)) return false;
+              seen.add(key);
+              return true;
+            });
+            setItems(deduped);
             setLastFetch(new Date());
           }
         }),

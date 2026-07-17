@@ -90,9 +90,7 @@ export default function PulseFeed({
               <div className="flex items-center gap-2 mt-3 text-xs text-[#ededed]/25">
                 {it.tag ? (
                   <span className={`px-2 py-0.5 rounded-md font-semibold text-xs ${TC[it.tag] || ''}`}>#{it.tag}</span>
-                ) : (
-                  <span className="px-2 py-0.5 rounded-md text-xs bg-white/[0.04] text-[#ededed]/20">#unranked</span>
-                )}
+                ) : null}
                 <span className="truncate max-w-[85px]">{it.source}</span>
                 <span className="ml-auto tabular-nums whitespace-nowrap">{ts(it.published_at)}</span>
               </div>
