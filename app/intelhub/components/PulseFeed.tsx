@@ -39,7 +39,7 @@ export default function PulseFeed({
         <div className="flex items-center gap-3 mb-3">
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[.2em] font-semibold">Live Signals</span>
           <span className="text-xs text-[#ededed]/30">
-            {lastFetch ? `Updated ${ago(lastFetch.toISOString())} ago` : 'Loading...'}
+            {lastFetch ? `Updated ${ago(lastFetch.toISOString()) === 'now' ? 'just now' : `${ago(lastFetch.toISOString())} ago`}` : 'Loading...'}
           </span>
           <span className="w-px h-3 bg-white/5" />
           <span className="text-xs text-[#ededed]/20 tabular-nums">{items.length} signals</span>
