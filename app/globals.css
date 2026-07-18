@@ -127,6 +127,15 @@ body {
   border-radius: 4px;
 }
 
+/* The header search has its own underline focus state; avoid the global
+   focus ring creating a detached blue rectangle around the input. */
+.navbar-search-input:focus,
+.navbar-search-input:focus-visible {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+
 /* Skip link - off-screen until keyboard focus */
 .skip-link {
   position: absolute;
