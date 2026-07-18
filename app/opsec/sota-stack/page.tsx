@@ -180,7 +180,7 @@ export default function SotaStackPage() {
                 { title: 'Agents / x402', subtitle: 'Module only · never treasury key' },
                 {
                   title: 'Top-tier path',
-                  subtitle: 'Taurus custody · Opsek HNW security',
+                  subtitle: 'Taurus custody · OpSec HNW security',
                   accent: 'amber',
                 },
               ],

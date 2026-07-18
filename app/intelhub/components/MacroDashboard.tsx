@@ -7,7 +7,6 @@ import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
 import { CategoryBox, fmtNum } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
-import AnimatedValue from './AnimatedValue';
 
 /* -- Inline SVG Icons -- */
 const TrendUp = () => (
@@ -24,16 +23,6 @@ const TrendDown = () => (
 );
 
 /* -- Number formatters (matching Web3Dashboard pattern) -- */
-function fmtPrice(n: number): string {
-  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function parsePrice(p: any): number {
-  if (typeof p === 'number') return p;
-  if (typeof p === 'string') return parseFloat(p.replace(/[^0-9.]/g, '')) || 0;
-  return 0;
-}
-
 export default function MacroDashboard({
   items, dd, patents, forex, catBoxes, TC, ago, ts,
 }: {
@@ -46,8 +35,6 @@ export default function MacroDashboard({
   const fgLabel = stockFG.rating || '';
   const spx = dd?.indices?.spx;
   const csi = dd?.indices?.csi;
-  const gold = dd?.gold;
-  const us10y = dd?.us10y;
   const crypto = dd?.crypto;
   const macroCat = catBoxes.find((c: any) => c.id === 'macro');
   const sciCat = catBoxes.find((c: any) => c.id === 'science');
@@ -67,72 +54,9 @@ export default function MacroDashboard({
     : fgVal <= 60 ? 'text-[var(--accent-amber)]' : fgVal <= 80 ? 'text-lime-400' : 'text-[var(--accent-green)]';
 
   // Price formatter color
-  const spxChgColor = spx?.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
-
   return (
     <div className="space-y-5">
       <MarketNewsTicker items={items} ts={ts} />
-
-      {/* -- Global Market Overview Banner (Web3-style) -- */}
-      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
-        {spx ? (
-          <div className="flex items-end justify-between">
-            <div>
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">S&P 500</div>
-              <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
-                <AnimatedValue value={parsePrice(spx.price)} format={fmtPrice} className="tabular-nums" />
-              </div>
-              <div className={`text-xs font-semibold mt-1 ${spxChgColor}`}>
-                {spx.changePct || ''} <span className="text-[var(--text-muted)] font-normal">24h</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              {/* Fear & Greed */}
-              <div className="flex items-center gap-2.5">
-                <div className="text-right">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Fear & Greed</div>
-                  {typeof stockFG.score === 'number' ? (
-                    <>
-                      <div className={`text-lg font-bold tabular-nums ${fgColor}`}>{fgVal}</div>
-                      <div className={`text-[10px] ${fgColor}/60`}>{fgLabel || '···'}</div>
-                    </>
-                  ) : (
-                    <div className="space-y-1">
-                      <div className="skeleton-shimmer h-5 w-10 rounded" />
-                      <div className="skeleton-shimmer h-3 w-12 rounded" />
-                    </div>
-                  )}
-                </div>
-                {typeof stockFG.score === 'number' && (
-                  <div className="relative w-3 h-16 bg-gradient-to-t from-red-500/40 via-amber-500/40 to-emerald-500/40 rounded-full overflow-hidden">
-                    <div className="absolute left-0 right-0 h-[3px] bg-white rounded-full transition-all duration-500"
-                      style={{ bottom: `${Math.max(3, Math.min(97, fgVal))}%` }} />
-                  </div>
-                )}
-              </div>
-              {/* Gold + 10Y */}
-              <div className="text-right space-y-1">
-                {gold && (
-                  <div className="text-xs text-[var(--text-tertiary)]">Gold{' '}
-                    <span className="text-[var(--text-secondary)] tabular-nums">${gold.price}</span>
-                  </div>
-                )}
-                {us10y && (
-                  <div className="text-xs text-[var(--text-tertiary)]">10Y Yield{' '}
-                    <span className="text-[var(--text-secondary)] tabular-nums">{us10y.price}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-3 py-1">
-            <div className="skeleton-shimmer h-3 w-32 rounded" />
-            <div className="skeleton-shimmer h-8 w-44 rounded" />
-            <div className="skeleton-shimmer h-3 w-20 rounded" />
-          </div>
-        )}
-      </div>
 
       {/* -- Market Grid — Metric Tiles -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
@@ -140,7 +64,7 @@ export default function MacroDashboard({
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
           <span className="text-[10px] text-[var(--text-muted)]">via Alpha Vantage / Yahoo</span>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-x divide-y divide-white/[0.03]">
           {/* S&P 500 */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">S&P 500</div>
@@ -169,25 +93,6 @@ export default function MacroDashboard({
                 <div className={`inline-flex items-center gap-1 text-xs font-semibold ${csi.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
                   {csi.change >= 0 ? <TrendUp /> : <TrendDown />}
                   {csi.changePct || ''}
-                </div>
-              </>
-            ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
-            )}
-          </div>
-
-          {/* Gold */}
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Gold</div>
-            {gold ? (
-              <>
-                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">${gold.price}</div>
-                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${gold.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                  {gold.change >= 0 ? <TrendUp /> : <TrendDown />}
-                  {gold.changePct || ''}
                 </div>
               </>
             ) : (
@@ -240,21 +145,18 @@ export default function MacroDashboard({
             )}
           </div>
 
-          {/* 10Y Yield */}
+          {/* Fear & Greed */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">10Y Yield</div>
-            {us10y ? (
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Fear &amp; Greed</div>
+            {typeof stockFG.score === 'number' ? (
               <>
-                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">{us10y.price}</div>
-                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${us10y.change >= 0 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-green)]'}`}>
-                  {us10y.change >= 0 ? <TrendUp /> : <TrendDown />}
-                  {us10y.changePct || ''}
-                </div>
+                <div className={`text-lg font-bold tabular-nums mb-1 ${fgColor}`}>{fgVal}</div>
+                <div className={`text-xs font-medium ${fgColor}/70`}>{fgLabel || 'Neutral'}</div>
               </>
             ) : (
               <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
+                <div className="skeleton-shimmer h-5 w-10 rounded" />
+                <div className="skeleton-shimmer h-3 w-14 rounded" />
               </div>
             )}
           </div>
