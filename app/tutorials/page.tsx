@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import BackLink from '@/app/components/BackLink';
 import FilterSidebar from '@/app/components/FilterSidebar';
+import { tutorialIndex } from '@/app/data/content-index';
 
-const tutorials = [
+const legacyTutorials = [
   {
     slug: 'hermes-qwen-dgx-spark',
     title: 'Hermes + Qwen 3.6 + NVIDIA DGX Spark: The Local AI Convergence',
@@ -42,6 +43,15 @@ const tutorials = [
       'Optional deep reference for payment-gated APIs (HTTP 402 + USDC). Prefer the SOTA stack + workshop for the product path.',
   },
 ];
+
+const tutorials = tutorialIndex.map((entry) => ({
+  slug: entry.id,
+  title: entry.title,
+  date: entry.date || '',
+  readingTime: '8 min',
+  tags: entry.tags,
+  excerpt: entry.excerpt,
+}));
 
 const TAG_ORDER = ['Web3', 'Local AI', 'Agents', 'RAG', 'Audio', 'OpSec'];
 

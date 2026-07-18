@@ -255,6 +255,11 @@ body {
 .orbit-two { left: 9%; bottom: 13%; width: 3rem; height: 3rem; animation-direction: reverse; animation-duration: 9s; border-color: rgba(141,231,220,.25); }
 .ascii-mist-compact { min-height: 11rem; }
 .ascii-mist-compact pre { font-size: .5rem; }
+.ink-garden { position: relative; min-height: 23rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--accent-purple) 35%, var(--border-default)); background: var(--bg-card); isolation: isolate; }
+.ink-garden canvas { display: block; width: 100%; height: 100%; min-height: inherit; opacity: .92; }
+.ink-garden::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(197,184,224,.07), transparent 65%); mix-blend-mode: screen; }
+.ink-garden-note { position: absolute; right: 1rem; bottom: 1rem; color: var(--accent-cyan); opacity: .65; font: 600 .58rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+.ink-garden-compact { min-height: 11rem; }
 .intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), var(--bg-deep); }
 .intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: #294036; background: rgba(16,23,20,.78); }
 .intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }
@@ -268,6 +273,8 @@ body {
 .animated-background { position: relative; overflow: hidden; }
 .animated-background-wash { position: absolute; inset: 0; opacity: 0; background: radial-gradient(24rem circle at 0% 0%, rgba(141,121,180,.16), transparent 68%); transform: translateX(-12%); transition: opacity .35s var(--ease-out-expo), transform .55s var(--ease-out-expo); }
 .animated-background.is-active .animated-background-wash { opacity: 1; transform: translateX(0); }
+.content-result { position: relative; padding: 1.5rem 0; transition: padding .25s var(--ease-out-expo), background .25s var(--ease-smooth); }
+.content-result:hover { padding-inline: .75rem; background: color-mix(in srgb, var(--accent-purple) 5%, transparent); }
 @media (max-width: 640px) { .ascii-mist { min-height: 17rem; } .ascii-mist pre { font-size: .48rem; letter-spacing: .02em; } }
 @media (prefers-reduced-motion: reduce) { .ascii-mist-orbit { animation: none; } }
 

@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import BackLink from '@/app/components/BackLink';
 import FilterSidebar from '@/app/components/FilterSidebar';
+import { blogIndex } from '@/app/data/content-index';
 
-const posts = [
+const legacyPosts = [
   {
     title: "DeFi Weekly — July 13, 2026",
     date: "July 13, 2026",
@@ -150,6 +151,15 @@ const posts = [
     slug: "first-principles"
   },
 ];
+
+const posts = blogIndex.map((entry) => ({
+  title: entry.title,
+  date: entry.date || '',
+  category: entry.domain,
+  type: entry.format || 'Deep Dive',
+  excerpt: entry.excerpt,
+  slug: entry.id,
+}));
 
 const CATEGORY_ORDER = ['AI', 'Web3', 'OpSec', 'Hardware', 'DeFi Weekly'];
 
