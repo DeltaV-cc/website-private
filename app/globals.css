@@ -269,6 +269,20 @@ body {
 .ink-garden::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(197,184,224,.07), transparent 65%); mix-blend-mode: screen; }
 .ink-garden-note { position: absolute; right: 1rem; bottom: 1rem; color: var(--accent-cyan); opacity: .65; font: 600 .58rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
 .ink-garden-compact { min-height: 11rem; }
+.ink-garden-background {
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: 0;
+  min-height: 0;
+  height: auto;
+  border: 0;
+  opacity: .23;
+  pointer-events: none;
+  background: transparent;
+}
+.ink-garden-background canvas { min-height: 100%; opacity: .7; }
+.ink-garden-background::after,
+.ink-garden-background .ascii-mist-label { display: none; }
 .intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), var(--bg-deep); }
 .intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: #294036; background: rgba(16,23,20,.78); }
 .intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }

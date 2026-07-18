@@ -3,11 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 type RenderMode = 'characters' | 'dither' | 'mosaic' | 'pixel' | 'dots' | 'cross' | 'diamond' | 'voxel' | 'lego' | 'mixed' | 'lines' | 'diagonal' | 'braille' | 'disco' | 'hexdump' | 'matrix' | 'rings' | 'hearts' | 'stars' | 'hexagons' | 'triangles' | 'bubbles' | 'hatch' | 'contour' | 'halfblocks';
-type InkGardenProps = { compact?: boolean; source?: string; renderMode?: RenderMode };
+type InkGardenProps = { compact?: boolean; background?: boolean; source?: string; renderMode?: RenderMode };
 
 const chars = ' .·:;+*#%@';
 const tint = '#8d79b4';
-const sourcePhoto = '/website-private/ascii-editor/demos/generated/ref-029.webp';
+const sourcePhoto = '/website-private/images/ink-garden-panorama.png';
 
 function hexRgb(hex: string) {
   const value = hex.replace('#', '');
@@ -29,18 +29,17 @@ function colour(r: number, g: number, b: number, settings: { brightness: number;
   return `rgb(${Math.max(0, Math.min(255, r))},${Math.max(0, Math.min(255, g))},${Math.max(0, Math.min(255, b))})`;
 }
 
-export default function InkGarden({ compact = false, source = sourcePhoto, renderMode = 'dither' }: InkGardenProps) {
+export default function InkGarden({ compact = false, background = false, source = sourcePhoto, renderMode = 'mixed' }: InkGardenProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = canvasRef.current; const host = canvas?.parentElement; const ctx = canvas?.getContext('2d');
     if (!canvas || !host || !ctx) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = background || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const photo = new Image(); photo.src = source;
     const sourceCanvas = document.createElement('canvas'); const sourceCtx = sourceCanvas.getContext('2d');
-    let raf = 0; let pointer = { x: .5, y: .5 };
-    const settings = { cellSize: compact ? 8 : 9, density: 20, coverage: 100, brightness: 0, contrast: 158, saturation: 100, grayscale: 0, invert: false, tintOpacity: 0, edgeEmphasis: 0, bgOpacity: 90, animSpeed: 100, animIntensity: 60 };
+    let raf = 0;
+    const settings = { cellSize: background ? 9 : compact ? 5 : 6, density: 20, coverage: 100, brightness: 30, contrast: 120, saturation: 100, grayscale: 0, invert: false, tintOpacity: 0, edgeEmphasis: 0, bgOpacity: 90, animSpeed: .35, animIntensity: .08 };
     const resize = () => { const ratio = Math.min(window.devicePixelRatio || 1, 2); canvas.width = host.clientWidth * ratio; canvas.height = host.clientHeight * ratio; ctx.setTransform(ratio, 0, 0, ratio, 0, 0); sourceCanvas.width = host.clientWidth; sourceCanvas.height = host.clientHeight; };
-    const move = (e: PointerEvent) => { const rect = host.getBoundingClientRect(); pointer = { x: (e.clientX - rect.left) / rect.width, y: (e.clientY - rect.top) / rect.height }; };
     const drawShape = (mode: RenderMode, x: number, y: number, size: number, level: number, fill: string, time: number, ix: number, iy: number) => {
       ctx.fillStyle = fill; ctx.strokeStyle = fill; ctx.lineWidth = Math.max(1, size / 8); const q = size * (.25 + level * .75);
       if (mode === 'characters' || mode === 'hexdump' || mode === 'matrix') { ctx.font = `${size}px ui-monospace, monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; const set = mode === 'hexdump' ? '0123456789ABCDEF' : mode === 'matrix' ? '01アイ' : chars; ctx.fillText(set[Math.floor((level + ix * .013) * (set.length - 1))], x, y); return; }
@@ -59,17 +58,27 @@ export default function InkGarden({ compact = false, source = sourcePhoto, rende
     };
     const draw = (time: number) => {
       const w = host.clientWidth; const h = host.clientHeight; ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#080b0a'; ctx.fillRect(0, 0, w, h);
-      if (photo.complete && photo.naturalWidth && sourceCtx) { sourceCtx.clearRect(0, 0, w, h); const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; sourceCtx.globalAlpha = settings.bgOpacity / 100; sourceCtx.drawImage(photo, (w - sw) / 2, (h - sh) / 2, sw, sh); }
+      if (photo.complete && photo.naturalWidth) { const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageY = (h - sh) / 2; ctx.save(); ctx.globalAlpha = background ? .3 : .46; ctx.filter = 'blur(1.5px) brightness(1.18) saturate(.9)'; ctx.drawImage(photo, (w - sw) / 2, imageY, sw, sh); ctx.restore(); }
+      if (photo.complete && photo.naturalWidth && sourceCtx) { sourceCtx.clearRect(0, 0, w, h); const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageY = (h - sh) / 2; sourceCtx.globalAlpha = settings.bgOpacity / 100; sourceCtx.drawImage(photo, (w - sw) / 2, imageY, sw, sh); }
       const data = sourceCtx?.getImageData(0, 0, w, h).data; const cols = Math.ceil(w / settings.cellSize); const rows = Math.ceil(h / (settings.cellSize * 1.35));
+      ctx.save(); ctx.globalAlpha = background ? .18 : .34;
       for (let iy = 0; iy < rows; iy++) for (let ix = 0; ix < cols; ix++) {
         const px = Math.min(w - 1, Math.floor((ix + .5) * settings.cellSize)); const py = Math.min(h - 1, Math.floor((iy + .5) * settings.cellSize * 1.35)); const index = (py * w + px) * 4; const r = data?.[index] ?? 75; const g = data?.[index + 1] ?? 62; const b = data?.[index + 2] ?? 80; let level = (r * .299 + g * .587 + b * .114) / 255;
-        const plant = Math.max(0, 1 - Math.abs(ix / cols - (.5 + (iy / rows - .5) * (pointer.x - .5) * .5)) * 5); level = Math.max(level * .7, plant * .75); const wave = reduce ? 0 : Math.sin(time * .001 * settings.animSpeed + ix * .18 + iy * .05) * .08 * (settings.animIntensity / 60); level = Math.max(0, Math.min(1, level + wave)); if (Math.random() > settings.coverage / 100) continue;
-        drawShape(renderMode === 'dither' ? (level > .52 ? 'characters' : 'dots') : renderMode, px, py, settings.cellSize, level, colour(r, g, b, settings), time, ix, iy);
+        const yNorm = iy / Math.max(1, rows - 1); const trailCenter = .28 + (.58 - yNorm) * .52; const trailFade = Math.max(0, 1 - Math.abs(yNorm - .38) * 1.25); const trail = Math.max(0, 1 - Math.abs(ix / cols - trailCenter) * 18) * trailFade; level = Math.max(level * .7, trail * .58); const wave = reduce ? 0 : Math.sin(time * .001 * settings.animSpeed + ix * .12 + iy * .035) * settings.animIntensity; level = Math.max(0, Math.min(1, level + wave));
+        let mode: RenderMode = renderMode;
+        if (renderMode === 'mixed') {
+          const pattern = (ix * 7 + iy * 11) % 12;
+          mode = pattern < 5 ? 'characters' : pattern < 8 ? 'pixel' : pattern < 10 ? 'lines' : 'halfblocks';
+        }
+        drawShape(mode, px, py, settings.cellSize, level, colour(r, g, b, settings), time, ix, iy);
       }
-      ctx.globalAlpha = .15; ctx.fillStyle = '#c5b8e0'; ctx.fillRect(w * pointer.x - 1, 0, 2, h); ctx.globalAlpha = 1;
+      ctx.restore();
+      ctx.globalAlpha = background ? .025 : .07; ctx.fillStyle = '#d7f5f2';
+      for (let y = 0; y < h; y += 3) ctx.fillRect(0, y, w, 1);
+      ctx.globalAlpha = 1;
       if (!reduce) raf = requestAnimationFrame(draw);
     };
-    const start = () => { resize(); draw(0); }; photo.onload = start; start(); host.addEventListener('pointermove', move); window.addEventListener('resize', resize); return () => { cancelAnimationFrame(raf); host.removeEventListener('pointermove', move); window.removeEventListener('resize', resize); };
-  }, [compact, source, renderMode]);
-  return <div className={`ink-garden ${compact ? 'ink-garden-compact' : ''}`} aria-label="Ink Garden ASCII art field" role="img"><div className="ascii-mist-label">ΔV / INK GARDEN</div><canvas ref={canvasRef} /><span className="ink-garden-note">dither / pulse / local</span></div>;
+    const start = () => { resize(); draw(0); }; photo.onload = start; start(); window.addEventListener('resize', resize); return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+  }, [background, compact, source, renderMode]);
+  return <div className={`ink-garden ${compact ? 'ink-garden-compact' : ''} ${background ? 'ink-garden-background' : ''}`} aria-label={background ? undefined : 'Ink Garden ASCII art field'} aria-hidden={background || undefined} role={background ? undefined : 'img'}><div className="ascii-mist-label">ΔV / INK GARDEN</div><canvas ref={canvasRef} /></div>;
 }

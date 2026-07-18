@@ -15,7 +15,7 @@ export default function Footer() {
               <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>
             </Link>
             <p className="text-[var(--text-tertiary)] text-sm leading-relaxed max-w-[280px]">
-              Sovereign AI, Web3, and OpSec engineering. Privacy-first, self-sovereign by design.
+              AI, Web3, and OpSec engineering. Adaptive by design. Open-source first.
             </p>
           </div>
           <div className="md:col-span-2">
@@ -50,26 +50,23 @@ export default function Footer() {
             </div>
           </div>
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">Trust</h4>
+            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">Values</h4>
             <div className="space-y-2.5">
-              <div className="text-sm text-[var(--text-tertiary)]">Open-source foundations</div>
-              <div className="text-sm text-[var(--text-tertiary)]">Extreme privacy</div>
-              <div className="text-sm text-[var(--text-tertiary)]">Long-term autonomy</div>
+              <div className="text-sm text-[var(--text-tertiary)]">Open-source first</div>
+              <div className="text-sm text-[var(--text-tertiary)]">Privacy</div>
+              <div className="text-sm text-[var(--text-tertiary)]">Autonomy</div>
+              <Link href="/cgu/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">CGU</Link>
+              <Link href="/privacy/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">Privacy Policy</Link>
             </div>
           </div>
         </div>
         <div className="pt-6 border-t border-[var(--border-default)] flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-[var(--text-disabled)]">All work is grounded in open-source foundations, extreme privacy, and long-term autonomy.</div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {/* Quiet privacy transparency - no trackers, static export only */}
             <span className="text-[10px] text-[var(--text-disabled)] tracking-wide" title="This site is statically exported. No analytics, cookies, or third-party trackers.">
               No trackers · Static export
             </span>
-            <span className="text-xs text-[var(--text-disabled)]">Delta V · 2026</span>
-            <span className="inline-flex items-center gap-1.5 text-[10px] text-[var(--text-disabled)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" style={{ animation: 'smoothPulse 3s ease-in-out infinite' }} aria-hidden="true" />
-              Systems operational
-            </span>
+            <span className="text-xs text-[var(--text-disabled)]">© 2026 Delta V</span>
           </div>
         </div>
       </div>
