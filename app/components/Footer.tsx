@@ -15,7 +15,7 @@ export default function Footer() {
               <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>
             </Link>
             <p className="text-[var(--text-tertiary)] text-sm leading-relaxed max-w-[280px]">
-              Sovereign AI, Web3, and OpSec engineering. Zero-headcount company operating at the frontier of intelligence.
+              Sovereign AI, Web3, and OpSec engineering. Privacy-first, self-sovereign by design.
             </p>
           </div>
           <div className="md:col-span-2">

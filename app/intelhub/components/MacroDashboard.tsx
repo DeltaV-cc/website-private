@@ -140,7 +140,7 @@ export default function MacroDashboard({
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
           <span className="text-[10px] text-[var(--text-muted)]">via Alpha Vantage / Yahoo</span>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-white/[0.03]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
           {/* S&P 500 */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">S&P 500</div>
@@ -257,26 +257,6 @@ export default function MacroDashboard({
                 <div className="skeleton-shimmer h-3 w-12 rounded" />
               </div>
             )}
-          </div>
-
-          {/* Fear & Greed */}
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Fear & Greed</div>
-            {typeof stockFG.score === 'number' ? (
-              <>
-                <div className={`text-lg font-bold tabular-nums mb-1 ${fgColor}`}>{fgVal}</div>
-                <div className={`text-xs font-semibold ${fgColor}/70`}>{fgLabel}</div>
-              </>
-            ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-12 rounded" />
-                <div className="skeleton-shimmer h-3 w-16 rounded" />
-              </div>
-            )}
-            <div className="mt-2.5 h-1.5 bg-gradient-to-r from-red-500/40 via-amber-500/40 via-lime-500/40 to-emerald-500/40 rounded-full relative overflow-hidden">
-              <div className="absolute top-0 bottom-0 w-2 bg-white/80 rounded-full transition-all duration-700 shadow-[0_0_6px_rgba(255,255,255,0.3)]"
-                style={{ left: `${Math.max(2, Math.min(97, fgVal))}%` }} />
-            </div>
           </div>
         </div>
       </div>
