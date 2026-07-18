@@ -90,6 +90,11 @@ function cleanTitle(t: string) {
   return cleaned;
 }
 
+function cleanSummary(s: string) {
+  if (!s) return s;
+  return s.replace(/<\/?[^>]+(>|$)/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+}
+
 function getTag(title: string, summary?: string, source?: string): string {
   const txt = (title + ' ' + (summary || '')).toLowerCase();
   const titleLow = title.toLowerCase();
@@ -177,7 +182,7 @@ export function useIntelData() {
       await Promise.allSettled([
         fetchJson(`${BASE}/data/raw-items.json`).then((d) => {
           if (Array.isArray(d)) {
-            const tagged = d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel);
+            const tagged = d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), summary: cleanSummary(x.summary || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel);
             // Deduplicate: same source + similar normalized title → keep first
             const seen = new Set<string>();
             const deduped = tagged.filter((it: any) => {
