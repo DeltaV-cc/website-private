@@ -87,8 +87,7 @@ export default function Tutorials() {
           <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Resources</div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-2px] mb-4">Tutorials</h1>
           <p className="text-lg text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            High-signal technical breakdowns with clear architecture, setup steps, and OpSec hardening —
-            local-first by default.
+            Latest curated setups to run local AI operations and see what&apos;s being done at the frontier.
           </p>
         </div>
 

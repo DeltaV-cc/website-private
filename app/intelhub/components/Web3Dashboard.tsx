@@ -3,19 +3,13 @@
 'use client';
 
 import { useState } from 'react';
-import { BarChart, CategoryBox, SkeletonPrice, SkeletonBlock } from './Shared';
+import { BarChart, CategoryBox, SkeletonPrice, SkeletonBlock, fmtCurrency, fmtCompact } from './Shared';
 import CryptoLeaders from './CryptoLeaders';
 import CryptoFrontierSignals from './CryptoFrontierSignals';
 import { useChartHover, formatDate, formatValue, ChartPoint } from './ChartHover';
 import AnimatedValue from './AnimatedValue';
 
-function fmtBig(n: number): string {
-  if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
-  if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
-  if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
-  if (n >= 1e3) return `$${(n / 1e3).toFixed(1)}K`;
-  return `$${n.toFixed(2)}`;
-}
+function fmtBig(n: number): string { return fmtCurrency(n); }
 
 /* -- DeFi Weekly Card -- */
 function ArtemisWeeklyCard({ dd }: { dd: any }) {
@@ -294,18 +288,18 @@ export default function Web3Dashboard({
 
             <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 data-tile">
               <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold mb-3">Stablecoin MCap</div>
-              <div className="text-xl font-bold tabular-nums text-[var(--text-primary)]">$295B+</div>
+              <div className="text-xl font-bold tabular-nums text-[var(--text-primary)]">
+                {dd?.stablecoins?.length ? fmtCurrency(dd.stablecoins.reduce((s: number, sc: any) => s + (sc.circulating || 0), 0)) : <div className="skeleton-shimmer h-7 w-28 rounded" />}
+              </div>
               <div className="text-[10px] text-[var(--text-muted)] mt-1">Total stablecoin market cap</div>
-              <div className="text-[9px] text-[var(--text-disabled)] mt-0.5">via Pharos Watch</div>
+              <div className="text-[9px] text-[var(--text-disabled)] mt-0.5">via DeFi Llama</div>
               <div className="mt-4 space-y-1.5">
-                <div className="flex justify-between text-xs">
-                  <span className="text-[var(--text-tertiary)]">USDT</span>
-                  <span className="text-[var(--text-secondary)] tabular-nums">$185B</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-[var(--text-tertiary)]">USDC</span>
-                  <span className="text-[var(--text-secondary)] tabular-nums">$76B</span>
-                </div>
+                {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => (
+                  <div key={i} className="flex justify-between text-xs">
+                    <span className="text-[var(--text-tertiary)]">{sc.name}</span>
+                    <span className="text-[var(--text-secondary)] tabular-nums">{fmtCurrency(sc.circulating)}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

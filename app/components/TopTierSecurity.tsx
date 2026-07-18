@@ -81,7 +81,7 @@ export default function TopTierSecurity({
             <li className="flex gap-2"><span className="text-[var(--accent-amber)]">·</span> Complementary top-tier path when you need specialist HNW security</li>
           </ul>
           <div className="mt-5 text-xs text-[var(--text-muted)]">
-            Reference: Opsek / OSs-security baselines we align with on the sovereign track.
+            <a href="https://opsek.io/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-amber)] hover:underline">opsek.io</a> — OS security baselines we align with on the sovereign track.
           </div>
         </article>
       </div>

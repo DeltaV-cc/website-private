@@ -1,185 +1,169 @@
-/* ================================================================
-   IntelHub — Infosec Dashboard tab
-   ================================================================ */
+/* IntelHub — Infosec Dashboard
+   CISA KEV + NVD CVEs + HIBP Breaches + Watchlist */
 'use client';
 
-import { Item } from '../types';
-import { TileBox, TileRow, SeverityBadge, ShieldIcon, PackageIcon, BellIcon } from './Shared';
+import { KevEntry, CveEntry, BreachEntry } from '../types';
+import { SeverityBadge, fmtCompact } from './Shared';
 
 export default function InfosecDashboard({
-  items, dd2, watchlist, TC, ago,
-  SOCMED_SOURCES,
+  dd2, watchlist, catBoxes, TC, ago,
 }: {
-  items: Item[]; dd2: any; watchlist: any[]; TC: Record<string, string>;
-  ago: (iso: string) => string; SOCMED_SOURCES: string[];
+  dd2: any; watchlist: any[]; catBoxes: any[]; TC: Record<string, string>;
+  ago: (iso: string) => string;
 }) {
+  const kev: KevEntry[] = dd2?.kev || [];
+  const cves: CveEntry[] = dd2?.cves || [];
+  const breaches: BreachEntry[] = dd2?.breaches || [];
+  const cyberCat = catBoxes.find((c: any) => c.id === 'cybersec');
+
+  const totalKEV = kev.length;
+  const criticalCVEs = cves.filter((c: CveEntry) => c.severity === 'CRITICAL' || c.score >= 9).length;
+  const totalExposed = breaches.reduce((s: number, b: BreachEntry) => s + (b.count || 0), 0);
+
   return (
     <div className="space-y-5">
-      {/* -- Active Threats banner -- */}
-      <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.03] p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-sm text-red-400 uppercase tracking-[.15em] font-bold">Active Threats</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-          {/* KEV */}
-          {dd2?.kev?.length > 0 ? (
-            <div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-red-300 mb-1">
-                <ShieldIcon />
-                <span>KEV: {dd2.kev.length} active</span>
-              </div>
-              <div className="text-[#ededed]/50 text-xs">CISA Known Exploited. Apply patches within due dates.</div>
+      {/* Stats Banner */}
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-red)]/[0.06] via-[var(--accent-orange)]/[0.04] to-transparent">
+        <div className="flex items-end justify-between">
+          <div>
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">Threat Landscape</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+              {totalKEV || '...'} <span className="text-sm font-normal text-[var(--text-tertiary)]">active KEV exploits</span>
             </div>
-          ) : (
-            <div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-red-300 mb-1">
-                <ShieldIcon />
-                <span>Check assets</span>
+          </div>
+          <div className="flex items-center gap-8">
+            <div className="text-right">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase">Critical CVEs</div>
+              <div className={`text-lg font-bold tabular-nums ${criticalCVEs > 0 ? 'text-[var(--accent-red)]' : 'text-[var(--text-tertiary)]'}`}>
+                {cves.length ? criticalCVEs : '...'}
               </div>
-              <div className="text-[#ededed]/50 text-xs">Revoke wallet approvals via revoke.cash</div>
             </div>
-          )}
-          {/* CVEs */}
-          {dd2?.cves?.filter((c: any) => c.severity === 'CRITICAL' || c.severity === 'HIGH').length > 0 ? (
-            <div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-orange-300 mb-1">
-                <PackageIcon />
-                <span>{dd2.cves.filter((c: any) => c.severity === 'CRITICAL' || c.severity === 'HIGH').length} critical CVEs</span>
+            <div className="text-right">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase">Records Exposed</div>
+              <div className="text-lg font-bold tabular-nums text-[var(--accent-orange)]">
+                {breaches.length ? fmtCompact(totalExposed) : '...'}
               </div>
-              <div className="text-[#ededed]/50 text-xs">Update affected systems immediately.</div>
             </div>
-          ) : (
-            <div className="rounded-xl border border-orange-500/10 bg-orange-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-orange-300 mb-1">
-                <PackageIcon />
-                <span>Pending CVEs</span>
-              </div>
-              <div className="text-[#ededed]/50 text-xs">Run audit. Patch compromised packages.</div>
+            <div className="text-right">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase">Watchlist</div>
+              <div className="text-lg font-bold tabular-nums text-[var(--accent-amber)]">{watchlist.length || '...'}</div>
             </div>
-          )}
-          {/* Breaches */}
-          {dd2?.breaches?.length > 0 ? (
-            <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-yellow-300 mb-1">
-                <BellIcon />
-                <span>{dd2.breaches.length} breaches detected</span>
-              </div>
-              <div className="text-[#ededed]/50 text-xs">Check HIBP. Rotate credentials immediately.</div>
-            </div>
-          ) : (
-            <div className="rounded-xl border border-yellow-500/10 bg-yellow-500/[0.02] p-3">
-              <div className="flex items-center gap-2 font-semibold text-yellow-300 mb-1">
-                <BellIcon />
-                <span>No major breaches</span>
-              </div>
-              <div className="text-[#ededed]/50 text-xs">Continue monitoring exposure.</div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
 
-      {/* -- Intel Grid -- */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <TileBox
-          title="CISA Alerts"
-          accent="text-emerald-400"
-          color="border-l-emerald-400"
-          count={items.filter(i => i.source?.toLowerCase().includes('cisa')).length}
-        >
-          {items
-            .filter(i => i.source?.toLowerCase().includes('cisa'))
-            .slice(0, 6)
-            .map((it, j) => (
-              <TileRow key={j} it={it} ago={ago} />
-            ))}
-        </TileBox>
-
-        <TileBox title="CISA KEV" accent="text-red-400" color="border-l-red-400" count={dd2?.kev?.length || 0}>
-          {(dd2?.kev || []).map((v: any, j: number) => (
-            <div key={j} className="px-4 py-3 border-b border-[#222] last:border-0">
-              <div className="text-sm font-medium text-[#ededed]/70">{v.cve}</div>
-              <div className="text-xs text-[#ededed]/35 mt-0.5 line-clamp-2">{v.vendor} — {v.product}: {v.name}</div>
-              <div className="text-xs text-red-400/60 mt-1">Due: {v.dueDate?.slice(0, 10)}</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {/* KEV — Known Exploited Vulns */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-red)]/[0.06] to-transparent">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-red)] animate-pulse" />
+              <span className="text-xs text-[var(--accent-red)] uppercase tracking-[1.5px] font-bold">CISA KEV</span>
+              <span className="text-[10px] text-[var(--text-muted)]">Known Exploited Vulns</span>
             </div>
-          ))}
-        </TileBox>
-
-        <TileBox title="Latest CVEs" accent="text-orange-400" color="border-l-orange-400" count={dd2?.cves?.length || 0}>
-          {(dd2?.cves || []).map((c: any, j: number) => (
-            <div key={j} className="px-4 py-3 border-b border-[#222] last:border-0">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-medium text-[#ededed]/70">{c.id}</span>
-                <SeverityBadge sev={c.severity} score={c.score} />
+          </div>
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+            {kev.length === 0 ? (
+              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading CISA KEV data...</div>
+            ) : kev.slice(0, 8).map((v: KevEntry, i: number) => (
+              <div key={i} className="px-4 py-3 hover:bg-white/[0.02] transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-mono font-semibold text-[var(--accent-red)]">{v.cve}</span>
+                  <span className="text-[10px] text-[var(--text-muted)]">Due: {v.dueDate ? new Date(v.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}</span>
+                </div>
+                <div className="text-xs text-[var(--text-secondary)] leading-snug mb-1">{v.name}</div>
+                <div className="text-[10px] text-[var(--text-tertiary)]">{v.vendor} — {v.product}</div>
               </div>
-              <div className="text-xs text-[#ededed]/30 mt-0.5 line-clamp-2">{c.description}</div>
-            </div>
-          ))}
-        </TileBox>
-
-        <TileBox title="Recent Breaches" accent="text-pink-400" color="border-l-pink-400" count={dd2?.breaches?.length || 0}>
-          {(dd2?.breaches || []).map((b: any, j: number) => (
-            <div key={j} className="px-4 py-3 border-b border-[#222] last:border-0">
-              <div className="text-sm font-medium text-[#ededed]/70">{b.name}</div>
-              <div className="text-xs text-[#ededed]/35 mt-0.5">{b.domain} · {b.count?.toLocaleString()} accounts · {b.data}</div>
-              <div className="text-xs text-[#ededed]/20 mt-0.5">{b.date}</div>
-            </div>
-          ))}
-        </TileBox>
-      </div>
-
-      {/* -- Cybersec Watchlist -- */}
-      {watchlist.length > 0 && (
-        <div className="grid grid-cols-1 gap-4">
-          <TileBox title="Cybersec Watchlist" accent="text-rose-400" color="border-l-rose-400" count={watchlist.length}>
-            {watchlist.map((w: any, j: number) => (
-              <a
-                key={j}
-                href={w.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 py-3 hover:bg-white/[0.03] group"
-              >
-                <div className="flex items-start gap-2">
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-[#ededed]/70 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">
-                      {w.title}
-                    </div>
-                    <div className="text-xs text-[#ededed]/25 mt-1">
-                      {w.source}
-                      {w.summary ? (
-                        <>
-                          <span className="mx-1.5">·</span>
-                          <span className="text-[#ededed]/15">{w.summary}</span>
-                        </>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 mt-1.5 text-xs">
-                  <span className="text-rose-400/50">Expires {new Date(w.expires).toLocaleDateString()}</span>
-                </div>
-              </a>
             ))}
-          </TileBox>
+          </div>
         </div>
-      )}
 
-      {/* -- Social Media -- */}
-      <div className="grid grid-cols-1 gap-4">
-        <TileBox
-          title="Social Media"
-          accent="text-sky-400"
-          color="border-l-sky-400"
-          count={items.filter(i => SOCMED_SOURCES.some(s => i.source?.toLowerCase().includes(s))).length}
-        >
-          {items
-            .filter(i => SOCMED_SOURCES.some(s => i.source?.toLowerCase().includes(s)))
-            .slice(0, 12)
-            .map((it, j) => (
-              <TileRow key={j} it={it} ago={ago} />
+        {/* Recent CVEs */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-orange)]/[0.06] to-transparent">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[var(--accent-orange)] uppercase tracking-[1.5px] font-bold">Recent CVEs</span>
+              <span className="text-[10px] text-[var(--text-muted)]">NVD Feed</span>
+            </div>
+          </div>
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+            {cves.length === 0 ? (
+              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading NVD data...</div>
+            ) : cves.slice(0, 8).map((cve: CveEntry, i: number) => (
+              <div key={i} className="px-4 py-3 hover:bg-white/[0.02] transition-colors">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-mono font-semibold text-[var(--text-primary)]">{cve.id}</span>
+                  <SeverityBadge sev={cve.severity} score={cve.score} />
+                  {cve.published && (
+                    <span className="text-[10px] text-[var(--text-muted)] ml-auto tabular-nums">
+                      {new Date(cve.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </span>
+                  )}
+                </div>
+                <div className="text-xs text-[var(--text-secondary)] leading-snug line-clamp-2">{cve.description}</div>
+              </div>
             ))}
-        </TileBox>
+          </div>
+        </div>
+
+        {/* Breaches */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.06] to-transparent">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Data Breaches</span>
+              <span className="text-[10px] text-[var(--text-muted)]">Have I Been Pwned</span>
+            </div>
+          </div>
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+            {breaches.length === 0 ? (
+              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading breach data...</div>
+            ) : breaches.slice(0, 8).map((b: BreachEntry, i: number) => (
+              <div key={i} className="px-4 py-3 hover:bg-white/[0.02] transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-semibold text-[var(--text-primary)]">{b.name}</span>
+                  <span className="text-[10px] tabular-nums font-semibold text-[var(--accent-red)]">
+                    {b.count ? fmtCompact(b.count) : '?'} records
+                  </span>
+                </div>
+                {b.domain && <div className="text-[10px] text-[var(--accent-cyan)] mb-0.5">{b.domain}</div>}
+                <div className="flex items-center gap-2 text-[10px] text-[var(--text-tertiary)]">
+                  {b.date && <span>{b.date}</span>}
+                  {b.data && <span className="truncate">{b.data}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Cybersec Feed */}
+        <div>
+          {cyberCat ? (
+            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden h-full">
+              <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[var(--accent-orange)]/[0.06] to-transparent">
+                <span className="text-xs text-[var(--accent-orange)] uppercase tracking-[1.5px] font-bold">{cyberCat.label} Signals</span>
+                <span className="text-[10px] text-[var(--text-muted)] ml-2">{cyberCat.items.length} items</span>
+              </div>
+              <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+                {cyberCat.items.length === 0 ? (
+                  <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">No recent signals</div>
+                ) : cyberCat.items.slice(0, 10).map((it: any, j: number) => (
+                  <a key={j} href={it.url} target="_blank" rel="noopener noreferrer"
+                    className="block px-4 py-2.5 hover:bg-white/[0.03] group">
+                    <div className="text-xs font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2">{it.title}</div>
+                    <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
+                      <span className="truncate max-w-[80px]">{it.source}</span>
+                      <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 text-center">
+              <span className="text-xs text-[var(--text-disabled)]">No cybersec signals in the current window</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
