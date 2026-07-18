@@ -39,19 +39,26 @@ const OS_GUIDES = [
   },
 ];
 
-export default function OpSec() {
+export default function OpSec({ embedded = false }: { embedded?: boolean }) {
   return (
     <>
-      <PageHero
+      {!embedded && <PageHero
         label="OpSec"
         title="Web3 OpSec"
         description="High-signal operational security frameworks built on complementary sources and self-sovereign principles."
         accent="amber"
         backFallback="/"
         backLabel="Home"
-      />
+      />}
 
       <PageContainer className="pb-12" as="section">
+        {embedded && (
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[var(--accent-amber)] text-xs font-semibold tracking-[3px] uppercase mb-2">OpSec</div>
+            <h2 id="opsec-heading" className="text-3xl md:text-4xl font-semibold tracking-tight">Web3 operational security</h2>
+            <p className="text-sm text-[var(--text-tertiary)] mt-3 leading-relaxed">Protect the people, keys, and systems behind decentralized operations.</p>
+          </div>
+        )}
         <div className="grid lg:grid-cols-2 gap-5 mb-14">
           <LayeredDefenseIllustration />
           <Web3OpSecPathIllustration />
@@ -159,48 +166,34 @@ export default function OpSec() {
         </div>
       </PageContainer>
 
-      {/* Top-tier: Taurus + Opsek */}
+      {/* Top-tier: Taurus + OpSec */}
       <PageContainer className="pb-14" as="section">
         <TopTierSecurity />
       </PageContainer>
 
       {/* Principles + supporting references */}
       <PageContainer className="pb-14" as="section">
-        <div className="grid md:grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8">
-            <h2 className="text-xl font-semibold mb-4">Core Principles</h2>
-            <ul className="space-y-3 text-sm text-[var(--text-secondary)]">
-              <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Local-first execution and data sovereignty</li>
-              <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Hardware-backed identity (YubiKey) before capital-bearing keys</li>
-              <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Agent OpSec with hardened environments</li>
-              <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Minimal attack surface across all platforms</li>
-              <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Escalate to top-tier institutional / HNW solutions when the mandate requires it</li>
-            </ul>
-          </div>
+        <div className="grid gap-5">
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8">
             <h2 className="text-xl font-semibold mb-4">Also useful</h2>
             <div className="space-y-3 text-sm text-[var(--text-secondary)]">
               <div>
-                <div className="font-medium text-[var(--text-primary)] mb-0.5">WalletBeat</div>
+                <a href="https://x.com/walletbeat" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">WalletBeat ↗</a>
                 <div className="text-[var(--text-tertiary)]">Ethereum wallet privacy rankings.</div>
               </div>
               <div>
-                <div className="font-medium text-[var(--text-primary)] mb-0.5">DeFiScan</div>
+                <a href="https://x.com/defiscan" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">DeFiScan ↗</a>
                 <div className="text-[var(--text-tertiary)]">DeFi protocol risk and transparency assessments.</div>
               </div>
               <div>
-                <div className="font-medium text-[var(--text-primary)] mb-0.5">L2Beat</div>
+                <a href="https://x.com/l2beat" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">L2Beat ↗</a>
                 <div className="text-[var(--text-tertiary)]">Layer 2 security, risk, and decentralization tracking.</div>
               </div>
               <div>
-                <div className="font-medium text-[var(--text-primary)] mb-0.5">AntiCapture</div>
+                <a href="https://x.com/AntiCapture" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">AntiCapture ↗</a>
                 <div className="text-[var(--text-tertiary)]">Governance capture detection and DAO risk monitoring.</div>
               </div>
-              <div>
-                <div className="font-medium text-[var(--text-primary)] mb-0.5">Yubico / FIDO2</div>
-                <div className="text-[var(--text-tertiary)]">Hardware-backed authentication for humans and admin paths.</div>
-              </div>
-              <div className="text-[var(--text-tertiary)]">Endpoint security research from arXiv & independent labs</div>
+              <a href="https://x.com/ethereumsecurity" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors">Ethereum security research ↗</a>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import React from 'react';
 import BackLink from './BackLink';
 import SpotlightField from './SpotlightField';
+import InkGarden from './InkGarden';
 
 type Accent = 'cyan' | 'orange' | 'purple' | 'amber';
 
@@ -44,6 +45,11 @@ export function PageContainer({
       {children}
     </Tag>
   );
+}
+
+/** Fixed brand atmosphere for the service and contact pages. */
+export function PageBackdrop() {
+  return <InkGarden background />;
 }
 
 /**

@@ -276,11 +276,11 @@ body {
   min-height: 0;
   height: auto;
   border: 0;
-  opacity: .23;
+  opacity: .32;
   pointer-events: none;
   background: transparent;
 }
-.ink-garden-background canvas { min-height: 100%; opacity: .7; }
+.ink-garden-background canvas { min-height: 100%; opacity: .86; }
 .ink-garden-background::after,
 .ink-garden-background .ascii-mist-label { display: none; }
 .intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), var(--bg-deep); }

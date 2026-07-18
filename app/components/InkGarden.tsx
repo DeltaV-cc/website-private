@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 type RenderMode = 'characters' | 'dither' | 'mosaic' | 'pixel' | 'dots' | 'cross' | 'diamond' | 'voxel' | 'lego' | 'mixed' | 'lines' | 'diagonal' | 'braille' | 'disco' | 'hexdump' | 'matrix' | 'rings' | 'hearts' | 'stars' | 'hexagons' | 'triangles' | 'bubbles' | 'hatch' | 'contour' | 'halfblocks';
 type InkGardenProps = { compact?: boolean; background?: boolean; source?: string; renderMode?: RenderMode };
 
-const chars = ' .·:;+*#%@';
+const chars = ' .·:;+*#%@ΔV';
 const tint = '#8d79b4';
 const sourcePhoto = '/website-private/images/ink-garden-panorama.png';
 
@@ -34,7 +34,7 @@ export default function InkGarden({ compact = false, background = false, source 
   useEffect(() => {
     const canvas = canvasRef.current; const host = canvas?.parentElement; const ctx = canvas?.getContext('2d');
     if (!canvas || !host || !ctx) return;
-    const reduce = background || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const photo = new Image(); photo.src = source;
     const sourceCanvas = document.createElement('canvas'); const sourceCtx = sourceCanvas.getContext('2d');
     let raf = 0;
@@ -42,7 +42,7 @@ export default function InkGarden({ compact = false, background = false, source 
     const resize = () => { const ratio = Math.min(window.devicePixelRatio || 1, 2); canvas.width = host.clientWidth * ratio; canvas.height = host.clientHeight * ratio; ctx.setTransform(ratio, 0, 0, ratio, 0, 0); sourceCanvas.width = host.clientWidth; sourceCanvas.height = host.clientHeight; };
     const drawShape = (mode: RenderMode, x: number, y: number, size: number, level: number, fill: string, time: number, ix: number, iy: number) => {
       ctx.fillStyle = fill; ctx.strokeStyle = fill; ctx.lineWidth = Math.max(1, size / 8); const q = size * (.25 + level * .75);
-      if (mode === 'characters' || mode === 'hexdump' || mode === 'matrix') { ctx.font = `${size}px ui-monospace, monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; const set = mode === 'hexdump' ? '0123456789ABCDEF' : mode === 'matrix' ? '01アイ' : chars; ctx.fillText(set[Math.floor((level + ix * .013) * (set.length - 1))], x, y); return; }
+      if (mode === 'characters' || mode === 'hexdump' || mode === 'matrix') { ctx.font = `${size}px ui-monospace, monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; const set = mode === 'hexdump' ? '0123456789ABCDEF' : mode === 'matrix' ? '01アイ' : chars; const charIndex = Math.min(set.length - 1, Math.floor((level + ix * .013) * (set.length - 1))); ctx.fillText(set[charIndex], x, y); return; }
       ctx.beginPath();
       if (mode === 'dots' || mode === 'disco' || mode === 'bubbles') ctx.arc(x, y, q / 2, 0, Math.PI * 2);
       else if (mode === 'rings') { ctx.arc(x, y, q / 2, 0, Math.PI * 2); ctx.stroke(); return; }
@@ -58,22 +58,24 @@ export default function InkGarden({ compact = false, background = false, source 
     };
     const draw = (time: number) => {
       const w = host.clientWidth; const h = host.clientHeight; ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#080b0a'; ctx.fillRect(0, 0, w, h);
-      if (photo.complete && photo.naturalWidth) { const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageY = (h - sh) / 2; ctx.save(); ctx.globalAlpha = background ? .3 : .46; ctx.filter = 'blur(1.5px) brightness(1.18) saturate(.9)'; ctx.drawImage(photo, (w - sw) / 2, imageY, sw, sh); ctx.restore(); }
-      if (photo.complete && photo.naturalWidth && sourceCtx) { sourceCtx.clearRect(0, 0, w, h); const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageY = (h - sh) / 2; sourceCtx.globalAlpha = settings.bgOpacity / 100; sourceCtx.drawImage(photo, (w - sw) / 2, imageY, sw, sh); }
+      if (photo.complete && photo.naturalWidth) { const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageX = (w - sw) / 2 + Math.max(0, sw - w) * .38; const imageY = (h - sh) / 2; ctx.save(); ctx.globalAlpha = background ? .4 : .46; ctx.filter = 'blur(1.5px) brightness(1.18) saturate(.9)'; ctx.drawImage(photo, imageX, imageY, sw, sh); ctx.restore(); }
+      if (photo.complete && photo.naturalWidth && sourceCtx) { sourceCtx.clearRect(0, 0, w, h); const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imageX = (w - sw) / 2 + Math.max(0, sw - w) * .38; const imageY = (h - sh) / 2; sourceCtx.globalAlpha = settings.bgOpacity / 100; sourceCtx.drawImage(photo, imageX, imageY, sw, sh); }
       const data = sourceCtx?.getImageData(0, 0, w, h).data; const cols = Math.ceil(w / settings.cellSize); const rows = Math.ceil(h / (settings.cellSize * 1.35));
-      ctx.save(); ctx.globalAlpha = background ? .18 : .34;
+      ctx.save(); ctx.globalAlpha = background ? .27 : .34;
       for (let iy = 0; iy < rows; iy++) for (let ix = 0; ix < cols; ix++) {
         const px = Math.min(w - 1, Math.floor((ix + .5) * settings.cellSize)); const py = Math.min(h - 1, Math.floor((iy + .5) * settings.cellSize * 1.35)); const index = (py * w + px) * 4; const r = data?.[index] ?? 75; const g = data?.[index + 1] ?? 62; const b = data?.[index + 2] ?? 80; let level = (r * .299 + g * .587 + b * .114) / 255;
-        const yNorm = iy / Math.max(1, rows - 1); const trailCenter = .28 + (.58 - yNorm) * .52; const trailFade = Math.max(0, 1 - Math.abs(yNorm - .38) * 1.25); const trail = Math.max(0, 1 - Math.abs(ix / cols - trailCenter) * 18) * trailFade; level = Math.max(level * .7, trail * .58); const wave = reduce ? 0 : Math.sin(time * .001 * settings.animSpeed + ix * .12 + iy * .035) * settings.animIntensity; level = Math.max(0, Math.min(1, level + wave));
+        const xNorm = ix / Math.max(1, cols - 1); const yNorm = iy / Math.max(1, rows - 1); const cometPhase = time * .00045 * settings.animSpeed; const cometDrift = reduce ? 0 : Math.sin(cometPhase) * .045; const cometRise = reduce ? 0 : -Math.sin(cometPhase) * .026; const trailCenter = .28 + (.58 - yNorm) * .52 + cometDrift; const trailFade = Math.max(0, 1 - Math.abs(yNorm - .38) * 1.25); const trail = Math.max(0, 1 - Math.abs(xNorm - trailCenter) * 18) * trailFade;
+        const headX = .43 + cometDrift; const headY = .58 + cometRise; const tailX = headX - .19; const tailY = headY - .16; const tailDx = tailX - headX; const tailDy = tailY - headY; const tailLength = tailDx * tailDx + tailDy * tailDy; const rawProjection = ((xNorm - headX) * tailDx + (yNorm - headY) * tailDy) / tailLength; const projection = Math.max(0, Math.min(1, rawProjection)); const closestX = headX + tailDx * projection; const closestY = headY + tailDy * projection; const tailWidth = .008 + projection * .018; const tailGlow = rawProjection >= 0 && rawProjection <= 1 ? Math.max(0, 1 - Math.hypot(xNorm - closestX, yNorm - closestY) / tailWidth) * (1 - projection * .72) : 0; const headGlow = Math.max(0, 1 - Math.hypot(xNorm - headX, yNorm - headY) / .04); level = Math.max(level * .7, trail * .58, tailGlow * .82, headGlow);
+        const wave = reduce ? 0 : Math.sin(time * .001 * settings.animSpeed + ix * .12 + iy * .035) * settings.animIntensity; level = Math.max(0, Math.min(1, level + wave));
         let mode: RenderMode = renderMode;
         if (renderMode === 'mixed') {
           const pattern = (ix * 7 + iy * 11) % 12;
           mode = pattern < 5 ? 'characters' : pattern < 8 ? 'pixel' : pattern < 10 ? 'lines' : 'halfblocks';
         }
-        drawShape(mode, px, py, settings.cellSize, level, colour(r, g, b, settings), time, ix, iy);
+        const glow = Math.max(tailGlow, headGlow); const redAmount = 1 - projection; const cometFill = tailGlow > .06 ? `rgb(${Math.round(70 + redAmount * 180)},${Math.round(155 - redAmount * 80)},${Math.round(205 - redAmount * 90)})` : headGlow > .08 ? `rgb(${Math.round(210 + headGlow * 45)},${Math.round(175 + headGlow * 65)},${Math.round(160 + headGlow * 75)})` : null; const fill = cometFill || (glow > .08 ? `rgb(${Math.round(100 + glow * 155)},${Math.round(190 + glow * 65)},255)` : colour(r, g, b, settings)); const windBand = Math.max(0, (yNorm - .68) / .32); const wind = reduce ? 0 : Math.sin(time * .00072 * settings.animSpeed + iy * .15 + ix * .018) * windBand * settings.cellSize * .62; drawShape(mode, px + wind, py, settings.cellSize, level, fill, time, ix, iy);
       }
       ctx.restore();
-      ctx.globalAlpha = background ? .025 : .07; ctx.fillStyle = '#d7f5f2';
+      ctx.globalAlpha = background ? .045 : .07; ctx.fillStyle = '#d7f5f2';
       for (let y = 0; y < h; y += 3) ctx.fillRect(0, y, w, 1);
       ctx.globalAlpha = 1;
       if (!reduce) raf = requestAnimationFrame(draw);

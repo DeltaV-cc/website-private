@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PageHero, PageContainer } from '../components/PageShell';
+import { PageHero, PageContainer, PageBackdrop } from '../components/PageShell';
 import EcosystemStack, { AI_ECOSYSTEM } from '../components/EcosystemStack';
 import OfferCard from '../components/OfferCard';
 
@@ -12,17 +12,20 @@ const ArrowRight = () => (
 export default function AIPage() {
   return (
     <>
-      <PageHero
-        label="Pillar 01 · AI Engineering"
-        title="AI Engineering"
-        description="From generic AI tools to production-grade systems that fit your workflows — designed, shipped, and hardened by engineers who run these systems 24/7 on their own infrastructure."
-        accent="cyan"
-        backFallback="/"
-        backLabel="Home"
-      />
+      <PageBackdrop />
+      <div className="relative z-10">
+        <PageHero
+          label="Pillar 01 · AI Engineering"
+          title="AI Engineering"
+          description="From generic AI tools to production-grade systems that fit your workflows — designed, shipped, and hardened by engineers who run these systems 24/7 on their own infrastructure."
+          accent="cyan"
+          backFallback="/"
+          backLabel="Home"
+        />
 
-      <PageContainer className="pb-16 space-y-5" as="section">
+        <PageContainer className="pb-16 space-y-5" as="section">
         <OfferCard
+          id="agents"
           title="Tailored Multi-Agent Systems"
           pitch={<>We embed with your team, <span className="font-medium text-[var(--text-primary)]">map your real workflows and data</span>, then design and ship custom single or multi-agent systems built around the models that perform best for your use case — not the ones with the best marketing.</>}
           deliverables={[
@@ -42,6 +45,7 @@ export default function AIPage() {
           ctaTopic="agents"
         />
         <OfferCard
+          id="inference"
           title="Inference & Model Engineering"
           pitch={<>Running AI reliably in production requires more than prompting. We support teams with <span className="font-medium text-[var(--text-primary)]">fine-tuning, inference optimization, provider selection</span>, Hugging Face organization, and MLOps infrastructure.</>}
           deliverables={[
@@ -60,6 +64,7 @@ export default function AIPage() {
           ctaTopic="inference"
         />
         <OfferCard
+          id="retainer"
           title="AI Engineer Retainer"
           pitch={<>Direct access to a <span className="font-medium text-[var(--text-primary)]">Delta V AI Engineer</span> (supported by dedicated ZHC subagents) for ongoing optimization, security, and capability expansion.</>}
           deliverables={[
@@ -78,11 +83,12 @@ export default function AIPage() {
           ctaTopic="retainer"
           secondary={{ label: 'Upskill instead — Forge', href: '/forge/' }}
         />
-      </PageContainer>
+        </PageContainer>
 
-      <PageContainer className="pb-24" as="section">
-        <EcosystemStack items={AI_ECOSYSTEM} accent="cyan" label="Ecosystem & Stack" />
-      </PageContainer>
+        <PageContainer className="pb-24" as="section">
+          <EcosystemStack items={AI_ECOSYSTEM} accent="cyan" label="Ecosystem & Stack" />
+        </PageContainer>
+      </div>
     </>
   );
 }

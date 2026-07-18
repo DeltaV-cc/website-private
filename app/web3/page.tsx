@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { PageHero, PageContainer } from '../components/PageShell';
+import { PageHero, PageContainer, PageBackdrop } from '../components/PageShell';
 import EcosystemStack, { WEB3_ECOSYSTEM } from '../components/EcosystemStack';
 import OfferCard from '../components/OfferCard';
+import OpSec from '../opsec/page';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -12,17 +13,20 @@ const ArrowRight = () => (
 export default function Web3Page() {
   return (
     <>
-      <PageHero
-        label="Pillar 02 · Web3"
-        title="Web3"
-        description="Navigate complexity with clarity, sovereignty, and real technical depth — native EVM builders with 10+ years in the space. From wallet architecture to onchain investigations, grounded in the intelligence we monitor daily."
-        accent="orange"
-        backFallback="/"
-        backLabel="Home"
-      />
+      <PageBackdrop />
+      <div className="relative z-10">
+        <PageHero
+          label="Pillar 02 · Web3"
+          title="Web3"
+          description="Navigate complexity with clarity, sovereignty, and real technical depth — native EVM builders with 10+ years in the space. From wallet architecture to onchain investigations, grounded in the intelligence we monitor daily."
+          accent="orange"
+          backFallback="/"
+          backLabel="Home"
+        />
 
-      <PageContainer className="pb-16 space-y-5" as="section">
+        <PageContainer className="pb-16 space-y-5" as="section">
         <OfferCard
+          id="architecture"
           title="SOTA Setup & Architecture Advisory"
           pitch={<>We help you implement <span className="font-medium text-[var(--text-primary)]">best-in-class transaction execution, secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting</span> — the state of the art, not last cycle&apos;s defaults.</>}
           deliverables={[
@@ -42,6 +46,7 @@ export default function Web3Page() {
           ctaTopic="web3-advisory"
         />
         <OfferCard
+          id="intelligence"
           title="Web3 Intelligence & OSINT"
           pitch={<>We conduct <span className="font-medium text-[var(--text-primary)]">onchain and offchain investigations</span> to help you assess risks and make informed decisions — powered by the same pipeline that feeds our public IntelHub.</>}
           deliverables={[
@@ -63,6 +68,7 @@ export default function Web3Page() {
           secondary={{ label: 'See our public intel — IntelHub', href: '/intelhub/' }}
         />
         <OfferCard
+          id="growth"
           title="Growth Boost"
           pitch={<>We help protect and foster the cypherpunk ethos by supporting <span className="font-medium text-[var(--text-primary)]">community building, public good initiatives, and fundraising efforts</span> — growth with OpSec foundations, not growth at any cost.</>}
           deliverables={[
@@ -81,11 +87,16 @@ export default function Web3Page() {
           ctaLabel="Start growth support"
           ctaTopic="growth"
         />
-      </PageContainer>
+        </PageContainer>
 
       <PageContainer className="pb-24" as="section">
         <EcosystemStack items={WEB3_ECOSYSTEM} accent="orange" label="Ecosystem & Stack" />
       </PageContainer>
+
+      <section id="opsec" className="scroll-mt-16 border-t border-[var(--border-default)]" aria-labelledby="opsec-heading">
+        <OpSec embedded />
+      </section>
+      </div>
     </>
   );
 }

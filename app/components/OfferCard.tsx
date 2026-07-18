@@ -14,8 +14,9 @@ const Check = () => (
 
 /** Shared detailed offer card for the AI and Web3 pillar pages. */
 export default function OfferCard({
-  title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary,
+  id, title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary,
 }: {
+  id?: string;
   title: string;
   pitch: React.ReactNode;
   deliverables: string[];
@@ -26,7 +27,7 @@ export default function OfferCard({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <article className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-primary)]/25 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]">
+    <article id={id} className="scroll-mt-24 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-primary)]/25 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-primary)] to-transparent" aria-hidden="true" />
       <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">{title}</h2>
       <p className="text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">{pitch}</p>
@@ -52,7 +53,7 @@ export default function OfferCard({
       </div></AnimatedBackground>
 
       <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[var(--border-default)]">
-        <div className="text-xs text-[var(--text-muted)] mr-auto max-w-sm"><span className="font-semibold text-[var(--text-tertiary)]">For:</span> {audience}</div>
+        <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed"><span className="font-semibold text-[var(--text-primary)]">For:</span> {audience}</div>
         {secondary && <Link href={secondary.href} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">{secondary.label}</Link>}
         <Link href={`/contact/?topic=${ctaTopic}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-primary)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors">{ctaLabel} <ArrowRight /></Link>
       </div>

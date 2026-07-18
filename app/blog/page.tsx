@@ -183,6 +183,13 @@ const catTextClass = (cat: string) =>
   cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]' :
   'text-[var(--accent-purple)]';
 
+const catTitleClass = (cat: string) =>
+  cat === 'AI' ? 'text-[var(--accent-cyan)]/90' :
+  cat === 'Web3' ? 'text-[var(--accent-orange)]/90' :
+  cat === 'OpSec' ? 'text-[var(--accent-amber)]/90' :
+  cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]/90' :
+  'text-[var(--accent-purple)]/90';
+
 const readingTimeFor = (type: string) => {
   const t = type.toLowerCase();
   if (t === 'dashboard') return '10 min';
@@ -334,10 +341,10 @@ export default function Blog() {
                     </div>
                     {post.slug !== '#' ? (
                       <Link href={`/blog/${post.slug}/`} className="after:absolute after:inset-0">
-                        <h3 className="text-lg md:text-xl font-semibold mb-2 leading-snug group-hover:text-[var(--accent-cyan)] transition-colors">{post.title}</h3>
+                        <h3 className={`text-lg md:text-xl font-semibold mb-2 leading-snug ${catTitleClass(post.category)} group-hover:opacity-75 transition-colors`}>{post.title}</h3>
                       </Link>
                     ) : (
-                      <h3 className="text-lg md:text-xl font-semibold mb-2 leading-snug">{post.title}</h3>
+                      <h3 className={`text-lg md:text-xl font-semibold mb-2 leading-snug ${catTitleClass(post.category)}`}>{post.title}</h3>
                     )}
                     <p className="text-[var(--text-tertiary)] text-sm leading-relaxed mb-3 line-clamp-2">{post.excerpt}</p>
                     {post.slug !== '#' ? (

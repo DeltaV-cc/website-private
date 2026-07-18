@@ -66,7 +66,7 @@ export default function TopTierSecurity({
             aria-hidden="true"
           />
           <div className="flex items-center justify-between gap-3 mb-3">
-            <h3 className="text-xl font-semibold tracking-tight">Opsek</h3>
+            <h3 className="text-xl font-semibold tracking-tight"><a href="https://opsek.io/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-amber)] transition-colors">OpSec</a></h3>
             <span className="text-[10px] font-semibold tracking-[1px] uppercase px-2 py-0.5 rounded border border-[var(--accent-amber)]/25 bg-[var(--accent-amber)]/10 text-[var(--accent-amber)]">
               HNW security
             </span>
@@ -81,7 +81,7 @@ export default function TopTierSecurity({
             <li className="flex gap-2"><span className="text-[var(--accent-amber)]">·</span> Complementary top-tier path when you need specialist HNW security</li>
           </ul>
           <div className="mt-5 text-xs text-[var(--text-muted)]">
-            <a href="https://opsek.io/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-amber)] hover:underline">opsek.io</a> — OS security baselines we align with on the sovereign track.
+            <a href="https://opsek.io/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-amber)] hover:underline">opsek.io ↗</a> — OS security baselines we align with on the sovereign track.
           </div>
         </article>
       </div>

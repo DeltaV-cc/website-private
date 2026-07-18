@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { PageBackdrop } from '../components/PageShell';
 
 // Topic slugs used by the pillar-page CTAs (/contact/?topic=<slug>).
 // Each maps to a pre-selected "I Need" option and a starter description.
@@ -19,7 +20,9 @@ function ContactContent() {
   const topic = TOPICS[params.get('topic') || ''] || null;
 
   return (
-    <div className="min-h-screen">
+    <>
+    <PageBackdrop />
+    <div className="min-h-screen relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-24">
         {/* Header */}
         <div className="max-w-2xl mb-12">
@@ -121,6 +124,7 @@ function ContactContent() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

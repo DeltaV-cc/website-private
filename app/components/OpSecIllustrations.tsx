@@ -152,7 +152,7 @@ export function Web3OpSecPathIllustration() {
         <p className="mt-4 text-[11px] text-[var(--text-muted)] leading-relaxed max-w-3xl">
           Focus: high-decentralization Ethereum / DeFi treasuries. YubiKeys gate humans; Safe + hardware wallets hold
           capital; DeFi ops need runbooks. For institutional-grade custody or HNW security, top-tier solutions are
-          Taurus and Opsek - the right mandate, not ego.
+          Taurus and OpSec - the right mandate, not ego.
         </p>
       </div>
     </figure>
