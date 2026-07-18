@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 export type FilterGroupSpec = {
   title: string;
@@ -20,6 +20,7 @@ export default function FilterSidebar({
   groups: FilterGroupSpec[];
   onClear?: () => void;
 }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const anySelected = groups.some((g) => g.selected.length > 0);
 
   return (
@@ -28,28 +29,25 @@ export default function FilterSidebar({
         <span className="text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)]">
           Filters
         </span>
-        {onClear && (
-          <button
-            type="button"
-            onClick={onClear}
-            disabled={!anySelected}
-            className={`inline-flex items-center gap-1 text-xs transition-colors ${
-              anySelected
-                ? 'text-[var(--accent-cyan)] hover:underline'
-                : 'text-[var(--text-disabled)] cursor-default'
-            }`}
-          >
-            {anySelected && (
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-                <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            )}
-            Clear all
+        <div className="flex items-center gap-3">
+          <button type="button" className="lg:hidden text-xs text-[var(--accent-cyan)]" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen}>
+            {mobileOpen ? 'Hide' : 'Show'}
           </button>
-        )}
+          {onClear && (
+            <button
+              type="button"
+              onClick={onClear}
+              disabled={!anySelected}
+              className={`inline-flex items-center gap-1 text-xs transition-colors ${anySelected ? 'text-[var(--accent-cyan)] hover:underline' : 'text-[var(--text-disabled)] cursor-default'}`}
+            >
+              {anySelected && <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>}
+              Clear all
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="space-y-7">
+      <div className={`${mobileOpen ? 'block' : 'hidden'} lg:block space-y-7`}>
         {groups.map((group) => (
           <div key={group.title}>
             <div className="text-xs font-semibold text-[var(--text-secondary)] mb-3">{group.title}</div>

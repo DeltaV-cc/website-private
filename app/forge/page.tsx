@@ -1,128 +1,19 @@
 'use client';
+
 import Link from 'next/link';
 import SpotlightField from '../components/SpotlightField';
 
-const ArrowRight = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-);
+const Arrow = () => <span aria-hidden="true">↗</span>;
+const pillars = [
+  { href: '/blog/', code: '01', label: 'Blog', title: 'Ideas with a point of view', text: 'Essays, field notes and analysis from the edge of sovereign AI, Web3 and operational security.', accent: 'var(--accent-purple)' },
+  { href: '/tutorials/', code: '02', label: 'Tutorials', title: 'Build it locally', text: 'Technical walkthroughs that move from architecture to a working, hardened system.', accent: 'var(--accent-cyan)' },
+  { href: '/forge/course/', code: '03', label: 'AI Course', title: 'AI Mastery', text: 'A practical curriculum for building and running personal AI systems with long-term autonomy.', accent: 'var(--accent-orange)' },
+];
 
 export default function ForgePage() {
-  return (
-    <>
-      {/* Hero */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-12">
-        <div className="grid lg:grid-cols-[1fr_18rem] gap-10 items-end">
-          <div><div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-3">Pillar 03 · Education</div><h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-3px] mb-6">Forge Skills</h1><div className="flex items-center gap-2 mb-8"><span className="w-12 h-px bg-[var(--accent-cyan)]" /><span className="w-8 h-px bg-[var(--accent-orange)]/70" /><span className="w-4 h-px bg-[var(--accent-purple)]/60" /></div><p className="max-w-2xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">We upskill, upgrade, and keep you at the frontier. Sovereign systems, practical curricula, high-signal intelligence.</p></div>
-          <SpotlightField kind="forge" />
-        </div>
-      </section>
-
-      {/* Flagship Curriculums */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16">
-        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">Flagship Curriculums</div>
-        <div className="grid md:grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden flex flex-col transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-amber)]/30 to-transparent" />
-            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Personal AI Mastery</h3>
-            <p className="text-[var(--text-secondary)] mb-4 flex-1">
-              Self-sovereign program for building and running personal AI systems with strong OpSec and long-term autonomy.
-            </p>
-            <div className="text-sm text-[var(--text-muted)] mb-6">Foundation: Hermes + open-source models</div>
-            <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-cyan)] text-black rounded-xl text-sm font-semibold hover:bg-white transition-colors self-start">
-              Request Info <ArrowRight />
-            </Link>
-          </div>
-
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden flex flex-col transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/60 via-[var(--accent-amber)]/20 to-transparent" />
-            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">AI Engineering Bootcamp</h3>
-            <p className="text-[var(--text-secondary)] mb-6 flex-1">
-              5-day intensive where participants leave with fully functional production systems. Zero to deployed.
-            </p>
-            <div className="mb-6">
-              <div className="text-xs text-[var(--accent-cyan)] font-semibold tracking-[2px] uppercase mb-3">Expanded Engineering Track</div>
-              <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Hugging Face inference pipelines & production deployment</li>
-                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Designing & fine-tuning your own models</li>
-                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Data engineering for sovereign AI systems</li>
-                <li className="flex gap-2"><span className="text-[var(--accent-cyan)]">·</span> Advanced agent orchestration & benchmarking</li>
-              </ul>
-            </div>
-            <Link href="/contact/" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all self-start">
-              Apply for Next Cohort <ArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Workshops + OpSec products */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16 border-t border-[var(--border-default)] pt-12">
-        <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-6">Workshops &amp; OpSec</div>
-        <div className="grid md:grid-cols-2 gap-5">
-          <Link href="/forge/x402-workshop/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-orange)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-amber)]/20 to-transparent" />
-            <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[var(--accent-orange)] mb-2">Half-day</div>
-            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-orange)] transition-colors">x402 &amp; Agent Payments</h3>
-            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Lab HTTP 402 stablecoin payments, spend caps for agents, and a production dry-run. Facilitated - not a long-read substitute.</p>
-          </Link>
-          <Link href="/opsec/sota-stack/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)] via-[var(--accent-orange)]/20 to-transparent" />
-            <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[var(--accent-amber)] mb-2">Blueprint</div>
-            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-amber)] transition-colors">SOTA Operator Stack</h3>
-            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">DeFi-native blueprint: YubiKey, signer endpoints, Safe treasury key management, DeFi ops runbooks, optional automation float. High-decentralization stage ready.</p>
-          </Link>
-          <Link href="/opsec/" className="group md:col-span-2 block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
-            <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--accent-cyan)] transition-colors">OS Hardening</h3>
-            <p className="text-sm text-[var(--text-secondary)] max-w-2xl">Platform-specific hardening: Windows, Linux, macOS. Tailored threat models, audits, and operational security protocols for individuals and teams.</p>
-          </Link>
-        </div>
-      </section>
-
-      {/* Tutorials */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-24">
-        <div className="text-[var(--accent-cyan)] text-xs font-semibold tracking-[3px] uppercase mb-6">Tutorials</div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <Link href="/tutorials/hermes-qwen-dgx-spark/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-cyan)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-cyan)]/40 via-[var(--accent-amber)]/20 to-transparent" />
-            <div className="flex items-center gap-2 mb-3">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
-              <span className="text-xs text-[var(--text-muted)]">TECH</span>
-            </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">Hermes + Qwen 3.6 + DGX Spark</h4>
-            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">Full hardware + software setup for deploying Qwen 3.6 on NVIDIA DGX Spark (128GB unified memory) with Hermes Agent — 8-step setup, OpSec hardening, verification checklist.</p>
-            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
-              View full tutorial <ArrowRight />
-            </div>
-          </Link>
-
-          <Link href="/tutorials/langchain-chatchat-ollama/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-amber)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)]/40 via-[var(--accent-amber)]/20 to-transparent" />
-            <div className="flex items-center gap-2 mb-3">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
-              <span className="text-xs text-[var(--text-muted)]">AI / OP SEC</span>
-            </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">LangChain-Chatchat + Ollama RAG</h4>
-            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">100% local RAG system — Streamlit UI + FastAPI + LangChain + Ollama. Full offline knowledge base Q&A, multi-model support, zero API keys, 5-step setup with OpSec hardening.</p>
-            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
-              View full tutorial <ArrowRight />
-            </div>
-          </Link>
-
-          <Link href="/tutorials/muscriptor-music-to-midi/" className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-purple)]/25 hover:-translate-y-0.5">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-purple)]/40 via-[var(--accent-purple)]/20 to-transparent" />
-            <div className="flex items-center gap-2 mb-3">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[1px] uppercase border bg-[var(--accent-green)]/8 text-[var(--accent-green)] border-[var(--accent-green)]/20">Tutorial</span>
-              <span className="text-xs text-[var(--text-muted)]">AUDIO / AI</span>
-            </div>
-            <h4 className="font-semibold mb-2 group-hover:text-[var(--accent-cyan)] transition-colors">MuScriptor: Transcribe Music to MIDI Locally</h4>
-            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed line-clamp-3">Decoder-only transformer by Kyutai + Mirelo AI — 170K songs trained, multi-instrument. 3 model sizes (103M–1.4B), Pinokio 1-click or Python CLI, API endpoints reference.</p>
-            <div className="text-[var(--accent-cyan)] text-xs mt-4 inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
-              View full tutorial <ArrowRight />
-            </div>
-          </Link>
-        </div>
-      </section>
-    </>
-  );
+  return <>
+    <section className="page-container pt-16 md:pt-20 pb-16"><div className="grid lg:grid-cols-[1fr_20rem] gap-12 items-end"><div><div className="eyebrow">Forge / transmission</div><h1 className="section-title mt-3 max-w-3xl">Learn the system.<br /><span className="text-[var(--text-secondary)]">Then make it yours.</span></h1><p className="mt-7 max-w-2xl text-lg leading-relaxed text-[var(--text-secondary)]">Three ways into the Delta V operating model: ideas to orient you, tutorials to make it real, and a course to build your own foundation.</p></div><SpotlightField kind="forge" /></div></section>
+    <section className="page-container pb-24" aria-labelledby="forge-pillars"><div className="eyebrow mb-4">The transmission stack</div><h2 id="forge-pillars" className="text-2xl md:text-3xl font-semibold tracking-tight mb-8">Choose your entry point.</h2><div className="grid lg:grid-cols-3 gap-px bg-[var(--border-default)] border border-[var(--border-default)]">{pillars.map((pillar) => <Link key={pillar.href} href={pillar.href} className="group bg-[var(--bg-deep)] p-7 md:p-9 min-h-[300px] hover:bg-[var(--bg-surface)] transition-colors" style={{ '--pillar-accent': pillar.accent } as React.CSSProperties}><div className="flex justify-between font-mono text-xs" style={{ color: pillar.accent }}><span>{pillar.code}</span><Arrow /></div><div className="mt-16"><div className="text-xs uppercase tracking-[.16em]" style={{ color: pillar.accent }}>{pillar.label}</div><h3 className="mt-3 text-2xl font-semibold tracking-tight group-hover:text-[var(--pillar-accent)]">{pillar.title}</h3><p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{pillar.text}</p></div></Link>)}</div></section>
+    <section id="field-labs" className="border-y border-[var(--border-default)] bg-[var(--bg-surface)]"><div className="page-container py-20"><div className="eyebrow text-[var(--accent-orange)]">Field labs / supporting work</div><h2 className="section-title mt-3 max-w-2xl">When the lesson needs a live system.</h2><div className="mt-10 divide-y divide-[var(--border-default)] border-y border-[var(--border-default)]"><Link href="/forge/x402-workshop/" className="group grid md:grid-cols-[7rem_1fr_auto] gap-5 py-7"><span className="font-mono text-xs text-[var(--accent-orange)]">WORKSHOP</span><span><h3 className="text-xl font-semibold group-hover:text-[var(--accent-orange)]">x402 &amp; Agent Payments</h3><p className="mt-2 text-sm text-[var(--text-secondary)]">Lab HTTP 402 stablecoin payments, spend caps for agents, and a production dry-run.</p></span><span className="text-sm text-[var(--accent-orange)]">Open lab <Arrow /></span></Link><Link href="/opsec/sota-stack/" className="group grid md:grid-cols-[7rem_1fr_auto] gap-5 py-7"><span className="font-mono text-xs text-[var(--accent-cyan)]">BLUEPRINT</span><span><h3 className="text-xl font-semibold group-hover:text-[var(--accent-cyan)]">SOTA Operator Stack</h3><p className="mt-2 text-sm text-[var(--text-secondary)]">YubiKey, signer endpoints, Safe treasury key management, and DeFi operations runbooks.</p></span><span className="text-sm text-[var(--accent-cyan)]">Open stack <Arrow /></span></Link><Link href="/opsec/" className="group grid md:grid-cols-[7rem_1fr_auto] gap-5 py-7"><span className="font-mono text-xs text-[var(--accent-purple)]">HARDENING</span><span><h3 className="text-xl font-semibold group-hover:text-[var(--accent-purple)]">OS Hardening</h3><p className="mt-2 text-sm text-[var(--text-secondary)]">Platform-specific hardening for Windows, Linux and macOS.</p></span><span className="text-sm text-[var(--accent-purple)]">Open guides <Arrow /></span></Link></div></div></section>
+  </>;
 }

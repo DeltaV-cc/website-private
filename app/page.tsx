@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import CuratedIntel from './components/CuratedIntel';
-import AsciiMist from './components/AsciiMist';
+import InkGarden from './components/InkGarden';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -29,7 +29,7 @@ export default function DeltaVSite() {
             <span><b className="block text-[var(--text-primary)] text-sm mb-1">Local-first</b>control</span><span><b className="block text-[var(--text-primary)] text-sm mb-1">Signal-led</b>clarity</span><span><b className="block text-[var(--text-primary)] text-sm mb-1">Delta V</b>acceleration</span>
           </div>
         </div>
-        <AsciiMist />
+        <InkGarden />
       </div>
     </section>
 
@@ -48,6 +48,6 @@ export default function DeltaVSite() {
 
     <section className="page-container py-16" aria-label="Trusted by"><div className="eyebrow text-center mb-8">Trusted by</div><div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-50 hover:opacity-80 transition-opacity"><img src="/website-private/images/defiscan-logo.svg" alt="DeFiScan" className="h-8 w-auto max-w-[140px]" /><img src="/website-private/images/storm-partners-logo.svg" alt="STORM Partners" className="h-6 w-auto" /><img src="/website-private/images/defi-collective-logo.svg" alt="DeFi Collective" className="h-9 w-auto max-w-[140px]" /></div></section>
 
-    <section className="page-container pb-24" aria-labelledby="cta-heading"><div className="relative overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-14"><AsciiMist compact /><div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/95 to-transparent" /><div className="relative max-w-xl"><div className="eyebrow text-[var(--accent-orange)]">Stay in the loop</div><h2 id="cta-heading" className="section-title mt-3">High-signal updates only.</h2><p className="mt-4 text-[var(--text-secondary)]">Curated intelligence, technical breakdowns and new tutorials, without the noise.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/intelhub/" className="button-primary">Browse IntelHub <Arrow /></Link><Link href="/contact/" className="button-secondary">Get in touch <Arrow /></Link></div></div></div></section>
+    <section className="page-container pb-24" aria-labelledby="cta-heading"><div className="relative overflow-hidden border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-14"><InkGarden compact /><div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/95 to-transparent" /><div className="relative max-w-xl"><div className="eyebrow text-[var(--accent-orange)]">Stay in the loop</div><h2 id="cta-heading" className="section-title mt-3">High-signal updates only.</h2><p className="mt-4 text-[var(--text-secondary)]">Curated intelligence, technical breakdowns and new tutorials, without the noise.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/intelhub/" className="button-primary">Browse IntelHub <Arrow /></Link><Link href="/contact/" className="button-secondary">Get in touch <Arrow /></Link></div></div></div></section>
   </>;
 }
