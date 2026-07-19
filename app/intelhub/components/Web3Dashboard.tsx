@@ -8,6 +8,8 @@ import { BarChart, CategoryBox, SkeletonPrice, SkeletonBlock, fmtCurrency, fmtCo
 import CryptoFrontierSignals from './CryptoFrontierSignals';
 import { useChartHover, formatDate, formatValue, ChartPoint } from './ChartHover';
 import AnimatedValue from './AnimatedValue';
+import VolumeChart from './VolumeChart';
+import ChainVolumeBar from './ChainVolumeBar';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -278,34 +280,17 @@ export default function Web3Dashboard({
           <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
         </div>
 
-        {/* DEX Dominance */}
+        {/* DEX Volume — Dune charts */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="flex items-center justify-between mb-4">
-            <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX Dominance</div>
-            <span className="text-[10px] text-[var(--text-muted)]">24h · {totalVol ? fmtBig(totalVol) : '...'}</span>
+            <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX Volume</div>
+            <span className="text-[10px] text-[var(--text-muted)]">via Dune · 26 weeks</span>
           </div>
-          <div className="space-y-2">
-            {dexDominance.length > 0 ? (
-              dexDominance.slice(0, 8).map((d: any, i: number) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs">
-                  <span className="w-5 tabular-nums text-[var(--text-disabled)] text-right flex-shrink-0">#{i + 1}</span>
-                  <span className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0">{d.name}</span>
-                  <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-cyan)]/60 to-[var(--accent-cyan)]/20"
-                      style={{ width: `${Math.min(100, d.dominance)}%` }} />
-                  </div>
-                  <span className="w-14 text-right tabular-nums text-[var(--text-secondary)] flex-shrink-0 text-[10px] font-medium">
-                    {d.dominance.toFixed(1)}%
-                  </span>
-                </div>
-              ))
-            ) : (
-              <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <span className="text-[var(--text-disabled)] text-xs">DEX data loading from DeFi Llama...</span>
-              </div>
-            )}
+          <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
+          <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-2">24h Chain Volume</div>
+            <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
           </div>
-          <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
         </div>
       </div>
 
