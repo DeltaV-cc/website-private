@@ -1,0 +1,62 @@
+{
+  "updated": "2026-07-19T20:51:21.763889Z",
+  "period": "2026-07-19 \u2192 2026-08-18",
+  "events": [
+    {
+      "date": "2026-07-20",
+      "label": "PBoC Loan Prime Rate",
+      "currency": "CNY",
+      "impact": "high",
+      "country": "CN"
+    },
+    {
+      "date": "2026-07-27",
+      "label": "US GDP (QoQ advance)",
+      "currency": "USD",
+      "impact": "high",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-29",
+      "label": "FOMC Rate Decision",
+      "currency": "USD",
+      "impact": "high",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-07",
+      "label": "US Non-Farm Payrolls",
+      "currency": "USD",
+      "impact": "high",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-10",
+      "label": "China CPI (YoY)",
+      "currency": "CNY",
+      "impact": "medium",
+      "country": "CN"
+    },
+    {
+      "date": "2026-08-12",
+      "label": "US CPI (MoM)",
+      "currency": "USD",
+      "impact": "high",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-14",
+      "label": "US PPI (MoM)",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-17",
+      "label": "US Retail Sales (MoM)",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    }
+  ]
+}
