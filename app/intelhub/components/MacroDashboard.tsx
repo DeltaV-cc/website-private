@@ -62,6 +62,8 @@ export default function MacroDashboard({
   const currencyFlag = (ccy: string) =>
     ccy === 'USD' ? '🇺🇸' : ccy === 'EUR' ? '🇪🇺' : ccy === 'GBP' ? '🇬🇧' :
     ccy === 'JPY' ? '🇯🇵' : ccy === 'CHF' ? '🇨🇭' : ccy === 'CNY' ? '🇨🇳' : '🌐';
+
+  const forexPairs = forex && typeof forex === 'object' ? (
     ['EUR', 'JPY', 'GBP', 'CHF', 'CNY'].map(k => ({ label: k, ...(forex[k] || {}) })).filter((p: any) => p.rateStr)
   ) : [];
 
