@@ -4,187 +4,144 @@ macro-pull.py — Generates macro-economic calendar JSON for the IntelHub.
 Filters to major currencies only: USD, EUR, GBP, JPY, CHF, CNY.
 Output: public/data/macro-calendar.json
 
-Recurring events are date-computed. Manual overrides in EVENTS override list.
-Runs every 6h via cron — always shows next 30 days of events.
+Recurring events are date-computed every 6h via cron — always shows next 45 days.
 """
 
 import json, os, sys
 from datetime import datetime, date, timedelta
 
-# Paths — resolve from website root, not script location
 import pathlib
 WEBSITE_DIR = str(pathlib.Path(__file__).resolve().parent.parent) if "scripts" in str(pathlib.Path(__file__).resolve()) else str(pathlib.Path(__file__).resolve().parent)
 PUBLIC_DIR = os.path.join(WEBSITE_DIR, "public", "data")
 OUT = os.path.join(PUBLIC_DIR, "macro-calendar.json")
 
-# ── Recurring events (date-computed) ──
-# Format: (label, schedule_rule, currency, impact, country)
-# schedule_rule: "monthly:N" = Nth occurrence of weekday, "fixed:DD" = fixed day
-# "fomc" = 3rd Wednesday of FOMC months
+def nth_weekday(year: int, month: int, weekday: int, n: int) -> date:
+    """Return the nth occurrence of weekday in month (0=Mon, 6=Sun, n=1-based)."""
+    first = date(year, month, 1)
+    days_ahead = (weekday - first.weekday()) % 7
+    return first + timedelta(days=days_ahead + (n - 1) * 7)
 
-CURRENCIES = {"USD", "EUR", "GBP", "JPY", "CHF", "CNY"}
+def last_weekday(year: int, month: int, weekday: int) -> date:
+    """Return the last occurrence of weekday in month."""
+    last_day = date(year, month + 1, 1) - timedelta(days=1) if month < 12 else date(year, 12, 31)
+    days_back = (last_day.weekday() - weekday) % 7
+    return last_day - timedelta(days=days_back)
 
 def next_fomc(ref: date) -> date | None:
-    """FOMC meets ~every 6 weeks. 2026 known dates (approximate Wednesdays)."""
     fomc_2026 = [
         date(2026, 1, 28), date(2026, 3, 18), date(2026, 5, 6),
         date(2026, 6, 17), date(2026, 7, 29), date(2026, 9, 16),
         date(2026, 11, 4), date(2026, 12, 16),
     ]
     for d in fomc_2026:
-        if d > ref:
-            return d
+        if d > ref: return d
     return None
 
-def nth_weekday(year: int, month: int, weekday: int, n: int) -> date:
-    """Return the nth occurrence of weekday in month (0=Mon, 6=Sun, n=1-based)."""
-    first = date(year, month, 1)
-    days_ahead = (weekday - first.weekday()) % 7
-    candidate = first + timedelta(days=days_ahead + (n - 1) * 7)
-    return candidate
+def weekday_in_range(start: date, end: date, wd: int) -> list[date]:
+    """Return all dates with a given weekday between start and end."""
+    result = []
+    d = start
+    while d.weekday() != wd:
+        d += timedelta(days=1)
+    while d <= end:
+        result.append(d)
+        d += timedelta(days=7)
+    return result
 
-def gen_recurring(ref: date) -> list[dict]:
-    """Generate recurring events for the next 90 days from ref."""
+def gen_events(ref: date) -> list[dict]:
     events = []
-    end = ref + timedelta(days=90)
-    current = ref
+    end = ref + timedelta(days=45)
+    current = date(ref.year, ref.month, 1)
 
     while current <= end:
         y, m = current.year, current.month
 
-        # CPI (US) — 2nd week of month, Wednesday or Thursday
-        cpi_day = nth_weekday(y, m, 2, 2)  # 2nd Wednesday
-        if cpi_day > ref and cpi_day <= end:
-            events.append({
-                "date": cpi_day.isoformat(), "label": "US CPI (MoM)",
-                "currency": "USD", "impact": "high", "country": "US",
-            })
+        def add(d: date, label: str, ccy: str, impact: str, country: str):
+            if d > ref and d <= end:
+                events.append({"date": d.isoformat(), "label": label, "currency": ccy, "impact": impact, "country": country})
 
-        # NFP (US) — 1st Friday
-        nfp_day = nth_weekday(y, m, 4, 1)
-        if nfp_day > ref and nfp_day <= end:
-            events.append({
-                "date": nfp_day.isoformat(), "label": "US Non-Farm Payrolls",
-                "currency": "USD", "impact": "high", "country": "US",
-            })
-
-        # PPI (US) — ~2 days after CPI
-        ppi_day = cpi_day + timedelta(days=2)
-        if ppi_day > ref and ppi_day <= end:
-            events.append({
-                "date": ppi_day.isoformat(), "label": "US PPI (MoM)",
-                "currency": "USD", "impact": "medium", "country": "US",
-            })
-
-        # Retail Sales (US) — mid-month, ~15th
+        # ── USD: Monthly ──
+        add(nth_weekday(y, m, 4, 1), "US Non-Farm Payrolls", "USD", "high", "US")
+        add(nth_weekday(y, m, 2, 2), "US CPI (MoM)", "USD", "high", "US")
+        add(nth_weekday(y, m, 2, 2) + timedelta(days=2), "US PPI (MoM)", "USD", "medium", "US")
         retail = date(y, m, 15)
-        if retail.weekday() >= 5:
-            retail += timedelta(days=(7 - retail.weekday()))
-        if retail > ref and retail <= end:
-            events.append({
-                "date": retail.isoformat(), "label": "US Retail Sales (MoM)",
-                "currency": "USD", "impact": "medium", "country": "US",
-            })
-
-        # GDP (US) — last week of month (advance), ~27th
+        if retail.weekday() >= 5: retail += timedelta(days=(7 - retail.weekday()))
+        add(retail, "US Retail Sales (MoM)", "USD", "medium", "US")
         gdp = date(y, m, 27)
-        if gdp.weekday() >= 5:
-            gdp -= timedelta(days=gdp.weekday() - 4)
-        if gdp > ref and gdp <= end:
-            events.append({
-                "date": gdp.isoformat(), "label": "US GDP (QoQ advance)",
-                "currency": "USD", "impact": "high", "country": "US",
-            })
+        if gdp.weekday() >= 5: gdp -= timedelta(days=gdp.weekday() - 4)
+        add(gdp, "US GDP (QoQ advance)", "USD", "high", "US")
+        add(nth_weekday(y, m, 1, 4), "US ISM Manufacturing PMI", "USD", "medium", "US")
+        add(nth_weekday(y, m, 3, 3), "US ISM Services PMI", "USD", "medium", "US")
+        add(last_weekday(y, m, 1), "US Consumer Confidence", "USD", "medium", "US")
+        add(nth_weekday(y, m, 4, 3), "US Durable Goods Orders", "USD", "medium", "US")
+        add(nth_weekday(y, m, 3, 4), "US New Home Sales", "USD", "low", "US")
+        add(nth_weekday(y, m, 2, 4), "US Existing Home Sales", "USD", "low", "US")
 
-        # ECB rate decision — ~every 6 weeks, approximate
+        # ── USD: Weekly ──
+        for thu in weekday_in_range(ref, end, 3):  # Thursday = 3
+            add(thu, "US Initial Jobless Claims", "USD", "medium", "US")
+
+        # ── USD: Treasury auctions (Wednesdays) ──
+        for wed in weekday_in_range(ref, end, 2):
+            if wed.day <= 7 or wed.day >= 22:
+                add(wed, "US Treasury Auction", "USD", "low", "US")
+
+        # ── EUR ──
         ecb_months = [1, 3, 4, 6, 7, 9, 10, 12]
         if m in ecb_months:
-            ecb = nth_weekday(y, m, 3, 2)  # 2nd Wednesday
-            if ecb > ref and ecb <= end:
-                events.append({
-                    "date": ecb.isoformat(), "label": "ECB Rate Decision",
-                    "currency": "EUR", "impact": "high", "country": "EU",
-                })
+            add(nth_weekday(y, m, 3, 2), "ECB Rate Decision", "EUR", "high", "EU")
+        add(nth_weekday(y, m, 4, 2), "EU CPI Flash (YoY)", "EUR", "high", "EU")
+        add(nth_weekday(y, m, 3, 3), "EU GDP (QoQ flash)", "EUR", "medium", "EU")
+        add(nth_weekday(y, m, 2, 4), "EU Industrial Production", "EUR", "low", "EU")
 
-        # BOE rate decision
+        # ── GBP ──
         boe_months = [2, 3, 5, 6, 8, 9, 11, 12]
         if m in boe_months:
-            boe = nth_weekday(y, m, 3, 3)  # 3rd Wednesday
-            if boe > ref and boe <= end:
-                events.append({
-                    "date": boe.isoformat(), "label": "BoE Rate Decision",
-                    "currency": "GBP", "impact": "high", "country": "UK",
-                })
+            add(nth_weekday(y, m, 3, 3), "BoE Rate Decision", "GBP", "high", "UK")
+        add(nth_weekday(y, m, 2, 3), "UK CPI (YoY)", "GBP", "high", "UK")
+        add(nth_weekday(y, m, 4, 2), "UK GDP (MoM)", "GBP", "medium", "UK")
+        add(nth_weekday(y, m, 1, 3), "UK Unemployment Rate", "GBP", "medium", "UK")
 
-        # PBoC LPR (China) — 20th of each month
-        pboc = date(y, m, 20)
-        if pboc.weekday() >= 5:
-            pboc += timedelta(days=(7 - pboc.weekday()))
-        if pboc > ref and pboc <= end:
-            events.append({
-                "date": pboc.isoformat(), "label": "PBoC Loan Prime Rate",
-                "currency": "CNY", "impact": "high", "country": "CN",
-            })
-
-        # China CPI — ~9th
-        cn_cpi = date(y, m, 9)
-        if cn_cpi.weekday() >= 5:
-            cn_cpi += timedelta(days=(7 - cn_cpi.weekday()))
-        if cn_cpi > ref and pboc <= end:
-            events.append({
-                "date": cn_cpi.isoformat(), "label": "China CPI (YoY)",
-                "currency": "CNY", "impact": "medium", "country": "CN",
-            })
-
-        # SNB rate decision — quarterly: Mar, Jun, Sep, Dec
-        snb_months = [3, 6, 9, 12]
-        if m in snb_months:
-            snb = nth_weekday(y, m, 3, 3)  # 3rd Wednesday
-            if snb > ref and snb <= end:
-                events.append({
-                    "date": snb.isoformat(), "label": "SNB Rate Decision",
-                    "currency": "CHF", "impact": "high", "country": "CH",
-                })
-
-        # BOJ rate decision — ~every 6 weeks
+        # ── JPY ──
         boj_months = [1, 3, 4, 6, 7, 9, 10, 12]
         if m in boj_months:
-            boj = nth_weekday(y, m, 4, 3)  # 3rd Thursday
-            if boj > ref and boj <= end:
-                events.append({
-                    "date": boj.isoformat(), "label": "BoJ Rate Decision",
-                    "currency": "JPY", "impact": "high", "country": "JP",
-                })
+            add(nth_weekday(y, m, 4, 3), "BoJ Rate Decision", "JPY", "high", "JP")
+        add(nth_weekday(y, m, 4, 3), "Japan CPI (YoY)", "JPY", "medium", "JP")
+        add(nth_weekday(y, m, 3, 2), "Japan GDP (QoQ)", "JPY", "medium", "JP")
+
+        # ── CHF ──
+        snb_months = [3, 6, 9, 12]
+        if m in snb_months:
+            add(nth_weekday(y, m, 3, 3), "SNB Rate Decision", "CHF", "high", "CH")
+        add(nth_weekday(y, m, 2, 1), "Swiss CPI (YoY)", "CHF", "medium", "CH")
+
+        # ── CNY ──
+        pboc = date(y, m, 20)
+        if pboc.weekday() >= 5: pboc += timedelta(days=(7 - pboc.weekday()))
+        add(pboc, "PBoC Loan Prime Rate", "CNY", "high", "CN")
+        cn_cpi = date(y, m, 9)
+        if cn_cpi.weekday() >= 5: cn_cpi += timedelta(days=(7 - cn_cpi.weekday()))
+        add(cn_cpi, "China CPI (YoY)", "CNY", "medium", "CN")
+        add(date(y, m, 15), "China Industrial Production", "CNY", "medium", "CN")
+        add(nth_weekday(y, m, 3, 4), "China Trade Balance", "CNY", "medium", "CN")
 
         # Advance to next month
-        if m == 12:
-            current = date(y + 1, 1, 1)
-        else:
-            current = date(y, m + 1, 1)
+        if m == 12: current = date(y + 1, 1, 1)
+        else: current = date(y, m + 1, 1)
+
+    # ── FOMC ──
+    fomc = next_fomc(ref)
+    if fomc:
+        events.append({"date": fomc.isoformat(), "label": "FOMC Rate Decision", "currency": "USD", "impact": "high", "country": "US"})
+        events.append({"date": (fomc + timedelta(days=21)).isoformat(), "label": "FOMC Meeting Minutes", "currency": "USD", "impact": "medium", "country": "US"})
 
     return events
 
 def main():
     today = date.today()
+    events = gen_events(today)
 
-    # Generate recurring events
-    events = gen_recurring(today)
-
-    # FOMC
-    fomc = next_fomc(today)
-    if fomc:
-        events.append({
-            "date": fomc.isoformat(), "label": "FOMC Rate Decision",
-            "currency": "USD", "impact": "high", "country": "US",
-        })
-        # FOMC minutes — 3 weeks after
-        minutes = fomc + timedelta(days=21)
-        events.append({
-            "date": minutes.isoformat(), "label": "FOMC Meeting Minutes",
-            "currency": "USD", "impact": "medium", "country": "US",
-        })
-
-    # Deduplicate by (date, label)
+    # Dedupe by (date, label)
     seen = set()
     unique = []
     for e in events:
@@ -193,17 +150,15 @@ def main():
             seen.add(key)
             unique.append(e)
 
-    # Sort by date, filter next 30 days
     unique.sort(key=lambda x: x["date"])
-    cutoff = today + timedelta(days=30)
+    cutoff = today + timedelta(days=45)
     upcoming = [e for e in unique if date.fromisoformat(e["date"]) <= cutoff]
 
-    # Write output
     os.makedirs(PUBLIC_DIR, exist_ok=True)
     payload = {
         "updated": datetime.utcnow().isoformat() + "Z",
         "period": f"{today.isoformat()} → {cutoff.isoformat()}",
-        "events": upcoming[:25],  # Max 25 events
+        "events": upcoming[:30],
     }
 
     with open(OUT, "w") as f:

@@ -1,12 +1,54 @@
 {
-  "updated": "2026-07-19T20:51:37.772709Z",
-  "period": "2026-07-19 \u2192 2026-08-18",
+  "updated": "2026-07-19T21:29:13.506094Z",
+  "period": "2026-07-20 \u2192 2026-09-03",
   "events": [
     {
-      "date": "2026-07-20",
-      "label": "PBoC Loan Prime Rate",
+      "date": "2026-07-21",
+      "label": "UK Unemployment Rate",
+      "currency": "GBP",
+      "impact": "medium",
+      "country": "UK"
+    },
+    {
+      "date": "2026-07-22",
+      "label": "US Existing Home Sales",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-22",
+      "label": "US Treasury Auction",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-22",
+      "label": "EU Industrial Production",
+      "currency": "EUR",
+      "impact": "low",
+      "country": "EU"
+    },
+    {
+      "date": "2026-07-23",
+      "label": "US New Home Sales",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-23",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-23",
+      "label": "China Trade Balance",
       "currency": "CNY",
-      "impact": "high",
+      "impact": "medium",
       "country": "CN"
     },
     {
@@ -17,10 +59,59 @@
       "country": "US"
     },
     {
+      "date": "2026-07-28",
+      "label": "US ISM Manufacturing PMI",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-28",
+      "label": "US Consumer Confidence",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-29",
+      "label": "US Treasury Auction",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
       "date": "2026-07-29",
       "label": "FOMC Rate Decision",
       "currency": "USD",
       "impact": "high",
+      "country": "US"
+    },
+    {
+      "date": "2026-07-30",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-05",
+      "label": "US Treasury Auction",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-05",
+      "label": "Swiss CPI (YoY)",
+      "currency": "CHF",
+      "impact": "medium",
+      "country": "CH"
+    },
+    {
+      "date": "2026-08-06",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
       "country": "US"
     },
     {
@@ -45,6 +136,20 @@
       "country": "US"
     },
     {
+      "date": "2026-08-13",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-13",
+      "label": "Japan GDP (QoQ)",
+      "currency": "JPY",
+      "impact": "medium",
+      "country": "JP"
+    },
+    {
       "date": "2026-08-14",
       "label": "US PPI (MoM)",
       "currency": "USD",
@@ -52,8 +157,57 @@
       "country": "US"
     },
     {
+      "date": "2026-08-14",
+      "label": "EU CPI Flash (YoY)",
+      "currency": "EUR",
+      "impact": "high",
+      "country": "EU"
+    },
+    {
+      "date": "2026-08-14",
+      "label": "UK GDP (MoM)",
+      "currency": "GBP",
+      "impact": "medium",
+      "country": "UK"
+    },
+    {
+      "date": "2026-08-15",
+      "label": "China Industrial Production",
+      "currency": "CNY",
+      "impact": "medium",
+      "country": "CN"
+    },
+    {
       "date": "2026-08-17",
       "label": "US Retail Sales (MoM)",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-18",
+      "label": "UK Unemployment Rate",
+      "currency": "GBP",
+      "impact": "medium",
+      "country": "UK"
+    },
+    {
+      "date": "2026-08-19",
+      "label": "UK CPI (YoY)",
+      "currency": "GBP",
+      "impact": "high",
+      "country": "UK"
+    },
+    {
+      "date": "2026-08-19",
+      "label": "FOMC Meeting Minutes",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-20",
+      "label": "US Initial Jobless Claims",
       "currency": "USD",
       "impact": "medium",
       "country": "US"
