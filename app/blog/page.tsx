@@ -176,7 +176,7 @@ export default function Blog() {
                     }`}
                   >
                     <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
-                      <span className="text-[var(--text-muted)]">{post.date}</span>
+                      <span className="text-white/80">{post.date}</span>
                       <span className="text-[var(--text-disabled)]">·</span>
                       <span className="text-[var(--text-muted)]">{readingTimeFor(post.type)} read</span>
                       <span className="text-[var(--text-disabled)]">·</span>
