@@ -193,8 +193,8 @@ export default function BlogPostLayout({
 
   return (
     <div className="min-h-screen">
-      {/* Reading-progress bar — fills as the reader scrolls */}
-      <div className="fixed top-0 left-0 right-0 h-[3px] z-[100] pointer-events-none bg-[var(--bg-surface)]/40">
+      {/* Reading-progress bar — fills as the reader scrolls, sits below fixed navbar */}
+      <div className="fixed top-16 left-0 right-0 h-[3px] z-[60] pointer-events-none bg-[var(--bg-surface)]/40">
         <div
           className="h-full transition-[width] duration-75 ease-out"
           style={{

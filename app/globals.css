@@ -645,6 +645,10 @@ body {
 
 /* -- Responsive -------------------------------- */
 
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
 @media (max-width: 375px) {
   .container-padding {
     padding-left: 12px;

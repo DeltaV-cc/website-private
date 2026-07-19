@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-deep)] relative overflow-hidden">
       <div className="ambient-glow ambient-glow-cyan -top-40 -right-40" />
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 relative">
-        <div className="grid md:grid-cols-12 gap-10 mb-12">
-          <div className="md:col-span-4">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-6 md:gap-10 mb-12">
+          <div className="md:col-span-4 col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors mb-4">
               <Logo size={24} className="flex-shrink-0" />
               <span className="text-lg font-semibold tracking-[-0.5px]">Delta V</span>

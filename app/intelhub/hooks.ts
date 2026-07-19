@@ -81,8 +81,11 @@ const HW_EXCLUDE = ['anti-fraud', 'fraud detection', 'biology', 'biotech', 'dna 
 
 function cleanTitle(t: string) {
   let cleaned = t.replace(/^RT\s+by\s+@\S+?:\s*/i, '').replace(/^RT\s+@\S+?:\s*/i, '');
-  // Strip HTML tags and entities that leak from RSS feeds
-  cleaned = cleaned.replace(/<\/?[^>]+(>|$)/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+  // Aggressively strip HTML tags, entities, and encoded content that leaks from RSS feeds
+  cleaned = cleaned
+    .replace(/<\/?[^>]+(>|$)/g, '')
+    .replace(/&[a-z]{2,6};/g, '')
+    .replace(/&#?[a-z0-9]+;/gi, '');
   // MarketNews_Feed: strip $MACRO / $CRYPTO ticker hashtags from display
   cleaned = cleaned.replace(/\$[A-Z]{2,}/g, '').replace(/\s{2,}/g, ' ').trim();
   // Fix truncated <p> prefix from RSS feed stripping (e.g. "pPAYPAL:" → "PAYPAL:")
@@ -92,7 +95,15 @@ function cleanTitle(t: string) {
 
 function cleanSummary(s: string) {
   if (!s) return s;
-  return s.replace(/<\/?[^>]+(>|$)/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+  // Aggressively strip all HTML/XML tags, entities, and encoded content
+  return s
+    .replace(/<\/?[^>]+(>|$)/g, '')
+    .replace(/&[a-z]{2,6};/g, '')
+    .replace(/&#?[a-z0-9]+;/gi, '')
+    // Fix common RSS truncation artifacts
+    .replace(/^p([A-Z])/, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function getTag(title: string, summary?: string, source?: string): string {
