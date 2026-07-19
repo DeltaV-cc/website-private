@@ -50,7 +50,7 @@ export default function MacroDashboard({
 
   useEffect(() => {
     fetch(`https://deltav-cc.github.io/website-private/data/macro-calendar.json`).then(r => r.json()).then(d => {
-      if (d?.events) setCalendar(d.events.slice(0, 5));
+      if (d?.events) setCalendar(d.events);
     }).catch(() => {});
   }, []);
 
@@ -224,9 +224,9 @@ export default function MacroDashboard({
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
             <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Macro Calendar</span>
-            <span className="text-[10px] text-[var(--text-muted)]">next 30 days</span>
+            <span className="text-[10px] text-[var(--text-muted)]">next 45 days</span>
           </div>
-          <div className="divide-y divide-white/[0.02]">
+          <div className="divide-y divide-white/[0.02] max-h-[320px] overflow-y-auto scrollbar-thin">
             {calendar.map((e: any, i: number) => (
               <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors text-xs">
                 <span className="text-[var(--text-muted)] tabular-nums w-[4.5rem] shrink-0">
