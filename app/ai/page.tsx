@@ -82,6 +82,7 @@ export default function AIPage() {
           ctaLabel="View retainer options"
           ctaTopic="retainer"
           secondary={{ label: 'Upskill instead — Forge', href: '/forge/' }}
+          secondaryTone="forge"
         />
         </PageContainer>
 
