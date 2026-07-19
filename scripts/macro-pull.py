@@ -93,6 +93,16 @@ def gen_events(ref: date) -> list[dict]:
         add(nth_weekday(y, m, 4, 2), "EU CPI Flash (YoY)", "EUR", "high", "EU")
         add(nth_weekday(y, m, 3, 3), "EU GDP (QoQ flash)", "EUR", "medium", "EU")
         add(nth_weekday(y, m, 2, 4), "EU Industrial Production", "EUR", "low", "EU")
+        add(nth_weekday(y, m, 1, 2), "EU ZEW Economic Sentiment", "EUR", "medium", "EU")
+        add(nth_weekday(y, m, 2, 2), "EU Final CPI (YoY)", "EUR", "medium", "EU")
+        # ECB speeches (monthly, ~15th)
+        ecb_speech = date(y, m, 15)
+        if ecb_speech.weekday() >= 5: ecb_speech += timedelta(days=(7 - ecb_speech.weekday()))
+        add(ecb_speech, "ECB Speech", "EUR", "medium", "EU")
+        # German Ifo (monthly, ~25th)
+        ifo = date(y, m, 25)
+        if ifo.weekday() >= 5: ifo -= timedelta(days=ifo.weekday() - 4)
+        add(ifo, "German Ifo Business Climate", "EUR", "medium", "DE")
 
         # ── GBP ──
         boe_months = [2, 3, 5, 6, 8, 9, 11, 12]
@@ -114,6 +124,8 @@ def gen_events(ref: date) -> list[dict]:
         if m in snb_months:
             add(nth_weekday(y, m, 3, 3), "SNB Rate Decision", "CHF", "high", "CH")
         add(nth_weekday(y, m, 2, 1), "Swiss CPI (YoY)", "CHF", "medium", "CH")
+        add(nth_weekday(y, m, 3, 1), "Swiss Unemployment Rate", "CHF", "medium", "CH")
+        add(nth_weekday(y, m, 1, 4), "Swiss Trade Balance", "CHF", "low", "CH")
 
         # ── CNY ──
         pboc = date(y, m, 20)
