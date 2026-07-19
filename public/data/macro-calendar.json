@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T21:29:13.506094Z",
+  "updated": "2026-07-19T21:33:37.222573Z",
   "period": "2026-07-20 \u2192 2026-09-03",
   "events": [
     {
@@ -52,6 +52,13 @@
       "country": "CN"
     },
     {
+      "date": "2026-07-24",
+      "label": "German Ifo Business Climate",
+      "currency": "EUR",
+      "impact": "medium",
+      "country": "DE"
+    },
+    {
       "date": "2026-07-27",
       "label": "US GDP (QoQ advance)",
       "currency": "USD",
@@ -71,6 +78,13 @@
       "currency": "USD",
       "impact": "medium",
       "country": "US"
+    },
+    {
+      "date": "2026-07-28",
+      "label": "Swiss Trade Balance",
+      "currency": "CHF",
+      "impact": "low",
+      "country": "CH"
     },
     {
       "date": "2026-07-29",
@@ -115,6 +129,13 @@
       "country": "US"
     },
     {
+      "date": "2026-08-06",
+      "label": "Swiss Unemployment Rate",
+      "currency": "CHF",
+      "impact": "medium",
+      "country": "CH"
+    },
+    {
       "date": "2026-08-07",
       "label": "US Non-Farm Payrolls",
       "currency": "USD",
@@ -129,11 +150,25 @@
       "country": "CN"
     },
     {
+      "date": "2026-08-11",
+      "label": "EU ZEW Economic Sentiment",
+      "currency": "EUR",
+      "impact": "medium",
+      "country": "EU"
+    },
+    {
       "date": "2026-08-12",
       "label": "US CPI (MoM)",
       "currency": "USD",
       "impact": "high",
       "country": "US"
+    },
+    {
+      "date": "2026-08-12",
+      "label": "EU Final CPI (YoY)",
+      "currency": "EUR",
+      "impact": "medium",
+      "country": "EU"
     },
     {
       "date": "2026-08-13",
@@ -176,41 +211,6 @@
       "currency": "CNY",
       "impact": "medium",
       "country": "CN"
-    },
-    {
-      "date": "2026-08-17",
-      "label": "US Retail Sales (MoM)",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-18",
-      "label": "UK Unemployment Rate",
-      "currency": "GBP",
-      "impact": "medium",
-      "country": "UK"
-    },
-    {
-      "date": "2026-08-19",
-      "label": "UK CPI (YoY)",
-      "currency": "GBP",
-      "impact": "high",
-      "country": "UK"
-    },
-    {
-      "date": "2026-08-19",
-      "label": "FOMC Meeting Minutes",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-20",
-      "label": "US Initial Jobless Claims",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
     }
   ]
 }
