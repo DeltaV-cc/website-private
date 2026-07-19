@@ -236,6 +236,8 @@ body {
 .button-primary:hover { background: var(--accent-mist); transform: translateY(-1px); }
 .button-secondary { border: 1px solid var(--border-default); color: var(--text-primary); }
 .button-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.button-secondary-purple { border-color: color-mix(in srgb, var(--accent-purple) 35%, var(--border-default)); color: var(--accent-purple); }
+.button-secondary-purple:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
 
 .ascii-mist {
   position: relative;
