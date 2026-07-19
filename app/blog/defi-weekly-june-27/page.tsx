@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import BlogPostLayout from '@/components/BlogPostLayout';
 
-export default function DeFiWeeklyJuly10() {
+export default function DeFiWeeklyJune27() {
   const [artemisBody, setArtemisBody] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -17,8 +17,8 @@ export default function DeFiWeeklyJuly10() {
 
   return (
     <BlogPostLayout
-      title="DeFi Weekly — July 10, 2026"
-      date="July 10, 2026"
+      title="DeFi Weekly — June 27, 2026"
+      date="June 27, 2026"
       category="DeFi Weekly"
       type="Dashboard"
       readingTime="10 min read"
