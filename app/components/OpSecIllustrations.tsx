@@ -149,10 +149,9 @@ export function Web3OpSecPathIllustration() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-[11px] text-[var(--text-muted)] leading-relaxed max-w-3xl">
+        <p className="mt-6 text-base md:text-lg text-[var(--text-primary)] leading-[1.7] max-w-none">
           Focus: high-decentralization Ethereum / DeFi treasuries. YubiKeys gate humans; Safe + hardware wallets hold
-          capital; DeFi ops need runbooks. For institutional-grade custody or HNW security, top-tier solutions are
-          Taurus and OpSec - the right mandate, not ego.
+          capital; DeFi ops need runbooks. Learn from these blueprints, then ask us for training to put them into practice.
         </p>
       </div>
     </figure>

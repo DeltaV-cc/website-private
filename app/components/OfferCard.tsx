@@ -14,7 +14,7 @@ const Check = () => (
 
 /** Shared detailed offer card for the AI and Web3 pillar pages. */
 export default function OfferCard({
-  id, title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary,
+  id, title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary, secondaryTone,
 }: {
   id?: string;
   title: string;
@@ -25,6 +25,7 @@ export default function OfferCard({
   ctaLabel: string;
   ctaTopic: string;
   secondary?: { label: string; href: string };
+  secondaryTone?: 'forge';
 }) {
   return (
     <article id={id} className="scroll-mt-24 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:border-[var(--accent-primary)]/25 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]">
@@ -54,7 +55,7 @@ export default function OfferCard({
 
       <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[var(--border-default)]">
         <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed"><span className="font-semibold text-[var(--text-primary)]">For:</span> {audience}</div>
-        {secondary && <Link href={secondary.href} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] text-[var(--text-primary)] rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] hover:border-[var(--border-hover)] transition-all">{secondary.label}</Link>}
+        {secondary && <Link href={secondary.href} className={`inline-flex items-center gap-2 px-5 py-2.5 border rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] transition-all ${secondaryTone === 'forge' ? 'border-[var(--accent-purple)]/40 text-[var(--accent-purple)] hover:border-[var(--accent-purple)]' : 'border-[var(--border-default)] text-[var(--text-primary)] hover:border-[var(--border-hover)]'}`}>{secondary.label}</Link>}
         <Link href={`/contact/?topic=${ctaTopic}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-primary)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors">{ctaLabel} <ArrowRight /></Link>
       </div>
     </article>

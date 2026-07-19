@@ -105,6 +105,48 @@ function ContactContent() {
           </div>
         </div>
 
+        {/* Why us */}
+        <section className="mt-16 max-w-4xl rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 relative overflow-hidden" aria-labelledby="why-us-heading">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-purple)] to-transparent" aria-hidden="true" />
+          <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-end">
+            <div>
+              <div className="text-[var(--accent-cyan)] text-[10px] font-semibold tracking-[2px] uppercase mb-3">Why us</div>
+              <h2 id="why-us-heading" className="text-3xl md:text-4xl font-semibold tracking-[-1.5px] leading-[1.05]">
+                We believe decentralization is a <span className="text-[var(--accent-cyan)]">fundamental shift.</span>
+              </h2>
+            </div>
+            <p className="text-[var(--text-secondary)] leading-relaxed max-w-xl">
+              We stay close to the systems we build, with ownership, practical engineering, and long-term capability at the center.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--border-default)] md:grid-cols-2">
+            {[
+              {
+                number: '01',
+                title: 'Tech natives',
+                body: 'Passionate professionals at the forefront of decentralization and digital upskilling. We do not just consult — we build, operate, and live the stack.',
+                accent: 'var(--accent-cyan)',
+              },
+              {
+                number: '02',
+                title: 'Self-ownership focused',
+                body: 'Every solution prioritizes user control. Data, keys, and decisions stay where they belong: with you.',
+                accent: 'var(--accent-purple)',
+              },
+            ].map((item) => (
+              <article key={item.number} className="bg-[var(--bg-deep)] p-5 md:p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-mono text-xs tracking-[2px]" style={{ color: item.accent }}>{item.number}</span>
+                  <span className="h-px w-10" style={{ backgroundColor: item.accent, opacity: 0.45 }} aria-hidden="true" />
+                </div>
+                <h3 className="mt-7 text-xl font-semibold tracking-tight text-[var(--text-primary)]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* Trust badges */}
         <div className="mt-16 max-w-4xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
