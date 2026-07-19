@@ -71,7 +71,7 @@ export default function Blog() {
     (p) =>
       (cats.length === 0 || cats.includes(p.category)) &&
       (months.length === 0 || months.includes(monthOf(p.date)))
-  );
+  ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Filter option lists derived from the data.
   const categoryOptions = CATEGORY_ORDER.filter((c) => posts.some((p) => p.category === c)).map((c) => ({
