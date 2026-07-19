@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import { CategoryBox, fmtNum, BASE } from './Shared';
+import { CategoryBox, fmtNum } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 
 /* -- Inline SVG Icons -- */
@@ -49,7 +49,7 @@ export default function MacroDashboard({
   const [calendar, setCalendar] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${BASE}/data/macro-calendar.json`).then(r => r.json()).then(d => {
+    fetch(`https://deltav-cc.github.io/website-private/data/macro-calendar.json`).then(r => r.json()).then(d => {
       if (d?.events) setCalendar(d.events.slice(0, 5));
     }).catch(() => {});
   }, []);
