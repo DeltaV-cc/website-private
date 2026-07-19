@@ -25,7 +25,7 @@ function ContactContent() {
     <div className="min-h-screen relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-24">
         {/* Header */}
-        <div className="max-w-2xl mb-12">
+        <div className="max-w-2xl mb-10">
           <div className="text-[var(--accent-orange)] text-xs font-semibold tracking-[3px] uppercase mb-3">Contact</div>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-[-2px] mb-4">Stay up to speed</h1>
           <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
@@ -33,7 +33,7 @@ function ContactContent() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5 max-w-4xl">
+        <div className="grid md:grid-cols-2 gap-5 max-w-4xl mb-5">
           {/* Contact card */}
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 flex flex-col">
             <div className="mb-6 pb-6 border-b border-[var(--border-default)]">
@@ -62,7 +62,32 @@ function ContactContent() {
             </div>
           </div>
 
-          {/* On-ramp form */}
+          {/* Book a call — Cal.com */}
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 flex flex-col">
+            <span className="inline-flex items-center gap-2 self-start px-3 py-1 mb-4 rounded-full bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] text-[10px] font-bold uppercase tracking-[1.5px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
+              First Call
+            </span>
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[var(--text-primary)] mb-2">
+              Book a 30‑minute call
+            </h2>
+            <p className="text-sm text-[var(--text-tertiary)] leading-relaxed mb-5">
+              Pick a time that works for you. No back-and-forth — just straight to the conversation.
+            </p>
+            <div className="flex-1 rounded-xl overflow-hidden border border-[var(--border-default)] bg-[var(--bg-deep)] min-h-[340px]">
+              <iframe
+                src="https://cal.com/delta-v/30min?embed=true&hideEventTypeDetails=true"
+                className="w-full h-full min-h-[340px]"
+                style={{ border: 'none' }}
+                title="Book a call with Delta V"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* On-ramp form — full width */}
+        <div className="max-w-4xl mb-16">
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8">
             <div className="text-[var(--accent-orange)] text-[10px] font-semibold tracking-[2px] uppercase mb-2">On Ramp</div>
             <p className="text-sm text-[var(--text-tertiary)] mb-6">
@@ -106,7 +131,7 @@ function ContactContent() {
         </div>
 
         {/* Why us */}
-        <section className="mt-16 max-w-4xl rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 relative overflow-hidden" aria-labelledby="why-us-heading">
+        <section className="max-w-4xl rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 relative overflow-hidden mb-16" aria-labelledby="why-us-heading">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-purple)] to-transparent" aria-hidden="true" />
           <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-end">
             <div>
@@ -148,7 +173,7 @@ function ContactContent() {
         </section>
 
         {/* Trust badges */}
-        <div className="mt-16 max-w-4xl">
+        <div className="max-w-4xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: 'Encryption', value: 'Signal + Email', desc: 'End-to-end by default' },
