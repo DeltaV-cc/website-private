@@ -232,6 +232,7 @@ export function useIntelData() {
       fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
       fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
       fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
+      fetchJson(`${BASE}/data/dex-matrix.json`).then((d) => { if (d) merge({ dexMatrix: d }); }),
       // Pre-fetched forex baseline (loadForex may override with live Yahoo data)
       fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
     ];
@@ -272,7 +273,11 @@ export function useIntelData() {
         if (volume.length === 0) {
           volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
         }
-        merge({ totalVolume24h: d.total24h || 0, volume });
+        const total24h = d.total24h || 0;
+        const dexDominance = total24h > 0
+          ? volume.map((v: any) => ({ ...v, dominance: (v.volume24h / total24h * 100) }))
+          : volume.map((v: any) => ({ ...v, dominance: 0 }));
+        merge({ totalVolume24h: total24h, volume, dexDominance });
       }),
       // Fees
       fetchJson('https://api.llama.fi/overview/fees?dataType=dailyFees').then((d) => {
@@ -288,13 +293,41 @@ export function useIntelData() {
         }
         merge({ fees });
       }),
+      // Revenue (protocol fees to treasuries / holders)
+      fetchJson('https://api.llama.fi/overview/fees?dataType=dailyRevenue').then((d) => {
+        if (!d) return;
+        const chart = d.totalDataChartBreakdown;
+        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
+        let revenue = (d.allChains || []).slice(0, 10).map((n: string) => ({
+          name: n, revenue24h: bd[n] || 0,
+        })).filter((x: any) => x.revenue24h > 0).sort((a: any, b: any) => b.revenue24h - a.revenue24h).slice(0, 6);
+        if (revenue.length === 0) {
+          revenue = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, revenue24h: 0 }));
+        }
+        merge({ revenue });
+      }),
       // Stablecoins
       fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false').then((d) => {
         if (!d) return;
+        const peggedAssets = d.peggedAssets || [];
+        const chainMap: Record<string, number> = {};
+        for (const s of peggedAssets) {
+          const cc = s.chainCirculating || {};
+          for (const [chain, data] of Object.entries(cc)) {
+            const circ = (data as any)?.circulating?.peggedUSD || 0;
+            chainMap[chain] = (chainMap[chain] || 0) + circ;
+          }
+        }
+        const stablecoinChains = Object.entries(chainMap)
+          .map(([chain, circulating]) => ({ chain, circulating }))
+          .filter((x: any) => x.circulating > 0)
+          .sort((a: any, b: any) => b.circulating - a.circulating);
         merge({
-          stablecoins: (d.peggedAssets || []).map((s: any) => ({
+          stablecoins: peggedAssets.map((s: any) => ({
             name: s.name || s.symbol, circulating: s.circulating?.peggedUSD || 0,
           })).filter((s: any) => s.circulating > 0).sort((a: any, b: any) => b.circulating - a.circulating).slice(0, 6),
+          stablecoinChains,
         });
       }),
       // Polymarket

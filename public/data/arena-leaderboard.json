@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18",
+  "updated": "2026-07-19",
   "models": [
     {
       "rank": 1,
@@ -90,96 +90,6 @@
       "elo": 1486.0,
       "ci": 9.0,
       "votes": 4095
-    },
-    {
-      "rank": 11,
-      "name": "gemini-3.1-pro-preview",
-      "vendor": "Google",
-      "license": "proprietary",
-      "elo": 1485.0,
-      "ci": 4.0,
-      "votes": 81473
-    },
-    {
-      "rank": 12,
-      "name": "claude-opus-4-8-thinking",
-      "vendor": "Anthropic",
-      "license": "proprietary",
-      "elo": 1483.0,
-      "ci": 5.0,
-      "votes": 28685
-    },
-    {
-      "rank": 13,
-      "name": "gpt-5.5-high",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1482.0,
-      "ci": 4.0,
-      "votes": 43492
-    },
-    {
-      "rank": 14,
-      "name": "gpt-5.4-high",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1478.0,
-      "ci": 4.0,
-      "votes": 56693
-    },
-    {
-      "rank": 15,
-      "name": "gemini-3.5-flash-high",
-      "vendor": "Google",
-      "license": "proprietary",
-      "elo": 1476.0,
-      "ci": 7.0,
-      "votes": 10104
-    },
-    {
-      "rank": 16,
-      "name": "gpt-5.2-chat-latest-20260210",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1476.0,
-      "ci": 4.0,
-      "votes": 34450
-    },
-    {
-      "rank": 17,
-      "name": "claude-opus-4-8",
-      "vendor": "Anthropic",
-      "license": "proprietary",
-      "elo": 1476.0,
-      "ci": 5.0,
-      "votes": 29233
-    },
-    {
-      "rank": 18,
-      "name": "qwen3.7-max-preview",
-      "vendor": "Alibaba",
-      "license": "proprietary",
-      "elo": 1475.0,
-      "ci": 10.0,
-      "votes": 3717
-    },
-    {
-      "rank": 19,
-      "name": "gpt-5.5",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1475.0,
-      "ci": 4.0,
-      "votes": 44872
-    },
-    {
-      "rank": 20,
-      "name": "grok-4.20-beta1",
-      "vendor": "SpaceXAI",
-      "license": "proprietary",
-      "elo": 1474.0,
-      "ci": 5.0,
-      "votes": 26858
     }
   ]
 }

@@ -7,7 +7,6 @@ import MacroDashboard from './components/MacroDashboard';
 import AIDashboard from './components/AIDashboard';
 import Web3Dashboard from './components/Web3Dashboard';
 import InfosecDashboard from './components/InfosecDashboard';
-import CryptoFrontierSignals from './components/CryptoFrontierSignals';
 
 // Tab → parent categories
 const CATS_FOR: Record<string, string[]> = {
