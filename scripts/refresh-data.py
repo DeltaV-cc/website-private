@@ -13,7 +13,8 @@ from html import unescape as html_unescape
 
 REPO = 'https://github.com/DeltaV-cc/website-private.git'
 BRANCH = 'gh-pages'
-DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'gold.json', 'us10y.json', 'cnn-fg.json', 'btc-trend.json', 'exchange-vol.json', 'artemis-newsletter.json']
+PUBLIC_DIR = Path(__file__).resolve().parent.parent / 'public' / 'data'
+DATA_FILES = ['indices.json', 'forex.json', 'hf.json', 'crypto.json', 'gold.json', 'us10y.json', 'cnn-fg.json', 'btc-trend.json', 'exchange-vol.json', 'artemis-newsletter.json', 'dex-matrix.json']
 USER_AGENT = 'Mozilla/5.0 (compatible; DeltaV-Refresh/1.0)'
 
 ctx = ssl.create_default_context()
@@ -286,6 +287,7 @@ new_data = {
     'btc-trend.json': json.dumps(btc_trend) if btc_trend else None,
     'exchange-vol.json': json.dumps(exchange_vol) if exchange_vol else None,
     'artemis-newsletter.json': json.dumps(artemis_newsletter) if artemis_newsletter else None,
+    'dex-matrix.json': open(os.path.join(PUBLIC_DIR, 'dex-matrix.json'), 'r').read() if os.path.exists(os.path.join(PUBLIC_DIR, 'dex-matrix.json')) else None,
 }
 
 tmpdir = tempfile.mkdtemp(prefix='dv-refresh-')
@@ -326,11 +328,10 @@ try:
         print(f'✓ Data refreshed: SPX {spx} CSI {csi} | Gold {gold.get("price","?")} | Forex {len(forex)}p | HF {len(hf_data.get("models",[]))}m+{len(hf_data.get("spaces",[]))}s | BTC {crypto.get("btc_price","?")} | CNN-FG {cnn_fg.get("value","?")} | Artemis: {nl_title}')
 
         # Also write to local public/data/ so full deploys include fresh data
-        LOCAL_DATA = Path(__file__).resolve().parent.parent / 'public' / 'data'
-        os.makedirs(LOCAL_DATA, exist_ok=True)
+        os.makedirs(PUBLIC_DIR, exist_ok=True)
         for fname, content in new_data.items():
             if content:
-                with open(LOCAL_DATA / fname, 'w') as f:
+                with open(PUBLIC_DIR / fname, 'w') as f:
                     f.write(content)
     else:
         # Silent — no changes, nothing delivered to user
