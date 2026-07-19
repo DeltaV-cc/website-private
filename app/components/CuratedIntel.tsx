@@ -182,7 +182,7 @@ export default function CuratedIntel() {
   const dup2 = row2.length ? [...row2, ...row2] : [];
 
   return (
-    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden max-w-full">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex flex-wrap items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)]" style={{ animation: 'smoothPulse 3s ease-in-out infinite' }} aria-hidden="true" />
         <div>
@@ -196,11 +196,11 @@ export default function CuratedIntel() {
         </Link>
       </div>
 
-      <div className="space-y-2 p-2">
+      <div className="space-y-2 p-2 w-full overflow-hidden">
         <div
           ref={ref1}
-          className="flex overflow-x-auto gap-2"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-2 overflow-x-scroll scrollbar-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
           tabIndex={0}
           aria-label="Curated intelligence feed, row 1"
         >
@@ -209,8 +209,8 @@ export default function CuratedIntel() {
         {dup2.length > 0 && (
           <div
             ref={ref2}
-            className="flex overflow-x-auto gap-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-2 overflow-x-scroll scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
             tabIndex={0}
             aria-label="Curated intelligence feed, row 2"
           >

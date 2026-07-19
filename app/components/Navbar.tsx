@@ -126,7 +126,7 @@ export default function Navbar() {
             <SearchSuggestions query={query} visible={searchFocused} onSelect={() => setSearchFocused(false)} />
           </form>
 
-          <button type="button" className="ml-auto p-2 text-[var(--text-primary)] lg:hidden" onClick={() => setMobileOpen((value) => !value)} aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={mobileOpen} aria-controls={menuId}><span className="text-xl">{mobileOpen ? '×' : '☰'}</span></button>
+          <button type="button" className="p-2 text-[var(--text-primary)] lg:hidden flex-shrink-0" onClick={() => setMobileOpen((value) => !value)} aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={mobileOpen} aria-controls={menuId}><span className="text-xl">{mobileOpen ? '×' : '☰'}</span></button>
         </div>
       </div>
 
