@@ -1,5 +1,4 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
-import DynamicMermaid from '@/app/components/DynamicMermaid';
 
 export default function KPKWarRoomArticle() {
   return (
@@ -26,24 +25,23 @@ export default function KPKWarRoomArticle() {
 
       <h2>The Timeline</h2>
 
-      <DynamicMermaid
-        chart={`
-          gantt
-            title rsETH Incident Response Timeline
-            dateFormat HH:mm
-            axisFormat %H:%M
-
-            section Signal
-            Signal received (X/Telegram) : 00:00, 00:00
-
-            section Response
-            War room activated           : 00:00, 00:20
-            Manual exit agent            : 00:20, 00:33
-            Blast-radius assessment      : 00:20, 12:20
-            Post-mortem + 97 ships       : 00:20, 336:20
-        `}
-        caption="From signal to resolution: KPK's response timeline — each bar shows duration"
-      />
+      <div style={{background:'#111',border:'1px solid #222',borderRadius:'12px',padding:'1.5rem',margin:'1rem 0'}}>
+        <div style={{fontSize:'0.85rem',color:'#888',marginBottom:'1rem'}}>rsETH Incident Response Timeline</div>
+        <div style={{display:'flex',flexDirection:'column',gap:'0.75rem'}}>
+          {[
+            {label:'Signal received (X/Telegram)',time:'00:00'},
+            {label:'War room activated',time:'00:00 – 00:20'},
+            {label:'Manual exit agent',time:'00:20 – 00:33'},
+            {label:'Blast-radius assessment',time:'00:20 – 12:20'},
+            {label:'Post-mortem + 97 ships',time:'00:20 – Day +14'},
+          ].map((e,i) => (
+            <div key={i} style={{display:'flex',alignItems:'center',gap:'1rem'}}>
+              <span style={{fontFamily:'monospace',fontSize:'0.75rem',color:'#00f0ff',minWidth:'120px'}}>{e.time}</span>
+              <span style={{fontSize:'0.8rem',color:'#ccc'}}>{e.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <h2>The Five Systems That Mattered</h2>
 
@@ -92,31 +90,26 @@ export default function KPKWarRoomArticle() {
         for fully automated emergency response.
       </p>
 
-      <DynamicMermaid
-        chart={`
-          flowchart TD
-            S[Signal] --> D{Automated<br/>trigger?}
-            D -->|Yes| AE[Auto exit agent<br/>pulls liquidity]
-            D -->|No| WR[War room<br/>6 assigned roles]
-
-            WR --> PL[Permissions Layer<br/>pre-deployed authority]
-            PL --> ME[Manual exit<br/>agent · 13 min]
-
-            ME --> BR[Blast-radius mapping<br/>6 DAOs in parallel]
-            BR --> C1[Stage 1: Acknowledge]
-            C1 --> C2[Stage 2: Update actions]
-            C2 --> C3[Stage 3: Resolve + ship]
-
-            BR --> PM[Post-mortem<br/>+ quarterly drills]
-
-            style S fill:#1a1a2e,stroke:#00f0ff,color:#ededed
-            style D fill:#222,stroke:#ff6b6b,color:#ededed
-            style AE fill:#1a2e1a,stroke:#4ade80,color:#ededed
-            style WR fill:#2e1a1a,stroke:#ff6b6b,color:#ededed
-            style PM fill:#1a1a2e,stroke:#a78bfa,color:#ededed
-        `}
-        caption="KPK's incident response architecture: automated first response, human escalation, and the systems that connect them"
-      />
+      <div style={{background:'#111',border:'1px solid #222',borderRadius:'12px',padding:'1.5rem',margin:'1rem 0'}}>
+        <div style={{fontSize:'0.85rem',color:'#888',marginBottom:'1rem'}}>Incident Response Architecture</div>
+        <div style={{display:'flex',flexDirection:'column',gap:'0.6rem'}}>
+          {[
+            {step:'1','label':'Signal received','color':'#00f0ff'},
+            {step:'2','label':'Automated trigger? → Yes: Auto exit agent pulls liquidity','color':'#4ade80'},
+            {step:'3','label':'No → War room activated (6 assigned roles)','color':'#ff6b6b'},
+            {step:'4','label':'Permissions Layer — pre-deployed authority','color':'#a78bfa'},
+            {step:'5','label':'Manual exit agent (13 min)','color':'#ff6b6b'},
+            {step:'6','label':'Blast-radius mapping — 6 DAOs in parallel','color':'#fbbf24'},
+            {step:'7','label':'Stage 1: Acknowledge → Stage 2: Update → Stage 3: Resolve + ship','color':'#00f0ff'},
+            {step:'8','label':'Post-mortem + quarterly drills','color':'#a78bfa'},
+          ].map((e,i) => (
+            <div key={i} style={{display:'flex',alignItems:'center',gap:'1rem'}}>
+              <span style={{fontFamily:'monospace',fontSize:'0.75rem',color:e.color,minWidth:'1.5rem',textAlign:'center',background:'#1a1a2e',borderRadius:'4px',padding:'2px 6px'}}>{e.step}</span>
+              <span style={{fontSize:'0.8rem',color:'#ccc'}}>{e.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <h2>What Shipped After: 97 New Monitors</h2>
 
