@@ -21,8 +21,8 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
         </div>
         <span className="text-[10px] text-[var(--text-disabled)]">{header.yoy}</span>
       </div>
-      <div className="p-4 space-y-2.5">
-        {topHolders.slice(0, 8).map((h, i) => {
+      <div className="p-3 space-y-1.5">
+        {topHolders.slice(0, 6).map((h, i) => {
           const count = parseInt(h.count) || 0;
           const pct = Math.max(2, (count / maxCount) * 100);
           return (
