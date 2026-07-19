@@ -3,9 +3,10 @@
    Restyled to match Web3Dashboard visual language */
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import { CategoryBox, fmtNum } from './Shared';
+import { CategoryBox, fmtNum, BASE } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 
 /* -- Inline SVG Icons -- */
@@ -45,7 +46,22 @@ export default function MacroDashboard({
     return <span className={`${c} tabular-nums text-xs font-medium`}>{v >= 0 ? '+' : ''}{v.toFixed(1)}%</span>;
   };
 
-  const forexPairs = forex && typeof forex === 'object' ? (
+  const [calendar, setCalendar] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch(`${BASE}/data/macro-calendar.json`).then(r => r.json()).then(d => {
+      if (d?.events) setCalendar(d.events.slice(0, 5));
+    }).catch(() => {});
+  }, []);
+
+  const impactBadge = (impact: string) =>
+    impact === 'high' ? 'bg-[var(--accent-red)]/15 text-[var(--accent-red)]' :
+    impact === 'medium' ? 'bg-[var(--accent-amber)]/15 text-[var(--accent-amber)]' :
+    'bg-[var(--text-muted)]/10 text-[var(--text-muted)]';
+
+  const currencyFlag = (ccy: string) =>
+    ccy === 'USD' ? '🇺🇸' : ccy === 'EUR' ? '🇪🇺' : ccy === 'GBP' ? '🇬🇧' :
+    ccy === 'JPY' ? '🇯🇵' : ccy === 'CHF' ? '🇨🇭' : ccy === 'CNY' ? '🇨🇳' : '🌐';
     ['EUR', 'JPY', 'GBP', 'CHF', 'CNY'].map(k => ({ label: k, ...(forex[k] || {}) })).filter((p: any) => p.rateStr)
   ) : [];
 
@@ -200,6 +216,28 @@ export default function MacroDashboard({
           </div>
         </div>
       </div>
+
+      {/* -- Macro Calendar -- */}
+      {calendar.length > 0 && (
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
+            <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Macro Calendar</span>
+            <span className="text-[10px] text-[var(--text-muted)]">next 30 days</span>
+          </div>
+          <div className="divide-y divide-white/[0.02]">
+            {calendar.map((e: any, i: number) => (
+              <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors text-xs">
+                <span className="text-[var(--text-muted)] tabular-nums w-[4.5rem] shrink-0">
+                  {new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
+                <span className="text-sm mr-1">{currencyFlag(e.currency)}</span>
+                <span className="text-[var(--text-secondary)] flex-1 truncate">{e.label}</span>
+                <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase ${impactBadge(e.impact)}`}>{e.impact}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* -- Forex table (Web3-style) -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
