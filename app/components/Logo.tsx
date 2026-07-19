@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Delta V signal mark. The same vector is also used for the favicon.
+ * Delta V signal mark. The same PNG is also used for the favicon.
  */
 export default function Logo({
   size = 28,
@@ -11,6 +11,6 @@ export default function Logo({
   className?: string;
 }) {
   return (
-    <img src="/website-private/delta-v-mark.svg" width={size} height={size} className={className} alt="Delta V" />
+    <img src="/website-private/icon.png" width={size} height={size} className={className} alt="Delta V" />
   );
 }
