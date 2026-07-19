@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 interface IntelItem {
   title: string;
@@ -190,7 +191,9 @@ export default function CuratedIntel() {
             Latest from the pipeline
           </h2>
         </div>
-        <span className="text-[10px] text-[var(--text-muted)] ml-auto">{items.length} signals</span>
+        <Link href="/intelhub/" className="ml-auto shrink-0 text-[10px] font-semibold uppercase tracking-[1.2px] text-[var(--accent-cyan)] hover:text-[var(--text-primary)] transition-colors">
+          Browse IntelHub <span aria-hidden="true">↗</span>
+        </Link>
       </div>
 
       <div className="space-y-2 p-2">
