@@ -54,11 +54,6 @@ export default function MacroDashboard({
     }).catch(() => {});
   }, []);
 
-  const impactBadge = (impact: string) =>
-    impact === 'high' ? 'bg-[var(--accent-red)]/15 text-[var(--accent-red)]' :
-    impact === 'medium' ? 'bg-[var(--accent-amber)]/15 text-[var(--accent-amber)]' :
-    'bg-[var(--text-muted)]/10 text-[var(--text-muted)]';
-
   const currencyFlag = (ccy: string) =>
     ccy === 'USD' ? '🇺🇸' : ccy === 'EUR' ? '🇪🇺' : ccy === 'GBP' ? '🇬🇧' :
     ccy === 'JPY' ? '🇯🇵' : ccy === 'CHF' ? '🇨🇭' : ccy === 'CNY' ? '🇨🇳' : '🌐';
@@ -234,7 +229,6 @@ export default function MacroDashboard({
                 </span>
                 <span className="text-sm mr-1">{currencyFlag(e.currency)}</span>
                 <span className="text-[var(--text-secondary)] flex-1 truncate">{e.label}</span>
-                <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase ${impactBadge(e.impact)}`}>{e.impact}</span>
               </div>
             ))}
           </div>
