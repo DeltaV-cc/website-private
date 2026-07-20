@@ -5,12 +5,12 @@ import BlogPostLayout from '@/components/BlogPostLayout';
 export default function DragonLabUTokyo() {
   return (
     <BlogPostLayout
-      title="The Flying Spider That Walks: Inside UTokyo's DRAGON Lab"
+      title="Shape-Shifting Robots: Inside UTokyo's DRAGON Lab"
       date="July 18, 2026"
       category="Hardware"
       type="Deep Dive"
       readingTime="5 min read"
-      excerpt="UTokyo's DRAGON Lab is redefining what robots can do — not by building faster drones, but by asking: what if the robot could change its shape mid-flight? Meet DRAGON, SPIDAR, SERPENT, and the McKibben deformable quadrotor."
+      excerpt="UTokyo's DRAGON Lab builds articulated aerial robots that change shape mid-flight — DRAGON, SPIDAR, and SERPENT redefine what robots can do by merging flight, walking, and soft deformation into single platforms."
       sourceLabel="DRAGON Lab (UTokyo)"
       sourceUrl="https://www.dragon.t.u-tokyo.ac.jp/"
     >
