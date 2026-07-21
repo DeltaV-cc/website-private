@@ -1,40 +1,24 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import type { MouseEvent } from 'react';
+import { useVisibilityTicker } from './useVisibilityTicker';
 /* AI Frontier Signals — live ticker of trending AI items (compact pill style, infinite seamless) */
 export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (iso: string) => string }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const speed = useRef(1.2);
-  const af = useRef(0);
+  const { scrollRef, speed } = useVisibilityTicker(items.length);
 
   const hasItems = items && items.length > 0;
   const dup = hasItems ? [...items, ...items] : [];
 
-  useEffect(() => {
+  const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = scrollRef.current;
     if (!el) return;
-    const move = (e: MouseEvent) => {
-      const rx = (e.clientX - el!.getBoundingClientRect().left) / el!.offsetWidth;
-      if (rx < 0.2) speed.current = 0.3;
-      else if (rx < 0.4) speed.current = 0.7;
-      else if (rx < 0.6) speed.current = 1.0;
-      else if (rx < 0.8) speed.current = 1.5;
-      else speed.current = 2.2;
-    };
-    el.addEventListener('mousemove', move);
-    el.addEventListener('mouseleave', () => { speed.current = 1.2; });
-    const tick = () => {
-      if (el) {
-        el.scrollLeft += speed.current;
-        const half = el.scrollWidth / 2;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-        else if (el.scrollLeft < 0) el.scrollLeft += half;
-      }
-      af.current = requestAnimationFrame(tick);
-    };
-    af.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(af.current);
-  }, [items.length]);
-
+    const rx = (e.clientX - el.getBoundingClientRect().left) / Math.max(el.offsetWidth, 1);
+    if (rx < 0.2) speed.current = 0.3;
+    else if (rx < 0.4) speed.current = 0.7;
+    else if (rx < 0.6) speed.current = 1.0;
+    else if (rx < 0.8) speed.current = 1.5;
+    else speed.current = 2.2;
+  };
+  const handleLeave = () => { speed.current = 1.2; };
   if (!hasItems) return null;
 
   return (
@@ -45,7 +29,7 @@ export default function AIFrontierSignals({ items, ts }: { items: any[]; ts: (is
         <span className="text-[10px] text-[var(--text-muted)]">{items.length} signals</span>
         <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h • Live</span>
       </div>
-      <div ref={scrollRef} className="flex overflow-x-auto gap-1.5 p-2" style={{ scrollbarWidth: 'none' }}>
+      <div ref={scrollRef} onMouseMove={handleMove} onMouseLeave={handleLeave} className="flex overflow-x-auto gap-1.5 p-2" style={{ scrollbarWidth: 'none' }}>
         {dup.map((it, i) => (
           <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
             className="flex-shrink-0 max-w-[220px] px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-default)] hover:border-[var(--accent-cyan)]/30 transition-all text-xs hover:scale-[1.02]">

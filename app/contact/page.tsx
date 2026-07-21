@@ -2,7 +2,6 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { PageBackdrop } from '../components/PageShell';
 
 const TOPICS: Record<string, { need: 'Web3' | 'AI' | 'Upskilling'; prompt: string }> = {
   'agents': { need: 'AI', prompt: 'Tailored multi-agent system — my workflows and goals:\n' },
@@ -19,7 +18,6 @@ function ContactContent() {
 
   return (
     <>
-    <PageBackdrop />
     <div className="min-h-screen relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-24">
 
@@ -57,10 +55,15 @@ function ContactContent() {
                 <div className="text-xl md:text-2xl font-semibold tracking-tight text-[var(--text-primary)] mb-3">
                   @DeltaV.01
                 </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/website-private/images/signal-qr.png"
+                  src="/website-private/images/signal-qr.webp"
                   alt="Signal QR Code — @DeltaV.01"
                   className="w-28 h-28 rounded-xl border border-[var(--border-default)]"
+                  width={112}
+                  height={112}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

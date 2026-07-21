@@ -1,10 +1,7 @@
-'use client';
+import type { ReactNode } from 'react';
 
-import { useState } from 'react';
-
-export default function AnimatedBackground({ children }: { children: React.ReactNode }) {
-  const [active, setActive] = useState(false);
-  return <div className={`animated-background ${active ? 'is-active' : ''}`} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+export default function AnimatedBackground({ children }: { children: ReactNode }) {
+  return <div className="animated-background">
     <span className="animated-background-wash" aria-hidden="true" />
     <div className="relative z-10">{children}</div>
   </div>;

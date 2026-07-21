@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PageHero, PageContainer, PageBackdrop } from '../components/PageShell';
+import { PageHero, PageContainer } from '../components/PageShell';
 import EcosystemStack, { AI_ECOSYSTEM } from '../components/EcosystemStack';
 import OfferCard from '../components/OfferCard';
 
@@ -12,7 +12,6 @@ const ArrowRight = () => (
 export default function AIPage() {
   return (
     <>
-      <PageBackdrop />
       <div className="relative z-10">
         <PageHero
           label="Pillar 01 · AI Engineering"

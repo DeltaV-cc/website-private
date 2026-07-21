@@ -48,8 +48,8 @@ export function PageContainer({
 }
 
 /** Fixed brand atmosphere for the service and contact pages. */
-export function PageBackdrop() {
-  return <InkGarden background />;
+export function PageBackdrop({ home = false }: { home?: boolean }) {
+  return <InkGarden background className={home ? 'ink-garden-home' : ''} />;
 }
 
 /**
