@@ -31,3 +31,19 @@ Thumbs.db
 .continue/
 .idea/
 .vscode/
+
+# ── INTERNAL DOCS — never commit ──
+.hermes/
+docs/archive/
+content/wiki/
+design-system/
+UIUX-PROPOSAL.md
+data/
+
+# ── Scripts with credentials/internal paths — keep local only ──
+scripts/fetch-dune-dex-matrix.py
+scripts/refresh-data.py
+scripts/sync-intel-to-site.py
+scripts/add-to-watchlist.py
+scripts/macro-pull.py
+app/intelhub/sources-patch.txt
