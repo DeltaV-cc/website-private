@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
 
 export type EcosystemItem = {
   name: string;
@@ -98,6 +98,8 @@ export default function EcosystemStack({
   accent?: 'cyan' | 'orange' | 'purple';
   label?: string;
 }) {
+  const [duration, setDuration] = useState(40);
+  const boostTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const accentText =
     accent === 'orange'
       ? 'text-[var(--accent-orange)]'
@@ -114,6 +116,11 @@ export default function EcosystemStack({
 
   // Triple for wide screens so the loop never shows a gap
   const loop = [...items, ...items, ...items];
+  const boostMarquee = () => {
+    setDuration(12);
+    if (boostTimer.current) clearTimeout(boostTimer.current);
+    boostTimer.current = setTimeout(() => setDuration(40), 900);
+  };
 
   return (
     <section className="max-w-[1440px] mx-auto px-6 md:px-8 pb-16 border-t border-[var(--border-default)] pt-10">
@@ -123,11 +130,8 @@ export default function EcosystemStack({
         </div>
       </div>
 
-      <div className="relative overflow-hidden" role="list" aria-label={label}>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 z-10 bg-gradient-to-r from-[var(--bg-deep)] to-transparent" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 z-10 bg-gradient-to-l from-[var(--bg-deep)] to-transparent" aria-hidden="true" />
-
-        <div className="ecosystem-marquee flex w-max gap-2.5 py-1">
+      <div className="ecosystem-track relative overflow-hidden" role="list" aria-label={label} onWheel={boostMarquee} onTouchStart={boostMarquee}>
+        <div className="ecosystem-marquee flex w-max gap-2.5 py-1" style={{ '--ecosystem-duration': `${duration}s` } as CSSProperties}>
           {loop.map((item, i) => (
             <Chip key={`${item.name}-${i}`} item={item} accentHover={accentHover} />
           ))}

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useVisibilityTicker } from './useVisibilityTicker';
 
 /* SignalsTicker — shared horizontal-scrolling signal ticker used by all dashboards.
    Props: items, ts, accent (color), label, filterTag (optional tag filter) */
@@ -9,11 +9,6 @@ export default function SignalsTicker({
   items: any[]; ts: (iso: string) => string;
   accent: string; label: string; filterTag?: string;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const speed = useRef(1.2);
-  const paused = useRef(false);
-  const af = useRef(0);
-
   const hasItems = items && items.length > 0;
   const filtered = filterTag
     ? items.filter((it: any) => it.tag === filterTag)
@@ -21,21 +16,7 @@ export default function SignalsTicker({
   const hasFiltered = filtered.length > 0;
   const dup = hasFiltered ? [...filtered, ...filtered] : [];
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const tick = () => {
-      if (el && !paused.current) {
-        el.scrollLeft += speed.current;
-        const half = el.scrollWidth / 2;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-        else if (el.scrollLeft < 0) el.scrollLeft += half;
-      }
-      af.current = requestAnimationFrame(tick);
-    };
-    af.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(af.current);
-  }, [filtered.length]);
+  const { scrollRef, pause, resume } = useVisibilityTicker(filtered.length);
 
   if (!hasFiltered) return null;
 
@@ -48,8 +29,8 @@ export default function SignalsTicker({
         <span className="text-[10px] text-[var(--text-muted)] ml-auto">Last 24h</span>
       </div>
       <div ref={scrollRef}
-        onMouseEnter={() => { paused.current = true; }}
-        onMouseLeave={() => { paused.current = false; }}
+        onMouseEnter={pause}
+        onMouseLeave={resume}
         className="flex overflow-x-auto gap-1.5 p-2" style={{ scrollbarWidth: 'none' }}>
         {dup.map((it, i) => (
           <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"

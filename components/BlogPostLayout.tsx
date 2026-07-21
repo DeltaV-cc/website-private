@@ -160,6 +160,26 @@ export default function BlogPostLayout({
     return () => observer.disconnect();
   }, []);
 
+  // Newsletter HTML is injected after the initial render. Keep those external
+  // images out of the first paint and let the browser decode them off-thread.
+  useEffect(() => {
+    const el = articleRef.current;
+    if (!el) return;
+
+    const prepareImages = () => {
+      el.querySelectorAll('img').forEach((image) => {
+        const img = image as HTMLImageElement;
+        if (!img.hasAttribute('loading')) img.loading = 'lazy';
+        img.decoding = 'async';
+      });
+    };
+
+    prepareImages();
+    const observer = new MutationObserver(prepareImages);
+    observer.observe(el, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   const handleTocClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const target = document.getElementById(id);

@@ -446,9 +446,14 @@ export function useIntelData() {
   }, []);
 
   useEffect(() => {
-    loadAll(); loadLive(); loadInfosec(); loadForex();
-    const i = setInterval(() => { loadAll(); loadLive(); loadInfosec(); loadForex(); }, 5 * 60_000);
-    return () => clearInterval(i);
+    const refresh = () => {
+      if (document.visibilityState !== 'visible') return;
+      loadAll(); loadLive(); loadInfosec(); loadForex();
+    };
+    refresh();
+    const i = window.setInterval(refresh, 5 * 60_000);
+    document.addEventListener('visibilitychange', refresh);
+    return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refresh); };
   }, [loadAll, loadLive, loadInfosec, loadForex]);
 
   /* ---- Derived ---- */

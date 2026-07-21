@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PageHero, PageContainer, PageBackdrop } from '../components/PageShell';
+import { PageHero, PageContainer } from '../components/PageShell';
 import EcosystemStack, { WEB3_ECOSYSTEM } from '../components/EcosystemStack';
 import OfferCard from '../components/OfferCard';
 import OpSec from '../opsec/page';
@@ -13,7 +13,6 @@ const ArrowRight = () => (
 export default function Web3Page() {
   return (
     <>
-      <PageBackdrop />
       <div className="relative z-10">
         <PageHero
           label="Pillar 02 · Web3"
