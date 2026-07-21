@@ -21,23 +21,24 @@ interface BlogPostProps {
 type TocItem = { id: string; text: string; level: number };
 
 const accentFor = (key: string): string => {
-  const k = key.toLowerCase();
+  const k = key.trim().toLowerCase();
   if (k === 'ai' || k === 'tutorial' || k === 'dashboard' || k === 'tool') return 'var(--accent-cyan)';
   if (k === 'web3' || k === 'macro') return 'var(--accent-orange)';
-  if (k === 'opsec' || k === 'thought') return 'var(--accent-amber)';
+  if (k === 'opsec' || k === 'thought' || k === 'infosec') return 'var(--accent-amber)';
   if (k === 'hardware' || k === 'deep dive') return 'var(--accent-purple)';
-  if (k === 'defi weekly') return 'var(--accent-gold)';
+  if (k === 'crypto' || k === 'defi weekly' || k === 'the signal' || k === 'weekly delta financial brief') return 'var(--accent-gold)';
+  if (k === 'research') return 'var(--accent-green)';
   return 'var(--accent-cyan)';
 };
 
 const badge = (label: string) => {
-  const c = accentFor(label);
+  const c = accentFor(label.trim());
   return (
     <span
       className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold tracking-wide uppercase border"
       style={{ color: c, background: `color-mix(in srgb, ${c} 8%, transparent)`, borderColor: `color-mix(in srgb, ${c} 25%, transparent)` }}
     >
-      {label}
+      {label.trim()}
     </span>
   );
 };
@@ -218,8 +219,12 @@ export default function BlogPostLayout({
             {/* Header */}
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                {badge(category)}
-                {type && badge(type)}
+                {category.split(',').map((cat, i) => (
+                  <span key={i}>{badge(cat)}</span>
+                ))}
+                {type && type.split(',').map((t, i) => (
+                  <span key={`t${i}`}>{badge(t)}</span>
+                ))}
               </div>
               <h1 className="text-4xl md:text-5xl font-semibold tracking-[-1.5px] leading-tight mb-5">
                 {title}

@@ -17,7 +17,7 @@ export default function DeFiWeeklyJune27() {
 
   return (
     <BlogPostLayout
-      title="DeFi Weekly — June 27, 2026"
+      title="Weekly Delta Financial Brief — June 27, 2026"
       date="June 27, 2026"
       category="DeFi Weekly"
       type="Dashboard"
