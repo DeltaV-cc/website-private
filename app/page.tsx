@@ -22,7 +22,7 @@ export default function DeltaVSite() {
       <div className="home-hero-shade" aria-hidden="true" />
       <div className="page-container relative z-10 grid lg:grid-cols-[1.1fr_.9fr] gap-10 lg:gap-16 items-center pt-20 md:pt-28 pb-16 md:pb-24">
         <div>
-          <h1 id="hero-heading" className="max-w-4xl text-[2.75rem] sm:text-6xl md:text-7xl font-semibold tracking-[-.07em] leading-[.94] animate-fade-in-up">We don&apos;t <span className="whitespace-nowrap">sell tools.</span><br /><span className="text-[var(--text-secondary)]">We forge</span><br /><span className="gradient-text whitespace-nowrap">futur - aptness.</span></h1>
+          <h1 id="hero-heading" className="max-w-4xl text-[clamp(1.85rem,9vw,2.75rem)] sm:text-6xl lg:text-5xl xl:text-7xl font-semibold tracking-[-.07em] leading-[.94] animate-fade-in-up"><span className="whitespace-nowrap">We don&apos;t sell tools.</span><br /><span className="text-[var(--text-secondary)]">We forge</span><br /><span className="gradient-text whitespace-nowrap">futur - aptness.</span></h1>
           <p className="mt-8 max-w-xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed animate-fade-in-up" style={{ animationDelay: '100ms' }}>AI, Web3, and OpSec engineering for everyone. Adaptive by design. Open-source first.</p>
           <div className="mt-10 flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
             <Link href="/forge/" className="button-primary">Upskill <Arrow /></Link>
