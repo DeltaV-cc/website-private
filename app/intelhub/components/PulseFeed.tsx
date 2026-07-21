@@ -1,8 +1,8 @@
 /* IntelHub — Pulse horizontal scroll */
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { Item } from '../types';
+import { useVisibilityTicker } from './useVisibilityTicker';
 
 export default function PulseFeed({
   items, loading, TC, BCOL, ts, isNew, lastFetch, ago,
@@ -11,27 +11,7 @@ export default function PulseFeed({
   ts: (iso: string) => string; isNew: (iso: string) => boolean;
   lastFetch: Date | null; ago: (iso: string) => string;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const speed = useRef(0.6);
-  const paused = useRef(false);
-  const af = useRef(0);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const tick = () => {
-      if (el && !paused.current) {
-        el.scrollLeft += speed.current;
-        if (el.scrollLeft >= el.scrollWidth - el.clientWidth) el.scrollLeft = 0;
-      }
-      af.current = requestAnimationFrame(tick);
-    };
-    af.current = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(af.current);
-    };
-  }, [items.length]); // re-init if items change
+  const { scrollRef, pause, resume } = useVisibilityTicker(items.length, 0.6, 'end');
 
   return (
     <div className="border-b border-[var(--border-default)] py-5 bg-[rgba(8,11,10,.72)]">
@@ -46,10 +26,10 @@ export default function PulseFeed({
         </div>
         <div
           ref={scrollRef}
-          onMouseEnter={() => { paused.current = true; }}
-          onMouseLeave={() => { paused.current = false; }}
-          onFocus={() => { paused.current = true; }}
-          onBlur={() => { paused.current = false; }}
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onFocus={pause}
+          onBlur={resume}
           className="flex gap-3 overflow-x-auto"
           style={{
             scrollbarWidth: 'none',

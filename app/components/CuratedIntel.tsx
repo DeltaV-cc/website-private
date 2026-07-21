@@ -78,17 +78,9 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
       else speed.current = baseSpeed * 1.9;
     };
     // Pause while pointer/focus is on a card so users can click without the strip racing away
-    const onEnter = () => { paused.current = true; };
-    const onLeave = () => { paused.current = false; speed.current = baseSpeed; };
-
-    el.addEventListener('mousemove', onMove);
-    el.addEventListener('mouseenter', onEnter);
-    el.addEventListener('mouseleave', onLeave);
-    el.addEventListener('focusin', onEnter);
-    el.addEventListener('focusout', onLeave);
-
+    const stop = () => { if (af.current) cancelAnimationFrame(af.current); af.current = 0; };
     const tick = () => {
-      if (el && !paused.current) {
+      if (el && !paused.current && document.visibilityState === 'visible') {
         el.scrollLeft += speed.current;
         const half = el.scrollWidth / 2;
         if (half > 0) {
@@ -98,7 +90,20 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
       }
       af.current = requestAnimationFrame(tick);
     };
-    af.current = requestAnimationFrame(tick);
+    const start = () => { if (!af.current && !paused.current && document.visibilityState === 'visible') af.current = requestAnimationFrame(tick); };
+    const onEnter = () => { paused.current = true; stop(); };
+    const onLeave = () => { paused.current = false; speed.current = baseSpeed; start(); };
+
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseenter', onEnter);
+    el.addEventListener('mouseleave', onLeave);
+    el.addEventListener('focusin', onEnter);
+    el.addEventListener('focusout', onLeave);
+
+    const onVisibility = () => { if (document.visibilityState === 'visible') start(); else stop(); };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) start(); else stop(); }, { rootMargin: '120px' }) : null;
+    observer?.observe(el);
+    document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
       cancelAnimationFrame(af.current);
@@ -107,6 +112,8 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
       el.removeEventListener('mouseleave', onLeave);
       el.removeEventListener('focusin', onEnter);
       el.removeEventListener('focusout', onLeave);
+      document.removeEventListener('visibilitychange', onVisibility);
+      observer?.disconnect();
     };
   }, [itemCount, baseSpeed]);
 
