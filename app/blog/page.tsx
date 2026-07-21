@@ -14,13 +14,14 @@ const posts = blogIndex.map((entry) => ({
   slug: entry.id,
 }));
 
-const CATEGORY_ORDER = ['AI', 'Web3', 'OpSec', 'Hardware', 'DeFi Weekly'];
+const CATEGORY_ORDER = ['AI', 'Web3', 'OpSec', 'Hardware', 'Weekly Delta Financial Brief'];
 
 const CAT_ACCENT: Record<string, string> = {
   'AI': 'var(--accent-cyan)',
   'Web3': 'var(--accent-orange)',
   'OpSec': 'var(--accent-red)',
   'Hardware': 'var(--accent-green)',
+  'Weekly Delta Financial Brief': 'var(--accent-gold)',
   'DeFi Weekly': 'var(--accent-gold)',
 };
 
@@ -33,14 +34,14 @@ const catTextClass = (cat: string) =>
   cat === 'AI' ? 'text-[var(--accent-cyan)]' :
   cat === 'Web3' ? 'text-[var(--accent-orange)]' :
   cat === 'OpSec' ? 'text-[var(--accent-red)]' :
-  cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]' :
+  cat === 'Weekly Delta Financial Brief' || cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]' :
   'text-[var(--accent-green)]';
 
 const catTitleClass = (cat: string) =>
   cat === 'AI' ? 'text-[var(--accent-cyan)]/90' :
   cat === 'Web3' ? 'text-[var(--accent-orange)]/90' :
   cat === 'OpSec' ? 'text-[var(--accent-red)]/90' :
-  cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]/90' :
+  cat === 'Weekly Delta Financial Brief' || cat === 'DeFi Weekly' ? 'text-[var(--accent-gold)]/90' :
   'text-[var(--accent-green)]/90';
 
 const readingTimeFor = (type: string) => {
@@ -86,7 +87,7 @@ export default function Blog() {
 
   // Newest DeFi Weekly edition, driven by local data so the highlight card
   // always renders and links straight to the article (no external fetch, no hub).
-  const latestWeekly = posts.find((p) => p.category === 'DeFi Weekly');
+  const latestWeekly = posts.find((p) => p.category === 'Weekly Delta Financial Brief' || p.category === 'DeFi Weekly');
   const showLatest = latestWeekly && filteredPosts.includes(latestWeekly);
   // Don't repeat the featured edition inside the grid below.
   const gridPosts = showLatest ? filteredPosts.filter((p) => p.slug !== latestWeekly!.slug) : filteredPosts;
