@@ -5,7 +5,7 @@ import BlogPostLayout from '@/components/BlogPostLayout';
 export default function WeeklyDeFi1() {
   return (
     <BlogPostLayout
-      title="DeFi Weekly — June 23, 2026"
+      title="Weekly Delta Financial Brief — June 23, 2026"
       date="June 23, 2026"
       category="Web3"
       type="Dashboard"
