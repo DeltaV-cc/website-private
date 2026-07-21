@@ -68,7 +68,7 @@ export default function DragonLabUTokyo() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
         {[
-          { value: '170K', label: 'Songs trained on (for context)', color: 'text-[#00f0ff]' },
+          { value: '3', label: 'ICRA Best Paper nominations', color: 'text-[#00f0ff]' },
           { value: '3', label: 'Robot generations', color: 'text-[#a855f7]' },
           { value: '6-DoF', label: 'Per link (DRAGON)', color: 'text-[#f59e0b]' },
           { value: '4 labs', label: 'Joint UTokyo efforts', color: 'text-[#C2410C]' },
