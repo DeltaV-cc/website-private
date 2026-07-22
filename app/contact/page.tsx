@@ -19,7 +19,7 @@ function ContactContent() {
   return (
     <>
     <div className="min-h-screen relative z-10">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-24">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8 pt-16 pb-24 flex flex-col">
 
         {/* ============================================================
              HEADER
@@ -35,7 +35,7 @@ function ContactContent() {
         {/* ============================================================
              ORIGINAL CONTACT LAYOUT — Email/Signal + On Ramp form
              ============================================================ */}
-        <div className="grid md:grid-cols-2 gap-5 max-w-4xl mb-16">
+        <div className="order-2 w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-5 mb-16">
           {/* Contact card */}
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 flex flex-col">
             <div className="mb-6 pb-6 border-b border-[var(--border-default)]">
@@ -115,12 +115,12 @@ function ContactContent() {
         {/* ============================================================
              CAL.COM BOOKING — Full-width hero section
              ============================================================ */}
-        <section className="relative mb-16 rounded-3xl border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-surface)] via-[var(--bg-surface)] to-[var(--accent-cyan)]/[0.03] overflow-hidden">
+        <section className="contact-booking order-1 relative w-full mb-16 rounded-3xl border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-surface)] via-[var(--bg-surface)] to-[var(--accent-cyan)]/[0.03] overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/40 to-transparent" aria-hidden="true" />
           <div className="pointer-events-none absolute -top-32 right-0 w-72 h-72 rounded-full bg-[var(--accent-cyan)]/5 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid lg:grid-cols-[1fr_420px] gap-0">
-            <div className="flex flex-col justify-center px-6 md:px-12 py-12 md:py-16">
+          <div className="relative grid lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] gap-0">
+            <div className="flex flex-col justify-center px-6 md:px-12 py-10 md:py-14">
               <span className="inline-flex items-center gap-2 self-start px-3 py-1 mb-5 rounded-full bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] text-[10px] font-bold uppercase tracking-[1.5px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
                 First Call — Free
@@ -142,10 +142,10 @@ function ContactContent() {
               </div>
             </div>
 
-            <div className="border-l border-[var(--border-default)] bg-[var(--bg-deep)]/50">
+            <div className="border-t lg:border-t-0 lg:border-l border-[var(--border-default)] bg-[var(--bg-deep)]/50 min-w-0">
               <iframe
                 src="https://cal.com/delta-v/30min?embed=true&hideEventTypeDetails=true"
-                className="w-full h-[440px] lg:h-[480px]"
+                className="w-full h-[620px] lg:h-[680px]"
                 style={{ border: 'none' }}
                 title="Book a 30-minute call with Delta V"
                 loading="lazy"
@@ -155,7 +155,7 @@ function ContactContent() {
         </section>
 
         {/* Why us */}
-        <section className="max-w-4xl rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 relative overflow-hidden mb-16" aria-labelledby="why-us-heading">
+        <section className="order-3 w-full max-w-5xl mx-auto rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 relative overflow-hidden mb-16" aria-labelledby="why-us-heading">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-purple)] to-transparent" aria-hidden="true" />
           <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-end">
             <div>
@@ -187,7 +187,7 @@ function ContactContent() {
         </section>
 
         {/* Trust badges */}
-        <div className="max-w-4xl">
+        <div className="order-4 w-full max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: 'Encryption', value: 'Signal + Email', desc: 'End-to-end by default' },

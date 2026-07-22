@@ -116,7 +116,7 @@ export default function Tutorials() {
                 {filtered.map((t) => (
                   <div
                     key={t.slug}
-                    className="relative group rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 transition-all duration-200 hover:border-[var(--accent-cyan)]/25 hover:bg-[var(--bg-elevated)]"
+                    className="listing-card relative group rounded-2xl border border-[var(--border-default)] p-6 md:p-8 transition-all duration-200 hover:border-[var(--accent-cyan)]/25"
                   >
                     <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
                       <span className="text-[var(--text-muted)]">{t.date}</span>

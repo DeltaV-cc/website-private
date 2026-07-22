@@ -130,7 +130,7 @@ export default function Blog() {
             {showLatest && (
               <Link
                 href={`/blog/${latestWeekly!.slug}/`}
-                className="group relative block mb-10 overflow-hidden rounded-2xl border border-[var(--accent-gold)]/35 bg-gradient-to-br from-[var(--accent-gold)]/[0.07] via-[var(--bg-surface)] to-[var(--bg-surface)] p-6 md:p-8 transition-all duration-300 hover:border-[var(--accent-gold)]/60 hover:shadow-[0_0_44px_rgba(251,191,36,0.12)]"
+                className="listing-card-featured group relative block mb-10 overflow-hidden rounded-2xl border border-[var(--accent-gold)]/35 p-6 md:p-8 transition-all duration-300 hover:border-[var(--accent-gold)]/60 hover:shadow-[0_0_44px_rgba(251,191,36,0.12)]"
               >
                 {/* Gold accent bar */}
                 <span className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent-gold)]" />
@@ -170,9 +170,9 @@ export default function Blog() {
                 {gridPosts.map((post, i) => (
                   <div
                     key={i}
-                    className={`relative group rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 transition-all duration-200 ${
+                    className={`listing-card relative group rounded-2xl border border-[var(--border-default)] p-6 md:p-8 transition-all duration-200 ${
                       post.slug !== '#'
-                        ? 'hover:border-[var(--accent-cyan)]/25 hover:bg-[var(--bg-elevated)]'
+                        ? 'hover:border-[var(--accent-cyan)]/25'
                         : 'opacity-40'
                     }`}
                   >

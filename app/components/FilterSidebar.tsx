@@ -24,7 +24,7 @@ export default function FilterSidebar({
   const anySelected = groups.some((g) => g.selected.length > 0);
 
   return (
-    <div className="lg:sticky lg:top-24">
+    <div className="listing-filter-panel lg:sticky lg:top-24">
       <div className="flex items-center justify-between mb-5">
         <span className="text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)]">
           Filters
