@@ -281,18 +281,47 @@ body {
   min-height: 0;
   height: auto;
   border: 0;
-  opacity: .32;
+  opacity: .59;
   pointer-events: none;
   background: transparent;
 }
-.ink-garden-background canvas { min-height: 100%; opacity: .86; }
+.ink-garden-background.ink-garden-home { opacity: .62; }
+.ink-garden-background canvas { min-height: 100%; opacity: .9; transform-origin: 50% 42%; will-change: transform, opacity; animation: inkGardenCanvasDrift 18s ease-in-out infinite alternate; }
+.ink-garden-background::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: -24%;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, rgba(111, 208, 230, .08), transparent 35%, rgba(141, 121, 180, .05) 68%, transparent),
+    linear-gradient(135deg, rgba(111, 208, 230, .10), transparent 48%),
+    radial-gradient(ellipse at 38% 48%, rgba(111, 208, 230, .24), transparent 38%),
+    radial-gradient(ellipse at 72% 58%, rgba(141, 121, 180, .12), transparent 34%);
+  mix-blend-mode: screen;
+  opacity: .7;
+  transform: translate3d(-7%, -3%, 0) scale(1.04);
+  will-change: transform, opacity;
+  animation: inkGardenShimmer 12s ease-in-out infinite alternate;
+}
 .ink-garden-background::after,
 .ink-garden-background .ascii-mist-label { display: none; }
+.ink-garden-background::before,
+.ink-garden-background canvas { animation: none; }
 .intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), rgba(8,11,10,.84); }
 .intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: #294036; background: rgba(16,23,20,.78); }
 .intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }
 .intelhub-tabs button[aria-selected="true"] { border-bottom-color: currentColor; background: transparent; }
 @keyframes mistOrbit { to { transform: rotate(360deg) translateX(8px) rotate(-360deg); } }
+@keyframes inkGardenShimmer {
+  0% { opacity: .45; transform: translate3d(-7%, -3%, 0) scale(1.04); }
+  50% { opacity: .8; }
+  100% { opacity: .52; transform: translate3d(7%, 3%, 0) scale(1.08); }
+}
+@keyframes inkGardenCanvasDrift {
+  0% { transform: translate3d(-.35%, .15%, 0) scale(1.005); opacity: .86; }
+  100% { transform: translate3d(.35%, -.15%, 0) scale(1.012); opacity: .94; }
+}
 .home-hero-shade { display: none; }
 .home-page-shade { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(8, 11, 10, .30) 0%, rgba(8, 11, 10, .14) 36%, transparent 72%), linear-gradient(180deg, rgba(8, 11, 10, .14), rgba(8, 11, 10, .07) 38%, rgba(8, 11, 10, .12) 72%, rgba(8, 11, 10, .08)); }
 .spotlight-field { --spot-x: 50%; --spot-y: 50%; position: relative; min-height: 15rem; overflow: hidden; border: 1px solid var(--border-default); background: #0b1210; isolation: isolate; }
@@ -663,27 +692,10 @@ body {
   overscroll-behavior-x: contain;
   touch-action: pan-x;
   scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
 }
 .ecosystem-track::-webkit-scrollbar { display: none; }
-.ecosystem-track::before,
-.ecosystem-track::after {
-  content: '';
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  width: 4.5rem;
-  pointer-events: none;
-  backdrop-filter: blur(2px);
-}
-.ecosystem-track::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(25, 84, 101, .28), transparent);
-}
-.ecosystem-track::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(25, 84, 101, .28), transparent);
-}
 .ecosystem-marquee { min-width: max-content; }
 
 /* -- Responsive -------------------------------- */
