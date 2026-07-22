@@ -656,18 +656,15 @@ body {
 .dv-copy-btn:hover { color: var(--accent-cyan); border-color: var(--border-accent-cyan); }
 .dv-copy-btn[data-copied="true"] { color: var(--accent-green); opacity: 1; }
 
-/* -- Ecosystem marquee (seamless infinite logo strip) -- */
+/* -- Ecosystem rail (IntelHub-style native horizontal scrolling) ---------- */
 
-@keyframes ecosystem-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
+.ecosystem-track {
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  scrollbar-width: none;
 }
-
-.ecosystem-track { mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); }
-.ecosystem-marquee {
-  animation: ecosystem-marquee var(--ecosystem-duration, 40s) linear infinite;
-  will-change: transform;
-}
+.ecosystem-track::-webkit-scrollbar { display: none; }
+.ecosystem-marquee { min-width: max-content; }
 
 /* -- Responsive -------------------------------- */
 

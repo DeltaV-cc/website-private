@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState, type CSSProperties } from 'react';
+import { useRef, useState } from 'react';
+import { useVisibilityTicker } from '../intelhub/components/useVisibilityTicker';
 
 export type EcosystemItem = {
   name: string;
@@ -86,8 +87,9 @@ function Chip({
 }
 
 /**
- * Seamless infinite logo+name marquee for pillar ecosystem rows.
- * Pure CSS animation - no jank, respects prefers-reduced-motion.
+ * IntelHub-style horizontal logo rail for pillar ecosystem rows.
+ * Native scrolling stays available on touch/mouse while the low-cost ticker
+ * pauses whenever the user hovers or focuses the rail.
  */
 export default function EcosystemStack({
   items,
@@ -98,8 +100,6 @@ export default function EcosystemStack({
   accent?: 'cyan' | 'orange' | 'purple';
   label?: string;
 }) {
-  const [duration, setDuration] = useState(40);
-  const boostTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const accentText =
     accent === 'orange'
       ? 'text-[var(--accent-orange)]'
@@ -114,12 +114,13 @@ export default function EcosystemStack({
         ? 'hover:text-[var(--accent-purple)] hover:border-[var(--accent-purple)]/30'
         : 'hover:text-[var(--accent-cyan)] hover:border-[var(--accent-cyan)]/30';
 
-  // Triple for wide screens so the loop never shows a gap
-  const loop = [...items, ...items, ...items];
-  const boostMarquee = () => {
-    setDuration(12);
-    if (boostTimer.current) clearTimeout(boostTimer.current);
-    boostTimer.current = setTimeout(() => setDuration(40), 900);
+  const loop = [...items, ...items];
+  const { scrollRef, pause, resume } = useVisibilityTicker(items.length, .85);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pauseForInteraction = () => {
+    pause();
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(resume, 900);
   };
 
   return (
@@ -130,8 +131,20 @@ export default function EcosystemStack({
         </div>
       </div>
 
-      <div className="ecosystem-track relative overflow-hidden" role="list" aria-label={label} onWheel={boostMarquee} onTouchStart={boostMarquee}>
-        <div className="ecosystem-marquee flex w-max gap-2.5 py-1" style={{ '--ecosystem-duration': `${duration}s` } as CSSProperties}>
+      <div
+        ref={scrollRef}
+        className="ecosystem-track relative overflow-x-auto scrollbar-none"
+        role="list"
+        aria-label={label}
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onFocus={pause}
+        onBlur={resume}
+        onTouchStart={pause}
+        onTouchEnd={resume}
+        onWheel={pauseForInteraction}
+      >
+        <div className="ecosystem-marquee flex w-max gap-2.5 py-1">
           {loop.map((item, i) => (
             <Chip key={`${item.name}-${i}`} item={item} accentHover={accentHover} />
           ))}
