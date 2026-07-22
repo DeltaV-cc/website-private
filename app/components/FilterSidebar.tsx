@@ -26,7 +26,7 @@ export default function FilterSidebar({
   return (
     <div className="listing-filter-panel lg:sticky lg:top-24">
       <div className="flex items-center justify-between mb-5">
-        <span className="text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)]">
+        <span className="text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-primary)]">
           Filters
         </span>
         <div className="flex items-center gap-3">
@@ -50,7 +50,7 @@ export default function FilterSidebar({
       <div className={`${mobileOpen ? 'block' : 'hidden'} lg:block space-y-7`}>
         {groups.map((group) => (
           <div key={group.title}>
-            <div className="text-xs font-semibold text-[var(--text-secondary)] mb-3">{group.title}</div>
+            <div className="text-xs font-semibold text-[var(--text-primary)] mb-3">{group.title}</div>
             <div className="space-y-1">
               {group.options.map((opt) => {
                 const checked = group.selected.includes(opt.value);
@@ -81,13 +81,13 @@ export default function FilterSidebar({
                     />
                     <span
                       className={`text-sm transition-colors ${
-                        checked ? 'text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] group-hover:text-[var(--text-secondary)]'
+                        checked ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]'
                       }`}
                     >
                       {opt.label}
                     </span>
                     {typeof opt.count === 'number' && (
-                      <span className="ml-auto text-[11px] text-[var(--text-muted)]">{opt.count}</span>
+                      <span className="ml-auto text-[11px] text-[var(--text-secondary)]">{opt.count}</span>
                     )}
                   </label>
                 );

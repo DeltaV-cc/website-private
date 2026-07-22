@@ -66,7 +66,7 @@ export default function Footer() {
               No trackers · Static export
             </span>
             <span className="text-xs text-[var(--text-disabled)]">© 2026 Delta V</span>
-            <Link href="/cgu/" className="text-xs text-[var(--text-disabled)] hover:text-[var(--accent-cyan)] transition-colors">CGU</Link>
+            <Link href="/cgu/" className="text-xs text-[var(--text-disabled)] hover:text-[var(--accent-cyan)] transition-colors">Terms of Use</Link>
             <Link href="/privacy/" className="text-xs text-[var(--text-disabled)] hover:text-[var(--accent-cyan)] transition-colors">Privacy Policy</Link>
           </div>
         </div>

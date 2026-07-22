@@ -1,16 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import type { CSSProperties } from 'react';
 import CuratedIntel from './components/CuratedIntel';
 import InkGarden from './components/InkGarden';
+import CapabilityCard from './components/CapabilityCard';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 const capabilities = [
-  { href: '/ai/', index: '01', title: 'AI Engineering', cta: 'Explore AI Engineering', bullets: [{ label: 'Tailored multi-agent systems', href: '/ai/#agents' }, { label: 'Inference and model engineering', href: '/ai/#inference' }, { label: 'Ongoing AI engineer support', href: '/ai/#retainer' }], accent: 'text-[var(--accent-cyan)]', titleTint: 'text-[var(--accent-cyan)]/90', line: 'border-[var(--accent-cyan)]/30', cardAccent: 'var(--accent-cyan)' },
-  { href: '/web3/', index: '02', title: 'Web3', cta: 'Explore Web3', bullets: [{ label: 'SOTA setup and architecture', href: '/web3/#architecture' }, { label: 'Web3 intelligence and OSINT', href: '/web3/#intelligence' }, { label: 'Growth, public goods, and community building', href: '/web3/#growth' }], accent: 'text-[var(--accent-orange)]', titleTint: 'text-[var(--accent-orange)]/90', line: 'border-[var(--accent-orange)]/30', cardAccent: 'var(--accent-orange)' },
-  { href: '/forge/', index: '03', title: 'Skill Forge', cta: 'Explore capability', bullets: [{ label: 'Personal AI Mastery', href: '/forge/course/#ai-mastery' }, { label: 'AI Engineering Bootcamp', href: '/forge/course/#ai-engineering' }, { label: 'OpSec training and auditing', href: '/web3/#opsec' }], accent: 'text-[var(--accent-purple)]', titleTint: 'text-[var(--accent-purple)]/90', line: 'border-[var(--accent-purple)]/30', cardAccent: 'var(--accent-purple)' },
+  { href: '/ai/', index: '01', title: 'AI Engineering', cta: 'Explore AI Engineering', bullets: [{ label: 'Tailored multi-agent systems', href: '/ai/#agents' }, { label: 'Inference and model engineering', href: '/ai/#inference' }, { label: 'Ongoing AI engineer support', href: '/ai/#retainer' }], accent: 'var(--accent-cyan)', titleTint: 'text-[var(--accent-cyan)]/90' },
+  { href: '/web3/', index: '02', title: 'Web3', cta: 'Explore Web3', bullets: [{ label: 'SOTA setup and architecture', href: '/web3/#architecture' }, { label: 'Web3 intelligence and OSINT', href: '/web3/#intelligence' }, { label: 'Growth, public goods, and community building', href: '/web3/#growth' }], accent: 'var(--accent-orange)', titleTint: 'text-[var(--accent-orange)]/90' },
+  { href: '/forge/', index: '03', title: 'Skill Forge', cta: 'Explore capability', bullets: [{ label: 'Personal AI Mastery', href: '/forge/course/#ai-mastery' }, { label: 'AI Engineering Bootcamp', href: '/forge/course/#ai-engineering' }, { label: 'OpSec training and auditing', href: '/web3/#opsec' }], accent: 'var(--accent-purple)', titleTint: 'text-[var(--accent-purple)]/90' },
 ];
 
 export default function DeltaVSite() {
@@ -38,10 +38,8 @@ export default function DeltaVSite() {
 
     <section id="pillars" className="page-container py-20 md:py-28" aria-labelledby="pillars-heading">
       <div className="grid md:grid-cols-[.7fr_1.3fr] gap-10 mb-12"><div><div className="eyebrow">What We Do</div><h2 id="pillars-heading" className="section-title">Three pillars. One mission.</h2></div><p className="max-w-md self-end text-[var(--text-secondary)] leading-relaxed"><strong className="font-semibold text-[var(--text-primary)]">Stay at speed with AI and Web3</strong> through open-source solutions, expert engineers, and practical mentoring.</p></div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--border-default)] border border-[var(--border-default)] stagger-children">
-        {capabilities.map((item) => <div key={item.href} style={{ '--card-accent': item.cardAccent } as CSSProperties} className={`capability-card group flex min-h-[260px] sm:min-h-[300px] flex-col p-5 sm:p-7 md:p-9 border-l-2 ${item.line}`}>
-          <div className={`flex justify-between ${item.accent} text-xs font-mono tracking-[.16em]`}><Link href={item.href} className="hover:underline">{item.index}</Link><Link href={item.href} aria-label={`Open ${item.title}`}>↗</Link></div><h3 className={`mt-8 text-2xl md:text-3xl font-semibold tracking-tight ${item.titleTint}`}><Link href={item.href} className="hover:opacity-75">{item.title}</Link></h3><ul className="mt-5 max-w-sm space-y-2 text-sm leading-relaxed">{item.bullets.map((bullet) => <li key={bullet.href}><Link href={bullet.href} className="group/bullet flex items-start gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-cyan)]"><span className={`${item.accent} shrink-0`} aria-hidden="true">•</span><span className="flex-1">{bullet.label}</span><span className={`${item.accent} opacity-0 transition-opacity group-hover/bullet:opacity-100`} aria-hidden="true">↗</span></Link></li>)}</ul><Link href={item.href} className={`mt-auto pt-7 inline-flex text-xs font-semibold uppercase tracking-[.14em] ${item.accent} opacity-70 group-hover:opacity-100`}>{item.cta} <Arrow /></Link>
-        </div>)}
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-px border border-[var(--border-default)] stagger-children">
+        {capabilities.map((item) => <CapabilityCard key={item.href} {...item} />)}
       </div>
     </section>
 

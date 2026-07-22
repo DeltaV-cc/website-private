@@ -184,7 +184,12 @@ export default function BlogPostLayout({
     e.preventDefault();
     const target = document.getElementById(id);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // scrollIntoView can place a heading underneath the fixed navbar. Use
+      // the actual header height so desktop and mobile stay aligned.
+      const header = document.querySelector('header');
+      const headerHeight = header?.getBoundingClientRect().height ?? 64;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       history.replaceState(null, '', `#${id}`);
       setActive(id);
     }
@@ -202,7 +207,7 @@ export default function BlogPostLayout({
             } ${
               active === t.id
                 ? 'border-[var(--accent-cyan)] text-[var(--accent-cyan)]'
-                : 'border-transparent text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+                : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
             {t.text}
@@ -213,7 +218,7 @@ export default function BlogPostLayout({
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="article-reading-page min-h-screen">
       {/* Reading-progress bar — fills as the reader scrolls, sits below fixed navbar */}
       <div className="fixed top-16 left-0 right-0 h-[3px] z-[60] pointer-events-none bg-[var(--bg-surface)]/40">
         <div
@@ -289,8 +294,8 @@ export default function BlogPostLayout({
 
             {/* Collapsible TOC — mobile / narrow */}
             {toc.length > 1 && (
-              <details className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3" open>
-                <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)]">
+              <details className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] px-4 py-3" open>
+                <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-secondary)]">
                   On this page
                 </summary>
                 <div className="mt-3">{tocList}</div>
@@ -339,11 +344,11 @@ export default function BlogPostLayout({
           {/* Sticky TOC — desktop */}
           <aside className="hidden lg:block">
             {toc.length > 1 && (
-              <nav aria-label="Table of contents" className="sticky top-24">
+              <nav aria-label="Table of contents" className="sticky top-24 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] p-4 shadow-[0_16px_40px_rgba(0,0,0,.18)]">
                 <button
                   type="button"
                   onClick={() => setTocOpen((o) => !o)}
-                  className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors mb-3"
+                  className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors mb-3"
                 >
                   On this page
                   <svg

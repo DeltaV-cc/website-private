@@ -129,7 +129,7 @@ export default function IntelHubPage() {
   return (
     <div className="intelhub-shell min-h-screen text-[#ededed]">
 
-      <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl sticky top-0 z-40">
+      <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl">
         <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-6 flex items-end justify-between relative gap-8">
           <div>
             <div className="text-[10px] font-mono tracking-[.2em] uppercase text-[var(--accent-cyan)] mb-3">Field intelligence / live surface</div>

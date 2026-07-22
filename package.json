@@ -11,8 +11,8 @@
   "homepage": "https://deltav-cc.github.io/website-private/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py",
-    "build": "python scripts/copy-data.py && python scripts/generate-intelhub-rss.py && next build && python scripts/patch-basepath.py",
+    "prebuild": "python3 scripts/copy-data.py && python3 scripts/generate-intelhub-rss.py",
+    "build": "python3 scripts/copy-data.py && python3 scripts/generate-intelhub-rss.py && next build && python3 scripts/patch-basepath.py",
     "export": "next build",
     "start": "next start",
     "lint": "eslint"

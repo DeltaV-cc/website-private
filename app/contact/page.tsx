@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import BookingCalendar from '../components/BookingCalendar';
 
 const TOPICS: Record<string, { need: 'Web3' | 'AI' | 'Upskilling'; prompt: string }> = {
   'agents': { need: 'AI', prompt: 'Tailored multi-agent system — my workflows and goals:\n' },
@@ -113,7 +114,7 @@ function ContactContent() {
         </div>
 
         {/* ============================================================
-             CAL.COM BOOKING — Full-width hero section
+             BOOKING — Official Cal.com calendar and live availability
              ============================================================ */}
         <section className="contact-booking order-1 relative w-full mb-16 rounded-3xl border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-surface)] via-[var(--bg-surface)] to-[var(--accent-cyan)]/[0.03] overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/40 to-transparent" aria-hidden="true" />
@@ -142,14 +143,8 @@ function ContactContent() {
               </div>
             </div>
 
-            <div className="border-t lg:border-t-0 lg:border-l border-[var(--border-default)] bg-[var(--bg-deep)]/50 min-w-0">
-              <iframe
-                src="https://cal.com/delta-v/30min?embed=true&hideEventTypeDetails=true"
-                className="w-full h-[620px] lg:h-[680px]"
-                style={{ border: 'none' }}
-                title="Book a 30-minute call with Delta V"
-                loading="lazy"
-              />
+            <div className="border-t lg:border-t-0 lg:border-l border-[var(--border-default)] bg-[var(--bg-deep)]/30 min-w-0 p-4 md:p-6">
+              <BookingCalendar />
             </div>
           </div>
         </section>
