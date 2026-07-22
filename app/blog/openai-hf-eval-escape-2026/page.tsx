@@ -5,7 +5,7 @@ import BlogPostLayout from '@/components/BlogPostLayout';
 export default function OpenAIEvalEscape() {
   return (
     <BlogPostLayout
-      title="OpenAI Evaluation Escape (2/2) — Frontier Models Hacked Hugging Face"
+      title="Hugging Face Breach (2/2) — OpenAI Evaluation Escape"
       date="July 22, 2026"
       category="OpSec"
       type="Deep Dive"

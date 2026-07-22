@@ -3,7 +3,7 @@ import BlogPostLayout from '@/components/BlogPostLayout';
 export default function HFAgentBreachArticle() {
   return (
     <BlogPostLayout
-      title="When AI Safety Guardrails Block the Defenders (1/2) — the Hugging Face Breach"
+      title="Hugging Face Breach (1/2) — When AI Safety Guardrails Block the Defenders"
       date="July 19, 2026"
       category="OpSec"
       type="Deep Dive"
