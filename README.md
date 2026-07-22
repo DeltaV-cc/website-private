@@ -48,20 +48,21 @@ http://localhost:3000/website-private/
 | `pnpm dev` | Development server |
 | `pnpm build` | Copy data → generate IntelHub RSS → static export → basePath patch |
 | `pnpm lint` | ESLint |
+| `pnpm exec tsc --noEmit` | TypeScript validation |
+| `git diff --check` | Whitespace check before commit |
 
 ---
 
 ## Project layout
 
 ```
-app/                 App Router pages & components
+app/                 App Router pages and route-local components
   ai/ web3/ forge/ opsec/ tutorials/ blog/ intelhub/ contact/
-  components/        Shared UI (nav, PageShell, diagrams, OpSec)
-components/          Blog/tutorial layout (TOC, copy buttons, progress)
-public/              Static assets (images, data JSON, feeds)
-design-system/       Tokens, page templates, OpSec product map
-scripts/             Data copy, RSS, basePath patch helpers
-content/wiki/        Internal wiki source notes
+  components/        Shared UI (navigation, heroes, cards, booking)
+components/          Shared reading layouts (TOC, copy buttons, progress)
+public/              Static assets, images, JSON data and RSS feeds
+scripts/             Data copy, RSS generation and basePath helpers
+DESIGN_SYSTEM.md     Canonical visual and content conventions
 _headers             Security headers for static hosting
 ```
 
@@ -72,6 +73,39 @@ _headers             Security headers for static hosting
 - **Top-tier pointers** — Taurus (institutional custody), Opsek (HNW security)
 - **Tutorials** — local AI stacks, optional x402 reference
 - **IntelHub** — static data dashboards + feeds
+
+### Shared UI contracts
+
+Reuse the existing shared components before adding page-specific markup:
+
+- `PageShell` and `PageHero` for the common page background and pillar hero.
+- `CapabilityCard` for homepage and Forge capability cards.
+- `BlogPostLayout` for blog, tutorial and course reading pages.
+- `BookingCalendar` for the contact booking flow.
+
+The visual source of truth is [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md). It defines
+the color tokens, typography, spacing, card surfaces, accents and motion rules.
+New pages should use those tokens and contracts instead of introducing one-off
+backgrounds, opacity values or hover treatments.
+
+### Content workflow
+
+Blog posts and tutorials are route-based static pages. To add one:
+
+1. Create a route under `app/blog/<slug>/` or `app/tutorials/<slug>/`.
+2. Follow the existing `BlogPostLayout` structure and add the entry to the relevant index.
+3. Reuse the design tokens and reading-page conventions from `DESIGN_SYSTEM.md`.
+4. Run the checks below before committing.
+
+The contact page uses a native date calendar and loads availability in the
+selected-date modal. Provider failures fall back to the official Cal.com link;
+no Cal.com secret is required in the browser bundle.
+
+### Data and generated files
+
+`public/data/` and `public/intelhub/feed/` are generated during the build by the
+Python data/RSS scripts. Treat them as build outputs: review changes when data
+is refreshed, but do not hand-edit them to fix UI code.
 
 ---
 
