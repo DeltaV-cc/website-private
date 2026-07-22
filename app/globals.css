@@ -659,11 +659,31 @@ body {
 /* -- Ecosystem rail (IntelHub-style native horizontal scrolling) ---------- */
 
 .ecosystem-track {
+  position: relative;
   overscroll-behavior-x: contain;
   touch-action: pan-x;
   scrollbar-width: none;
 }
 .ecosystem-track::-webkit-scrollbar { display: none; }
+.ecosystem-track::before,
+.ecosystem-track::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 4.5rem;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
+.ecosystem-track::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(25, 84, 101, .28), transparent);
+}
+.ecosystem-track::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(25, 84, 101, .28), transparent);
+}
 .ecosystem-marquee { min-width: max-content; }
 
 /* -- Responsive -------------------------------- */
