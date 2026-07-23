@@ -81,6 +81,110 @@ function PolymarketPanel({ markets }: { markets: any[] }) {
   );
 }
 
+/* -- ETF Flows Card (BTC + ETH spot ETF net flows) -- */
+function ETFFlowsCard({ etf }: { etf: any }) {
+  if (!etf) return null;
+  const btc = etf.btc;
+  const eth = etf.eth;
+  if (!btc?.latest_total && !eth?.latest_total) return null;
+
+  const flowBadge = (val: number | null, label: string) => {
+    if (val == null) return <SkeletonBlock className="h-5 w-16 inline-block" />;
+    const sign = val >= 0 ? '+' : '';
+    const color = val >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+    return <span className={`text-sm font-bold tabular-nums ${color}`}>{sign}{val.toFixed(1)}M</span>;
+  };
+
+  const miniSpark = (points: { d: string; v: number }[] | undefined, accent: string) => {
+    if (!points || points.length < 2) return null;
+    const vals = points.map(p => p.v);
+    const min = Math.min(...vals);
+    const max = Math.max(...vals);
+    const range = max - min || 1;
+    const zeroY = max <= 0 ? 0 : min >= 0 ? 28 : ((0 - min) / range) * 28;
+    const pathPoints = points.map((p, i) => `${(i / (points.length - 1)) * 80},${28 - ((p.v - min) / range) * 24}`).join(' ');
+    return (
+      <svg className="w-20 h-7 flex-shrink-0" viewBox="0 0 80 28" preserveAspectRatio="none">
+        <line x1="0" y1={zeroY} x2="80" y2={zeroY} stroke="white" strokeOpacity="0.1" strokeWidth="0.5" />
+        <polyline points={pathPoints} fill="none" stroke={accent} strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
+      </svg>
+    );
+  };
+
+  return (
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-gold)]/[0.06] to-transparent">
+        <div className="flex items-center gap-2.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[var(--accent-gold)]">
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</span>
+          <span className="text-[9px] text-[var(--text-disabled)]">via Farside / DeFi Llama</span>
+        </div>
+        {etf.updated_at && <span className="text-[9px] text-[var(--text-muted)]">{new Date(etf.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>}
+      </div>
+      <div className="grid grid-cols-2 divide-x divide-[var(--border-default)]">
+        {/* BTC ETF */}
+        <div className="p-4 space-y-1.5">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-amber)]" />
+            <span className="text-xs text-[var(--text-tertiary)] font-medium">BTC Spot ETF</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {flowBadge(btc?.latest_total, 'BTC')}
+            {btc?.change != null && (
+              <span className={`text-[10px] tabular-nums ${btc.change >= 0 ? 'text-[var(--accent-green)]/70' : 'text-[var(--accent-red)]/70'}`}>
+                {btc.change >= 0 ? '↑' : '↓'}{Math.abs(btc.change).toFixed(1)}M
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            {miniSpark(btc?.sparkline, 'var(--accent-amber)')}
+            <div className="text-[10px] text-[var(--text-muted)]">
+              {btc?.latest_date ? new Date(btc.latest_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
+            </div>
+          </div>
+          {btc?.ytd_flows != null && (
+            <div className="text-[9px] text-[var(--text-disabled)]">
+              YTD: <span className={btc.ytd_flows >= 0 ? 'text-[var(--accent-green)]/60' : 'text-[var(--accent-red)]/60'}>
+                {btc.ytd_flows >= 0 ? '+' : ''}{btc.ytd_flows.toFixed(0)}M
+              </span>
+            </div>
+          )}
+        </div>
+        {/* ETH ETF */}
+        <div className="p-4 space-y-1.5">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)]" />
+            <span className="text-xs text-[var(--text-tertiary)] font-medium">ETH Spot ETF</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {flowBadge(eth?.latest_total, 'ETH')}
+            {eth?.change != null && (
+              <span className={`text-[10px] tabular-nums ${eth.change >= 0 ? 'text-[var(--accent-green)]/70' : 'text-[var(--accent-red)]/70'}`}>
+                {eth.change >= 0 ? '↑' : '↓'}{Math.abs(eth.change).toFixed(1)}M
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            {miniSpark(eth?.sparkline, 'var(--accent-cyan)')}
+            <div className="text-[10px] text-[var(--text-muted)]">
+              {eth?.latest_date ? new Date(eth.latest_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
+            </div>
+          </div>
+          {eth?.ytd_flows != null && (
+            <div className="text-[9px] text-[var(--text-disabled)]">
+              YTD: <span className={eth.ytd_flows >= 0 ? 'text-[var(--accent-green)]/60' : 'text-[var(--accent-red)]/60'}>
+                {eth.ytd_flows >= 0 ? '+' : ''}{eth.ytd_flows.toFixed(0)}M
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Web3Dashboard({
   dd, catBoxes, TC, ago, fmt, fmtN, items, ts,
 }: {
@@ -213,6 +317,9 @@ export default function Web3Dashboard({
           </div>
         )}
       </div>
+
+      {/* -- ETF Flows (BTC + ETH) -- */}
+      <ETFFlowsCard etf={dd?.etfFlows} />
 
       {/* -- TVL + DEX Dominance -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

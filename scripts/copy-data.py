@@ -3,7 +3,7 @@
 Pre-build script: copies workspace data + fetches external APIs
 for static site deployment (GitHub Pages). Falls back gracefully.
 """
-import json, os, shutil, re, urllib.request, ssl
+import json, os, shutil, re, sys, urllib.request, ssl, subprocess
 
 PUBLIC_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'data')
 SIGNALS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'wiki', 'signals')
@@ -375,5 +375,14 @@ try:
     print(f'✓ Exchange vols: {len(exchanges)} exchanges, {len(vol_history)} vol history pts')
 except Exception as e:
     print(f'⚠ Exchange fetch failed: {e}')
+
+# --- Fetch ETF Flows (BTC + ETH) ---
+print('Fetching ETF flows...')
+try:
+    # Run our dedicated fetcher — uses haturatu/crypto-etf-flow GitHub mirror (Farside data)
+    etf_script = os.path.join(os.path.dirname(__file__), 'fetch-etf-flows.py')
+    subprocess.run([sys.executable, etf_script], check=True, timeout=30)
+except Exception as e:
+    print(f'⚠ ETF flows fetch failed: {e}')
 
 print('\nPre-build complete.')
