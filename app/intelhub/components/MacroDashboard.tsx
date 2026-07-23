@@ -178,6 +178,25 @@ export default function MacroDashboard({
             )}
           </div>
 
+          {/* WTI Crude Oil */}
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">WTI Crude</div>
+            {dd?.oil?.price != null ? (
+              <>
+                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">${dd.oil.price}</div>
+                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${(dd.oil.change ?? 0) >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                  {(dd.oil.change ?? 0) >= 0 ? <TrendUp /> : <TrendDown />}
+                  {dd.oil.changePct || ''}
+                </div>
+              </>
+            ) : (
+              <div className="space-y-2">
+                <div className="skeleton-shimmer h-5 w-16 rounded" />
+                <div className="skeleton-shimmer h-3 w-10 rounded" />
+              </div>
+            )}
+          </div>
+
           {/* US 10Y */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">US 10Y</div>

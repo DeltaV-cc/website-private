@@ -235,6 +235,7 @@ export function useIntelData() {
     const staticTasks: Array<Promise<void>> = [
       fetchJson(`${BASE}/data/crypto.json`).then((d) => { if (d) merge({ crypto: d }); }),
       fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
+      fetchJson(`${BASE}/data/oil.json`).then((d) => { if (d) merge({ oil: d }); }),
       fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
       fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
       fetchJson(`${BASE}/data/hf.json`).then((d) => {
