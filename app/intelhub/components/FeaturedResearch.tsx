@@ -50,7 +50,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
   const carousel = featured.slice(0, 4);
 
   return (
-    <div className="max-w-[1440px] mx-auto px-8 mb-8">
+    <>
       {/* Section Label */}
       <div className="flex items-center gap-3 mb-5">
         <div className="flex items-center gap-2">
@@ -128,6 +128,6 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
           </span>
         </div>
       )}
-    </div>
+    </>
   );
 }
