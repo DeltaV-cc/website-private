@@ -6,6 +6,7 @@
 import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
+import FeaturedResearch from './FeaturedResearch';
 import { CategoryBox, fmtNum } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 
@@ -280,6 +281,25 @@ export default function MacroDashboard({
           </table>
         </div>
       </div>
+
+      {/* -- Artemis Featured Research -- */}
+      {(() => {
+        const researchArticles = dd?.artemisNewsletter?.research_articles || [];
+        const mapped = researchArticles.map((a: any) => ({
+          title: a.title || '',
+          url: a.link || '',
+          source: `Artemis Research (${a.author || 'Artemis'})`,
+          published_at: a.date || '',
+          summary: a.excerpt || '',
+          category: 'macro' as const,
+          artemis_id: a.link || '',
+          categories: ['macro'],
+        }));
+        if (mapped.length > 0) {
+          return <FeaturedResearch articles={mapped} />;
+        }
+        return null;
+      })()}
 
       {/* -- Patents + Gainers/Losers -- */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
