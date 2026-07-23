@@ -22,7 +22,7 @@ export default function IntelHubPage() {
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const {
     items, loading, patents, dd, dd2, forex, watchlist,
-    catBoxes, top3, tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN,
+    catBoxes, tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN,
     TC, BCOL, SOCMED_SOURCES, lastFetch,
   } = useIntelData();
 

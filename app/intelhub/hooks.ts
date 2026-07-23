@@ -184,7 +184,6 @@ const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
 export function useIntelData() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [picks, setPicks] = useState<any>(null);
   const [patents, setPatents] = useState<PatentsData | null>(null);
   const [watchlist, setWatchlist] = useState<any[]>([]);
   const [dd, setDd] = useState<any>({});
@@ -211,7 +210,6 @@ export function useIntelData() {
             setLastFetch(new Date());
           }
         }),
-        fetchJson(`${BASE}/data/picks.json`).then((d) => { if (d) setPicks(d); }),
         fetchJson(`${BASE}/data/cybersec-watchlist.json`).then((wl) => {
           if (Array.isArray(wl)) {
             const now = Date.now();
@@ -239,7 +237,6 @@ export function useIntelData() {
       fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
       fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
       fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
-      fetchJson(`${BASE}/data/cnn-fg.json`).then((d) => { if (d) merge({ cnnFG: d }); }),
       fetchJson(`${BASE}/data/hf.json`).then((d) => {
         if (d) merge({ ...(d.models ? { hfModels: d.models } : {}), ...(d.spaces ? { hfSpaces: d.spaces } : {}) });
       }),
@@ -518,14 +515,6 @@ export function useIntelData() {
   }));
   catBoxes.forEach(c => { c.count = c.items.length; });
 
-  const top3 = [...recentItems].sort((a: any, b: any) => {
-    const da = new Date(a.pubDate || a.date || 0).getTime();
-    const db = new Date(b.pubDate || b.date || 0).getTime();
-    return db - da;
-  }).slice(0, 3).map((it: any) => ({
-    ...it,
-    title: (it.title || '').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim(),
-  }));
   // TradFi F&G: {score, rating, date}
   const fgVal = (typeof dd?.fearGreed?.score === 'number') ? dd.fearGreed.score : 0;
   const fgLabel = dd?.fearGreed?.rating || '';
@@ -567,8 +556,8 @@ export function useIntelData() {
   };
 
   return {
-    items: recentItems, loading, picks, patents, dd, dd2, forex, watchlist,
-    catBoxes, macroCats, infosecCats, web3Cats, aiCats, top3, fgVal, fgLabel, totalVol,
+    items: recentItems, loading, patents, dd, dd2, forex, watchlist,
+    catBoxes, macroCats, infosecCats, web3Cats, aiCats, fgVal, fgLabel, totalVol,
     tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES, lastFetch,
   };
 }
