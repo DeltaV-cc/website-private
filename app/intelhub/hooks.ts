@@ -169,7 +169,11 @@ const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComp
 // Returns null on any failure (timeout, network, non-2xx, bad JSON).
 const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
   try {
-    const r = await fetch(url, { signal: AbortSignal.timeout(ms) });
+    // Cache bust: GitHub Pages CDN caches aggressively (max-age=600).
+    // Append ?_t=<5-min bucket> so data refreshes within 5 min of push.
+    const sep = url.includes('?') ? '&' : '?';
+    const bucket = Math.floor(Date.now() / 300000); // 5-min cache-window
+    const r = await fetch(`${url}${sep}_t=${bucket}`, { signal: AbortSignal.timeout(ms) });
     if (!r.ok) return null;
     return await r.json();
   } catch {
