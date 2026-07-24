@@ -1,0 +1,155 @@
+{
+  "updated_at": "2026-07-24T13:30:16Z",
+  "source": "DeFiLlama (per-chain historical TVL)",
+  "gainers": [
+    {
+      "name": "Stellar",
+      "tvl": 230576027.81872115,
+      "change_24h": 2.73
+    },
+    {
+      "name": "Robinhood Chain",
+      "tvl": 317339942.88723296,
+      "change_24h": 2.35
+    },
+    {
+      "name": "Monad",
+      "tvl": 736871528.4044623,
+      "change_24h": 1.16
+    },
+    {
+      "name": "Plasma",
+      "tvl": 648562869.481632,
+      "change_24h": 0.13
+    }
+  ],
+  "losers": [
+    {
+      "name": "Avalanche",
+      "tvl": 423041204.0622705,
+      "change_24h": -3.23
+    },
+    {
+      "name": "Arbitrum",
+      "tvl": 1216792854.9938517,
+      "change_24h": -2.93
+    },
+    {
+      "name": "Sui",
+      "tvl": 431321568.88403356,
+      "change_24h": -2.55
+    },
+    {
+      "name": "Polygon",
+      "tvl": 852908878.3950212,
+      "change_24h": -2.37
+    },
+    {
+      "name": "Hyperliquid L1",
+      "tvl": 1264718283.1510482,
+      "change_24h": -1.85
+    }
+  ],
+  "all": [
+    {
+      "name": "Ethereum",
+      "tvl": 41411804029.39886,
+      "change_24h": -1.23
+    },
+    {
+      "name": "Solana",
+      "tvl": 4889102909.937887,
+      "change_24h": -1.31
+    },
+    {
+      "name": "Tron",
+      "tvl": 4834370476.803727,
+      "change_24h": -0.58
+    },
+    {
+      "name": "BSC",
+      "tvl": 4829100245.383682,
+      "change_24h": -0.47
+    },
+    {
+      "name": "Base",
+      "tvl": 4596310182.3603325,
+      "change_24h": -1.29
+    },
+    {
+      "name": "Bitcoin",
+      "tvl": 4259737632.5946903,
+      "change_24h": -1.61
+    },
+    {
+      "name": "Provenance",
+      "tvl": 1777600653.8220181,
+      "change_24h": -0.03
+    },
+    {
+      "name": "Hyperliquid L1",
+      "tvl": 1264718283.1510482,
+      "change_24h": -1.85
+    },
+    {
+      "name": "Arbitrum",
+      "tvl": 1216792854.9938517,
+      "change_24h": -2.93
+    },
+    {
+      "name": "Polygon",
+      "tvl": 852908878.3950212,
+      "change_24h": -2.37
+    },
+    {
+      "name": "Monad",
+      "tvl": 736871528.4044623,
+      "change_24h": 1.16
+    },
+    {
+      "name": "Plasma",
+      "tvl": 648562869.481632,
+      "change_24h": 0.13
+    },
+    {
+      "name": "Sui",
+      "tvl": 431321568.88403356,
+      "change_24h": -2.55
+    },
+    {
+      "name": "Avalanche",
+      "tvl": 423041204.0622705,
+      "change_24h": -3.23
+    },
+    {
+      "name": "Robinhood Chain",
+      "tvl": 317339942.88723296,
+      "change_24h": 2.35
+    },
+    {
+      "name": "OP Mainnet",
+      "tvl": 303213201.3255664,
+      "change_24h": -1.15
+    },
+    {
+      "name": "Cronos",
+      "tvl": 257162463.29056957,
+      "change_24h": -0.72
+    },
+    {
+      "name": "Stellar",
+      "tvl": 230576027.81872115,
+      "change_24h": 2.73
+    },
+    {
+      "name": "Anubis",
+      "tvl": 195145563.371257,
+      "change_24h": -0.8
+    },
+    {
+      "name": "Starknet",
+      "tvl": 173131244.92830166,
+      "change_24h": -0.7
+    }
+  ]
+}
