@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
+import site from "./site.config.json";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/website-private',
+  basePath: site.basePath,
   trailingSlash: true,
   images: {
     unoptimized: true,

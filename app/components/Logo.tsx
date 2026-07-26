@@ -1,4 +1,5 @@
 import React from 'react';
+import { withBasePath } from '@/lib/site';
 
 /**
  * Delta V signal mark. The favicon stays PNG for Next's app-icon convention;
@@ -16,7 +17,7 @@ export default function Logo({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/website-private/delta-v-mark.webp"
+      src={withBasePath('/delta-v-mark.webp')}
       width={size}
       height={size}
       className={className}

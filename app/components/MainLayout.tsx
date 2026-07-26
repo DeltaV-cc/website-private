@@ -2,13 +2,18 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import { BASE_PATH } from '@/lib/site';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { PageBackdrop } from './PageShell';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isHome = pathname === '/' || pathname === '/website-private/';
+  // usePathname is usually basePath-stripped; keep BASE_PATH checks for edge cases.
+  const isHome =
+    pathname === '/' ||
+    pathname === BASE_PATH ||
+    pathname === `${BASE_PATH}/`;
 
   return (
     <div className="relative min-h-screen bg-[var(--bg-deep)] text-[var(--text-primary)] font-sans flex flex-col">

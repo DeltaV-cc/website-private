@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { BASE_PATH } from '@/lib/site';
 
 interface IntelItem {
   title: string;
@@ -11,9 +12,6 @@ interface IntelItem {
   published_at?: string;
   summary?: string;
 }
-
-/** Matches next.config.ts basePath for static export / GitHub Pages */
-const BASE_PATH = '/website-private';
 
 const isNew = (iso?: string) => {
   if (!iso) return false;

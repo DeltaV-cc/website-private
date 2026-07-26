@@ -8,14 +8,20 @@ Also handles Turbopack's escaped double-quote output: \"/data/...\"
 """
 
 import os, re, sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _site_config import base_path
 
 OUT_DIR = "out"
-BASE_PATH = "/website-private"
+BASE_PATH = base_path() or "/website-private"
+# bare slug without leading slash (used by some skip checks)
+BASE_SLUG = BASE_PATH.lstrip("/")
 
 EXCLUDE_PREFIX = [
     "http://", "https://", "#", "mailto:", "tel:", "data:", "javascript:",
     BASE_PATH,
-    "website-private",
+    BASE_SLUG,
     "/_next",
     "/__next",
 ]

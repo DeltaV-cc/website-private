@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { withBasePath } from '@/lib/site';
 import BookingCalendar from '../components/BookingCalendar';
 
 const TOPICS: Record<string, { need: 'Web3' | 'AI' | 'Upskilling'; prompt: string }> = {
@@ -58,7 +59,7 @@ function ContactContent() {
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/website-private/images/signal-qr.webp"
+                  src={withBasePath('/images/signal-qr.webp')}
                   alt="Signal QR Code — @DeltaV.01"
                   className="w-28 h-28 rounded-xl border border-[var(--border-default)]"
                   width={112}
