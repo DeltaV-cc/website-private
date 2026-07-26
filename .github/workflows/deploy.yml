@@ -15,7 +15,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  quality:
+    name: Lint & typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
   build-and-deploy:
+    needs: quality
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -34,12 +56,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-        
+          cache: pnpm
 
       - run: pnpm install --frozen-lockfile
 
-      - run: python scripts/copy-data.py
-
+      # pnpm build already runs prebuild (copy-data + RSS) then next build + patch-basepath
       - run: pnpm build
 
       - uses: actions/configure-pages@v5

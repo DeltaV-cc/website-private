@@ -4,6 +4,10 @@
   "private": false,
   "description": "Delta V public website — sovereign AI, Web3, and OpSec. Next.js static export.",
   "license": "MIT",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DeltaV-cc/website-private.git"
@@ -15,15 +19,15 @@
     "build": "python3 scripts/copy-data.py && python3 scripts/generate-intelhub-rss.py && next build && python3 scripts/patch-basepath.py",
     "export": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm lint && pnpm typecheck"
   },
   "dependencies": {
-    "better-sqlite3": "^12.10.0",
     "mermaid": "^11.15.0",
     "next": "16.2.7",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "rss-parser": "^3.13.0"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

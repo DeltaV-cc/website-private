@@ -5,6 +5,8 @@ Public site for **[Delta V](https://deltav.cc)**: sovereign AI engineering, Web3
 **Live (GitHub Pages):** [deltav-cc.github.io/website-private](https://deltav-cc.github.io/website-private/)  
 **Repository:** [github.com/DeltaV-cc/website-private](https://github.com/DeltaV-cc/website-private)
 
+> **Name note:** The GitHub repo and Pages project slug are still `website-private` for historical reasons. The product is **public** (MIT). A rename + `basePath` migration is planned when the site moves fully to the custom domain.
+
 Open source under [MIT](./LICENSE). Third-party media credits: [ATTRIBUTION.md](./ATTRIBUTION.md).
 
 ---
@@ -17,16 +19,19 @@ Open source under [MIT](./LICENSE). Third-party media credits: [ATTRIBUTION.md](
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
 | Fonts | Geist |
+| Package manager | **pnpm 9** (only — see `packageManager` in `package.json`) |
 | Deploy shape | **Static export** (`output: 'export'`) |
 | Current base path | `/website-private` (GitHub Pages project site) |
 
 No analytics. No third-party trackers. Security headers in [`_headers`](./_headers) for static hosts (e.g. Cloudflare Pages).
 
+Deploy constants (`basePath`, public site URL) live in [`site.config.json`](./site.config.json) — use [`lib/site.ts`](./lib/site.ts) in app code and [`scripts/_site_config.py`](./scripts/_site_config.py) in Python.
+
 ---
 
 ## Quick start
 
-**Requirements:** Node.js 20+, [pnpm](https://pnpm.io) (preferred), Python 3 for data/RSS scripts.
+**Requirements:** Node.js 20+, [pnpm](https://pnpm.io) 9, Python 3 for data/RSS scripts.
 
 ```bash
 pnpm install
@@ -39,7 +44,7 @@ Open:
 http://localhost:3000/website-private/
 ```
 
-> The app is configured with `basePath: '/website-private'`. Routes always include that prefix in local and production builds.
+> The app is configured with `basePath` from `site.config.json` (currently `/website-private`). Routes always include that prefix in local and production builds.
 
 ### Scripts
 
@@ -48,7 +53,8 @@ http://localhost:3000/website-private/
 | `pnpm dev` | Development server |
 | `pnpm build` | Copy data → generate IntelHub RSS → static export → basePath patch |
 | `pnpm lint` | ESLint |
-| `pnpm exec tsc --noEmit` | TypeScript validation |
+| `pnpm typecheck` | TypeScript (`tsc --noEmit`) |
+| `pnpm check` | lint + typecheck |
 | `git diff --check` | Whitespace check before commit |
 
 ---
@@ -56,12 +62,17 @@ http://localhost:3000/website-private/
 ## Project layout
 
 ```
-app/                 App Router pages and route-local components
+app/                 App Router pages and route-local UI
   ai/ web3/ forge/ opsec/ tutorials/ blog/ intelhub/ contact/
-  components/        Shared UI (navigation, heroes, cards, booking)
-components/          Shared reading layouts (TOC, copy buttons, progress)
-public/              Static assets, images, JSON data and RSS feeds
-scripts/             Data copy, RSS generation and basePath helpers
+  components/        Shared chrome (nav, heroes, cards, booking)
+  data/              Content registry (content-index.ts)
+components/          Shared reading layout (BlogPostLayout, TOC, progress)
+lib/                 Shared TS helpers (site.ts deploy constants)
+public/              Static assets, brand, images, JSON data, RSS feeds
+scripts/             Data copy, RSS generation, basePath helpers (see scripts/README.md)
+workers/             Cloudflare Worker(s) — CORS proxy (see docs/proxy.md)
+wrangler.toml        Worker deploy config (proxy.hub.deltav.cc)
+site.config.json     basePath / siteUrl / repoUrl single source of truth
 DESIGN_SYSTEM.md     Canonical visual and content conventions
 _headers             Security headers for static hosting
 ```
@@ -92,41 +103,53 @@ backgrounds, opacity values or hover treatments.
 
 Blog posts and tutorials are route-based static pages. To add one:
 
-1. Create a route under `app/blog/<slug>/` or `app/tutorials/<slug>/`.
-2. Follow the existing `BlogPostLayout` structure and add the entry to the relevant index.
-3. Reuse the design tokens and reading-page conventions from `DESIGN_SYSTEM.md`.
-4. Run the checks below before committing.
+1. Create a route under `app/blog/<slug>/` or `app/tutorials/<slug>/` (copy an existing page and adapt).
+2. Register the page in [`app/data/content-index.ts`](./app/data/content-index.ts) — add a `ContentEntry` so listings, search, and nav filters can find it. Match existing `domain` / `type` / `format` enum values used by the indexes.
+3. Follow `BlogPostLayout` structure and `DESIGN_SYSTEM.md` reading-page conventions.
+4. Run `pnpm check` (or at least `pnpm lint` + `pnpm typecheck`) before committing.
 
 The contact page uses a native date calendar and loads availability in the
 selected-date modal. Provider failures fall back to the official Cal.com link;
 no Cal.com secret is required in the browser bundle.
 
-### Data and generated files
+### Data and IntelHub
 
-`public/data/` and `public/intelhub/feed/` are generated during the build by the
-Python data/RSS scripts. Treat them as build outputs: review changes when data
-is refreshed, but do not hand-edit them to fix UI code.
+`public/data/` and `public/intelhub/feed/` are produced by the Python scripts under `scripts/` and are **also committed** so a plain clone builds without external workspaces.
+
+| Mode | What happens |
+|------|----------------|
+| Clone-only | `copy-data.py` skips missing sibling paths; build uses committed snapshots |
+| Full refresh | Optional workspaces (`wiki/signals`, `DeltaV-persistent-workspace/intel`) + `fetch-*` / ops scripts regenerate JSON |
+
+Do not hand-edit generated JSON/RSS to fix UI. Prefer script regeneration. See [`scripts/README.md`](./scripts/README.md).
+
+IntelHub client hooks may load some feeds via the production CORS proxy (`proxy.hub.deltav.cc`). See [`docs/proxy.md`](./docs/proxy.md).
 
 ---
 
 ## Configuration notes
 
-- **Static only:** no server APIs in page routes; client fetches use the `/website-private` prefix for public JSON.
+- **Static only:** no server APIs in page routes; client fetches use the configured `basePath` for public JSON (via `lib/site.ts`).
 - **Windows + Turbopack:** avoid multi-byte box-drawing characters in source comments (can crash the codeframe highlighter). Prefer ASCII in comments.
-- **Install env:** do not mix WSL and Windows `pnpm install` on the same `node_modules` tree (permission / native binary issues).
+- **Install env:** do not mix WSL and Windows `pnpm install` on the same `node_modules` tree (permission / native binary issues). Use **pnpm only** — do not commit an npm `package-lock.json`.
 
-Migrating off GitHub Pages to `deltav.cc` on Cloudflare: set `basePath` (and asset paths) to `''` or the production path, then rebuild.
+Migrating off GitHub Pages to `deltav.cc` on Cloudflare: set `basePath` (and `siteUrl`) in `site.config.json` to the production values (often `basePath: ""`), then rebuild.
 
 ---
 
 ## Contributing
 
+See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full guide (pnpm-only, required checks, content vs code).
+
+Summary:
+
 1. Fork or branch from `main`
 2. Keep marketing copy changes intentional — prefer structure, a11y, and polish unless content is requested
-3. Run `pnpm lint` / smoke-check critical routes before opening a PR
+3. Run `pnpm check` before opening a PR
 4. Respect [ATTRIBUTION.md](./ATTRIBUTION.md) for third-party assets
+5. Security reports: [SECURITY.md](./SECURITY.md)
 
-Issues and PRs welcome on the GitHub repo.
+Issues and PRs welcome. Code of conduct: [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ---
 
