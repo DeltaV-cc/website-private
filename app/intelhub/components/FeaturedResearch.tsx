@@ -38,14 +38,14 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
   const [idx, setIdx] = useState(0);
   const featured = articles.slice(0, 6);
 
-  if (!featured.length) return null;
-
-  // Auto-rotate every 12 seconds
+  // Auto-rotate every 12 seconds (hooks must run before any early return)
   useEffect(() => {
     if (featured.length < 2) return;
     const t = setInterval(() => setIdx(i => (i + 1) % Math.min(featured.length, 4)), 12000);
     return () => clearInterval(t);
   }, [featured.length]);
+
+  if (!featured.length) return null;
 
   const carousel = featured.slice(0, 4);
 

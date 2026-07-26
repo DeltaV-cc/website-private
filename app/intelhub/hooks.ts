@@ -4,10 +4,11 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { SITE_URL } from '@/lib/site';
 import { Item, PatentsData, IntelData } from './types';
 
-// Fetch from canonical GitHub Pages URL (bypasses domain/CNAME issues)
-const BASE = 'https://deltav-cc.github.io/website-private';
+// Canonical public origin (includes basePath). See site.config.json.
+const BASE = SITE_URL;
 
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [

@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { siteAssetUrl } from '@/lib/site';
 
 export default function WeeklyDeltaFinancialBriefJuly21() {
   const [artemisBody, setArtemisBody] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('https://deltav-cc.github.io/website-private/data/artemis-newsletter.json')
+    fetch(siteAssetUrl('/data/artemis-newsletter.json'))
       .then(r => r.json())
       .then(d => setArtemisBody(d?.latest_weekly?.body_html || null))
       .catch(() => {})

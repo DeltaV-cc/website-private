@@ -1,6 +1,6 @@
 # Static images
 
-Served under `/website-private/images/` (see `basePath` in `next.config.ts`).
+Served under `{basePath}/images/` (see `site.config.json` / `next.config.ts`).
 
 ## Attribution required
 

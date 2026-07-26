@@ -1,0 +1,6 @@
+{
+  "basePath": "/website-private",
+  "siteUrl": "https://deltav-cc.github.io/website-private",
+  "repoUrl": "https://github.com/DeltaV-cc/website-private",
+  "notes": "Single source of truth for GitHub Pages project path. Keep values in sync with production deploy. Prefer importing via lib/site.ts (TS) or scripts/_site_config.py (Python)."
+}

@@ -4,6 +4,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { siteAssetUrl } from '@/lib/site';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
 import FeaturedResearch from './FeaturedResearch';
@@ -50,7 +51,7 @@ export default function MacroDashboard({
   const [calendar, setCalendar] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`https://deltav-cc.github.io/website-private/data/macro-calendar.json`).then(r => r.json()).then(d => {
+    fetch(siteAssetUrl('/data/macro-calendar.json')).then(r => r.json()).then(d => {
       if (d?.events) setCalendar(d.events);
     }).catch(() => {});
   }, []);

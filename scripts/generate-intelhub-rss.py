@@ -5,16 +5,20 @@ Feeds: master, picks, ai, crypto, cybersec, macro, hardware, science
 
 Improved categorization: sharper keywords, title-weighting, source hints, noise filters.
 """
-import json, re, os, xml.etree.ElementTree as ET
+import json, re, os, sys, xml.etree.ElementTree as ET
+from pathlib import Path
 from xml.sax.saxutils import escape
 from datetime import datetime, timezone
 from collections import Counter
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _site_config import site_url
 
 PUBLIC_DIR = "public"
 DATA_DIR = os.path.join(PUBLIC_DIR, "data")
 FEED_DIR = os.path.join(PUBLIC_DIR, "intelhub", "feed")
 
-SITE_URL = "https://deltav-cc.github.io/website-private"
+SITE_URL = site_url() or "https://deltav-cc.github.io/website-private"
 
 # Source-based category hints — if the source matches, boost that category
 SOURCE_HINTS = {
