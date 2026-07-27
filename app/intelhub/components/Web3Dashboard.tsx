@@ -1,10 +1,10 @@
 /* IntelHub — Web3 Dashboard v5
-   CEX removed. Volume chart removed. CryptoLeaders removed.
-   Added: DEX Dominance %, REV, Polymarket, Stablecoins by chain */
+   CEX removed. Prediction markets removed. CryptoLeaders removed.
+   DEX Dominance %, REV, Stablecoins by chain, ETF flows */
 'use client';
 
 import { useState } from 'react';
-import { BarChart, CategoryBox, SkeletonPrice, SkeletonBlock, fmtCurrency, fmtCompact } from './Shared';
+import { CategoryBox, SkeletonBlock, fmtCurrency, fmtCompact, PanelMeta } from './Shared';
 import CryptoFrontierSignals from './CryptoFrontierSignals';
 import { useChartHover, formatDate, formatValue, ChartPoint } from './ChartHover';
 import AnimatedValue from './AnimatedValue';
@@ -49,33 +49,6 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </div>
-      </div>
-    </div>
-  );
-}
-
-/* -- Polymarket Panel -- */
-function PolymarketPanel({ markets }: { markets: any[] }) {
-  if (!markets || markets.length === 0) return null;
-  return (
-    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--accent-pink)] uppercase tracking-[1.5px] font-bold">Polymarket</span>
-          <span className="text-[9px] text-[var(--text-disabled)]">via Polymarket API</span>
-        </div>
-        <span className="text-[10px] text-[var(--text-muted)]">{markets.length} markets</span>
-      </div>
-      <div className="space-y-2">
-        {markets.slice(0, 6).map((m: any, i: number) => (
-          <a key={i} href={`https://polymarket.com/event/${m.slug || ''}`} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-between text-xs hover:bg-white/[0.02] px-1 py-1 rounded transition-colors group">
-            <span className="text-[var(--text-tertiary)] truncate max-w-[70%] group-hover:text-[var(--text-secondary)]">{m.title || m.question}</span>
-            <span className="text-[var(--text-secondary)] tabular-nums shrink-0">
-              {m.volume ? fmtCompact(m.volume) : m.liquidity ? fmtCompact(m.liquidity) : ''}
-            </span>
-          </a>
-        ))}
       </div>
     </div>
   );
@@ -204,14 +177,9 @@ export default function Web3Dashboard({
   const volHover = useChartHover(volHistory as ChartPoint[]);
   const [chainView, setChainView] = useState<'tvl' | 'dominance'>('tvl');
 
-  // DEX dominance — compute % share from existing data
   const totalVol = dd?.totalVolume24h || 0;
-  const dexDominance = ((dd?.volume || []) as any[]).map((v: any) => ({
-    ...v,
-    dominance: totalVol > 0 ? (v.volume24h / totalVol * 100) : 0,
-  })).sort((a: any, b: any) => b.volume24h - a.volume24h);
 
-  // Revenue data
+  // Revenue data (chain-level Llama series)
   const revenue = (dd?.revenue || []) as any[];
 
   // Stablecoin chain breakdown from raw data
@@ -219,9 +187,77 @@ export default function Web3Dashboard({
 
   const fgColor = fgVal > 60 ? 'text-[var(--accent-green)]' : fgVal < 35 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-amber)]';
 
+  const etf = dd?.etfFlows;
+  const etfBtc = etf?.btc?.latest_total;
+  const etfEth = etf?.eth?.latest_total;
+  const etfCombined =
+    typeof etfBtc === 'number' || typeof etfEth === 'number'
+      ? (typeof etfBtc === 'number' ? etfBtc : 0) + (typeof etfEth === 'number' ? etfEth : 0)
+      : null;
+
+  const movers = dd?.chainMovers;
+  const moverGainers = movers?.gainers || [];
+  const moverLosers = movers?.losers || [];
+
   return (
     <div className="space-y-5">
       <CryptoFrontierSignals items={items} ts={ts} />
+
+      {/* -- Hero KPIs (same surface language, scannable desk strip) -- */}
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+        <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
+          <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Desk snapshot</span>
+          <PanelMeta source="CMC · alt.me · Farside" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Market cap</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+              {mcap ? fmtBig(mcap) : '···'}
+            </div>
+            {!!mcapChg && (
+              <div className={`text-[10px] font-semibold ${mcapChg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                {mcapChg >= 0 ? '+' : ''}{mcapChg.toFixed(1)}% 24h
+              </div>
+            )}
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">24h volume</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+              {cmc.total_volume ? fmtBig(cmc.total_volume) : '···'}
+            </div>
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC.D</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+              {cmc.btc_dominance != null ? `${cmc.btc_dominance.toFixed(1)}%` : '···'}
+            </div>
+            <div className="text-[10px] text-[var(--text-muted)]">
+              ETH {cmc.eth_dominance != null ? `${cmc.eth_dominance.toFixed(1)}%` : '—'}
+            </div>
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Fear & Greed</div>
+            <div className={`text-sm font-bold tabular-nums ${fgColor}`}>{fgVal || '···'}</div>
+            <div className={`text-[10px] ${fgColor}/70`}>{fgLabel || '—'}</div>
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">ETF net (BTC+ETH)</div>
+            <div className={`text-sm font-bold tabular-nums ${
+              etfCombined == null ? 'text-[var(--text-disabled)]' :
+              etfCombined >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'
+            }`}>
+              {etfCombined == null ? '···' : `${etfCombined >= 0 ? '+' : ''}${etfCombined.toFixed(1)}M`}
+            </div>
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">DEX 24h</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+              {totalVol ? fmtBig(totalVol) : '···'}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* -- Artemis Weekly Newsletter -- */}
       <ArtemisWeeklyCard dd={dd} />
@@ -406,8 +442,8 @@ export default function Web3Dashboard({
         {/* REV — Protocol Revenue */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="flex items-center justify-between mb-4">
-            <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Revenue (REV · 24h)</div>
-            <span className="text-[9px] text-[var(--text-disabled)]">via DeFi Llama</span>
+            <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Revenue by chain (REV · 24h)</div>
+            <span className="text-[9px] text-[var(--text-disabled)]">via DeFi Llama · chain level</span>
           </div>
           <div className="space-y-2">
             {revenue.length > 0 ? (
@@ -467,19 +503,20 @@ export default function Web3Dashboard({
         </div>
       </div>
 
-      {/* -- Fees + Polymarket -- */}
+      {/* -- Fees + chain movers -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Fees 24h */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold mb-3">Fees (24h)</div>
-          <div className="text-[9px] text-[var(--text-disabled)] -mt-2 mb-3">via DeFi Llama</div>
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Chain fees (24h)</div>
+            <PanelMeta source="DeFi Llama" />
+          </div>
           <div className="space-y-1.5">
             {(dd?.fees || []).length > 0 ? (
               (dd.fees as any[]).slice(0, 6).map((f: any, i: number) => {
                 const slug = f.name.toLowerCase().replace(/\s+/g, '-');
                 return (
                 <div key={i} className="flex justify-between text-xs hover:bg-white/[0.02] px-1 py-0.5 rounded transition-colors">
-                  <a href={`https://defillama.com/protocol/${slug}`} target="_blank" rel="noopener noreferrer"
+                  <a href={`https://defillama.com/chain/${slug}`} target="_blank" rel="noopener noreferrer"
                     className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors">{f.name}</a>
                   <span className="text-[var(--text-secondary)] tabular-nums">{fmt(f.fees24h)}</span>
                 </div>
@@ -491,8 +528,66 @@ export default function Web3Dashboard({
           </div>
         </div>
 
-        {/* Polymarket */}
-        <PolymarketPanel markets={dd?.polymarket || []} />
+        {(moverGainers.length > 0 || moverLosers.length > 0) ? (
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+            <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
+              <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
+              <PanelMeta source="pipeline snapshot" />
+            </div>
+            <div className="p-4 grid grid-cols-2 gap-3 text-xs">
+              <div>
+                <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
+                {moverGainers.slice(0, 5).map((c: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                    <span className="text-[var(--accent-green)] tabular-nums font-medium">
+                      {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
+                {moverLosers.slice(0, 5).map((c: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                    <span className="text-[var(--accent-red)] tabular-nums font-medium">
+                      {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Revenue (REV · 24h)</div>
+              <PanelMeta source="DeFi Llama · chain level" />
+            </div>
+            <div className="space-y-2">
+              {revenue.length > 0 ? revenue.slice(0, 6).map((r: any, i: number) => {
+                const maxRev = revenue[0]?.revenue24h || 1;
+                const pct = ((r.revenue24h / maxRev) * 100).toFixed(0);
+                return (
+                  <div key={i} className="flex items-center gap-2.5 text-xs">
+                    <span className="w-5 tabular-nums text-[var(--text-disabled)] text-right flex-shrink-0">#{i + 1}</span>
+                    <span className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0">{r.name}</span>
+                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-green)]/60 to-[var(--accent-green)]/20"
+                        style={{ width: `${pct}%` }} />
+                    </div>
+                    <span className="w-20 text-right tabular-nums text-[var(--text-secondary)] flex-shrink-0 text-[10px] font-medium">
+                      {fmtCompact(r.revenue24h)}
+                    </span>
+                  </div>
+                );
+              }) : (
+                <div className="text-[var(--text-disabled)] text-xs italic py-4 text-center">Revenue data loading...</div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* -- DEX × Chain Matrix -- */}

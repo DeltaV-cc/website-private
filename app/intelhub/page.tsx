@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useIntelData, BCOL, TC } from './hooks';
 import PulseFeed from './components/PulseFeed';
 import MacroDashboard from './components/MacroDashboard';
@@ -16,20 +16,48 @@ const CATS_FOR: Record<string, string[]> = {
   infosec: ['cybersec'],
 };
 
+const VALID_TABS = ['macro', 'ai', 'web3', 'infosec'] as const;
+type TabId = (typeof VALID_TABS)[number];
+
+function readTabFromUrl(): TabId {
+  if (typeof window === 'undefined') return 'macro';
+  try {
+    const t = new URLSearchParams(window.location.search).get('tab');
+    if (t && (VALID_TABS as readonly string[]).includes(t)) return t as TabId;
+  } catch { /* */ }
+  return 'macro';
+}
+
 export default function IntelHubPage() {
-  const [active, setActive] = useState<string>('macro');
+  const [active, setActiveState] = useState<string>('macro');
   const [searchQuery, setSearchQuery] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
+  const [pulseScope, setPulseScope] = useState<'all' | 'tab'>('tab');
+
+  // Hydrate tab from ?tab= without SSR mismatch
+  useEffect(() => {
+    setActiveState(readTabFromUrl());
+  }, []);
+
+  const setActive = useCallback((tab: string) => {
+    setActiveState(tab);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', tab);
+      window.history.replaceState({}, '', url.toString());
+    } catch { /* */ }
+  }, []);
+
   const {
     items, loading, patents, dd, dd2, forex, watchlist,
     catBoxes, tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN,
-    TC, BCOL, SOCMED_SOURCES, lastFetch,
-  } = useIntelData();
+    TC, BCOL, lastFetch, infosecMeta,
+  } = useIntelData(active);
 
   // Filter items by active tab's categories — strict: exclude conflicting tags
   const tabKws = CATS_FOR[active] || [];
   const activeCatBox = catBoxes.filter((c: any) => tabKws.includes(c.id));
-  const activeKwSet = useMemo(() => new Set(activeCatBox.flatMap((c: any) => c.kw)), [active]);
+  const activeKwSet = useMemo(() => new Set(activeCatBox.flatMap((c: any) => c.kw)), [activeCatBox]);
   // Tags that should never appear outside their home tab
   const TAB_EXCLUSIVE: Record<string, string[]> = {
     macro: ['crypto', 'cybersec'],
@@ -41,11 +69,8 @@ export default function IntelHubPage() {
   const filteredItems = useMemo(() =>
     items.filter((it: any) => {
       if (activeKwSet.size === 0) return true;
-      // Block items tagged for other exclusive tabs
       if (it.tag && excludedTags.includes(it.tag)) return false;
-      // Include if tag matches active categories
       if (it.tag && tabKws.includes(it.tag)) return true;
-      // Include if keyword match passes (title/summary)
       return activeCatBox.some((c: any) =>
         c.kw.some((k: string) => (it.title + ' ' + (it.summary || '')).toLowerCase().includes(k))
       );
@@ -54,15 +79,15 @@ export default function IntelHubPage() {
   // Per-tab signal counts for badges
   const tabCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    for (const tab of ['macro', 'ai', 'web3', 'infosec']) {
-      const tabKws = CATS_FOR[tab] || [];
-      const catBoxesList = catBoxes.filter((c: any) => tabKws.includes(c.id));
+    for (const tab of VALID_TABS) {
+      const tKws = CATS_FOR[tab] || [];
+      const catBoxesList = catBoxes.filter((c: any) => tKws.includes(c.id));
       const kwSet = new Set(catBoxesList.flatMap((c: any) => c.kw));
       const excluded = TAB_EXCLUSIVE[tab] || [];
       counts[tab] = items.filter((it: any) => {
         if (kwSet.size === 0) return true;
         if (it.tag && excluded.includes(it.tag)) return false;
-        if (it.tag && tabKws.includes(it.tag)) return true;
+        if (it.tag && tKws.includes(it.tag)) return true;
         return catBoxesList.some((c: any) =>
           c.kw.some((k: string) => (it.title + ' ' + (it.summary || '')).toLowerCase().includes(k))
         );
@@ -71,7 +96,7 @@ export default function IntelHubPage() {
     return counts;
   }, [items, catBoxes]);
 
-  // Keyboard shortcuts: 1=Macro, 2=AI, 3=Web3 (skip when input focused)
+  // Keyboard shortcuts: 1=Macro, 2=AI, 3=Web3, 4=Infosec
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
@@ -83,9 +108,8 @@ export default function IntelHubPage() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, []);
+  }, [setActive]);
 
-  // Freshness dot color
   const freshnessDot = useMemo(() => {
     if (!lastFetch) return null;
     const mins = (Date.now() - lastFetch.getTime()) / 60000;
@@ -93,12 +117,12 @@ export default function IntelHubPage() {
     return 'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.6)]';
   }, [lastFetch]);
 
-  const tabs = ['macro', 'ai', 'web3', 'infosec'] as const;
+  const tabs = VALID_TABS;
 
-  // Pulse search + source filter
   const uniqueSources = useMemo(() => {
+    const base = pulseScope === 'tab' ? filteredItems : items;
     const srcs = new Map<string, number>();
-    items.forEach(it => {
+    base.forEach(it => {
       const key = (it.source || '').replace(/^(x:|X:)\s*/, '').trim();
       if (key) srcs.set(key, (srcs.get(key) || 0) + 1);
     });
@@ -106,10 +130,10 @@ export default function IntelHubPage() {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 12)
       .map(([name, count]) => ({ name, count }));
-  }, [items]);
+  }, [items, filteredItems, pulseScope]);
 
   const pulseItems = useMemo(() => {
-    let filtered = items;
+    let filtered = pulseScope === 'tab' ? filteredItems : items;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(it =>
@@ -124,7 +148,7 @@ export default function IntelHubPage() {
       );
     }
     return filtered;
-  }, [items, searchQuery, sourceFilter]);
+  }, [items, filteredItems, pulseScope, searchQuery, sourceFilter]);
 
   return (
     <div className="intelhub-shell min-h-screen text-[#ededed]">
@@ -132,7 +156,21 @@ export default function IntelHubPage() {
       <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl">
         <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-6 flex items-end justify-between relative gap-8">
           <div>
-            <div className="text-[10px] font-mono tracking-[.2em] uppercase text-[var(--accent-cyan)] mb-3">Field intelligence / live surface</div>
+            <div className="text-[10px] font-mono tracking-[.2em] uppercase text-[var(--accent-cyan)] mb-3 flex items-center gap-2">
+              Field intelligence / live surface
+              {freshnessDot && (
+                <span
+                  className={`inline-block w-1.5 h-1.5 rounded-full ${freshnessDot}`}
+                  title={lastFetch ? `Signals updated ${ago(lastFetch.toISOString())} ago` : 'Loading'}
+                  aria-hidden
+                />
+              )}
+              {lastFetch && (
+                <span className="normal-case tracking-normal text-[#ededed]/25 font-sans">
+                  · feeds {ago(lastFetch.toISOString()) === 'now' ? 'just now' : `${ago(lastFetch.toISOString())} ago`}
+                </span>
+              )}
+            </div>
             <h1 className="text-4xl md:text-5xl font-semibold tracking-[-.06em] text-[var(--text-primary)]">
               IntelHub
             </h1>
@@ -161,6 +199,24 @@ export default function IntelHubPage() {
             {searchQuery && (
               <button onClick={() => setSearchQuery('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-[var(--text-disabled)] hover:text-[var(--text-primary)]">✕</button>
             )}
+          </div>
+          <div className="flex gap-0.5 bg-[var(--bg-deep)] rounded-lg p-0.5 border border-[var(--border-default)] text-[10px]">
+            <button
+              type="button"
+              onClick={() => setPulseScope('tab')}
+              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'tab' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+              title="Pulse follows active dashboard tab"
+            >
+              Tab pulse
+            </button>
+            <button
+              type="button"
+              onClick={() => setPulseScope('all')}
+              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'all' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+              title="Show all categories in the pulse"
+            >
+              All signals
+            </button>
           </div>
           <div className="flex items-center gap-1.5 flex-wrap">
             {uniqueSources.map(s => (
@@ -204,7 +260,7 @@ export default function IntelHubPage() {
           {active === 'macro' && <MacroDashboard items={items} dd={dd} patents={patents} forex={forex} catBoxes={catBoxes} TC={TC} ago={ago} ts={ts} />}
           {active === 'ai' && <AIDashboard items={items} dd={dd} patents={patents} catBoxes={catBoxes} TC={TC} ago={ago} ts={ts} />}
           {active === 'web3' && <Web3Dashboard dd={dd} catBoxes={catBoxes} TC={TC} ago={ago} fmt={fmt} fmtN={fmtN} items={items} ts={ts} />}
-          {active === 'infosec' && <InfosecDashboard dd2={dd2} watchlist={watchlist} catBoxes={catBoxes} TC={TC} ago={ago} />}
+          {active === 'infosec' && <InfosecDashboard dd2={dd2} watchlist={watchlist} catBoxes={catBoxes} TC={TC} ago={ago} infosecMeta={infosecMeta} />}
         </div>
       </div>
     </div>

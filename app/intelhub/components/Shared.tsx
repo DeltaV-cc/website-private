@@ -175,6 +175,36 @@ export function CategoryBox({
   );
 }
 
+/** Compact source / freshness chip — matches existing muted meta typography */
+export function PanelMeta({
+  source,
+  updated,
+  note,
+}: {
+  source?: string;
+  updated?: string | null;
+  note?: string;
+}) {
+  if (!source && !updated && !note) return null;
+  return (
+    <div className="flex items-center gap-2 flex-wrap text-[9px] text-[var(--text-disabled)]">
+      {source && <span>via {source}</span>}
+      {updated && (
+        <>
+          {source && <span className="opacity-40">·</span>}
+          <span>Updated {updated}</span>
+        </>
+      )}
+      {note && (
+        <>
+          {(source || updated) && <span className="opacity-40">·</span>}
+          <span className="text-[var(--accent-amber)]/80">{note}</span>
+        </>
+      )}
+    </div>
+  );
+}
+
 /* -- helpers -- */
 export function fmtCompact(n: number | null | undefined): string {
   if (n == null || isNaN(n)) return '...';
