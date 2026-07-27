@@ -13,7 +13,7 @@ const BASE = SITE_URL;
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [
   { id: 'ai', label: 'AI/ML', color: 'border-l-blue-400', accent: 'text-blue-400', bg: 'bg-blue-500/5', kw: ['gpt', 'llm', 'transformer', 'neural', 'deep learning', 'machine learning', 'hugging face', 'agent', 'inference', 'embedding', 'prompt engineering', 'fine.tun', 'rag', 'vector database', 'multimodal', 'diffusion model', 'gan', 'lora', 'qlora', 'rlhf', 'ai alignment', 'artificial intelligence', 'openai', 'anthropic', 'claude', 'deepseek', 'mistral', 'gemini', 'cohere', 'copilot', 'chatbot', 'reasoning model', 'sora', 'attention mechanism', 'model card', 'frontier model', 'foundation model', 'large language model', 'mixture of experts', 'moe', 'text-to-image', 'text-to-video', 'image generation', 'speech recognition', 'whisper', 'wav2vec', 'tokenizer', 'quantization', 'gguf', 'onnx', 'safetensors', 'modeltraining', 'neurips', 'icml', 'iclr', 'cvpr'] },
-  { id: 'crypto', label: 'Crypto', color: 'border-l-yellow-400', accent: 'text-yellow-400', bg: 'bg-yellow-500/5', kw: ['btc', 'eth', 'ethereum', 'bitcoin', 'defi', 'web3', 'blockchain', 'crypto', 'algorithmic', 'l2', 'rollup', 'zk', 'zero.knowledge', 'evm', 'solidity', 'smart contract', 'dapp', 'nft', 'dao', 'dex', 'liquidity', 'staking', 'yield', 'hashrate', 'consensus', 'proof.of', 'self.custody', 'non.custodial', 'polymarket', 'perp', 'orderbook', 'validator', 'solana', 'airdrop', 'lending', 'borrow', 'swap', 'pool', 'farm', 'cex', 'multisig', 'tokenomics', 'tvl', 'mev', 'circulating supply', 'market cap'] },
+  { id: 'crypto', label: 'Crypto', color: 'border-l-yellow-400', accent: 'text-yellow-400', bg: 'bg-yellow-500/5', kw: ['btc', 'eth', 'ethereum', 'bitcoin', 'defi', 'web3', 'blockchain', 'crypto', 'algorithmic', 'l2', 'rollup', 'zk', 'zero.knowledge', 'evm', 'solidity', 'smart contract', 'dapp', 'nft', 'dao', 'dex', 'liquidity', 'staking', 'yield', 'hashrate', 'consensus', 'proof.of', 'self.custody', 'non.custodial', 'perp', 'orderbook', 'validator', 'solana', 'airdrop', 'lending', 'borrow', 'swap', 'pool', 'farm', 'cex', 'multisig', 'tokenomics', 'tvl', 'mev', 'circulating supply', 'market cap'] },
   { id: 'cybersec', label: 'Cybersec', color: 'border-l-orange-400', accent: 'text-orange-400', bg: 'bg-orange-500/5', kw: ['cve', 'exploit', '0day', 'zero.day', 'patch', 'malware', 'ransomware', 'phishing', 'breach', 'vulnerability', 'opsec', 'privacy', 'encryption', 'backdoor', 'cisa', 'nvd', 'threat intelligence', 'intrusion', 'penetration test', 'red team', 'supply chain attack', 'sandbox', 'hardening', 'firewall', 'infosec', 'hibp', 'pwned', 'soc', 'incident response', 'c2', 'credential stuffing', 'social engineering'] },
   { id: 'macro', label: 'Macro', color: 'border-l-amber-400', accent: 'text-amber-400', bg: 'bg-amber-500/5', kw: ['fomc', 'inflation', 'gdp', 'central bank', 'federal reserve', 'fed', 'monetary policy', 'fiscal policy', 'treasury', 'bond', 'yield curve', 'commodit', 'gold', 'oil', 'forex', 'cpi', 'ppi', 'unemployment', 'econom', 'tariff', 'sanction', 'interest rate', 'recession', 'debt ceiling', 'geopolitic', 'trade war', 'policy', 'regulation', 'sovereign wealth', 'equity', 'stock market', 'dollar', 'yuan', 'euro', 'yen', 'cbdc', 'digital currency', 'war', 'conflict', 'military', 'defense', 'weapon', 'technology war', 'chip war', 'trade dispute', 'supply chain', 'reshoring', 'invention', 'breakthrough', 'discovery', 'innovation', 'r&d', 'patent', 'startup', 'fundraising', 'venture capital', 'ipo', 'merger', 'acquisition', 'big tech', 'apple', 'google', 'microsoft', 'amazon', 'meta', 'nvidia', 'ceo', 'executive', 'leadership', 'board', 'restructuring', 'layoff', 'energy market', 'copper', 'lithium', 'rare earth', 'imf', 'world bank', 'bis', 'ecb', 'pboc', 'bank of japan', 'stimulus', 'quantitative easing', 'balance sheet', 'credit', 'liquidity', 'sovereign debt'] },
   { id: 'hardware', label: 'Hardware', color: 'border-l-green-400', accent: 'text-green-400', bg: 'bg-green-500/5', kw: ['nvidia', 'intel', 'amd', 'tsmc', 'samsung foundry', 'micron', 'asml', 'qualcomm', 'broadcom', 'arm chip', 'gpu', 'cpu', 'npu', 'tpu', 'fpga', 'asic', 'soc', 'h100', 'a100', 'b200', 'gh200', 'mi300', 'semiconductor', 'transistor', 'foundry', 'lithography', 'fabrication', 'wafer', 'finfet', 'gaa', 'nanometer', 'chiplet', 'packaging', 'interposer', 'hbm', 'ddr5', 'pcie gen', 'cxl', 'hpc', 'datacenter', 'supercomputer', 'server farm', 'processor architecture', 'chip design', 'next-gen chip', 'tape-out', 'silicon photonics', 'quantum computing', 'quantum processor', 'qubit', 'photonic chip', 'spintronic', 'neuromorphic', 'computing cluster'] },
@@ -40,7 +40,7 @@ const BCOL: Record<string, string> = {
 const SOURCE_HINTS: Record<string, string[]> = {
   // ── Crypto / Web3 ──
   cryptoquant: ['crypto'], lookonchain: ['crypto'], glassnode: ['crypto'], l2beat: ['crypto'],
-  defi: ['crypto'], polymarket: ['crypto'], coindesk: ['crypto'], cointelegraph: ['crypto'], theblock: ['crypto'],
+  defi: ['crypto'], coindesk: ['crypto'], cointelegraph: ['crypto'], theblock: ['crypto'],
   defillama: ['crypto'], santimentdata: ['crypto'], polymutex: ['crypto'],
   ki_young_ju: ['crypto'], nero_eth: ['crypto'], backthebunny: ['crypto'],
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
@@ -149,16 +149,13 @@ function getTag(title: string, summary?: string, source?: string): string {
   return best;
 }
 
-const PJ = ['nba', 'nfl', 'mlb', 'ufc', 'soccer', 'formula', 'grammy', 'oscar', 'celebrity', 'kardashian', 'super bowl', 'olympics', 'tiktok'];
 const JHN = [/^Ask HN:/i, /^Tell HN:/i, /^Show HN:/i, /Who is hiring/i];
 const XSOURCES = ['x:', 'nitter', 'twitter'];
 function rel(it: { title: string; source: string }) {
-  if (it.source?.toLowerCase().includes('polymarket')) {
-    const t = it.title.toLowerCase();
-    if (PJ.some(k => t.includes(k))) return false;
-    return true;
-  }
-  if (it.source?.toLowerCase().includes('hacker') || it.source?.toLowerCase().includes('y combinator'))
+  // Prediction markets deliberately excluded from IntelHub surfaces for now
+  const src = (it.source || '').toLowerCase();
+  if (src.includes('polymarket') || src.includes('kalshi') || src.includes('predictit')) return false;
+  if (src.includes('hacker') || src.includes('y combinator'))
     return !JHN.some(p => p.test(it.title));
   return true;
 }
@@ -182,7 +179,7 @@ const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
   }
 };
 
-export function useIntelData() {
+export function useIntelData(activeTab: string = 'macro') {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [patents, setPatents] = useState<PatentsData | null>(null);
@@ -191,6 +188,12 @@ export function useIntelData() {
   const [dd2, setDd2] = useState<any>(null);
   const [forex, setForex] = useState<any>(null);
   const [lastFetch, setLastFetch] = useState<Date | null>(null);
+  const [infosecMeta, setInfosecMeta] = useState<{ source: 'live' | 'snapshot' | 'mixed' | 'empty'; updatedAt: string | null }>({
+    source: 'empty',
+    updatedAt: null,
+  });
+  const infosecLiveOnce = useRef(false);
+  const web3LiveOnce = useRef(false);
 
   const loadAll = useCallback(async () => {
     try {
@@ -213,8 +216,10 @@ export function useIntelData() {
         }),
         fetchJson(`${BASE}/data/cybersec-watchlist.json`).then((wl) => {
           if (Array.isArray(wl)) {
+            // Prefer non-expired; if all expired, still surface items so the panel is useful
             const now = Date.now();
-            setWatchlist(wl.filter((x: any) => new Date(x.expires).getTime() > now));
+            const active = wl.filter((x: any) => !x.expires || new Date(x.expires).getTime() > now);
+            setWatchlist(active.length ? active : wl.slice(0, 8));
           }
         }),
         fetchJson(`${BASE}/data/patents.json`).then((d) => { if (d) setPatents(d); }),
@@ -242,20 +247,34 @@ export function useIntelData() {
       fetchJson(`${BASE}/data/hf.json`).then((d) => {
         if (d) merge({ ...(d.models ? { hfModels: d.models } : {}), ...(d.spaces ? { hfSpaces: d.spaces } : {}) });
       }),
-      fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => { if (d) merge({ arenaLB: d }); }),
+      fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
+        if (!d) return;
+        // Normalize { models, updated } or raw array for ArenaLeaderboard
+        const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
+        merge({ arenaLB: models, arenaUpdated: d.updated || null });
+      }),
       fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
       fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
       fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
       fetchJson(`${BASE}/data/dex-matrix.json`).then((d) => { if (d) merge({ dexMatrix: d }); }),
       fetchJson(`${BASE}/data/dex-metrics.json`).then((d) => { if (d) merge({ dexMetrics: d }); }),
       fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
+      fetchJson(`${BASE}/data/chain-movers.json`).then((d) => { if (d) merge({ chainMovers: d }); }),
       // Pre-fetched forex baseline (loadForex may override with live Yahoo data)
       fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
+      // Infosec snapshot for fast first paint (live refresh on Infosec tab)
+      fetchJson(`${BASE}/data/infosec.json`).then((d) => {
+        if (!d) return;
+        setDd2((prev: any) => {
+          if (prev && (prev.kev?.length || prev.cves?.length || prev.breaches?.length)) return prev;
+          return { kev: d.kev || [], cves: d.cves || [], breaches: d.breaches || [] };
+        });
+        setInfosecMeta((m) => m.source === 'live' || m.source === 'mixed' ? m : { source: 'snapshot', updatedAt: d.updatedAt || null });
+      }),
     ];
 
-    // ── Live third-party APIs (CORS/rate-limit prone — never block the statics) ──
-    const liveTasks: Array<Promise<void>> = [
-      // TradFi Fear & Greed
+    // ── Core live APIs useful across Macro / AI / Web3 banners ──
+    const coreLive: Array<Promise<void>> = [
       fetchJson('https://feargreedchart.com/api/?action=history').then((history) => {
         if (Array.isArray(history) && history.length > 0) {
           const latest = history[history.length - 1];
@@ -264,9 +283,18 @@ export function useIntelData() {
           merge({ fearGreed: { score, rating, date: latest.date } });
         }
       }),
-      // Crypto Fear & Greed (alternative.me)
       fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
-      // TVL + dominance
+    ];
+
+    await Promise.allSettled([...staticTasks, ...coreLive]);
+  }, []);
+
+  /** Heavy DeFi Llama suite — first visit to Web3 (or Macro movers that share TVL). */
+  const loadWeb3Live = useCallback(async () => {
+    const merge = (patch: any) => {
+      if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
+    };
+    const liveTasks: Array<Promise<void>> = [
       fetchJson('https://api.llama.fi/v2/chains').then((chains) => {
         if (!Array.isArray(chains)) return;
         const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
@@ -276,10 +304,8 @@ export function useIntelData() {
           dominance: sorted.slice(0, 5).map((c: any) => ({ name: c.name, pct: ((c.tvl / total) * 100).toFixed(1) + '%' })),
         });
       }),
-      // DEX volume
       fetchJson('https://api.llama.fi/overview/dexs?dataType=dailyVolume').then((d) => {
         if (!d) return;
-        // Use totalDataChartBreakdown (last entry) since breakdown24h is null in v2
         const chart = d.totalDataChartBreakdown;
         const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
         const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
@@ -295,7 +321,6 @@ export function useIntelData() {
           : volume.map((v: any) => ({ ...v, dominance: 0 }));
         merge({ totalVolume24h: total24h, volume, dexDominance });
       }),
-      // Fees
       fetchJson('https://api.llama.fi/overview/fees?dataType=dailyFees').then((d) => {
         if (!d) return;
         const chart = d.totalDataChartBreakdown;
@@ -309,7 +334,6 @@ export function useIntelData() {
         }
         merge({ fees });
       }),
-      // Revenue (protocol fees to treasuries / holders)
       fetchJson('https://api.llama.fi/overview/fees?dataType=dailyRevenue').then((d) => {
         if (!d) return;
         const chart = d.totalDataChartBreakdown;
@@ -323,7 +347,6 @@ export function useIntelData() {
         }
         merge({ revenue });
       }),
-      // Stablecoins
       fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false').then((d) => {
         if (!d) return;
         const peggedAssets = d.peggedAssets || [];
@@ -346,34 +369,33 @@ export function useIntelData() {
           stablecoinChains,
         });
       }),
-      // Polymarket
-      fetchJson('https://gamma-api.polymarket.com/events?limit=50&active=true&closed=false').then((events) => {
-        if (!Array.isArray(events)) return;
-        const keep = ['crypto', 'bitcoin', 'ethereum', 'solana', 'defi', 'macro', 'fed', 'inflation', 'rate', 'gdp', 'tariff', 'sec', 'regulation', 'treasury', 'election', 'war', 'oil', 'energy', 'ai'];
-        const junk = ['nba', 'nfl', 'mlb', 'ufc', 'soccer', 'formula', 'grammy', 'oscar', 'celebrity', 'rihanna'];
-        merge({
-          polymarket: events.filter((e: any) => {
-            const t = (e.title || '').toLowerCase();
-            return !junk.some(k => t.includes(k)) && keep.some(k => t.includes(k));
-          }).slice(0, 8),
-        });
-      }),
     ];
-
-    await Promise.allSettled([...staticTasks, ...liveTasks]);
+    await Promise.allSettled(liveTasks);
   }, []);
 
   const loadInfosec = useCallback(async () => {
     const result: any = { kev: [], cves: [], breaches: [] };
+    let liveHits = 0;
     await Promise.allSettled([
       fetchJson(proxy('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json')).then((d) => {
         if (d) {
-          result.kev = (d.vulnerabilities || []).slice(0, 6).map((v: any) => ({
-            cve: v.cveID, product: v.product, vendor: v.vendorProject, name: v.vulnerabilityName, dateAdded: v.dateAdded, dueDate: v.dueDate,
+          // Prefer recently added KEV; keep 12 for filtering in UI
+          const sorted = [...(d.vulnerabilities || [])].sort((a: any, b: any) =>
+            String(b.dateAdded || '').localeCompare(String(a.dateAdded || ''))
+          );
+          result.kev = sorted.slice(0, 12).map((v: any) => ({
+            cve: v.cveID,
+            product: v.product,
+            vendor: v.vendorProject,
+            name: v.vulnerabilityName,
+            dateAdded: v.dateAdded,
+            dueDate: v.dueDate,
+            knownRansomware: v.knownRansomwareCampaignUse || '',
           }));
+          if (result.kev.length) liveHits += 1;
         }
       }),
-      fetchJson(proxy('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=6')).then((d) => {
+      fetchJson(proxy('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=12')).then((d) => {
         if (d) {
           result.cves = (d.vulnerabilities || []).map((v: any) => {
             const cve = v.cve || {};
@@ -381,25 +403,39 @@ export function useIntelData() {
             const desc = (cve.descriptions || []).find((x: any) => x.lang === 'en');
             return { id: cve.id, severity: m.baseSeverity || 'N/A', score: m.baseScore || 0, description: (desc?.value || '').slice(0, 140), published: cve.published };
           });
+          if (result.cves.length) liveHits += 1;
         }
       }),
       fetchJson(proxy('https://haveibeenpwned.com/api/v3/breaches')).then((d) => {
         if (d) {
-          result.breaches = (Array.isArray(d) ? d : []).slice(0, 8).map((b: any) => ({
-            name: b.Name || b.Title, domain: b.Domain, date: b.BreachDate, count: b.PwnCount, data: (b.DataClasses || []).slice(0, 5).join(', '),
-          }));
+          const list = (Array.isArray(d) ? d : [])
+            .slice()
+            .sort((a: any, b: any) => String(b.BreachDate || '').localeCompare(String(a.BreachDate || '')))
+            .slice(0, 12)
+            .map((b: any) => ({
+              name: b.Name || b.Title, domain: b.Domain, date: b.BreachDate, count: b.PwnCount, data: (b.DataClasses || []).slice(0, 5).join(', '),
+            }));
+          result.breaches = list;
+          if (result.breaches.length) liveHits += 1;
         }
       }),
     ]);
+    let snapUpdated: string | null = null;
     if (!result.kev.length || !result.cves.length || !result.breaches.length) {
       const c = await fetchJson(`${BASE}/data/infosec.json`);
       if (c) {
+        snapUpdated = c.updatedAt || null;
         if (!result.kev.length) result.kev = c.kev || [];
         if (!result.cves.length) result.cves = c.cves || [];
         if (!result.breaches.length) result.breaches = c.breaches || [];
       }
     }
     setDd2(result);
+    const source =
+      liveHits === 3 ? 'live' :
+      liveHits === 0 ? (result.kev.length || result.cves.length || result.breaches.length ? 'snapshot' : 'empty') :
+      'mixed';
+    setInfosecMeta({ source, updatedAt: snapUpdated || new Date().toISOString() });
   }, []);
 
   const loadForex = useCallback(async () => {
@@ -449,16 +485,38 @@ export function useIntelData() {
     } catch { /* */ }
   }, []);
 
+  // Core data always
   useEffect(() => {
     const refresh = () => {
       if (document.visibilityState !== 'visible') return;
-      loadAll(); loadLive(); loadInfosec(); loadForex();
+      loadAll();
+      loadLive();
+      loadForex();
+      // Keep heavy tabs warm once visited
+      if (web3LiveOnce.current) loadWeb3Live();
+      if (infosecLiveOnce.current) loadInfosec();
     };
     refresh();
     const i = window.setInterval(refresh, 5 * 60_000);
     document.addEventListener('visibilitychange', refresh);
     return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refresh); };
-  }, [loadAll, loadLive, loadInfosec, loadForex]);
+  }, [loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec]);
+
+  // Lazy: first open of Web3 (or Macro for TVL movers) loads Llama suite
+  useEffect(() => {
+    if (activeTab === 'web3' || activeTab === 'macro') {
+      if (!web3LiveOnce.current) {
+        web3LiveOnce.current = true;
+        loadWeb3Live();
+      }
+    }
+    if (activeTab === 'infosec') {
+      if (!infosecLiveOnce.current) {
+        infosecLiveOnce.current = true;
+        loadInfosec();
+      }
+    }
+  }, [activeTab, loadWeb3Live, loadInfosec]);
 
   /* ---- Derived ---- */
   // Category → tags that don't belong (e.g. macro box shouldn't show crypto-tagged items)
@@ -562,6 +620,7 @@ export function useIntelData() {
     items: recentItems, loading, patents, dd, dd2, forex, watchlist,
     catBoxes, macroCats, infosecCats, web3Cats, aiCats, fgVal, fgLabel, totalVol,
     tabAccent, tabLabel, ts, ago, isNew, fmt, fmtN, TC, BCOL, SOCMED_SOURCES, lastFetch,
+    infosecMeta,
   };
 }
 

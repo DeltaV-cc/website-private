@@ -49,6 +49,7 @@ export interface KevEntry {
   name: string;
   dateAdded: string;
   dueDate: string;
+  knownRansomware?: string;
 }
 
 export interface CveEntry {

@@ -2,9 +2,9 @@
    Frontier Watch + Arena Leaderboard + AI/ML feeds */
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Item, PatentsData } from '../types';
-import { CategoryBox, fmtNum, fmtCompact, fmtCurrency } from './Shared';
+import { CategoryBox, fmtNum, fmtCompact, PanelMeta } from './Shared';
 import AIFrontierSignals from './AIFrontierSignals';
 import ArenaLeaderboard from './ArenaLeaderboard';
 import AnimatedValue from './AnimatedValue';
@@ -69,19 +69,38 @@ function FrontierWatch({ dd }: { dd: any }) {
   const spaces = (dd?.hfSpaces || []).map((s: any) => ({ ...s, type: 'space' }));
   let allItems = [...models, ...spaces];
 
-  if (filter === 'new') allItems = allItems.filter((x: any) => (x.downloads || 0) < 50000);
+  if (filter === 'new') {
+    // Prefer recency field when present; fall back to low-download heuristic
+    allItems = allItems.filter((x: any) => {
+      if (x.createdAt || x.created_at) {
+        const t = new Date(x.createdAt || x.created_at).getTime();
+        if (!isNaN(t)) return Date.now() - t < 30 * 86400000;
+      }
+      return (x.downloads || 0) < 50000;
+    });
+  }
   if (filter === 'downloads') allItems = [...allItems].sort((a: any, b: any) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 20);
-  if (filter === 'agent') allItems = allItems.filter((x: any) => (x.description || '').toLowerCase().includes('agent'));
-  if (filter === 'vision') allItems = allItems.filter((x: any) => (x.pipeline || '').toLowerCase().includes('image') || (x.description || '').toLowerCase().includes('vision'));
-  if (filter === 'moe') allItems = allItems.filter((x: any) => (x.description || '').toLowerCase().includes('moe'));
+  if (filter === 'agent') allItems = allItems.filter((x: any) => {
+    const blob = `${x.description || ''} ${x.pipeline || ''} ${x.name || ''}`.toLowerCase();
+    return blob.includes('agent') || blob.includes('tool');
+  });
+  if (filter === 'vision') allItems = allItems.filter((x: any) => {
+    const p = (x.pipeline || '').toLowerCase();
+    const blob = `${x.description || ''} ${x.name || ''}`.toLowerCase();
+    return p.includes('image') || p.includes('vision') || blob.includes('vision') || blob.includes('vlm');
+  });
+  if (filter === 'moe') allItems = allItems.filter((x: any) => {
+    const blob = `${x.description || ''} ${x.name || ''}`.toLowerCase();
+    return blob.includes('moe') || blob.includes('mixture of experts') || blob.includes('mixture-of-experts');
+  });
   const filtered = allItems.slice(0, 16);
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
         <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
-        <span className="text-[10px] text-[var(--text-muted)] shrink-0">Trending models & spaces • 24h</span>
-        <div className="flex gap-1 text-[10px] ml-auto">
+        <span className="text-[10px] text-[var(--text-muted)] shrink-0">Trending models & spaces · snapshot</span>
+        <div className="flex gap-1 text-[10px] ml-auto flex-wrap justify-end">
           {[
             { key: 'all', label: 'All' }, { key: 'new', label: 'New' }, { key: 'downloads', label: 'Popular' },
             { key: 'agent', label: 'Agent' }, { key: 'vision', label: 'Vision' }, { key: 'moe', label: 'MoE' },
@@ -129,28 +148,44 @@ export default function AIDashboard({
   catBoxes: any[]; TC: Record<string, string>;
   ago: (iso: string) => string; ts: (iso: string) => string;
 }) {
-  const aiCats = catBoxes.filter((c: any) => ['ai', 'hardware'].includes(c.id));
+  const aiCat = catBoxes.find((c: any) => c.id === 'ai');
+  const hwCat = catBoxes.find((c: any) => c.id === 'hardware');
   const totalModels = dd?.hfModels?.length || 0;
   const totalDownloads = (dd?.hfModels || []).reduce((s: number, m: any) => s + (m.downloads || 0), 0);
   const totalSpaces = dd?.hfSpaces?.length || 0;
+
+  // Lightweight "recent frontier" strip from AI signals with model-ish keywords
+  const frontierReleases = useMemo(() => {
+    const kws = ['release', 'launch', 'model', 'open-weight', 'open weight', 'checkpoint', 'weights', 'api'];
+    return (items || [])
+      .filter((it) => {
+        const blob = `${it.title} ${it.summary || ''}`.toLowerCase();
+        const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware';
+        return tagOk && kws.some((k) => blob.includes(k));
+      })
+      .slice(0, 6);
+  }, [items]);
 
   return (
     <div className="space-y-5">
       <AIFrontierSignals items={items} ts={ts} />
 
-      {/* -- HF Stats Banner -- */}
+      {/* -- HF Stats Banner — honest labels (snapshot, not global HF totals) -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
         {totalModels ? (
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">Total HuggingFace Models</div>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">Models in watchlist</div>
               <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
                 <AnimatedValue value={totalModels} format={(n: number) => n.toLocaleString()} className="tabular-nums" />
+              </div>
+              <div className="mt-1.5">
+                <PanelMeta source="Hugging Face snapshot" note="not global catalog size" />
               </div>
             </div>
             <div className="flex items-center gap-6">
               <div className="text-right">
-                <div className="text-[10px] text-[var(--text-muted)] uppercase">Total Downloads</div>
+                <div className="text-[10px] text-[var(--text-muted)] uppercase">Watchlist downloads</div>
                 <div className="text-lg font-bold tabular-nums text-[var(--accent-cyan)]">
                   <AnimatedValue value={totalDownloads} format={fmtBig} className="tabular-nums" />
                 </div>
@@ -169,13 +204,37 @@ export default function AIDashboard({
         )}
       </div>
 
+      {frontierReleases.length > 0 && (
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
+            <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Frontier releases</span>
+            <span className="text-[10px] text-[var(--text-muted)]">from AI signals · 7d window</span>
+          </div>
+          <div className="divide-y divide-white/[0.02]">
+            {frontierReleases.map((it, i) => (
+              <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors group">
+                <span className="text-[10px] text-[var(--text-muted)] tabular-nums w-14 shrink-0">{ago(it.published_at)}</span>
+                <span className="text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-1 flex-1">{it.title}</span>
+                <span className="text-[10px] text-[var(--text-disabled)] truncate max-w-[90px]">{it.source}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       <FrontierWatch dd={dd} />
-      <ArenaLeaderboard lb={dd?.arenaLB} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {aiCats.map((cat: any) => (
-          <CategoryBox key={cat.id} cat={cat} ago={ago} TC={TC} />
-        ))}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
+        {hwCat && <CategoryBox cat={hwCat} ago={ago} TC={TC} />}
       </div>
+
+      {aiCat && (
+        <div className="grid grid-cols-1 gap-5">
+          <CategoryBox cat={aiCat} ago={ago} TC={TC} />
+        </div>
+      )}
     </div>
   );
 }

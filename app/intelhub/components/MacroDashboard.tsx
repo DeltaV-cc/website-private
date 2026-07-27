@@ -8,7 +8,7 @@ import { siteAssetUrl } from '@/lib/site';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
 import FeaturedResearch from './FeaturedResearch';
-import { CategoryBox, fmtNum } from './Shared';
+import { CategoryBox, fmtNum, PanelMeta } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 
 /* -- Inline SVG Icons -- */
@@ -68,16 +68,99 @@ export default function MacroDashboard({
   const fgColor = fgVal <= 20 ? 'text-[var(--accent-red)]' : fgVal <= 40 ? 'text-[var(--accent-orange)]' 
     : fgVal <= 60 ? 'text-[var(--accent-amber)]' : fgVal <= 80 ? 'text-lime-400' : 'text-[var(--accent-green)]';
 
-  // Price formatter color
+  const cFG = dd?.cryptoFG?.data?.[0];
+  const cryptoFgVal = cFG ? Number(cFG.value) || 0 : 0;
+  const cryptoFgLabel = cFG?.value_classification || '';
+  const cryptoFgColor = cryptoFgVal > 60 ? 'text-[var(--accent-green)]' : cryptoFgVal < 35 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-amber)]';
+
+  const HIGH_IMPACT = /fomc|cpi|nfp|payroll|gdp|pce|jackson hole|rate decision|ecb|boj|ism|nonfarm/i;
+
+  const calendarGroups = (() => {
+    if (!calendar.length) return [] as { key: string; label: string; events: any[] }[];
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    const endToday = startOfToday.getTime() + 86400000;
+    const endWeek = startOfToday.getTime() + 7 * 86400000;
+    const groups: { key: string; label: string; events: any[] }[] = [
+      { key: 'today', label: 'Today', events: [] },
+      { key: 'week', label: 'Next 7 days', events: [] },
+      { key: 'later', label: 'Later', events: [] },
+    ];
+    for (const e of calendar) {
+      const t = new Date(e.date).getTime();
+      if (isNaN(t)) { groups[2].events.push(e); continue; }
+      if (t < endToday) groups[0].events.push(e);
+      else if (t < endWeek) groups[1].events.push(e);
+      else groups[2].events.push(e);
+    }
+    return groups.filter((g) => g.events.length > 0);
+  })();
+
   return (
     <div className="space-y-5">
       <MarketNewsTicker items={items} ts={ts} />
+
+      {/* -- Cross-asset risk strip (same tile language) -- */}
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+        <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.05] to-transparent">
+          <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Risk strip</span>
+          <PanelMeta source="indices · crypto · F&G" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">S&P 500</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{spx?.price ?? '···'}</div>
+            {spx?.changePct && (
+              <div className={`text-[10px] font-semibold ${spx.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{spx.changePct}</div>
+            )}
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Bitcoin</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+              {crypto?.btc_price != null ? `$${fmtNum(crypto.btc_price)}` : '···'}
+            </div>
+            {crypto?.btc_change_24h != null && (
+              <div className={`text-[10px] font-semibold ${crypto.btc_change_24h >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                {crypto.btc_change_24h >= 0 ? '+' : ''}{crypto.btc_change_24h.toFixed(1)}%
+              </div>
+            )}
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">US 10Y</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{dd?.us10y?.price ?? '···'}</div>
+            {dd?.us10y?.changePct && (
+              <div className={`text-[10px] font-semibold ${(dd.us10y.change ?? 0) >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{dd.us10y.changePct}</div>
+            )}
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Gold</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{dd?.gold?.price != null ? `$${dd.gold.price}` : '···'}</div>
+            {dd?.gold?.changePct && (
+              <div className={`text-[10px] font-semibold ${(dd.gold.change ?? 0) >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{dd.gold.changePct}</div>
+            )}
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Equity F&G</div>
+            <div className={`text-sm font-bold tabular-nums ${typeof stockFG.score === 'number' ? fgColor : 'text-[var(--text-disabled)]'}`}>
+              {typeof stockFG.score === 'number' ? fgVal : '···'}
+            </div>
+            <div className={`text-[10px] ${fgColor}/70`}>{fgLabel || '—'}</div>
+          </div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Crypto F&G</div>
+            <div className={`text-sm font-bold tabular-nums ${cryptoFgVal ? cryptoFgColor : 'text-[var(--text-disabled)]'}`}>
+              {cryptoFgVal || '···'}
+            </div>
+            <div className={`text-[10px] ${cryptoFgColor}/70`}>{cryptoFgLabel || '—'}</div>
+          </div>
+        </div>
+      </div>
 
       {/* -- Market Grid — Metric Tiles -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
         <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
-          <span className="text-[10px] text-[var(--text-muted)]">via Alpha Vantage / Yahoo</span>
+          <PanelMeta source="Alpha Vantage / Yahoo" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-x divide-y divide-white/[0.03]">
           {/* S&P 500 */}
@@ -235,21 +318,40 @@ export default function MacroDashboard({
         </div>
       </div>
 
-      {/* -- Macro Calendar -- */}
-      {calendar.length > 0 && (
+      {/* -- Macro Calendar (grouped) -- */}
+      {calendarGroups.length > 0 && (
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
             <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Macro Calendar</span>
-            <span className="text-[10px] text-[var(--text-muted)]">next 45 days</span>
+            <span className="text-[10px] text-[var(--text-muted)]">today · 7d · later</span>
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[320px] overflow-y-auto scrollbar-thin">
-            {calendar.map((e: any, i: number) => (
-              <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors text-xs">
-                <span className="text-[var(--text-muted)] tabular-nums w-[4.5rem] shrink-0">
-                  {new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                </span>
-                <span className="text-sm mr-1">{currencyFlag(e.currency)}</span>
-                <span className="text-[var(--text-secondary)] flex-1 truncate">{e.label}</span>
+          <div className="max-h-[360px] overflow-y-auto scrollbar-thin">
+            {calendarGroups.map((g) => (
+              <div key={g.key}>
+                <div className="px-5 py-1.5 text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)] bg-white/[0.015] border-b border-white/[0.02] sticky top-0 backdrop-blur-sm">
+                  {g.label}
+                </div>
+                <div className="divide-y divide-white/[0.02]">
+                  {g.events.map((e: any, i: number) => {
+                    const hi = HIGH_IMPACT.test(e.label || '');
+                    return (
+                      <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors text-xs">
+                        <span className="text-[var(--text-muted)] tabular-nums w-[4.5rem] shrink-0">
+                          {new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </span>
+                        <span className="text-sm mr-1">{currencyFlag(e.currency)}</span>
+                        <span className={`flex-1 truncate ${hi ? 'text-[var(--text-primary)] font-medium' : 'text-[var(--text-secondary)]'}`}>
+                          {e.label}
+                        </span>
+                        {hi && (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--accent-amber)]/15 text-[var(--accent-amber)] shrink-0">
+                            high impact
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             ))}
           </div>
@@ -326,8 +428,8 @@ export default function MacroDashboard({
         {patents && <PatentsTable patents={patents} />}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Top Movers (24h)</span>
-            <span className="text-[10px] text-[var(--text-muted)]">by TVL change</span>
+            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Onchain movers (24h)</span>
+            <span className="text-[10px] text-[var(--text-muted)]">chain TVL · cross-asset</span>
           </div>
           <div className="p-4 space-y-2 text-xs">
             {(() => {
