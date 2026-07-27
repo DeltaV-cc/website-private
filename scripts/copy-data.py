@@ -250,23 +250,76 @@ try:
 except Exception as e:
     print(f'⚠ Forex fetch failed: {e}')
 
-# --- Pre-fetch HF Trending Models + Spaces ---
-print('Fetching HF models...')
+# --- Pre-fetch HF Trending Models + Spaces (richer metadata for IntelHub filters) ---
+def _norm_hf_model(m):
+    mid = m.get('modelId') or m.get('id') or ''
+    author = m.get('author') or (mid.split('/')[0] if '/' in mid else '')
+    tags = list(m.get('tags') or [])
+    pipeline = m.get('pipeline_tag') or ''
+    if pipeline and pipeline not in tags:
+        tags.append(pipeline)
+    return {
+        'name': mid,
+        'author': author,
+        'likes': m.get('likes', 0) or 0,
+        'downloads': m.get('downloads', 0) or 0,
+        'pipeline': pipeline,
+        'tags': tags,
+        'url': f'https://huggingface.co/{mid}',
+    }
+
+print('Fetching HF models (multi-query)...')
 try:
-    hf = fetch_json('https://huggingface.co/api/models?sort=downloads&direction=-1&limit=6')
-    if hf and isinstance(hf, list):
-        models = [{'name': m.get('modelId') or m.get('id',''), 'author': m.get('author',''), 'likes': m.get('likes',0), 'downloads': m.get('downloads',0), 'url': f'https://huggingface.co/{m.get("modelId") or m.get("id","")}'} for m in hf]
-        with open(os.path.join(PUBLIC_DIR, 'hf.json'), 'w') as f:
-            json.dump({'models': models}, f)
-        print(f'✓ HF models cached: {len(models)}')
+    seen = {}
+    queries = [
+        'https://huggingface.co/api/models?sort=downloads&direction=-1&limit=20',
+        'https://huggingface.co/api/models?sort=likes&direction=-1&limit=15',
+        'https://huggingface.co/api/models?pipeline_tag=text-generation&sort=downloads&direction=-1&limit=15',
+        'https://huggingface.co/api/models?pipeline_tag=text-to-image&sort=likes&direction=-1&limit=12',
+        'https://huggingface.co/api/models?pipeline_tag=image-text-to-text&sort=downloads&direction=-1&limit=10',
+        'https://huggingface.co/api/models?search=moe&sort=downloads&direction=-1&limit=12',
+        'https://huggingface.co/api/models?search=agent&sort=downloads&direction=-1&limit=10',
+    ]
+    for q in queries:
+        batch = fetch_json(q)
+        if not batch or not isinstance(batch, list):
+            continue
+        for m in batch:
+            row = _norm_hf_model(m)
+            if not row['name']:
+                continue
+            prev = seen.get(row['name'])
+            if not prev or (row['downloads'] or 0) > (prev.get('downloads') or 0):
+                # merge tags
+                if prev:
+                    tags = list(dict.fromkeys((prev.get('tags') or []) + (row.get('tags') or [])))
+                    row['tags'] = tags
+                    if not row.get('pipeline') and prev.get('pipeline'):
+                        row['pipeline'] = prev['pipeline']
+                seen[row['name']] = row
+    models = sorted(seen.values(), key=lambda x: x.get('downloads') or 0, reverse=True)[:48]
+    with open(os.path.join(PUBLIC_DIR, 'hf.json'), 'w') as f:
+        json.dump({'models': models, 'updated': __import__('datetime').datetime.utcnow().strftime('%Y-%m-%d')}, f)
+    print(f'✓ HF models cached: {len(models)}')
 except Exception as e:
     print(f'⚠ HF models fetch failed: {e}')
 
 print('Fetching HF spaces...')
 try:
-    hs = fetch_json('https://huggingface.co/api/spaces?sort=likes&direction=-1&limit=5')
+    hs = fetch_json('https://huggingface.co/api/spaces?sort=likes&direction=-1&limit=12')
     if hs and isinstance(hs, list):
-        spaces = [{'name': s.get('id',''), 'author': s.get('author',''), 'likes': s.get('likes',0), 'url': f'https://huggingface.co/spaces/{s.get("id","")}'} for s in hs]
+        spaces = []
+        for s in hs:
+            sid = s.get('id', '')
+            author = s.get('author') or (sid.split('/')[0] if '/' in sid else '')
+            spaces.append({
+                'name': sid,
+                'author': author,
+                'likes': s.get('likes', 0) or 0,
+                'pipeline': s.get('sdk') or '',
+                'tags': list(s.get('tags') or []),
+                'url': f'https://huggingface.co/spaces/{sid}',
+            })
         existing = {}
         hf_path = os.path.join(PUBLIC_DIR, 'hf.json')
         if os.path.exists(hf_path):
@@ -346,16 +399,15 @@ try:
                 'country': e.get('country', '') or '',
             })
             total_vol_btc += vol_btc
-    # Volume history from BTC total_volumes — convert to USD using prices
+    # Volume history from BTC total_volumes.
+    # CoinGecko market_chart total_volumes are already in vs_currency (USD) — do NOT multiply by price.
     vol_history = []
-    if btc_data and btc_data.get('total_volumes') and btc_data.get('prices'):
+    if btc_data and btc_data.get('total_volumes'):
         vols = btc_data['total_volumes']
-        prices = {p[0]: p[1] for p in btc_data['prices']}  # timestamp -> price
         step = max(1, len(vols) // 100)
         for i in range(0, len(vols), step):
-            t, v_btc = vols[i]
-            price = prices.get(t, prices.get(min(prices.keys(), key=lambda k: abs(k-t)), 0))
-            vol_history.append({'t': t, 'v': v_btc * price})  # USD volume
+            t, v_usd = vols[i]
+            vol_history.append({'t': t, 'v': v_usd})
     # Keep the last known chart history when CoinGecko is unavailable or returns
     # no market-chart points during the build. Otherwise a transient API failure
     # silently removes the IntelHub hover chart from the static deployment.
@@ -369,12 +421,87 @@ try:
                 print(f'⚠ Using cached volume history: {len(vol_history)} points')
         except (OSError, ValueError, TypeError):
             pass
-    ex_data = {'exchanges': exchanges, 'total_vol_btc_24h': total_vol_btc, 'vol_history': vol_history}
+    last_v = vol_history[-1]['v'] if vol_history else 0
+    ex_data = {
+        'exchanges': exchanges,
+        'total_vol_btc_24h': total_vol_btc,
+        'total_vol_usd_24h': last_v,
+        'vol_history': vol_history,
+        'vol_unit': 'usd',
+    }
     with open(os.path.join(PUBLIC_DIR, 'exchange-vol.json'), 'w') as f:
         json.dump(ex_data, f)
     print(f'✓ Exchange vols: {len(exchanges)} exchanges, {len(vol_history)} vol history pts')
 except Exception as e:
     print(f'⚠ Exchange fetch failed: {e}')
+
+# --- Dromos Kitchen net token value flows (for Web3 revenue panel) ---
+print('Fetching Dromos net-flows...')
+try:
+    import re as _re
+    html = fetch_text('https://dromos.kitchen/dashboards/net-flows?period=30d') if 'fetch_text' in dir() else None
+    if html is None:
+        import urllib.request
+        html = urllib.request.urlopen('https://dromos.kitchen/dashboards/net-flows?period=30d', timeout=25).read().decode('utf-8', 'replace')
+    blobs = []
+    for p in _re.findall(r'self\.__next_f\.push\(\[1,"((?:\\.|[^"\\])*)"\]\)', html):
+        try:
+            blobs.append(p.encode('utf-8').decode('unicode_escape'))
+        except Exception:
+            blobs.append(p)
+    big = max(blobs, key=len) if blobs else ''
+    i = big.find('"data":[{"token"')
+    net_rows = []
+    if i >= 0:
+        chunk = big[i + 7:]
+        depth = 0
+        end = None
+        for j, ch in enumerate(chunk):
+            if ch == '[':
+                depth += 1
+            elif ch == ']':
+                depth -= 1
+                if depth == 0:
+                    end = j + 1
+                    break
+        if end:
+            try:
+                net_rows = json.loads(chunk[:end])
+            except Exception as e:
+                print(f'⚠ Dromos JSON parse failed: {e}')
+    if net_rows:
+        slim = []
+        for r in net_rows:
+            slim.append({
+                'token': r.get('token'),
+                'cat': r.get('cat'),
+                'mcap': r.get('mcap'),
+                # 30d fields are the default revenue/emissions/ratio on the payload
+                'rev_30d': r.get('revenue'),
+                'em_30d': r.get('emissions'),
+                'ratio_30d': r.get('ratio_val'),
+                'ratio_str_30d': r.get('ratio_str'),
+                'rev_90d': r.get('rev_90d'),
+                'em_90d': r.get('em_90d'),
+                'ratio_90d': r.get('ratio_val_90d'),
+                'ratio_str_90d': r.get('ratio_str_90d'),
+                'rev_180d': r.get('rev_180d'),
+                'em_180d': r.get('em_180d'),
+                'ratio_180d': r.get('ratio_val_180d'),
+                'ratio_str_180d': r.get('ratio_str_180d'),
+            })
+        with open(os.path.join(PUBLIC_DIR, 'net-flows.json'), 'w') as f:
+            json.dump({
+                'source': 'https://dromos.kitchen/dashboards/net-flows',
+                'periods': ['30d', '90d', '180d'],
+                'updated': __import__('datetime').datetime.utcnow().isoformat() + 'Z',
+                'rows': slim,
+            }, f)
+        print(f'✓ Dromos net-flows cached: {len(slim)} protocols')
+    else:
+        print('⚠ Dromos net-flows: no rows extracted')
+except Exception as e:
+    print(f'⚠ Dromos net-flows fetch failed: {e}')
 
 # --- Fetch ETF Flows (BTC + ETH) ---
 print('Fetching ETF flows...')
