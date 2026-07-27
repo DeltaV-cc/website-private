@@ -183,9 +183,12 @@ export default function Web3Dashboard({
     [exVol.vol_history, volAnchor],
   );
   const volHover = useChartHover(volHistory);
-  const [chainView, setChainView] = useState<'tvl' | 'dominance'>('tvl');
+  const [chainView, setChainView] = useState<'tvl' | 'dominance' | 'fees'>('tvl');
 
   const totalVol = dd?.totalVolume24h || 0;
+  const tvlRows = (dd?.tvl || []) as any[];
+  const maxTvl = tvlRows[0]?.tvl || 1;
+  const maxFees = Math.max(0, ...tvlRows.map((c: any) => c.fees24h || 0)) || 1;
 
   // Stablecoin chain breakdown from raw data
   const stableChains = dd?.stablecoinChains || [];
@@ -362,70 +365,131 @@ export default function Web3Dashboard({
       {/* -- ETF Flows (BTC + ETH) -- */}
       <ETFFlowsCard etf={dd?.etfFlows} />
 
-      {/* -- TVL + DEX Dominance -- */}
+      {/* -- TVL + fees (joined) + DEX volume -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* TVL by Chain */}
+        {/* TVL by Chain — includes 24h fees (was separate Chain fees box) */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">
-              {chainView === 'tvl' ? 'TVL by Chain' : 'Chain Dominance'}
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <div>
+              <div className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">
+                {chainView === 'tvl' ? 'TVL by Chain' : chainView === 'fees' ? 'Fees by Chain (24h)' : 'Chain Dominance'}
+              </div>
+              {dd?.tvlUpdatedAt && (
+                <div className="mt-0.5">
+                  <PanelMeta
+                    source="DeFi Llama"
+                    updated={new Date(dd.tvlUpdatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                    note="fees joined per-chain"
+                  />
+                </div>
+              )}
             </div>
             <div className="flex gap-0.5 bg-[var(--bg-deep)] rounded-lg p-0.5 border border-[var(--border-default)]">
-              <button onClick={() => setChainView('tvl')}
-                className={`text-[10px] px-2 py-1 rounded-md transition-colors ${chainView === 'tvl' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}>TVL</button>
-              <button onClick={() => setChainView('dominance')}
-                className={`text-[10px] px-2 py-1 rounded-md transition-colors ${chainView === 'dominance' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}>Dom</button>
+              {([
+                { k: 'tvl', label: 'TVL' },
+                { k: 'fees', label: 'Fees' },
+                { k: 'dominance', label: 'Dom' },
+              ] as const).map((t) => (
+                <button
+                  key={t.k}
+                  type="button"
+                  onClick={() => setChainView(t.k)}
+                  className={`text-[10px] px-2 py-1 rounded-md transition-colors ${
+                    chainView === t.k ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
           </div>
           <div className="space-y-2">
-            {(dd?.tvl || []).length > 0 ? (
-              chainView === 'tvl' ? (
-                (dd.tvl as any[]).slice(0, 8).map((c: any, i: number) => {
-                  const maxTvl = (dd.tvl as any[])[0]?.tvl || 1;
-                  const pct = ((c.tvl / maxTvl) * 100).toFixed(0);
-                  const chg = c.change_1d || 0;
+            {tvlRows.length > 0 ? (
+              chainView === 'dominance' ? (
+                (dd.dominance || tvlRows).slice(0, 10).map((d: any, i: number) => (
+                  <div key={i} className="flex items-center gap-2.5 text-xs">
+                    <a href={`https://defillama.com/chain/${d.name}`} target="_blank" rel="noopener noreferrer"
+                      className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">{d.name}</a>
+                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/40 to-[var(--accent-cyan)]/40"
+                        style={{ width: `${Math.min(100, parseFloat(String(d.pct || ((d.tvl / maxTvl) * 100))) || 0)}%` }} />
+                    </div>
+                    <span className="w-12 text-right tabular-nums text-[var(--text-tertiary)] flex-shrink-0">
+                      {d.pct || `${((d.tvl / maxTvl) * 100).toFixed(1)}%`}
+                    </span>
+                  </div>
+                ))
+              ) : chainView === 'fees' ? (
+                [...tvlRows].sort((a, b) => (b.fees24h || 0) - (a.fees24h || 0)).slice(0, 10).map((c: any, i: number) => {
+                  const fees = c.fees24h || 0;
+                  const pct = ((fees / maxFees) * 100).toFixed(0);
+                  const fchg = c.feesChange1d;
                   return (
                     <div key={i} className="flex items-center gap-2.5 text-xs group">
                       <a href={`https://defillama.com/chain/${c.name}`} target="_blank" rel="noopener noreferrer"
-                        className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">
+                        className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-amber)] transition-colors">
                         {c.name}
-                        <svg className="inline-block w-2.5 h-2.5 ml-0.5 opacity-40 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
                       </a>
                       <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden">
-                        <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/70 to-[var(--accent-cyan)]/60 transition-all duration-700"
+                        <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-amber)]/70 to-[var(--accent-orange)]/40 transition-all duration-700"
                           style={{ width: `${pct}%` }} />
                       </div>
-                      <span className={`w-10 text-right tabular-nums flex-shrink-0 text-[10px] font-medium ${chg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                        {chg !== 0 ? `${chg >= 0 ? '+' : ''}${chg.toFixed(1)}%` : ''}
+                      <span className="w-16 text-right tabular-nums text-[var(--text-secondary)] font-medium">
+                        {fees ? fmtCurrency(fees) : '—'}
+                      </span>
+                      <span className={`w-10 text-right tabular-nums text-[10px] ${
+                        fchg == null ? 'text-[var(--text-disabled)]' : fchg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'
+                      }`}>
+                        {fchg == null ? '' : `${fchg >= 0 ? '+' : ''}${fchg.toFixed(1)}%`}
                       </span>
                     </div>
                   );
                 })
               ) : (
-                (dd.dominance || []).slice(0, 8).map((d: any, i: number) => (
-                  <div key={i} className="flex items-center gap-2.5 text-xs">
-                    <a href={`https://defillama.com/chain/${d.name}`} target="_blank" rel="noopener noreferrer"
-                      className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">{d.name}</a>
-                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
-                      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/40 to-[var(--accent-cyan)]/40"
-                        style={{ width: `${Math.min(100, parseFloat(d.pct) || 0)}%` }} />
+                tvlRows.slice(0, 10).map((c: any, i: number) => {
+                  const pct = ((c.tvl / maxTvl) * 100).toFixed(0);
+                  const chg = c.change_1d || 0;
+                  const fees = c.fees24h || 0;
+                  return (
+                    <div key={i} className="flex items-center gap-2 text-xs group">
+                      <a href={`https://defillama.com/chain/${c.name}`} target="_blank" rel="noopener noreferrer"
+                        className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">
+                        {c.name}
+                      </a>
+                      <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden min-w-[48px]">
+                        <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/70 to-[var(--accent-cyan)]/60 transition-all duration-700"
+                          style={{ width: `${pct}%` }} />
+                      </div>
+                      <span className="w-14 text-right tabular-nums text-[var(--text-secondary)] shrink-0">
+                        {fmtCurrency(c.tvl)}
+                      </span>
+                      <span className={`w-10 text-right tabular-nums flex-shrink-0 text-[10px] font-medium ${chg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                        {chg !== 0 ? `${chg >= 0 ? '+' : ''}${chg.toFixed(1)}%` : ''}
+                      </span>
+                      <span className="w-14 text-right tabular-nums text-[10px] text-[var(--accent-amber)] shrink-0" title="24h fees">
+                        {fees ? fmtCurrency(fees) : '—'}
+                      </span>
                     </div>
-                    <span className="w-12 text-right tabular-nums text-[var(--text-tertiary)] flex-shrink-0">{d.pct}</span>
-                  </div>
-                ))
+                  );
+                })
               )
             ) : (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
                 <svg className="w-6 h-6 text-[var(--accent-purple)]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
                 </svg>
-                <span className="text-[var(--text-disabled)] text-xs">TVL data loading from DeFi Llama...</span>
+                <span className="text-[var(--text-disabled)] text-xs">TVL + fees loading from DeFi Llama...</span>
               </div>
             )}
           </div>
-          <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
+          {chainView === 'tvl' && tvlRows.length > 0 && (
+            <div className="mt-2 flex justify-end gap-3 text-[9px] text-[var(--text-disabled)]">
+              <span>TVL</span>
+              <span>1d%</span>
+              <span className="text-[var(--accent-amber)]">fees 24h</span>
+            </div>
+          )}
+          <div className="mt-2 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama · per-chain fees API</div>
         </div>
 
         {/* DEX Volume — Dune charts */}
@@ -481,72 +545,53 @@ export default function Web3Dashboard({
         </div>
       </div>
 
-      {/* -- Fees + chain movers -- */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Chain fees (24h)</div>
-            <PanelMeta source="DeFi Llama" />
+      {/* -- Chain movers -- */}
+      {(moverGainers.length > 0 || moverLosers.length > 0) && (
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
+            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
+            <PanelMeta source="pipeline snapshot" />
           </div>
-          <div className="space-y-1.5">
-            {(dd?.fees || []).length > 0 ? (
-              (dd.fees as any[]).slice(0, 6).map((f: any, i: number) => {
-                const slug = f.name.toLowerCase().replace(/\s+/g, '-');
-                return (
-                <div key={i} className="flex justify-between text-xs hover:bg-white/[0.02] px-1 py-0.5 rounded transition-colors">
-                  <a href={`https://defillama.com/chain/${slug}`} target="_blank" rel="noopener noreferrer"
-                    className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors">{f.name}</a>
-                  <span className="text-[var(--text-secondary)] tabular-nums">{fmt(f.fees24h)}</span>
+          <div className="p-4 grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
+              {moverGainers.slice(0, 5).map((c: any, i: number) => (
+                <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                  <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                  <span className="text-[var(--accent-green)] tabular-nums font-medium">
+                    {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
+                  </span>
                 </div>
-                );
-              })
-            ) : (
-              <div className="text-[var(--text-disabled)] text-xs italic py-4 text-center">Fees data loading... Refreshes automatically</div>
-            )}
+              ))}
+            </div>
+            <div>
+              <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
+              {moverLosers.slice(0, 5).map((c: any, i: number) => (
+                <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                  <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                  <span className="text-[var(--accent-red)] tabular-nums font-medium">
+                    {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+      )}
 
-        {(moverGainers.length > 0 || moverLosers.length > 0) && (
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-            <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-              <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
-              <PanelMeta source="pipeline snapshot" />
-            </div>
-            <div className="p-4 grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
-                {moverGainers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                    <span className="text-[var(--accent-green)] tabular-nums font-medium">
-                      {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
-                {moverLosers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                    <span className="text-[var(--accent-red)] tabular-nums font-medium">
-                      {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* -- DEX × Chain Matrix -- */}
+      {/* -- DEX × Chain Matrix (live-refreshed when Web3 loads) -- */}
       {dd?.dexMatrix?.matrix?.length > 0 && (
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
-            <div className="flex items-center gap-2.5">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
+            <div className="flex items-center gap-2.5 min-w-0">
               <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX × Chain Matrix</span>
-              <span className="text-[9px] text-[var(--text-disabled)]">via DeFiLlama per-chain</span>
+              <PanelMeta
+                source={dd.dexMatrix.live ? 'DeFiLlama live' : 'DeFiLlama snapshot'}
+                updated={dd.dexMatrix.updated_at
+                  ? new Date(dd.dexMatrix.updated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                  : null}
+                note={dd.dexMatrix.live ? 'refreshed on tab load' : 'static until live load'}
+              />
             </div>
             <span className="text-[10px] text-[var(--text-muted)]">
               {(dd.dexMatrix.matrix || []).length} protocols × {(dd.dexMatrix.chains || []).length} chains
@@ -557,11 +602,14 @@ export default function Web3Dashboard({
               <thead>
                 <tr className="border-b border-[var(--border-default)] bg-white/[0.015]">
                   <th className="text-left px-4 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">Protocol</th>
-                  {((dd.dexMatrix.chains || []) as any[]).slice(0, 6).map((c: any) => (
+                  {((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((c: any) => (
                     <th key={c.chain} className="text-right px-3 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">
                       {c.chain}
                       <span className={`block text-[9px] font-normal ${c.change_1d >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                        {c.change_1d >= 0 ? '+' : ''}{c.change_1d?.toFixed(1)}%
+                        {typeof c.change_1d === 'number' ? `${c.change_1d >= 0 ? '+' : ''}${c.change_1d.toFixed(1)}%` : ''}
+                      </span>
+                      <span className="block text-[9px] font-normal text-[var(--text-disabled)] normal-case">
+                        {c.total24h ? fmtCurrency(c.total24h) : ''}
                       </span>
                     </th>
                   ))}
@@ -569,12 +617,18 @@ export default function Web3Dashboard({
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.03]">
-                {((dd.dexMatrix.matrix || []) as any[]).slice(0, 10).map((row: any, i: number) => (
+                {((dd.dexMatrix.matrix || []) as any[]).slice(0, 12).map((row: any, i: number) => (
                   <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? 'bg-white/[0.005]' : ''}`}>
                     <td className="px-4 py-2.5 text-[var(--text-secondary)] font-medium truncate max-w-[160px]">{row.protocol}</td>
-                    {((dd.dexMatrix.chains || []) as any[]).slice(0, 6).map((c: any) => {
-                      const val = row[c.chain] || 0;
-                      const maxInRow = Math.max(...((dd.dexMatrix.chains || []) as any[]).slice(0, 6).map((ch: any) => row[ch.chain] || 0), 1);
+                    {((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((c: any) => {
+                      // Support both live chain names and legacy lowercase keys
+                      const val = row[c.chain] ?? row[String(c.chain).toLowerCase()] ?? row[String(c.chain).replace(/\s+/g, '_').toLowerCase()] ?? 0;
+                      const maxInRow = Math.max(
+                        ...((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((ch: any) =>
+                          row[ch.chain] ?? row[String(ch.chain).toLowerCase()] ?? 0
+                        ),
+                        1,
+                      );
                       const pct = val / maxInRow;
                       const isMax = val > 0 && val >= maxInRow * 0.9;
                       return (

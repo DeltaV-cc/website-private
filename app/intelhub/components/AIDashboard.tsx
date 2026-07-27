@@ -28,6 +28,14 @@ const LAB_ORGS = [
   'openai', 'anthropic', 'deepmind', 'google', 'meta', 'microsoft', 'nvidia',
   'mistral', 'cohere', 'xai', 'alibaba', 'qwen', 'deepseek', 'moonshot',
   'baichuan', '01.ai', 'huggingface', 'stability', 'adept', 'inflection',
+  'arxiv', 'lesswrong', 'alignment', 'berkeley', 'stanford', 'mit ', 'cmu',
+  'fair', 'allenai', 'eleuther', 'together.ai', 'perplexity', 'character.ai',
+];
+
+/** Sources that are always research-ish when present */
+const LAB_SOURCES = [
+  'arxiv', 'lesswrong', 'alignment forum', 'hugging face blog', 'openai',
+  'anthropic', 'google ai', 'deepmind', 'nvidia', 'microsoft research',
 ];
 
 /** X / social personas relevant to frontier AI (matched against item.source) */
@@ -36,6 +44,9 @@ const AI_PERSONAS = [
   'jeremyphoward', 'claudeai', 'openai', 'anthropicai', 'deepmind',
   'huggingface', 'swyx', 'andrewyng', 'fchollet', 'drjimfan', 'clementdelangue',
   'tekknolagi', 'arankomatsuzaki', 'hardmaru', 'sarahooker', 'osanseviero',
+  'emostaque', 'scitechera', 'nono2357', 'drjimfan', 'bindureddy',
+  'alexandr_wang', 'ilyasut', 'sarahookr', 'jimfan', 'nearcyan', 'levelsio',
+  'andrew_n_carr', 'rasbt', 'stanfordnlp', 'metaai', 'googleresearch',
 ];
 
 function describe(item: any): string {
@@ -248,45 +259,76 @@ export default function AIDashboard({
   const totalDownloads = models.reduce((s: number, m: any) => s + (m.downloads || 0), 0);
   const totalSpaces = spaces.length;
 
+  const externalLabFeed: Item[] = dd?.aiLabFeed || [];
+
   const labResearch = useMemo(() => {
-    return (items || [])
-      .filter((it) => {
-        const src = (it.source || '').toLowerCase();
-        const blob = `${it.title} ${it.summary || ''} ${src}`.toLowerCase();
-        const labHit = LAB_ORGS.some((lab) => blob.includes(lab) || src.includes(lab));
-        const researchish =
-          /paper|arxiv|research|technical report|preprint|release|announc|blog|model card|whitepaper/.test(blob) ||
-          src.includes('arxiv') ||
-          src.includes('research');
-        const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware' || it.tag === 'science';
-        return tagOk && labHit && researchish;
-      })
-      .slice(0, 10);
-  }, [items]);
+    const fromSignals = (items || []).filter((it) => {
+      const src = (it.source || '').toLowerCase();
+      const blob = `${it.title} ${it.summary || ''} ${src}`.toLowerCase();
+      const labHit = LAB_ORGS.some((lab) => blob.includes(lab) || src.includes(lab));
+      const sourceHit = LAB_SOURCES.some((s) => src.includes(s));
+      const researchish =
+        /paper|arxiv|research|technical report|preprint|release|announc|blog|model card|whitepaper|benchmark|leaderboard|eval|alignment|transformer|diffusion|agent|llm|foundation model/.test(blob)
+        || sourceHit;
+      const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware' || it.tag === 'science';
+      // Broader: lab OR research source OR (AI-tagged researchish)
+      if (sourceHit) return true;
+      if (labHit && researchish) return true;
+      if (tagOk && researchish && (labHit || /openai|anthropic|deepmind|mistral|meta ai|google|nvidia|hf|hugging/.test(blob))) return true;
+      if (tagOk && (src.includes('lesswrong') || src.includes('alignment'))) return true;
+      return false;
+    });
 
-  const personaTweets = useMemo(() => {
-    return (items || [])
-      .filter((it) => {
-        const src = (it.source || '').toLowerCase();
-        if (!(src.startsWith('x:') || src.includes('twitter') || src.includes('nitter'))) return false;
-        return AI_PERSONAS.some((p) => src.includes(p));
-      })
-      .slice(0, 10);
-  }, [items]);
+    const merged = [...externalLabFeed, ...fromSignals];
+    const seen = new Set<string>();
+    return merged.filter((it) => {
+      const k = (it.title || '').toLowerCase().slice(0, 90);
+      if (!k || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    }).slice(0, 16);
+  }, [items, externalLabFeed]);
 
-  // Fallback: if persona list is sparse, show other x: AI-tagged posts
-  const tweetFeed = personaTweets.length >= 3
-    ? personaTweets
-    : (items || [])
-        .filter((it) => {
-          const src = (it.source || '').toLowerCase();
-          const isX = src.startsWith('x:') || src.includes('twitter') || src.includes('nitter');
-          return isX && (!it.tag || it.tag === 'ai' || it.tag === 'hardware');
-        })
-        .slice(0, 10);
+  const tweetFeed = useMemo(() => {
+    const isX = (src: string) =>
+      src.startsWith('x:') || src.includes('twitter') || src.includes('nitter') || src.startsWith('@');
+
+    const persona = (items || []).filter((it) => {
+      const src = (it.source || '').toLowerCase();
+      if (!isX(src)) return false;
+      return AI_PERSONAS.some((p) => src.includes(p));
+    });
+
+    // Broader: X posts that look like AI frontier chatter
+    const aiX = (items || []).filter((it) => {
+      const src = (it.source || '').toLowerCase();
+      if (!isX(src)) return false;
+      if (AI_PERSONAS.some((p) => src.includes(p))) return true;
+      const blob = `${it.title} ${it.summary || ''}`.toLowerCase();
+      const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware' || it.tag === 'science';
+      return tagOk && /llm|gpt|claude|gemini|model|agent|ai |ml |training|inference|open.?weight|alignment|transformer|diffusion|hugging|openai|anthropic|deepseek|qwen/.test(blob);
+    });
+
+    // Sci / AI X accounts already in pipeline even if not on persona list
+    const pipelineX = (items || []).filter((it) => {
+      const src = (it.source || '').toLowerCase();
+      if (!isX(src)) return false;
+      return /scitechera|emostaque|ylecun|nono2357|huggingface|openai|anthropic|deepmind|metaai|karpathy|sama/.test(src);
+    });
+
+    const merged = [...persona, ...pipelineX, ...aiX];
+    const seen = new Set<string>();
+    return merged.filter((it) => {
+      const k = `${(it.source || '').toLowerCase()}|${(it.title || '').toLowerCase().slice(0, 60)}`;
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    }).slice(0, 16);
+  }, [items]);
 
   return (
     <div className="space-y-5">
+      {/* ── DATA FIRST ── */}
       <AIFrontierSignals items={items} ts={ts} />
 
       {/* HF watchlist stats */}
@@ -343,22 +385,42 @@ export default function AIDashboard({
         )}
       </div>
 
+      <FrontierWatch models={models} spaces={spaces} />
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Lab research */}
+        <TopOrgs models={models} />
+        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {aiCat && <CategoryBox cat={aiCat} ago={ago} TC={TC} />}
+        {hwCat && <CategoryBox cat={hwCat} ago={ago} TC={TC} />}
+      </div>
+
+      {/* ── SOCIAL / RESEARCH FEEDS LAST ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
             <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Lab research</span>
-            <PanelMeta source="signals" note="OpenAI · Anthropic · DeepMind · Meta…" />
+            <PanelMeta
+              source={dd?.aiFeedsUpdatedAt ? 'arXiv · HF · OpenAI · signals' : 'signals'}
+              updated={dd?.aiFeedsUpdatedAt
+                ? new Date(dd.aiFeedsUpdatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                : null}
+              note={`${labResearch.length} items`}
+            />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[300px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto">
             {labResearch.length === 0 ? (
-              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">No lab research hits in the 7-day window</div>
+              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">
+                Loading lab feeds (arXiv / blogs)… or no hits yet in the pipeline window
+              </div>
             ) : labResearch.map((it, i) => (
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
                 className="block px-4 py-2.5 hover:bg-white/[0.02] group">
                 <div className="text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2">{it.title}</div>
                 <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-disabled)]">
-                  <span className="truncate max-w-[120px]">{it.source}</span>
+                  <span className="truncate max-w-[140px]">{it.source}</span>
                   <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
                 </div>
               </a>
@@ -366,15 +428,16 @@ export default function AIDashboard({
           </div>
         </div>
 
-        {/* Persona posts */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
             <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Persona posts</span>
-            <PanelMeta source="X / nitter feeds" note="frontier operators" />
+            <PanelMeta source="X / pipeline" note={`${tweetFeed.length} items · AI-related`} />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[300px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto">
             {tweetFeed.length === 0 ? (
-              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">No persona posts in the current window</div>
+              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">
+                No AI-related X posts in the current pipeline window
+              </div>
             ) : tweetFeed.map((it, i) => (
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
                 className="block px-4 py-2.5 hover:bg-white/[0.02] group">
@@ -387,18 +450,6 @@ export default function AIDashboard({
             ))}
           </div>
         </div>
-      </div>
-
-      <FrontierWatch models={models} spaces={spaces} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <TopOrgs models={models} />
-        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {aiCat && <CategoryBox cat={aiCat} ago={ago} TC={TC} />}
-        {hwCat && <CategoryBox cat={hwCat} ago={ago} TC={TC} />}
       </div>
     </div>
   );
