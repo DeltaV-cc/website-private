@@ -1,0 +1,26 @@
+{
+  "picks": [
+    {
+      "title": "CISOs vs. Boards: Myth or Misunderstanding?",
+      "source": "Dark Reading",
+      "category": "web3",
+      "url": "https://www.darkreading.com/cybersecurity-operations/cisos-vs-boards-myth-or-misunderstanding-",
+      "published_at": "2026-07-26T08:42:05.525255"
+    },
+    {
+      "title": "Hermes AI agent used to automate attack on Thai Finance Ministry",
+      "source": "BleepingComputer",
+      "category": "cybersec",
+      "url": "https://www.bleepingcomputer.com/news/security/hermes-ai-agent-used-to-automate-attack-on-thai-finance-ministry/",
+      "published_at": "2026-07-26T08:42:04.908565"
+    },
+    {
+      "title": "The Viable System Model & Multi-Scale Agency",
+      "source": "LessWrong",
+      "category": "ai",
+      "url": "https://www.lesswrong.com/posts/ENoAxAXrCvFHW4q3u/the-viable-system-model-and-multi-scale-agency",
+      "published_at": "2026-07-26T08:41:48.934845"
+    }
+  ],
+  "updatedAt": "2026-07-26T12:00:35.934889+00:00"
+}
