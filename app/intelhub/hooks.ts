@@ -245,7 +245,16 @@ export function useIntelData(activeTab: string = 'macro') {
       fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
       fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
       fetchJson(`${BASE}/data/hf.json`).then((d) => {
-        if (d) merge({ ...(d.models ? { hfModels: d.models } : {}), ...(d.spaces ? { hfSpaces: d.spaces } : {}) });
+        if (d) {
+          merge({
+            ...(d.models ? { hfModels: d.models } : {}),
+            ...(d.spaces ? { hfSpaces: d.spaces } : {}),
+            hfUpdated: d.updated || null,
+          });
+        }
+      }),
+      fetchJson(`${BASE}/data/net-flows.json`).then((d) => {
+        if (d) merge({ netFlows: d });
       }),
       fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
         if (!d) return;

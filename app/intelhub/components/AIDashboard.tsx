@@ -1,5 +1,5 @@
-/* IntelHub — AI Dashboard v3
-   Frontier Watch + Arena Leaderboard + AI/ML feeds */
+/* IntelHub — AI Dashboard
+   Frontier Watch + labs research + personas + HF orgs + Arena */
 'use client';
 
 import { useMemo, useState } from 'react';
@@ -11,95 +11,125 @@ import AnimatedValue from './AnimatedValue';
 
 const PIPELINE_DESC: Record<string, string> = {
   'text-generation': 'Text generation & chat',
-  'text-to-image': 'Generates images from text',
-  'image-to-text': 'Describes images in text',
-  'text-to-video': 'Generates video from text',
-  'text-to-audio': 'Generates audio from text',
-  'text-to-speech': 'Text to speech (TTS)',
-  'automatic-speech-recognition': 'Speech to text (ASR)',
-  'image-classification': 'Classifies images',
-  'object-detection': 'Detects objects in images',
-  'image-segmentation': 'Segments image regions',
-  'image-to-image': 'Transforms images',
-  'audio-classification': 'Classifies audio',
-  'audio-to-audio': 'Audio transformation',
-  'video-classification': 'Classifies video content',
-  'depth-estimation': 'Estimates depth from images',
-  'document-question-answering': 'Answers questions about docs',
-  'question-answering': 'Question answering',
-  'translation': 'Language translation',
-  'summarization': 'Text summarization',
-  'fill-mask': 'Masked word prediction',
-  'feature-extraction': 'Feature extraction / embeddings',
-  'reinforcement-learning': 'Reinforcement learning',
-  'robotics': 'Robotics & control',
-  'visual-question-answering': 'Visual Q&A',
-  'zero-shot-classification': 'Zero-shot classification',
-  'zero-shot-image-classification': 'Zero-shot image classification',
-  'zero-shot-object-detection': 'Zero-shot object detection',
+  'text-to-image': 'Image generation',
+  'image-text-to-text': 'Vision-language (VLM)',
+  'image-to-text': 'Image → text',
+  'text-to-video': 'Video generation',
+  'text-to-audio': 'Audio generation',
+  'text-to-speech': 'TTS',
+  'automatic-speech-recognition': 'Speech → text',
+  'feature-extraction': 'Embeddings',
   'sentence-similarity': 'Sentence similarity',
-  'token-classification': 'Token / NER tagging',
-  'conversational': 'Conversational AI',
-  'table-question-answering': 'Table Q&A',
-  'text-classification': 'Text classification',
+  'any-to-any': 'Multimodal',
 };
+
+/** Top research labs we surface in the research box */
+const LAB_ORGS = [
+  'openai', 'anthropic', 'deepmind', 'google', 'meta', 'microsoft', 'nvidia',
+  'mistral', 'cohere', 'xai', 'alibaba', 'qwen', 'deepseek', 'moonshot',
+  'baichuan', '01.ai', 'huggingface', 'stability', 'adept', 'inflection',
+];
+
+/** X / social personas relevant to frontier AI (matched against item.source) */
+const AI_PERSONAS = [
+  'sama', 'karpathy', 'ylecun', 'demishassabis', 'gdb', 'miramurati',
+  'jeremyphoward', 'claudeai', 'openai', 'anthropicai', 'deepmind',
+  'huggingface', 'swyx', 'andrewyng', 'fchollet', 'drjimfan', 'clementdelangue',
+  'tekknolagi', 'arankomatsuzaki', 'hardmaru', 'sarahooker', 'osanseviero',
+];
 
 function describe(item: any): string {
   const pipeline = (item.pipeline || '').toLowerCase();
   if (PIPELINE_DESC[pipeline]) return PIPELINE_DESC[pipeline];
-  const desc = (item.description || '').toLowerCase();
-  if (desc.includes('agent')) return 'AI agent / tool-use';
-  if (desc.includes('video') || desc.includes('animation')) return 'Video generation & animation';
-  if (desc.includes('image') || desc.includes('photo') || desc.includes('picture')) return 'Image generation & editing';
-  if (desc.includes('audio') || desc.includes('music') || desc.includes('sound')) return 'Audio & music generation';
-  if (desc.includes('code') || desc.includes('programming')) return 'Code generation & assistance';
-  if (desc.includes('game') || desc.includes('play')) return 'Game playing & simulation';
-  if (desc.includes('chat') || desc.includes('conversation')) return 'Chat & conversation';
-  if (desc.includes('3d') || desc.includes('mesh')) return '3D generation & rendering';
-  if (desc.includes('embed') || desc.includes('vector')) return 'Embeddings & vector search';
-  return pipeline ? pipeline.replace(/-/g, ' ') : (desc || 'ML model / space').slice(0, 60);
+  const tags = (item.tags || []).join(' ').toLowerCase();
+  const blob = `${item.name || ''} ${item.description || ''} ${tags}`.toLowerCase();
+  if (blob.includes('moe') || blob.includes('mixture')) return 'Mixture-of-experts';
+  if (blob.includes('agent') || blob.includes('tool')) return 'Agent / tool-use';
+  if (blob.includes('vision') || blob.includes('vlm') || blob.includes('multimodal')) return 'Vision / multimodal';
+  if (blob.includes('embed')) return 'Embeddings';
+  if (pipeline) return pipeline.replace(/-/g, ' ');
+  return 'ML model / space';
+}
+
+function enrichItem(raw: any, type: 'model' | 'space') {
+  const name = raw?.name || raw?.id || '';
+  const author =
+    raw?.author ||
+    (typeof name === 'string' && name.includes('/') ? name.split('/')[0] : '') ||
+    '';
+  const tags: string[] = Array.isArray(raw?.tags) ? [...raw.tags] : [];
+  const pipeline = raw?.pipeline || raw?.pipeline_tag || '';
+  if (pipeline && !tags.includes(pipeline)) tags.push(pipeline);
+  return { ...raw, name, author, tags, pipeline, type };
+}
+
+function itemBlob(x: any) {
+  return `${x.name || ''} ${x.author || ''} ${x.pipeline || ''} ${(x.tags || []).join(' ')} ${x.description || ''}`.toLowerCase();
+}
+
+function matchFilter(x: any, filter: string): boolean {
+  const blob = itemBlob(x);
+  const pipe = (x.pipeline || '').toLowerCase();
+  if (filter === 'all') return true;
+  if (filter === 'downloads') return true;
+  if (filter === 'new') {
+    // Lower relative downloads among snapshot = newer/less established heuristic
+    return (x.downloads || 0) < 5_000_000 || (x.likes || 0) < 500;
+  }
+  if (filter === 'agent') {
+    return /\bagent\b|tool-use|tool use|function.?call|autogen|langchain|crewai|browser.?use/.test(blob);
+  }
+  if (filter === 'vision') {
+    return (
+      pipe.includes('image') ||
+      pipe.includes('vision') ||
+      pipe.includes('any-to-any') ||
+      /vision|vlm|multimodal|clip|siglip|llava|florence|qwen2-vl|qwen2\.5-vl|internvl|gemini.*vision|image-text|text-to-image|flux|sdxl|stable.?diffusion|kolors|comic/.test(blob)
+    );
+  }
+  if (filter === 'moe') {
+    return /\bmoe\b|mixture.of.experts|mixtral|deepseek-v|qwen.*moe|switch.?transformer|grok-1/.test(blob);
+  }
+  return true;
 }
 
 function fmtBig(n: number): string { return fmtCompact(n); }
 
-/* -- Frontier Watch — compact 2-col grid -- */
-function FrontierWatch({ dd }: { dd: any }) {
+function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
-  const models = (dd?.hfModels || []).map((m: any) => ({ ...m, type: 'model' }));
-  const spaces = (dd?.hfSpaces || []).map((s: any) => ({ ...s, type: 'space' }));
-  let allItems = [...models, ...spaces];
 
-  if (filter === 'new') {
-    // Prefer recency field when present; fall back to low-download heuristic
-    allItems = allItems.filter((x: any) => {
-      if (x.createdAt || x.created_at) {
-        const t = new Date(x.createdAt || x.created_at).getTime();
-        if (!isNaN(t)) return Date.now() - t < 30 * 86400000;
-      }
-      return (x.downloads || 0) < 50000;
-    });
-  }
-  if (filter === 'downloads') allItems = [...allItems].sort((a: any, b: any) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 20);
-  if (filter === 'agent') allItems = allItems.filter((x: any) => {
-    const blob = `${x.description || ''} ${x.pipeline || ''} ${x.name || ''}`.toLowerCase();
-    return blob.includes('agent') || blob.includes('tool');
-  });
-  if (filter === 'vision') allItems = allItems.filter((x: any) => {
-    const p = (x.pipeline || '').toLowerCase();
-    const blob = `${x.description || ''} ${x.name || ''}`.toLowerCase();
-    return p.includes('image') || p.includes('vision') || blob.includes('vision') || blob.includes('vlm');
-  });
-  if (filter === 'moe') allItems = allItems.filter((x: any) => {
-    const blob = `${x.description || ''} ${x.name || ''}`.toLowerCase();
-    return blob.includes('moe') || blob.includes('mixture of experts') || blob.includes('mixture-of-experts');
-  });
-  const filtered = allItems.slice(0, 16);
+  const baseItems = useMemo(
+    () => [
+      ...models.map((m) => enrichItem(m, 'model')),
+      ...spaces.map((s) => enrichItem(s, 'space')),
+    ],
+    [models, spaces],
+  );
+
+  const filterCounts = useMemo(() => {
+    const keys = ['all', 'new', 'downloads', 'agent', 'vision', 'moe'] as const;
+    const out: Record<string, number> = {};
+    for (const k of keys) out[k] = baseItems.filter((x) => matchFilter(x, k)).length;
+    return out;
+  }, [baseItems]);
+
+  const filtered = useMemo(() => {
+    let allItems = baseItems.filter((x) => matchFilter(x, filter));
+    if (filter === 'downloads' || filter === 'all') {
+      allItems = [...allItems].sort((a, b) => (b.downloads || b.likes || 0) - (a.downloads || a.likes || 0));
+    } else if (filter === 'new') {
+      allItems = [...allItems].sort((a, b) => (a.downloads || 0) - (b.downloads || 0));
+    } else {
+      allItems = [...allItems].sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    }
+    return allItems.slice(0, 16);
+  }, [baseItems, filter]);
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
         <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
-        <span className="text-[10px] text-[var(--text-muted)] shrink-0">Trending models & spaces · snapshot</span>
+        <span className="text-[10px] text-[var(--text-muted)] shrink-0">HF models & spaces · enriched snapshot</span>
         <div className="flex gap-1 text-[10px] ml-auto flex-wrap justify-end">
           {[
             { key: 'all', label: 'All' }, { key: 'new', label: 'New' }, { key: 'downloads', label: 'Popular' },
@@ -108,13 +138,16 @@ function FrontierWatch({ dd }: { dd: any }) {
             <button key={f.key} onClick={() => setFilter(f.key as any)}
               className={`px-2.5 py-0.5 rounded-full transition-colors duration-150 ${
                 filter === f.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10]'
-              }`}>{f.label}</button>
+              }`}>
+              {f.label}
+              <span className="ml-1 opacity-50">{filterCounts[f.key] ?? 0}</span>
+            </button>
           ))}
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
         {filtered.length > 0 ? filtered.map((item: any, i: number) => (
-          <a key={i} href={item.url || '#'} target="_blank" rel="noopener noreferrer"
+          <a key={`${item.name}-${i}`} href={item.url || '#'} target="_blank" rel="noopener noreferrer"
             className="block p-3.5 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
@@ -129,18 +162,77 @@ function FrontierWatch({ dd }: { dd: any }) {
               </div>
               <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
                 <span>{item.likes || 0} ♥</span>
-                <span>{fmtNum(item.downloads || 0)} ↓</span>
+                {item.downloads != null && <span>{fmtNum(item.downloads || 0)} ↓</span>}
               </div>
             </div>
             <div className="mt-1.5 text-[10px] text-[var(--text-muted)]">{item.author || 'HF'}</div>
           </a>
-        )) : <div className="col-span-2 p-8 text-center text-[var(--text-disabled)] text-xs">No items match this filter</div>}
+        )) : (
+          <div className="col-span-2 p-8 text-center text-[var(--text-disabled)] text-xs">
+            No items match <span className="text-[var(--text-tertiary)]">{filter}</span> in the current HF snapshot.
+            Try All / Popular, or wait for the next data refresh (pipeline tags + multi-query cache).
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-/* -- Main AI Dashboard -- */
+function TopOrgs({ models }: { models: any[] }) {
+  const orgs = useMemo(() => {
+    const map = new Map<string, { org: string; models: number; downloads: number; likes: number }>();
+    for (const raw of models) {
+      const m = enrichItem(raw, 'model');
+      const org = (m.author || 'unknown').toLowerCase();
+      if (!org || org === 'unknown') continue;
+      const prev = map.get(org) || { org: m.author || org, models: 0, downloads: 0, likes: 0 };
+      prev.models += 1;
+      prev.downloads += m.downloads || 0;
+      prev.likes += m.likes || 0;
+      map.set(org, prev);
+    }
+    return [...map.values()].sort((a, b) => b.downloads - a.downloads).slice(0, 8);
+  }, [models]);
+
+  if (!orgs.length) return null;
+  const maxDl = orgs[0]?.downloads || 1;
+
+  return (
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-purple)]/[0.06] to-transparent">
+        <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Top HF orgs</span>
+        <PanelMeta source="from watchlist models" note="by downloads" />
+      </div>
+      <div className="p-4 space-y-2">
+        {orgs.map((o, i) => (
+          <a
+            key={o.org}
+            href={`https://huggingface.co/${encodeURIComponent(o.org)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 text-xs group"
+          >
+            <span className="w-5 text-right tabular-nums text-[var(--text-disabled)]">#{i + 1}</span>
+            <span className="w-28 truncate text-[var(--text-secondary)] group-hover:text-[var(--accent-purple)]">{o.org}</span>
+            <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/70 to-[var(--accent-cyan)]/40"
+                style={{ width: `${Math.max(4, (o.downloads / maxDl) * 100)}%` }}
+              />
+            </div>
+            <span className="w-10 text-right text-[var(--text-muted)] tabular-nums">{o.models}</span>
+            <span className="w-16 text-right text-[var(--text-tertiary)] tabular-nums">{fmtCompact(o.downloads)}</span>
+          </a>
+        ))}
+        <div className="flex justify-between text-[9px] text-[var(--text-disabled)] pt-1">
+          <span>Org</span>
+          <span>models · downloads in snapshot</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AIDashboard({
   items, dd, catBoxes, TC, ago, ts,
 }: {
@@ -150,27 +242,54 @@ export default function AIDashboard({
 }) {
   const aiCat = catBoxes.find((c: any) => c.id === 'ai');
   const hwCat = catBoxes.find((c: any) => c.id === 'hardware');
-  const totalModels = dd?.hfModels?.length || 0;
-  const totalDownloads = (dd?.hfModels || []).reduce((s: number, m: any) => s + (m.downloads || 0), 0);
-  const totalSpaces = dd?.hfSpaces?.length || 0;
+  const models: any[] = dd?.hfModels || [];
+  const spaces: any[] = dd?.hfSpaces || [];
+  const totalModels = models.length;
+  const totalDownloads = models.reduce((s: number, m: any) => s + (m.downloads || 0), 0);
+  const totalSpaces = spaces.length;
 
-  // Lightweight "recent frontier" strip from AI signals with model-ish keywords
-  const frontierReleases = useMemo(() => {
-    const kws = ['release', 'launch', 'model', 'open-weight', 'open weight', 'checkpoint', 'weights', 'api'];
+  const labResearch = useMemo(() => {
     return (items || [])
       .filter((it) => {
-        const blob = `${it.title} ${it.summary || ''}`.toLowerCase();
-        const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware';
-        return tagOk && kws.some((k) => blob.includes(k));
+        const src = (it.source || '').toLowerCase();
+        const blob = `${it.title} ${it.summary || ''} ${src}`.toLowerCase();
+        const labHit = LAB_ORGS.some((lab) => blob.includes(lab) || src.includes(lab));
+        const researchish =
+          /paper|arxiv|research|technical report|preprint|release|announc|blog|model card|whitepaper/.test(blob) ||
+          src.includes('arxiv') ||
+          src.includes('research');
+        const tagOk = !it.tag || it.tag === 'ai' || it.tag === 'hardware' || it.tag === 'science';
+        return tagOk && labHit && researchish;
       })
-      .slice(0, 6);
+      .slice(0, 10);
   }, [items]);
+
+  const personaTweets = useMemo(() => {
+    return (items || [])
+      .filter((it) => {
+        const src = (it.source || '').toLowerCase();
+        if (!(src.startsWith('x:') || src.includes('twitter') || src.includes('nitter'))) return false;
+        return AI_PERSONAS.some((p) => src.includes(p));
+      })
+      .slice(0, 10);
+  }, [items]);
+
+  // Fallback: if persona list is sparse, show other x: AI-tagged posts
+  const tweetFeed = personaTweets.length >= 3
+    ? personaTweets
+    : (items || [])
+        .filter((it) => {
+          const src = (it.source || '').toLowerCase();
+          const isX = src.startsWith('x:') || src.includes('twitter') || src.includes('nitter');
+          return isX && (!it.tag || it.tag === 'ai' || it.tag === 'hardware');
+        })
+        .slice(0, 10);
 
   return (
     <div className="space-y-5">
       <AIFrontierSignals items={items} ts={ts} />
 
-      {/* -- HF Stats Banner — honest labels (snapshot, not global HF totals) -- */}
+      {/* HF watchlist stats */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">
         {totalModels ? (
           <div className="flex items-end justify-between flex-wrap gap-4">
@@ -179,8 +298,28 @@ export default function AIDashboard({
               <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
                 <AnimatedValue value={totalModels} format={(n: number) => n.toLocaleString()} className="tabular-nums" />
               </div>
-              <div className="mt-1.5">
-                <PanelMeta source="Hugging Face snapshot" note="not global catalog size" />
+              <div className="mt-1.5 max-w-md">
+                <PanelMeta
+                  source="Hugging Face multi-query snapshot"
+                  note="curated set (downloads · likes · gen · vision · moe · agent) — not the full HF catalog"
+                />
+              </div>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {models.slice(0, 6).map((m: any) => (
+                  <a
+                    key={m.name}
+                    href={m.url || `https://huggingface.co/${m.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] truncate max-w-[160px]"
+                    title={m.name}
+                  >
+                    {(m.name || '').split('/').pop()}
+                  </a>
+                ))}
+                {models.length > 6 && (
+                  <span className="text-[10px] text-[var(--text-disabled)] self-center">+{models.length - 6} more</span>
+                )}
               </div>
             </div>
             <div className="flex items-center gap-6">
@@ -204,37 +343,63 @@ export default function AIDashboard({
         )}
       </div>
 
-      {frontierReleases.length > 0 && (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {/* Lab research */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
-            <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Frontier releases</span>
-            <span className="text-[10px] text-[var(--text-muted)]">from AI signals · 7d window</span>
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
+            <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Lab research</span>
+            <PanelMeta source="signals" note="OpenAI · Anthropic · DeepMind · Meta…" />
           </div>
-          <div className="divide-y divide-white/[0.02]">
-            {frontierReleases.map((it, i) => (
+          <div className="divide-y divide-white/[0.02] max-h-[300px] overflow-y-auto">
+            {labResearch.length === 0 ? (
+              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">No lab research hits in the 7-day window</div>
+            ) : labResearch.map((it, i) => (
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors group">
-                <span className="text-[10px] text-[var(--text-muted)] tabular-nums w-14 shrink-0">{ago(it.published_at)}</span>
-                <span className="text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-1 flex-1">{it.title}</span>
-                <span className="text-[10px] text-[var(--text-disabled)] truncate max-w-[90px]">{it.source}</span>
+                className="block px-4 py-2.5 hover:bg-white/[0.02] group">
+                <div className="text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2">{it.title}</div>
+                <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-disabled)]">
+                  <span className="truncate max-w-[120px]">{it.source}</span>
+                  <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
+                </div>
               </a>
             ))}
           </div>
         </div>
-      )}
 
-      <FrontierWatch dd={dd} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
-        {hwCat && <CategoryBox cat={hwCat} ago={ago} TC={TC} />}
+        {/* Persona posts */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
+            <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Persona posts</span>
+            <PanelMeta source="X / nitter feeds" note="frontier operators" />
+          </div>
+          <div className="divide-y divide-white/[0.02] max-h-[300px] overflow-y-auto">
+            {tweetFeed.length === 0 ? (
+              <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">No persona posts in the current window</div>
+            ) : tweetFeed.map((it, i) => (
+              <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
+                className="block px-4 py-2.5 hover:bg-white/[0.02] group">
+                <div className="text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2">{it.title}</div>
+                <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-disabled)]">
+                  <span className="truncate max-w-[140px]">{(it.source || '').replace(/^(x:|X:)\s*/i, '@')}</span>
+                  <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {aiCat && (
-        <div className="grid grid-cols-1 gap-5">
-          <CategoryBox cat={aiCat} ago={ago} TC={TC} />
-        </div>
-      )}
+      <FrontierWatch models={models} spaces={spaces} />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <TopOrgs models={models} />
+        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {aiCat && <CategoryBox cat={aiCat} ago={ago} TC={TC} />}
+        {hwCat && <CategoryBox cat={hwCat} ago={ago} TC={TC} />}
+      </div>
     </div>
   );
 }

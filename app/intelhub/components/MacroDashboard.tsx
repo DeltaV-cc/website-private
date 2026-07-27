@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { siteAssetUrl } from '@/lib/site';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import FeaturedResearch from './FeaturedResearch';
 import { CategoryBox, fmtNum, PanelMeta } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 
@@ -68,11 +67,6 @@ export default function MacroDashboard({
   const fgColor = fgVal <= 20 ? 'text-[var(--accent-red)]' : fgVal <= 40 ? 'text-[var(--accent-orange)]' 
     : fgVal <= 60 ? 'text-[var(--accent-amber)]' : fgVal <= 80 ? 'text-lime-400' : 'text-[var(--accent-green)]';
 
-  const cFG = dd?.cryptoFG?.data?.[0];
-  const cryptoFgVal = cFG ? Number(cFG.value) || 0 : 0;
-  const cryptoFgLabel = cFG?.value_classification || '';
-  const cryptoFgColor = cryptoFgVal > 60 ? 'text-[var(--accent-green)]' : cryptoFgVal < 35 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-amber)]';
-
   const HIGH_IMPACT = /fomc|cpi|nfp|payroll|gdp|pce|jackson hole|rate decision|ecb|boj|ism|nonfarm/i;
 
   const calendarGroups = (() => {
@@ -99,62 +93,6 @@ export default function MacroDashboard({
   return (
     <div className="space-y-5">
       <MarketNewsTicker items={items} ts={ts} />
-
-      {/* -- Cross-asset risk strip (same tile language) -- */}
-      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-        <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.05] to-transparent">
-          <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Risk strip</span>
-          <PanelMeta source="indices · crypto · F&G" />
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">S&P 500</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{spx?.price ?? '···'}</div>
-            {spx?.changePct && (
-              <div className={`text-[10px] font-semibold ${spx.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{spx.changePct}</div>
-            )}
-          </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Bitcoin</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
-              {crypto?.btc_price != null ? `$${fmtNum(crypto.btc_price)}` : '···'}
-            </div>
-            {crypto?.btc_change_24h != null && (
-              <div className={`text-[10px] font-semibold ${crypto.btc_change_24h >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                {crypto.btc_change_24h >= 0 ? '+' : ''}{crypto.btc_change_24h.toFixed(1)}%
-              </div>
-            )}
-          </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">US 10Y</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{dd?.us10y?.price ?? '···'}</div>
-            {dd?.us10y?.changePct && (
-              <div className={`text-[10px] font-semibold ${(dd.us10y.change ?? 0) >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{dd.us10y.changePct}</div>
-            )}
-          </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Gold</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">{dd?.gold?.price != null ? `$${dd.gold.price}` : '···'}</div>
-            {dd?.gold?.changePct && (
-              <div className={`text-[10px] font-semibold ${(dd.gold.change ?? 0) >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>{dd.gold.changePct}</div>
-            )}
-          </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Equity F&G</div>
-            <div className={`text-sm font-bold tabular-nums ${typeof stockFG.score === 'number' ? fgColor : 'text-[var(--text-disabled)]'}`}>
-              {typeof stockFG.score === 'number' ? fgVal : '···'}
-            </div>
-            <div className={`text-[10px] ${fgColor}/70`}>{fgLabel || '—'}</div>
-          </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Crypto F&G</div>
-            <div className={`text-sm font-bold tabular-nums ${cryptoFgVal ? cryptoFgColor : 'text-[var(--text-disabled)]'}`}>
-              {cryptoFgVal || '···'}
-            </div>
-            <div className={`text-[10px] ${cryptoFgColor}/70`}>{cryptoFgLabel || '—'}</div>
-          </div>
-        </div>
-      </div>
 
       {/* -- Market Grid — Metric Tiles -- */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
@@ -403,25 +341,6 @@ export default function MacroDashboard({
           </table>
         </div>
       </div>
-
-      {/* -- Artemis Featured Research -- */}
-      {(() => {
-        const researchArticles = dd?.artemisNewsletter?.research_articles || [];
-        const mapped = researchArticles.map((a: any) => ({
-          title: a.title || '',
-          url: a.link || '',
-          source: `Artemis Research (${a.author || 'Artemis'})`,
-          published_at: a.date || '',
-          summary: a.excerpt || '',
-          category: 'macro' as const,
-          artemis_id: a.link || '',
-          categories: ['macro'],
-        }));
-        if (mapped.length > 0) {
-          return <FeaturedResearch articles={mapped} />;
-        }
-        return null;
-      })()}
 
       {/* -- Patents + Gainers/Losers -- */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

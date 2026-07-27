@@ -3,13 +3,14 @@
    DEX Dominance %, REV, Stablecoins by chain, ETF flows */
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CategoryBox, SkeletonBlock, fmtCurrency, fmtCompact, PanelMeta } from './Shared';
 import CryptoFrontierSignals from './CryptoFrontierSignals';
-import { useChartHover, formatDate, formatValue, ChartPoint } from './ChartHover';
+import { useChartHover, formatDate, formatValue, sanitizeUsdVolumeHistory } from './ChartHover';
 import AnimatedValue from './AnimatedValue';
 import VolumeChart from './VolumeChart';
 import ChainVolumeBar from './ChainVolumeBar';
+import NetFlowsPanel from './NetFlowsPanel';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -173,14 +174,18 @@ export default function Web3Dashboard({
   const mcap = cmc.total_mcap || 0;
   const mcapChg = cmc.mcap_change_24h || 0;
   const exVol = dd?.exchangeVol || {};
-  const volHistory = exVol.vol_history || [];
-  const volHover = useChartHover(volHistory as ChartPoint[]);
+  const volAnchor =
+    exVol.total_vol_usd_24h ||
+    cmc.total_volume ||
+    null;
+  const volHistory = useMemo(
+    () => sanitizeUsdVolumeHistory(exVol.vol_history || [], volAnchor),
+    [exVol.vol_history, volAnchor],
+  );
+  const volHover = useChartHover(volHistory);
   const [chainView, setChainView] = useState<'tvl' | 'dominance'>('tvl');
 
   const totalVol = dd?.totalVolume24h || 0;
-
-  // Revenue data (chain-level Llama series)
-  const revenue = (dd?.revenue || []) as any[];
 
   // Stablecoin chain breakdown from raw data
   const stableChains = dd?.stablecoinChains || [];
@@ -314,8 +319,8 @@ export default function Web3Dashboard({
         {volHistory.length > 1 && (
           <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
             <div className="flex items-center justify-between mb-2">
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">Volume Sparkline (1Y)</div>
-              <span className="text-[10px] text-[var(--text-muted)]">{volHistory.length} days</span>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">BTC market volume (USD · 1Y)</div>
+              <span className="text-[10px] text-[var(--text-muted)]">{volHistory.length} pts · CoinGecko</span>
             </div>
             <div className="relative sparkline-container" onMouseMove={volHover.onMove} onMouseLeave={volHover.onLeave}>
               <svg className="w-full h-12" viewBox={`0 0 ${volHistory.length} 48`} preserveAspectRatio="none">
@@ -327,10 +332,10 @@ export default function Web3Dashboard({
                 </defs>
                 {(() => {
                   const pts = volHistory;
-                  const max = Math.max(...pts.map((d: any) => d.v));
-                  const min = Math.min(...pts.map((d: any) => d.v));
+                  const max = Math.max(...pts.map((d) => d.v));
+                  const min = Math.min(...pts.map((d) => d.v));
                   const range = max - min || 1;
-                  const points = pts.map((d: any, i: number) =>
+                  const points = pts.map((d, i) =>
                     `${(i / (pts.length - 1)) * pts.length},${48 - ((d.v - min) / range) * 40 - 4}`
                   ).join(' ');
                   const areaPoints = points + ` ${pts.length - 1},48 0,48`;
@@ -437,40 +442,13 @@ export default function Web3Dashboard({
         </div>
       </div>
 
-      {/* -- REV + Stablecoins -- */}
+      {/* -- Net flows (Dromos) + Stablecoins -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* REV — Protocol Revenue */}
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Revenue by chain (REV · 24h)</div>
-            <span className="text-[9px] text-[var(--text-disabled)]">via DeFi Llama · chain level</span>
-          </div>
-          <div className="space-y-2">
-            {revenue.length > 0 ? (
-              revenue.slice(0, 6).map((r: any, i: number) => {
-                const maxRev = revenue[0]?.revenue24h || 1;
-                const pct = ((r.revenue24h / maxRev) * 100).toFixed(0);
-                return (
-                  <div key={i} className="flex items-center gap-2.5 text-xs">
-                    <span className="w-5 tabular-nums text-[var(--text-disabled)] text-right flex-shrink-0">#{i + 1}</span>
-                    <span className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0">{r.name}</span>
-                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
-                      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-green)]/60 to-[var(--accent-green)]/20"
-                        style={{ width: `${pct}%` }} />
-                    </div>
-                    <span className="w-20 text-right tabular-nums text-[var(--text-secondary)] flex-shrink-0 text-[10px] font-medium">
-                      {fmtCompact(r.revenue24h)}
-                    </span>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <span className="text-[var(--text-disabled)] text-xs">Revenue data loading...</span>
-              </div>
-            )}
-          </div>
-        </div>
+        <NetFlowsPanel
+          rows={dd?.netFlows?.rows || dd?.netFlows || []}
+          loading={!dd?.netFlows}
+          updated={dd?.netFlows?.updated || null}
+        />
 
         {/* Stablecoins */}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
@@ -528,7 +506,7 @@ export default function Web3Dashboard({
           </div>
         </div>
 
-        {(moverGainers.length > 0 || moverLosers.length > 0) ? (
+        {(moverGainers.length > 0 || moverLosers.length > 0) && (
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
             <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
               <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
@@ -557,34 +535,6 @@ export default function Web3Dashboard({
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        ) : (
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Revenue (REV · 24h)</div>
-              <PanelMeta source="DeFi Llama · chain level" />
-            </div>
-            <div className="space-y-2">
-              {revenue.length > 0 ? revenue.slice(0, 6).map((r: any, i: number) => {
-                const maxRev = revenue[0]?.revenue24h || 1;
-                const pct = ((r.revenue24h / maxRev) * 100).toFixed(0);
-                return (
-                  <div key={i} className="flex items-center gap-2.5 text-xs">
-                    <span className="w-5 tabular-nums text-[var(--text-disabled)] text-right flex-shrink-0">#{i + 1}</span>
-                    <span className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0">{r.name}</span>
-                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
-                      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-green)]/60 to-[var(--accent-green)]/20"
-                        style={{ width: `${pct}%` }} />
-                    </div>
-                    <span className="w-20 text-right tabular-nums text-[var(--text-secondary)] flex-shrink-0 text-[10px] font-medium">
-                      {fmtCompact(r.revenue24h)}
-                    </span>
-                  </div>
-                );
-              }) : (
-                <div className="text-[var(--text-disabled)] text-xs italic py-4 text-center">Revenue data loading...</div>
-              )}
             </div>
           </div>
         )}

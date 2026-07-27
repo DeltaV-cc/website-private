@@ -3,8 +3,8 @@
 import { useCallback, useState } from 'react';
 
 export interface ChartPoint {
-  t: string; // ISO timestamp
-  v: number; // value
+  t: string | number; // ISO timestamp or unix ms
+  v: number; // value (USD for volume)
 }
 
 export function useChartHover(points: ChartPoint[]) {
@@ -28,6 +28,7 @@ export function useChartHover(points: ChartPoint[]) {
 }
 
 export function formatValue(v: number): string {
+  if (!Number.isFinite(v)) return '—';
   if (v >= 1e12) return `$${(v / 1e12).toFixed(2)}T`;
   if (v >= 1e9) return `$${(v / 1e9).toFixed(2)}B`;
   if (v >= 1e6) return `$${(v / 1e6).toFixed(2)}M`;
@@ -35,8 +36,43 @@ export function formatValue(v: number): string {
   return `$${v.toFixed(2)}`;
 }
 
-export function formatDate(iso: string): string {
+export function formatDate(iso: string | number): string {
   try {
-    return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  } catch { return iso; }
+    const d = typeof iso === 'number' ? new Date(iso) : new Date(iso);
+    if (isNaN(d.getTime())) return String(iso);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  } catch { return String(iso); }
+}
+
+/**
+ * CoinGecko total_volumes are USD. Older snapshots wrongly multiplied by BTC price
+ * (values ~1e15+). Detect and divide by a typical BTC price scale using the last
+ * point vs a known USD anchor when available.
+ */
+export function sanitizeUsdVolumeHistory(
+  raw: { t: string | number; v: number }[] | undefined | null,
+  usdAnchor?: number | null,
+): ChartPoint[] {
+  if (!raw || !raw.length) return [];
+  const pts = raw
+    .map((p) => ({ t: p.t, v: Number(p.v) }))
+    .filter((p) => Number.isFinite(p.v) && p.v >= 0);
+  if (!pts.length) return [];
+
+  const maxV = Math.max(...pts.map((p) => p.v));
+  const lastV = pts[pts.length - 1].v;
+
+  // Healthy global crypto volume is typically 1e10–1e12 USD. Values >> 1e13 are bad.
+  if (maxV < 1e13) return pts;
+
+  let scale = 1;
+  if (usdAnchor && usdAnchor > 0 && lastV > 0) {
+    // Scale so last point ≈ anchor (total_vol_usd_24h or crypto.total_volume)
+    scale = lastV / usdAnchor;
+  } else if (maxV > 1e14) {
+    // Fallback: historical bug multiplied by BTC price (~5e4–1e5)
+    scale = 70000;
+  }
+  if (!Number.isFinite(scale) || scale < 10) return pts;
+  return pts.map((p) => ({ t: p.t, v: p.v / scale }));
 }
