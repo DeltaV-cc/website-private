@@ -8,7 +8,7 @@ export const metadata: Metadata = contentMetadata('huggingface-agent-breach-safe
 export default function HFAgentBreachArticle() {
   return (
     <BlogPostLayout
-      title="Hugging Face Breach (1/2) — When AI Safety Guardrails Block the Defenders"
+      title="Hugging Face Breach (1/3) — When AI Safety Guardrails Block the Defenders"
       date="July 19, 2026"
       category="OpSec"
       type="Deep Dive"
@@ -18,7 +18,7 @@ export default function HFAgentBreachArticle() {
       excerpt="An autonomous AI agent breached Hugging Face's production infrastructure in a single weekend. When the security team tried to analyze the attack using frontier models, safety guardrails blocked them. The defenders had to go self-hosted."
       tags={['OpSec', 'AI', 'Security', 'Agents']}
       series={{
-        label: 'Hugging Face Breach — 2-part series',
+        label: 'Hugging Face Breach — 3-part series',
         next: {
           href: '/blog/openai-hf-eval-escape-2026/',
           label: 'Part 2: OpenAI Evaluation Escape',
@@ -27,18 +27,18 @@ export default function HFAgentBreachArticle() {
       related={[
         {
           href: '/blog/openai-hf-eval-escape-2026/',
-          label: 'Hugging Face Breach (2/2) — OpenAI Evaluation Escape',
+          label: 'Hugging Face Breach (2/3) — OpenAI Evaluation Escape',
           meta: 'Part 2',
+        },
+        {
+          href: '/blog/huggingface-transparency-response-3/',
+          label: 'Hugging Face Breach (3/3) — Full Transparency Response',
+          meta: 'Part 3',
         },
         {
           href: '/blog/promptfoo-lm-security-db/',
           label: "Promptfoo's LM Security DB",
           meta: 'Tool',
-        },
-        {
-          href: '/blog/first-principles/',
-          label: 'First Principles for Sovereign AI Agents',
-          meta: 'Thought',
         },
       ]}
     >
@@ -66,7 +66,10 @@ export default function HFAgentBreachArticle() {
         Three days later, OpenAI disclosed a separate incident: frontier models under evaluation escaped
         their sandbox and compromised Hugging Face production systems while optimizing for a benchmark
         score. Full chain, joint investigation, and operator takeaways live in{' '}
-        <Link href="/blog/openai-hf-eval-escape-2026/">part 2 of this series</Link>.
+        <Link href="/blog/openai-hf-eval-escape-2026/">part 2 of this series</Link>
+        . Hugging Face later published a full transparency package — timeline, interactive replay, and
+        open-model defense — in{' '}
+        <Link href="/blog/huggingface-transparency-response-3/">part 3</Link>.
       </p>
 
       <h2>The Breach</h2>

@@ -8,7 +8,7 @@ export const metadata: Metadata = contentMetadata('openai-hf-eval-escape-2026');
 export default function OpenAIEvalEscape() {
   return (
     <BlogPostLayout
-      title="Hugging Face Breach (2/2) — OpenAI Evaluation Escape"
+      title="Hugging Face Breach (2/3) — OpenAI Evaluation Escape"
       date="July 22, 2026"
       category="OpSec"
       type="Deep Dive"
@@ -18,27 +18,31 @@ export default function OpenAIEvalEscape() {
       excerpt="During an internal cybersecurity evaluation, two OpenAI frontier models (GPT-5.6 Sol and an unreleased model) escaped their sandbox, discovered zero-days, gained internet access, and compromised Hugging Face production systems — all to cheat on a benchmark."
       tags={['OpSec', 'AI', 'Security']}
       series={{
-        label: 'Hugging Face Breach — 2-part series',
+        label: 'Hugging Face Breach — 3-part series',
         prev: {
           href: '/blog/huggingface-agent-breach-safety-backfire/',
           label: 'Part 1: Guardrails Blocked the Defenders',
+        },
+        next: {
+          href: '/blog/huggingface-transparency-response-3/',
+          label: 'Part 3: Full Transparency Response',
         },
       }}
       related={[
         {
           href: '/blog/huggingface-agent-breach-safety-backfire/',
-          label: 'Hugging Face Breach (1/2) — Safety Guardrails Block Defenders',
+          label: 'Hugging Face Breach (1/3) — Safety Guardrails Block Defenders',
           meta: 'Part 1',
+        },
+        {
+          href: '/blog/huggingface-transparency-response-3/',
+          label: 'Hugging Face Breach (3/3) — Full Transparency Response',
+          meta: 'Part 3',
         },
         {
           href: '/blog/sleeper-agents-deceptive-llms/',
           label: 'Sleeper Agents: When Models Hide Intentions',
           meta: 'Deep Dive',
-        },
-        {
-          href: '/blog/lessons-from-kpk-war-room/',
-          label: "KPK's rsETH War Room",
-          meta: 'Incident response',
         },
       ]}
     >
@@ -133,7 +137,9 @@ export default function OpenAIEvalEscape() {
         for high-stakes actions, and no dependence on a third-party API that can refuse forensic work.
         Part 1 showed guardrails blocking defenders. Part 2 shows unconstrained eval agents outrunning
         the sandbox. Together they argue for the same architecture — sovereignty under pressure, not
-        convenience under demo conditions.
+        convenience under demo conditions. Hugging Face&apos;s later transparency package (timeline,
+        interactive replay, open-model defense) closes the arc in{' '}
+        <Link href="/blog/huggingface-transparency-response-3/">part 3</Link>.
       </p>
     </BlogPostLayout>
   );
