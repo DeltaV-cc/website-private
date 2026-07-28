@@ -179,6 +179,106 @@ const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
   }
 };
 
+const fetchText = async (url: string, ms = 10000): Promise<string | null> => {
+  try {
+    const sep = url.includes('?') ? '&' : '?';
+    const bucket = Math.floor(Date.now() / 300000);
+    const r = await fetch(`${url}${sep}_t=${bucket}`, { signal: AbortSignal.timeout(ms) });
+    if (!r.ok) return null;
+    return await r.text();
+  } catch {
+    return null;
+  }
+};
+
+/** Parse a minimal RSS 2.0 / Atom item list into IntelHub Item shape. */
+function parseRssItems(xml: string, sourceLabel: string, limit = 20): Item[] {
+  if (!xml) return [];
+  const items: Item[] = [];
+  // RSS <item>
+  const blocks = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) || [];
+  for (const block of blocks) {
+    const title = (block.match(/<title[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/i)?.[1] || '')
+      .replace(/<[^>]+>/g, '').trim();
+    const link = (block.match(/<link[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/link>/i)?.[1]
+      || block.match(/<link[^>]+href=["']([^"']+)["']/i)?.[1]
+      || '').trim();
+    const pub = (block.match(/<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i)?.[1]
+      || block.match(/<dc:date[^>]*>([\s\S]*?)<\/dc:date>/i)?.[1]
+      || '').trim();
+    const desc = (block.match(/<description[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/description>/i)?.[1] || '')
+      .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 280);
+    if (!title || !link) continue;
+    items.push({
+      title,
+      url: link,
+      source: sourceLabel,
+      published_at: pub ? new Date(pub).toISOString() : new Date().toISOString(),
+      summary: desc,
+      tag: 'ai',
+    });
+    if (items.length >= limit) break;
+  }
+  // Atom <entry> fallback
+  if (!items.length) {
+    const entries = xml.match(/<entry[\s>][\s\S]*?<\/entry>/gi) || [];
+    for (const block of entries) {
+      const title = (block.match(/<title[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/i)?.[1] || '')
+        .replace(/<[^>]+>/g, '').trim();
+      const link = (block.match(/<link[^>]+href=["']([^"']+)["']/i)?.[1] || '').trim();
+      const pub = (block.match(/<updated[^>]*>([\s\S]*?)<\/updated>/i)?.[1]
+        || block.match(/<published[^>]*>([\s\S]*?)<\/published>/i)?.[1]
+        || '').trim();
+      const desc = (block.match(/<summary[^>]*>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/summary>/i)?.[1] || '')
+        .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 280);
+      if (!title || !link) continue;
+      items.push({
+        title,
+        url: link,
+        source: sourceLabel,
+        published_at: pub ? new Date(pub).toISOString() : new Date().toISOString(),
+        summary: desc,
+        tag: 'ai',
+      });
+      if (items.length >= limit) break;
+    }
+  }
+  return items;
+}
+
+function chainNorm(name: string): string {
+  return (name || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+/** Map common Llama naming variants so TVL / fees / matrix join cleanly. */
+function chainAliases(name: string): string[] {
+  const n = chainNorm(name);
+  const aliases = new Set<string>([n]);
+  if (n === 'bsc' || n === 'bnb' || n === 'binance' || n === 'binance smart chain') {
+    ['bsc', 'bnb', 'binance', 'binance smart chain'].forEach((a) => aliases.add(a));
+  }
+  if (n === 'op mainnet' || n === 'optimism' || n === 'op') {
+    ['op mainnet', 'optimism', 'op'].forEach((a) => aliases.add(a));
+  }
+  if (n === 'avalanche' || n === 'avalanche c' || n === 'avax') {
+    ['avalanche', 'avalanche c', 'avax'].forEach((a) => aliases.add(a));
+  }
+  if (n === 'hyperliquid l1' || n === 'hyperliquid') {
+    ['hyperliquid l1', 'hyperliquid'].forEach((a) => aliases.add(a));
+  }
+  if (n === 'ethereum' || n === 'eth') {
+    ['ethereum', 'eth'].forEach((a) => aliases.add(a));
+  }
+  return [...aliases];
+}
+
+function feeLookup(feeMap: Record<string, { fees24h: number; feesChange1d?: number | null }>, chainName: string) {
+  for (const a of chainAliases(chainName)) {
+    if (feeMap[a]) return feeMap[a];
+  }
+  return null;
+}
+
 export function useIntelData(activeTab: string = 'macro') {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -194,6 +294,7 @@ export function useIntelData(activeTab: string = 'macro') {
   });
   const infosecLiveOnce = useRef(false);
   const web3LiveOnce = useRef(false);
+  const aiFeedsOnce = useRef(false);
 
   const loadAll = useCallback(async () => {
     try {
@@ -298,63 +399,149 @@ export function useIntelData(activeTab: string = 'macro') {
     await Promise.allSettled([...staticTasks, ...coreLive]);
   }, []);
 
-  /** Heavy DeFi Llama suite — first visit to Web3 (or Macro movers that share TVL). */
+  /**
+   * Heavy DeFi Llama suite — first visit to Web3 (or Macro for TVL movers).
+   * Chain fees are fetched per-chain (global fees chart is protocol-level — that was a mismatch).
+   * DEX×chain matrix is rebuilt live so static snapshots cannot go stale silently.
+   */
   const loadWeb3Live = useCallback(async () => {
     const merge = (patch: any) => {
       if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
     };
-    const liveTasks: Array<Promise<void>> = [
-      fetchJson('https://api.llama.fi/v2/chains').then((chains) => {
-        if (!Array.isArray(chains)) return;
-        const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
-        const total = sorted.reduce((s: number, c: any) => s + c.tvl, 0) || 1;
-        merge({
-          tvl: sorted.slice(0, 12).map((c: any) => ({ name: c.name, tvl: c.tvl, change_1d: c.change_1d || 0, change_7d: c.change_7d || 0 })),
-          dominance: sorted.slice(0, 5).map((c: any) => ({ name: c.name, pct: ((c.tvl / total) * 100).toFixed(1) + '%' })),
+
+    // 1) TVL + per-chain fees (joined)
+    const chains = await fetchJson('https://api.llama.fi/v2/chains', 12000);
+    if (Array.isArray(chains)) {
+      const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
+      const top = sorted.slice(0, 12);
+      const total = sorted.reduce((s: number, c: any) => s + c.tvl, 0) || 1;
+
+      // Per-chain fees — correct source (not protocol breakdown)
+      const feeRows = await Promise.all(
+        top.map(async (c: any) => {
+          const d = await fetchJson(
+            `https://api.llama.fi/overview/fees/${encodeURIComponent(c.name)}?dataType=dailyFees`,
+            10000,
+          );
+          return {
+            name: c.name,
+            fees24h: Number(d?.total24h) || 0,
+            feesChange1d: typeof d?.change_1d === 'number' ? d.change_1d : null,
+          };
+        }),
+      );
+      const feeMap: Record<string, { fees24h: number; feesChange1d?: number | null }> = {};
+      for (const f of feeRows) {
+        for (const a of chainAliases(f.name)) feeMap[a] = f;
+      }
+
+      const tvl = top.map((c: any) => {
+        const fee = feeLookup(feeMap, c.name);
+        return {
+          name: c.name,
+          tvl: c.tvl,
+          change_1d: c.change_1d || 0,
+          change_7d: c.change_7d || 0,
+          fees24h: fee?.fees24h || 0,
+          feesChange1d: fee?.feesChange1d ?? null,
+        };
+      });
+
+      merge({
+        tvl,
+        fees: feeRows.filter((f) => f.fees24h > 0).sort((a, b) => b.fees24h - a.fees24h),
+        dominance: top.slice(0, 8).map((c: any) => ({
+          name: c.name,
+          pct: ((c.tvl / total) * 100).toFixed(1) + '%',
+          tvl: c.tvl,
+          fees24h: feeLookup(feeMap, c.name)?.fees24h || 0,
+        })),
+        tvlUpdatedAt: new Date().toISOString(),
+      });
+
+      // 2) Live DEX × chain matrix from top chains by TVL (refresh every loadWeb3Live)
+      const matrixChains = top.slice(0, 7).map((c: any) => c.name);
+      const chainDex = await Promise.all(
+        matrixChains.map(async (chain: string) => {
+          const d = await fetchJson(
+            `https://api.llama.fi/overview/dexs/${encodeURIComponent(chain)}?dataType=dailyVolume`,
+            12000,
+          );
+          const protocols = ((d?.protocols || []) as any[])
+            .map((p: any) => ({
+              name: p.displayName || p.name || '?',
+              volume24h: Number(p.total24h) || 0,
+            }))
+            .filter((p: any) => p.volume24h > 0)
+            .sort((a: any, b: any) => b.volume24h - a.volume24h)
+            .slice(0, 6);
+          return {
+            chain,
+            total24h: Number(d?.total24h) || 0,
+            change_1d: typeof d?.change_1d === 'number' ? d.change_1d : 0,
+            protocols,
+          };
+        }),
+      );
+
+      const allProtocols: Record<string, { total_vol: number; chains: Record<string, number> }> = {};
+      for (const cd of chainDex) {
+        for (const p of cd.protocols) {
+          if (!allProtocols[p.name]) allProtocols[p.name] = { total_vol: 0, chains: {} };
+          allProtocols[p.name].chains[cd.chain] = p.volume24h;
+          allProtocols[p.name].total_vol += p.volume24h;
+        }
+      }
+      const matrix = Object.entries(allProtocols)
+        .sort((a, b) => b[1].total_vol - a[1].total_vol)
+        .slice(0, 12)
+        .map(([protocol, data]) => {
+          const row: any = { protocol, total_vol: data.total_vol };
+          for (const chain of matrixChains) row[chain] = data.chains[chain] || 0;
+          return row;
         });
-      }),
+
+      // Prefer live matrix when we got real volume; keep snapshot otherwise
+      const liveVol = chainDex.reduce((s, c) => s + (c.total24h || 0), 0);
+      if (matrix.length && liveVol > 0) {
+        merge({
+          dexMatrix: {
+            updated_at: new Date().toISOString(),
+            source: 'DeFiLlama (live per-chain DEX)',
+            chains: chainDex.map((c) => ({
+              chain: c.chain,
+              total24h: c.total24h,
+              change_1d: c.change_1d,
+            })),
+            matrix,
+            live: true,
+          },
+        });
+      }
+    }
+
+    // 3) Global DEX volume + stables (parallel)
+    await Promise.allSettled([
       fetchJson('https://api.llama.fi/overview/dexs?dataType=dailyVolume').then((d) => {
         if (!d) return;
         const chart = d.totalDataChartBreakdown;
         const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
-        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
+        // Prefer chain totals from allChains × last breakdown only if keys look like chains
+        const bd = (last && last[1]) || d.breakdown24h || {};
         let volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
-          name: n, volume24h: bd[n] || 0,
+          name: n,
+          volume24h: typeof bd[n] === 'number' ? bd[n] : 0,
         })).filter((x: any) => x.volume24h > 0).sort((a: any, b: any) => b.volume24h - a.volume24h);
-        if (volume.length === 0) {
+        // If breakdown is protocol-level (common), fall back to total24h only
+        if (volume.length === 0 && d.total24h) {
           volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
         }
-        const total24h = d.total24h || 0;
-        const dexDominance = total24h > 0
-          ? volume.map((v: any) => ({ ...v, dominance: (v.volume24h / total24h * 100) }))
-          : volume.map((v: any) => ({ ...v, dominance: 0 }));
-        merge({ totalVolume24h: total24h, volume, dexDominance });
-      }),
-      fetchJson('https://api.llama.fi/overview/fees?dataType=dailyFees').then((d) => {
-        if (!d) return;
-        const chart = d.totalDataChartBreakdown;
-        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
-        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
-        let fees = (d.allChains || []).slice(0, 10).map((n: string) => ({
-          name: n, fees24h: bd[n] || 0,
-        })).filter((x: any) => x.fees24h > 0).sort((a: any, b: any) => b.fees24h - a.fees24h);
-        if (fees.length === 0) {
-          fees = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, fees24h: 0 }));
-        }
-        merge({ fees });
-      }),
-      fetchJson('https://api.llama.fi/overview/fees?dataType=dailyRevenue').then((d) => {
-        if (!d) return;
-        const chart = d.totalDataChartBreakdown;
-        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
-        const bd = (last && last[1]) || d.breakdown24h || d.total24hBreakdown || {};
-        let revenue = (d.allChains || []).slice(0, 10).map((n: string) => ({
-          name: n, revenue24h: bd[n] || 0,
-        })).filter((x: any) => x.revenue24h > 0).sort((a: any, b: any) => b.revenue24h - a.revenue24h).slice(0, 6);
-        if (revenue.length === 0) {
-          revenue = (d.allChains || []).slice(0, 6).map((n: string) => ({ name: n, revenue24h: 0 }));
-        }
-        merge({ revenue });
+        merge({
+          totalVolume24h: d.total24h || 0,
+          volume,
+          dexDominance: volume,
+          dexsUpdatedAt: new Date().toISOString(),
+        });
       }),
       fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false').then((d) => {
         if (!d) return;
@@ -378,8 +565,45 @@ export function useIntelData(activeTab: string = 'macro') {
           stablecoinChains,
         });
       }),
+    ]);
+  }, []);
+
+  /** External lab/research + blog RSS to fill AI social/research boxes. */
+  const loadAIFeeds = useCallback(async () => {
+    const merge = (patch: any) => {
+      if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
+    };
+    const feeds: { url: string; source: string }[] = [
+      { url: 'https://rss.arxiv.org/rss/cs.AI', source: 'arXiv cs.AI' },
+      { url: 'https://rss.arxiv.org/rss/cs.LG', source: 'arXiv cs.LG' },
+      { url: 'https://rss.arxiv.org/rss/cs.CL', source: 'arXiv cs.CL' },
+      { url: 'https://huggingface.co/blog/feed.xml', source: 'Hugging Face Blog' },
+      { url: 'https://openai.com/blog/rss.xml', source: 'OpenAI Blog' },
+      { url: 'https://www.anthropic.com/rss.xml', source: 'Anthropic' },
+      { url: 'https://blog.google/technology/ai/rss/', source: 'Google AI Blog' },
     ];
-    await Promise.allSettled(liveTasks);
+    const results = await Promise.allSettled(
+      feeds.map(async (f) => {
+        // Direct first (CORS-open sources), then proxy
+        let xml = await fetchText(f.url, 10000);
+        if (!xml) xml = await fetchText(proxy(f.url), 12000);
+        if (!xml) return [] as Item[];
+        return parseRssItems(xml, f.source, 12);
+      }),
+    );
+    const labFeed: Item[] = [];
+    for (const r of results) {
+      if (r.status === 'fulfilled' && Array.isArray(r.value)) labFeed.push(...r.value);
+    }
+    // Dedupe by title
+    const seen = new Set<string>();
+    const deduped = labFeed.filter((it) => {
+      const k = (it.title || '').toLowerCase().slice(0, 80);
+      if (!k || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    }).sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    if (deduped.length) merge({ aiLabFeed: deduped.slice(0, 40), aiFeedsUpdatedAt: new Date().toISOString() });
   }, []);
 
   const loadInfosec = useCallback(async () => {
@@ -504,14 +728,15 @@ export function useIntelData(activeTab: string = 'macro') {
       // Keep heavy tabs warm once visited
       if (web3LiveOnce.current) loadWeb3Live();
       if (infosecLiveOnce.current) loadInfosec();
+      if (aiFeedsOnce.current) loadAIFeeds();
     };
     refresh();
     const i = window.setInterval(refresh, 5 * 60_000);
     document.addEventListener('visibilitychange', refresh);
     return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refresh); };
-  }, [loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec]);
+  }, [loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec, loadAIFeeds]);
 
-  // Lazy: first open of Web3 (or Macro for TVL movers) loads Llama suite
+  // Lazy: first open of Web3/Macro → Llama suite; Infosec → threat feeds; AI → lab RSS
   useEffect(() => {
     if (activeTab === 'web3' || activeTab === 'macro') {
       if (!web3LiveOnce.current) {
@@ -525,7 +750,13 @@ export function useIntelData(activeTab: string = 'macro') {
         loadInfosec();
       }
     }
-  }, [activeTab, loadWeb3Live, loadInfosec]);
+    if (activeTab === 'ai') {
+      if (!aiFeedsOnce.current) {
+        aiFeedsOnce.current = true;
+        loadAIFeeds();
+      }
+    }
+  }, [activeTab, loadWeb3Live, loadInfosec, loadAIFeeds]);
 
   /* ---- Derived ---- */
   // Category → tags that don't belong (e.g. macro box shouldn't show crypto-tagged items)
