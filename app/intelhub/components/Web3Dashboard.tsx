@@ -11,6 +11,7 @@ import AnimatedValue from './AnimatedValue';
 import VolumeChart from './VolumeChart';
 import ChainVolumeBar from './ChainVolumeBar';
 import NetFlowsPanel from './NetFlowsPanel';
+import BoldYieldsPanel from './BoldYieldsPanel';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -506,15 +507,18 @@ export default function Web3Dashboard({
         </div>
       </div>
 
-      {/* -- Net flows (Dromos) + Stablecoins -- */}
+      {/* -- BOLD stable yields (Liquity / Dune board) + Dromos net flows -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <BoldYieldsPanel data={dd?.boldYields} loading={!dd?.boldYields} />
         <NetFlowsPanel
           rows={dd?.netFlows?.rows || dd?.netFlows || []}
           loading={!dd?.netFlows}
           updated={dd?.netFlows?.updated || null}
         />
+      </div>
 
-        {/* Stablecoins */}
+      {/* -- Stablecoins -- */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold mb-1">Stablecoin MCap</div>
           <div className="text-xl font-bold tabular-nums text-[var(--text-primary)] mb-3">
@@ -543,41 +547,40 @@ export default function Web3Dashboard({
           )}
           <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
         </div>
-      </div>
 
-      {/* -- Chain movers -- */}
-      {(moverGainers.length > 0 || moverLosers.length > 0) && (
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
-            <PanelMeta source="pipeline snapshot" />
-          </div>
-          <div className="p-4 grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
-              {moverGainers.slice(0, 5).map((c: any, i: number) => (
-                <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                  <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                  <span className="text-[var(--accent-green)] tabular-nums font-medium">
-                    {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
-                  </span>
-                </div>
-              ))}
+        {(moverGainers.length > 0 || moverLosers.length > 0) && (
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+            <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
+              <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
+              <PanelMeta source="pipeline snapshot" />
             </div>
-            <div>
-              <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
-              {moverLosers.slice(0, 5).map((c: any, i: number) => (
-                <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                  <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                  <span className="text-[var(--accent-red)] tabular-nums font-medium">
-                    {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
-                  </span>
-                </div>
-              ))}
+            <div className="p-4 grid grid-cols-2 gap-3 text-xs">
+              <div>
+                <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
+                {moverGainers.slice(0, 5).map((c: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                    <span className="text-[var(--accent-green)] tabular-nums font-medium">
+                      {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
+                {moverLosers.slice(0, 5).map((c: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
+                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
+                    <span className="text-[var(--accent-red)] tabular-nums font-medium">
+                      {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* -- DEX × Chain Matrix (live-refreshed when Web3 loads) -- */}
       {dd?.dexMatrix?.matrix?.length > 0 && (
