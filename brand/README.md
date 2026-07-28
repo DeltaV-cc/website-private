@@ -31,4 +31,4 @@ Signal-led assets for Delta V: dark systems, restrained cyan, and a human layer 
 
 ## Usage
 
-The files are served under `/website-private/brand/` in the static site. Keep the mark on dark backgrounds, use cyan for primary signals, and reserve purple/orchid for secondary or Forge moments. Use the WEBP panorama for web delivery; keep PNG/JPG for handoff and editing.
+The files are served under `{basePath}/brand/` in the static site (`site.config.json`). Keep the mark on dark backgrounds, use cyan for primary signals, and reserve purple/orchid for secondary or Forge moments. Use the WEBP panorama for web delivery; keep PNG/JPG for handoff and editing.
