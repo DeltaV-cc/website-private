@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-28T21:30:23Z",
+  "updated_at": "2026-07-28T21:45:25Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.34,
+        "price": 3.38,
         "change_24h": 9.1,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 100.82,
+        "price": 100.9,
         "change_24h": 1.4,
         "asset": "crypto"
       }
@@ -126,14 +126,14 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001967,
+        "price": 0.001975,
         "change_24h": -7.9,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.320059,
+        "price": 0.320703,
         "change_24h": -6.1,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.036504,
+        "price": 0.036547,
         "change_24h": -5.4,
         "asset": "crypto"
       }
