@@ -41,3 +41,30 @@ The Contact page uses a local date-selection shell and Cal.com only for live ava
 ## Legal content
 
 Legal pages are static, English, internally rendered pages. Keep the company identity, contact address and update date synchronized across Terms of Use, Privacy Policy and the footer. Content is editorially adapted for this site and must receive final legal validation before production publication.
+
+## Blog and tutorial reading pages
+
+Shared chrome lives in `components/BlogPostLayout.tsx`. Domain and format badge colors come from `lib/content-accents.ts` (listing pages and article headers must use the same map).
+
+### Article primitives
+
+Prefer components in `components/article/primitives.tsx` over one-off hex colors inside posts:
+
+- `ArticleStat` / `ArticleStatGrid` — metric tiles
+- `ArticleCallout` — quotes and key-principle boxes
+- `ArticleTimeline` — IR / event timelines
+- `ArticleSourceFooter` — source lines
+- `ArticleNote` — short italic caveats (tutorials)
+
+### Content authoring checklist
+
+1. Copy an existing page of the same **format** (Deep Dive / Thought / Tool / Tutorial / Dashboard).
+2. Register the page in `app/data/content-index.ts` (`domain`, `format`, pretty `date`, `readingMinutes`, tags, excerpt).
+3. Export page metadata: `export const metadata = contentMetadata('<id>')` from `lib/content-meta.ts`.
+4. Pass accurate `readingTime` and pretty dates into `BlogPostLayout` (ISO dates are normalized, but prefer `Month D, YYYY`).
+5. Multi-part posts: set `series` prev/next; do not paste the same incident narrative into both parts.
+6. Tutorials: `footerVariant="tutorial"`; weeklies: `footerVariant="weekly"`.
+7. Use design tokens / article primitives — no raw `#111` / `#00f0ff` surface chrome.
+8. Run `pnpm check` before opening a PR.
+
+Leave strong prose alone. Prefer mechanical polish over rewrites.

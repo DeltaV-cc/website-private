@@ -1,6 +1,14 @@
-'use client';
-
+import type { Metadata } from 'next';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import {
+  ArticleCallout,
+  ArticleSourceFooter,
+  ArticleStat,
+  ArticleStatGrid,
+} from '@/components/article/primitives';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('stablecoins-fed-treasury-channel');
 
 export default function StablecoinTreasuryPost() {
   return (
@@ -15,60 +23,69 @@ export default function StablecoinTreasuryPost() {
       sourceUrl="https://x.com/DefiLlama"
     >
       <p>
-        <strong className="text-[#ededed]">Fed Governor Christopher Waller:</strong>
+        <strong>Fed Governor Christopher Waller:</strong>
       </p>
 
-      <div className="bg-[#0d0d0d] border-l-2 border-[#00f0ff] rounded-r-xl p-5 my-6 text-sm text-[#ccc] italic">
-        &ldquo;Dollar-backed stablecoins may create a new channel linking global liquidity demand directly to US Treasury Markets.&rdquo;
-      </div>
+      <ArticleCallout accent="cyan" variant="quote">
+        “Dollar-backed stablecoins may create a new channel linking global liquidity demand directly to
+        US Treasury Markets.”
+      </ArticleCallout>
 
       <p>
-        A Fed governor just said the quiet part loud. Stablecoins started as crypto cash. Today, their issuers are among the largest buyers of short-term US government debt.
+        A Fed governor just said the quiet part loud. Stablecoins started as crypto cash. Today, their
+        issuers are among the largest buyers of short-term US government debt.
       </p>
 
-      {/* Stats grid */}
-      <div className="grid grid-cols-2 gap-4 my-8">
-        <div className="bg-[#111] border border-[#222] rounded-2xl p-5">
-          <div className="text-xs text-[#666] uppercase tracking-[1px]">Tether</div>
-          <div className="text-2xl font-bold text-[#00f0ff] mt-1">$141B</div>
-          <div className="text-xs text-[#888]">T-bills — 17th largest US debt holder</div>
-        </div>
-        <div className="bg-[#111] border border-[#222] rounded-2xl p-5">
-          <div className="text-xs text-[#666] uppercase tracking-[1px]">Circle</div>
-          <div className="text-2xl font-bold text-[#f59e0b] mt-1">$67B</div>
-          <div className="text-xs text-[#888]">85% T-bills + repos</div>
-        </div>
-        <div className="bg-[#111] border border-[#222] rounded-2xl p-5">
-          <div className="text-xs text-[#666] uppercase tracking-[1px]">Supply growth</div>
-          <div className="text-2xl font-bold text-[#a855f7] mt-1">462x</div>
-          <div className="text-xs text-[#888]">since 2019</div>
-        </div>
-        <div className="bg-[#111] border border-[#222] rounded-2xl p-5">
-          <div className="text-xs text-[#666] uppercase tracking-[1px]">Current share</div>
-          <div className="text-2xl font-bold text-[#ededed] mt-1">0.8%</div>
-          <div className="text-xs text-[#888]">of Treasury market</div>
-        </div>
-      </div>
+      <ArticleStatGrid>
+        <ArticleStat
+          label="Tether"
+          value="$141B"
+          detail="T-bills — 17th largest US debt holder"
+          accent="cyan"
+        />
+        <ArticleStat
+          label="Circle"
+          value="$67B"
+          detail="85% T-bills + repos"
+          accent="amber"
+        />
+        <ArticleStat label="Supply growth" value="462x" detail="since 2019" accent="purple" />
+        <ArticleStat
+          label="Current share"
+          value="0.8%"
+          detail="of Treasury market"
+          accent="gold"
+        />
+      </ArticleStatGrid>
 
       <p>
-        Stablecoin supply has grown <strong className="text-[#ededed]">462x since 2019</strong>. US Treasuries outstanding grew 77% in that same period. The correlation is not accidental.
-      </p>
-
-      <p>
-        Currently at 0.8% of the Treasury market, even modest continued growth changes the picture materially. Under the GENIUS Act framework modeling $2-3T in regulated stablecoin supply with 100% T-bill backing, that share rises to <strong className="text-[#ededed]">5-8%</strong>. That&apos;s structural demand — not speculative.
+        Stablecoin supply has grown <strong>462x since 2019</strong>. US Treasuries outstanding grew 77%
+        in that same period. The correlation is not accidental.
       </p>
 
       <p>
-        The question Waller&apos;s statement forces: is Washington deliberately using stablecoin regulation as an industrial policy tool to expand the buyer base for US government debt? The mechanism works — global dollar demand routes through stablecoins directly into T-bills, no foreign central bank needed.
+        Currently at 0.8% of the Treasury market, even modest continued growth changes the picture
+        materially. Under the GENIUS Act framework modeling $2-3T in regulated stablecoin supply with
+        100% T-bill backing, that share rises to <strong>5-8%</strong>. That&apos;s structural demand —
+        not speculative.
       </p>
 
-      <p className="text-[#aaa]">
-        For the crypto industry, this reframes the regulatory narrative. Stablecoins aren&apos;t a threat to the system. They&apos;re becoming a <strong className="text-[#ededed]">feature of it</strong>.
+      <p>
+        The question Waller&apos;s statement forces: is Washington deliberately using stablecoin
+        regulation as an industrial policy tool to expand the buyer base for US government debt? The
+        mechanism works — global dollar demand routes through stablecoins directly into T-bills, no
+        foreign central bank needed.
       </p>
 
-      <p className="text-[#666] text-sm pt-6 border-t border-[#222]">
-        Sources: DeFiLlama&apos;s LlamaAI, Federal Reserve Bank of St. Louis, BDO/Deloitte/Grant Thornton attestations.
+      <p>
+        For the crypto industry, this reframes the regulatory narrative. Stablecoins aren&apos;t a
+        threat to the system. They&apos;re becoming a <strong>feature of it</strong>.
       </p>
+
+      <ArticleSourceFooter>
+        Sources: DeFiLlama&apos;s LlamaAI, Federal Reserve Bank of St. Louis, BDO/Deloitte/Grant Thornton
+        attestations.
+      </ArticleSourceFooter>
     </BlogPostLayout>
   );
 }

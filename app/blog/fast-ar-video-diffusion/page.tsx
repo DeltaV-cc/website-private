@@ -4,7 +4,7 @@ export default function FastARVideoDiffusionPost() {
   return (
     <BlogPostLayout
       title="FAST-AR: NVIDIA Cracks the Video Diffusion Bottleneck — 10× Faster Generation with Constant Memory"
-      date="2026-07-06"
+      date="July 6, 2026"
       category="AI"
       type="Deep Dive"
       excerpt="NVIDIA Research's FAST-AR framework eliminates the KV-cache bottleneck in autoregressive video diffusion, enabling 5-10x speedups with near-identical quality and constant GPU memory over arbitrarily long rollouts. Accepted at ICML 2026."

@@ -1,10 +1,14 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('github-security-audit-tutorial');
 
 export default function GithubSecurityAuditPost() {
   return (
     <BlogPostLayout
       title="GitHub Security Audit: Find Leaked Secrets, Overprivileged CI/CD, and Fake Contributors in 30 Minutes"
-      date="2026-07-01"
+      date="July 1, 2026"
       category="OpSec"
       type="Tutorial"
       excerpt="Your GitHub org is the front door to your codebase. In this hands-on tutorial, we walk through a complete GitHub security audit using Octoscan, Trufflehog, GitXRay, and Legitify — the same tools the Red Guild bundles in their DevSecOps toolkit."

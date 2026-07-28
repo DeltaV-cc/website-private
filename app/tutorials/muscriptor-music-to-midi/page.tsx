@@ -1,5 +1,9 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
 import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('muscriptor-music-to-midi');
 
 export default function MuScriptorTutorial() {
   return (
@@ -10,6 +14,7 @@ export default function MuScriptorTutorial() {
       type="Tutorial"
       backHref="/tutorials/"
       backLabel="All tutorials"
+      footerVariant="tutorial"
       readingTime="5 min read"
       excerpt="Turn any audio into per-instrument MIDI locally with MuScriptor — a decoder-only transformer trained on 170K songs. 1-click Pinokio or native Python, CPU-capable across all model sizes."
     >

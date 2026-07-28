@@ -3,6 +3,16 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import BackLink from '@/app/components/BackLink';
+import { domainAccent, formatAccent, isFormatLabel } from '@/lib/content-accents';
+import { formatDisplayDate, formatReadingTime } from '@/lib/content-meta';
+
+export type SeriesLink = { href: string; label: string };
+export type SeriesNav = {
+  label: string;
+  prev?: SeriesLink;
+  next?: SeriesLink;
+};
+export type RelatedLink = { href: string; label: string; meta?: string };
 
 interface BlogPostProps {
   title: string;
@@ -16,32 +26,67 @@ interface BlogPostProps {
   sourceUrl?: string;
   backHref?: string;
   backLabel?: string;
+  tags?: string[];
+  series?: SeriesNav;
+  related?: RelatedLink[];
+  /** Hide the bottom Intel / resources note (e.g. short manifesto). */
+  hideIntelNote?: boolean;
+  /**
+   * Footer variant:
+   * - blog (default): Intel pipeline note
+   * - tutorial: more tutorials
+   * - weekly: IntelHub + past briefs framing
+   */
+  footerVariant?: 'blog' | 'tutorial' | 'weekly';
 }
 
 type TocItem = { id: string; text: string; level: number };
 
-const accentFor = (key: string): string => {
-  const k = key.trim().toLowerCase();
-  if (k === 'ai' || k === 'tutorial' || k === 'dashboard' || k === 'tool') return 'var(--accent-cyan)';
-  if (k === 'web3' || k === 'macro') return 'var(--accent-orange)';
-  if (k === 'opsec' || k === 'thought' || k === 'infosec') return 'var(--accent-amber)';
-  if (k === 'hardware' || k === 'deep dive') return 'var(--accent-purple)';
-  if (k === 'crypto' || k === 'defi weekly' || k === 'the signal' || k === 'weekly delta financial brief') return 'var(--accent-gold)';
-  if (k === 'research') return 'var(--accent-green)';
-  return 'var(--accent-cyan)';
+const accentForLabel = (label: string): string => {
+  if (isFormatLabel(label)) return formatAccent(label);
+  return domainAccent(label);
 };
 
 const badge = (label: string) => {
-  const c = accentFor(label.trim());
+  const c = accentForLabel(label.trim());
   return (
     <span
       className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold tracking-wide uppercase border"
-      style={{ color: c, background: `color-mix(in srgb, ${c} 8%, transparent)`, borderColor: `color-mix(in srgb, ${c} 25%, transparent)` }}
+      style={{
+        color: c,
+        background: `color-mix(in srgb, ${c} 8%, transparent)`,
+        borderColor: `color-mix(in srgb, ${c} 25%, transparent)`,
+      }}
     >
       {label.trim()}
     </span>
   );
 };
+
+function footerCopy(variant: 'blog' | 'tutorial' | 'weekly') {
+  if (variant === 'tutorial') {
+    return {
+      title: 'More hands-on setups',
+      body: 'Curated local AI, agents, and Web3 operator tutorials from Delta V.',
+      href: '/tutorials/',
+      linkLabel: 'Browse tutorials →',
+    };
+  }
+  if (variant === 'weekly') {
+    return {
+      title: 'Weekly Delta Financial Brief',
+      body: 'Markets, AI, and crypto signals — generated and verified through the Delta V Intel pipeline.',
+      href: '/intelhub/',
+      linkLabel: 'Explore IntelHub →',
+    };
+  }
+  return {
+    title: 'Delta V Intel pipeline',
+    body: 'Generated and verified through the Delta V intelligence system.',
+    href: '/intelhub/',
+    linkLabel: 'Explore IntelHub →',
+  };
+}
 
 export default function BlogPostLayout({
   title,
@@ -55,6 +100,11 @@ export default function BlogPostLayout({
   sourceUrl,
   backHref = '/blog/',
   backLabel = 'All articles',
+  tags,
+  series,
+  related,
+  hideIntelNote = false,
+  footerVariant = 'blog',
 }: BlogPostProps) {
   const articleRef = useRef<HTMLElement>(null);
   const [toc, setToc] = useState<TocItem[]>([]);
@@ -62,9 +112,26 @@ export default function BlogPostLayout({
   const [tocOpen, setTocOpen] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  // Reading-progress bar: fills as the reader scrolls the page.
+  const displayDate = formatDisplayDate(date);
+  const displayReading = formatReadingTime(readingTime);
+  const foot = footerCopy(footerVariant);
+
+  // Reading-progress: prefer article bounds when available.
   useEffect(() => {
     const onScroll = () => {
+      const article = articleRef.current;
+      if (article) {
+        const rect = article.getBoundingClientRect();
+        const articleTop = window.scrollY + rect.top;
+        const articleHeight = article.offsetHeight;
+        const scrolled = window.scrollY + 80 - articleTop;
+        const pct =
+          articleHeight > 0
+            ? Math.min(100, Math.max(0, (scrolled / articleHeight) * 100))
+            : 0;
+        setProgress(pct);
+        return;
+      }
       const el = document.documentElement;
       const max = el.scrollHeight - el.clientHeight;
       setProgress(max > 0 ? Math.min(100, (el.scrollTop / max) * 100) : 0);
@@ -86,8 +153,6 @@ export default function BlogPostLayout({
       s.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').slice(0, 60);
 
     const used = new Set<string>();
-    // Exclude headings inside dynamically-injected newsletter HTML (.artemis-body)
-    // so the table of contents only reflects the article's own sections.
     const heads = (Array.from(el.querySelectorAll('h2, h3')) as HTMLElement[]).filter(
       (h) => !h.closest('.artemis-body')
     );
@@ -103,7 +168,6 @@ export default function BlogPostLayout({
       .filter((it) => it.text);
     setToc(items);
 
-    // Inject a copy button on every code block.
     el.querySelectorAll('pre').forEach((pre) => {
       const p = pre as HTMLElement;
       if (p.dataset.enhanced) return;
@@ -147,7 +211,6 @@ export default function BlogPostLayout({
       pre.appendChild(btn);
     });
 
-    // Highlight the section currently in view.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -160,8 +223,6 @@ export default function BlogPostLayout({
     return () => observer.disconnect();
   }, []);
 
-  // Newsletter HTML is injected after the initial render. Keep those external
-  // images out of the first paint and let the browser decode them off-thread.
   useEffect(() => {
     const el = articleRef.current;
     if (!el) return;
@@ -184,8 +245,6 @@ export default function BlogPostLayout({
     e.preventDefault();
     const target = document.getElementById(id);
     if (target) {
-      // scrollIntoView can place a heading underneath the fixed navbar. Use
-      // the actual header height so desktop and mobile stay aligned.
       const header = document.querySelector('header');
       const headerHeight = header?.getBoundingClientRect().height ?? 64;
       const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
@@ -219,7 +278,6 @@ export default function BlogPostLayout({
 
   return (
     <div className="article-reading-page min-h-screen">
-      {/* Reading-progress bar — fills as the reader scrolls, sits below fixed navbar */}
       <div className="fixed top-16 left-0 right-0 h-[3px] z-[60] pointer-events-none bg-[var(--bg-surface)]/40">
         <div
           className="h-full transition-[width] duration-75 ease-out"
@@ -239,30 +297,61 @@ export default function BlogPostLayout({
         />
 
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-14">
-          {/* Main column */}
           <div className="max-w-[720px] min-w-0">
-            {/* Header */}
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 {category.split(',').map((cat, i) => (
-                  <span key={i}>{badge(cat)}</span>
+                  <span key={`c${i}`}>{badge(cat)}</span>
                 ))}
-                {type && type.split(',').map((t, i) => (
-                  <span key={`t${i}`}>{badge(t)}</span>
-                ))}
+                {type &&
+                  type.split(',').map((t, i) => (
+                    <span key={`t${i}`}>{badge(t)}</span>
+                  ))}
               </div>
               <h1 className="text-4xl md:text-5xl font-semibold tracking-[-1.5px] leading-tight mb-5">
                 {title}
               </h1>
               <div className="flex items-center flex-wrap gap-3 text-sm text-[var(--text-muted)]">
-                <span>{date}</span>
-                {readingTime && (
+                <span>{displayDate}</span>
+                {displayReading && (
                   <>
                     <span className="text-[var(--text-disabled)]">·</span>
-                    <span>{readingTime}</span>
+                    <span>{displayReading}</span>
                   </>
                 )}
               </div>
+              {tags && tags.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md border border-[var(--border-default)] px-2 py-0.5 text-[11px] text-[var(--text-tertiary)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              {series && (
+                <div className="mt-5 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3 text-sm">
+                  <div className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--text-muted)] mb-1">
+                    Series
+                  </div>
+                  <div className="text-[var(--text-secondary)] font-medium mb-2">{series.label}</div>
+                  <div className="flex flex-wrap gap-3 text-[var(--accent-cyan)]">
+                    {series.prev && (
+                      <Link href={series.prev.href} className="hover:underline">
+                        ← {series.prev.label}
+                      </Link>
+                    )}
+                    {series.next && (
+                      <Link href={series.next.href} className="hover:underline">
+                        {series.next.label} →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
               {excerpt && (
                 <p className="text-lg text-[var(--text-tertiary)] mt-6 leading-relaxed border-l-2 border-[var(--accent-cyan)]/30 pl-5">
                   {excerpt}
@@ -272,7 +361,8 @@ export default function BlogPostLayout({
                 <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mt-6">
                   {sourceLabel && (
                     <span>
-                      Intel source: <span className="text-[var(--text-secondary)]">{sourceLabel}</span>
+                      Intel source:{' '}
+                      <span className="text-[var(--text-secondary)]">{sourceLabel}</span>
                     </span>
                   )}
                   {sourceUrl && (
@@ -289,12 +379,13 @@ export default function BlogPostLayout({
               )}
             </div>
 
-            {/* Divider */}
             <div className="h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent mb-8" />
 
-            {/* Collapsible TOC — mobile / narrow */}
             {toc.length > 1 && (
-              <details className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] px-4 py-3" open>
+              <details
+                className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] px-4 py-3"
+                open
+              >
                 <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-secondary)]">
                   On this page
                 </summary>
@@ -302,32 +393,69 @@ export default function BlogPostLayout({
               </details>
             )}
 
-            {/* Article body */}
             <article ref={articleRef} className="article-prose">
               {children}
             </article>
 
-            {/* Intel pipeline note */}
-            <div className="border border-[var(--border-default)] rounded-2xl p-6 mt-16 bg-[var(--bg-surface)]">
-              <div className="flex items-start gap-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2" className="mt-0.5 shrink-0">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 16v-4m0-4h.01" />
-                </svg>
-                <div>
-                  <p className="text-sm text-[var(--text-secondary)]">
-                    <strong className="text-[var(--accent-cyan)]">Delta V Intel pipeline</strong> — generated and verified through the Delta V intelligence system.
-                  </p>
-                  <Link href="/intelhub/" className="text-[var(--accent-cyan)] text-sm hover:underline mt-2 inline-block">
-                    Explore IntelHub →
-                  </Link>
+            {related && related.length > 0 && (
+              <div className="mt-14 border border-[var(--border-default)] rounded-2xl p-6 bg-[var(--bg-surface)]">
+                <div className="text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-muted)] mb-3">
+                  Related
+                </div>
+                <ul className="space-y-2">
+                  {related.map((r) => (
+                    <li key={r.href}>
+                      <Link
+                        href={r.href}
+                        className="text-[var(--accent-cyan)] hover:underline text-sm font-medium"
+                      >
+                        {r.label}
+                      </Link>
+                      {r.meta && (
+                        <span className="ml-2 text-xs text-[var(--text-muted)]">{r.meta}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {!hideIntelNote && (
+              <div className="border border-[var(--border-default)] rounded-2xl p-6 mt-16 bg-[var(--bg-surface)]">
+                <div className="flex items-start gap-4">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--accent-cyan)"
+                    strokeWidth="2"
+                    className="mt-0.5 shrink-0"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">
+                      <strong className="text-[var(--accent-cyan)]">{foot.title}</strong>
+                      {' — '}
+                      {foot.body}
+                    </p>
+                    <Link
+                      href={foot.href}
+                      className="text-[var(--accent-cyan)] text-sm hover:underline mt-2 inline-block"
+                    >
+                      {foot.linkLabel}
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Newsletter / contact CTA */}
             <div className="mt-8 border-t border-[var(--border-default)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-[var(--text-tertiary)]">Want high-signal intel like this in your inbox?</p>
+              <p className="text-sm text-[var(--text-tertiary)]">
+                Want high-signal intel like this in your inbox?
+              </p>
               <Link
                 href="/contact/"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent-orange)] text-white rounded-xl text-sm font-medium hover:bg-[#d94d0f] transition-colors"
@@ -341,10 +469,12 @@ export default function BlogPostLayout({
             </div>
           </div>
 
-          {/* Sticky TOC — desktop */}
           <aside className="hidden lg:block">
             {toc.length > 1 && (
-              <nav aria-label="Table of contents" className="sticky top-24 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] p-4 shadow-[0_16px_40px_rgba(0,0,0,.18)]">
+              <nav
+                aria-label="Table of contents"
+                className="sticky top-24 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] p-4 shadow-[0_16px_40px_rgba(0,0,0,.18)]"
+              >
                 <button
                   type="button"
                   onClick={() => setTocOpen((o) => !o)}
@@ -358,7 +488,13 @@ export default function BlogPostLayout({
                     fill="none"
                     className={`transition-transform ${tocOpen ? '' : '-rotate-90'}`}
                   >
-                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M3 4.5L6 7.5L9 4.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
                 {tocOpen && tocList}

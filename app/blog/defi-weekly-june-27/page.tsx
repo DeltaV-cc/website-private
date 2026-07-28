@@ -23,6 +23,7 @@ export default function DeFiWeeklyJune27() {
       category="DeFi Weekly"
       type="Dashboard"
       readingTime="10 min read"
+      footerVariant="weekly"
       excerpt="The Great Rotation: AI capex doubts trigger a historic pivot into value stocks. Robinhood ships its own Arbitrum L2 with 24/7 tokenized equities. Open USD lands with 140 partners. Plus: BonkDAO $19.3M governance attack, four stablecoin depegs."
     >
       {/* ========================================================

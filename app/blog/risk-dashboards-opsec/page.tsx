@@ -1,4 +1,8 @@
+import type { Metadata } from 'next';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('risk-dashboards-opsec');
 
 export default function RiskDashboardsArticle() {
   return (
@@ -6,8 +10,8 @@ export default function RiskDashboardsArticle() {
       title="Risk Dashboards & OpSec Tooling for Web3"
       date="June 10, 2026"
       category="OpSec"
-      type="Deep Dive"
-      readingTime="5 min read"
+      type="Tool"
+      readingTime="2 min read"
       excerpt="The Web3 ecosystem has matured enough that raw trust is no longer acceptable. A growing set of public dashboards lets anyone assess real risk instead of relying on marketing or reputation."
     >
       <p>
@@ -52,19 +56,38 @@ export default function RiskDashboardsArticle() {
         Most users still choose tools based on convenience or branding. In a world of agentic systems and
         increasing attack surface, this is becoming unsustainable.
       </p>
-      <p>These dashboards represent the beginning of a more rigorous, data-driven approach to OpSec in Web3.</p>
+      <p>
+        These dashboards represent the beginning of a more rigorous, data-driven approach to OpSec in
+        Web3.
+      </p>
+
+      <h2>How Delta V uses this map</h2>
+      <p>
+        Before we deploy capital, agent wallets, or production infra on a chain, we treat these layers as
+        a pre-flight: WalletBeat for the daily custody surface, L2Beat for the chain&apos;s security stage,
+        and SEAL911 as the known IR path if something fails. The rest of the stack is optional depth —
+        not marketing.
+      </p>
 
       <h2>Recommended Starting Point</h2>
       <p>If you only use three tools, start with:</p>
       <ol>
-        <li><strong>WalletBeat</strong> — for daily self-custody decisions</li>
-        <li><strong>L2Beat</strong> — for understanding where your assets actually live</li>
-        <li><strong>SEAL911</strong> — for knowing who to call when things go wrong</li>
+        <li>
+          <strong>WalletBeat</strong> — for daily self-custody decisions
+        </li>
+        <li>
+          <strong>L2Beat</strong> — for understanding where your assets actually live
+        </li>
+        <li>
+          <strong>SEAL911</strong> — for knowing who to call when things go wrong
+        </li>
       </ol>
 
       <hr />
 
-      <p><em>This is the first in a series of practical OpSec mappings.</em></p>
+      <p>
+        <em>This is the first in a series of practical OpSec mappings.</em>
+      </p>
     </BlogPostLayout>
   );
 }

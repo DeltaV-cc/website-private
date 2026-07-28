@@ -1,5 +1,10 @@
+import type { Metadata } from 'next';
 import BlogPostLayout from '@/components/BlogPostLayout';
 import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
+import { ArticleNote } from '@/components/article/primitives';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('hermes-qwen-dgx-spark');
 
 export default function HermesQwenDgxTutorial() {
   return (
@@ -10,7 +15,8 @@ export default function HermesQwenDgxTutorial() {
       type="Tutorial"
       backHref="/tutorials/"
       backLabel="All tutorials"
-      readingTime="8 min read"
+      readingTime="4 min read"
+      footerVariant="tutorial"
       excerpt="A 24/7 local agent stack: NVIDIA DGX Spark (128GB), Qwen 3.6, and the self-evolving Hermes Agent framework with a 3-layer memory and an OpenShell sandbox — full local execution, no external data sharing."
     >
       <ArchitectureDiagram
@@ -114,17 +120,32 @@ export default function HermesQwenDgxTutorial() {
 
       <h3>02 — Install Hermes Agent Core</h3>
       <ul>
-        <li>Clone the repository into <code>/opt/hermes</code> or your preferred path.</li>
-        <li>Install dependencies and create a Python environment.</li>
+        <li>
+          Install from the public Hermes / NousResearch distribution you use (or your internal fork).
+          Upstream packages move; prefer the project docs over a hard-coded path.
+        </li>
+        <li>Create an isolated Python environment and install dependencies from that release.</li>
       </ul>
-      <pre><code>{`git clone https://github.com/.../hermes-agent.git
-cd hermes-agent && uv venv && source .venv/bin/activate`}</code></pre>
+      <ArticleNote>
+        Example shape only — replace the clone URL with the release you trust (public Hermès agent repos
+        under NousResearch, or your private mirror). Do not paste unreviewed third-party install scripts
+        on a DGX with production keys.
+      </ArticleNote>
+      <pre><code>{`# Example — pin to a known release / commit
+git clone https://github.com/NousResearch/Hermes-Agent.git
+cd Hermes-Agent && uv venv && source .venv/bin/activate
+# follow upstream install docs for the release you checked out`}</code></pre>
 
       <h3>03 — Configure the 3-Layer Memory System</h3>
       <ul>
-        <li>Edit <code>config.yaml</code> to enable the memory layers.</li>
+        <li>Enable short-term, long-term, and skills memory in the agent config for your install.</li>
       </ul>
-      <pre><code>{`memory:
+      <ArticleNote>
+        Field names vary by Hermes version. Treat the block below as a conceptual checklist, not a
+        drop-in config file.
+      </ArticleNote>
+      <pre><code>{`# Conceptual example — map to your config schema
+memory:
   short_term: true
   long_term: true
   skills: true`}</code></pre>
