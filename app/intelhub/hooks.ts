@@ -397,6 +397,54 @@ export function useIntelData(activeTab: string = 'macro') {
         }
       }),
       fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
+      // Macro Top Movers needs TVL + 1d % early (v2/chains no longer returns change_1d)
+      (async () => {
+        const chains = await fetchJson('https://api.llama.fi/v2/chains', 12000);
+        if (!Array.isArray(chains)) return;
+        const top = chains
+          .filter((c: any) => c.tvl > 0)
+          .sort((a: any, b: any) => b.tvl - a.tvl)
+          .slice(0, 12);
+        const withChg = await Promise.all(
+          top.map(async (c: any) => {
+            let change_1d = typeof c.change_1d === 'number' ? c.change_1d : 0;
+            if (!c.change_1d && c.change_1d !== 0) {
+              const hist = await fetchJson(
+                `https://api.llama.fi/v2/historicalChainTvl/${encodeURIComponent(c.name)}`,
+                10000,
+              );
+              if (Array.isArray(hist) && hist.length >= 2) {
+                const prev = hist[hist.length - 2]?.tvl;
+                const last = hist[hist.length - 1]?.tvl;
+                if (prev > 0 && typeof last === 'number') {
+                  change_1d = ((last - prev) / prev) * 100;
+                }
+              }
+            }
+            return {
+              name: c.name,
+              tvl: c.tvl,
+              change_1d,
+              change_7d: c.change_7d || 0,
+            };
+          }),
+        );
+        // Don't clobber a richer loadWeb3Live tvl (with fees) if already present
+        setDd((prev: any) => {
+          const existing = prev?.tvl;
+          if (
+            Array.isArray(existing) &&
+            existing.some((c: any) => c.fees24h != null || c.feesChange1d != null)
+          ) {
+            return prev;
+          }
+          return {
+            ...prev,
+            tvl: withChg,
+            tvlUpdatedAt: new Date().toISOString(),
+          };
+        });
+      })(),
     ];
 
     await Promise.allSettled([...staticTasks, ...coreLive]);
@@ -413,6 +461,7 @@ export function useIntelData(activeTab: string = 'macro') {
     };
 
     // 1) TVL + per-chain fees (joined)
+    // Note: /v2/chains no longer exposes change_1d — derive from historicalChainTvl.
     const chains = await fetchJson('https://api.llama.fi/v2/chains', 12000);
     if (Array.isArray(chains)) {
       const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
@@ -438,12 +487,34 @@ export function useIntelData(activeTab: string = 'macro') {
         for (const a of chainAliases(f.name)) feeMap[a] = f;
       }
 
+      // 1d TVL % from historical series (parallel)
+      const changeByName: Record<string, number> = {};
+      await Promise.all(
+        top.map(async (c: any) => {
+          if (typeof c.change_1d === 'number') {
+            changeByName[c.name] = c.change_1d;
+            return;
+          }
+          const hist = await fetchJson(
+            `https://api.llama.fi/v2/historicalChainTvl/${encodeURIComponent(c.name)}`,
+            10000,
+          );
+          if (Array.isArray(hist) && hist.length >= 2) {
+            const prev = hist[hist.length - 2]?.tvl;
+            const last = hist[hist.length - 1]?.tvl;
+            if (prev > 0 && typeof last === 'number') {
+              changeByName[c.name] = ((last - prev) / prev) * 100;
+            }
+          }
+        }),
+      );
+
       const tvl = top.map((c: any) => {
         const fee = feeLookup(feeMap, c.name);
         return {
           name: c.name,
           tvl: c.tvl,
-          change_1d: c.change_1d || 0,
+          change_1d: changeByName[c.name] ?? c.change_1d ?? 0,
           change_7d: c.change_7d || 0,
           fees24h: fee?.fees24h || 0,
           feesChange1d: fee?.feesChange1d ?? null,

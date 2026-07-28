@@ -347,34 +347,61 @@ export default function MacroDashboard({
         {patents && <PatentsTable patents={patents} />}
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Onchain movers (24h)</span>
-            <span className="text-[10px] text-[var(--text-muted)]">chain TVL · cross-asset</span>
+            <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Top Movers (24h)</span>
+            <span className="text-[10px] text-[var(--text-muted)]">by TVL change</span>
           </div>
           <div className="p-4 space-y-2 text-xs">
             {(() => {
+              // Prefer Hermes chain-movers snapshot when present; else live Llama TVL rows
+              const cm = dd?.chainMovers;
+              const fromCm = (cm?.gainers?.length || cm?.losers?.length)
+                ? {
+                    gainers: (cm.gainers || []).slice(0, 4),
+                    losers: (cm.losers || []).slice(0, 4),
+                  }
+                : null;
               const chains = dd?.tvl || [];
-              const gainers = [...chains].filter((c: any) => c.change_1d > 0).sort((a: any, b: any) => b.change_1d - a.change_1d).slice(0, 4);
-              const losers = [...chains].filter((c: any) => c.change_1d < 0).sort((a: any, b: any) => a.change_1d - b.change_1d).slice(0, 4);
-              if (!gainers.length && !losers.length) return <div className="text-[var(--text-disabled)] text-center py-4">Loading chain data...</div>;
+              const gainers = fromCm?.gainers
+                || [...chains].filter((c: any) => (c.change_1d || 0) > 0).sort((a: any, b: any) => b.change_1d - a.change_1d).slice(0, 4);
+              const losers = fromCm?.losers
+                || [...chains].filter((c: any) => (c.change_1d || 0) < 0).sort((a: any, b: any) => a.change_1d - b.change_1d).slice(0, 4);
+              if (!chains.length && !fromCm) {
+                return <div className="text-[var(--text-disabled)] text-center py-4">Loading chain data...</div>;
+              }
+              if (!gainers.length && !losers.length) {
+                // TVL present but 1d deltas still hydrating
+                return (
+                  <div className="text-[var(--text-disabled)] text-center py-4">
+                    {chains.length ? 'Computing 24h TVL changes…' : 'Loading chain data...'}
+                  </div>
+                );
+              }
+              const chg = (c: any) => {
+                const v = c.change_1d ?? c.change ?? c.pct;
+                return typeof v === 'number' ? v : parseFloat(v) || 0;
+              };
+              const name = (c: any) => c.name || c.chain || '?';
               return (
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
                     {gainers.map((c: any, i: number) => (
                       <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                        <span className="text-[var(--text-secondary)] truncate max-w-[70px]">{c.name}</span>
-                        <span className="text-[var(--accent-green)] tabular-nums font-medium">{c.change_1d > 0 ? '+' : ''}{c.change_1d.toFixed(1)}%</span>
+                        <span className="text-[var(--text-secondary)] truncate max-w-[70px]">{name(c)}</span>
+                        <span className="text-[var(--accent-green)] tabular-nums font-medium">{chg(c) > 0 ? '+' : ''}{chg(c).toFixed(1)}%</span>
                       </div>
                     ))}
+                    {!gainers.length && <div className="text-[var(--text-disabled)] py-2">—</div>}
                   </div>
                   <div>
                     <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
                     {losers.map((c: any, i: number) => (
                       <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                        <span className="text-[var(--text-secondary)] truncate max-w-[70px]">{c.name}</span>
-                        <span className="text-[var(--accent-red)] tabular-nums font-medium">{c.change_1d.toFixed(1)}%</span>
+                        <span className="text-[var(--text-secondary)] truncate max-w-[70px]">{name(c)}</span>
+                        <span className="text-[var(--accent-red)] tabular-nums font-medium">{chg(c).toFixed(1)}%</span>
                       </div>
                     ))}
+                    {!losers.length && <div className="text-[var(--text-disabled)] py-2">—</div>}
                   </div>
                 </div>
               );
