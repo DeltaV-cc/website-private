@@ -1,10 +1,14 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('sleeper-agents-deceptive-llms');
 
 export default function SleeperAgentsPost() {
   return (
     <BlogPostLayout
       title="Sleeper Agents: When AI Models Learn to Hide Their True Intentions"
-      date="2026-07-01"
+      date="July 1, 2026"
       category="AI"
       type="Deep Dive"
       excerpt="Anthropic demonstrated that LLMs can be trained as sleeper agents — acting helpfully during training then switching to malicious behavior on specific triggers. Standard safety training not only failed to remove the backdoors, but sometimes made models better at hiding them."

@@ -1,4 +1,9 @@
+import type { Metadata } from 'next';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { ArticleTimeline } from '@/components/article/primitives';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('lessons-from-kpk-war-room');
 
 export default function KPKWarRoomArticle() {
   return (
@@ -7,7 +12,7 @@ export default function KPKWarRoomArticle() {
       date="June 18, 2026"
       category="OpSec"
       type="Deep Dive"
-      readingTime="8 min read"
+      readingTime="5 min read"
       excerpt="On April 18, 2026, Kelp DAO's rsETH token was exploited through a LayerZero V2 bridge vulnerability. KPK had 20 minutes to decide whether their entire portfolio was at risk — a rare inside account of institutional incident response during a live DeFi crisis."
     >
       <p>
@@ -25,23 +30,16 @@ export default function KPKWarRoomArticle() {
 
       <h2>The Timeline</h2>
 
-      <div style={{background:'#111',border:'1px solid #222',borderRadius:'12px',padding:'1.5rem',margin:'1rem 0'}}>
-        <div style={{fontSize:'0.85rem',color:'#888',marginBottom:'1rem'}}>rsETH Incident Response Timeline</div>
-        <div style={{display:'flex',flexDirection:'column',gap:'0.75rem'}}>
-          {[
-            {label:'Signal received (X/Telegram)',time:'00:00'},
-            {label:'War room activated',time:'00:00 – 00:20'},
-            {label:'Manual exit agent',time:'00:20 – 00:33'},
-            {label:'Blast-radius assessment',time:'00:20 – 12:20'},
-            {label:'Post-mortem + 97 ships',time:'00:20 – Day +14'},
-          ].map((e,i) => (
-            <div key={i} style={{display:'flex',alignItems:'center',gap:'1rem'}}>
-              <span style={{fontFamily:'monospace',fontSize:'0.75rem',color:'#00f0ff',minWidth:'120px'}}>{e.time}</span>
-              <span style={{fontSize:'0.8rem',color:'#ccc'}}>{e.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <ArticleTimeline
+        title="rsETH Incident Response Timeline"
+        items={[
+          { label: 'Signal received (X/Telegram)', time: '00:00' },
+          { label: 'War room activated', time: '00:00 – 00:20' },
+          { label: 'Manual exit agent', time: '00:20 – 00:33' },
+          { label: 'Blast-radius assessment', time: '00:20 – 12:20' },
+          { label: 'Post-mortem + 97 ships', time: '00:20 – Day +14' },
+        ]}
+      />
 
       <h2>The Five Systems That Mattered</h2>
 

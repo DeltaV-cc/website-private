@@ -1,14 +1,18 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('vllm-semantic-router-mixture-of-models');
 
 export default function VLLMSemanticRouterPost() {
   return (
     <BlogPostLayout
       title="vLLM Semantic Router: Mixture-of-Models Intent Routing"
-      date="2026-07-01"
+      date="July 1, 2026"
       category="AI"
       type="Tool"
       excerpt="Hugging Face community project vLLM Semantic Router (vLLM-SR) introduces a signal-driven Mixture-of-Models (MoM) router. 16 signal families and 12 routing strategies intelligently direct LLM requests to the optimal model based on intent, cost, latency, safety, and privacy."
-      readingTime="8 min"
+      readingTime="2 min read"
       sourceUrl="https://huggingface.co/llm-semantic-router"
       sourceLabel="Hugging Face · vLLM Semantic Router"
     >

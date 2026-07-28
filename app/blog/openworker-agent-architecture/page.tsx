@@ -1,10 +1,14 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('openworker-agent-architecture');
 
 export default function OpenWorkerPost() {
   return (
     <BlogPostLayout
       title="OpenWorker Architecture — Andrew Ng's Open-Source AI Coworker"
-      date="2026-07-23"
+      date="July 23, 2026"
       category="AI"
       type="Deep Dive"
       excerpt="Andrew Ng just released OpenWorker — an open-source desktop AI agent that delivers finished work, not just chat. We break down the three-layer architecture, approval-first pattern, model independence, and 25+ tool integrations."

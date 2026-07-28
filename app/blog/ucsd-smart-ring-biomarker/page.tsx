@@ -1,6 +1,8 @@
-'use client';
-
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('ucsd-smart-ring-biomarker');
 
 export default function UCSDSmartRingBiomarker() {
   return (

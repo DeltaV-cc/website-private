@@ -1,6 +1,9 @@
-'use client';
-
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('uniswap-permissioned-pools');
+
 export default function UniswapPermissionedPoolsPost() {
   return (
     <BlogPostLayout

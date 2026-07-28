@@ -1,4 +1,8 @@
+import type { Metadata } from 'next';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('first-principles');
 
 export default function FirstPrinciplesArticle() {
   return (
@@ -7,9 +11,15 @@ export default function FirstPrinciplesArticle() {
       date="June 10, 2026"
       category="AI"
       type="Thought"
-      readingTime="3 min read"
+      readingTime="1 min read"
       excerpt="We build agents the same way we build everything else at Delta V: from first principles, with OpSec as the foundation."
+      hideIntelNote
     >
+      <p>
+        Short and non-negotiable. These four rules are the filter we apply before any agent design,
+        dependency, or deployment decision ships.
+      </p>
+
       <h2>Core Rules</h2>
 
       <h3>1. Local-first by default</h3>
@@ -26,7 +36,9 @@ export default function FirstPrinciplesArticle() {
 
       <hr />
 
-      <p><strong>This is not negotiable.</strong></p>
+      <p>
+        <strong>This is not negotiable.</strong>
+      </p>
     </BlogPostLayout>
   );
 }

@@ -23,6 +23,7 @@ export default function DeFiWeeklyJuly13() {
       category="DeFi Weekly"
       type="Dashboard"
       readingTime="10 min read"
+      footerVariant="weekly"
       excerpt="BTC holds $64K after reclaiming from sub-$60K June lows. Spot ETF outflow streak breaks after 6 weeks. AAVE V4 deposits surpass $250M. MSTR navigates first treasury underwater test."
     >
       {/* ========================================================

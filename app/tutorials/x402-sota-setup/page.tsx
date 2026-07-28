@@ -1,5 +1,9 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
 import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('x402-sota-setup');
 
 export default function X402SotaTutorial() {
   return (
@@ -10,6 +14,7 @@ export default function X402SotaTutorial() {
       type="Tutorial"
       backHref="/tutorials/"
       backLabel="All tutorials"
+      footerVariant="tutorial"
       readingTime="12 min read"
       excerpt="Ship a payment-gated API with the open x402 protocol (HTTP 402 + USDC): seller middleware, buyer/agent client, facilitator choice, and OpSec for machine-payable services - Base-first, production-minded."
     >

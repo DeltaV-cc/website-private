@@ -1,5 +1,9 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
 import ArchitectureDiagram from '@/app/components/ArchitectureDiagram';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('langchain-chatchat-ollama');
 
 export default function LangChainChatchatTutorial() {
   return (
@@ -10,6 +14,7 @@ export default function LangChainChatchatTutorial() {
       type="Tutorial"
       backHref="/tutorials/"
       backLabel="All tutorials"
+      footerVariant="tutorial"
       readingTime="7 min read"
       excerpt="Full offline RAG with knowledge-base Q&A and agent tools — Streamlit + FastAPI + LangChain + Ollama (Qwen2, Llama3, GLM-4). 100% local: no API keys, no cloud, FAISS on encrypted disk."
     >

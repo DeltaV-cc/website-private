@@ -4,7 +4,7 @@ export default function Hy3Post() {
   return (
     <BlogPostLayout
       title="Tencent's Hy3: 295B MoE That Punches at Trillion-Scale — Apache 2.0, 256K Context, Agent-First"
-      date="2026-07-08"
+      date="July 8, 2026"
       category="AI"
       type="Deep Dive"
       excerpt="Tencent drops Hy3, a 295B MoE model with only 21B active parameters that rivals trillion-parameter flagships. Apache 2.0 license, 256K context, 192 experts, built for agentic workloads. Free API for 2 weeks."

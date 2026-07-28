@@ -1,10 +1,14 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('cicd-pipeline-hardening-web3');
 
 export default function CICDPipelineHardeningPost() {
   return (
     <BlogPostLayout
       title="CI/CD Pipeline Hardening for Web3: Stop Deploying Malicious Contracts Through Your Own Workflows"
-      date="2026-07-01"
+      date="July 1, 2026"
       category="OpSec"
       type="Tutorial"
       excerpt="Your CI/CD pipeline is a privileged execution environment with access to deployer keys, RPC endpoints, and production infrastructure. An attacker who compromises a workflow doesn't need to hack your wallet — they just need to submit a PR. Here's how to lock it down."

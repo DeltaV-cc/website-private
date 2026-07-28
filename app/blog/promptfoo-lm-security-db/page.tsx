@@ -1,4 +1,8 @@
 import BlogPostLayout from '@/components/BlogPostLayout';
+import type { Metadata } from 'next';
+import { contentMetadata } from '@/lib/content-meta';
+
+export const metadata: Metadata = contentMetadata('promptfoo-lm-security-db');
 
 export default function LMSecurityDBArticle() {
   return (

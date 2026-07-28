@@ -9,7 +9,7 @@ export default function IBMSubNm() {
       date="June 25, 2026"
       category="Hardware"
       type="Deep Dive"
-      readingTime="3 min read"
+      readingTime="2 min read"
       excerpt="IBM just unveiled the world's first sub-1nm chip — 0.7nm with a revolutionary 3D nanostack architecture. ~100 billion transistors on a fingernail. 50% faster or 70% more efficient. Production within 5 years."
       sourceLabel="IBM News (@IBMNews)"
       sourceUrl="https://x.com/IBMNews/status/2070100944017092734"

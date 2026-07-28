@@ -23,6 +23,7 @@ export default function WeeklyDeltaFinancialBriefJuly21() {
       category="Weekly Delta Financial Brief, Crypto, AI"
       type="Dashboard"
       readingTime="10 min read"
+      footerVariant="weekly"
       excerpt="Memory stocks correct 28–38% from June highs. Kimi K3 open-weight model challenges the proprietary AI thesis. Kalshi launches compute forward curves. Stripe bids $53B for PayPal. Robinhood surges 31% on SEC rule reversal."
     >
       {/* ========================================================

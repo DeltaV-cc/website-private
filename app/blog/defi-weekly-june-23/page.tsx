@@ -10,6 +10,7 @@ export default function WeeklyDeFi1() {
       category="Web3"
       type="Dashboard"
       readingTime="4 min read"
+      footerVariant="weekly"
       excerpt="True DeFi pulse: token unlocks ahead, macro crosscurrents, Liquity v2 traction, WalletBeat milestones, and the cypherpunk layer."
     >
       {/* Market Pulse — condensed */}
