@@ -11,6 +11,7 @@ import AnimatedValue from './AnimatedValue';
 import VolumeChart from './VolumeChart';
 import ChainVolumeBar from './ChainVolumeBar';
 import NetFlowsPanel from './NetFlowsPanel';
+import BoldYieldsPanel from './BoldYieldsPanel';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -442,15 +443,18 @@ export default function Web3Dashboard({
         </div>
       </div>
 
-      {/* -- Net flows (Dromos) + Stablecoins -- */}
+      {/* -- BOLD stable yields (Liquity / Dune board) + Dromos net flows -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <BoldYieldsPanel data={dd?.boldYields} loading={!dd?.boldYields} />
         <NetFlowsPanel
           rows={dd?.netFlows?.rows || dd?.netFlows || []}
           loading={!dd?.netFlows}
           updated={dd?.netFlows?.updated || null}
         />
+      </div>
 
-        {/* Stablecoins */}
+      {/* -- Stablecoins -- */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold mb-1">Stablecoin MCap</div>
           <div className="text-xl font-bold tabular-nums text-[var(--text-primary)] mb-3">
@@ -479,34 +483,8 @@ export default function Web3Dashboard({
           )}
           <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
         </div>
-      </div>
 
-      {/* -- Fees + chain movers -- */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Chain fees (24h)</div>
-            <PanelMeta source="DeFi Llama" />
-          </div>
-          <div className="space-y-1.5">
-            {(dd?.fees || []).length > 0 ? (
-              (dd.fees as any[]).slice(0, 6).map((f: any, i: number) => {
-                const slug = f.name.toLowerCase().replace(/\s+/g, '-');
-                return (
-                <div key={i} className="flex justify-between text-xs hover:bg-white/[0.02] px-1 py-0.5 rounded transition-colors">
-                  <a href={`https://defillama.com/chain/${slug}`} target="_blank" rel="noopener noreferrer"
-                    className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors">{f.name}</a>
-                  <span className="text-[var(--text-secondary)] tabular-nums">{fmt(f.fees24h)}</span>
-                </div>
-                );
-              })
-            ) : (
-              <div className="text-[var(--text-disabled)] text-xs italic py-4 text-center">Fees data loading... Refreshes automatically</div>
-            )}
-          </div>
-        </div>
-
-        {(moverGainers.length > 0 || moverLosers.length > 0) && (
+        {(moverGainers.length > 0 || moverLosers.length > 0) ? (
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
             <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
               <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
@@ -535,6 +513,29 @@ export default function Web3Dashboard({
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Chain fees (24h)</div>
+              <PanelMeta source="DeFi Llama" />
+            </div>
+            <div className="space-y-1.5">
+              {(dd?.fees || []).length > 0 ? (
+                (dd.fees as any[]).slice(0, 6).map((f: any, i: number) => {
+                  const slug = f.name.toLowerCase().replace(/\s+/g, '-');
+                  return (
+                  <div key={i} className="flex justify-between text-xs hover:bg-white/[0.02] px-1 py-0.5 rounded transition-colors">
+                    <a href={`https://defillama.com/chain/${slug}`} target="_blank" rel="noopener noreferrer"
+                      className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors">{f.name}</a>
+                    <span className="text-[var(--text-secondary)] tabular-nums">{fmt(f.fees24h)}</span>
+                  </div>
+                  );
+                })
+              ) : (
+                <div className="text-[var(--text-disabled)] text-xs italic py-4 text-center">Fees data loading... Refreshes automatically</div>
+              )}
             </div>
           </div>
         )}

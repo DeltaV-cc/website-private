@@ -8,6 +8,7 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `generate-intelhub-rss.py` | `prebuild` / `build` | `public/data/raw-items.json`, `picks.json` | `public/intelhub/feed/*.xml`, `feeds.opml` |
 | `patch-basepath.py` | end of `build` | Static export under `out/` | Rewrites root-relative paths with `basePath` from `site.config.json` |
 | `fetch-*.py` | Manual / ops refresh | Live APIs | Updates specific `public/data/*.json` files |
+| `fetch-bold-yields.py` | Hermes / manual | DefiLlama Yields (Liquity V2 BOLD SP + venues) | `public/data/bold-yields.json` — mirrors [Dune BOLD Yields](https://dune.com/liquity/bold-yields) without a Dune API key |
 | `refresh-data.py` | Ops only (may be local-only) | Full external pipeline | Regenerates data snapshots |
 
 ## Deploy config

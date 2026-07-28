@@ -256,6 +256,9 @@ export function useIntelData(activeTab: string = 'macro') {
       fetchJson(`${BASE}/data/net-flows.json`).then((d) => {
         if (d) merge({ netFlows: d });
       }),
+      fetchJson(`${BASE}/data/bold-yields.json`).then((d) => {
+        if (d) merge({ boldYields: d });
+      }),
       fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
         if (!d) return;
         // Normalize { models, updated } or raw array for ArenaLeaderboard
@@ -378,6 +381,87 @@ export function useIntelData(activeTab: string = 'macro') {
           stablecoinChains,
         });
       }),
+      // BOLD Stability Pool APYs — small chart endpoints (avoid full 11MB pools dump in browser)
+      // Mirrors Liquity Dune board: https://dune.com/liquity/bold-yields
+      (async () => {
+        const SP: { id: string; collateral: string }[] = [
+          { id: 'dac71f4f-7b97-463a-b19f-9796c56c21f1', collateral: 'wstETH' },
+          { id: '326739f2-4650-4992-a8eb-a400e7790499', collateral: 'rETH' },
+          { id: 'a635df9a-4cfc-4d17-86d0-934ea441e79f', collateral: 'WETH' },
+        ];
+        const EXTRA: { id: string; symbol: string; project: string }[] = [
+          { id: '4c29f645-12db-461f-a1d7-16900d624271', symbol: 'YBOLD', project: 'yearn-finance' },
+          { id: '755529b5-fcf4-4ef0-a7c7-e4f49376706f', symbol: 'BOLD-USDC', project: 'curve-dex' },
+        ];
+        const fetchLatest = async (poolId: string) => {
+          const d = await fetchJson(`https://yields.llama.fi/chart/${poolId}`, 10000);
+          const series = d?.data;
+          if (!Array.isArray(series) || !series.length) return null;
+          const last = series[series.length - 1];
+          return {
+            apy: typeof last.apy === 'number' ? last.apy : null,
+            tvlUsd: typeof last.tvlUsd === 'number' ? last.tvlUsd : null,
+          };
+        };
+        const spRows = await Promise.all(
+          SP.map(async (s) => {
+            const live = await fetchLatest(s.id);
+            if (!live) return null;
+            return {
+              poolId: s.id,
+              project: 'liquity-v2',
+              symbol: 'BOLD',
+              chain: 'Ethereum',
+              collateral: s.collateral,
+              kind: 'stability_pool',
+              apy: live.apy,
+              tvlUsd: live.tvlUsd,
+              meta: `BOLD deposited in the ${s.collateral} Stability Pool`,
+              url: `https://defillama.com/yields/pool/${s.id}`,
+            };
+          }),
+        );
+        const stability_pools = spRows.filter(Boolean) as any[];
+        const venueRows = await Promise.all(
+          EXTRA.map(async (s) => {
+            const live = await fetchLatest(s.id);
+            if (!live || !(live.apy && live.apy > 0)) return null;
+            return {
+              poolId: s.id,
+              project: s.project,
+              symbol: s.symbol,
+              chain: 'Ethereum',
+              kind: 'venue',
+              apy: live.apy,
+              tvlUsd: live.tvlUsd,
+              url: `https://defillama.com/yields/pool/${s.id}`,
+            };
+          }),
+        );
+        const venues = venueRows.filter(Boolean) as any[];
+        if (!stability_pools.length) return;
+        const sp_tvl = stability_pools.reduce((s, r) => s + (r.tvlUsd || 0), 0);
+        const weighted =
+          sp_tvl > 0
+            ? stability_pools.reduce((s, r) => s + (r.apy || 0) * (r.tvlUsd || 0), 0) / sp_tvl
+            : null;
+        merge({
+          boldYields: {
+            updated_at: new Date().toISOString(),
+            source: 'DefiLlama Yields (Liquity V2 BOLD)',
+            dune_dashboard: 'https://dune.com/liquity/bold-yields',
+            docs: 'https://docs.liquity.org/v2-faq/bold-and-earn',
+            headline: {
+              weighted_stability_apy: weighted,
+              stability_tvl_usd: sp_tvl,
+              pool_count: stability_pools.length,
+            },
+            stability_pools,
+            venues,
+            live: true,
+          },
+        });
+      })(),
     ];
     await Promise.allSettled(liveTasks);
   }, []);
