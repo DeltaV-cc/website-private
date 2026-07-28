@@ -373,6 +373,8 @@ export function useIntelData(activeTab: string = 'macro') {
       fetchJson(`${BASE}/data/dex-metrics.json`).then((d) => { if (d) merge({ dexMetrics: d }); }),
       fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
       fetchJson(`${BASE}/data/chain-movers.json`).then((d) => { if (d) merge({ chainMovers: d }); }),
+      // Macro Top Movers: equity + crypto price (Yahoo + CoinGecko via Hermes refresh-data)
+      fetchJson(`${BASE}/data/top-movers.json`).then((d) => { if (d) merge({ topMovers: d }); }),
       // Pre-fetched forex baseline (loadForex may override with live Yahoo data)
       fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
       // Infosec snapshot for fast first paint (live refresh on Infosec tab)
