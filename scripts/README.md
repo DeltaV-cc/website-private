@@ -9,7 +9,8 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `patch-basepath.py` | end of `build` | Static export under `out/` | Rewrites root-relative paths with `basePath` from `site.config.json` |
 | `fetch-*.py` | Manual / ops refresh | Live APIs | Updates specific `public/data/*.json` files |
 | `fetch-bold-yields.py` | Hermes / manual | DefiLlama Yields (Liquity V2 BOLD SP + venues) | `public/data/bold-yields.json` — mirrors [Dune BOLD Yields](https://dune.com/liquity/bold-yields) without a Dune API key |
-| `refresh-data.py` | Ops only (may be local-only) | Full external pipeline | Regenerates data snapshots |
+| `refresh-data.py` | Ops / Hermes `no_agent` cron `*/15` | Yahoo, CoinGecko, HF, … | Market snapshots → `public/data/` + gh-pages. Includes **`top-movers.json`** (equity + crypto **price** movers for Macro). Does **not** use LLM tokens. |
+| — | Hermes `fetch-chain-movers.py` `*/30` | DefiLlama historical TVL | `chain-movers.json` — **chain TVL** movers for **Web3** only (not Macro price movers) |
 
 ## Deploy config
 
