@@ -44,34 +44,44 @@ const SOURCE_HINTS: Record<string, string[]> = {
   defillama: ['crypto'], santimentdata: ['crypto'], polymutex: ['crypto'],
   ki_young_ju: ['crypto'], nero_eth: ['crypto'], backthebunny: ['crypto'],
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
+  '0xngmi': ['crypto'], deficrimewatch: ['crypto'], bjnpck: ['crypto'], mzeller: ['crypto'],
+  vitalikbuterin: ['crypto'], 'alexis_roussel': ['crypto'], senlummis: ['crypto'],
+  // Artemis research + official X (not the wrong @artemis__ account)
+  artemis: ['crypto', 'macro'], 'the defiant': ['crypto'], decrypt: ['crypto'], bankless: ['crypto'],
   // ── Science / Research ──
   'y combinator': ['science', 'ai'], 'hacker news': ['science', 'ai'], arxiv: ['ai'],
-  nature: ['science'], sciencedaily: ['science'],
+  nature: ['science'], sciencedaily: ['science'], lesswrong: ['ai', 'science'],
   // ── Cybersec ──
   nist: ['cybersec'], cisa: ['cybersec'], haveibeenpwned: ['cybersec'], bleepingcomputer: ['cybersec'],
-  krebs: ['cybersec'], threatpost: ['cybersec'],
-  dinosn: ['cybersec'], pcaversaccio: ['cybersec'],
+  krebs: ['cybersec'], threatpost: ['cybersec'], 'dark reading': ['cybersec'],
+  dinosn: ['cybersec'], pcaversaccio: ['cybersec'], cvenew: ['cybersec'], hypernativelabs: ['cybersec'],
   // ── Macro ──
   'federal reserve': ['macro'], treasury: ['macro'], imf: ['macro'], 'world bank': ['macro'], bis: ['macro'],
   bloomberg: ['macro'], reuters: ['macro'],
   michaeljburry: ['macro'], delphi_digital: ['crypto', 'macro'],
-  marketnews_feed: ['macro'],
+  marketnews_feed: ['macro'], snowden: ['cybersec', 'macro'],
   // ── Hardware / Chips / Physics ──
   nvidia: ['hardware'], intel: ['hardware'], amd: ['hardware'], tsmc: ['hardware'],
   samsung: ['hardware'], micron: ['hardware'], asml: ['hardware'], qualcomm: ['hardware'],
   broadcom: ['hardware'], 'arm holdings': ['hardware'], semiconductor: ['hardware'],
   // ── AI / ML ──
-  'hugging face': ['ai'],
-  anthropic: ['ai'], openai: ['ai'], deepmind: ['ai'], moonshot: ['ai'], baichuan: ['ai'], teknium: ['ai'], stepfun: ['ai'],
-  'google research': ['ai'], 'meta ai': ['ai'], 'stanford hai': ['ai'], 'alignment forum': ['ai'],
+  'hugging face': ['ai'], huggingface: ['ai'],
+  anthropic: ['ai'], anthropicai: ['ai'], openai: ['ai'], deepmind: ['ai'], googledeepmind: ['ai'],
+  moonshot: ['ai'], baichuan: ['ai'], teknium: ['ai'], stepfun: ['ai'],
+  'google research': ['ai'], googleai: ['ai'], 'meta ai': ['ai'], metaai: ['ai'],
+  'stanford hai': ['ai'], 'alignment forum': ['ai'],
   'gwern': ['ai'], 'the batch': ['ai'],
-  // X/Twitter — AI leaders & labs
-  sama: ['ai'], darioamodei: ['ai'], demishassabis: ['ai'],
+  // X/Twitter — AI leaders & labs (full hedge roster — do not prune for low activity)
+  sama: ['ai'], darioamodei: ['ai'], demishassabis: ['ai'], gdb: ['ai'], miramurati: ['ai'],
   ylecun: ['ai'], karpathy: ['ai'], clementdelangue: ['ai'],
   arthurmensch: ['ai'], aidangomez: ['ai'], emostaque: ['ai'],
-  drjimfan: ['ai'], elder_plinius: ['ai'], teknium1: ['ai'],
-  xai: ['ai'], metaai: ['ai'], mistralai: ['ai'],
+  drjimfan: ['ai'], jimfan: ['ai'], elder_plinius: ['ai'], teknium1: ['ai'],
+  xai: ['ai'], mistralai: ['ai'],
   lerobothf: ['ai'], alibaba_qwen: ['ai'], '01ai_yi': ['ai'],
+  swyx: ['ai'], andrewyng: ['ai'], fchollet: ['ai'], jeremyphoward: ['ai'],
+  hardmaru: ['ai'], sarahookr: ['ai'], osanseviero: ['ai'], prismml: ['ai'],
+  bindureddy: ['ai'], alexandr_wang: ['ai'], ilyasut: ['ai'], nearcyan: ['ai'],
+  levelsio: ['ai'], rasbt: ['ai'], nono2357: ['ai'], sciTechera: ['science', 'ai'],
 };
 
 // Hardware exclusion — items matching these patterns should never appear in Hardware box

@@ -38,15 +38,17 @@ const LAB_SOURCES = [
   'anthropic', 'google ai', 'deepmind', 'nvidia', 'microsoft research',
 ];
 
-/** X / social personas relevant to frontier AI (matched against item.source) */
+/** X / social personas relevant to frontier AI (matched against item.source).
+ *  Full hedge roster — do not prune for low post rate. Aliases cover Nitter labels. */
 const AI_PERSONAS = [
   'sama', 'karpathy', 'ylecun', 'demishassabis', 'gdb', 'miramurati',
-  'jeremyphoward', 'claudeai', 'openai', 'anthropicai', 'deepmind',
+  'jeremyphoward', 'claudeai', 'openai', 'anthropicai', 'deepmind', 'googledeepmind',
   'huggingface', 'swyx', 'andrewyng', 'fchollet', 'drjimfan', 'clementdelangue',
   'tekknolagi', 'arankomatsuzaki', 'hardmaru', 'sarahooker', 'osanseviero',
-  'emostaque', 'scitechera', 'nono2357', 'drjimfan', 'bindureddy',
+  'emostaque', 'scitechera', 'nono2357', 'bindureddy',
   'alexandr_wang', 'ilyasut', 'sarahookr', 'jimfan', 'nearcyan', 'levelsio',
-  'andrew_n_carr', 'rasbt', 'stanfordnlp', 'metaai', 'googleresearch',
+  'andrew_n_carr', 'rasbt', 'stanfordnlp', 'metaai', 'googleresearch', 'googleai',
+  'xai', 'lerobothf', 'prismml', 'elder_plinius', 'teknium1',
 ];
 
 function describe(item: any): string {
