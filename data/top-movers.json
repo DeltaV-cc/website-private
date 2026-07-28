@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-28T21:00:25Z",
+  "updated_at": "2026-07-28T21:15:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 3.36,
+        "change_24h": 9.1,
+        "asset": "crypto"
+      },
+      {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.3,
-        "change_24h": 5.3,
+        "price": 2.31,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
         "price": 2.01,
-        "change_24h": 3.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "AAVE",
-        "name": "Aave",
-        "price": 101.28,
-        "change_24h": 2.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "JUP",
-        "name": "Jupiter",
-        "price": 0.189544,
-        "change_24h": 1.9,
+        "change_24h": 2.2,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.89,
-        "change_24h": 1.7,
+        "price": 3.91,
+        "change_24h": 1.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "AAVE",
+        "name": "Aave",
+        "price": 101.21,
+        "change_24h": 1.4,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "SHIB",
         "name": "Shiba Inu",
         "price": 5e-06,
-        "change_24h": -7.8,
+        "change_24h": -8.3,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001957,
-        "change_24h": -6.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.03652,
-        "change_24h": -5.8,
+        "price": 0.001955,
+        "change_24h": -7.9,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.320339,
-        "change_24h": -5.8,
+        "price": 0.320849,
+        "change_24h": -6.1,
         "asset": "crypto"
       },
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.65,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.13,
         "change_24h": -5.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.03659,
+        "change_24h": -5.4,
         "asset": "crypto"
       }
     ]
