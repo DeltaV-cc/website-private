@@ -5,8 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Repo Pages settings use LEGACY source: branch `gh-pages` / root
+# (not GitHub Actions). deploy-pages alone does NOT update the public site.
+# This workflow builds main and publishes `out/` to the gh-pages branch.
+# Layer 0 scripts may later push only `data/*.json` onto the same branch
+# without a full HTML rebuild — that is intentional and OK.
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -38,9 +44,6 @@ jobs:
   build-and-deploy:
     needs: quality
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -61,11 +64,12 @@ jobs:
       # pnpm build already runs prebuild (copy-data + RSS) then next build + patch-basepath
       - run: pnpm build
 
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v4
+      # Actual public site = gh-pages branch (legacy Pages source)
+      - name: Publish out/ → gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: out
-
-      - uses: actions/deploy-pages@v5
-        id: deployment
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: false
+          enable_jekyll: false
+          full_commit_message: 'deploy: site from ${{ github.sha }}'
