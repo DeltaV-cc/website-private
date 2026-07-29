@@ -13,6 +13,7 @@ import ChainVolumeBar from './ChainVolumeBar';
 import NetFlowsPanel from './NetFlowsPanel';
 import BoldYieldsPanel from './BoldYieldsPanel';
 import { defillamaChainUrl, defillamaProtocolUrl, web3EntityLink } from '@/lib/entity-links';
+import CypherpunkFeed from './CypherpunkFeed';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -683,8 +684,26 @@ export default function Web3Dashboard({
         </div>
       )}
 
-      {/* -- Category Box: Crypto items -- */}
-      {web3Cats[0] && <CategoryBox cat={web3Cats[0]} ago={ago} TC={TC} />}
+      {/* -- Cypherpunk / EVM voices (X) — prioritised over generic crypto RSS -- */}
+      <CypherpunkFeed items={items} ago={ago} />
+
+      {/* Secondary: remaining crypto category signals (news RSS, non-cypherpunk) */}
+      {web3Cats[0] && (() => {
+        const deskItems = (web3Cats[0].items || []).filter((it: any) => {
+          const s = (it.source || '').toLowerCase();
+          // News/RSS only — pure X is covered by CypherpunkFeed above
+          if (s.startsWith('x:') || s.includes('nitter') || s.includes('twitter')) return false;
+          return true;
+        }).slice(0, 12);
+        if (!deskItems.length) return null;
+        return (
+          <CategoryBox
+            cat={{ ...web3Cats[0], label: 'Crypto desk', items: deskItems, count: deskItems.length }}
+            ago={ago}
+            TC={TC}
+          />
+        );
+      })()}
     </div>
   );
 }

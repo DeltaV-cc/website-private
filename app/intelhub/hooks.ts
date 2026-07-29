@@ -51,6 +51,11 @@ const SOURCE_HINTS: Record<string, string[]> = {
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
   '0xngmi': ['crypto'], deficrimewatch: ['crypto'], bjnpck: ['crypto'], mzeller: ['crypto'],
   vitalikbuterin: ['crypto'], 'alexis_roussel': ['crypto'], senlummis: ['crypto'],
+  // Cypherpunk / EVM core voices (Web3 CypherpunkFeed)
+  timbeiko: ['crypto'], sassal0x: ['crypto'], lefterisjp: ['crypto'], hasufl: ['crypto'],
+  gakonst: ['crypto'], bantg: ['crypto'], nicksdjohnson: ['crypto'], souptacular: ['crypto'],
+  libevm: ['crypto'], peter_szilagyi: ['crypto'], karalabe: ['crypto'], drakefjustin: ['crypto'],
+  ethereumjoseph: ['crypto'], nero_eth: ['crypto'],
   // Artemis research + official X (not the wrong @artemis__ account)
   artemis: ['crypto', 'macro'], 'the defiant': ['crypto'], decrypt: ['crypto'], bankless: ['crypto'],
   // ── Science / Research ──
