@@ -1,212 +1,229 @@
 {
-  "updated_at": "2026-07-28T21:00:37Z",
-  "source": "Dune Analytics (dex.trades \u2014 on-chain data)",
-  "query_ids": {
-    "cross_table": 8029504,
-    "tvl_by_chain": 8029496
-  },
+  "updated_at": "2026-07-27T11:09:51Z",
   "chains": [
     {
-      "chain": "bnb",
-      "total24h": 3027324654.322156,
-      "tvl": 3027326979.3509994
+      "chain": "Ethereum",
+      "total24h": 491711986.63,
+      "change_1d": 18.84
     },
     {
-      "chain": "ethereum",
-      "total24h": 1065649853.8456134,
-      "tvl": 1065614163.9087309
+      "chain": "Solana",
+      "total24h": 1198930517.6,
+      "change_1d": 13.38
     },
     {
-      "chain": "base",
-      "total24h": 965530267.3269043,
-      "tvl": 965487318.876408
+      "chain": "Tron",
+      "total24h": 16403741,
+      "change_1d": -46.46
     },
     {
-      "chain": "arbitrum",
-      "total24h": 152742630.8945283,
-      "tvl": 152759178.35567468
+      "chain": "BSC",
+      "total24h": 1568769743.2,
+      "change_1d": 23.72
     },
     {
-      "chain": "polygon",
-      "total24h": 100588313.74910414,
-      "tvl": 100608680.42797723
+      "chain": "Base",
+      "total24h": 538707246.4,
+      "change_1d": 35.93
     },
     {
-      "chain": "avalanche_c",
-      "total24h": 41109703.5572558,
-      "tvl": 41121523.13375876
+      "chain": "Bitcoin",
+      "total24h": 285675,
+      "change_1d": 3.04
     },
     {
-      "chain": "optimism",
-      "total24h": 22561662.895091385,
-      "tvl": 22581327.229492884
+      "chain": "Provenance",
+      "total24h": 1335519,
+      "change_1d": 14.63
+    },
+    {
+      "chain": "Hyperliquid L1",
+      "total24h": 104119743.29,
+      "change_1d": 16.87
     }
   ],
   "matrix": [
     {
-      "protocol": "pancakeswap",
-      "total_vol": 2165066740.58924,
-      "bnb": 2019505476.2362843,
-      "ethereum": 7748680.087426247,
-      "base": 130119392.9507908,
-      "arbitrum": 7693191.314738963,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "Orca DEX",
+      "total_vol": 89036430,
+      "Ethereum": 0,
+      "Solana": 89036430,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "uniswap",
-      "total_vol": 1702283974.848138,
-      "bnb": 271692688.8212223,
-      "ethereum": 835932122.4661609,
-      "base": 381294669.8919611,
-      "arbitrum": 132812714.44546361,
-      "polygon": 64112937.62060492,
-      "avalanche_c": 4433874.41929311,
-      "optimism": 12004967.183432085
+      "protocol": "Raydium AMM",
+      "total_vol": 57718946,
+      "Ethereum": 0,
+      "Solana": 57718946,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "native",
-      "total_vol": 602631129.0063288,
-      "bnb": 592071018.1581436,
-      "ethereum": 7607126.954200558,
-      "base": 360641.0741555412,
-      "arbitrum": 2592342.819829166,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "Curve DEX",
+      "total_vol": 17272064,
+      "Ethereum": 14794322,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 85,
+      "Base": 2476102,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 1555
     },
     {
-      "protocol": "aerodrome",
-      "total_vol": 433000920.087135,
-      "bnb": 0,
-      "ethereum": 0,
-      "base": 433000920.087135,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "SUNSwap V3",
+      "total_vol": 15562531,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 15562531,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "tessera_v",
-      "total_vol": 139827159.0399796,
-      "bnb": 128191776.88870403,
-      "ethereum": 0,
-      "base": 11635382.151275588,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "PancakeSwap AMM",
+      "total_vol": 15163909,
+      "Ethereum": 504790,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 14659119,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "curve",
-      "total_vol": 81252615.87018536,
-      "bnb": 0,
-      "ethereum": 81171067.17675294,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 81548.69343241642
+      "protocol": "Figure Markets Exchange",
+      "total_vol": 1966064,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 1966064,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "fluid",
-      "total_vol": 61187780.49017612,
-      "bnb": 0,
-      "ethereum": 56154516.866280355,
-      "base": 771041.7178225201,
-      "arbitrum": 4234257.536032547,
-      "polygon": 27964.370040694797,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "SUNSwap V2",
+      "total_vol": 783114,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 783114,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "ekubo",
-      "total_vol": 35439121.22158655,
-      "bnb": 0,
-      "ethereum": 35439121.22158655,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "Meteora DAMM V1",
+      "total_vol": 667999,
+      "Ethereum": 0,
+      "Solana": 667999,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "pharaoh_v3",
-      "total_vol": 28844907.14429391,
-      "bnb": 0,
-      "ethereum": 0,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 28844907.14429391,
-      "optimism": 0
+      "protocol": "Bancor V2.1",
+      "total_vol": 421188,
+      "Ethereum": 421188,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "quickswap",
-      "total_vol": 25771151.012104448,
-      "bnb": 0,
-      "ethereum": 0,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 25771151.012104448,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "Pendle",
+      "total_vol": 270227,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 36187,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 234040
     },
     {
-      "protocol": "lista_smartswap",
-      "total_vol": 14427770.04178776,
-      "bnb": 14427770.04178776,
-      "ethereum": 0,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "Balancer V1",
+      "total_vol": 260756,
+      "Ethereum": 260756,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "balancer",
-      "total_vol": 13955754.296633635,
-      "bnb": 0,
-      "ethereum": 3117621.10785674,
-      "base": 848329.3940421973,
-      "arbitrum": 302535.2553273258,
-      "polygon": 9687268.539407372,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "SushiSwap",
+      "total_vol": 246447,
+      "Ethereum": 244602,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 1845,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "dodo",
-      "total_vol": 12546635.77633415,
-      "bnb": 247859.01753219694,
-      "ethereum": 10199766.85160948,
-      "base": 0,
-      "arbitrum": 1519781.6183308717,
-      "polygon": 579228.2888616008,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "LN Exchange Spot",
+      "total_vol": 160697,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 160697,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "velodrome",
-      "total_vol": 8916731.194044378,
-      "bnb": 0,
-      "ethereum": 0,
-      "base": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 8916731.194044378
+      "protocol": "DODO AMM",
+      "total_vol": 146079,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 146079,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 0
     },
     {
-      "protocol": "1inch-LOP",
-      "total_vol": 7756043.235533769,
-      "bnb": 275870.87668638997,
-      "ethereum": 7382806.9248401895,
-      "base": 97365.43400719023,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "protocol": "WOOFi Swap",
+      "total_vol": 127757,
+      "Ethereum": 0,
+      "Solana": 0,
+      "Tron": 0,
+      "BSC": 0,
+      "Base": 0,
+      "Bitcoin": 0,
+      "Provenance": 0,
+      "Hyperliquid L1": 127757
     }
-  ]
+  ],
+  "source": "DeFiLlama (per-chain DEX endpoints)",
+  "excludes": "Protocols with <$1 volume filtered out"
 }

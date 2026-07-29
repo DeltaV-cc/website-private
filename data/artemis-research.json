@@ -1,59 +1,5 @@
 [
   {
-    "title": "I love money",
-    "url": "https://www.artemis.ai/articles/340520407552076908",
-    "source": "Artemis Research (Deng)",
-    "published_at": "2026-07-28T15:46:43.017084+00:00",
-    "summary": "",
-    "category": "general",
-    "artemis_id": "600eb96d-e0f1-4283-aa93-3dfb38095292",
-    "tags": [],
-    "categories": []
-  },
-  {
-    "title": "The Market Is Misreading AI CapEx as AMD and Alphabet Just Proved It",
-    "url": "https://www.artemis.ai/articles/339182965388790737",
-    "source": "Artemis Research (steven.fiorillo)",
-    "published_at": "2026-07-24T23:19:27.211671+00:00",
-    "summary": "Alphabet reported what may have been the strongest quarter any cloud business has ever delivered on July 22. The market responded by sending the stock down roughly 7% the next day. The results themselves were exceptional. Revenue reached $119.8 billion, almost $3 billion ahead of estimates. Google C",
-    "category": "general",
-    "artemis_id": "c3392bb5-b3cc-4210-a4da-cdb81014fd6b",
-    "tags": [],
-    "categories": []
-  },
-  {
-    "title": "Money Can't Buy CLARITY",
-    "url": "https://www.artemis.ai/articles/313711345201541266",
-    "source": "Artemis Research (Jacob Handler)",
-    "published_at": "2026-07-23T19:45:29.458847+00:00",
-    "summary": "The Crypto market has been on a steady decline for the past year. A lot of this is due to the stalling of the Clarity Act.",
-    "category": "crypto",
-    "artemis_id": "4c6457ac-f053-4cfd-846c-8e660d8791f6",
-    "tags": [],
-    "categories": [
-      "fundamental",
-      "regulation",
-      "market_outlook",
-      "crypto",
-      "fintech",
-      "macro",
-      "equities",
-      "defi",
-      "other"
-    ]
-  },
-  {
-    "title": "Credible: Modern Payments for Modern Businesses",
-    "url": "https://www.artemis.ai/articles/307971315273893309",
-    "source": "Artemis Research (Connor King)",
-    "published_at": "2026-07-23T14:23:40.239952+00:00",
-    "summary": "Credible is a live cross-border payments business with publicly observable volume, institutional customers, and an operating revenue model.\n\nThe company has processed $844M in cumulative payment volume, including $146M in June 2026, its seventh consecutive record month. At Credible’s reported blende",
-    "category": "general",
-    "artemis_id": "9c07ce3b-58f4-470f-bedf-9ca91ed216d3",
-    "tags": [],
-    "categories": []
-  },
-  {
     "title": "Should Google Buy PayPal?",
     "url": "https://www.artemis.ai/articles/336270992344127990",
     "source": "Artemis Research (Dr. Crossroads)",
