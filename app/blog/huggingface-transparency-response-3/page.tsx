@@ -31,13 +31,13 @@ export default function HFTransparencyResponse() {
         label: 'Hugging Face Breach — 3-part series',
         prev: {
           href: '/blog/openai-hf-eval-escape-2026/',
-          label: 'Part 2: OpenAI Evaluation Escape',
+          label: 'Hugging Face Breach (2/3) — OpenAI Evaluation Escape',
         },
       }}
       related={[
         {
           href: '/blog/huggingface-agent-breach-safety-backfire/',
-          label: 'Hugging Face Breach (1/3) — Safety Guardrails Block Defenders',
+          label: 'Hugging Face Breach (1/3) — When AI Safety Guardrails Block the Defenders',
           meta: 'Part 1',
         },
         {
@@ -47,7 +47,7 @@ export default function HFTransparencyResponse() {
         },
         {
           href: '/blog/lessons-from-kpk-war-room/',
-          label: "Inside a $292M DeFi Crisis: KPK's rsETH War Room",
+          label: "Inside a $292M DeFi Crisis: Lessons from KPK's rsETH War Room",
           meta: 'Incident response',
         },
       ]}

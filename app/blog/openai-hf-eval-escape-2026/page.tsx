@@ -28,22 +28,24 @@ export default function OpenAIEvalEscape() {
         label: 'Hugging Face Breach — 3-part series',
         prev: {
           href: '/blog/huggingface-agent-breach-safety-backfire/',
-          label: 'Part 1: Guardrails Blocked the Defenders',
+          label: 'Hugging Face Breach (1/3) — When AI Safety Guardrails Block the Defenders',
         },
         next: {
           href: '/blog/huggingface-transparency-response-3/',
-          label: 'Part 3: Full Transparency Response',
+          label:
+            'Hugging Face Breach (3/3) — Full Transparency Response: Timeline, Interactive Replay & Open Model Defense',
         },
       }}
       related={[
         {
           href: '/blog/huggingface-agent-breach-safety-backfire/',
-          label: 'Hugging Face Breach (1/3) — Safety Guardrails Block Defenders',
+          label: 'Hugging Face Breach (1/3) — When AI Safety Guardrails Block the Defenders',
           meta: 'Part 1',
         },
         {
           href: '/blog/huggingface-transparency-response-3/',
-          label: 'Hugging Face Breach (3/3) — Full Transparency Response',
+          label:
+            'Hugging Face Breach (3/3) — Full Transparency Response: Timeline, Interactive Replay & Open Model Defense',
           meta: 'Part 3',
         },
         {

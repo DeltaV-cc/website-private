@@ -29,7 +29,7 @@ export default function HFAgentBreachArticle() {
         label: 'Hugging Face Breach — 3-part series',
         next: {
           href: '/blog/openai-hf-eval-escape-2026/',
-          label: 'Part 2: OpenAI Evaluation Escape',
+          label: 'Hugging Face Breach (2/3) — OpenAI Evaluation Escape',
         },
       }}
       related={[
@@ -40,7 +40,8 @@ export default function HFAgentBreachArticle() {
         },
         {
           href: '/blog/huggingface-transparency-response-3/',
-          label: 'Hugging Face Breach (3/3) — Full Transparency Response',
+          label:
+            'Hugging Face Breach (3/3) — Full Transparency Response: Timeline, Interactive Replay & Open Model Defense',
           meta: 'Part 3',
         },
         {
