@@ -7,8 +7,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { SITE_URL } from '@/lib/site';
 import { Item, PatentsData, IntelData } from './types';
 
-// Canonical public origin (includes basePath). See site.config.json.
-const BASE = SITE_URL;
+// Data JSON lives on the gh-pages branch. Prefer raw.githubusercontent over
+// deltav-cc.github.io — frequent force-pushes from refresh-data desync the
+// Pages/Fastly CDN (raw-items was serving ~6-day-old content while git tip
+// was current). raw tracks the branch tip within minutes.
+const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
+// Keep SITE_URL alias for any absolute site links that still need the pages host.
+const BASE = DATA_BASE;
 
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [

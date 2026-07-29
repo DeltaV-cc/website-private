@@ -4,8 +4,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { siteAssetUrl } from '@/lib/site';
 import { Item, PatentsData } from '../types';
+
+// Prefer raw.githubusercontent — Pages CDN can lag gh-pages force-pushes by days.
+const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
 import PatentsTable from './PatentsTable';
 import { CategoryBox, fmtNum, PanelMeta } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
@@ -50,9 +52,10 @@ export default function MacroDashboard({
   const [calendar, setCalendar] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(siteAssetUrl('/data/macro-calendar.json')).then(r => r.json()).then(d => {
-      if (d?.events) setCalendar(d.events);
-    }).catch(() => {});
+    fetch(`${DATA_BASE}/data/macro-calendar.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d?.events) setCalendar(d.events); })
+      .catch(() => {});
   }, []);
 
   const currencyFlag = (ccy: string) =>
