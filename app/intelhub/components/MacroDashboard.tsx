@@ -5,12 +5,13 @@
 
 import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
-
-// Prefer raw.githubusercontent — Pages CDN can lag gh-pages force-pushes by days.
-const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
 import PatentsTable from './PatentsTable';
 import { CategoryBox, fmtNum, PanelMeta } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
+import { macroMoverLink } from '@/lib/entity-links';
+
+// Prefer raw.githubusercontent — Pages CDN can lag gh-pages force-pushes by days.
+const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
 
 /* -- Inline SVG Icons -- */
 const TrendUp = () => (
@@ -351,10 +352,10 @@ export default function MacroDashboard({
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
             <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Top Movers (24h)</span>
-            <PanelMeta source={dd?.topMovers?.source ? 'Yahoo · CoinGecko' : 'snapshot'} />
+            <PanelMeta source={dd?.topMovers?.source ? 'Yahoo · CoinGecko · Artemis' : 'snapshot · Artemis'} />
           </div>
           <div className="px-5 pb-0 flex items-center justify-between">
-            <span className="text-[10px] text-[var(--text-muted)]">equities + crypto · price</span>
+            <span className="text-[10px] text-[var(--text-muted)]">equities + crypto · price · open on Artemis</span>
           </div>
           <div className="p-4 space-y-2 text-xs">
             {(() => {
@@ -398,16 +399,27 @@ export default function MacroDashboard({
               };
               const badge = (r: any) => (r.asset === 'crypto' ? 'CR' : 'EQ');
               const label = (r: any) => r.symbol || r.name || '?';
-              const row = (r: any, i: number, up: boolean) => (
-                <div key={i} className="flex items-center gap-1.5 py-1 border-b border-white/[0.02] last:border-0">
-                  <span className={`text-[9px] font-bold shrink-0 w-5 ${r.asset === 'crypto' ? 'text-[var(--accent-cyan)]' : 'text-[var(--accent-amber)]'}`}>{badge(r)}</span>
-                  <span className="text-[var(--text-secondary)] truncate flex-1 min-w-0" title={r.name || label(r)}>{label(r)}</span>
-                  <span className="text-[var(--text-muted)] tabular-nums shrink-0">{fmtPrice(r)}</span>
-                  <span className={`tabular-nums font-medium shrink-0 w-12 text-right ${up ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                    {chg(r) > 0 ? '+' : ''}{chg(r).toFixed(1)}%
-                  </span>
-                </div>
-              );
+              const row = (r: any, i: number, up: boolean) => {
+                const link = macroMoverLink(r);
+                return (
+                  <div key={i} className="flex items-center gap-1.5 py-1 border-b border-white/[0.02] last:border-0">
+                    <span className={`text-[9px] font-bold shrink-0 w-5 ${r.asset === 'crypto' ? 'text-[var(--accent-cyan)]' : 'text-[var(--accent-amber)]'}`}>{badge(r)}</span>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`${r.name || label(r)} · Artemis`}
+                      className="text-[var(--text-secondary)] truncate flex-1 min-w-0 hover:text-[var(--accent-green)] transition-colors underline-offset-2 hover:underline"
+                    >
+                      {label(r)}
+                    </a>
+                    <span className="text-[var(--text-muted)] tabular-nums shrink-0">{fmtPrice(r)}</span>
+                    <span className={`tabular-nums font-medium shrink-0 w-12 text-right ${up ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                      {chg(r) > 0 ? '+' : ''}{chg(r).toFixed(1)}%
+                    </span>
+                  </div>
+                );
+              };
               return (
                 <div className="grid grid-cols-2 gap-3">
                   <div>
