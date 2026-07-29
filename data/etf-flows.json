@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-07-29T00:55:42.357780Z",
+  "updated_at": "2026-07-29T00:58:06.037794Z",
   "source": "Farside Investors via haturatu/crypto-etf-flow",
   "btc": {
     "latest_total": 5.1,
     "latest_date": "2026-07-28",
     "prev_total": -11.6,
     "change": 16.7,
-    "ytd_flows": -5162.0,
+    "ytd_flows": -5162.000000000001,
     "sparkline": [
       {
         "d": "2026-06-15",
