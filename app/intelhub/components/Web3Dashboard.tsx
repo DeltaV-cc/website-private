@@ -12,6 +12,7 @@ import VolumeChart from './VolumeChart';
 import ChainVolumeBar from './ChainVolumeBar';
 import NetFlowsPanel from './NetFlowsPanel';
 import BoldYieldsPanel from './BoldYieldsPanel';
+import { defillamaChainUrl, defillamaProtocolUrl, web3EntityLink } from '@/lib/entity-links';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -409,8 +410,8 @@ export default function Web3Dashboard({
               chainView === 'dominance' ? (
                 (dd.dominance || tvlRows).slice(0, 10).map((d: any, i: number) => (
                   <div key={i} className="flex items-center gap-2.5 text-xs">
-                    <a href={`https://defillama.com/chain/${d.name}`} target="_blank" rel="noopener noreferrer"
-                      className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">{d.name}</a>
+                    <a href={defillamaChainUrl(d.name)} target="_blank" rel="noopener noreferrer"
+                      className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors" title={`${d.name} · DeFi Llama`}>{d.name}</a>
                     <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
                       <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/40 to-[var(--accent-cyan)]/40"
                         style={{ width: `${Math.min(100, parseFloat(String(d.pct || ((d.tvl / maxTvl) * 100))) || 0)}%` }} />
@@ -427,8 +428,8 @@ export default function Web3Dashboard({
                   const fchg = c.feesChange1d;
                   return (
                     <div key={i} className="flex items-center gap-2.5 text-xs group">
-                      <a href={`https://defillama.com/chain/${c.name}`} target="_blank" rel="noopener noreferrer"
-                        className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-amber)] transition-colors">
+                      <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                        className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-amber)] transition-colors" title={`${c.name} · DeFi Llama`}>
                         {c.name}
                       </a>
                       <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden">
@@ -453,8 +454,8 @@ export default function Web3Dashboard({
                   const fees = c.fees24h || 0;
                   return (
                     <div key={i} className="flex items-center gap-2 text-xs group">
-                      <a href={`https://defillama.com/chain/${c.name}`} target="_blank" rel="noopener noreferrer"
-                        className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors">
+                      <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                        className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors" title={`${c.name} · DeFi Llama`}>
                         {c.name}
                       </a>
                       <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden min-w-[48px]">
@@ -525,27 +526,41 @@ export default function Web3Dashboard({
             {dd?.stablecoins?.length ? fmtCurrency(dd.stablecoins.reduce((s: number, sc: any) => s + (sc.circulating || 0), 0)) : <div className="skeleton-shimmer h-7 w-28 rounded" />}
           </div>
           <div className="space-y-1.5">
-            {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => (
-              <div key={i} className="flex justify-between text-xs">
-                <span className="text-[var(--text-tertiary)]">{sc.name}</span>
-                <span className="text-[var(--text-secondary)] tabular-nums">{fmtCurrency(sc.circulating)}</span>
-              </div>
-            ))}
+            {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => {
+              const link = web3EntityLink(sc.name || sc.symbol || '', 'stablecoin', sc.symbol);
+              return (
+                <div key={i} className="flex justify-between text-xs gap-2">
+                  <a href={link.href} target="_blank" rel="noopener noreferrer"
+                    title={`${sc.name} · ${link.label}`}
+                    className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
+                    {sc.name}
+                  </a>
+                  <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+                </div>
+              );
+            })}
           </div>
           {stableChains.length > 0 && (
             <>
               <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mt-4 mb-2 border-t border-[var(--border-default)] pt-3">By Chain</div>
               <div className="space-y-1.5">
-                {stableChains.slice(0, 5).map((sc: any, i: number) => (
-                  <div key={i} className="flex justify-between text-xs">
-                    <span className="text-[var(--text-tertiary)]">{sc.chain || sc.name}</span>
-                    <span className="text-[var(--text-secondary)] tabular-nums">{fmtCurrency(sc.circulating)}</span>
-                  </div>
-                ))}
+                {stableChains.slice(0, 5).map((sc: any, i: number) => {
+                  const chain = sc.chain || sc.name || '';
+                  return (
+                    <div key={i} className="flex justify-between text-xs gap-2">
+                      <a href={defillamaChainUrl(chain)} target="_blank" rel="noopener noreferrer"
+                        title={`${chain} · DeFi Llama`}
+                        className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
+                        {chain}
+                      </a>
+                      <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}
-          <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama</div>
+          <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">DeFi Llama · Artemis for CeFi issuers</div>
         </div>
 
         {(moverGainers.length > 0 || moverLosers.length > 0) && (
@@ -558,9 +573,11 @@ export default function Web3Dashboard({
               <div>
                 <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
                 {moverGainers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                    <span className="text-[var(--accent-green)] tabular-nums font-medium">
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                    <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                      className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-green)] transition-colors underline-offset-2 hover:underline"
+                      title={`${c.name} · DeFi Llama`}>{c.name}</a>
+                    <span className="text-[var(--accent-green)] tabular-nums font-medium shrink-0">
                       {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
                     </span>
                   </div>
@@ -569,9 +586,11 @@ export default function Web3Dashboard({
               <div>
                 <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
                 {moverLosers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0">
-                    <span className="text-[var(--text-secondary)] truncate max-w-[80px]">{c.name}</span>
-                    <span className="text-[var(--accent-red)] tabular-nums font-medium">
+                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                    <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                      className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-red)] transition-colors underline-offset-2 hover:underline"
+                      title={`${c.name} · DeFi Llama`}>{c.name}</a>
+                    <span className="text-[var(--accent-red)] tabular-nums font-medium shrink-0">
                       {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
                     </span>
                   </div>
@@ -607,7 +626,8 @@ export default function Web3Dashboard({
                   <th className="text-left px-4 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">Protocol</th>
                   {((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((c: any) => (
                     <th key={c.chain} className="text-right px-3 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">
-                      {c.chain}
+                      <a href={defillamaChainUrl(c.chain)} target="_blank" rel="noopener noreferrer"
+                        className="hover:text-[var(--accent-cyan)] transition-colors" title={`${c.chain} · DeFi Llama`}>{c.chain}</a>
                       <span className={`block text-[9px] font-normal ${c.change_1d >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
                         {typeof c.change_1d === 'number' ? `${c.change_1d >= 0 ? '+' : ''}${c.change_1d.toFixed(1)}%` : ''}
                       </span>
@@ -622,7 +642,11 @@ export default function Web3Dashboard({
               <tbody className="divide-y divide-white/[0.03]">
                 {((dd.dexMatrix.matrix || []) as any[]).slice(0, 12).map((row: any, i: number) => (
                   <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? 'bg-white/[0.005]' : ''}`}>
-                    <td className="px-4 py-2.5 text-[var(--text-secondary)] font-medium truncate max-w-[160px]">{row.protocol}</td>
+                    <td className="px-4 py-2.5 text-[var(--text-secondary)] font-medium truncate max-w-[160px]">
+                      <a href={defillamaProtocolUrl(row.protocol)} target="_blank" rel="noopener noreferrer"
+                        className="hover:text-[var(--accent-cyan)] transition-colors underline-offset-2 hover:underline"
+                        title={`${row.protocol} · DeFi Llama`}>{row.protocol}</a>
+                    </td>
                     {((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((c: any) => {
                       // Support both live chain names and legacy lowercase keys
                       const val = row[c.chain] ?? row[String(c.chain).toLowerCase()] ?? row[String(c.chain).replace(/\s+/g, '_').toLowerCase()] ?? 0;
