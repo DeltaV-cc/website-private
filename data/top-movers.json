@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29T11:15:19Z",
+  "updated_at": "2026-07-29T11:30:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.02,
+        "price": 4.03,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "JUP",
         "name": "Jupiter",
-        "price": 0.196911,
+        "price": 0.196181,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.078749,
+        "price": 0.079138,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.058297,
+        "price": 0.058231,
         "change_24h": 4.3,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001877,
+        "price": 0.001876,
         "change_24h": -7.7,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.306846,
+        "price": 0.306271,
         "change_24h": -4.0,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.081456,
+        "price": 0.08143,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.035986,
+        "price": 0.035952,
         "change_24h": -3.4,
         "asset": "crypto"
       }
