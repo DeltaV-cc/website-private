@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29T10:50:32Z",
+  "updated_at": "2026-07-29T11:00:17Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.81,
+        "price": 3.78,
         "change_24h": 26.3,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.02,
+        "price": 4.01,
         "change_24h": 7.8,
         "asset": "crypto"
       },
       {
         "symbol": "JUP",
         "name": "Jupiter",
-        "price": 0.195965,
+        "price": 0.195868,
         "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.078742,
+        "price": 0.078623,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.058236,
+        "price": 0.058189,
         "change_24h": 4.9,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001879,
+        "price": 0.001871,
         "change_24h": -8.8,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.59,
+        "price": 1.58,
         "change_24h": -4.9,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "ASTER",
         "name": "Aster",
-        "price": 0.602965,
+        "price": 0.600165,
         "change_24h": -2.9,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.081192,
+        "price": 0.081095,
         "change_24h": -2.5,
         "asset": "crypto"
       }
