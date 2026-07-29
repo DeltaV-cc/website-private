@@ -120,15 +120,15 @@ export default function InfosecDashboard({
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-red)]/[0.06] to-transparent">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-red)] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-red)]" />
               <span className="text-xs text-[var(--accent-red)] uppercase tracking-[1.5px] font-bold">CISA KEV</span>
               <span className="text-[10px] text-[var(--text-muted)]">Known Exploited Vulns</span>
             </div>
             <PanelMeta source="CISA" />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
             {sortedKev.length === 0 ? (
-              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading CISA KEV data...</div>
+              <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading KEV…</div>
             ) : sortedKev.slice(0, 10).map((v: KevEntry, i: number) => {
               const overdue = isOverdue(v.dueDate);
               return (
@@ -137,17 +137,17 @@ export default function InfosecDashboard({
                   href={cisaKevUrl(v.cve)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-3 hover:bg-white/[0.02] transition-colors"
+                  className="block px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
                 >
-                  <div className="flex items-center justify-between mb-1 gap-2">
+                  <div className="flex items-center justify-between mb-0.5 gap-2">
                     <span className="text-xs font-mono font-semibold text-[var(--accent-red)]">{v.cve}</span>
                     <span className={`text-[10px] tabular-nums ${overdue ? 'text-[var(--accent-red)] font-semibold' : 'text-[var(--text-muted)]'}`}>
                       {overdue ? 'OVERDUE · ' : 'Due: '}
                       {v.dueDate ? new Date(v.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}
                     </span>
                   </div>
-                  <div className="text-xs text-[var(--text-secondary)] leading-snug mb-1">{v.name}</div>
-                  <div className="text-[10px] text-[var(--text-tertiary)]">{v.vendor} — {v.product}</div>
+                  <div className="text-xs text-[var(--text-secondary)] leading-snug mb-0.5 line-clamp-2">{v.name}</div>
+                  <div className="text-[10px] text-[var(--text-muted)]">{v.vendor} — {v.product}</div>
                 </a>
               );
             })}
@@ -178,10 +178,10 @@ export default function InfosecDashboard({
               ))}
             </div>
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
             {filteredCves.length === 0 ? (
-              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">
-                {cves.length === 0 ? 'Loading NVD data...' : 'No CVEs match this filter'}
+              <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
+                {cves.length === 0 ? 'Loading CVEs…' : 'No matches'}
               </div>
             ) : filteredCves.slice(0, 10).map((cve: CveEntry, i: number) => (
               <a
@@ -189,9 +189,9 @@ export default function InfosecDashboard({
                 href={nvdUrl(cve.id)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-4 py-3 hover:bg-white/[0.02] transition-colors"
+                className="block px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
               >
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                   <span className="text-xs font-mono font-semibold text-[var(--text-primary)]">{cve.id}</span>
                   <SeverityBadge sev={cve.severity} score={cve.score} />
                   {cve.published && (
@@ -211,22 +211,23 @@ export default function InfosecDashboard({
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.06] to-transparent">
             <div className="flex items-center gap-2">
               <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Data Breaches</span>
-              <span className="text-[10px] text-[var(--text-muted)]">Have I Been Pwned · by date</span>
+              <span className="text-[10px] text-[var(--text-muted)]">HIBP · by date</span>
             </div>
+            <PanelMeta source="HIBP" />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
             {breaches.length === 0 ? (
-              <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading breach data...</div>
+              <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading breaches…</div>
             ) : breaches.slice(0, 10).map((b: BreachEntry, i: number) => (
-              <div key={b.name || i} className="px-4 py-3 hover:bg-white/[0.02] transition-colors">
-                <div className="flex items-center justify-between mb-1">
+              <div key={b.name || i} className="px-5 py-2.5 hover:bg-white/[0.02] transition-colors">
+                <div className="flex items-center justify-between mb-0.5">
                   <span className="text-xs font-semibold text-[var(--text-primary)]">{b.name}</span>
                   <span className="text-[10px] tabular-nums font-semibold text-[var(--accent-red)]">
                     {b.count ? fmtCompact(b.count) : '?'} records
                   </span>
                 </div>
                 {b.domain && <div className="text-[10px] text-[var(--accent-cyan)] mb-0.5">{b.domain}</div>}
-                <div className="flex items-center gap-2 text-[10px] text-[var(--text-tertiary)]">
+                <div className="flex items-center gap-2 text-[10px] text-[var(--text-muted)]">
                   {b.date && <span>{b.date}</span>}
                   {b.data && <span className="truncate">{b.data}</span>}
                 </div>
@@ -245,19 +246,19 @@ export default function InfosecDashboard({
               </div>
               <PanelMeta source="curated" />
             </div>
-            <div className="divide-y divide-white/[0.02] max-h-[180px] overflow-y-auto">
+            <div className="divide-y divide-white/[0.02] max-h-[180px] overflow-y-auto scrollbar-hide">
               {watchlist.length === 0 ? (
-                <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">No active watchlist items</div>
+                <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No items</div>
               ) : watchlist.slice(0, 8).map((w: any, i: number) => (
                 <a
                   key={i}
                   href={w.url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2.5 hover:bg-white/[0.03] group"
+                  className="block px-5 py-2.5 hover:bg-white/[0.03] group"
                 >
-                  <div className="text-xs font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2">{w.title}</div>
-                  <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
+                  <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{w.title}</div>
+                  <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
                     <span className="truncate max-w-[100px]">{w.source}</span>
                     {w.added && <span className="ml-auto tabular-nums">{ago(w.added)}</span>}
                   </div>
@@ -268,19 +269,19 @@ export default function InfosecDashboard({
 
           {cyberCat ? (
             <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-              <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[var(--accent-orange)]/[0.06] to-transparent">
+              <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-orange)]/[0.06] to-transparent">
                 <span className="text-xs text-[var(--accent-orange)] uppercase tracking-[1.5px] font-bold">{cyberCat.label} Signals</span>
-                <span className="text-[10px] text-[var(--text-muted)] ml-2">{cyberCat.items.length} items</span>
+                <span className="text-[10px] text-[var(--text-muted)]">{cyberCat.items.length}</span>
               </div>
-              <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto">
+              <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
                 {cyberCat.items.length === 0 ? (
-                  <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">No recent signals</div>
+                  <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No signals</div>
                 ) : cyberCat.items.slice(0, 10).map((it: any, j: number) => (
                   <a key={j} href={it.url} target="_blank" rel="noopener noreferrer"
-                    className="block px-4 py-2.5 hover:bg-white/[0.03] group">
-                    <div className="text-xs font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2">{it.title}</div>
-                    <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
-                      <span className="truncate max-w-[80px]">{it.source}</span>
+                    className="block px-5 py-2.5 hover:bg-white/[0.03] group">
+                    <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
+                    <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
+                      <span className="truncate max-w-[100px]">{it.source}</span>
                       <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
                     </div>
                   </a>
@@ -288,15 +289,17 @@ export default function InfosecDashboard({
               </div>
             </div>
           ) : (
-            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 text-center">
-              <span className="text-xs text-[var(--text-disabled)]">No cybersec signals in the current window</span>
+            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-5 py-6 text-center">
+              <span className="text-[10px] text-[var(--text-disabled)]">No cybersec signals</span>
             </div>
           )}
 
           {/* Brand rail — same card language, light content enhancement */}
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-2">Delta V OpSec</div>
-            <div className="flex flex-wrap gap-2 text-xs">
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+            <div className="px-5 py-3 border-b border-[var(--border-default)]">
+              <div className="text-xs text-[var(--text-muted)] uppercase tracking-[1.5px] font-bold">Delta V OpSec</div>
+            </div>
+            <div className="p-4 flex flex-wrap gap-2 text-xs">
               <Link href="/opsec/sota-stack/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">SOTA Operator Stack</Link>
               <Link href="/opsec/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">OpSec pillar</Link>
               <Link href="/tutorials/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">Tutorials</Link>

@@ -1,12 +1,24 @@
 'use client';
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { useIntelData, BCOL, TC } from './hooks';
 import PulseFeed from './components/PulseFeed';
 import MacroDashboard from './components/MacroDashboard';
-import AIDashboard from './components/AIDashboard';
-import Web3Dashboard from './components/Web3Dashboard';
-import InfosecDashboard from './components/InfosecDashboard';
+
+// Lazy non-default tabs — smaller Macro first paint JS
+const AIDashboard = dynamic(() => import('./components/AIDashboard'), {
+  ssr: false,
+  loading: () => <div className="skeleton-shimmer h-40 w-full rounded-lg" aria-hidden />,
+});
+const Web3Dashboard = dynamic(() => import('./components/Web3Dashboard'), {
+  ssr: false,
+  loading: () => <div className="skeleton-shimmer h-40 w-full rounded-lg" aria-hidden />,
+});
+const InfosecDashboard = dynamic(() => import('./components/InfosecDashboard'), {
+  ssr: false,
+  loading: () => <div className="skeleton-shimmer h-40 w-full rounded-lg" aria-hidden />,
+});
 
 // Tab → parent categories
 const CATS_FOR: Record<string, string[]> = {
@@ -183,7 +195,7 @@ export default function IntelHubPage() {
 
       <style>{`@keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.tab-enter{animation:fadeIn 0.25s ease-out}`}</style>
 
-      <div className="max-w-[1440px] mx-auto px-8 pt-3">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8 pt-4">
         <div className="flex items-center gap-3 flex-wrap">
           <div className="relative flex-1 min-w-[200px] max-w-[360px]">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-disabled)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -244,7 +256,7 @@ export default function IntelHubPage() {
             </div>
           </div>
         )}
-        <div className="intelhub-tabs flex gap-6 border-b border-[var(--border-default)] w-full mb-7" role="tablist" aria-label="Dashboard tabs">
+        <div className="intelhub-tabs flex gap-6 border-b border-[var(--border-default)] w-full mb-5" role="tablist" aria-label="Dashboard tabs">
           {tabs.map(d => (
             <button key={d} onClick={() => setActive(d)}
               role="tab" aria-selected={active === d} aria-current={active === d ? 'page' : undefined}

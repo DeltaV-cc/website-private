@@ -95,9 +95,9 @@ function ETFFlowsCard({ etf }: { etf: any }) {
             <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
           <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</span>
-          <span className="text-[9px] text-[var(--text-disabled)]">via Farside / DeFi Llama</span>
+          <span className="text-[10px] text-[var(--text-muted)]">via Farside / DeFi Llama</span>
         </div>
-        {etf.updated_at && <span className="text-[9px] text-[var(--text-muted)]">{new Date(etf.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>}
+        {etf.updated_at && <span className="text-[10px] text-[var(--text-muted)]">{new Date(etf.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>}
       </div>
       <div className="grid grid-cols-2 divide-x divide-[var(--border-default)]">
         {/* BTC ETF */}
@@ -220,49 +220,49 @@ export default function Web3Dashboard({
           <PanelMeta source="CMC · alt.me · Farside" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Market cap</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Market cap</div>
+            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)] mb-1">
               {mcap ? fmtBig(mcap) : '···'}
             </div>
             {!!mcapChg && (
-              <div className={`text-[10px] font-semibold ${mcapChg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+              <div className={`inline-flex items-center gap-1 text-xs font-semibold ${mcapChg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
                 {mcapChg >= 0 ? '+' : ''}{mcapChg.toFixed(1)}% 24h
               </div>
             )}
           </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">24h volume</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">24h volume</div>
+            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)]">
               {cmc.total_volume ? fmtBig(cmc.total_volume) : '···'}
             </div>
           </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC.D</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">BTC.D</div>
+            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)] mb-1">
               {cmc.btc_dominance != null ? `${cmc.btc_dominance.toFixed(1)}%` : '···'}
             </div>
             <div className="text-[10px] text-[var(--text-muted)]">
               ETH {cmc.eth_dominance != null ? `${cmc.eth_dominance.toFixed(1)}%` : '—'}
             </div>
           </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Fear & Greed</div>
-            <div className={`text-sm font-bold tabular-nums ${fgColor}`}>{fgVal || '···'}</div>
-            <div className={`text-[10px] ${fgColor}/70`}>{fgLabel || '—'}</div>
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Fear & Greed</div>
+            <div className={`text-lg font-bold tabular-nums mb-1 ${fgColor}`}>{fgVal || '···'}</div>
+            <div className={`text-xs font-medium ${fgColor}/70`}>{fgLabel || '—'}</div>
           </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">ETF net (BTC+ETH)</div>
-            <div className={`text-sm font-bold tabular-nums ${
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">ETF net (BTC+ETH)</div>
+            <div className={`text-lg font-bold tabular-nums ${
               etfCombined == null ? 'text-[var(--text-disabled)]' :
               etfCombined >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'
             }`}>
               {etfCombined == null ? '···' : `${etfCombined >= 0 ? '+' : ''}${etfCombined.toFixed(1)}M`}
             </div>
           </div>
-          <div className="data-tile p-3.5">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">DEX 24h</div>
-            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">DEX 24h</div>
+            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)]">
               {totalVol ? fmtBig(totalVol) : '···'}
             </div>
           </div>
@@ -370,9 +370,9 @@ export default function Web3Dashboard({
       {/* -- TVL + fees (joined) + DEX volume -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* TVL by Chain — includes 24h fees (was separate Chain fees box) */}
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <div>
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
+            <div className="min-w-0">
               <div className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">
                 {chainView === 'tvl' ? 'TVL by Chain' : chainView === 'fees' ? 'Fees by Chain (24h)' : 'Chain Dominance'}
               </div>
@@ -405,7 +405,7 @@ export default function Web3Dashboard({
               ))}
             </div>
           </div>
-          <div className="space-y-2">
+          <div className="p-4 space-y-2">
             {tvlRows.length > 0 ? (
               chainView === 'dominance' ? (
                 (dd.dominance || tvlRows).slice(0, 10).map((d: any, i: number) => (
@@ -476,34 +476,30 @@ export default function Web3Dashboard({
                 })
               )
             ) : (
-              <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <svg className="w-6 h-6 text-[var(--accent-purple)]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
-                </svg>
-                <span className="text-[var(--text-disabled)] text-xs">TVL + fees loading from DeFi Llama...</span>
-              </div>
+              <div className="py-8 text-center text-[10px] text-[var(--text-disabled)]">TVL + fees loading…</div>
             )}
           </div>
           {chainView === 'tvl' && tvlRows.length > 0 && (
-            <div className="mt-2 flex justify-end gap-3 text-[9px] text-[var(--text-disabled)]">
+            <div className="px-4 pb-3 flex justify-end gap-3 text-[10px] text-[var(--text-muted)]">
               <span>TVL</span>
               <span>1d%</span>
               <span className="text-[var(--accent-amber)]">fees 24h</span>
             </div>
           )}
-          <div className="mt-2 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama · per-chain fees API</div>
         </div>
 
         {/* DEX Volume — Dune charts */}
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
             <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX Volume</div>
             <span className="text-[10px] text-[var(--text-muted)]">via Dune · 26 weeks</span>
           </div>
-          <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
-          <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-2">24h Chain Volume</div>
-            <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
+          <div className="p-4">
+            <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
+            <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-2">24h Chain Volume</div>
+              <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
+            </div>
           </div>
         </div>
       </div>
@@ -520,47 +516,53 @@ export default function Web3Dashboard({
 
       {/* -- Stablecoins -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
-          <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold mb-1">Stablecoin MCap</div>
-          <div className="text-xl font-bold tabular-nums text-[var(--text-primary)] mb-3">
-            {dd?.stablecoins?.length ? fmtCurrency(dd.stablecoins.reduce((s: number, sc: any) => s + (sc.circulating || 0), 0)) : <div className="skeleton-shimmer h-7 w-28 rounded" />}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.06] to-transparent">
+            <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Stablecoin MCap</span>
+            <PanelMeta source="DeFi Llama" />
           </div>
-          <div className="space-y-1.5">
-            {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => {
-              const link = web3EntityLink(sc.name || sc.symbol || '', 'stablecoin', sc.symbol);
-              return (
-                <div key={i} className="flex justify-between text-xs gap-2">
-                  <a href={link.href} target="_blank" rel="noopener noreferrer"
-                    title={`${sc.name} · ${link.label}`}
-                    className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
-                    {sc.name}
-                  </a>
-                  <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+          <div className="p-4">
+            <div className="text-xl font-bold tabular-nums text-[var(--text-primary)] mb-3">
+              {dd?.stablecoins?.length ? fmtCurrency(dd.stablecoins.reduce((s: number, sc: any) => s + (sc.circulating || 0), 0)) : <div className="skeleton-shimmer h-7 w-28 rounded" />}
+            </div>
+            <div className="space-y-1.5">
+              {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => {
+                const link = web3EntityLink(sc.name || sc.symbol || '', 'stablecoin', sc.symbol);
+                return (
+                  <div key={i} className="flex justify-between text-xs gap-2 py-0.5">
+                    <a href={link.href} target="_blank" rel="noopener noreferrer"
+                      title={`${sc.name} · ${link.label}`}
+                      className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
+                      {sc.name}
+                    </a>
+                    <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+                  </div>
+                );
+              })}
+            </div>
+            {stableChains.length > 0 && (
+              <>
+                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mt-4 mb-2 border-t border-[var(--border-default)] pt-3">By Chain</div>
+                <div className="space-y-1.5">
+                  {stableChains.slice(0, 5).map((sc: any, i: number) => {
+                    const chain = sc.chain || sc.name || '';
+                    return (
+                      <div key={i} className="flex justify-between text-xs gap-2 py-0.5">
+                        <a href={defillamaChainUrl(chain)} target="_blank" rel="noopener noreferrer"
+                          title={`${chain} · DeFi Llama`}
+                          className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
+                          {chain}
+                        </a>
+                        <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </>
+            )}
+            <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">DeFi Llama · Artemis for CeFi issuers</div>
           </div>
-          {stableChains.length > 0 && (
-            <>
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mt-4 mb-2 border-t border-[var(--border-default)] pt-3">By Chain</div>
-              <div className="space-y-1.5">
-                {stableChains.slice(0, 5).map((sc: any, i: number) => {
-                  const chain = sc.chain || sc.name || '';
-                  return (
-                    <div key={i} className="flex justify-between text-xs gap-2">
-                      <a href={defillamaChainUrl(chain)} target="_blank" rel="noopener noreferrer"
-                        title={`${chain} · DeFi Llama`}
-                        className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
-                        {chain}
-                      </a>
-                      <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
-          )}
-          <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">DeFi Llama · Artemis for CeFi issuers</div>
+
         </div>
 
         {(moverGainers.length > 0 || moverLosers.length > 0) && (
@@ -677,8 +679,8 @@ export default function Web3Dashboard({
               </tbody>
             </table>
           </div>
-          <div className="px-4 py-2 border-t border-[var(--border-default)] text-[9px] text-[var(--text-disabled)] text-right">
-            Updated: {dd.dexMatrix?.updated_at ? new Date(dd.dexMatrix.updated_at).toLocaleString() : '...'}
+          <div className="px-5 py-2 border-t border-[var(--border-default)] text-[10px] text-[var(--text-muted)] text-right">
+            Updated: {dd.dexMatrix?.updated_at ? new Date(dd.dexMatrix.updated_at).toLocaleString() : '…'}
           </div>
         </div>
       )}

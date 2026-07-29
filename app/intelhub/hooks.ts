@@ -3,7 +3,7 @@
    ================================================================ */
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { SITE_URL } from '@/lib/site';
 import { Item, PatentsData, IntelData } from './types';
 
@@ -307,10 +307,6 @@ export function useIntelData(activeTab: string = 'macro') {
     source: 'empty',
     updatedAt: null,
   });
-  const infosecLiveOnce = useRef(false);
-  const web3LiveOnce = useRef(false);
-  const aiFeedsOnce = useRef(false);
-
   const loadAll = useCallback(async () => {
     try {
       await Promise.allSettled([
@@ -345,7 +341,11 @@ export function useIntelData(activeTab: string = 'macro') {
     }
   }, []);
 
-  const loadLive = useCallback(async () => {
+  /**
+   * Tab-scoped static + light live fetches.
+   * Macro must NOT pay DeFi Llama / dex / HF tax on first paint.
+   */
+  const loadLive = useCallback(async (tab: string = 'macro') => {
     // Each task fetches, transforms, and merges its own patch into `dd` the moment
     // it lands. Everything runs in parallel with per-fetch timeouts, so one slow or
     // hanging host can never keep the rest of the dashboard in a skeleton state.
@@ -353,122 +353,104 @@ export function useIntelData(activeTab: string = 'macro') {
       if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
     };
 
-    // ── Static JSON (same-origin mirror, reliable — BTC/ETH, gold, indices…) ──
-    const staticTasks: Array<Promise<void>> = [
-      fetchJson(`${BASE}/data/crypto.json`).then((d) => { if (d) merge({ crypto: d }); }),
-      fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
-      fetchJson(`${BASE}/data/oil.json`).then((d) => { if (d) merge({ oil: d }); }),
-      fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
-      fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
-      fetchJson(`${BASE}/data/hf.json`).then((d) => {
-        if (d) {
-          merge({
-            ...(d.models ? { hfModels: d.models } : {}),
-            ...(d.spaces ? { hfSpaces: d.spaces } : {}),
-            hfUpdated: d.updated || null,
-          });
-        }
-      }),
-      fetchJson(`${BASE}/data/net-flows.json`).then((d) => {
-        if (d) merge({ netFlows: d });
-      }),
-      fetchJson(`${BASE}/data/bold-yields.json`).then((d) => {
-        if (d) merge({ boldYields: d });
-      }),
-      fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
-        if (!d) return;
-        // Normalize { models, updated } or raw array for ArenaLeaderboard
-        const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
-        merge({ arenaLB: models, arenaUpdated: d.updated || null });
-      }),
-      fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
-      fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
-      fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
-      fetchJson(`${BASE}/data/dex-matrix.json`).then((d) => { if (d) merge({ dexMatrix: d }); }),
-      fetchJson(`${BASE}/data/dex-metrics.json`).then((d) => { if (d) merge({ dexMetrics: d }); }),
-      fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
-      fetchJson(`${BASE}/data/chain-movers.json`).then((d) => { if (d) merge({ chainMovers: d }); }),
-      // Macro Top Movers: equity + crypto price (Yahoo + CoinGecko via Hermes refresh-data)
-      fetchJson(`${BASE}/data/top-movers.json`).then((d) => { if (d) merge({ topMovers: d }); }),
-      // Pre-fetched forex baseline (loadForex may override with live Yahoo data)
-      fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
-      // Infosec snapshot for fast first paint (live refresh on Infosec tab)
-      fetchJson(`${BASE}/data/infosec.json`).then((d) => {
-        if (!d) return;
-        setDd2((prev: any) => {
-          if (prev && (prev.kev?.length || prev.cves?.length || prev.breaches?.length)) return prev;
-          return { kev: d.kev || [], cves: d.cves || [], breaches: d.breaches || [] };
-        });
-        setInfosecMeta((m) => m.source === 'live' || m.source === 'mixed' ? m : { source: 'snapshot', updatedAt: d.updatedAt || null });
-      }),
-    ];
+    const staticTasks: Array<Promise<void>> = [];
 
-    // ── Core live APIs useful across Macro / AI / Web3 banners ──
-    const coreLive: Array<Promise<void>> = [
-      fetchJson('https://feargreedchart.com/api/?action=history').then((history) => {
-        if (Array.isArray(history) && history.length > 0) {
-          const latest = history[history.length - 1];
-          const score = latest.score || 0;
-          const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
-          merge({ fearGreed: { score, rating, date: latest.date } });
-        }
-      }),
-      fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
-      // Macro Top Movers needs TVL + 1d % early (v2/chains no longer returns change_1d)
-      (async () => {
-        const chains = await fetchJson('https://api.llama.fi/v2/chains', 12000);
-        if (!Array.isArray(chains)) return;
-        const top = chains
-          .filter((c: any) => c.tvl > 0)
-          .sort((a: any, b: any) => b.tvl - a.tvl)
-          .slice(0, 12);
-        const withChg = await Promise.all(
-          top.map(async (c: any) => {
-            let change_1d = typeof c.change_1d === 'number' ? c.change_1d : 0;
-            if (!c.change_1d && c.change_1d !== 0) {
-              const hist = await fetchJson(
-                `https://api.llama.fi/v2/historicalChainTvl/${encodeURIComponent(c.name)}`,
-                10000,
-              );
-              if (Array.isArray(hist) && hist.length >= 2) {
-                const prev = hist[hist.length - 2]?.tvl;
-                const last = hist[hist.length - 1]?.tvl;
-                if (prev > 0 && typeof last === 'number') {
-                  change_1d = ((last - prev) / prev) * 100;
-                }
-              }
-            }
-            return {
-              name: c.name,
-              tvl: c.tvl,
-              change_1d,
-              change_7d: c.change_7d || 0,
-            };
-          }),
-        );
-        // Don't clobber a richer loadWeb3Live tvl (with fees) if already present
-        setDd((prev: any) => {
-          const existing = prev?.tvl;
-          if (
-            Array.isArray(existing) &&
-            existing.some((c: any) => c.fees24h != null || c.feesChange1d != null)
-          ) {
-            return prev;
+    // ── Shared light market (Macro default + useful on Web3 banners) ──
+    if (tab === 'macro' || tab === 'web3') {
+      staticTasks.push(
+        fetchJson(`${BASE}/data/crypto.json`).then((d) => { if (d) merge({ crypto: d }); }),
+        fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
+      );
+    }
+
+    // ── Macro-only static ──
+    if (tab === 'macro') {
+      staticTasks.push(
+        fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
+        fetchJson(`${BASE}/data/oil.json`).then((d) => { if (d) merge({ oil: d }); }),
+        fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
+        fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
+        fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
+        // Macro Top Movers: equity + crypto price (Yahoo + CoinGecko via Hermes refresh-data)
+        fetchJson(`${BASE}/data/top-movers.json`).then((d) => { if (d) merge({ topMovers: d }); }),
+        // Prefer static forex baseline (live Yahoo only enhances when macro is active)
+        fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
+      );
+    }
+
+    // ── Web3-only static ──
+    if (tab === 'web3') {
+      staticTasks.push(
+        fetchJson(`${BASE}/data/net-flows.json`).then((d) => { if (d) merge({ netFlows: d }); }),
+        fetchJson(`${BASE}/data/bold-yields.json`).then((d) => { if (d) merge({ boldYields: d }); }),
+        fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
+        fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
+        fetchJson(`${BASE}/data/dex-matrix.json`).then((d) => { if (d) merge({ dexMatrix: d }); }),
+        fetchJson(`${BASE}/data/dex-metrics.json`).then((d) => { if (d) merge({ dexMetrics: d }); }),
+        fetchJson(`${BASE}/data/chain-movers.json`).then((d) => { if (d) merge({ chainMovers: d }); }),
+      );
+    }
+
+    // ── AI-only static ──
+    if (tab === 'ai') {
+      staticTasks.push(
+        fetchJson(`${BASE}/data/hf.json`).then((d) => {
+          if (d) {
+            merge({
+              ...(d.models ? { hfModels: d.models } : {}),
+              ...(d.spaces ? { hfSpaces: d.spaces } : {}),
+              hfUpdated: d.updated || null,
+            });
           }
-          return {
-            ...prev,
-            tvl: withChg,
-            tvlUpdatedAt: new Date().toISOString(),
-          };
-        });
-      })(),
-    ];
+        }),
+        fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
+          if (!d) return;
+          const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
+          merge({ arenaLB: models, arenaUpdated: d.updated || null });
+        }),
+      );
+    }
+
+    // ── Infosec snapshot for fast first paint (live refresh still on Infosec tab) ──
+    if (tab === 'infosec') {
+      staticTasks.push(
+        fetchJson(`${BASE}/data/infosec.json`).then((d) => {
+          if (!d) return;
+          setDd2((prev: any) => {
+            if (prev && (prev.kev?.length || prev.cves?.length || prev.breaches?.length)) return prev;
+            return { kev: d.kev || [], cves: d.cves || [], breaches: d.breaches || [] };
+          });
+          setInfosecMeta((m) => m.source === 'live' || m.source === 'mixed' ? m : { source: 'snapshot', updatedAt: d.updatedAt || null });
+        }),
+      );
+    }
+
+    // ── Light live APIs only for tabs that display them ──
+    const coreLive: Array<Promise<void>> = [];
+    if (tab === 'macro') {
+      coreLive.push(
+        fetchJson('https://feargreedchart.com/api/?action=history').then((history) => {
+          if (Array.isArray(history) && history.length > 0) {
+            const latest = history[history.length - 1];
+            const score = latest.score || 0;
+            const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
+            merge({ fearGreed: { score, rating, date: latest.date } });
+          }
+        }),
+      );
+    }
+    if (tab === 'web3' || tab === 'macro') {
+      coreLive.push(
+        fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
+      );
+    }
+    // Llama TVL chain fan-out lives only in loadWeb3Live (Web3 tab) — not on Macro land.
 
     await Promise.allSettled([...staticTasks, ...coreLive]);
   }, []);
 
   /**
-   * Heavy DeFi Llama suite — first visit to Web3 (or Macro for TVL movers).
+   * Heavy DeFi Llama suite — Web3 tab only (never Macro land).
    * Chain fees are fetched per-chain (global fees chart is protocol-level — that was a mismatch).
    * DEX×chain matrix is rebuilt live so static snapshots cannot go stale silently.
    */
@@ -843,6 +825,7 @@ export function useIntelData(activeTab: string = 'macro') {
     setInfosecMeta({ source, updatedAt: snapUpdated || new Date().toISOString() });
   }, []);
 
+  /** Live Yahoo forex — Macro tab only. Prefer static forex.json; use 1y range (not 10y) for p1M/p1Y. */
   const loadForex = useCallback(async () => {
     const pairs = [
       { symbol: 'EURUSD=X', label: 'EUR', usdLeft: true },
@@ -855,7 +838,8 @@ export function useIntelData(activeTab: string = 'macro') {
       const results: any = {};
       await Promise.allSettled(pairs.map(async (p) => {
         {
-          const d = await fetchJson(`https://query1.finance.yahoo.com/v8/finance/chart/${p.symbol}?interval=1d&range=10y`);
+          // 1y daily ≪ 10y payload; enough for 1M + 1Y columns. p10Y stays from static if present.
+          const d = await fetchJson(`https://query1.finance.yahoo.com/v8/finance/chart/${p.symbol}?interval=1d&range=1y`);
           if (d) {
             const meta = d?.chart?.result?.[0]?.meta;
             const quotes = d?.chart?.result?.[0]?.indicators?.quote?.[0];
@@ -873,62 +857,49 @@ export function useIntelData(activeTab: string = 'macro') {
               };
               const m1 = findClose(22);
               const y1 = findClose(252);
-              const y10 = closes[0];
               const pct = (prev: number) => prev ? ((now - prev) / prev * 100) : null;
               results[p.label] = {
                 rate: p.usdLeft ? (1 / now) : now,
                 rateStr: p.usdLeft ? (1 / now).toFixed(4) : now.toFixed(2),
                 chg: meta.regularMarketPrice - meta.previousClose,
                 chgPct: ((meta.regularMarketPrice - meta.previousClose) / meta.previousClose * 100).toFixed(2) + '%',
-                p1M: pct(m1), p1Y: pct(y1), p10Y: pct(y10),
+                p1M: pct(m1), p1Y: pct(y1), p10Y: null as number | null,
               };
             }
           }
         }
       }));
-      if (Object.keys(results).length > 0) setForex(results);
+      if (Object.keys(results).length > 0) {
+        // Merge over static so p10Y from forex.json is preserved when live omits it
+        setForex((prev: any) => {
+          if (!prev || typeof prev !== 'object') return results;
+          const out: any = { ...prev };
+          for (const k of Object.keys(results)) {
+            out[k] = { ...(prev[k] || {}), ...results[k], p10Y: results[k].p10Y ?? prev[k]?.p10Y ?? null };
+          }
+          return out;
+        });
+      }
     } catch { /* */ }
   }, []);
 
-  // Core data always
+  // Shared feed always; tab-scoped snapshots + only the active tab's heavy path every 5 min
   useEffect(() => {
     const refresh = () => {
       if (document.visibilityState !== 'visible') return;
       loadAll();
-      loadLive();
-      loadForex();
-      // Keep heavy tabs warm once visited
-      if (web3LiveOnce.current) loadWeb3Live();
-      if (infosecLiveOnce.current) loadInfosec();
-      if (aiFeedsOnce.current) loadAIFeeds();
+      loadLive(activeTab);
+      if (activeTab === 'macro') loadForex();
+      // Refresh heavy path only for the tab that is currently open (not "once visited")
+      if (activeTab === 'web3') loadWeb3Live();
+      if (activeTab === 'infosec') loadInfosec();
+      if (activeTab === 'ai') loadAIFeeds();
     };
     refresh();
     const i = window.setInterval(refresh, 5 * 60_000);
     document.addEventListener('visibilitychange', refresh);
     return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refresh); };
-  }, [loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec, loadAIFeeds]);
-
-  // Lazy: first open of Web3/Macro → Llama suite; Infosec → threat feeds; AI → lab RSS
-  useEffect(() => {
-    if (activeTab === 'web3' || activeTab === 'macro') {
-      if (!web3LiveOnce.current) {
-        web3LiveOnce.current = true;
-        loadWeb3Live();
-      }
-    }
-    if (activeTab === 'infosec') {
-      if (!infosecLiveOnce.current) {
-        infosecLiveOnce.current = true;
-        loadInfosec();
-      }
-    }
-    if (activeTab === 'ai') {
-      if (!aiFeedsOnce.current) {
-        aiFeedsOnce.current = true;
-        loadAIFeeds();
-      }
-    }
-  }, [activeTab, loadWeb3Live, loadInfosec, loadAIFeeds]);
+  }, [activeTab, loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec, loadAIFeeds]);
 
   /* ---- Derived ---- */
   // Category → tags that don't belong (e.g. macro box shouldn't show crypto-tagged items)
