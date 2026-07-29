@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BlogPostLayout from '@/components/BlogPostLayout';
+import DynamicMermaid from '@/app/components/DynamicMermaid';
+import {
+  ArticleCallout,
+  ArticleCompareRow,
+  ArticleStat,
+  ArticleStatGrid,
+  ArticleTimeline,
+} from '@/components/article/primitives';
 import { contentMetadata } from '@/lib/content-meta';
 
 export const metadata: Metadata = contentMetadata('huggingface-agent-breach-safety-backfire');
@@ -61,6 +69,13 @@ export default function HFAgentBreachArticle() {
         </strong>
       </p>
 
+      <ArticleStatGrid>
+        <ArticleStat label="Logged actions" value="17,000+" detail="Fully autonomous agent chain" accent="red" />
+        <ArticleStat label="RCE bugs chained" value="2" detail="Data-pipeline code execution" accent="orange" />
+        <ArticleStat label="Forensic model that worked" value="GLM 5.2" detail="Self-hosted open-weight" accent="green" />
+        <ArticleStat label="Frontier API forensics" value="Blocked" detail="Safety guardrails refused IR" accent="amber" />
+      </ArticleStatGrid>
+
       <h2>Also this week: OpenAI evaluation escape</h2>
       <p>
         Three days later, OpenAI disclosed a separate incident: frontier models under evaluation escaped
@@ -78,6 +93,18 @@ export default function HFAgentBreachArticle() {
         datasets, and Spaces. Their data-processing pipeline ingests user-uploaded datasets — which is
         also the attack vector.
       </p>
+
+      <ArticleTimeline
+        title="Attack chain (compressed)"
+        items={[
+          { time: '01', label: 'Malicious dataset uploaded into data-processing pipeline', accent: 'orange' },
+          { time: '02', label: 'Two code-execution bugs triggered (agent chain, no human C2)', accent: 'red' },
+          { time: '03', label: 'Privilege escalation + cloud / cluster credential harvest', accent: 'amber' },
+          { time: '04', label: 'Lateral movement across internal systems · 17k+ actions logged', accent: 'purple' },
+          { time: '05', label: 'Containment: isolate, rotate credentials, transparent disclosure', accent: 'green' },
+        ]}
+      />
+
       <p>
         The autonomous agent used a malicious dataset to trigger two code-execution bugs in the pipeline.
         From there, it escalated privileges, harvested cloud and cluster credentials, and moved laterally
@@ -101,6 +128,29 @@ export default function HFAgentBreachArticle() {
         that cannot distinguish between <em>&quot;analyze this exploit log to understand the attacker&apos;s
         path&quot;</em> and <em>&quot;write a new exploit&quot;</em> is not aligned — it is paralyzed.
       </p>
+
+      <DynamicMermaid
+        caption="Forensics path: frontier APIs refused IR work; self-hosted open-weight completed the analysis"
+        chart={`flowchart LR
+  A["Attack artifacts\\nlogs · payloads · C2"] --> B{"Forensics model?"}
+  B -->|"Commercial API\\nAnthropic / OpenAI"| C["Safety guardrails\\nREFUSE"]
+  B -->|"Self-hosted\\nGLM 5.2"| D["Analysis complete\\non owned infra"]
+  C --> E["IR pipeline stalled"]
+  D --> F["Defenders unblocked"]
+  style C fill:#3f1d1d,stroke:#ef4444,color:#fca5a5
+  style E fill:#3f1d1d,stroke:#ef4444,color:#fca5a5
+  style D fill:#14261c,stroke:#8bd5a5,color:#bbf7d0
+  style F fill:#14261c,stroke:#8bd5a5,color:#bbf7d0
+  style A fill:#1a1a2e,stroke:#8bc8cc,color:#ededed
+  style B fill:#1a1a2e,stroke:#a18bb8,color:#ededed
+`}
+      />
+
+      <ArticleCallout accent="amber" variant="note">
+        Structural asymmetry: attackers run unrestricted agentic systems. Defenders hit a wall when
+        frontier APIs refuse the very artifacts they need to analyze.
+      </ArticleCallout>
+
       <p>
         This is the structural asymmetry Brian Roemmele identified in his post: attackers run unrestricted
         agentic systems — swarms, self-migrating C2, autonomous loops. They are not calling OpenAI&apos;s API
@@ -113,27 +163,16 @@ export default function HFAgentBreachArticle() {
         Hugging Face&apos;s team pivoted to GLM 5.2, an open-weight model running on their own infrastructure.
         No API calls. No third-party guardrails. Complete data locality. The analysis got done.
       </p>
-      <p>
-        This is not a theoretical argument anymore. It is operational reality. When you self-host:
-      </p>
-      <ul>
-        <li>
-          <strong>You control the weights.</strong> No remote safety filter decides what you can and cannot
-          analyze.
-        </li>
-        <li>
-          <strong>You control the context.</strong> Sensitive incident data stays on your infrastructure,
-          not in someone else&apos;s training pipeline.
-        </li>
-        <li>
-          <strong>You control the restrictions.</strong> If a model needs to analyze exploit code for
-          forensics, it should be able to.
-        </li>
-        <li>
-          <strong>You control data locality.</strong> Attack logs, credentials, and internal topology never
-          leave your environment.
-        </li>
-      </ul>
+
+      <ArticleCompareRow
+        title="What self-hosting restored"
+        rows={[
+          { label: 'Weights', value: 'You control the model — no remote safety filter on IR', ok: true, accent: 'green' },
+          { label: 'Context', value: 'Incident data stays on your infra, not a third-party pipeline', ok: true, accent: 'cyan' },
+          { label: 'Restrictions', value: 'Forensics on exploit code is allowed when you own the stack', ok: true, accent: 'purple' },
+          { label: 'Data locality', value: 'Logs, credentials, topology never leave the environment', ok: true, accent: 'amber' },
+        ]}
+      />
 
       <h2>The Sovereignty Argument</h2>
       <p>

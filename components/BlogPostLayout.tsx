@@ -323,18 +323,19 @@ export default function BlogPostLayout({
               {tags && tags.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-2">
                   {tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md border border-[var(--border-default)] px-2 py-0.5 text-[11px] text-[var(--text-tertiary)]"
-                    >
-                      {tag}
-                    </span>
+                    <span key={tag}>{badge(tag)}</span>
                   ))}
                 </div>
               )}
               {series && (
-                <div className="mt-5 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3 text-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--text-muted)] mb-1">
+                <div
+                  className="mt-5 rounded-xl border bg-[var(--bg-surface)] px-4 py-3 text-sm"
+                  style={{
+                    borderColor: 'color-mix(in srgb, var(--accent-cyan) 35%, var(--border-default))',
+                    boxShadow: 'inset 3px 0 0 var(--accent-cyan)',
+                  }}
+                >
+                  <div className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--accent-cyan)] mb-1">
                     Series
                   </div>
                   <div className="text-[var(--text-secondary)] font-medium mb-2">{series.label}</div>
@@ -353,7 +354,7 @@ export default function BlogPostLayout({
                 </div>
               )}
               {excerpt && (
-                <p className="text-lg text-[var(--text-tertiary)] mt-6 leading-relaxed border-l-2 border-[var(--accent-cyan)]/30 pl-5">
+                <p className="text-lg text-[var(--text-tertiary)] mt-6 leading-relaxed border-l-2 border-[var(--accent-cyan)]/50 pl-5">
                   {excerpt}
                 </p>
               )}
