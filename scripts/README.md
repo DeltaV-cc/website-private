@@ -2,6 +2,8 @@
 
 Build and data helpers for the static site. Prefer `pnpm build` over calling these by hand unless you are refreshing a single pipeline.
 
+**Intel volume budget (per-source caps):** SSOT is ops `DeltaV-ops/intel/sync-intel-to-site.py` — caps limit export slots only (not source deletion). This repo does not vendor that script.
+
 | Script | When it runs | Inputs | Outputs |
 |--------|--------------|--------|---------|
 | `copy-data.py` | `prebuild` / `build` | Optional sibling workspaces (`wiki/signals`, `DeltaV-persistent-workspace/intel`); otherwise uses committed snapshots under `public/data/` | Copies/merges into `public/data/` |

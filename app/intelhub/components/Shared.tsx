@@ -20,7 +20,7 @@ export function SkeletonBlock({ className }: { className?: string }) {
 
 export function SkeletonPrice() {
   return (
-    <div className="px-4 py-3 space-y-2">
+    <div className="p-4 space-y-2">
       <SkeletonBlock className="h-3 w-12 mb-1" />
       <SkeletonBlock className="h-6 w-24" />
       <SkeletonBlock className="h-3 w-16" />
@@ -79,29 +79,29 @@ export function SeverityBadge({ sev, score }: { sev: string; score: number }) {
   );
 }
 
-/* -- TileBox -- */
+/* -- TileBox — shared panel chrome -- */
 export function TileBox({
   title, accent, color, count, children, maxH,
 }: {
   title: string; accent: string; color: string; count: number; children: React.ReactNode; maxH?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-[#222] bg-white/[0.01] border-l-2 ${color} overflow-hidden`}>
-      <div className="px-4 py-3 border-b border-[#222] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
-        <span className={`text-sm font-semibold ${accent}`}>{title}</span>
-        <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/40 tabular-nums">{count}</span>
+    <div className={`rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] border-l-2 ${color} overflow-hidden`}>
+      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
+        <span className={`text-xs uppercase tracking-[1.5px] font-bold ${accent}`}>{title}</span>
+        <span className="text-[10px] text-[var(--text-muted)] tabular-nums">{count}</span>
       </div>
       <div className={`divide-y divide-white/[0.02] ${maxH || 'max-h-[50vh]'} overflow-y-auto scrollbar-hide`}>{children}</div>
     </div>
   );
 }
 
-/* -- TileRow -- */
+/* -- TileRow — compact feed density -- */
 export function TileRow({ it, ago }: { it: Item; ago: (iso: string) => string }) {
   return (
-    <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-4 py-3 hover:bg-white/[0.03] group">
-      <div className="text-sm font-medium text-[#ededed]/65 group-hover:text-[#ededed]/90 line-clamp-2 leading-snug">{it.title}</div>
-      <div className="text-xs text-[#ededed]/25 mt-1 tabular-nums">{ago(it.published_at)}</div>
+    <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-5 py-2.5 hover:bg-white/[0.03] group">
+      <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
+      <div className="text-[10px] text-[var(--text-muted)] mt-0.5 tabular-nums">{ago(it.published_at)}</div>
     </a>
   );
 }
@@ -134,24 +134,22 @@ export function BarChart({
   );
 }
 
-/* -- CategoryBox -- */
+/* -- CategoryBox — shared panel chrome + compact feed rows -- */
 export function CategoryBox({
-  cat, ago, TC, compact,
+  cat, ago, TC: _TC, compact,
 }: {
   cat: any; ago: (iso: string) => string; TC: Record<string, string>; compact?: boolean;
 }) {
-  const maxH = compact ? 'max-h-[320px]' : 'max-h-[260px]';
-  const px = compact ? 'px-3' : 'px-4';
-  const py = compact ? 'py-1.5' : 'py-2.5';
+  const maxH = compact ? 'max-h-[320px]' : 'max-h-[280px]';
   return (
-    <div className={`rounded-2xl border border-[#222] ${cat.bg} border-l-2 ${cat.color} overflow-hidden`}>
-      <div className={`${px} ${py} border-b border-[#222] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between`}>
-        <span className={`text-sm font-semibold ${cat.accent}`}>{cat.label}</span>
-        <span className="text-xs px-2 py-0.5 rounded bg-white/[0.06] text-[#ededed]/30 tabular-nums">{cat.count}</span>
+    <div className={`rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] ${cat.bg || ''} border-l-2 ${cat.color} overflow-hidden`}>
+      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
+        <span className={`text-xs uppercase tracking-[1.5px] font-bold ${cat.accent}`}>{cat.label}</span>
+        <span className="text-[10px] text-[var(--text-muted)] tabular-nums">{cat.count}</span>
       </div>
       <div className={`divide-y divide-white/[0.02] ${maxH} overflow-y-auto scrollbar-hide`}>
         {cat.items.length === 0 ? (
-          <div className="px-4 py-6 text-xs text-[#ededed]/10 italic text-center">no signals</div>
+          <div className="px-5 py-6 text-[10px] text-[var(--text-disabled)] text-center">No signals</div>
         ) : (
           cat.items.map((it: any, j: number) => (
             <a
@@ -160,11 +158,11 @@ export function CategoryBox({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={it.title}
-              className={`block ${px} ${py} hover:bg-white/[0.03] group`}
+              className="block px-5 py-2.5 hover:bg-white/[0.03] group"
             >
-              <div className={`${compact ? 'text-xs' : 'text-xs'} font-medium text-[#ededed]/60 group-hover:text-[#ededed]/85 line-clamp-2`}>{it.title}</div>
-              <div className="flex items-center gap-2 mt-0.5 text-xs text-[#ededed]/20">
-                <span className="truncate max-w-[80px]">{it.source}</span>
+              <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
+              <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
+                <span className="truncate max-w-[100px]">{it.source}</span>
                 <span className="ml-auto tabular-nums">{ago(it.published_at)}</span>
               </div>
             </a>
@@ -175,7 +173,7 @@ export function CategoryBox({
   );
 }
 
-/** Compact source / freshness chip — matches existing muted meta typography */
+/** Compact source / freshness chip — right-aligned panel meta */
 export function PanelMeta({
   source,
   updated,
@@ -187,7 +185,7 @@ export function PanelMeta({
 }) {
   if (!source && !updated && !note) return null;
   return (
-    <div className="flex items-center gap-2 flex-wrap text-[9px] text-[var(--text-disabled)]">
+    <div className="flex items-center gap-2 flex-wrap text-[10px] text-[var(--text-muted)]">
       {source && <span>via {source}</span>}
       {updated && (
         <>

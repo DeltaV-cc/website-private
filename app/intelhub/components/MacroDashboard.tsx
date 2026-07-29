@@ -332,13 +332,8 @@ export default function MacroDashboard({
                   <td className="px-4 py-2.5 text-right hidden lg:table-cell">{fmtPct(p.p10Y)}</td>
                 </tr>
               )) : (
-                <tr><td colSpan={6} className="px-4 py-12 text-center">
-                  <div className="flex flex-col items-center gap-3">
-                    <svg className="w-5 h-5 text-[var(--accent-cyan)]/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="text-[var(--text-disabled)] text-xs">Forex data will load after next sync</span>
-                  </div>
+                <tr><td colSpan={6} className="px-5 py-8 text-center text-[10px] text-[var(--text-disabled)]">
+                  Forex pending sync
                 </td></tr>
               )}
             </tbody>
@@ -380,10 +375,10 @@ export default function MacroDashboard({
               const gainers = mix(eqG, cgG, 5);
               const losers = mix(eqL, cgL, 5);
               if (!tm && !gainers.length && !losers.length) {
-                return <div className="text-[var(--text-disabled)] text-center py-4">Loading movers…</div>;
+                return <div className="text-[10px] text-[var(--text-disabled)] text-center py-4">Loading movers…</div>;
               }
               if (!gainers.length && !losers.length) {
-                return <div className="text-[var(--text-disabled)] text-center py-4">Movers will refresh on next data sync</div>;
+                return <div className="text-[10px] text-[var(--text-disabled)] text-center py-4">Movers pending sync</div>;
               }
               const chg = (r: any) => {
                 const v = r.change_24h ?? r.change_1d ?? r.change;

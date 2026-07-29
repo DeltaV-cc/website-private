@@ -120,26 +120,26 @@ export default function BoldYieldsPanel({
       </div>
 
       {/* Stability pools */}
-      <div className="px-4 py-2 border-b border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-wider flex justify-between">
+      <div className="px-5 py-2 border-b border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between sticky top-0 z-[1] bg-[var(--bg-surface)]">
         <span>Stability Pool (Earn)</span>
         <span>APY · TVL</span>
       </div>
       <div className="divide-y divide-white/[0.02]">
         {loading && sp.length === 0 && (
-          <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">
+          <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
             Loading BOLD yields…
           </div>
         )}
         {!loading && sp.length === 0 && (
-          <div className="px-4 py-8 text-center text-xs text-[var(--text-disabled)]">
-            No Stability Pool yields in snapshot.{' '}
+          <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
+            No SP yields ·{' '}
             <a
               href="https://dune.com/liquity/bold-yields"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--accent-cyan)] hover:underline"
             >
-              Open Dune
+              Dune
             </a>
           </div>
         )}
@@ -149,7 +149,7 @@ export default function BoldYieldsPanel({
             href={row.url || data?.dune_dashboard || 'https://dune.com/liquity/bold-yields'}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between gap-3 px-4 py-2.5 text-xs hover:bg-white/[0.02] group"
+            className="flex items-center justify-between gap-3 px-5 py-2.5 text-xs hover:bg-white/[0.02] group"
           >
             <div className="min-w-0">
               <div className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-green)]">
@@ -172,18 +172,18 @@ export default function BoldYieldsPanel({
       {/* External venues */}
       {venues.length > 0 && (
         <>
-          <div className="px-4 py-2 border-y border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-wider flex justify-between bg-white/[0.01]">
+          <div className="px-5 py-2 border-y border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between bg-white/[0.01]">
             <span>BOLD venues (LP / vaults)</span>
             <span>APY · TVL</span>
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto">
+          <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
             {venues.slice(0, 8).map((row) => (
               <a
                 key={row.poolId || `${row.project}-${row.symbol}`}
                 href={row.url || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-3 px-4 py-2 text-xs hover:bg-white/[0.02] group"
+                className="flex items-center justify-between gap-3 px-5 py-2 text-xs hover:bg-white/[0.02] group"
               >
                 <div className="min-w-0">
                   <div className="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] truncate">

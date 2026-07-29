@@ -109,7 +109,7 @@ export default function NetFlowsPanel({
         </div>
       </div>
 
-      <div className="px-4 py-2 border-b border-white/[0.03] flex items-center justify-between text-[10px] text-[var(--text-muted)] uppercase tracking-wider">
+      <div className="px-5 py-2 border-b border-white/[0.03] sticky top-0 z-[1] bg-[var(--bg-surface)] flex items-center justify-between text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px]">
         <span>Token</span>
         <div className="flex gap-4">
           <span className="w-14 text-right">Rev</span>
@@ -118,25 +118,25 @@ export default function NetFlowsPanel({
         </div>
       </div>
 
-      <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto">
+      <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
         {loading && !ranked.length && (
-          <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">Loading Dromos net-flows…</div>
+          <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading net-flows…</div>
         )}
         {!loading && !ranked.length && (
-          <div className="px-4 py-10 text-center text-xs text-[var(--text-disabled)]">
-            Net-flows unavailable.{' '}
+          <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
+            Unavailable ·{' '}
             <a
               href={`https://dromos.kitchen/dashboards/net-flows?period=${period}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--accent-cyan)] hover:underline"
             >
-              Open Dromos
+              Dromos
             </a>
           </div>
         )}
         {ranked.slice(0, 12).map((r) => (
-          <div key={r.token} className="flex items-center justify-between gap-2 px-4 py-2.5 text-xs hover:bg-white/[0.02]">
+          <div key={r.token} className="flex items-center justify-between gap-2 px-5 py-2.5 text-xs hover:bg-white/[0.02]">
             <div className="min-w-0">
               <div className="font-semibold text-[var(--text-primary)] tabular-nums">{r.token}</div>
               {r.cat && <div className="text-[10px] text-[var(--text-disabled)]">{r.cat}</div>}
