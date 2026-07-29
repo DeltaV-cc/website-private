@@ -40,6 +40,9 @@ export default function MacroDashboard({
   const fgLabel = stockFG.rating || '';
   const spx = dd?.indices?.spx;
   const csi = dd?.indices?.csi;
+  const smi = dd?.indices?.smi;   // Swiss Market Index
+  const stoxx = dd?.indices?.stoxx; // Euro Stoxx 50
+  const dax = dd?.indices?.dax;   // Germany
   const crypto = dd?.crypto;
   const macroCat = catBoxes.find((c: any) => c.id === 'macro');
   const sciCat = catBoxes.find((c: any) => c.id === 'science');
@@ -104,7 +107,7 @@ export default function MacroDashboard({
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
           <PanelMeta source="Alpha Vantage / Yahoo" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-x divide-y divide-white/[0.03]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 divide-x divide-y divide-white/[0.03]">
           {/* S&P 500 */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">S&P 500</div>
@@ -114,6 +117,63 @@ export default function MacroDashboard({
                 <div className={`inline-flex items-center gap-1 text-xs font-semibold ${spx.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
                   {spx.change >= 0 ? <TrendUp /> : <TrendDown />}
                   {spx.changePct || ''}
+                </div>
+              </>
+            ) : (
+              <div className="space-y-2">
+                <div className="skeleton-shimmer h-5 w-20 rounded" />
+                <div className="skeleton-shimmer h-3 w-12 rounded" />
+              </div>
+            )}
+          </div>
+
+          {/* Euro Stoxx 50 */}
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Euro Stoxx 50</div>
+            {stoxx ? (
+              <>
+                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">{stoxx.price}</div>
+                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${stoxx.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                  {stoxx.change >= 0 ? <TrendUp /> : <TrendDown />}
+                  {stoxx.changePct || ''}
+                </div>
+              </>
+            ) : (
+              <div className="space-y-2">
+                <div className="skeleton-shimmer h-5 w-20 rounded" />
+                <div className="skeleton-shimmer h-3 w-12 rounded" />
+              </div>
+            )}
+          </div>
+
+          {/* DAX */}
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">DAX</div>
+            {dax ? (
+              <>
+                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">{dax.price}</div>
+                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${dax.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                  {dax.change >= 0 ? <TrendUp /> : <TrendDown />}
+                  {dax.changePct || ''}
+                </div>
+              </>
+            ) : (
+              <div className="space-y-2">
+                <div className="skeleton-shimmer h-5 w-20 rounded" />
+                <div className="skeleton-shimmer h-3 w-12 rounded" />
+              </div>
+            )}
+          </div>
+
+          {/* Swiss SMI */}
+          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">SMI</div>
+            {smi ? (
+              <>
+                <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums mb-1">{smi.price}</div>
+                <div className={`inline-flex items-center gap-1 text-xs font-semibold ${smi.change >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                  {smi.change >= 0 ? <TrendUp /> : <TrendDown />}
+                  {smi.changePct || ''}
                 </div>
               </>
             ) : (
