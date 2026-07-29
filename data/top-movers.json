@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29T11:30:20Z",
+  "updated_at": "2026-07-29T11:45:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.84,
+        "price": 3.82,
         "change_24h": 28.8,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.03,
+        "price": 4.05,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "JUP",
         "name": "Jupiter",
-        "price": 0.196181,
+        "price": 0.195813,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.079138,
+        "price": 0.079056,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.058231,
+        "price": 0.058028,
         "change_24h": 4.3,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001876,
+        "price": 0.001864,
         "change_24h": -7.7,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.306271,
+        "price": 0.305508,
         "change_24h": -4.0,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.08143,
+        "price": 0.081422,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.035952,
+        "price": 0.035985,
         "change_24h": -3.4,
         "asset": "crypto"
       }
