@@ -3,6 +3,13 @@
 
 interface ChainVol { chain: string; volume_24h: number; delta_pct: number }
 
+/** DeFi Llama is the best public match for multi-chain DEX $ volume (vs L2Beat/growthepie activity). */
+function chainDexUrl(chain: string): string {
+  const slug = (chain || '').trim();
+  if (!slug) return 'https://defillama.com/dexs/chains';
+  return `https://defillama.com/dexs/chains/${encodeURIComponent(slug)}`;
+}
+
 export default function ChainVolumeBar({ data, loading }: { data: ChainVol[]; loading: boolean }) {
   if (loading || !data.length) {
     return <div className="flex items-center justify-center h-48 text-[var(--text-disabled)] text-xs">Loading chain volume...</div>;
@@ -20,7 +27,15 @@ export default function ChainVolumeBar({ data, loading }: { data: ChainVol[]; lo
         return (
           <div key={i} className="flex items-center gap-2.5 text-xs group">
             <span className="w-3 text-[10px] text-[var(--text-disabled)] tabular-nums text-right">{i + 1}</span>
-            <span className="w-14 text-[var(--text-secondary)] truncate font-medium text-[11px]">{d.chain}</span>
+            <a
+              href={chainDexUrl(d.chain)}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`${d.chain} DEX volume · DeFi Llama`}
+              className="w-14 text-[var(--text-secondary)] truncate font-medium text-[11px] hover:text-[var(--accent-cyan)] underline-offset-2 hover:underline"
+            >
+              {d.chain}
+            </a>
             <div className="flex-1 h-3.5 rounded-full bg-white/[0.04] overflow-hidden relative">
               <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-cyan)]/80 to-[var(--accent-cyan)]/40 transition-all duration-500"
                 style={{ width: `${pct}%` }} />

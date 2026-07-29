@@ -372,8 +372,7 @@ export function useIntelData(activeTab: string = 'macro') {
         fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
         fetchJson(`${BASE}/data/oil.json`).then((d) => { if (d) merge({ oil: d }); }),
         fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
-        fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi)) merge({ indices: d }); }),
-        fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
+        fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) merge({ indices: d }); }),
         // Macro Top Movers: equity + crypto price (Yahoo + CoinGecko via Hermes refresh-data)
         fetchJson(`${BASE}/data/top-movers.json`).then((d) => { if (d) merge({ topMovers: d }); }),
         // Prefer static forex baseline (live Yahoo only enhances when macro is active)
@@ -384,6 +383,8 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Web3-only static ──
     if (tab === 'web3') {
       staticTasks.push(
+        // ETF flows belong on Web3 (desk + full ETF card) — was wrongly macro-only after 0b
+        fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
         fetchJson(`${BASE}/data/net-flows.json`).then((d) => { if (d) merge({ netFlows: d }); }),
         fetchJson(`${BASE}/data/bold-yields.json`).then((d) => { if (d) merge({ boldYields: d }); }),
         fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),

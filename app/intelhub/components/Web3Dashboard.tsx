@@ -58,25 +58,35 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
   );
 }
 
-/* -- ETF Flows Card (BTC + ETH spot ETF daily net flows) -- */
-function ETFFlowsCard({ etf }: { etf: any }) {
-  if (!etf) return null;
-  const btc = etf.btc;
-  const eth = etf.eth;
-  if (btc?.latest_total == null && eth?.latest_total == null) return null;
-
+/* -- ETF asset column with hoverable sparkline data points -- */
+function ETFAssetColumn({
+  label, accentDot, accentSpark, data,
+}: {
+  label: string; accentDot: string; accentSpark: string; data: any;
+}) {
   const fmtFlow = (val: number | null | undefined, digits = 1) => {
     if (val == null || Number.isNaN(Number(val))) return '—';
     const n = Number(val);
-    const sign = n >= 0 ? '+' : '';
-    return `${sign}${n.toFixed(digits)}M`;
+    return `${n >= 0 ? '+' : ''}${n.toFixed(digits)}M`;
   };
   const fmtDate = (iso?: string) =>
     iso ? new Date(iso + (iso.includes('T') ? '' : 'T12:00:00')).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : '—';
 
-  const spark = (points: { d: string; v: number }[] | undefined, accent: string) => {
-    if (!points || points.length < 2) return null;
-    const vals = points.map((p) => p.v);
+  const points = useMemo(
+    () => (data?.sparkline || []).map((p: { d: string; v: number }) => ({ t: p.d, v: p.v })),
+    [data?.sparkline],
+  );
+  const { hover, onMove, onLeave } = useChartHover(points);
+
+  const dayNet = data?.latest_total;
+  const dayColor = dayNet == null ? 'text-[var(--text-disabled)]' : dayNet >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+  const ytd = data?.ytd_flows;
+  const ytdColor = ytd == null ? 'text-[var(--text-disabled)]' : ytd >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+  const vsPrior = data?.change;
+
+  const sparkSvg = () => {
+    if (points.length < 2) return null;
+    const vals = points.map((p: { v: number }) => p.v);
     const min = Math.min(...vals);
     const max = Math.max(...vals);
     const range = max - min || 1;
@@ -84,78 +94,101 @@ function ETFFlowsCard({ etf }: { etf: any }) {
     const h = 48;
     const zeroY = max <= 0 ? 2 : min >= 0 ? h - 2 : h - ((0 - min) / range) * (h - 8) - 4;
     const pathPoints = points
-      .map((p, i) => `${(i / (points.length - 1)) * w},${h - 4 - ((p.v - min) / range) * (h - 10)}`)
+      .map((p: { v: number }, i: number) => `${(i / (points.length - 1)) * w},${h - 4 - ((p.v - min) / range) * (h - 10)}`)
       .join(' ');
-    const first = points[0]?.d;
-    const last = points[points.length - 1]?.d;
+    const first = points[0]?.t;
+    const last = points[points.length - 1]?.t;
+    // Sample every ~5th point for visible markers + always last
+    const markerIdx = points
+      .map((_: unknown, i: number) => i)
+      .filter((i: number) => i === 0 || i === points.length - 1 || i % Math.max(1, Math.floor(points.length / 6)) === 0);
+
     return (
       <div className="w-full min-w-0">
-        <svg className="w-full h-12" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
-          <line x1="0" y1={zeroY} x2={w} y2={zeroY} stroke="white" strokeOpacity="0.12" strokeWidth="1" />
-          <polyline points={pathPoints} fill="none" stroke={accent} strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
-        </svg>
+        <div className="relative" onMouseMove={onMove} onMouseLeave={onLeave}>
+          <svg className="w-full h-12" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
+            <line x1="0" y1={zeroY} x2={w} y2={zeroY} stroke="white" strokeOpacity="0.12" strokeWidth="1" />
+            <polyline points={pathPoints} fill="none" stroke={accentSpark} strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
+            {markerIdx.map((i: number) => {
+              const p = points[i];
+              const cx = (i / (points.length - 1)) * w;
+              const cy = h - 4 - ((p.v - min) / range) * (h - 10);
+              return <circle key={i} cx={cx} cy={cy} r="2.2" fill={accentSpark} opacity={0.9} />;
+            })}
+          </svg>
+          {hover && (
+            <div
+              className="absolute pointer-events-none bg-[var(--bg-elevated)] border border-[var(--border-hover)] rounded-lg px-2.5 py-1.5 text-[10px] shadow-lg z-10"
+              style={{ left: Math.min(hover.x + 8, 220), top: Math.max(0, hover.y - 36) }}
+            >
+              <div className={`font-semibold tabular-nums ${hover.point.v >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                {fmtFlow(hover.point.v)}
+              </div>
+              <div className="text-[var(--text-muted)]">{fmtDate(String(hover.point.t))}</div>
+            </div>
+          )}
+        </div>
         <div className="flex justify-between text-[9px] text-[var(--text-disabled)] mt-0.5 tabular-nums">
-          <span>{first ? new Date(first + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
-          <span>daily net · {points.length} sessions</span>
-          <span>{last ? new Date(last + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
+          <span>{first ? fmtDate(String(first)) : ''}</span>
+          <span>daily net · {points.length} sessions · hover for point</span>
+          <span>{last ? fmtDate(String(last)) : ''}</span>
         </div>
       </div>
     );
   };
 
-  const assetCol = (
-    label: string,
-    accentDot: string,
-    accentSpark: string,
-    data: any,
-  ) => {
-    const dayNet = data?.latest_total;
-    const dayColor = dayNet == null ? 'text-[var(--text-disabled)]' : dayNet >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
-    const ytd = data?.ytd_flows;
-    const ytdColor = ytd == null ? 'text-[var(--text-disabled)]' : ytd >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
-    const vsPrior = data?.change;
-    return (
-      <div className="p-5 flex flex-col gap-3 min-h-[200px]">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className={`w-2 h-2 rounded-full ${accentDot}`} />
-            <span className="text-xs font-semibold text-[var(--text-secondary)]">{label}</span>
-          </div>
-          <span className="text-[10px] text-[var(--text-muted)] tabular-nums">as of {fmtDate(data?.latest_date)}</span>
+  return (
+    <div className="p-5 flex flex-col gap-3 min-h-[200px]">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <span className={`w-2 h-2 rounded-full ${accentDot}`} />
+          <span className="text-xs font-semibold text-[var(--text-secondary)]">{label}</span>
         </div>
+        <span className="text-[10px] text-[var(--text-muted)] tabular-nums">as of {fmtDate(data?.latest_date)}</span>
+      </div>
 
-        <div>
-          <div className="text-[10px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">1-day net flow</div>
-          <div className={`text-2xl md:text-3xl font-bold tabular-nums leading-none ${dayColor}`}>
-            {fmtFlow(dayNet)}
-          </div>
-          <div className="text-[10px] text-[var(--text-disabled)] mt-1">USD millions · spot ETF complex</div>
+      <div>
+        <div className="text-[10px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">1-day net flow</div>
+        <div className={`text-2xl md:text-3xl font-bold tabular-nums leading-none ${dayColor}`}>
+          {fmtFlow(dayNet)}
         </div>
+        <div className="text-[10px] text-[var(--text-disabled)] mt-1">USD millions · spot ETF complex</div>
+      </div>
 
-        <div className="grid grid-cols-2 gap-3 text-xs">
-          <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
-            <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">vs prior session</div>
-            <div className={`font-semibold tabular-nums ${vsPrior == null ? 'text-[var(--text-disabled)]' : vsPrior >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-              {vsPrior == null ? '—' : fmtFlow(vsPrior)}
-            </div>
-            <div className="text-[9px] text-[var(--text-disabled)]">Δ day-over-day</div>
+      <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+          <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">vs prior session</div>
+          <div className={`font-semibold tabular-nums ${vsPrior == null ? 'text-[var(--text-disabled)]' : vsPrior >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+            {vsPrior == null ? '—' : fmtFlow(vsPrior)}
           </div>
-          <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
-            <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">YTD cumulative</div>
-            <div className={`font-semibold tabular-nums ${ytdColor}`}>
-              {ytd == null ? '—' : fmtFlow(ytd, 0)}
-            </div>
-            <div className="text-[9px] text-[var(--text-disabled)]">calendar year sum</div>
-          </div>
+          <div className="text-[9px] text-[var(--text-disabled)]">Δ day-over-day</div>
         </div>
-
-        <div className="mt-auto pt-1">
-          <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-1">30-session path</div>
-          {spark(data?.sparkline, accentSpark)}
+        <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+          <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">YTD cumulative</div>
+          <div className={`font-semibold tabular-nums ${ytdColor}`}>
+            {ytd == null ? '—' : fmtFlow(ytd, 0)}
+          </div>
+          <div className="text-[9px] text-[var(--text-disabled)]">calendar year sum</div>
         </div>
       </div>
-    );
-  };
+
+      <div className="mt-auto pt-1">
+        <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-1">30-session path</div>
+        {sparkSvg()}
+      </div>
+    </div>
+  );
+}
+
+/* -- ETF Flows Card (BTC + ETH spot ETF daily net flows) -- */
+function ETFFlowsCard({ etf }: { etf: any }) {
+  if (!etf) return null;
+  const btc = etf.btc;
+  const eth = etf.eth;
+  if (btc?.latest_total == null && eth?.latest_total == null) return null;
+
+  const fmtDate = (iso?: string) =>
+    iso ? new Date(iso + (iso.includes('T') ? '' : 'T12:00:00')).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : '—';
 
   const asOf =
     btc?.latest_date || eth?.latest_date
@@ -174,7 +207,14 @@ function ETFFlowsCard({ etf }: { etf: any }) {
           <div className="min-w-0">
             <div className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</div>
             <div className="text-[10px] text-[var(--text-muted)]">
-              Spot BTC / ETH · <span className="text-[var(--text-secondary)]">daily net</span> (USD M) · Farside
+              Spot BTC / ETH · <span className="text-[var(--text-secondary)]">daily net</span> (USD M) ·{' '}
+              <a href="https://farside.co.uk/btc/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-gold)] underline-offset-2 hover:underline">
+                Farside
+              </a>
+              {' · '}
+              <a href="https://defillama.com/etfs" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-gold)] underline-offset-2 hover:underline">
+                DeFi Llama ETFs
+              </a>
             </div>
           </div>
         </div>
@@ -188,8 +228,8 @@ function ETFFlowsCard({ etf }: { etf: any }) {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--border-default)]">
-        {assetCol('BTC Spot ETF', 'bg-[var(--accent-amber)]', 'var(--accent-amber)', btc)}
-        {assetCol('ETH Spot ETF', 'bg-[var(--accent-cyan)]', 'var(--accent-cyan)', eth)}
+        <ETFAssetColumn label="BTC Spot ETF" accentDot="bg-[var(--accent-amber)]" accentSpark="var(--accent-amber)" data={btc} />
+        <ETFAssetColumn label="ETH Spot ETF" accentDot="bg-[var(--accent-cyan)]" accentSpark="var(--accent-cyan)" data={eth} />
       </div>
     </div>
   );
@@ -271,9 +311,10 @@ export default function Web3Dashboard({
   const mcap = cmc.total_mcap || 0;
   const mcapChg = cmc.mcap_change_24h || 0;
   const exVol = dd?.exchangeVol || {};
+  // Prefer global crypto 24h volume (CoinGecko global), not CEX/BTC-only
   const volAnchor =
-    exVol.total_vol_usd_24h ||
     cmc.total_volume ||
+    exVol.total_vol_usd_24h ||
     null;
   const volHistory = useMemo(
     () => sanitizeUsdVolumeHistory(exVol.vol_history || [], volAnchor),
@@ -424,8 +465,15 @@ export default function Web3Dashboard({
         {volHistory.length > 1 && (
           <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
             <div className="flex items-center justify-between mb-2">
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">BTC market volume (USD · 1Y)</div>
-              <span className="text-[10px] text-[var(--text-muted)]">{volHistory.length} pts · CoinGecko</span>
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">
+                Total crypto volume (USD · 1Y)
+                {cmc.total_volume != null && (
+                  <span className="text-[var(--text-secondary)] font-medium normal-case tracking-normal ml-2">
+                    24h {fmtBig(cmc.total_volume)}
+                  </span>
+                )}
+              </div>
+              <span className="text-[10px] text-[var(--text-muted)]">{volHistory.length} pts · CoinGecko global</span>
             </div>
             <div className="relative sparkline-container" onMouseMove={volHover.onMove} onMouseLeave={volHover.onLeave}>
               <svg className="w-full h-12" viewBox={`0 0 ${volHistory.length} 48`} preserveAspectRatio="none">
@@ -605,11 +653,31 @@ export default function Web3Dashboard({
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX Volume</div>
-            <span className="text-[10px] text-[var(--text-muted)]">via Dune · 26 weeks</span>
+            <a
+              href="https://defillama.com/dexs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent-cyan)] underline-offset-2 hover:underline"
+              title="DeFi Llama DEX volumes"
+            >
+              via Dune · 26 weeks · Llama ↗
+            </a>
           </div>
           <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
           <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-2">24h Chain Volume</div>
+            <div className="flex items-center justify-between mb-2 gap-2">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px]">24h Chain Volume</div>
+              <div className="flex items-center gap-2 text-[10px]">
+                <a href="https://defillama.com/dexs/chains" target="_blank" rel="noopener noreferrer"
+                  className="text-[var(--accent-cyan)] hover:underline" title="Best match for multi-chain DEX volume">DeFi Llama</a>
+                <span className="text-[var(--text-disabled)]">·</span>
+                <a href="https://l2beat.com/scaling/activity" target="_blank" rel="noopener noreferrer"
+                  className="text-[var(--text-muted)] hover:text-[var(--accent-cyan)] hover:underline" title="L2 activity (not pure $ volume)">L2Beat</a>
+                <span className="text-[var(--text-disabled)]">·</span>
+                <a href="https://www.growthepie.xyz/fundamentals/total-value-secured" target="_blank" rel="noopener noreferrer"
+                  className="text-[var(--text-muted)] hover:text-[var(--accent-cyan)] hover:underline" title="L2 fundamentals">growthepie</a>
+              </div>
+            </div>
             <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
           </div>
           {(moverGainers.length > 0 || moverLosers.length > 0) && (

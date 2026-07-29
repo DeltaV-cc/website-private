@@ -88,9 +88,17 @@ export default function NetFlowsPanel({
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden h-full">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
         <div className="min-w-0">
-          <div className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Net token value flows</div>
+          <a
+            href={`https://dromos.kitchen/dashboards/net-flows?period=${period}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold hover:underline underline-offset-2"
+            title="Open Dromos NTV dashboard"
+          >
+            Net token value flows ↗
+          </a>
           <div className="mt-0.5">
-            <PanelMeta source="Dromos Kitchen" updated={updatedLabel} note="rev vs emissions" />
+            <PanelMeta source="Dromos Kitchen" updated={updatedLabel} note={`${period} rev vs emissions`} />
           </div>
         </div>
         <div className="flex gap-0.5 bg-[var(--bg-deep)] rounded-lg p-0.5 border border-[var(--border-default)] text-[10px]">
@@ -138,7 +146,15 @@ export default function NetFlowsPanel({
         {ranked.slice(0, 12).map((r) => (
           <div key={r.token} className="flex items-center justify-between gap-2 px-5 py-2.5 text-xs hover:bg-white/[0.02]">
             <div className="min-w-0">
-              <div className="font-semibold text-[var(--text-primary)] tabular-nums">{r.token}</div>
+              <a
+                href={`https://dromos.kitchen/dashboards/net-flows?period=${period}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[var(--text-primary)] tabular-nums hover:text-[var(--accent-green)] underline-offset-2 hover:underline"
+                title={`${r.token} on Dromos NTV`}
+              >
+                {r.token}
+              </a>
               {r.cat && <div className="text-[10px] text-[var(--text-disabled)]">{r.cat}</div>}
             </div>
             <div className="flex items-center gap-4 shrink-0 tabular-nums">
