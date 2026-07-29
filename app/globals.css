@@ -703,6 +703,9 @@ body {
 /* Hide scrollbar while keeping scroll functionality */
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+/* Alias used by IntelHub panels (CategoryBox, Macro calendar, etc.) */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (max-width: 375px) {
   .container-padding {
