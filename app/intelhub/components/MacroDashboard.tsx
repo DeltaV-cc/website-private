@@ -263,7 +263,7 @@ export default function MacroDashboard({
             <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Macro Calendar</span>
             <span className="text-[10px] text-[var(--text-muted)]">today · 7d · later</span>
           </div>
-          <div className="max-h-[360px] overflow-y-auto scrollbar-thin">
+          <div className="max-h-[320px] overflow-y-auto scrollbar-hide">
             {calendarGroups.map((g) => (
               <div key={g.key}>
                 <div className="px-5 py-1.5 text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)] bg-white/[0.015] border-b border-white/[0.02] sticky top-0 backdrop-blur-sm">
