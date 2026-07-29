@@ -13,6 +13,7 @@ import ChainVolumeBar from './ChainVolumeBar';
 import NetFlowsPanel from './NetFlowsPanel';
 import BoldYieldsPanel from './BoldYieldsPanel';
 import { defillamaChainUrl, defillamaProtocolUrl, web3EntityLink } from '@/lib/entity-links';
+import CypherpunkFeed from './CypherpunkFeed';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -57,106 +58,200 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
   );
 }
 
-/* -- ETF Flows Card (BTC + ETH spot ETF net flows) -- */
+/* -- ETF Flows Card (BTC + ETH spot ETF daily net flows) -- */
 function ETFFlowsCard({ etf }: { etf: any }) {
   if (!etf) return null;
   const btc = etf.btc;
   const eth = etf.eth;
-  if (!btc?.latest_total && !eth?.latest_total) return null;
+  if (btc?.latest_total == null && eth?.latest_total == null) return null;
 
-  const flowBadge = (val: number | null, label: string) => {
-    if (val == null) return <SkeletonBlock className="h-5 w-16 inline-block" />;
-    const sign = val >= 0 ? '+' : '';
-    const color = val >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
-    return <span className={`text-sm font-bold tabular-nums ${color}`}>{sign}{val.toFixed(1)}M</span>;
+  const fmtFlow = (val: number | null | undefined, digits = 1) => {
+    if (val == null || Number.isNaN(Number(val))) return '—';
+    const n = Number(val);
+    const sign = n >= 0 ? '+' : '';
+    return `${sign}${n.toFixed(digits)}M`;
   };
+  const fmtDate = (iso?: string) =>
+    iso ? new Date(iso + (iso.includes('T') ? '' : 'T12:00:00')).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : '—';
 
-  const miniSpark = (points: { d: string; v: number }[] | undefined, accent: string) => {
+  const spark = (points: { d: string; v: number }[] | undefined, accent: string) => {
     if (!points || points.length < 2) return null;
-    const vals = points.map(p => p.v);
+    const vals = points.map((p) => p.v);
     const min = Math.min(...vals);
     const max = Math.max(...vals);
     const range = max - min || 1;
-    const zeroY = max <= 0 ? 0 : min >= 0 ? 28 : ((0 - min) / range) * 28;
-    const pathPoints = points.map((p, i) => `${(i / (points.length - 1)) * 80},${28 - ((p.v - min) / range) * 24}`).join(' ');
+    const w = 200;
+    const h = 48;
+    const zeroY = max <= 0 ? 2 : min >= 0 ? h - 2 : h - ((0 - min) / range) * (h - 8) - 4;
+    const pathPoints = points
+      .map((p, i) => `${(i / (points.length - 1)) * w},${h - 4 - ((p.v - min) / range) * (h - 10)}`)
+      .join(' ');
+    const first = points[0]?.d;
+    const last = points[points.length - 1]?.d;
     return (
-      <svg className="w-20 h-7 flex-shrink-0" viewBox="0 0 80 28" preserveAspectRatio="none">
-        <line x1="0" y1={zeroY} x2="80" y2={zeroY} stroke="white" strokeOpacity="0.1" strokeWidth="0.5" />
-        <polyline points={pathPoints} fill="none" stroke={accent} strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
-      </svg>
+      <div className="w-full min-w-0">
+        <svg className="w-full h-12" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
+          <line x1="0" y1={zeroY} x2={w} y2={zeroY} stroke="white" strokeOpacity="0.12" strokeWidth="1" />
+          <polyline points={pathPoints} fill="none" stroke={accent} strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
+        </svg>
+        <div className="flex justify-between text-[9px] text-[var(--text-disabled)] mt-0.5 tabular-nums">
+          <span>{first ? new Date(first + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
+          <span>daily net · {points.length} sessions</span>
+          <span>{last ? new Date(last + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
+        </div>
+      </div>
     );
   };
 
+  const assetCol = (
+    label: string,
+    accentDot: string,
+    accentSpark: string,
+    data: any,
+  ) => {
+    const dayNet = data?.latest_total;
+    const dayColor = dayNet == null ? 'text-[var(--text-disabled)]' : dayNet >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+    const ytd = data?.ytd_flows;
+    const ytdColor = ytd == null ? 'text-[var(--text-disabled)]' : ytd >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]';
+    const vsPrior = data?.change;
+    return (
+      <div className="p-5 flex flex-col gap-3 min-h-[200px]">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className={`w-2 h-2 rounded-full ${accentDot}`} />
+            <span className="text-xs font-semibold text-[var(--text-secondary)]">{label}</span>
+          </div>
+          <span className="text-[10px] text-[var(--text-muted)] tabular-nums">as of {fmtDate(data?.latest_date)}</span>
+        </div>
+
+        <div>
+          <div className="text-[10px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">1-day net flow</div>
+          <div className={`text-2xl md:text-3xl font-bold tabular-nums leading-none ${dayColor}`}>
+            {fmtFlow(dayNet)}
+          </div>
+          <div className="text-[10px] text-[var(--text-disabled)] mt-1">USD millions · spot ETF complex</div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+            <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">vs prior session</div>
+            <div className={`font-semibold tabular-nums ${vsPrior == null ? 'text-[var(--text-disabled)]' : vsPrior >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+              {vsPrior == null ? '—' : fmtFlow(vsPrior)}
+            </div>
+            <div className="text-[9px] text-[var(--text-disabled)]">Δ day-over-day</div>
+          </div>
+          <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+            <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">YTD cumulative</div>
+            <div className={`font-semibold tabular-nums ${ytdColor}`}>
+              {ytd == null ? '—' : fmtFlow(ytd, 0)}
+            </div>
+            <div className="text-[9px] text-[var(--text-disabled)]">calendar year sum</div>
+          </div>
+        </div>
+
+        <div className="mt-auto pt-1">
+          <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-1">30-session path</div>
+          {spark(data?.sparkline, accentSpark)}
+        </div>
+      </div>
+    );
+  };
+
+  const asOf =
+    btc?.latest_date || eth?.latest_date
+      ? fmtDate(btc?.latest_date || eth?.latest_date)
+      : etf.updated_at
+        ? new Date(etf.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        : null;
+
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-gold)]/[0.06] to-transparent">
-        <div className="flex items-center gap-2.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[var(--accent-gold)]">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-gold)]/[0.06] to-transparent">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[var(--accent-gold)] shrink-0">
             <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
-          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</span>
-          <span className="text-[10px] text-[var(--text-muted)]">via Farside / DeFi Llama</span>
-        </div>
-        {etf.updated_at && <span className="text-[10px] text-[var(--text-muted)]">{new Date(etf.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>}
-      </div>
-      <div className="grid grid-cols-2 divide-x divide-[var(--border-default)]">
-        {/* BTC ETF */}
-        <div className="p-4 space-y-1.5">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[var(--accent-amber)]" />
-            <span className="text-xs text-[var(--text-tertiary)] font-medium">BTC Spot ETF</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {flowBadge(btc?.latest_total, 'BTC')}
-            {btc?.change != null && (
-              <span className={`text-[10px] tabular-nums ${btc.change >= 0 ? 'text-[var(--accent-green)]/70' : 'text-[var(--accent-red)]/70'}`}>
-                {btc.change >= 0 ? '↑' : '↓'}{Math.abs(btc.change).toFixed(1)}M
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {miniSpark(btc?.sparkline, 'var(--accent-amber)')}
+          <div className="min-w-0">
+            <div className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</div>
             <div className="text-[10px] text-[var(--text-muted)]">
-              {btc?.latest_date ? new Date(btc.latest_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
+              Spot BTC / ETH · <span className="text-[var(--text-secondary)]">daily net</span> (USD M) · Farside
             </div>
           </div>
-          {btc?.ytd_flows != null && (
-            <div className="text-[9px] text-[var(--text-disabled)]">
-              YTD: <span className={btc.ytd_flows >= 0 ? 'text-[var(--accent-green)]/60' : 'text-[var(--accent-red)]/60'}>
-                {btc.ytd_flows >= 0 ? '+' : ''}{btc.ytd_flows.toFixed(0)}M
-              </span>
-            </div>
-          )}
         </div>
-        {/* ETH ETF */}
-        <div className="p-4 space-y-1.5">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[var(--accent-cyan)]" />
-            <span className="text-xs text-[var(--text-tertiary)] font-medium">ETH Spot ETF</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {flowBadge(eth?.latest_total, 'ETH')}
-            {eth?.change != null && (
-              <span className={`text-[10px] tabular-nums ${eth.change >= 0 ? 'text-[var(--accent-green)]/70' : 'text-[var(--accent-red)]/70'}`}>
-                {eth.change >= 0 ? '↑' : '↓'}{Math.abs(eth.change).toFixed(1)}M
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {miniSpark(eth?.sparkline, 'var(--accent-cyan)')}
-            <div className="text-[10px] text-[var(--text-muted)]">
-              {eth?.latest_date ? new Date(eth.latest_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
-            </div>
-          </div>
-          {eth?.ytd_flows != null && (
+        <div className="text-right shrink-0">
+          {asOf && <div className="text-[10px] text-[var(--text-secondary)] tabular-nums">Latest session: {asOf}</div>}
+          {etf.updated_at && (
             <div className="text-[9px] text-[var(--text-disabled)]">
-              YTD: <span className={eth.ytd_flows >= 0 ? 'text-[var(--accent-green)]/60' : 'text-[var(--accent-red)]/60'}>
-                {eth.ytd_flows >= 0 ? '+' : ''}{eth.ytd_flows.toFixed(0)}M
-              </span>
+              Snapshot {new Date(etf.updated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
             </div>
           )}
         </div>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--border-default)]">
+        {assetCol('BTC Spot ETF', 'bg-[var(--accent-amber)]', 'var(--accent-amber)', btc)}
+        {assetCol('ETH Spot ETF', 'bg-[var(--accent-cyan)]', 'var(--accent-cyan)', eth)}
+      </div>
+    </div>
+  );
+}
+
+/* -- Stablecoins block (DeFi Llama) — nested under TVL for layout harmony -- */
+function StablecoinsBlock({
+  stables,
+  stableChains,
+  updatedAt,
+}: {
+  stables: any[];
+  stableChains: any[];
+  updatedAt?: string | null;
+}) {
+  const total = (stables || []).reduce((s: number, sc: any) => s + (sc.circulating || 0), 0);
+  const updatedLabel = updatedAt
+    ? new Date(updatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+    : null;
+
+  return (
+    <div className="mt-5 pt-4 border-t border-[var(--border-default)]">
+      <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+        <div className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Stablecoin supply</div>
+        <PanelMeta source="DeFi Llama" updated={updatedLabel} note="live on Web3 load" />
+      </div>
+      <div className="text-lg font-bold tabular-nums text-[var(--text-primary)] mb-2">
+        {total > 0 ? fmtCurrency(total) : <span className="text-[var(--text-disabled)] text-sm font-normal">Loading…</span>}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+        {(stables || []).slice(0, 6).map((sc: any, i: number) => {
+          const link = web3EntityLink(sc.name || sc.symbol || '', 'stablecoin', sc.symbol);
+          return (
+            <div key={i} className="flex justify-between text-xs gap-2 py-0.5">
+              <a href={link.href} target="_blank" rel="noopener noreferrer"
+                title={`${sc.name} · ${link.label}`}
+                className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
+                {sc.name}
+              </a>
+              <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+            </div>
+          );
+        })}
+      </div>
+      {stableChains?.length > 0 && (
+        <>
+          <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mt-3 mb-1.5">By chain</div>
+          <div className="space-y-1">
+            {stableChains.slice(0, 5).map((sc: any, i: number) => {
+              const chain = sc.chain || sc.name || '';
+              return (
+                <div key={i} className="flex justify-between text-xs gap-2">
+                  <a href={defillamaChainUrl(chain)} target="_blank" rel="noopener noreferrer"
+                    className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline"
+                    title={`${chain} · DeFi Llama`}>{chain}</a>
+                  <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -220,49 +315,54 @@ export default function Web3Dashboard({
           <PanelMeta source="CMC · alt.me · Farside" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Market cap</div>
-            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)] mb-1">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Market cap</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
               {mcap ? fmtBig(mcap) : '···'}
             </div>
             {!!mcapChg && (
-              <div className={`inline-flex items-center gap-1 text-xs font-semibold ${mcapChg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+              <div className={`text-[10px] font-semibold ${mcapChg >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
                 {mcapChg >= 0 ? '+' : ''}{mcapChg.toFixed(1)}% 24h
               </div>
             )}
           </div>
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">24h volume</div>
-            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">24h volume</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
               {cmc.total_volume ? fmtBig(cmc.total_volume) : '···'}
             </div>
           </div>
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">BTC.D</div>
-            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)] mb-1">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">BTC.D</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
               {cmc.btc_dominance != null ? `${cmc.btc_dominance.toFixed(1)}%` : '···'}
             </div>
             <div className="text-[10px] text-[var(--text-muted)]">
               ETH {cmc.eth_dominance != null ? `${cmc.eth_dominance.toFixed(1)}%` : '—'}
             </div>
           </div>
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">Fear & Greed</div>
-            <div className={`text-lg font-bold tabular-nums mb-1 ${fgColor}`}>{fgVal || '···'}</div>
-            <div className={`text-xs font-medium ${fgColor}/70`}>{fgLabel || '—'}</div>
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Fear & Greed</div>
+            <div className={`text-sm font-bold tabular-nums ${fgColor}`}>{fgVal || '···'}</div>
+            <div className={`text-[10px] ${fgColor}/70`}>{fgLabel || '—'}</div>
           </div>
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">ETF net (BTC+ETH)</div>
-            <div className={`text-lg font-bold tabular-nums ${
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">ETF net · 1d</div>
+            <div className={`text-sm font-bold tabular-nums ${
               etfCombined == null ? 'text-[var(--text-disabled)]' :
               etfCombined >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'
             }`}>
               {etfCombined == null ? '···' : `${etfCombined >= 0 ? '+' : ''}${etfCombined.toFixed(1)}M`}
             </div>
+            <div className="text-[9px] text-[var(--text-disabled)]">
+              {etf?.btc?.latest_date || etf?.eth?.latest_date
+                ? new Date((etf?.btc?.latest_date || etf?.eth?.latest_date) + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                : 'BTC+ETH'}
+            </div>
           </div>
-          <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
-            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">DEX 24h</div>
-            <div className="text-lg font-bold tabular-nums text-[var(--text-primary)]">
+          <div className="data-tile p-3.5">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">DEX 24h</div>
+            <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
               {totalVol ? fmtBig(totalVol) : '···'}
             </div>
           </div>
@@ -370,9 +470,9 @@ export default function Web3Dashboard({
       {/* -- TVL + fees (joined) + DEX volume -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* TVL by Chain — includes 24h fees (was separate Chain fees box) */}
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
-            <div className="min-w-0">
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <div>
               <div className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">
                 {chainView === 'tvl' ? 'TVL by Chain' : chainView === 'fees' ? 'Fees by Chain (24h)' : 'Chain Dominance'}
               </div>
@@ -405,7 +505,7 @@ export default function Web3Dashboard({
               ))}
             </div>
           </div>
-          <div className="p-4 space-y-2">
+          <div className="space-y-2">
             {tvlRows.length > 0 ? (
               chainView === 'dominance' ? (
                 (dd.dominance || tvlRows).slice(0, 10).map((d: any, i: number) => (
@@ -476,35 +576,79 @@ export default function Web3Dashboard({
                 })
               )
             ) : (
-              <div className="py-8 text-center text-[10px] text-[var(--text-disabled)]">TVL + fees loading…</div>
+              <div className="flex flex-col items-center gap-3 py-8 text-center">
+                <svg className="w-6 h-6 text-[var(--accent-purple)]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+                </svg>
+                <span className="text-[var(--text-disabled)] text-xs">TVL + fees loading from DeFi Llama...</span>
+              </div>
             )}
           </div>
           {chainView === 'tvl' && tvlRows.length > 0 && (
-            <div className="px-4 pb-3 flex justify-end gap-3 text-[10px] text-[var(--text-muted)]">
+            <div className="mt-2 flex justify-end gap-3 text-[9px] text-[var(--text-disabled)]">
               <span>TVL</span>
               <span>1d%</span>
               <span className="text-[var(--accent-amber)]">fees 24h</span>
             </div>
           )}
+          <div className="mt-2 text-[9px] text-[var(--text-disabled)] text-right">via DeFi Llama · per-chain fees API</div>
+
+          {/* Stables nested under TVL — above BOLD / NTV on the page flow */}
+          <StablecoinsBlock
+            stables={dd?.stablecoins || []}
+            stableChains={stableChains}
+            updatedAt={dd?.stablesUpdatedAt || null}
+          />
         </div>
 
-        {/* DEX Volume — Dune charts */}
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
+        {/* DEX Volume — Dune charts + chain movers */}
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5">
+          <div className="flex items-center justify-between mb-4">
             <div className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">DEX Volume</div>
             <span className="text-[10px] text-[var(--text-muted)]">via Dune · 26 weeks</span>
           </div>
-          <div className="p-4">
-            <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
-            <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
-              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-2">24h Chain Volume</div>
-              <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
-            </div>
+          <VolumeChart data={dd?.dexMetrics?.weekly || []} loading={!dd?.dexMetrics} />
+          <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-2">24h Chain Volume</div>
+            <ChainVolumeBar data={dd?.dexMetrics?.chains || []} loading={!dd?.dexMetrics} />
           </div>
+          {(moverGainers.length > 0 || moverLosers.length > 0) && (
+            <div className="mt-4 pt-4 border-t border-[var(--border-default)]">
+              <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-2">Chain TVL movers · 1d</div>
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-1.5 font-semibold">▲ Gainers</div>
+                  {moverGainers.slice(0, 4).map((c: any, i: number) => (
+                    <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                      <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                        className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-green)] transition-colors underline-offset-2 hover:underline"
+                        title={`${c.name} · DeFi Llama`}>{c.name}</a>
+                      <span className="text-[var(--accent-green)] tabular-nums font-medium shrink-0">
+                        {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-1.5 font-semibold">▼ Losers</div>
+                  {moverLosers.slice(0, 4).map((c: any, i: number) => (
+                    <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                      <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
+                        className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-red)] transition-colors underline-offset-2 hover:underline"
+                        title={`${c.name} · DeFi Llama`}>{c.name}</a>
+                      <span className="text-[var(--accent-red)] tabular-nums font-medium shrink-0">
+                        {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* -- BOLD stable yields (Liquity / Dune board) + Dromos net flows -- */}
+      {/* -- BOLD yields + Dromos NTV (after TVL/stables) -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <BoldYieldsPanel data={dd?.boldYields} loading={!dd?.boldYields} />
         <NetFlowsPanel
@@ -512,95 +656,6 @@ export default function Web3Dashboard({
           loading={!dd?.netFlows}
           updated={dd?.netFlows?.updated || null}
         />
-      </div>
-
-      {/* -- Stablecoins -- */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-          <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.06] to-transparent">
-            <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Stablecoin MCap</span>
-            <PanelMeta source="DeFi Llama" />
-          </div>
-          <div className="p-4">
-            <div className="text-xl font-bold tabular-nums text-[var(--text-primary)] mb-3">
-              {dd?.stablecoins?.length ? fmtCurrency(dd.stablecoins.reduce((s: number, sc: any) => s + (sc.circulating || 0), 0)) : <div className="skeleton-shimmer h-7 w-28 rounded" />}
-            </div>
-            <div className="space-y-1.5">
-              {(dd?.stablecoins || []).slice(0, 6).map((sc: any, i: number) => {
-                const link = web3EntityLink(sc.name || sc.symbol || '', 'stablecoin', sc.symbol);
-                return (
-                  <div key={i} className="flex justify-between text-xs gap-2 py-0.5">
-                    <a href={link.href} target="_blank" rel="noopener noreferrer"
-                      title={`${sc.name} · ${link.label}`}
-                      className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
-                      {sc.name}
-                    </a>
-                    <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
-                  </div>
-                );
-              })}
-            </div>
-            {stableChains.length > 0 && (
-              <>
-                <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mt-4 mb-2 border-t border-[var(--border-default)] pt-3">By Chain</div>
-                <div className="space-y-1.5">
-                  {stableChains.slice(0, 5).map((sc: any, i: number) => {
-                    const chain = sc.chain || sc.name || '';
-                    return (
-                      <div key={i} className="flex justify-between text-xs gap-2 py-0.5">
-                        <a href={defillamaChainUrl(chain)} target="_blank" rel="noopener noreferrer"
-                          title={`${chain} · DeFi Llama`}
-                          className="text-[var(--text-tertiary)] truncate hover:text-[var(--accent-amber)] transition-colors underline-offset-2 hover:underline">
-                          {chain}
-                        </a>
-                        <span className="text-[var(--text-secondary)] tabular-nums shrink-0">{fmtCurrency(sc.circulating)}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-            <div className="mt-3 text-[9px] text-[var(--text-disabled)] text-right">DeFi Llama · Artemis for CeFi issuers</div>
-          </div>
-
-        </div>
-
-        {(moverGainers.length > 0 || moverLosers.length > 0) && (
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-            <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-              <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Chain movers</span>
-              <PanelMeta source="pipeline snapshot" />
-            </div>
-            <div className="p-4 grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-2 font-semibold">▲ Gainers</div>
-                {moverGainers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
-                    <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
-                      className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-green)] transition-colors underline-offset-2 hover:underline"
-                      title={`${c.name} · DeFi Llama`}>{c.name}</a>
-                    <span className="text-[var(--accent-green)] tabular-nums font-medium shrink-0">
-                      {c.change_1d != null ? `${c.change_1d > 0 ? '+' : ''}${Number(c.change_1d).toFixed(1)}%` : ''}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-2 font-semibold">▼ Losers</div>
-                {moverLosers.slice(0, 5).map((c: any, i: number) => (
-                  <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
-                    <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
-                      className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-red)] transition-colors underline-offset-2 hover:underline"
-                      title={`${c.name} · DeFi Llama`}>{c.name}</a>
-                    <span className="text-[var(--accent-red)] tabular-nums font-medium shrink-0">
-                      {c.change_1d != null ? `${Number(c.change_1d).toFixed(1)}%` : ''}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* -- DEX × Chain Matrix (live-refreshed when Web3 loads) -- */}
@@ -679,14 +734,32 @@ export default function Web3Dashboard({
               </tbody>
             </table>
           </div>
-          <div className="px-5 py-2 border-t border-[var(--border-default)] text-[10px] text-[var(--text-muted)] text-right">
-            Updated: {dd.dexMatrix?.updated_at ? new Date(dd.dexMatrix.updated_at).toLocaleString() : '…'}
+          <div className="px-4 py-2 border-t border-[var(--border-default)] text-[9px] text-[var(--text-disabled)] text-right">
+            Updated: {dd.dexMatrix?.updated_at ? new Date(dd.dexMatrix.updated_at).toLocaleString() : '...'}
           </div>
         </div>
       )}
 
-      {/* -- Category Box: Crypto items -- */}
-      {web3Cats[0] && <CategoryBox cat={web3Cats[0]} ago={ago} TC={TC} />}
+      {/* -- Cypherpunk / EVM voices (X) — prioritised over generic crypto RSS -- */}
+      <CypherpunkFeed items={items} ago={ago} />
+
+      {/* Secondary: remaining crypto category signals (news RSS, non-cypherpunk) */}
+      {web3Cats[0] && (() => {
+        const deskItems = (web3Cats[0].items || []).filter((it: any) => {
+          const s = (it.source || '').toLowerCase();
+          // News/RSS only — pure X is covered by CypherpunkFeed above
+          if (s.startsWith('x:') || s.includes('nitter') || s.includes('twitter')) return false;
+          return true;
+        }).slice(0, 12);
+        if (!deskItems.length) return null;
+        return (
+          <CategoryBox
+            cat={{ ...web3Cats[0], label: 'Crypto desk', items: deskItems, count: deskItems.length }}
+            ago={ago}
+            TC={TC}
+          />
+        );
+      })()}
     </div>
   );
 }

@@ -51,6 +51,11 @@ const SOURCE_HINTS: Record<string, string[]> = {
   zachxbt: ['crypto'], wublockchain: ['crypto'], messaricrypto: ['crypto'], spencernoon: ['crypto'],
   '0xngmi': ['crypto'], deficrimewatch: ['crypto'], bjnpck: ['crypto'], mzeller: ['crypto'],
   vitalikbuterin: ['crypto'], 'alexis_roussel': ['crypto'], senlummis: ['crypto'],
+  // Cypherpunk / EVM core voices (Web3 CypherpunkFeed)
+  timbeiko: ['crypto'], sassal0x: ['crypto'], lefterisjp: ['crypto'], hasufl: ['crypto'],
+  gakonst: ['crypto'], bantg: ['crypto'], nicksdjohnson: ['crypto'], souptacular: ['crypto'],
+  libevm: ['crypto'], peter_szilagyi: ['crypto'], karalabe: ['crypto'], drakefjustin: ['crypto'],
+  ethereumjoseph: ['crypto'], nero_eth: ['crypto'],
   // Artemis research + official X (not the wrong @artemis__ account)
   artemis: ['crypto', 'macro'], 'the defiant': ['crypto'], decrypt: ['crypto'], bankless: ['crypto'],
   // ── Science / Research ──
@@ -616,26 +621,48 @@ export function useIntelData(activeTab: string = 'macro') {
           dexsUpdatedAt: new Date().toISOString(),
         });
       }),
-      fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false').then((d) => {
+      fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false', 15000).then((d) => {
         if (!d) return;
         const peggedAssets = d.peggedAssets || [];
+        const circOf = (s: any): number => {
+          // Llama shapes vary: circulating.peggedUSD | circulating.current.peggedUSD | mcap
+          const c = s?.circulating;
+          if (typeof c === 'number') return c;
+          if (c && typeof c.peggedUSD === 'number') return c.peggedUSD;
+          if (c?.current && typeof c.current.peggedUSD === 'number') return c.current.peggedUSD;
+          if (typeof s?.mcap === 'number') return s.mcap;
+          return 0;
+        };
         const chainMap: Record<string, number> = {};
         for (const s of peggedAssets) {
           const cc = s.chainCirculating || {};
           for (const [chain, data] of Object.entries(cc)) {
-            const circ = (data as any)?.circulating?.peggedUSD || 0;
-            chainMap[chain] = (chainMap[chain] || 0) + circ;
+            const cd = data as any;
+            const circ =
+              cd?.circulating?.peggedUSD ??
+              cd?.current?.circulating?.peggedUSD ??
+              cd?.circulating?.current?.peggedUSD ??
+              0;
+            if (circ > 0) chainMap[chain] = (chainMap[chain] || 0) + circ;
           }
         }
         const stablecoinChains = Object.entries(chainMap)
           .map(([chain, circulating]) => ({ chain, circulating }))
           .filter((x: any) => x.circulating > 0)
           .sort((a: any, b: any) => b.circulating - a.circulating);
+        const stablecoins = peggedAssets
+          .map((s: any) => ({
+            name: s.name || s.symbol,
+            symbol: s.symbol,
+            circulating: circOf(s),
+          }))
+          .filter((s: any) => s.circulating > 0)
+          .sort((a: any, b: any) => b.circulating - a.circulating)
+          .slice(0, 8);
         merge({
-          stablecoins: peggedAssets.map((s: any) => ({
-            name: s.name || s.symbol, circulating: s.circulating?.peggedUSD || 0,
-          })).filter((s: any) => s.circulating > 0).sort((a: any, b: any) => b.circulating - a.circulating).slice(0, 6),
+          stablecoins,
           stablecoinChains,
+          stablesUpdatedAt: new Date().toISOString(),
         });
       }),
       // BOLD Stability Pool APYs — small chart endpoints (avoid full 11MB pools dump in browser)
