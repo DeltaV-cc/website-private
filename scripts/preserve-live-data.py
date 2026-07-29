@@ -52,6 +52,32 @@ def parse_dt(raw: str) -> datetime:
     return datetime.min.replace(tzinfo=timezone.utc)
 
 
+# Intel / Layer-0 files: always prefer non-empty live over empty build.
+INTEL_ALWAYS_LIVE = {
+    "raw-items.json",
+    "picks.json",
+    "artemis-newsletter.json",
+    "artemis-research.json",
+}
+
+
+def is_effectively_empty(path: Path) -> bool:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    if data is None:
+        return True
+    if isinstance(data, list):
+        return len(data) == 0
+    if isinstance(data, dict):
+        if "picks" in data and isinstance(data["picks"], list):
+            return len(data["picks"]) == 0 and not data.get("updatedAt")
+        if not data:
+            return True
+    return False
+
+
 def freshness_score(path: Path) -> datetime:
     """Best-effort 'how new is this JSON file' for conflict resolution."""
     try:
@@ -66,7 +92,6 @@ def freshness_score(path: Path) -> datetime:
         lw = data.get("latest_weekly") or {}
         if isinstance(lw, dict) and lw.get("date"):
             return parse_dt(str(lw["date"]))
-        # nested market blobs — use file mtime as weak signal
     if isinstance(data, list) and data:
         # raw-items: first item is newest
         item = data[0]
@@ -109,13 +134,26 @@ def main() -> int:
                 added += 1
                 print(f"  + {src.name} (from live gh-pages)")
                 continue
+
+            # Never replace non-empty live intel with empty build snapshots
+            if src.name in INTEL_ALWAYS_LIVE and not is_effectively_empty(src):
+                if is_effectively_empty(dst) or freshness_score(src) >= freshness_score(dst):
+                    shutil.copy2(src, dst)
+                    kept += 1
+                    print(f"  ✓ {src.name} kept LIVE (intel SSOT, non-empty)")
+                    continue
+
             live_t = freshness_score(src)
             build_t = freshness_score(dst)
             # Live wins on tie or newer — cron is SSOT
-            if live_t >= build_t:
+            if live_t >= build_t and not is_effectively_empty(src):
                 shutil.copy2(src, dst)
                 kept += 1
                 print(f"  ✓ {src.name} kept LIVE ({live_t.isoformat()} ≥ build {build_t.isoformat()})")
+            elif is_effectively_empty(dst) and not is_effectively_empty(src):
+                shutil.copy2(src, dst)
+                kept += 1
+                print(f"  ✓ {src.name} kept LIVE (build was empty)")
             else:
                 skipped += 1
                 print(f"  · {src.name} kept BUILD ({build_t.isoformat()} > live {live_t.isoformat()})")
