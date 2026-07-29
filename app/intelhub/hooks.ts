@@ -186,9 +186,9 @@ const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComp
 const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
   try {
     // Cache bust: GitHub Pages CDN caches aggressively (max-age=600).
-    // Append ?_t=<5-min bucket> so data refreshes within 5 min of push.
+    // 60s bucket — cron can push every 15m; avoid multi-hour stickiness.
     const sep = url.includes('?') ? '&' : '?';
-    const bucket = Math.floor(Date.now() / 300000); // 5-min cache-window
+    const bucket = Math.floor(Date.now() / 60000);
     const r = await fetch(`${url}${sep}_t=${bucket}`, { signal: AbortSignal.timeout(ms) });
     if (!r.ok) return null;
     return await r.json();
@@ -200,7 +200,7 @@ const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
 const fetchText = async (url: string, ms = 10000): Promise<string | null> => {
   try {
     const sep = url.includes('?') ? '&' : '?';
-    const bucket = Math.floor(Date.now() / 300000);
+    const bucket = Math.floor(Date.now() / 60000);
     const r = await fetch(`${url}${sep}_t=${bucket}`, { signal: AbortSignal.timeout(ms) });
     if (!r.ok) return null;
     return await r.text();

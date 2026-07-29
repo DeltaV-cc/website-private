@@ -64,6 +64,12 @@ jobs:
       # pnpm build already runs prebuild (copy-data + RSS) then next build + patch-basepath
       - run: pnpm build
 
+      # CRITICAL: full HTML deploys must NOT roll back intel/market JSON.
+      # Layer 0 crons push fresher data/*.json to gh-pages; main's public/data
+      # is often a stale snapshot. Overlay live gh-pages data onto out/data.
+      - name: Preserve live data/*.json from gh-pages
+        run: python3 scripts/preserve-live-data.py out/data
+
       # Actual public site = gh-pages branch (legacy Pages source)
       - name: Publish out/ → gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
@@ -72,4 +78,4 @@ jobs:
           publish_dir: ./out
           force_orphan: false
           enable_jekyll: false
-          full_commit_message: 'deploy: site from ${{ github.sha }}'
+          full_commit_message: 'deploy: site from ${{ github.sha }} (live data preserved)'
