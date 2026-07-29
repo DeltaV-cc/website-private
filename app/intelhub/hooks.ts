@@ -6,11 +6,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Item, PatentsData } from './types';
 
-// Data JSON lives on the gh-pages branch. Prefer raw.githubusercontent over
-// deltav-cc.github.io — frequent force-pushes from refresh-data desync the
-// Pages/Fastly CDN (raw-items was serving ~6-day-old content while git tip
-// was current). raw tracks the branch tip within minutes.
-const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
+// Data JSON lives on the gh-pages branch (legacy Pages root).
+// Prefer deltav-cc.github.io over raw.githubusercontent.com/…/gh-pages:
+// GitHub's raw CDN has repeatedly served multi-day-stale artemis/raw-items
+// while the Pages tip (and git clone) already had cron-fresh JSON.
+// Deploy preserves live data/*.json so site HTML deploys no longer roll
+// intel backwards; crons keep pushing data/ directly to gh-pages.
+const DATA_BASE = 'https://deltav-cc.github.io/website-private';
 const BASE = DATA_BASE;
 
 /* ---- Helpers ---- */
