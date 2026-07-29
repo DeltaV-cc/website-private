@@ -4,15 +4,13 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { SITE_URL } from '@/lib/site';
-import { Item, PatentsData, IntelData } from './types';
+import { Item, PatentsData } from './types';
 
 // Data JSON lives on the gh-pages branch. Prefer raw.githubusercontent over
 // deltav-cc.github.io — frequent force-pushes from refresh-data desync the
 // Pages/Fastly CDN (raw-items was serving ~6-day-old content while git tip
 // was current). raw tracks the branch tip within minutes.
 const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
-// Keep SITE_URL alias for any absolute site links that still need the pages host.
 const BASE = DATA_BASE;
 
 /* ---- Helpers ---- */
@@ -55,7 +53,7 @@ const SOURCE_HINTS: Record<string, string[]> = {
   timbeiko: ['crypto'], sassal0x: ['crypto'], lefterisjp: ['crypto'], hasufl: ['crypto'],
   gakonst: ['crypto'], bantg: ['crypto'], nicksdjohnson: ['crypto'], souptacular: ['crypto'],
   libevm: ['crypto'], peter_szilagyi: ['crypto'], karalabe: ['crypto'], drakefjustin: ['crypto'],
-  ethereumjoseph: ['crypto'], nero_eth: ['crypto'],
+  ethereumjoseph: ['crypto'],
   // Artemis research + official X (not the wrong @artemis__ account)
   artemis: ['crypto', 'macro'], 'the defiant': ['crypto'], decrypt: ['crypto'], bankless: ['crypto'],
   // ── Science / Research ──

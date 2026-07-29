@@ -156,8 +156,7 @@ export function macroMoverLink(row: {
   symbol?: string;
   name?: string;
 }): { href: string; source: 'artemis' | 'defillama' } {
-  const isCrypto = (row.asset || '').toLowerCase() === 'crypto';
-  // Crypto majors still map well on Artemis company pages (bitcoin, ethereum, …)
+  // Equities + crypto majors both map to Artemis company pages (bitcoin, ethereum, …)
   return {
     href: artemisCompanyUrl({ symbol: row.symbol, name: row.name || row.symbol }),
     source: 'artemis',
