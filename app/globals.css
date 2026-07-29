@@ -336,10 +336,28 @@ body {
 .forge-course-link:hover { background: var(--bg-hover); }
 .forge-course-link:hover::before { transform: scaleY(1); }
 .listing-filter-panel { border: 1px solid var(--border-default); border-radius: .9rem; padding: 1rem; background: var(--surface-card); color: var(--text-primary); }
-.listing-card { background-color: var(--surface-card); transition: background-color .22s var(--ease-smooth), border-color .22s var(--ease-smooth); }
+.listing-card { background-color: var(--surface-card); transition: background-color .22s var(--ease-smooth), border-color .22s var(--ease-smooth), box-shadow .22s var(--ease-smooth); }
 .listing-card:hover { background-color: var(--surface-card-hover); }
 .listing-card-featured { background: var(--surface-card-strong); }
 .listing-card-featured:hover { background: var(--surface-card); }
+/* Category-colored left rail (solid or dual-domain gradient via --card-bar) */
+.listing-card-accent { overflow: hidden; }
+.listing-card-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 2px 0 0 2px;
+  background: var(--card-bar, var(--accent-cyan));
+  pointer-events: none;
+}
+.listing-card-accent:hover {
+  border-color: color-mix(in srgb, var(--card-accent-a, var(--accent-cyan)) 55%, var(--border-default)) !important;
+  box-shadow: 0 0 28px color-mix(in srgb, var(--card-accent-a, var(--accent-cyan)) 12%, transparent);
+}
+
 .capability-card { position: relative; overflow: hidden; border-left-color: var(--card-border, var(--border-default)); background-color: var(--surface-card); transition: background-color .22s var(--ease-smooth), border-color .22s var(--ease-smooth); }
 .capability-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--card-accent); transform: scaleY(0); transform-origin: center; transition: transform .22s var(--ease-out-expo); }
 .capability-card:hover { background-color: var(--surface-card-hover); }

@@ -6,26 +6,42 @@ import FilterSidebar from '@/app/components/FilterSidebar';
 import { blogIndex } from '@/app/data/content-index';
 import {
   DOMAIN_ACCENT,
+  categoryCardStyle,
+  categoryPairLabel,
+  categoryTitleStyle,
   domainTextClass,
-  domainTitleClass,
   formatChipClass,
+  resolveCategoryPair,
 } from '@/lib/content-accents';
 import { formatReadingTime } from '@/lib/content-meta';
 
-const posts = blogIndex.map((entry) => ({
-  title: entry.title,
-  date: entry.date || '',
-  category: entry.domain,
-  type: entry.format || 'Deep Dive',
-  excerpt: entry.excerpt,
-  slug: entry.id,
-  readingTime: formatReadingTime(entry.readingMinutes) || formatReadingTime(
-    entry.format === 'Dashboard' ? 10 :
-    entry.format === 'Deep Dive' ? 7 :
-    entry.format === 'Tutorial' ? 8 :
-    entry.format === 'Tool' ? 5 : 4
-  )!,
-}));
+const posts = blogIndex.map((entry) => {
+  const pair = resolveCategoryPair(entry.domain, entry.tags || []);
+  return {
+    title: entry.title,
+    date: entry.date || '',
+    category: entry.domain,
+    tags: entry.tags || [],
+    type: entry.format || 'Deep Dive',
+    excerpt: entry.excerpt,
+    slug: entry.id,
+    domains: pair.domains,
+    accents: pair.accents,
+    readingTime:
+      formatReadingTime(entry.readingMinutes) ||
+      formatReadingTime(
+        entry.format === 'Dashboard'
+          ? 10
+          : entry.format === 'Deep Dive'
+            ? 7
+            : entry.format === 'Tutorial'
+              ? 8
+              : entry.format === 'Tool'
+                ? 5
+                : 4
+      )!,
+  };
+});
 
 const CATEGORY_ORDER = ['AI', 'Web3', 'OpSec', 'Hardware', 'Weekly Delta Financial Brief'];
 
@@ -41,16 +57,20 @@ export default function Blog() {
   const toggle = (list: string[], set: (v: string[]) => void, v: string) =>
     set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
-  const filteredPosts = posts.filter(
-    (p) =>
-      (cats.length === 0 || cats.includes(p.category)) &&
-      (months.length === 0 || months.includes(monthOf(p.date)))
-  ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const filteredPosts = posts
+    .filter(
+      (p) =>
+        (cats.length === 0 || cats.includes(p.category) || p.domains.some((d) => cats.includes(d))) &&
+        (months.length === 0 || months.includes(monthOf(p.date)))
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const categoryOptions = CATEGORY_ORDER.filter((c) => posts.some((p) => p.category === c)).map((c) => ({
+  const categoryOptions = CATEGORY_ORDER.filter((c) =>
+    posts.some((p) => p.category === c || p.domains.includes(c))
+  ).map((c) => ({
     value: c,
     label: c,
-    count: posts.filter((p) => p.category === c).length,
+    count: posts.filter((p) => p.category === c || p.domains.includes(c)).length,
     accent: DOMAIN_ACCENT[c],
   }));
   const monthOptions = Array.from(new Set(posts.map((p) => monthOf(p.date))))
@@ -129,7 +149,7 @@ export default function Blog() {
                     </span>
                     <span className="text-[11px] text-[var(--text-muted)]">{latestWeekly!.date}</span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-3 tracking-[-0.5px] max-w-3xl">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-[var(--accent-gold)] group-hover:opacity-90 transition-opacity mb-3 tracking-[-0.5px] max-w-3xl">
                     {latestWeekly!.title}
                   </h2>
                   <p className="text-sm md:text-base text-[var(--text-tertiary)] leading-relaxed mb-5 max-w-2xl line-clamp-2">
@@ -166,54 +186,75 @@ export default function Blog() {
               </div>
             ) : (
               <div className="grid md:grid-cols-2 gap-4 stagger-children">
-                {gridPosts.map((post) => (
-                  <div
-                    key={post.slug}
-                    className="listing-card relative group rounded-2xl border border-[var(--border-default)] p-6 md:p-8 transition-all duration-200 hover:border-[var(--accent-cyan)]/25"
-                  >
-                    <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
-                      <span className="text-white/80">{post.date}</span>
-                      <span className="text-[var(--text-disabled)]">·</span>
-                      <span className="text-[var(--text-muted)]">{post.readingTime.replace(' read', '')}</span>
-                      <span className="text-[var(--text-disabled)]">·</span>
-                      <button
-                        type="button"
-                        onClick={() => toggle(cats, setCats, post.category)}
-                        className={`relative z-10 font-medium hover:underline ${domainTextClass(post.category)}`}
-                        title={`Filter by ${post.category}`}
+                {gridPosts.map((post) => {
+                  const dual = post.domains.length >= 2;
+                  const pairLabel = categoryPairLabel(post.domains);
+                  return (
+                    <div
+                      key={post.slug}
+                      className="listing-card listing-card-accent relative group rounded-2xl border p-6 md:p-8 transition-all duration-200 pl-7"
+                      style={categoryCardStyle(post.accents)}
+                    >
+                      <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
+                        <span className="text-white/80">{post.date}</span>
+                        <span className="text-[var(--text-disabled)]">·</span>
+                        <span className="text-[var(--text-muted)]">
+                          {post.readingTime.replace(' read', '')}
+                        </span>
+                        <span className="text-[var(--text-disabled)]">·</span>
+                        {dual ? (
+                          <span
+                            className="relative z-10 font-semibold tracking-wide"
+                            style={categoryTitleStyle(post.accents)}
+                            title={pairLabel}
+                          >
+                            {pairLabel}
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => toggle(cats, setCats, post.category)}
+                            className={`relative z-10 font-medium hover:underline ${domainTextClass(post.category)}`}
+                            title={`Filter by ${post.category}`}
+                          >
+                            {post.category}
+                          </button>
+                        )}
+                        <span
+                          className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold tracking-[1px] uppercase border ${formatChipClass(post.type)}`}
+                        >
+                          {post.type}
+                        </span>
+                      </div>
+                      <Link href={`/blog/${post.slug}/`} className="after:absolute after:inset-0">
+                        <h3
+                          className="text-lg md:text-xl font-semibold mb-2 leading-snug transition-opacity group-hover:opacity-85"
+                          style={categoryTitleStyle(post.accents)}
+                        >
+                          {post.title}
+                        </h3>
+                      </Link>
+                      <p className="text-[var(--text-tertiary)] text-sm leading-relaxed mb-3 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <div
+                        className="inline-flex items-center gap-1 text-xs font-medium group-hover:gap-1.5 transition-all"
+                        style={{ color: post.accents[0] || 'var(--accent-cyan)' }}
                       >
-                        {post.category}
-                      </button>
-                      <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold tracking-[1px] uppercase border ${formatChipClass(post.type)}`}
-                      >
-                        {post.type}
-                      </span>
+                        Read full article
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path
+                            d="M2 6h8M6 2l4 4-4 4"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <Link href={`/blog/${post.slug}/`} className="after:absolute after:inset-0">
-                      <h3
-                        className={`text-lg md:text-xl font-semibold mb-2 leading-snug ${domainTitleClass(post.category)} group-hover:opacity-75 transition-colors`}
-                      >
-                        {post.title}
-                      </h3>
-                    </Link>
-                    <p className="text-[var(--text-tertiary)] text-sm leading-relaxed mb-3 line-clamp-2">
-                      {post.excerpt}
-                    </p>
-                    <div className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-cyan)] group-hover:gap-1.5 transition-all">
-                      Read full article
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path
-                          d="M2 6h8M6 2l4 4-4 4"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 

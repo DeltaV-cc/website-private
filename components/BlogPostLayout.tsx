@@ -3,7 +3,13 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import BackLink from '@/app/components/BackLink';
-import { domainAccent, formatAccent, isFormatLabel } from '@/lib/content-accents';
+import {
+  categoryTitleStyle,
+  domainAccent,
+  formatAccent,
+  isFormatLabel,
+  resolveCategoryPair,
+} from '@/lib/content-accents';
 import { formatDisplayDate, formatReadingTime } from '@/lib/content-meta';
 
 export type SeriesLink = { href: string; label: string };
@@ -115,6 +121,10 @@ export default function BlogPostLayout({
   const displayDate = formatDisplayDate(date);
   const displayReading = formatReadingTime(readingTime);
   const foot = footerCopy(footerVariant);
+  // Title color: solid domain accent, or gradient when tags imply a second pillar
+  // e.g. OpSec + AI tags → red→cyan (infosec × AI)
+  const { accents: titleAccents } = resolveCategoryPair(category, tags || []);
+  const titleStyle = categoryTitleStyle(titleAccents);
 
   // Reading-progress: prefer article bounds when available.
   useEffect(() => {
@@ -308,7 +318,10 @@ export default function BlogPostLayout({
                     <span key={`t${i}`}>{badge(t)}</span>
                   ))}
               </div>
-              <h1 className="text-4xl md:text-5xl font-semibold tracking-[-1.5px] leading-tight mb-5">
+              <h1
+                className="text-4xl md:text-5xl font-semibold tracking-[-1.5px] leading-tight mb-5"
+                style={titleStyle}
+              >
                 {title}
               </h1>
               <div className="flex items-center flex-wrap gap-3 text-sm text-[var(--text-muted)]">
