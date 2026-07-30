@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T20:45:15Z",
+  "updated_at": "2026-07-30T21:00:24Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002011,
+        "price": 0.001997,
         "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.724383,
+        "price": 0.723417,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "BNB",
         "name": "BNB",
-        "price": 592.88,
+        "price": 592.35,
         "change_24h": 3.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 217.93,
+        "price": 218.03,
         "change_24h": 3.4,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.98053,
+        "price": 0.980191,
         "change_24h": -15.9,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034321,
+        "price": 0.03433,
         "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "XDC",
         "name": "XDC Network",
-        "price": 0.026126,
+        "price": 0.026096,
         "change_24h": -4.0,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.31,
+        "price": 12.25,
         "change_24h": -2.8,
         "asset": "crypto"
       },
