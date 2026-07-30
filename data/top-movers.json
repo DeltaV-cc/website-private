@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T21:45:20Z",
+  "updated_at": "2026-07-30T22:00:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.4,
+        "price": 4.39,
         "change_24h": 12.8,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.721404,
+        "price": 0.719275,
         "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002,
+        "price": 0.002011,
         "change_24h": 8.1,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 216.88,
+        "price": 216.13,
         "change_24h": 6.3,
         "asset": "crypto"
       },
@@ -119,21 +119,21 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.984563,
+        "price": 0.991208,
         "change_24h": -14.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034174,
+        "price": 0.034243,
         "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "XDC",
         "name": "XDC Network",
-        "price": 0.026246,
+        "price": 0.026194,
         "change_24h": -4.2,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.013364,
+        "price": 0.013367,
         "change_24h": -1.4,
         "asset": "crypto"
       }
