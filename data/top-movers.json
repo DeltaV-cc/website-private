@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T07:18:16Z",
+  "updated_at": "2026-07-30T07:30:28Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.050006,
+        "price": 0.049049,
         "change_24h": 19.2,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.85,
+        "price": 3.82,
         "change_24h": 3.9,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082713,
+        "price": 0.083142,
         "change_24h": 3.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.055555,
+        "price": 0.055564,
         "change_24h": 2.6,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.19,
+        "price": 2.18,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.950612,
+        "price": 0.946945,
         "change_24h": -6.0,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.14,
+        "price": 12.12,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.078124,
+        "price": 0.078373,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034391,
+        "price": 0.034454,
         "change_24h": -3.3,
         "asset": "crypto"
       }
