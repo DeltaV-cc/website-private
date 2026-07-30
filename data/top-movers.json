@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T11:23:38Z",
+  "updated_at": "2026-07-30T11:30:15Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,21 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082768,
+        "price": 0.082788,
         "change_24h": 5.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "INJ",
+        "name": "Injective",
+        "price": 4.81,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.85,
+        "price": 3.84,
         "change_24h": 4.0,
         "asset": "crypto"
       },
@@ -103,15 +110,8 @@
       {
         "symbol": "BNB",
         "name": "BNB",
-        "price": 588.28,
+        "price": 587.1,
         "change_24h": 2.4,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 474.6,
-        "change_24h": 2.3,
         "asset": "crypto"
       }
     ],
@@ -119,35 +119,35 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.960308,
+        "price": 0.952565,
         "change_24h": -17.9,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.15,
+        "price": 12.14,
         "change_24h": -6.7,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034199,
+        "price": 0.03417,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.077644,
+        "price": 0.077635,
         "change_24h": -2.9,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 53.34,
+        "price": 53.28,
         "change_24h": -2.9,
         "asset": "crypto"
       }
