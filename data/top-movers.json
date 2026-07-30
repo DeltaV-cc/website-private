@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T13:00:26Z",
+  "updated_at": "2026-07-30T13:15:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.65,
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.421485,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.082869,
-        "change_24h": 4.9,
+        "symbol": "UNI",
+        "name": "Uniswap",
+        "price": 4.21,
+        "change_24h": 4.0,
         "asset": "crypto"
       },
       {
-        "symbol": "ONDO",
-        "name": "Ondo",
-        "price": 0.422299,
-        "change_24h": 4.6,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.001946,
+        "change_24h": 4.0,
         "asset": "crypto"
       },
       {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 475.19,
-        "change_24h": 3.9,
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.65,
+        "change_24h": 3.8,
         "asset": "crypto"
       },
       {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 360.12,
-        "change_24h": 3.7,
+        "symbol": "LIT",
+        "name": "Lighter",
+        "price": 2.27,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.039,
-        "change_24h": -18.3,
+        "price": 1.018,
+        "change_24h": -10.6,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
         "price": 12.07,
-        "change_24h": -6.4,
+        "change_24h": -6.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034306,
-        "change_24h": -4.3,
+        "price": 0.0343,
+        "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 53.14,
-        "change_24h": -3.0,
+        "price": 53.05,
+        "change_24h": -3.1,
         "asset": "crypto"
       },
       {
-        "symbol": "ALGO",
-        "name": "Algorand",
-        "price": 0.07795,
-        "change_24h": -2.0,
+        "symbol": "SHIB",
+        "name": "Shiba Inu",
+        "price": 5e-06,
+        "change_24h": -2.4,
         "asset": "crypto"
       }
     ]
