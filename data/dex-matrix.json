@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T07:21:34Z",
+  "updated_at": "2026-07-30T09:19:19Z",
   "source": "Dune Analytics (dex.trades \u2014 on-chain data)",
   "query_ids": {
     "cross_table": 8029504,
@@ -8,79 +8,79 @@
   "chains": [
     {
       "chain": "bnb",
-      "total24h": 3118834274.940844,
-      "tvl": 3118587237.6721926
+      "total24h": 3159933761.1144786,
+      "tvl": 3159852975.4759307
     },
     {
       "chain": "base",
-      "total24h": 1070911108.24321,
-      "tvl": 1070952173.006167
+      "total24h": 1077957326.9610658,
+      "tvl": 1077999173.5350225
     },
     {
       "chain": "ethereum",
-      "total24h": 966669519.8273553,
-      "tvl": 966681212.1903046
+      "total24h": 956946747.1240133,
+      "tvl": 956958212.1828899
     },
     {
       "chain": "arbitrum",
-      "total24h": 159203896.3757655,
-      "tvl": 159231526.14123532
+      "total24h": 160336293.92706868,
+      "tvl": 160362614.45681873
     },
     {
       "chain": "polygon",
-      "total24h": 91433660.14220592,
-      "tvl": 91457627.40314388
+      "total24h": 90706955.46122159,
+      "tvl": 90738404.85920297
     },
     {
       "chain": "avalanche_c",
-      "total24h": 29240394.62476384,
-      "tvl": 29256560.305637255
+      "total24h": 29197194.250169918,
+      "tvl": 29213228.345745537
     },
     {
       "chain": "optimism",
-      "total24h": 23083198.745716237,
-      "tvl": 23091505.871313512
+      "total24h": 22938502.207233362,
+      "tvl": 22946375.686713494
     }
   ],
   "matrix": [
     {
       "protocol": "pancakeswap",
-      "total_vol": 2397120587.683062,
-      "bnb": 2246735469.1758127,
-      "base": 135105147.39412993,
-      "ethereum": 6797684.716546907,
-      "arbitrum": 8482286.396572659,
+      "total_vol": 2432557065.5317097,
+      "bnb": 2283169398.6471453,
+      "base": 134662617.75851083,
+      "ethereum": 6339129.784660924,
+      "arbitrum": 8385919.341392759,
       "polygon": 0,
       "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "uniswap",
-      "total_vol": 1523236423.567689,
-      "bnb": 121068644.27937993,
-      "base": 447294227.22583115,
-      "ethereum": 734008828.1384792,
-      "arbitrum": 142061725.9229215,
-      "polygon": 65885217.564172864,
-      "avalanche_c": 3901568.571287817,
-      "optimism": 9016211.865616586
+      "total_vol": 1498160740.3333597,
+      "bnb": 114399803.43261307,
+      "base": 445585725.14212155,
+      "ethereum": 717294387.4775636,
+      "arbitrum": 142965911.09186572,
+      "polygon": 65090631.71083006,
+      "avalanche_c": 3872265.593256558,
+      "optimism": 8952015.885109127
     },
     {
       "protocol": "native",
-      "total_vol": 628512779.9319143,
-      "bnb": 619597933.864137,
-      "base": 551763.4077132634,
-      "ethereum": 8116869.026639387,
-      "arbitrum": 246213.63342465807,
+      "total_vol": 630802291.1152083,
+      "bnb": 621674612.2468554,
+      "base": 588253.957394001,
+      "ethereum": 8283520.5972797265,
+      "arbitrum": 255904.31367925665,
       "polygon": 0,
       "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "aerodrome",
-      "total_vol": 467197705.09643996,
+      "total_vol": 475614909.32710814,
       "bnb": 0,
-      "base": 467197705.09643996,
+      "base": 475614909.32710814,
       "ethereum": 0,
       "arbitrum": 0,
       "polygon": 0,
@@ -89,9 +89,9 @@
     },
     {
       "protocol": "tessera_v",
-      "total_vol": 130658644.18293665,
-      "bnb": 118638409.09826744,
-      "base": 12020235.084669214,
+      "total_vol": 139118940.00097328,
+      "bnb": 126519463.76364663,
+      "base": 12599476.237326637,
       "ethereum": 0,
       "arbitrum": 0,
       "polygon": 0,
@@ -100,32 +100,32 @@
     },
     {
       "protocol": "curve",
-      "total_vol": 87432428.26219198,
+      "total_vol": 97861344.88090138,
       "bnb": 0,
       "base": 0,
-      "ethereum": 87339102.0970831,
+      "ethereum": 97768616.37923847,
       "arbitrum": 0,
       "polygon": 0,
       "avalanche_c": 0,
-      "optimism": 93326.16510887489
+      "optimism": 92728.50166291372
     },
     {
       "protocol": "fluid",
-      "total_vol": 53674848.2858482,
+      "total_vol": 51667904.00612148,
       "bnb": 0,
-      "base": 347142.04869023425,
-      "ethereum": 49749038.312952824,
-      "arbitrum": 3524338.2033221987,
-      "polygon": 54329.720882938425,
+      "base": 346617.1649751384,
+      "ethereum": 47660025.438843094,
+      "arbitrum": 3613748.5325076585,
+      "polygon": 47512.869795589584,
       "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "ekubo",
-      "total_vol": 36849921.89909776,
+      "total_vol": 34868335.378132485,
       "bnb": 0,
       "base": 0,
-      "ethereum": 36849921.89909776,
+      "ethereum": 34868335.378132485,
       "arbitrum": 0,
       "polygon": 0,
       "avalanche_c": 0,
@@ -133,78 +133,78 @@
     },
     {
       "protocol": "quickswap",
-      "total_vol": 20235839.525213715,
+      "total_vol": 20304588.974681918,
       "bnb": 0,
       "base": 0,
       "ethereum": 0,
       "arbitrum": 0,
-      "polygon": 20235839.525213715,
+      "polygon": 20304588.974681918,
       "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "pharaoh_v3",
-      "total_vol": 19640828.217042558,
+      "total_vol": 19702939.162696224,
       "bnb": 0,
       "base": 0,
       "ethereum": 0,
       "arbitrum": 0,
       "polygon": 0,
-      "avalanche_c": 19640828.217042558,
+      "avalanche_c": 19702939.162696224,
+      "optimism": 0
+    },
+    {
+      "protocol": "lista_smartswap",
+      "total_vol": 12907480.789517235,
+      "bnb": 12907480.789517235,
+      "base": 0,
+      "ethereum": 0,
+      "arbitrum": 0,
+      "polygon": 0,
+      "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "velodrome",
-      "total_vol": 12269203.593324045,
+      "total_vol": 12227232.846442832,
       "bnb": 0,
       "base": 0,
       "ethereum": 0,
       "arbitrum": 0,
       "polygon": 0,
       "avalanche_c": 0,
-      "optimism": 12269203.593324045
-    },
-    {
-      "protocol": "lista_smartswap",
-      "total_vol": 11681653.310738398,
-      "bnb": 11681653.310738398,
-      "base": 0,
-      "ethereum": 0,
-      "arbitrum": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "optimism": 0
+      "optimism": 12227232.846442832
     },
     {
       "protocol": "dodo",
-      "total_vol": 10718153.540163793,
-      "bnb": 121621.56412320789,
+      "total_vol": 10878673.8718876,
+      "bnb": 120743.06087513758,
       "base": 0,
-      "ethereum": 9166673.522155456,
-      "arbitrum": 953053.9385255793,
-      "polygon": 476804.5153595496,
+      "ethereum": 9363847.65513317,
+      "arbitrum": 958433.9302104964,
+      "polygon": 435649.2256687951,
       "avalanche_c": 0,
       "optimism": 0
     },
     {
       "protocol": "swaap",
-      "total_vol": 9729344.967774356,
-      "bnb": 22035.996134623925,
-      "base": 34303.21591383923,
-      "ethereum": 9628022.363482628,
+      "total_vol": 9708128.166287744,
+      "bnb": 22717.773794150267,
+      "base": 35170.87219179483,
+      "ethereum": 9612123.886858,
       "arbitrum": 0,
       "polygon": 0,
       "avalanche_c": 0,
-      "optimism": 44983.392243264505
+      "optimism": 38115.63344380066
     },
     {
       "protocol": "balancer",
-      "total_vol": 8023761.270461899,
+      "total_vol": 7817608.5986543195,
       "bnb": 0,
-      "base": 1060572.4440276595,
-      "ethereum": 2598984.2509835195,
-      "arbitrum": 171976.8971678897,
-      "polygon": 4192227.6782828304,
+      "base": 1048525.6770516597,
+      "ethereum": 2368506.649026623,
+      "arbitrum": 179986.88045429168,
+      "polygon": 4220589.392121745,
       "avalanche_c": 0,
       "optimism": 0
     }
