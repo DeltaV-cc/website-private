@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T07:45:31Z",
+  "updated_at": "2026-07-30T08:00:32Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "US",
-        "name": "Talus",
-        "price": 0.048523,
-        "change_24h": 19.2,
+        "symbol": "INJ",
+        "name": "Injective",
+        "price": 4.81,
+        "change_24h": 7.27,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
         "price": 3.98,
-        "change_24h": 3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 3.83,
-        "change_24h": 3.9,
+        "change_24h": 4.46,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082803,
-        "change_24h": 3.8,
+        "price": 0.08282,
+        "change_24h": 3.95,
         "asset": "crypto"
       },
       {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.055306,
-        "change_24h": 2.6,
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 3.76,
+        "change_24h": 2.19,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.62,
+        "change_24h": 1.83,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.18,
-        "change_24h": -6.9,
-        "asset": "crypto"
-      },
-      {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.975086,
-        "change_24h": -6.0,
+        "price": 0.953671,
+        "change_24h": -17.18,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.09,
-        "change_24h": -5.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.07841,
-        "change_24h": -5.0,
+        "price": 12.06,
+        "change_24h": -5.93,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034571,
-        "change_24h": -3.3,
+        "price": 0.034221,
+        "change_24h": -4.62,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LIT",
+        "name": "Lighter",
+        "price": 2.18,
+        "change_24h": -4.16,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.078477,
+        "change_24h": -3.32,
         "asset": "crypto"
       }
     ]
