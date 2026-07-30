@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T21:30:19Z",
+  "updated_at": "2026-07-30T21:45:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.39,
-        "change_24h": 13.13,
+        "price": 4.4,
+        "change_24h": 12.8,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.721993,
-        "change_24h": 8.78,
+        "price": 0.721404,
+        "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001994,
-        "change_24h": 8.33,
+        "price": 0.002,
+        "change_24h": 8.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BCH",
+        "name": "Bitcoin Cash",
+        "price": 216.88,
+        "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
         "price": 1.69,
-        "change_24h": 6.03,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.081904,
-        "change_24h": 6.02,
+        "change_24h": 6.2,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.980765,
-        "change_24h": -14.08,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "XDC",
-        "name": "XDC Network",
-        "price": 0.02616,
-        "change_24h": -3.63,
+        "price": 0.984563,
+        "change_24h": -14.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034226,
-        "change_24h": -3.45,
+        "price": 0.034174,
+        "change_24h": -4.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "XDC",
+        "name": "XDC Network",
+        "price": 0.026246,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.8,
-        "change_24h": -3.31,
+        "price": 3.83,
+        "change_24h": -1.9,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.013359,
-        "change_24h": -2.66,
+        "price": 0.013364,
+        "change_24h": -1.4,
         "asset": "crypto"
       }
     ]
