@@ -1,66 +1,66 @@
 {
-  "updated_at": "2026-07-30T07:23:24Z",
+  "updated_at": "2026-07-30T21:03:52Z",
   "source": "Dune Analytics (queries 8024914, 7950834)",
   "chains": [
     {
       "chain": "bnb",
-      "volume_24h": 3054198262.543749,
-      "delta_pct": 89.16
+      "volume_24h": 4641188381.411988,
+      "delta_pct": 80.89
     },
     {
       "chain": "ethereum",
-      "volume_24h": 2062850223.0961814,
-      "delta_pct": -4.86
+      "volume_24h": 3090268447.5416174,
+      "delta_pct": -0.88
     },
     {
       "chain": "base",
-      "volume_24h": 1500509298.1467907,
-      "delta_pct": 16.32
+      "volume_24h": 2368345051.6874433,
+      "delta_pct": 26.31
     },
     {
       "chain": "robinhood",
-      "volume_24h": 446689276.14910376,
-      "delta_pct": -8.75
+      "volume_24h": 714226312.195513,
+      "delta_pct": -5.12
     },
     {
       "chain": "arbitrum",
-      "volume_24h": 308504005.96463954,
-      "delta_pct": 15.54
+      "volume_24h": 484306914.1043359,
+      "delta_pct": 23.08
     },
     {
       "chain": "polygon",
-      "volume_24h": 190518464.22273248,
-      "delta_pct": -29.24
+      "volume_24h": 272972407.7144044,
+      "delta_pct": -28.83
     },
     {
       "chain": "hyperevm",
-      "volume_24h": 117676417.75582442,
-      "delta_pct": -7.31
+      "volume_24h": 183429141.76416478,
+      "delta_pct": -7.94
     },
     {
       "chain": "avalanche_c",
-      "volume_24h": 94151167.37763646,
-      "delta_pct": 27.62
+      "volume_24h": 128594762.72909905,
+      "delta_pct": 25.58
     },
     {
       "chain": "monad",
-      "volume_24h": 71768666.29752241,
-      "delta_pct": -12.88
+      "volume_24h": 107741405.13228455,
+      "delta_pct": -6.91
     },
     {
       "chain": "optimism",
-      "volume_24h": 48627614.74621402,
-      "delta_pct": 54.85
+      "volume_24h": 72558121.71525979,
+      "delta_pct": 64.16
     },
     {
       "chain": "unichain",
-      "volume_24h": 21145572.31502555,
-      "delta_pct": 55.33
+      "volume_24h": 31859209.967178818,
+      "delta_pct": 37.29
     },
     {
       "chain": "celo",
-      "volume_24h": 3131483.561926877,
-      "delta_pct": -21.81
+      "volume_24h": 5412373.981013803,
+      "delta_pct": -12.31
     }
   ],
   "weekly": [
