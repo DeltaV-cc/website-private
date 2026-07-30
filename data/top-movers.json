@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T08:45:36Z",
+  "updated_at": "2026-07-30T09:19:08Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.048268,
-        "change_24h": 9.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 3.88,
-        "change_24h": 6.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.083566,
-        "change_24h": 5.0,
+        "price": 0.048706,
+        "change_24h": 6.4,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.03,
-        "change_24h": 4.0,
+        "price": 4.02,
+        "change_24h": 5.4,
         "asset": "crypto"
       },
       {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 86.07,
-        "change_24h": 1.8,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.083993,
+        "change_24h": 5.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 3.87,
+        "change_24h": 4.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.415847,
+        "change_24h": 2.5,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.946159,
-        "change_24h": -16.2,
+        "price": 0.927762,
+        "change_24h": -19.5,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.16,
-        "change_24h": -6.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.2,
-        "change_24h": -5.7,
+        "price": 12.18,
+        "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034197,
-        "change_24h": -4.7,
+        "price": 0.034084,
+        "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.079066,
-        "change_24h": -3.4,
+        "price": 0.078886,
+        "change_24h": -2.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.077489,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
