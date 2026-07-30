@@ -1,78 +1,78 @@
 {
-  "updated_at": "2026-07-30T13:30:27Z",
+  "updated_at": "2026-07-30T13:45:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "HURN",
-        "name": "Huron Consulting Group Inc.",
-        "price": 166.0,
-        "change_24h": -2.57,
+        "symbol": "MKTX",
+        "name": "MarketAxess Holdings, Inc.",
+        "price": 163.24,
+        "change_24h": 29.83,
         "asset": "equity"
       },
       {
-        "symbol": "MANH",
-        "name": "Manhattan Associates, Inc.",
-        "price": 195.0,
-        "change_24h": -4.42,
+        "symbol": "SIMO",
+        "name": "Silicon Motion Technology Corpo",
+        "price": 263.85,
+        "change_24h": 25.83,
         "asset": "equity"
       },
       {
-        "symbol": "LAD",
-        "name": "Lithia Motors, Inc.",
-        "price": 427.48,
-        "change_24h": 19.3,
+        "symbol": "FORM",
+        "name": "FormFactor, Inc.",
+        "price": 103.36,
+        "change_24h": 23.85,
         "asset": "equity"
       },
       {
-        "symbol": "EXLS",
-        "name": "ExlService Holdings, Inc.",
-        "price": 35.83,
-        "change_24h": -0.45,
+        "symbol": "CORT",
+        "name": "Corcept Therapeutics Incorporat",
+        "price": 114.27,
+        "change_24h": 22.94,
         "asset": "equity"
       },
       {
-        "symbol": "CBZ",
-        "name": "CBIZ, Inc.",
-        "price": 55.09,
-        "change_24h": 0.35,
+        "symbol": "NBIS",
+        "name": "Nebius Group N.V.",
+        "price": 185.78,
+        "change_24h": 25.34,
         "asset": "equity"
       }
     ],
     "losers": [
       {
-        "symbol": "PSN",
-        "name": "Parsons Corporation",
-        "price": 41.73,
-        "change_24h": 3.42,
+        "symbol": "ALNY",
+        "name": "Alnylam Pharmaceuticals, Inc.",
+        "price": 216.49,
+        "change_24h": -24.47,
         "asset": "equity"
       },
       {
-        "symbol": "LMND",
-        "name": "Lemonade, Inc.",
-        "price": 47.71,
-        "change_24h": 0.91,
+        "symbol": "LKQ",
+        "name": "LKQ Corporation",
+        "price": 21.7,
+        "change_24h": -17.79,
         "asset": "equity"
       },
       {
-        "symbol": "LII",
-        "name": "Lennox International, Inc.",
-        "price": 430.02,
-        "change_24h": -20.97,
+        "symbol": "RTO",
+        "name": "Rentokil Initial plc",
+        "price": 24.3,
+        "change_24h": -17.43,
         "asset": "equity"
       },
       {
-        "symbol": "FRVO",
-        "name": "Fervo Energy Company",
-        "price": 17.76,
-        "change_24h": 3.98,
+        "symbol": "HLI",
+        "name": "Houlihan Lokey, Inc.",
+        "price": 114.5,
+        "change_24h": -17.76,
         "asset": "equity"
       },
       {
-        "symbol": "AAUC",
-        "name": "Allied Gold Corporation",
-        "price": 17.38,
-        "change_24h": 1.19,
+        "symbol": "MDGL",
+        "name": "Madrigal Pharmaceuticals, Inc.",
+        "price": 470.14,
+        "change_24h": -14.03,
         "asset": "equity"
       }
     ]
@@ -82,14 +82,14 @@
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.421262,
+        "price": 0.419966,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "INJ",
         "name": "Injective",
-        "price": 4.8,
+        "price": 4.81,
         "change_24h": 5.1,
         "asset": "crypto"
       },
@@ -103,7 +103,7 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00195,
+        "price": 0.001947,
         "change_24h": 4.0,
         "asset": "crypto"
       },
@@ -119,28 +119,28 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.013,
+        "price": 1.025,
         "change_24h": -10.6,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.21,
+        "price": 12.2,
         "change_24h": -6.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034384,
+        "price": 0.034497,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 53.15,
+        "price": 53.25,
         "change_24h": -3.1,
         "asset": "crypto"
       },
