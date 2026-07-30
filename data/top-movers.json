@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T21:00:24Z",
+  "updated_at": "2026-07-30T21:15:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.4,
-        "change_24h": 10.4,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.001997,
-        "change_24h": 5.5,
+        "price": 4.38,
+        "change_24h": 12.8,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.723417,
-        "change_24h": 5.1,
+        "price": 0.720792,
+        "change_24h": 9.3,
         "asset": "crypto"
       },
       {
-        "symbol": "BNB",
-        "name": "BNB",
-        "price": 592.35,
-        "change_24h": 3.8,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.001998,
+        "change_24h": 8.1,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 218.03,
-        "change_24h": 3.4,
+        "price": 217.39,
+        "change_24h": 6.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.68,
+        "change_24h": 6.2,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.980191,
-        "change_24h": -15.9,
+        "price": 0.980486,
+        "change_24h": -14.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.03433,
-        "change_24h": -4.3,
+        "price": 0.034375,
+        "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "XDC",
         "name": "XDC Network",
-        "price": 0.026096,
-        "change_24h": -4.0,
+        "price": 0.026146,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 12.25,
-        "change_24h": -2.8,
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 3.79,
+        "change_24h": -1.9,
         "asset": "crypto"
       },
       {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 5e-06,
-        "change_24h": -2.3,
+        "symbol": "RAIN",
+        "name": "Rain",
+        "price": 0.013359,
+        "change_24h": -1.4,
         "asset": "crypto"
       }
     ]
