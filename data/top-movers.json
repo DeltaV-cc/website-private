@@ -1,20 +1,20 @@
 {
-  "updated_at": "2026-07-30T13:15:19Z",
+  "updated_at": "2026-07-30T13:30:27Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "HURN",
         "name": "Huron Consulting Group Inc.",
-        "price": 170.37,
-        "change_24h": 40.37,
+        "price": 166.0,
+        "change_24h": -2.57,
         "asset": "equity"
       },
       {
         "symbol": "MANH",
         "name": "Manhattan Associates, Inc.",
-        "price": 204.02,
-        "change_24h": 21.32,
+        "price": 195.0,
+        "change_24h": -4.42,
         "asset": "equity"
       },
       {
@@ -27,15 +27,15 @@
       {
         "symbol": "EXLS",
         "name": "ExlService Holdings, Inc.",
-        "price": 35.99,
-        "change_24h": 17.88,
+        "price": 35.83,
+        "change_24h": -0.45,
         "asset": "equity"
       },
       {
         "symbol": "CBZ",
         "name": "CBIZ, Inc.",
-        "price": 54.9,
-        "change_24h": 17.56,
+        "price": 55.09,
+        "change_24h": 0.35,
         "asset": "equity"
       }
     ],
@@ -43,15 +43,15 @@
       {
         "symbol": "PSN",
         "name": "Parsons Corporation",
-        "price": 40.32,
-        "change_24h": -35.0,
+        "price": 41.73,
+        "change_24h": 3.42,
         "asset": "equity"
       },
       {
         "symbol": "LMND",
         "name": "Lemonade, Inc.",
-        "price": 47.38,
-        "change_24h": -23.72,
+        "price": 47.71,
+        "change_24h": 0.91,
         "asset": "equity"
       },
       {
@@ -64,15 +64,15 @@
       {
         "symbol": "FRVO",
         "name": "Fervo Energy Company",
-        "price": 17.08,
-        "change_24h": -19.13,
+        "price": 17.76,
+        "change_24h": 3.98,
         "asset": "equity"
       },
       {
         "symbol": "AAUC",
         "name": "Allied Gold Corporation",
-        "price": 17.03,
-        "change_24h": -18.28,
+        "price": 17.38,
+        "change_24h": 1.19,
         "asset": "equity"
       }
     ]
@@ -82,21 +82,28 @@
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.421485,
+        "price": 0.421262,
+        "change_24h": 5.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "INJ",
+        "name": "Injective",
+        "price": 4.8,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.21,
+        "price": 4.23,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.001946,
+        "price": 0.00195,
         "change_24h": 4.0,
         "asset": "crypto"
       },
@@ -106,41 +113,34 @@
         "price": 1.65,
         "change_24h": 3.8,
         "asset": "crypto"
-      },
-      {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.27,
-        "change_24h": 3.8,
-        "asset": "crypto"
       }
     ],
     "losers": [
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.018,
+        "price": 1.013,
         "change_24h": -10.6,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.07,
+        "price": 12.21,
         "change_24h": -6.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.0343,
+        "price": 0.034384,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 53.05,
+        "price": 53.15,
         "change_24h": -3.1,
         "asset": "crypto"
       },
