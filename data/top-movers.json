@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T10:11:06Z",
+  "updated_at": "2026-07-30T10:15:53Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.084559,
+        "price": 0.083882,
         "change_24h": 6.5,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.418916,
+        "price": 0.417622,
         "change_24h": 3.8,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.02,
+        "price": 4.01,
         "change_24h": 3.6,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 476.93,
+        "price": 476.65,
         "change_24h": 3.2,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 0.953762,
+        "price": 0.957897,
         "change_24h": -18.0,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.034323,
+        "price": 0.034297,
         "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.23,
+        "price": 12.22,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.077453,
+        "price": 0.077535,
         "change_24h": -2.7,
         "asset": "crypto"
       },
