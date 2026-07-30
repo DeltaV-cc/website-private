@@ -1,21 +1,7 @@
 {
-  "updated": "2026-07-29T00:00:00Z",
-  "period": "2026-07-29 \u2192 2026-09-12",
+  "updated": "2026-07-30T00:00:00Z",
+  "period": "2026-07-30 \u2192 2026-09-13",
   "events": [
-    {
-      "date": "2026-07-29",
-      "label": "US Treasury Auction",
-      "currency": "USD",
-      "impact": "low",
-      "country": "US"
-    },
-    {
-      "date": "2026-07-29",
-      "label": "FOMC Rate Decision",
-      "currency": "USD",
-      "impact": "high",
-      "country": "US"
-    },
     {
       "date": "2026-07-30",
       "label": "US Initial Jobless Claims",
@@ -157,13 +143,6 @@
       "country": "UK"
     },
     {
-      "date": "2026-08-19",
-      "label": "FOMC Meeting Minutes",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
       "date": "2026-08-20",
       "label": "US Initial Jobless Claims",
       "currency": "USD",
@@ -281,6 +260,27 @@
       "currency": "USD",
       "impact": "low",
       "country": "US"
+    },
+    {
+      "date": "2026-08-27",
+      "label": "China Trade Balance",
+      "currency": "CNY",
+      "impact": "medium",
+      "country": "CN"
+    },
+    {
+      "date": "2026-09-02",
+      "label": "US Treasury Auction",
+      "currency": "USD",
+      "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-09-02",
+      "label": "Swiss CPI (YoY)",
+      "currency": "CHF",
+      "impact": "medium",
+      "country": "CH"
     }
   ]
 }
