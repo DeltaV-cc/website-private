@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-07-31T15:45:51Z",
+  "updated_at": "2026-07-31T16:00:53Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "IESC",
         "name": "IES Holdings, Inc.",
-        "price": 754.17,
-        "change_24h": 31.95,
+        "price": 758.31,
+        "change_24h": 32.68,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 57.38,
-        "change_24h": 22.24,
+        "price": 58.06,
+        "change_24h": 23.7,
         "asset": "equity"
       },
       {
         "symbol": "SPXC",
         "name": "SPX Technologies, Inc.",
-        "price": 229.35,
-        "change_24h": 15.08,
-        "asset": "equity"
-      },
-      {
-        "symbol": "CDNA",
-        "name": "CareDx, Inc.",
-        "price": 43.41,
-        "change_24h": 13.95,
+        "price": 229.12,
+        "change_24h": 14.96,
         "asset": "equity"
       },
       {
         "symbol": "NWL",
         "name": "Newell Brands Inc.",
-        "price": 5.825,
-        "change_24h": 13.33,
+        "price": 5.91,
+        "change_24h": 14.98,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AMZN",
+        "name": "Amazon.com, Inc.",
+        "price": 269.26,
+        "change_24h": 14.34,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "RBLX",
         "name": "Roblox Corporation",
-        "price": 34.25,
-        "change_24h": -29.63,
+        "price": 34.37,
+        "change_24h": -29.39,
         "asset": "equity"
       },
       {
         "symbol": "VCYT",
         "name": "Veracyte, Inc.",
-        "price": 45.01,
-        "change_24h": -24.71,
+        "price": 45.59,
+        "change_24h": -23.73,
         "asset": "equity"
       },
       {
         "symbol": "RDDT",
         "name": "Reddit, Inc.",
-        "price": 136.33,
-        "change_24h": -23.43,
+        "price": 137.6,
+        "change_24h": -22.71,
         "asset": "equity"
       },
       {
         "symbol": "GDDY",
         "name": "GoDaddy Inc.",
-        "price": 79.16,
-        "change_24h": -20.31,
+        "price": 78.91,
+        "change_24h": -20.56,
         "asset": "equity"
       },
       {
-        "symbol": "PRM",
-        "name": "Perimeter Solutions, SA",
-        "price": 30.18,
-        "change_24h": -18.94,
+        "symbol": "MTZ",
+        "name": "MasTec, Inc.",
+        "price": 264.0,
+        "change_24h": -18.63,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.24,
+        "price": 1.22,
         "change_24h": 18.7,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.051205,
+        "price": 0.050855,
         "change_24h": 14.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HASH",
-        "name": "Provenance Blockchain",
-        "price": 0.009511,
-        "change_24h": 11.0,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 4.17,
+        "price": 4.13,
         "change_24h": 9.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002057,
+        "price": 0.002071,
         "change_24h": 8.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.039,
+        "change_24h": 3.7,
         "asset": "crypto"
       }
     ],
@@ -126,14 +126,14 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 206.73,
+        "price": 206.88,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.399636,
+        "price": 0.398909,
         "change_24h": -5.1,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.09,
+        "price": 8.11,
         "change_24h": -4.7,
         "asset": "crypto"
       }
