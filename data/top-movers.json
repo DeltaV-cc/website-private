@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-07-31T15:30:50Z",
+  "updated_at": "2026-07-31T15:45:51Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "IESC",
         "name": "IES Holdings, Inc.",
-        "price": 747.88,
-        "change_24h": 30.85,
+        "price": 754.17,
+        "change_24h": 31.95,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 57.69,
-        "change_24h": 22.9,
+        "price": 57.38,
+        "change_24h": 22.24,
         "asset": "equity"
       },
       {
         "symbol": "SPXC",
         "name": "SPX Technologies, Inc.",
-        "price": 227.87,
-        "change_24h": 14.33,
+        "price": 229.35,
+        "change_24h": 15.08,
         "asset": "equity"
       },
       {
-        "symbol": "AMZN",
-        "name": "Amazon.com, Inc.",
-        "price": 266.92,
-        "change_24h": 13.34,
+        "symbol": "CDNA",
+        "name": "CareDx, Inc.",
+        "price": 43.41,
+        "change_24h": 13.95,
         "asset": "equity"
       },
       {
-        "symbol": "BSBR",
-        "name": "Banco Santander Brasil SA",
-        "price": 5.665,
-        "change_24h": 12.18,
+        "symbol": "NWL",
+        "name": "Newell Brands Inc.",
+        "price": 5.825,
+        "change_24h": 13.33,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "RBLX",
         "name": "Roblox Corporation",
-        "price": 34.0,
-        "change_24h": -30.14,
+        "price": 34.25,
+        "change_24h": -29.63,
         "asset": "equity"
       },
       {
         "symbol": "VCYT",
         "name": "Veracyte, Inc.",
-        "price": 44.8,
-        "change_24h": -25.06,
+        "price": 45.01,
+        "change_24h": -24.71,
         "asset": "equity"
       },
       {
         "symbol": "RDDT",
         "name": "Reddit, Inc.",
-        "price": 135.5,
-        "change_24h": -23.89,
+        "price": 136.33,
+        "change_24h": -23.43,
         "asset": "equity"
       },
       {
         "symbol": "GDDY",
         "name": "GoDaddy Inc.",
-        "price": 79.23,
-        "change_24h": -20.24,
+        "price": 79.16,
+        "change_24h": -20.31,
         "asset": "equity"
       },
       {
         "symbol": "PRM",
         "name": "Perimeter Solutions, SA",
-        "price": 30.25,
-        "change_24h": -18.75,
+        "price": 30.18,
+        "change_24h": -18.94,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.21,
+        "price": 1.24,
         "change_24h": 18.7,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.050822,
+        "price": 0.051205,
         "change_24h": 14.7,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.009038,
+        "price": 0.009511,
         "change_24h": 11.0,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 4.12,
+        "price": 4.17,
         "change_24h": 9.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002116,
+        "price": 0.002057,
         "change_24h": 8.3,
         "asset": "crypto"
       }
@@ -126,14 +126,14 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 206.47,
+        "price": 206.73,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.398765,
+        "price": 0.399636,
         "change_24h": -5.1,
         "asset": "crypto"
       },
