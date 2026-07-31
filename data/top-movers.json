@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-31T12:15:30Z",
+  "updated_at": "2026-07-31T12:30:47Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.19,
+        "price": 1.23,
         "change_24h": 19.6,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.33,
+        "price": 4.34,
         "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002009,
+        "price": 0.002036,
         "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.050127,
+        "price": 0.049835,
         "change_24h": 5.0,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012764,
+        "price": 0.012761,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.23,
+        "price": 1.24,
         "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.40042,
+        "price": 0.400556,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 457.89,
+        "price": 458.89,
         "change_24h": -2.9,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.075623,
+        "price": 0.075825,
         "change_24h": -2.8,
         "asset": "crypto"
       }
