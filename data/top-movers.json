@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-07-31T14:15:55Z",
+  "updated_at": "2026-07-31T14:30:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "IESC",
         "name": "IES Holdings, Inc.",
-        "price": 720.5,
-        "change_24h": 26.06,
-        "asset": "equity"
-      },
-      {
-        "symbol": "NWL",
-        "name": "Newell Brands Inc.",
-        "price": 6.25,
-        "change_24h": 21.6,
+        "price": 731.14,
+        "change_24h": 27.92,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 56.23,
-        "change_24h": 19.76,
+        "price": 59.29,
+        "change_24h": 26.31,
+        "asset": "equity"
+      },
+      {
+        "symbol": "NWL",
+        "name": "Newell Brands Inc.",
+        "price": 6.155,
+        "change_24h": 19.75,
         "asset": "equity"
       },
       {
         "symbol": "SPXC",
         "name": "SPX Technologies, Inc.",
-        "price": 230.06,
-        "change_24h": 15.44,
+        "price": 230.2,
+        "change_24h": 15.5,
         "asset": "equity"
       },
       {
         "symbol": "AMZN",
         "name": "Amazon.com, Inc.",
-        "price": 269.14,
-        "change_24h": 14.29,
+        "price": 270.12,
+        "change_24h": 14.7,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "RBLX",
         "name": "Roblox Corporation",
-        "price": 34.32,
-        "change_24h": -29.48,
+        "price": 34.85,
+        "change_24h": -28.39,
         "asset": "equity"
       },
       {
         "symbol": "VCYT",
         "name": "Veracyte, Inc.",
-        "price": 44.52,
-        "change_24h": -25.53,
+        "price": 44.63,
+        "change_24h": -25.34,
         "asset": "equity"
       },
       {
         "symbol": "RDDT",
         "name": "Reddit, Inc.",
-        "price": 136.96,
-        "change_24h": -23.07,
+        "price": 138.84,
+        "change_24h": -22.02,
         "asset": "equity"
       },
       {
         "symbol": "GDDY",
         "name": "GoDaddy Inc.",
-        "price": 77.66,
-        "change_24h": -21.82,
+        "price": 78.08,
+        "change_24h": -21.39,
         "asset": "equity"
       },
       {
-        "symbol": "ALHC",
-        "name": "Alignment Healthcare, Inc.",
-        "price": 14.93,
-        "change_24h": -19.79,
+        "symbol": "MTZ",
+        "name": "MasTec, Inc.",
+        "price": 263.56,
+        "change_24h": -18.76,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.32,
+        "price": 1.24,
         "change_24h": 26.5,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 4.19,
+        "price": 4.18,
         "change_24h": 12.5,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.051423,
+        "price": 0.051461,
         "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "FIGR_HELOC",
         "name": "Figure Heloc",
-        "price": 1.038,
+        "price": 1.039,
         "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.719694,
+        "price": 0.717232,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.13,
+        "price": 2.12,
         "change_24h": -5.6,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.400588,
+        "price": 0.4015,
         "change_24h": -5.3,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012754,
+        "price": 0.012773,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.24,
+        "price": 1.23,
         "change_24h": -4.1,
         "asset": "crypto"
       },
