@@ -1,78 +1,78 @@
 {
-  "updated_at": "2026-07-31T13:30:29Z",
+  "updated_at": "2026-07-31T13:45:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "FRVO",
-        "name": "Fervo Energy Company",
-        "price": 22.65,
-        "change_24h": 1.57,
+        "symbol": "AXTI",
+        "name": "AXT Inc",
+        "price": 60.22,
+        "change_24h": 28.29,
         "asset": "equity"
       },
       {
-        "symbol": "IREN",
-        "name": "IREN LIMITED",
-        "price": 40.39,
-        "change_24h": 5.58,
+        "symbol": "NWL",
+        "name": "Newell Brands Inc.",
+        "price": 6.41,
+        "change_24h": 24.71,
         "asset": "equity"
       },
       {
-        "symbol": "MKTX",
-        "name": "MarketAxess Holdings, Inc.",
-        "price": 162.77,
-        "change_24h": 0.01,
+        "symbol": "IESC",
+        "name": "IES Holdings, Inc.",
+        "price": 684.94,
+        "change_24h": 19.84,
         "asset": "equity"
       },
       {
-        "symbol": "BHC",
-        "name": "Bausch Health Companies Inc.",
-        "price": 6.02,
-        "change_24h": -0.11,
+        "symbol": "SPXC",
+        "name": "SPX Technologies, Inc.",
+        "price": 234.33,
+        "change_24h": 17.68,
         "asset": "equity"
       },
       {
-        "symbol": "CIFR",
-        "name": "Cipher Digital Inc.",
-        "price": 23.88,
-        "change_24h": 5.41,
+        "symbol": "DLB",
+        "name": "Dolby Laboratories",
+        "price": 58.51,
+        "change_24h": 13.17,
         "asset": "equity"
       }
     ],
     "losers": [
       {
-        "symbol": "ALNY",
-        "name": "Alnylam Pharmaceuticals, Inc.",
-        "price": 205.12,
-        "change_24h": -0.17,
+        "symbol": "RBLX",
+        "name": "Roblox Corporation",
+        "price": 35.9,
+        "change_24h": -26.16,
         "asset": "equity"
       },
       {
-        "symbol": "RTO",
-        "name": "Rentokil Initial plc",
-        "price": 23.55,
-        "change_24h": -2.91,
+        "symbol": "GDDY",
+        "name": "GoDaddy Inc.",
+        "price": 74.76,
+        "change_24h": -24.7,
         "asset": "equity"
       },
       {
-        "symbol": "GPI",
-        "name": "Group 1 Automotive, Inc.",
-        "price": 290.89,
-        "change_24h": -1.95,
+        "symbol": "VCYT",
+        "name": "Veracyte, Inc.",
+        "price": 45.59,
+        "change_24h": -23.74,
         "asset": "equity"
       },
       {
-        "symbol": "FICO",
-        "name": "Fair Isaac Corporation",
-        "price": 1114.95,
-        "change_24h": -2.13,
+        "symbol": "ALHC",
+        "name": "Alignment Healthcare, Inc.",
+        "price": 14.67,
+        "change_24h": -21.17,
         "asset": "equity"
       },
       {
-        "symbol": "CHRW",
-        "name": "C.H. Robinson Worldwide, Inc.",
-        "price": 146.62,
-        "change_24h": -0.2,
+        "symbol": "PRM",
+        "name": "Perimeter Solutions, SA",
+        "price": 30.36,
+        "change_24h": -18.48,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.24,
+        "price": 1.28,
         "change_24h": 35.6,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 4.19,
+        "price": 4.22,
         "change_24h": 8.5,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.051016,
+        "price": 0.050213,
         "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002066,
+        "price": 0.002049,
         "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.36,
+        "price": 4.33,
         "change_24h": 5.2,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012841,
+        "price": 0.012819,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.403981,
+        "price": 0.402192,
         "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 459.57,
+        "price": 459.51,
         "change_24h": -4.0,
         "asset": "crypto"
       },
