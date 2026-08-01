@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-01T12:19:02Z",
+  "updated_at": "2026-08-01T12:30:38Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 4.71,
+        "price": 4.67,
         "change_24h": 15.7,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.086821,
+        "price": 0.087179,
         "change_24h": 6.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002138,
+        "price": 0.002147,
         "change_24h": 6.5,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.084,
+        "price": 1.089,
         "change_24h": 5.2,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 4.05,
+        "price": 4.07,
         "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 91.2,
+        "price": 91.67,
         "change_24h": -6.6,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.385765,
+        "price": 0.387944,
         "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 52.29,
+        "price": 52.26,
         "change_24h": -5.0,
         "asset": "crypto"
       }
