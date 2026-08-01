@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-01T13:14:16Z",
+  "updated_at": "2026-08-01T13:15:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,7 +89,7 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.087564,
+        "price": 0.087395,
         "change_24h": 7.2,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002134,
+        "price": 0.002136,
         "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.052708,
+        "price": 0.05278,
         "change_24h": 5.1,
         "asset": "crypto"
       }
@@ -126,7 +126,7 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.088,
+        "price": 1.087,
         "change_24h": -6.3,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 91.41,
+        "price": 91.45,
         "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 52.28,
+        "price": 52.32,
         "change_24h": -5.0,
         "asset": "crypto"
       }
