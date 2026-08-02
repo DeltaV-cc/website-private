@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-01T13:15:44Z",
+  "updated_at": "2026-08-02T18:15:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -28,7 +28,7 @@
         "symbol": "AMBA",
         "name": "Ambarella, Inc.",
         "price": 86.0,
-        "change_24h": 16.07,
+        "change_24h": 16.08,
         "asset": "equity"
       },
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 4.7,
-        "change_24h": 13.3,
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.089354,
+        "change_24h": 10.3,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.087395,
-        "change_24h": 7.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 5e-06,
-        "change_24h": 6.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002136,
-        "change_24h": 6.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "US",
-        "name": "Talus",
-        "price": 0.05278,
-        "change_24h": 5.1,
-        "asset": "crypto"
-      }
-    ],
-    "losers": [
-      {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 4.07,
-        "change_24h": -6.6,
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.188861,
+        "change_24h": 8.5,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.087,
-        "change_24h": -6.3,
+        "price": 1.17,
+        "change_24h": 8.5,
         "asset": "crypto"
       },
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.05,
-        "change_24h": -6.2,
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.08502,
+        "change_24h": 8.5,
         "asset": "crypto"
       },
       {
-        "symbol": "AAVE",
-        "name": "Aave",
-        "price": 91.45,
-        "change_24h": -6.1,
+        "symbol": "PEPE",
+        "name": "Pepe",
+        "price": 3e-06,
+        "change_24h": 4.6,
+        "asset": "crypto"
+      }
+    ],
+    "losers": [
+      {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 3.48,
+        "change_24h": -26.3,
         "asset": "crypto"
       },
       {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 52.32,
-        "change_24h": -5.0,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.587083,
+        "change_24h": -5.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.031806,
+        "change_24h": -5.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.001,
+        "change_24h": -3.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "QNT",
+        "name": "Quant",
+        "price": 60.33,
+        "change_24h": -2.2,
         "asset": "crypto"
       }
     ]
