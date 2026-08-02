@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-02T19:15:51Z",
+  "updated_at": "2026-08-02T19:30:59Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.089109,
+        "price": 0.089045,
         "change_24h": 10.3,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.188796,
+        "price": 0.188483,
         "change_24h": 9.2,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.085566,
+        "price": 0.085269,
         "change_24h": 8.5,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.17,
+        "price": 1.19,
         "change_24h": 8.4,
         "asset": "crypto"
       },
@@ -119,21 +119,21 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.39,
+        "price": 3.35,
         "change_24h": -31.5,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031662,
+        "price": 0.031743,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.586739,
+        "price": 0.583078,
         "change_24h": -5.8,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.055491,
+        "price": 0.055048,
         "change_24h": -2.7,
         "asset": "crypto"
       }
