@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T11:37:12Z",
+  "updated_at": "2026-08-03T11:45:15Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.054569,
+        "price": 0.054794,
         "change_24h": 9.0,
         "asset": "crypto"
       },
@@ -96,14 +96,14 @@
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.086337,
+        "price": 0.086269,
         "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 52.94,
+        "price": 53.07,
         "change_24h": 1.8,
         "asset": "crypto"
       },
@@ -126,14 +126,14 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.542549,
+        "price": 0.545653,
         "change_24h": -12.2,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.370962,
+        "price": 0.372108,
         "change_24h": -4.6,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082643,
+        "price": 0.082561,
         "change_24h": -3.8,
         "asset": "crypto"
       }
