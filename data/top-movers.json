@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T17:00:56Z",
+  "updated_at": "2026-08-03T17:15:58Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -11,31 +11,31 @@
         "asset": "equity"
       },
       {
-        "symbol": "BFLY",
-        "name": "Butterfly Network, Inc.",
-        "price": 8.195,
-        "change_24h": 15.26,
-        "asset": "equity"
-      },
-      {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 82.69,
-        "change_24h": 15.21,
-        "asset": "equity"
-      },
-      {
-        "symbol": "NBIS",
-        "name": "Nebius Group N.V.",
-        "price": 217.25,
-        "change_24h": 14.1,
+        "price": 83.21,
+        "change_24h": 15.94,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 68.53,
-        "change_24h": 13.4,
+        "price": 69.73,
+        "change_24h": 15.39,
+        "asset": "equity"
+      },
+      {
+        "symbol": "BFLY",
+        "name": "Butterfly Network, Inc.",
+        "price": 8.16,
+        "change_24h": 14.78,
+        "asset": "equity"
+      },
+      {
+        "symbol": "NBIS",
+        "name": "Nebius Group N.V.",
+        "price": 217.44,
+        "change_24h": 14.2,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SRAD",
         "name": "Sportradar Group AG",
-        "price": 12.2,
-        "change_24h": -16.09,
+        "price": 12.24,
+        "change_24h": -15.82,
         "asset": "equity"
       },
       {
         "symbol": "GME",
         "name": "GameStop Corporation",
-        "price": 18.73,
-        "change_24h": -13.77,
+        "price": 18.72,
+        "change_24h": -13.81,
         "asset": "equity"
       },
       {
         "symbol": "KRYS",
         "name": "Krystal Biotech, Inc.",
-        "price": 298.6,
-        "change_24h": -12.46,
+        "price": 301.87,
+        "change_24h": -11.51,
         "asset": "equity"
       },
       {
         "symbol": "TGTX",
         "name": "TG Therapeutics, Inc.",
-        "price": 45.97,
-        "change_24h": -11.65,
+        "price": 46.23,
+        "change_24h": -11.16,
         "asset": "equity"
       },
       {
         "symbol": "AZN",
         "name": "AstraZeneca PLC",
-        "price": 156.48,
-        "change_24h": -7.76,
+        "price": 156.87,
+        "change_24h": -7.53,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.34,
-        "change_24h": 7.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ALGO",
-        "name": "Algorand",
-        "price": 0.088695,
-        "change_24h": 6.0,
+        "price": 1.35,
+        "change_24h": 6.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.51,
-        "change_24h": 5.6,
+        "price": 54.46,
+        "change_24h": 6.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.093162,
+        "change_24h": 5.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.088677,
+        "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 491.05,
-        "change_24h": 3.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "DOT",
-        "name": "Polkadot",
-        "price": 0.824257,
-        "change_24h": 3.5,
+        "price": 491.73,
+        "change_24h": 4.4,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.72,
-        "change_24h": -26.5,
+        "price": 2.76,
+        "change_24h": -29.4,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.543389,
-        "change_24h": -9.2,
+        "price": 0.546296,
+        "change_24h": -8.5,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
         "price": 3.91,
-        "change_24h": -6.0,
+        "change_24h": -6.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.030977,
+        "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082882,
-        "change_24h": -3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002152,
-        "change_24h": -3.3,
+        "price": 0.082901,
+        "change_24h": -3.8,
         "asset": "crypto"
       }
     ]
