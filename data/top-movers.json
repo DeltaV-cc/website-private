@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-03T13:15:26Z",
+  "updated_at": "2026-08-03T13:30:32Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "IESC",
         "name": "IES Holdings, Inc.",
-        "price": 744.54,
-        "change_24h": 30.27,
+        "price": 735.68,
+        "change_24h": -1.19,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 60.43,
-        "change_24h": 28.74,
+        "price": 57.2,
+        "change_24h": -5.35,
         "asset": "equity"
       },
       {
         "symbol": "ITGR",
         "name": "Integer Holdings Corporation",
-        "price": 121.21,
-        "change_24h": 20.18,
+        "price": 124.86,
+        "change_24h": 2.99,
         "asset": "equity"
       },
       {
         "symbol": "AMBA",
         "name": "Ambarella, Inc.",
-        "price": 86.0,
-        "change_24h": 16.08,
+        "price": 83.72,
+        "change_24h": -2.66,
         "asset": "equity"
       },
       {
         "symbol": "AMZN",
         "name": "Amazon.com, Inc.",
-        "price": 271.58,
-        "change_24h": 15.32,
+        "price": 278.94,
+        "change_24h": 2.71,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "RBLX",
         "name": "Roblox Corporation",
-        "price": 35.6,
-        "change_24h": -26.85,
+        "price": 35.4,
+        "change_24h": -0.58,
         "asset": "equity"
       },
       {
         "symbol": "VCYT",
         "name": "Veracyte, Inc.",
-        "price": 46.32,
-        "change_24h": -22.52,
+        "price": 46.36,
+        "change_24h": 0.09,
         "asset": "equity"
       },
       {
         "symbol": "RDDT",
         "name": "Reddit, Inc.",
-        "price": 140.67,
-        "change_24h": -20.99,
+        "price": 141.91,
+        "change_24h": 0.88,
         "asset": "equity"
       },
       {
         "symbol": "ALHC",
         "name": "Alignment Healthcare, Inc.",
-        "price": 14.85,
-        "change_24h": -20.2,
+        "price": 14.53,
+        "change_24h": -2.11,
         "asset": "equity"
       },
       {
         "symbol": "MTZ",
         "name": "MasTec, Inc.",
-        "price": 263.1,
-        "change_24h": -18.91,
+        "price": 257.8,
+        "change_24h": -1.96,
         "asset": "equity"
       }
     ]
@@ -82,14 +82,14 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.054482,
+        "price": 0.054449,
         "change_24h": 8.9,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.086562,
+        "price": 0.086628,
         "change_24h": 6.8,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.091345,
+        "price": 0.091851,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 52.89,
+        "price": 53.2,
         "change_24h": 2.9,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.33,
+        "price": 3.2,
         "change_24h": -22.3,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.534817,
+        "price": 0.535381,
         "change_24h": -10.8,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082513,
+        "price": 0.082671,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "BGB",
         "name": "Bitget Token",
-        "price": 1.58,
+        "price": 1.59,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.054405,
+        "price": 0.054398,
         "change_24h": -3.0,
         "asset": "crypto"
       }
