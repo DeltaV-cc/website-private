@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-03T17:46:00Z",
+  "updated_at": "2026-08-03T18:01:01Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ATKR",
         "name": "Atkore Inc.",
-        "price": 93.55,
-        "change_24h": 28.21,
+        "price": 93.45,
+        "change_24h": 28.09,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 70.22,
-        "change_24h": 16.19,
+        "price": 70.5,
+        "change_24h": 16.66,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 83.58,
-        "change_24h": 16.46,
+        "price": 83.76,
+        "change_24h": 16.71,
         "asset": "equity"
       },
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 220.24,
-        "change_24h": 15.66,
+        "price": 220.86,
+        "change_24h": 15.99,
         "asset": "equity"
       },
       {
         "symbol": "AAOI",
         "name": "Applied Optoelectronics, Inc.",
-        "price": 108.29,
-        "change_24h": 14.81,
+        "price": 109.21,
+        "change_24h": 15.79,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SRAD",
         "name": "Sportradar Group AG",
-        "price": 12.05,
-        "change_24h": -17.08,
+        "price": 12.14,
+        "change_24h": -16.51,
         "asset": "equity"
       },
       {
         "symbol": "GME",
         "name": "GameStop Corporation",
-        "price": 18.92,
-        "change_24h": -12.89,
+        "price": 18.79,
+        "change_24h": -13.47,
         "asset": "equity"
       },
       {
         "symbol": "KRYS",
         "name": "Krystal Biotech, Inc.",
-        "price": 302.82,
-        "change_24h": -11.23,
+        "price": 304.61,
+        "change_24h": -10.7,
         "asset": "equity"
       },
       {
         "symbol": "TGTX",
         "name": "TG Therapeutics, Inc.",
-        "price": 46.45,
-        "change_24h": -10.73,
+        "price": 46.85,
+        "change_24h": -9.96,
         "asset": "equity"
       },
       {
         "symbol": "ALMS",
         "name": "Alumis Inc.",
-        "price": 25.76,
-        "change_24h": -8.81,
+        "price": 25.84,
+        "change_24h": -8.53,
         "asset": "equity"
       }
     ]
@@ -89,28 +89,28 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.57,
+        "price": 54.6,
         "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.092124,
+        "price": 0.092512,
         "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.089954,
+        "price": 0.090452,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 489.8,
+        "price": 490.6,
         "change_24h": 4.4,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.78,
+        "price": 2.79,
         "change_24h": -29.4,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.548585,
+        "price": 0.546579,
         "change_24h": -8.5,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.94,
+        "price": 3.92,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.030815,
+        "price": 0.030789,
         "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082993,
+        "price": 0.083033,
         "change_24h": -3.8,
         "asset": "crypto"
       }
