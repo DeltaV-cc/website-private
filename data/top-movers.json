@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-03T18:16:02Z",
+  "updated_at": "2026-08-03T18:30:31Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ATKR",
         "name": "Atkore Inc.",
-        "price": 93.45,
-        "change_24h": 28.09,
-        "asset": "equity"
-      },
-      {
-        "symbol": "AXTI",
-        "name": "AXT Inc",
-        "price": 70.89,
-        "change_24h": 17.31,
+        "price": 93.4,
+        "change_24h": 28.02,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 83.91,
-        "change_24h": 16.92,
+        "price": 84.0,
+        "change_24h": 17.04,
         "asset": "equity"
       },
       {
         "symbol": "AAOI",
         "name": "Applied Optoelectronics, Inc.",
-        "price": 110.0,
-        "change_24h": 16.62,
+        "price": 110.44,
+        "change_24h": 17.09,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AXTI",
+        "name": "AXT Inc",
+        "price": 70.34,
+        "change_24h": 16.4,
         "asset": "equity"
       },
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 220.78,
-        "change_24h": 15.95,
+        "price": 220.08,
+        "change_24h": 15.58,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SRAD",
         "name": "Sportradar Group AG",
-        "price": 12.27,
-        "change_24h": -15.61,
+        "price": 12.37,
+        "change_24h": -14.94,
         "asset": "equity"
       },
       {
         "symbol": "GME",
         "name": "GameStop Corporation",
-        "price": 18.77,
-        "change_24h": -13.58,
+        "price": 18.79,
+        "change_24h": -13.51,
         "asset": "equity"
       },
       {
         "symbol": "TGTX",
         "name": "TG Therapeutics, Inc.",
-        "price": 46.65,
-        "change_24h": -10.34,
-        "asset": "equity"
-      },
-      {
-        "symbol": "KRYS",
-        "name": "Krystal Biotech, Inc.",
-        "price": 306.04,
-        "change_24h": -10.28,
+        "price": 46.39,
+        "change_24h": -10.84,
         "asset": "equity"
       },
       {
         "symbol": "ALMS",
         "name": "Alumis Inc.",
-        "price": 25.51,
-        "change_24h": -9.7,
+        "price": 25.72,
+        "change_24h": -8.96,
+        "asset": "equity"
+      },
+      {
+        "symbol": "KRYS",
+        "name": "Krystal Biotech, Inc.",
+        "price": 309.7,
+        "change_24h": -9.21,
         "asset": "equity"
       }
     ]
@@ -89,28 +89,28 @@
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.090851,
+        "price": 0.090708,
         "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.36,
+        "price": 12.35,
         "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.74,
+        "price": 54.56,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.82722,
+        "price": 0.82831,
         "change_24h": 4.3,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.78,
+        "price": 2.82,
         "change_24h": -28.7,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.548804,
+        "price": 0.548067,
         "change_24h": -7.7,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.92,
+        "price": 3.91,
         "change_24h": -6.6,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.083012,
+        "price": 0.082959,
         "change_24h": -3.1,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.113546,
+        "price": 0.11342,
         "change_24h": -2.6,
         "asset": "crypto"
       }
