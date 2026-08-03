@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02",
+  "updated": "2026-08-03",
   "models": [
     {
       "rank": 1,
@@ -39,6 +39,15 @@
     },
     {
       "rank": 5,
+      "name": "qwen3.8-max",
+      "vendor": "Alibaba",
+      "license": "proprietary",
+      "elo": 1496.0,
+      "ci": 10.0,
+      "votes": 3327
+    },
+    {
+      "rank": 6,
       "name": "claude-opus-4-7",
       "vendor": "Anthropic",
       "license": "proprietary",
@@ -47,7 +56,7 @@
       "votes": 55992
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "claude-opus-5-high",
       "vendor": "Anthropic",
       "license": "proprietary",
@@ -56,7 +65,7 @@
       "votes": 10704
     },
     {
-      "rank": 7,
+      "rank": 8,
       "name": "claude-opus-5-max",
       "vendor": "Anthropic",
       "license": "proprietary",
@@ -65,7 +74,7 @@
       "votes": 5124
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "muse-spark-1.1",
       "vendor": "Meta",
       "license": "proprietary",
@@ -74,7 +83,7 @@
       "votes": 12086
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "muse-spark",
       "vendor": "Meta",
       "license": "proprietary",
@@ -83,7 +92,7 @@
       "votes": 13486
     },
     {
-      "rank": 10,
+      "rank": 11,
       "name": "gemini-3-pro",
       "vendor": "Google",
       "license": "proprietary",
@@ -92,7 +101,7 @@
       "votes": 41241
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "gemini-3.1-pro-preview",
       "vendor": "Google",
       "license": "proprietary",
@@ -101,16 +110,16 @@
       "votes": 89133
     },
     {
-      "rank": 12,
+      "rank": 13,
       "name": "kimi-k3-max",
       "vendor": "Moonshot",
-      "license": null,
+      "license": "open",
       "elo": 1485.0,
       "ci": 10.0,
       "votes": 3556
     },
     {
-      "rank": 13,
+      "rank": 14,
       "name": "claude-opus-4-8-thinking",
       "vendor": "Anthropic",
       "license": "proprietary",
@@ -119,7 +128,7 @@
       "votes": 35303
     },
     {
-      "rank": 14,
+      "rank": 15,
       "name": "gpt-5.6-sol-xhigh",
       "vendor": "OpenAI",
       "license": "proprietary",
@@ -128,7 +137,7 @@
       "votes": 10716
     },
     {
-      "rank": 15,
+      "rank": 16,
       "name": "gemini-3.6-flash",
       "vendor": "Google",
       "license": "proprietary",
@@ -137,7 +146,7 @@
       "votes": 8575
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "gpt-5.5-high",
       "vendor": "OpenAI",
       "license": "proprietary",
@@ -146,7 +155,7 @@
       "votes": 49978
     },
     {
-      "rank": 17,
+      "rank": 18,
       "name": "gpt-5.4-high",
       "vendor": "OpenAI",
       "license": "proprietary",
@@ -155,7 +164,7 @@
       "votes": 60264
     },
     {
-      "rank": 18,
+      "rank": 19,
       "name": "gemini-3.5-flash-high",
       "vendor": "Google",
       "license": "proprietary",
@@ -164,22 +173,13 @@
       "votes": 10006
     },
     {
-      "rank": 19,
+      "rank": 20,
       "name": "gpt-5.5",
       "vendor": "OpenAI",
       "license": "proprietary",
       "elo": 1476.0,
       "ci": 4.0,
       "votes": 51172
-    },
-    {
-      "rank": 20,
-      "name": "gpt-5.2-chat-latest-20260210",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1476.0,
-      "ci": 4.0,
-      "votes": 34036
     }
   ]
 }
