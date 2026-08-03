@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T20:15:36Z",
+  "updated_at": "2026-08-03T20:30:37Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -69,10 +69,10 @@
         "asset": "equity"
       },
       {
-        "symbol": "ALMS",
-        "name": "Alumis Inc.",
-        "price": 26.12,
-        "change_24h": -7.54,
+        "symbol": "CVI",
+        "name": "CVR Energy Inc.",
+        "price": 32.89,
+        "change_24h": -7.66,
         "asset": "equity"
       }
     ]
@@ -82,14 +82,14 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.36,
+        "price": 1.37,
         "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.090915,
+        "price": 0.091148,
         "change_24h": 6.3,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.57,
+        "price": 54.62,
         "change_24h": 3.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.324587,
+        "price": 0.323417,
         "change_24h": 3.7,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.08,
+        "price": 3.07,
         "change_24h": -10.1,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.560906,
+        "price": 0.560307,
         "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.030499,
+        "price": 0.030547,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.083101,
+        "price": 0.083016,
         "change_24h": -3.3,
         "asset": "crypto"
       }
