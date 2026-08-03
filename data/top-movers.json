@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-02T22:05:49Z",
+  "updated_at": "2026-08-03T08:57:27Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.089665,
-        "change_24h": 11.9,
-        "asset": "crypto"
-      },
-      {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.18,
-        "change_24h": 9.7,
+        "price": 1.2,
+        "change_24h": 10.0,
         "asset": "crypto"
       },
       {
-        "symbol": "ADA",
-        "name": "Cardano",
-        "price": 0.189275,
-        "change_24h": 8.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "AVAX",
-        "name": "Avalanche",
-        "price": 6.65,
-        "change_24h": 7.6,
+        "symbol": "US",
+        "name": "Talus",
+        "price": 0.052458,
+        "change_24h": 5.4,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.084579,
-        "change_24h": 7.0,
+        "price": 0.0852,
+        "change_24h": 5.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ATOM",
+        "name": "Cosmos Hub",
+        "price": 1.27,
+        "change_24h": 0.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.082623,
+        "change_24h": 0.8,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.32,
-        "change_24h": -23.0,
+        "price": 3.23,
+        "change_24h": -16.0,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.583698,
-        "change_24h": -6.5,
+        "price": 0.533632,
+        "change_24h": -11.8,
         "asset": "crypto"
       },
       {
-        "symbol": "FIGR_HELOC",
-        "name": "Figure Heloc",
-        "price": 1.001,
-        "change_24h": -3.1,
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.36942,
+        "change_24h": -5.5,
         "asset": "crypto"
       },
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.080888,
-        "change_24h": -2.9,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002082,
+        "change_24h": -4.5,
         "asset": "crypto"
       },
       {
-        "symbol": "US",
-        "name": "Talus",
-        "price": 0.055208,
-        "change_24h": -2.3,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.082791,
+        "change_24h": -4.3,
         "asset": "crypto"
       }
     ]
