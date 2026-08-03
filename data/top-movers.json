@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T21:45:40Z",
+  "updated_at": "2026-08-03T22:00:41Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.091,
+        "price": 0.090862,
         "change_24h": 7.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.49,
+        "price": 12.44,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.092396,
+        "price": 0.092184,
         "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.823545,
+        "price": 0.822906,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.14,
+        "price": 3.13,
         "change_24h": -8.5,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.562896,
+        "price": 0.560521,
         "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031533,
+        "price": 0.031499,
         "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.083488,
+        "price": 0.083319,
         "change_24h": -3.6,
         "asset": "crypto"
       }
