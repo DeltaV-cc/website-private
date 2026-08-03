@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T13:00:24Z",
+  "updated_at": "2026-08-03T13:15:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.054454,
-        "change_24h": 11.7,
+        "price": 0.054482,
+        "change_24h": 8.9,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.087068,
-        "change_24h": 6.9,
+        "price": 0.086562,
+        "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.15,
-        "change_24h": 6.7,
+        "price": 1.14,
+        "change_24h": 5.8,
         "asset": "crypto"
       },
       {
-        "symbol": "NEXO",
-        "name": "NEXO",
-        "price": 0.73332,
-        "change_24h": 2.7,
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.091345,
+        "change_24h": 4.0,
         "asset": "crypto"
       },
       {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.28,
-        "change_24h": 2.6,
+        "symbol": "HYPE",
+        "name": "Hyperliquid",
+        "price": 52.89,
+        "change_24h": 2.9,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.28,
-        "change_24h": -17.1,
+        "price": 3.33,
+        "change_24h": -22.3,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.539785,
-        "change_24h": -10.4,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 4.07,
-        "change_24h": -3.9,
+        "price": 0.534817,
+        "change_24h": -10.8,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082413,
-        "change_24h": -3.8,
+        "price": 0.082513,
+        "change_24h": -4.1,
         "asset": "crypto"
       },
       {
-        "symbol": "ONDO",
-        "name": "Ondo",
-        "price": 0.373446,
-        "change_24h": -3.6,
+        "symbol": "BGB",
+        "name": "Bitget Token",
+        "price": 1.58,
+        "change_24h": -3.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLFI",
+        "name": "World Liberty Financial",
+        "price": 0.054405,
+        "change_24h": -3.0,
         "asset": "crypto"
       }
     ]
