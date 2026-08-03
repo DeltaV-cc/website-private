@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T12:30:20Z",
+  "updated_at": "2026-08-03T12:45:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "US",
         "name": "Talus",
-        "price": 0.054358,
+        "price": 0.054441,
         "change_24h": 11.7,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.086647,
+        "price": 0.087176,
         "change_24h": 6.9,
         "asset": "crypto"
       },
@@ -103,7 +103,7 @@
       {
         "symbol": "NEXO",
         "name": "NEXO",
-        "price": 0.730611,
+        "price": 0.730486,
         "change_24h": 2.7,
         "asset": "crypto"
       },
@@ -119,14 +119,14 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.37,
+        "price": 3.25,
         "change_24h": -17.1,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.55047,
+        "price": 0.542588,
         "change_24h": -10.4,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.082309,
+        "price": 0.082297,
         "change_24h": -3.8,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.372181,
+        "price": 0.372765,
         "change_24h": -3.6,
         "asset": "crypto"
       }
