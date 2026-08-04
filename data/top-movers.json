@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-04T13:20:43Z",
+  "updated_at": "2026-08-04T13:30:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ATKR",
         "name": "Atkore Inc.",
-        "price": 93.55,
-        "change_24h": 28.22,
+        "price": 93.44,
+        "change_24h": -0.04,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 85.76,
-        "change_24h": 19.49,
+        "price": 87.78,
+        "change_24h": 2.36,
         "asset": "equity"
       },
       {
         "symbol": "PLBL",
         "name": "Polibeli Group Ltd",
-        "price": 6.39,
-        "change_24h": 17.68,
+        "price": 6.32,
+        "change_24h": -1.1,
         "asset": "equity"
       },
       {
         "symbol": "AAOI",
         "name": "Applied Optoelectronics, Inc.",
-        "price": 110.21,
-        "change_24h": 16.85,
+        "price": 126.58,
+        "change_24h": 14.85,
         "asset": "equity"
       },
       {
         "symbol": "BFLY",
         "name": "Butterfly Network, Inc.",
-        "price": 8.22,
-        "change_24h": 15.61,
+        "price": 8.3805,
+        "change_24h": 2.08,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SRAD",
         "name": "Sportradar Group AG",
-        "price": 12.34,
-        "change_24h": -15.13,
+        "price": 12.41,
+        "change_24h": 0.57,
         "asset": "equity"
       },
       {
         "symbol": "GME",
         "name": "GameStop Corporation",
-        "price": 19.06,
-        "change_24h": -12.25,
+        "price": 19.01,
+        "change_24h": -0.26,
         "asset": "equity"
       },
       {
         "symbol": "TGTX",
         "name": "TG Therapeutics, Inc.",
-        "price": 46.17,
-        "change_24h": -11.26,
+        "price": 46.34,
+        "change_24h": 0.37,
         "asset": "equity"
       },
       {
         "symbol": "KRYS",
         "name": "Krystal Biotech, Inc.",
-        "price": 312.57,
-        "change_24h": -8.37,
+        "price": 315.96,
+        "change_24h": 1.09,
         "asset": "equity"
       },
       {
         "symbol": "CVI",
         "name": "CVR Energy Inc.",
-        "price": 32.89,
-        "change_24h": -7.66,
+        "price": 32.59,
+        "change_24h": -0.94,
         "asset": "equity"
       }
     ]
@@ -89,28 +89,28 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002226,
+        "price": 0.002228,
         "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "AVAX",
         "name": "Avalanche",
-        "price": 6.8,
+        "price": 6.76,
         "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 55.62,
+        "price": 55.59,
         "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.323292,
+        "price": 0.324358,
         "change_24h": 4.8,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.58,
+        "price": 2.55,
         "change_24h": -24.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.107979,
+        "price": 0.108045,
         "change_24h": -5.9,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.541498,
+        "price": 0.542798,
         "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "NEXO",
         "name": "NEXO",
-        "price": 0.717356,
+        "price": 0.717644,
         "change_24h": -2.3,
         "asset": "crypto"
       }
