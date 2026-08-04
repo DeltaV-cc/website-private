@@ -208,34 +208,62 @@ export default function WeeklyDeltaFinancialBriefAugust03() {
       {/* ========================================================
           PHAROS WATCH
           ======================================================== */}
-      <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Pharos Watch — Stablecoins</h2>
+      <h2 className="text-2xl font-semibold text-[#ededed] mt-10 mb-4">Pharos Watch — Stablecoins & Liquidity</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
-        <div className="grid md:grid-cols-3 gap-3 mb-4">
+        <div className="text-xs text-[#666] uppercase tracking-[1px] mb-4">Market Cohorts</div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Total Stablecoin MCap</div>
-            <div className="text-lg font-mono text-[var(--accent-green)]">~$200B+</div>
-            <div className="text-[10px] text-[#666]">Embedded in $2.26T total crypto MCap</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USDT</div>
+            <div className="text-lg font-mono text-[var(--accent-green)]">$183.1B</div>
+            <div className="text-[10px] text-[#666]">58.1%</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">BTC Dominance</div>
-            <div className="text-lg font-mono text-[var(--accent-cyan)]">56.4%</div>
-            <div className="text-[10px] text-[#666]">Risk-off rotation into BTC</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USDC</div>
+            <div className="text-lg font-mono text-[var(--accent-cyan)]">$72.0B</div>
+            <div className="text-[10px] text-[#666]">22.9%</div>
           </div>
           <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
-            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Depeg Events</div>
-            <div className="text-lg font-mono text-[var(--accent-green)]">None</div>
-            <div className="text-[10px] text-[#666]">No major stress reported</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">USDS + DAI</div>
+            <div className="text-lg font-mono text-[#ededed]">$11.4B</div>
+            <div className="text-[10px] text-[#666]">3.6%</div>
+          </div>
+          <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Others</div>
+            <div className="text-lg font-mono text-[#ededed]">$48.5B</div>
+            <div className="text-[10px] text-[#666]">15.4%</div>
+          </div>
+          <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Non-USD</div>
+            <div className="text-lg font-mono text-[#f59e0b]">$8.6B</div>
+            <div className="text-[10px] text-[#666]">2.7%</div>
           </div>
         </div>
-        <p className="text-sm text-[#aaa] leading-relaxed">
-          Stablecoin market structurally sound. BTC dominance at 56.4% suggests stablecoin rotation into BTC rather than expansion of supply — consistent with risk-off positioning within crypto. No depeg events or stablecoin stress reported this week. The bifurcation continues: institutional-grade assets (USDT, USDC, DAI) remain sound while the mid-tier fragments.
+        <p className="text-sm text-[#aaa] leading-relaxed mb-4">
+          Total stablecoin market cap at $315.0B. USDT dominates at 58.1% — structurally sound. Non-USD stablecoins remain a small but growing slice at 2.7%. No depeg events or systemic stress reported this week.
         </p>
+        <div className="grid md:grid-cols-2 gap-3 mb-4">
+          <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">Total DEX TVL</div>
+            <div className="text-lg font-mono text-[var(--accent-green)]">—</div>
+            <div className="text-[10px] text-[#666]">Source: Pharos Liquidity</div>
+          </div>
+          <div className="bg-[#0a0a0a] rounded-xl p-3 border border-[#222]">
+            <div className="text-[10px] text-[#666] uppercase tracking-[1px]">24h DEX Volume</div>
+            <div className="text-lg font-mono text-[var(--accent-cyan)]">$21.2B+</div>
+            <div className="text-[10px] text-[#666]">BNB $10.8B · ETH $6.0B · Base $4.4B</div>
+          </div>
+        </div>
         <div className="mt-4 p-3 rounded-xl bg-[#1a1a1a] border border-[#222]">
           <p className="text-xs text-[#aaa]">
-            <strong className="text-[#ededed]">Pipeline note:</strong> Dedicated stablecoin data feed (DeFiLlama / Circle attestations) is in development for richer Pharos Watch coverage. Current data derived from market context and Artemis feeds.
+            <strong className="text-[#ededed]">DEX leaders:</strong> PancakeSwap ($1.87B) leads Uniswap ($1.15B) and Aerodrome ($488M) in 24h volume. BNB Chain dominates with +41.8% weekly volume growth. Robinhood chain volume fell −17.9% — correlation with COIN/HOOD earnings weakness.
           </p>
         </div>
-        <p className="text-xs text-[#444] mt-3">Sources: DeFi Llama, Artemis, CoinGecko</p>
+        <p className="text-xs text-[#444] mt-3">
+          Sources: <a href="https://pharos.watch/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Pharos Watch</a>
+          {' · '}
+          <a href="https://pharos.watch/liquidity/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Pharos Liquidity</a>
+          {' · '}Artemis · Dune
+        </p>
       </div>
 
       {/* ========================================================
