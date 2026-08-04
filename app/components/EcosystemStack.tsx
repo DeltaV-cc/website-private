@@ -1,50 +1,28 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useVisibilityTicker } from '../intelhub/components/useVisibilityTicker';
 
 export type EcosystemItem = {
   name: string;
-  /** X / Twitter handle without @ - used for unavatar profile image */
+  /** X / Twitter handle without @ - X profile handle for the partner link */
   x?: string;
   href?: string;
 };
 
 /**
- * Avatar from X profile via unavatar (static-friendly CDN).
- * Falls back to monogram if the image fails to load.
+ * Monogram brand mark (self-hosted, privacy-preserving).
+ * Renders the partner initial locally — no third-party avatar request.
  */
-function BrandMark({ name, x }: { name: string; x?: string }) {
-  const [failed, setFailed] = useState(false);
+function BrandMark({ name }: { name: string; x?: string }) {
   const initial = name.trim().charAt(0).toUpperCase() || '?';
-  const src = x && !failed
-    ? `https://unavatar.io/twitter/${encodeURIComponent(x)}?fallback=false`
-    : null;
-
-  if (!src) {
-    return (
-      <span
-        className="w-5 h-5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-default)] flex items-center justify-center text-[9px] font-semibold text-[var(--text-tertiary)]"
-        aria-hidden="true"
-      >
-        {initial}
-      </span>
-    );
-  }
-
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt=""
-      width={20}
-      height={20}
-      loading="lazy"
-      decoding="async"
-      referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
-      className="w-5 h-5 rounded-full object-cover border border-[var(--border-default)] bg-[var(--bg-elevated)]"
-    />
+    <span
+      className="w-5 h-5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-default)] flex items-center justify-center text-[9px] font-semibold text-[var(--text-tertiary)]"
+      aria-hidden="true"
+    >
+      {initial}
+    </span>
   );
 }
 
@@ -170,7 +148,7 @@ export const AI_ECOSYSTEM: EcosystemItem[] = [
 export const WEB3_ECOSYSTEM: EcosystemItem[] = [
   { name: 'DeFiLlama', x: 'DefiLlama', href: 'https://x.com/DefiLlama' },
   { name: 'Artemis', x: 'Artemis__xyz', href: 'https://x.com/Artemis__xyz' },
-  { name: 'Tezor', x: 'Trezor', href: 'https://x.com/Trezor' },
+  { name: 'Trezor', x: 'Trezor', href: 'https://x.com/Trezor' },
   { name: 'rokti', x: 'roktixyz', href: 'https://x.com/roktixyz' },
   { name: 'Safe', x: 'safe', href: 'https://x.com/safe' },
   { name: 'l2beat', x: 'l2beat', href: 'https://x.com/l2beat' },

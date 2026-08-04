@@ -17,6 +17,11 @@ const TOPICS: Record<string, { need: 'Web3' | 'AI' | 'Upskilling'; prompt: strin
 function ContactContent() {
   const params = useSearchParams();
   const topic = TOPICS[params.get('topic') || ''] || null;
+  const mailtoHref = topic
+    ? 'mailto:engage@deltav.cc?subject=' +
+      encodeURIComponent('Delta V — ' + topic.need + ' enquiry') +
+      '&body=' + encodeURIComponent(topic.prompt)
+    : 'mailto:engage@deltav.cc';
 
   return (
     <>
@@ -42,7 +47,7 @@ function ContactContent() {
           <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 md:p-8 flex flex-col">
             <div className="mb-6 pb-6 border-b border-[var(--border-default)]">
               <div className="text-[var(--accent-orange)] text-[10px] font-semibold tracking-[2px] uppercase mb-2">Email</div>
-              <a href="mailto:engage@deltav.cc" className="text-xl md:text-2xl font-semibold tracking-tight text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors">
+              <a href={mailtoHref} className="text-xl md:text-2xl font-semibold tracking-tight text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors">
                 engage@deltav.cc
               </a>
             </div>
