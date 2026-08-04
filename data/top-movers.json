@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-04T13:14:17Z",
+  "updated_at": "2026-08-04T13:20:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,13 +80,6 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "UB",
-        "name": "Unibase",
-        "price": 0.197856,
-        "change_24h": 10.4,
-        "asset": "crypto"
-      },
-      {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
         "price": 1.37,
@@ -96,22 +89,29 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002228,
+        "price": 0.002226,
         "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "AVAX",
         "name": "Avalanche",
-        "price": 6.81,
+        "price": 6.8,
         "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 55.47,
+        "price": 55.62,
         "change_24h": 5.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.323292,
+        "change_24h": 4.8,
         "asset": "crypto"
       }
     ],
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.6,
+        "price": 2.58,
         "change_24h": -24.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.108147,
+        "price": 0.107979,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.85,
+        "price": 3.84,
         "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.539128,
+        "price": 0.541498,
         "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "NEXO",
         "name": "NEXO",
-        "price": 0.719044,
+        "price": 0.717356,
         "change_24h": -2.3,
         "asset": "crypto"
       }
