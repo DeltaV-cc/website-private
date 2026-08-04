@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MainLayout from "./components/MainLayout";
+import { SITE_URL } from "../lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Delta V — Sovereign AI & Web3 Engineering",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Delta V — Sovereign AI & Web3 Engineering",
+    template: "%s · Delta V",
+  },
   description: "We operate at the frontier of AI and Web3 with OpSec as our core principle — we build, integrate, and upskill with sovereignty in mind.",
   openGraph: {
     title: "Delta V — Sovereign AI & Web3 Engineering",
