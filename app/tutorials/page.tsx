@@ -117,9 +117,9 @@ export default function Tutorials() {
                       </span>
                     </div>
                     <Link href={`/tutorials/${t.slug}/`} className="after:absolute after:inset-0">
-                      <h3 className="text-lg md:text-xl font-semibold mb-2 leading-snug group-hover:text-[var(--accent-cyan)] transition-colors">
+                      <h2 className="text-lg md:text-xl font-semibold mb-2 leading-snug group-hover:text-[var(--accent-cyan)] transition-colors">
                         {t.title}
-                      </h3>
+                      </h2>
                     </Link>
                     <p className="text-[var(--text-tertiary)] text-sm leading-relaxed mb-3 line-clamp-2">
                       {t.excerpt}
