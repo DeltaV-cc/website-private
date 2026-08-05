@@ -49,6 +49,7 @@ DATA_OUT = [
     "tvl-top.json",
     "chain-movers.json",
     "cnn-fg.json",
+    "dex-metrics.json",
 ]
 
 
@@ -315,6 +316,62 @@ def build_cnn_fg() -> dict | None:
     return None
 
 
+def build_dex_metrics() -> dict | None:
+    """Weekly + 24h chain DEX volume from DeFiLlama (feeds VolumeChart)."""
+    d = fetch_json("https://api.llama.fi/overview/dexs?dataType=dailyVolume", timeout=25)
+    if not d:
+        return None
+    chart = d.get("totalDataChart") or []
+    by_week: dict[str, float] = {}
+    for row in chart:
+        if not isinstance(row, (list, tuple)) or len(row) < 2:
+            continue
+        ts, vol = row[0], float(row[1] or 0)
+        if vol <= 0:
+            continue
+        # ts may be seconds
+        if ts < 1e12:
+            ts = ts * 1000
+        from datetime import datetime, timezone
+        dt = datetime.fromtimestamp(ts / 1000, tz=timezone.utc)
+        # ISO week
+        iso = dt.isocalendar()
+        key = f"{iso.year}-W{iso.week:02d}"
+        by_week[key] = by_week.get(key, 0.0) + vol
+    weekly = [
+        {"week": k, "curated": v, "filtered": v, "raw": v}
+        for k, v in sorted(by_week.items())
+    ]
+    # 24h by chain from protocols or chains list
+    chains = []
+    for p in (d.get("protocols") or [])[:30]:
+        v = p.get("total24h") or 0
+        if v and (p.get("displayName") or p.get("name")):
+            chains.append({
+                "chain": p.get("displayName") or p.get("name"),
+                "volume_24h": float(v),
+                "delta_pct": float(p.get("change_1d") or 0),
+            })
+    # Prefer allChains breakdown if present
+    bd = d.get("breakdown24h") or {}
+    if isinstance(bd, dict) and bd:
+        chains = [
+            {"chain": k, "volume_24h": float(v), "delta_pct": 0.0}
+            for k, v in sorted(bd.items(), key=lambda x: -float(x[1] or 0))
+            if float(v or 0) > 0
+        ][:12]
+    chains = sorted(chains, key=lambda x: -x["volume_24h"])[:12]
+    if not weekly and not chains:
+        return None
+    print(f"  ✓ dex-metrics weekly={len(weekly)} chains={len(chains)}")
+    return {
+        "updated_at": utc_now(),
+        "source": "https://api.llama.fi/overview/dexs",
+        "weekly": weekly[-210:],
+        "chains": chains,
+    }
+
+
 def push_to_gh_pages(payloads: dict[str, str]) -> None:
     tmpdir = tempfile.mkdtemp(prefix="dv-dash-snap-")
     try:
@@ -437,6 +494,10 @@ def main() -> int:
     cnn = build_cnn_fg()
     if cnn:
         payloads["cnn-fg.json"] = json.dumps(cnn, indent=2)
+
+    dexm = build_dex_metrics()
+    if dexm:
+        payloads["dex-metrics.json"] = json.dumps(dexm, indent=2)
 
     if not payloads:
         print("  ⚠ nothing fetched", file=sys.stderr)

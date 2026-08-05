@@ -3,6 +3,7 @@
    ================================================================ */
 'use client';
 
+import type { ReactNode } from 'react';
 import { Item } from '../types';
 
 /* -- Skeleton Screens -- */
@@ -221,6 +222,37 @@ export function FieldStatusChip({
     >
       {label}
     </span>
+  );
+}
+
+/**
+ * Metric tile body — never leave infinite shimmer.
+ * While loading: short shimmer. After settled without value: explicit "—".
+ */
+export function MetricValue({
+  ready,
+  loading,
+  children,
+  emptyLabel = '—',
+}: {
+  ready: boolean;
+  loading?: boolean;
+  children?: ReactNode;
+  emptyLabel?: string;
+}) {
+  if (ready) return <>{children ?? null}</>;
+  if (loading) {
+    return (
+      <div className="space-y-2">
+        <div className="skeleton-shimmer h-5 w-20 rounded" />
+        <div className="skeleton-shimmer h-3 w-12 rounded" />
+      </div>
+    );
+  }
+  return (
+    <div className="text-sm text-[var(--text-disabled)] tabular-nums py-1" title="No data yet — Hermes refresh pending">
+      {emptyLabel}
+    </div>
   );
 }
 

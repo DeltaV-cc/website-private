@@ -7,13 +7,28 @@ import { useState, useEffect, useCallback } from 'react';
 import { Item, PatentsData } from './types';
 
 // Data JSON lives on the gh-pages branch (legacy Pages root).
-// Prefer deltav-cc.github.io over raw.githubusercontent.com/…/gh-pages:
-// GitHub's raw CDN has repeatedly served multi-day-stale artemis/raw-items
-// while the Pages tip (and git clone) already had cron-fresh JSON.
-// Deploy preserves live data/*.json so site HTML deploys no longer roll
-// intel backwards; crons keep pushing data/ directly to gh-pages.
-const DATA_BASE = 'https://deltav-cc.github.io/website-private';
+// GitHub Pages CDN (deltav-cc.github.io) can lag cron force-pushes by hours
+// (observed: indices stuck on SPX+CSI while tip had SMI/STOXX/DAX).
+// Prefer jsDelivr @gh-pages (tracks git tip), then Pages, then raw.
+const DATA_MIRRORS = [
+  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
+  'https://deltav-cc.github.io/website-private',
+  'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages',
+] as const;
+const DATA_BASE = DATA_MIRRORS[1]; // site asset base (HTML still on Pages)
 const BASE = DATA_BASE;
+/** First successful mirror wins; minute-bucket bust for sticky CDNs. */
+const dataUrl = (path: string) => {
+  const q = path.includes('?') ? '&' : '?';
+  const bust = `${q}v=${Math.floor(Date.now() / 60_000)}`;
+  // Used only as label; fetchJsonData tries all mirrors
+  return `${DATA_MIRRORS[0]}${path}${bust}`;
+};
+const dataUrls = (path: string) => {
+  const q = path.includes('?') ? '&' : '?';
+  const bust = `${q}v=${Math.floor(Date.now() / 60_000)}`;
+  return DATA_MIRRORS.map((m) => `${m}${path}${bust}`);
+};
 
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [
@@ -186,25 +201,79 @@ const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComp
 // Fetch JSON with a hard timeout so a hanging host can never stall the dashboard.
 // Returns null on any failure (timeout, network, non-2xx, bad JSON).
 // One quick retry for transient CDN/network blips.
-const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
+// For gh-pages data/* paths (any mirror URL), try jsDelivr → Pages → raw.
+const fetchJsonOnce = async (url: string, ms: number): Promise<any | null> => {
   const sep = url.includes('?') ? '&' : '?';
   const bucket = Math.floor(Date.now() / 60000);
   const busted = `${url}${sep}_t=${bucket}`;
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const r = await fetch(busted, { signal: AbortSignal.timeout(ms) });
-      if (!r.ok) {
-        if (attempt === 0) continue;
-        return null;
-      }
-      return await r.json();
-    } catch {
-      if (attempt === 0) continue;
-      return null;
+  try {
+    const r = await fetch(busted, { signal: AbortSignal.timeout(ms) });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  }
+};
+
+const extractDataPath = (url: string): string | null => {
+  // Normalize mirror URLs back to /data/...
+  const markers = [
+    '/website-private/data/',
+    '@gh-pages/data/',
+    '/gh-pages/data/',
+    '/data/',
+  ];
+  for (const m of markers) {
+    const i = url.indexOf(m);
+    if (i >= 0) {
+      const rest = url.slice(i + m.length - '/data/'.length); // keep /data/
+      const path = rest.startsWith('/data/') ? rest : `/data/${rest}`;
+      return path.split('?')[0];
+    }
+  }
+  if (url.startsWith('/data/')) return url.split('?')[0];
+  return null;
+};
+
+const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
+  const dataPath = extractDataPath(url);
+  const candidates = dataPath ? dataUrls(dataPath) : [url];
+  for (const u of candidates) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const d = await fetchJsonOnce(u, ms);
+      if (d != null) return d;
     }
   }
   return null;
 };
+
+/** Build VolumeChart weekly series from Llama totalDataChart [[ts, vol], ...]. */
+function llamaChartToWeekly(chart: any): { week: string; curated: number; filtered: number; raw: number }[] {
+  if (!Array.isArray(chart) || chart.length === 0) return [];
+  const byWeek: Record<string, number> = {};
+  for (const row of chart) {
+    if (!Array.isArray(row) || row.length < 2) continue;
+    const ts = Number(row[0]);
+    const vol = Number(row[1]) || 0;
+    if (!Number.isFinite(ts) || vol <= 0) continue;
+    const d = new Date(ts * (ts < 1e12 ? 1000 : 1));
+    if (Number.isNaN(d.getTime())) continue;
+    // ISO week label YYYY-Www
+    const tmp = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+    const day = tmp.getUTCDay() || 7;
+    tmp.setUTCDate(tmp.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil((((tmp.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+    const key = `${tmp.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+    byWeek[key] = (byWeek[key] || 0) + vol;
+  }
+  return Object.keys(byWeek)
+    .sort()
+    .map((week) => {
+      const v = byWeek[week];
+      return { week, curated: v, filtered: v, raw: v };
+    });
+}
 
 /** Per-field load status for empty-slot debugging / stale chips */
 export type FieldStatus = 'ok' | 'error' | 'empty';
@@ -339,7 +408,7 @@ export function useIntelData(activeTab: string = 'macro') {
   const loadAll = useCallback(async () => {
     try {
       await Promise.allSettled([
-        fetchJson(`${BASE}/data/raw-items.json`).then((d) => {
+        fetchJson(dataUrl('/data/raw-items.json')).then((d) => {
           if (Array.isArray(d)) {
             const tagged = d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), summary: cleanSummary(x.summary || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel);
             // Deduplicate: same source + similar normalized title → keep first
@@ -355,7 +424,7 @@ export function useIntelData(activeTab: string = 'macro') {
             setLastFetch(new Date());
           }
         }),
-        fetchJson(`${BASE}/data/cybersec-watchlist.json`).then((wl) => {
+        fetchJson(dataUrl('/data/cybersec-watchlist.json')).then((wl) => {
           if (Array.isArray(wl)) {
             // Prefer non-expired; if all expired, still surface items so the panel is useful
             const now = Date.now();
@@ -363,7 +432,7 @@ export function useIntelData(activeTab: string = 'macro') {
             setWatchlist(active.length ? active : wl.slice(0, 8));
           }
         }),
-        fetchJson(`${BASE}/data/patents.json`).then((d) => { if (d) setPatents(d); }),
+        fetchJson(dataUrl('/data/patents.json')).then((d) => { if (d) setPatents(d); }),
       ]);
     } finally {
       setLoading(false);
@@ -405,59 +474,85 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Shared light market (Macro default + useful on Web3 banners) ──
     if (tab === 'macro' || tab === 'web3') {
       staticTasks.push(
-        loadField('crypto', `${BASE}/data/crypto.json`, (d) => merge({ crypto: d })),
-        loadField('btcTrend', `${BASE}/data/btc-trend.json`, (d) => merge({ btcTrend: d })),
+        loadField('crypto', dataUrl('/data/crypto.json'), (d) => merge({ crypto: d })),
+        loadField('btcTrend', dataUrl('/data/btc-trend.json'), (d) => merge({ btcTrend: d })),
       );
     }
 
     // ── Macro-only static ──
     if (tab === 'macro') {
       staticTasks.push(
-        loadField('gold', `${BASE}/data/gold.json`, (d) => merge({ gold: d })),
-        loadField('oil', `${BASE}/data/oil.json`, (d) => merge({ oil: d })),
-        loadField('us10y', `${BASE}/data/us10y.json`, (d) => merge({ us10y: d })),
-        loadField('indices', `${BASE}/data/indices.json`, (d) => {
-          if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) merge({ indices: d });
-        }),
-        loadField('topMovers', `${BASE}/data/top-movers.json`, (d) => merge({ topMovers: d })),
-        loadField('forex', `${BASE}/data/forex.json`, (d) => setForex((prev: any) => prev || d)),
+        loadField('gold', dataUrl('/data/gold.json'), (d) => merge({ gold: d })),
+        loadField('oil', dataUrl('/data/oil.json'), (d) => merge({ oil: d })),
+        loadField('us10y', dataUrl('/data/us10y.json'), (d) => merge({ us10y: d })),
+        (async () => {
+          // Prefer the fullest payload among mirrors (Pages often sticks on SPX+CSI).
+          const need = ['spx', 'csi', 'smi', 'stoxx', 'dax'] as const;
+          let best: any = null;
+          let bestScore = -1;
+          await Promise.all(
+            dataUrls('/data/indices.json').map(async (u) => {
+              const d = await fetchJsonOnce(u, 8000);
+              if (!d || typeof d !== 'object') return;
+              const score = need.reduce((s, k) => s + (d[k] ? 1 : 0), 0);
+              if (score > bestScore) {
+                bestScore = score;
+                best = d;
+              }
+            }),
+          );
+          if (best && bestScore > 0) {
+            merge({ indices: best });
+            const missing = need.filter((k) => !best[k]);
+            if (missing.length) {
+              markMeta(merge, 'indices', 'error', `partial — missing ${missing.join(',')}`);
+            } else {
+              markMeta(merge, 'indices', 'ok');
+            }
+          } else {
+            markMeta(merge, 'indices', 'error', 'fetch failed');
+          }
+        })(),
+        loadField('topMovers', dataUrl('/data/top-movers.json'), (d) => merge({ topMovers: d })),
+        loadField('forex', dataUrl('/data/forex.json'), (d) => setForex((prev: any) => prev || d)),
         // TradFi F&G snapshot fallback when live feargreedchart fails
-        loadField('cnnFg', `${BASE}/data/cnn-fg.json`, (d) => {
+        loadField('cnnFg', dataUrl('/data/cnn-fg.json'), (d) => {
           if (d && typeof d.value === 'number') {
             merge({
               fearGreed: {
                 score: d.value,
                 rating: d.label || d.rating || '',
                 date: d.updated_at || d.timestamp || '',
-                source: 'snapshot',
+                source: d.source || 'snapshot',
               },
             });
+            markMeta(merge, 'fearGreed', 'ok', 'snapshot');
           }
         }),
-        loadField('macroCalendar', `${BASE}/data/macro-calendar.json`, (d) => merge({ macroCalendar: d })),
+        loadField('macroCalendar', dataUrl('/data/macro-calendar.json'), (d) => merge({ macroCalendar: d })),
       );
     }
 
     // ── Web3-only static (snapshot-first; live Llama enhances in loadWeb3Live) ──
     if (tab === 'web3') {
       staticTasks.push(
-        loadField('etfFlows', `${BASE}/data/etf-flows.json`, (d) => merge({ etfFlows: d })),
-        loadField('netFlows', `${BASE}/data/net-flows.json`, (d) => merge({ netFlows: d })),
-        loadField('boldYields', `${BASE}/data/bold-yields.json`, (d) => merge({ boldYields: d })),
-        loadField('exchangeVol', `${BASE}/data/exchange-vol.json`, (d) => merge({ exchangeVol: d })),
-        loadField('artemisNewsletter', `${BASE}/data/artemis-newsletter.json`, (d) => merge({ artemisNewsletter: d })),
-        loadField('dexMatrix', `${BASE}/data/dex-matrix.json`, (d) => merge({ dexMatrix: d })),
-        loadField('dexMetrics', `${BASE}/data/dex-metrics.json`, (d) => merge({ dexMetrics: d })),
-        loadField('chainMovers', `${BASE}/data/chain-movers.json`, (d) => merge({ chainMovers: d })),
+        loadField('etfFlows', dataUrl('/data/etf-flows.json'), (d) => merge({ etfFlows: d })),
+        loadField('netFlows', dataUrl('/data/net-flows.json'), (d) => merge({ netFlows: d })),
+        loadField('boldYields', dataUrl('/data/bold-yields.json'), (d) => merge({ boldYields: d })),
+        loadField('exchangeVol', dataUrl('/data/exchange-vol.json'), (d) => merge({ exchangeVol: d })),
+        loadField('artemisNewsletter', dataUrl('/data/artemis-newsletter.json'), (d) => merge({ artemisNewsletter: d })),
+        loadField('dexMatrix', dataUrl('/data/dex-matrix.json'), (d) => merge({ dexMatrix: d })),
+        loadField('dexMetrics', dataUrl('/data/dex-metrics.json'), (d) => merge({ dexMetrics: d })),
+        loadField('chainMovers', dataUrl('/data/chain-movers.json'), (d) => merge({ chainMovers: d })),
         // Snapshot-first so stables/TVL paint before Llama live
-        loadField('stables', `${BASE}/data/stables.json`, (d) => {
+        loadField('stables', dataUrl('/data/stables.json'), (d) => {
           merge({
             stablecoins: d.stablecoins || d.stables || [],
             stablecoinChains: d.stablecoinChains || d.chains || [],
             stablesUpdatedAt: d.updated_at || null,
           });
         }),
-        loadField('tvlTop', `${BASE}/data/tvl-top.json`, (d) => {
+        loadField('tvlTop', dataUrl('/data/tvl-top.json'), (d) => {
           const chains = d.chains || d.tvl || [];
           if (Array.isArray(chains) && chains.length) {
             merge({
@@ -481,7 +576,7 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── AI-only static ──
     if (tab === 'ai') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/hf.json`).then((d) => {
+        fetchJson(dataUrl('/data/hf.json')).then((d) => {
           if (d) {
             merge({
               ...(d.models ? { hfModels: d.models } : {}),
@@ -490,7 +585,7 @@ export function useIntelData(activeTab: string = 'macro') {
             });
           }
         }),
-        fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
+        fetchJson(dataUrl('/data/arena-leaderboard.json')).then((d) => {
           if (!d) return;
           const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
           merge({ arenaLB: models, arenaUpdated: d.updated || null });
@@ -501,7 +596,7 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Infosec snapshot for fast first paint (live refresh still on Infosec tab) ──
     if (tab === 'infosec') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/infosec.json`).then((d) => {
+        fetchJson(dataUrl('/data/infosec.json')).then((d) => {
           if (!d) return;
           setDd2((prev: any) => {
             if (prev && (prev.kev?.length || prev.cves?.length || prev.breaches?.length)) return prev;
@@ -522,8 +617,9 @@ export function useIntelData(activeTab: string = 'macro') {
             const score = latest.score || 0;
             const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
             merge({ fearGreed: { score, rating, date: latest.date, source: 'live' } });
-            markMeta(merge, 'fearGreed', 'ok');
+            markMeta(merge, 'fearGreed', 'ok', 'live');
           } else {
+            // Keep snapshot fearGreed if already merged — only mark meta
             markMeta(merge, 'fearGreed', 'error', 'live failed — using snapshot if any');
           }
         }),
@@ -704,8 +800,8 @@ export function useIntelData(activeTab: string = 'macro') {
     await Promise.allSettled([
       fetchJson('https://api.llama.fi/overview/dexs?dataType=dailyVolume').then((d) => {
         if (!d) return;
-        const chart = d.totalDataChartBreakdown;
-        const last = Array.isArray(chart) && chart.length > 0 ? chart[chart.length - 1] : null;
+        const chartBd = d.totalDataChartBreakdown;
+        const last = Array.isArray(chartBd) && chartBd.length > 0 ? chartBd[chartBd.length - 1] : null;
         // Prefer chain totals from allChains × last breakdown only if keys look like chains
         const bd = (last && last[1]) || d.breakdown24h || {};
         let volume = (d.allChains || []).slice(0, 10).map((n: string) => ({
@@ -716,12 +812,58 @@ export function useIntelData(activeTab: string = 'macro') {
         if (volume.length === 0 && d.total24h) {
           volume = (d.allChains || []).slice(0, 5).map((n: string) => ({ name: n, volume24h: 0 }));
         }
+
+        // Fill VolumeChart + ChainVolumeBar when snapshot missing/stale
+        const weekly = llamaChartToWeekly(d.totalDataChart);
+        const chainBars = volume
+          .filter((x: any) => x.volume24h > 0)
+          .map((x: any) => ({
+            chain: x.name,
+            volume_24h: x.volume24h,
+            delta_pct: 0,
+          }));
+        // Also try protocols top as chains if allChains empty
+        if (!chainBars.length && Array.isArray(d.protocols)) {
+          for (const p of d.protocols.slice(0, 12)) {
+            const v = p.total24h || p.totalVolume24h || 0;
+            if (v > 0) {
+              chainBars.push({
+                chain: p.displayName || p.name || '?',
+                volume_24h: v,
+                delta_pct: typeof p.change_1d === 'number' ? p.change_1d : 0,
+              });
+            }
+          }
+        }
+
         merge({
           totalVolume24h: d.total24h || 0,
           volume,
           dexDominance: volume,
           dexsUpdatedAt: new Date().toISOString(),
+          ...(weekly.length
+            ? {
+                dexMetrics: {
+                  updated_at: new Date().toISOString(),
+                  source: 'DeFiLlama overview/dexs (live)',
+                  weekly,
+                  chains: chainBars,
+                  live: true,
+                },
+              }
+            : chainBars.length
+              ? {
+                  dexMetrics: {
+                    updated_at: new Date().toISOString(),
+                    source: 'DeFiLlama overview/dexs (live)',
+                    weekly: [],
+                    chains: chainBars,
+                    live: true,
+                  },
+                }
+              : {}),
         });
+        if (weekly.length || chainBars.length) markMeta(merge, 'dexMetrics', 'ok', 'live');
       }),
       fetchJson('https://stablecoins.llama.fi/stablecoins?includePrices=false', 15000).then((d) => {
         if (!d) return;
@@ -939,7 +1081,7 @@ export function useIntelData(activeTab: string = 'macro') {
     ]);
     let snapUpdated: string | null = null;
     if (!result.kev.length || !result.cves.length || !result.breaches.length) {
-      const c = await fetchJson(`${BASE}/data/infosec.json`);
+      const c = await fetchJson(dataUrl('/data/infosec.json'));
       if (c) {
         snapUpdated = c.updatedAt || null;
         if (!result.kev.length) result.kev = c.kev || [];

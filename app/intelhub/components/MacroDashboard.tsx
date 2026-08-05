@@ -6,12 +6,15 @@
 import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import { CategoryBox, fmtNum, PanelMeta, FieldStatusChip } from './Shared';
+import { CategoryBox, fmtNum, PanelMeta, FieldStatusChip, MetricValue } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 import { macroMoverLink } from '@/lib/entity-links';
 
-// Prefer raw.githubusercontent — Pages CDN can lag gh-pages force-pushes by days.
-const DATA_BASE = 'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages';
+// Prefer jsDelivr tip (Pages CDN can lag Hermes pushes by hours).
+const DATA_BASES = [
+  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
+  'https://deltav-cc.github.io/website-private',
+] as const;
 
 /* -- Inline SVG Icons -- */
 const TrendUp = () => (
@@ -53,13 +56,39 @@ export default function MacroDashboard({
     return <span className={`${c} tabular-nums text-xs font-medium`}>{v >= 0 ? '+' : ''}{v.toFixed(1)}%</span>;
   };
 
-  const [calendar, setCalendar] = useState<any[]>([]);
+  const [calendar, setCalendar] = useState<any[]>(() =>
+    Array.isArray(dd?.macroCalendar?.events) ? dd.macroCalendar.events : []
+  );
+  // settled after first paint window so tiles don't shimmer forever
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
-    fetch(`${DATA_BASE}/data/macro-calendar.json`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (d?.events) setCalendar(d.events); })
-      .catch(() => {});
+    const fromDd = dd?.macroCalendar?.events;
+    if (Array.isArray(fromDd) && fromDd.length) {
+      setCalendar(fromDd);
+      return;
+    }
+    const bust = Math.floor(Date.now() / 60000);
+    (async () => {
+      for (const base of DATA_BASES) {
+        try {
+          const r = await fetch(`${base}/data/macro-calendar.json?v=${bust}`);
+          if (!r.ok) continue;
+          const d = await r.json();
+          if (d?.events?.length) {
+            setCalendar(d.events);
+            return;
+          }
+        } catch {
+          /* next mirror */
+        }
+      }
+    })();
+  }, [dd?.macroCalendar]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setSettled(true), 4500);
+    return () => clearTimeout(t);
   }, []);
 
   const currencyFlag = (ccy: string) =>
@@ -125,10 +154,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -144,10 +170,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -163,10 +186,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -182,10 +202,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -201,10 +218,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -222,10 +236,7 @@ export default function MacroDashboard({
                 )}
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -243,10 +254,7 @@ export default function MacroDashboard({
                 )}
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-20 rounded" />
-                <div className="skeleton-shimmer h-3 w-12 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -262,10 +270,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-16 rounded" />
-                <div className="skeleton-shimmer h-3 w-10 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -281,10 +286,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-16 rounded" />
-                <div className="skeleton-shimmer h-3 w-10 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -300,10 +302,7 @@ export default function MacroDashboard({
                 </div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-16 rounded" />
-                <div className="skeleton-shimmer h-3 w-10 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
 
@@ -316,10 +315,7 @@ export default function MacroDashboard({
                 <div className={`text-xs font-medium ${fgColor}/70`}>{fgLabel || 'Neutral'}</div>
               </>
             ) : (
-              <div className="space-y-2">
-                <div className="skeleton-shimmer h-5 w-10 rounded" />
-                <div className="skeleton-shimmer h-3 w-14 rounded" />
-              </div>
+              <MetricValue ready={false} loading={!settled} emptyLabel="—" />
             )}
           </div>
         </div>
