@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-05T14:00:59Z",
+  "updated_at": "2026-08-05T14:15:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "MTRN",
         "name": "Materion Corporation",
-        "price": 282.5,
-        "change_24h": 24.4,
+        "price": 282.94,
+        "change_24h": 24.59,
         "asset": "equity"
       },
       {
         "symbol": "SHOP",
         "name": "Shopify Inc.",
-        "price": 147.5,
-        "change_24h": 19.62,
+        "price": 144.31,
+        "change_24h": 17.04,
         "asset": "equity"
       },
       {
-        "symbol": "AXTI",
-        "name": "AXT Inc",
-        "price": 75.25,
-        "change_24h": 15.29,
+        "symbol": "ZETA",
+        "name": "Zeta Global Holdings Corp.",
+        "price": 28.25,
+        "change_24h": 16.45,
         "asset": "equity"
       },
       {
         "symbol": "QLYS",
         "name": "Qualys, Inc.",
-        "price": 185.46,
-        "change_24h": 15.15,
+        "price": 185.48,
+        "change_24h": 15.16,
         "asset": "equity"
       },
       {
         "symbol": "TVTX",
         "name": "Travere Therapeutics, Inc.",
-        "price": 63.98,
-        "change_24h": 14.17,
+        "price": 63.99,
+        "change_24h": 14.23,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SEDG",
         "name": "SolarEdge Technologies, Inc.",
-        "price": 37.39,
-        "change_24h": -23.32,
-        "asset": "equity"
-      },
-      {
-        "symbol": "PODD",
-        "name": "Insulet Corporation",
-        "price": 134.85,
-        "change_24h": -19.16,
+        "price": 38.74,
+        "change_24h": -20.54,
         "asset": "equity"
       },
       {
         "symbol": "TDC",
         "name": "Teradata Corporation",
-        "price": 27.83,
-        "change_24h": -19.06,
+        "price": 27.7,
+        "change_24h": -19.46,
         "asset": "equity"
       },
       {
         "symbol": "EXTR",
         "name": "Extreme Networks, Inc.",
-        "price": 26.73,
-        "change_24h": -17.36,
+        "price": 26.34,
+        "change_24h": -18.55,
         "asset": "equity"
       },
       {
-        "symbol": "CC",
-        "name": "Chemours Company (The)",
-        "price": 15.04,
-        "change_24h": -16.12,
+        "symbol": "PODD",
+        "name": "Insulet Corporation",
+        "price": 136.59,
+        "change_24h": -18.12,
+        "asset": "equity"
+      },
+      {
+        "symbol": "DVA",
+        "name": "DaVita Inc.",
+        "price": 189.05,
+        "change_24h": -17.08,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002567,
-        "change_24h": 13.4,
+        "price": 0.002552,
+        "change_24h": 15.1,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 518.55,
-        "change_24h": 7.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.087357,
-        "change_24h": 5.6,
+        "price": 523.0,
+        "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.086375,
-        "change_24h": 5.0,
+        "price": 0.08661,
+        "change_24h": 5.5,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.032825,
-        "change_24h": 4.4,
+        "symbol": "UNI",
+        "name": "Uniswap",
+        "price": 4.08,
+        "change_24h": 5.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.087007,
+        "change_24h": 4.3,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.495632,
-        "change_24h": -9.1,
+        "price": 0.494582,
+        "change_24h": -7.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.27,
+        "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
         "price": 2.4,
-        "change_24h": -9.0,
+        "change_24h": -6.5,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 11.22,
-        "change_24h": -6.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.19,
-        "change_24h": -3.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 5e-06,
+        "symbol": "AVAX",
+        "name": "Avalanche",
+        "price": 6.64,
         "change_24h": -2.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLFI",
+        "name": "World Liberty Financial",
+        "price": 0.053579,
+        "change_24h": -2.7,
         "asset": "crypto"
       }
     ]
