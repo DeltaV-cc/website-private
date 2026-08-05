@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { PageHero, PageContainer } from '../components/PageShell';
 import {
@@ -8,12 +9,110 @@ import {
   OsShieldIcon,
 } from '../components/OpSecIllustrations';
 import TopTierSecurity from '../components/TopTierSecurity';
+import { withBasePath } from '@/lib/site';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
     <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
+
+/** Self-hosted logos under public/images/also-useful — no third-party avatar CDNs. */
+type UsefulLink = {
+  name: string;
+  href: string;
+  logo: string;
+  description: string;
+};
+
+const ALSO_USEFUL: UsefulLink[] = [
+  {
+    name: 'WalletBeat',
+    href: 'https://walletbeat.ethereum.foundation/',
+    logo: 'walletbeat',
+    description:
+      'Independent Ethereum wallet scorecards — privacy, security, open-source, and account-abstraction readiness.',
+  },
+  {
+    name: 'DeFiScan',
+    href: 'https://defiscan.info/',
+    logo: 'defiscan',
+    description:
+      'DeFi protocol centralization scorecards — admin keys, upgradeability, oracles, and other trust assumptions.',
+  },
+  {
+    name: 'L2Beat',
+    href: 'https://l2beat.com/',
+    logo: 'l2beat',
+    description:
+      'Layer 2 risk & maturity: stages, security councils, data availability, and TVL with honest risk labels.',
+  },
+  {
+    name: 'growthepie',
+    href: 'https://www.growthepie.xyz/',
+    logo: 'growthepie',
+    description:
+      'Ethereum L2 fundamentals — usage, fees, TVS, and comparable metrics across chains (not just TVL).',
+  },
+  {
+    name: 'Xerberus',
+    href: 'https://xerberus.io/',
+    logo: 'xerberus',
+    description:
+      'On-chain risk ratings for assets, protocols, and organisations — structured scores for diligence, not hype.',
+  },
+  {
+    name: 'x402scan',
+    href: 'https://www.x402scan.com/',
+    logo: 'x402scan',
+    description:
+      'x402 ecosystem explorer — paid APIs, agent commerce, sellers, and HTTP-402 payment flow analytics.',
+  },
+  {
+    name: 'AntiCapture',
+    href: 'https://x.com/AntiCapture',
+    logo: 'anticapture',
+    description:
+      'DAO / governance capture research — concentration, voting power, and structural capture signals.',
+  },
+  {
+    name: 'Ethereum Security',
+    href: 'https://x.com/ethereumsecurity',
+    logo: 'ethereumsecurity',
+    description:
+      'Community security research stream — incidents, tooling, and defensive notes for Ethereum operators.',
+  },
+];
+
+function UsefulLogo({ id, name }: { id: string; name: string }) {
+  const [failed, setFailed] = useState(false);
+  const src = withBasePath(`/images/also-useful/${id}.webp`);
+  if (failed) {
+    return (
+      <span
+        className="w-8 h-8 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-default)] flex items-center justify-center text-[11px] font-semibold text-[var(--text-tertiary)] shrink-0"
+        aria-hidden="true"
+      >
+        {name.trim().charAt(0).toUpperCase()}
+      </span>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- local static logo; tiny rail icons
+    <img
+      src={src}
+      alt=""
+      width={32}
+      height={32}
+      loading="lazy"
+      decoding="async"
+      draggable={false}
+      className="w-8 h-8 rounded-full object-cover border border-[var(--border-default)] bg-[var(--bg-elevated)] shrink-0"
+      onError={() => setFailed(true)}
+      aria-hidden="true"
+    />
+  );
+}
 
 const OS_GUIDES = [
   {
@@ -171,31 +270,36 @@ export default function OpSec({ embedded = false }: { embedded?: boolean }) {
         <TopTierSecurity />
       </PageContainer>
 
-      {/* Principles + supporting references */}
+      {/* Supporting research / dashboards (self-hosted logos, primary product URLs) */}
       <PageContainer className="pb-14" as="section">
-        <div className="grid gap-5">
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8">
-            <h2 className="text-xl font-semibold mb-4">Also useful</h2>
-            <div className="space-y-3 text-sm text-[var(--text-secondary)]">
-              <div>
-                <a href="https://x.com/walletbeat" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">WalletBeat ↗</a>
-                <div className="text-[var(--text-tertiary)]">Ethereum wallet privacy rankings.</div>
-              </div>
-              <div>
-                <a href="https://x.com/defiscan" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">DeFiScan ↗</a>
-                <div className="text-[var(--text-tertiary)]">DeFi protocol risk and transparency assessments.</div>
-              </div>
-              <div>
-                <a href="https://x.com/l2beat" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">L2Beat ↗</a>
-                <div className="text-[var(--text-tertiary)]">Layer 2 security, risk, and decentralization tracking.</div>
-              </div>
-              <div>
-                <a href="https://x.com/AntiCapture" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--text-primary)] mb-0.5 hover:text-[var(--accent-cyan)] transition-colors">AntiCapture ↗</a>
-                <div className="text-[var(--text-tertiary)]">Governance capture detection and DAO risk monitoring.</div>
-              </div>
-              <a href="https://x.com/ethereumsecurity" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors">Ethereum security research ↗</a>
-            </div>
-          </div>
+        <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8">
+          <h2 className="text-xl font-semibold mb-1">Also useful</h2>
+          <p className="text-sm text-[var(--text-tertiary)] mb-5">
+            Public tools we point operators to for wallet, protocol, L2, and machine-payments risk — not an endorsement of every score.
+          </p>
+          <ul className="space-y-3" role="list">
+            {ALSO_USEFUL.map((item) => (
+              <li key={item.logo}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 rounded-xl border border-transparent px-2 py-2 -mx-2 hover:border-[var(--border-default)] hover:bg-white/[0.02] transition-colors group"
+                >
+                  <UsefulLogo id={item.logo} name={item.name} />
+                  <div className="min-w-0 flex-1">
+                    <div className="font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
+                      {item.name}{' '}
+                      <span className="text-[var(--text-muted)] font-normal" aria-hidden="true">
+                        ↗
+                      </span>
+                    </div>
+                    <p className="text-sm text-[var(--text-tertiary)] leading-snug mt-0.5">{item.description}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </PageContainer>
     </>
