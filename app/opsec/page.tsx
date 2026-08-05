@@ -121,6 +121,7 @@ const OS_GUIDES = [
     title: 'Linux',
     blurb: 'Factory reset + hardening guide',
     status: 'Live',
+    logo: 'linux',
   },
   {
     href: '/opsec/macos/',
@@ -128,6 +129,7 @@ const OS_GUIDES = [
     title: 'macOS',
     blurb: 'Privacy-first MDM + hardening',
     status: 'Live',
+    logo: 'macos',
   },
   {
     href: '/opsec/windows/',
@@ -135,8 +137,37 @@ const OS_GUIDES = [
     title: 'Windows',
     blurb: 'Telemetry reduction + endpoint security',
     status: 'Live',
+    logo: 'windows',
   },
 ];
+
+function OsLogo({ id, title }: { id: string; title: string }) {
+  const [failed, setFailed] = useState(false);
+  const src = withBasePath(`/images/os/${id}.webp`);
+  if (failed) {
+    return (
+      <span className="w-10 h-10 rounded-xl bg-[var(--accent-amber)]/10 flex items-center justify-center text-[var(--accent-amber)]">
+        <OsShieldIcon kind={id as 'linux' | 'macos' | 'windows'} />
+      </span>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- self-hosted OS mark
+    <img
+      src={src}
+      alt=""
+      width={40}
+      height={40}
+      loading="lazy"
+      decoding="async"
+      draggable={false}
+      className="w-10 h-10 rounded-xl object-cover border border-[var(--border-default)] bg-[var(--bg-elevated)] group-hover:border-[var(--accent-amber)]/30 transition-colors"
+      onError={() => setFailed(true)}
+      aria-hidden="true"
+      title={title}
+    />
+  );
+}
 
 export default function OpSec({ embedded = false }: { embedded?: boolean }) {
   return (
@@ -246,9 +277,7 @@ export default function OpSec({ embedded = false }: { embedded?: boolean }) {
               className="group rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-6 transition-all duration-300 hover:border-[var(--accent-amber)]/30 hover:-translate-y-0.5 hover:shadow-[var(--glow-orange)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-amber)]"
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="w-10 h-10 rounded-xl bg-[var(--accent-amber)]/10 flex items-center justify-center text-[var(--accent-amber)] group-hover:bg-[var(--accent-amber)]/15 transition-colors">
-                  <OsShieldIcon kind={g.kind} />
-                </span>
+                <OsLogo id={g.logo} title={g.title} />
                 <span className="text-[10px] font-semibold tracking-[1px] uppercase text-[var(--accent-green)] border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/8 px-2 py-0.5 rounded">
                   {g.status}
                 </span>

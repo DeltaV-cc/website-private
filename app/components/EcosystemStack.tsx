@@ -159,24 +159,49 @@ export default function EcosystemStack({
   );
 }
 
-/** AI pillar ecosystem - X handles map to public/images/ecosystem/{handle}.webp */
+/**
+ * AI pillar ecosystem — local avatars at public/images/ecosystem/{x}.webp
+ * Mix of open models, runtimes, harnesses, labs, and edge hardware we actually use.
+ */
 export const AI_ECOSYSTEM: EcosystemItem[] = [
+  // Open models / labs
+  { name: 'DeepSeek', x: 'deepseek_ai', href: 'https://x.com/deepseek_ai' },
+  { name: 'Moonshot', x: 'MoonshotAI', href: 'https://x.com/MoonshotAI' },
+  { name: 'Z.ai', x: 'z_ai', href: 'https://x.com/zai_org' },
+  { name: 'MiniMax', x: 'MiniMax_AI', href: 'https://x.com/MiniMax_AI' },
+  { name: 'Claude', x: 'AnthropicAI', href: 'https://x.com/AnthropicAI' },
+  { name: 'OpenAI', x: 'OpenAI', href: 'https://x.com/OpenAI' },
+  { name: 'Google AI', x: 'GoogleAI', href: 'https://x.com/GoogleAI' },
+  // Frameworks & tooling
   { name: 'Hugging Face', x: 'huggingface', href: 'https://x.com/huggingface' },
+  { name: 'LangChain', x: 'LangChainAI', href: 'https://x.com/LangChain' },
+  { name: 'PyTorch', x: 'PyTorch', href: 'https://x.com/PyTorch' },
+  { name: 'ComfyUI', x: 'ComfyUI', href: 'https://x.com/ComfyUI' },
+  { name: 'Obsidian', x: 'obsidianmd', href: 'https://x.com/obsidian' },
+  // Local / harness
+  { name: 'Ollama', x: 'ollama', href: 'https://x.com/ollama' },
+  { name: 'LM Studio', x: 'lmstudio', href: 'https://x.com/lmstudio' },
   { name: 'OpenCode', x: 'opencode', href: 'https://x.com/opencode' },
   { name: 'Hermes', x: 'NousResearch', href: 'https://x.com/NousResearch' },
-  { name: 'Ollama', x: 'ollama', href: 'https://x.com/ollama' },
   { name: 'OpenRouter', x: 'OpenRouterAI', href: 'https://x.com/OpenRouterAI' },
-  { name: 'BF6', x: 'BlackForestLabs', href: 'https://x.com/BlackForestLabs' },
-  { name: 'LM Studio', x: 'lmstudio', href: 'https://x.com/lmstudio' },
   { name: 'Cocktail Peanut', x: 'cocktailpeanut', href: 'https://x.com/cocktailpeanut' },
+  { name: 'Buzz', x: 'buzz', href: 'https://github.com/chidiwilliams/buzz' },
+  { name: 'Mercury', x: 'mercury__agent', href: 'https://x.com/mercury__agent' },
+  { name: 'Pi', x: 'pidotdev', href: 'https://x.com/pidotdev' },
+  { name: 'herdr', x: 'herdrdev', href: 'https://x.com/herdrdev' },
+  // Hardware / silicon
+  { name: 'NVIDIA', x: 'nvidia', href: 'https://x.com/nvidia' },
+  { name: 'Raspberry Pi', x: 'Raspberry_Pi', href: 'https://x.com/Raspberry_Pi' },
+  // Media / image
+  { name: 'BF6', x: 'BlackForestLabs', href: 'https://x.com/BlackForestLabs' },
 ];
 
 /** Web3 pillar ecosystem - X handles map to public/images/ecosystem/{handle}.webp */
 export const WEB3_ECOSYSTEM: EcosystemItem[] = [
   { name: 'DeFiLlama', x: 'DefiLlama', href: 'https://x.com/DefiLlama' },
-  { name: 'Artemis', x: 'Artemis__xyz', href: 'https://x.com/Artemis__xyz' },
+  { name: 'Artemis', x: 'artemis', href: 'https://x.com/artemis' },
   { name: 'Trezor', x: 'Trezor', href: 'https://x.com/Trezor' },
-  { name: 'rokti', x: 'roktixyz', href: 'https://x.com/roktixyz' },
+  { name: 'Rotki', x: 'rotkiapp', href: 'https://x.com/rotkiapp' },
   { name: 'Safe', x: 'safe', href: 'https://x.com/safe' },
   { name: 'l2beat', x: 'l2beat', href: 'https://x.com/l2beat' },
   { name: 'defiscan', x: 'defiscan_info', href: 'https://www.defiscan.info/' },
