@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T09:50:47Z",
+  "updated_at": "2026-08-05T10:01:07Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002507,
-        "change_24h": 11.2,
+        "price": 0.002503,
+        "change_24h": 12.4,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 516.62,
-        "change_24h": 5.9,
+        "price": 516.24,
+        "change_24h": 6.0,
         "asset": "crypto"
       },
       {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 57.38,
-        "change_24h": 5.0,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.08765,
+        "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.12,
-        "change_24h": 4.7,
+        "price": 2.13,
+        "change_24h": 5.1,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.032701,
-        "change_24h": 3.8,
+        "symbol": "HYPE",
+        "name": "Hyperliquid",
+        "price": 57.27,
+        "change_24h": 4.7,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.42,
-        "change_24h": -10.1,
+        "price": 2.41,
+        "change_24h": -13.7,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.494612,
+        "price": 0.493958,
         "change_24h": -9.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 11.62,
-        "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 352.27,
-        "change_24h": -3.6,
+        "price": 353.13,
+        "change_24h": -3.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.63,
+        "change_24h": -3.2,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
         "price": 1.86,
-        "change_24h": -3.3,
+        "change_24h": -2.9,
         "asset": "crypto"
       }
     ]

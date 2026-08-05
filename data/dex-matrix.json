@@ -1,312 +1,212 @@
 {
-  "updated_at": "2026-08-04T13:19:48Z",
-  "source": "DeFiLlama (per-chain DEX endpoints)",
+  "updated_at": "2026-08-05T09:51:04Z",
+  "source": "Dune Analytics (dex.trades \u2014 on-chain data)",
   "query_ids": {
-    "cross_table": "llama_overview_dexs",
-    "tvl_by_chain": "llama_v2_chains"
+    "cross_table": 8029504,
+    "tvl_by_chain": 8029496
   },
   "chains": [
     {
-      "chain": "ethereum",
-      "total24h": 778816506.1700002,
-      "tvl": 778816506.1700002
+      "chain": "bnb",
+      "total24h": 2543543887.876687,
+      "tvl": 2543474503.882954
     },
     {
-      "chain": "bnb",
-      "total24h": 1444086165.81,
-      "tvl": 1444086165.81
+      "chain": "ethereum",
+      "total24h": 918308324.576351,
+      "tvl": 918335069.8666091
     },
     {
       "chain": "base",
-      "total24h": 751559531.38,
-      "tvl": 751559531.38
-    },
-    {
-      "chain": "hyperevm",
-      "total24h": 158013186.91,
-      "tvl": 158013186.91
+      "total24h": 712514932.4849946,
+      "tvl": 712521908.8128074
     },
     {
       "chain": "arbitrum",
-      "total24h": 125261576.81,
-      "tvl": 125261576.81
-    },
-    {
-      "chain": "monad",
-      "total24h": 29770850.550000004,
-      "tvl": 29770850.550000004
+      "total24h": 95049591.9935761,
+      "tvl": 95059194.59030491
     },
     {
       "chain": "polygon",
-      "total24h": 161151887.41,
-      "tvl": 161151887.41
+      "total24h": 55781764.797665134,
+      "tvl": 55804943.9590751
     },
     {
       "chain": "avalanche_c",
-      "total24h": 42886613.65,
-      "tvl": 42886613.65
+      "total24h": 55654727.77446701,
+      "tvl": 55604654.19369573
     },
     {
-      "chain": "robinhood",
-      "total24h": 352321653.37,
-      "tvl": 352321653.37
-    },
-    {
-      "chain": "gnosis",
-      "total24h": 5607193.62,
-      "tvl": 5607193.62
-    },
-    {
-      "chain": "mantle",
-      "total24h": 10562857.78,
-      "tvl": 10562857.78
-    },
-    {
-      "chain": "blast",
-      "total24h": 7468.72,
-      "tvl": 7468.72
+      "chain": "optimism",
+      "total24h": 13283283.241999574,
+      "tvl": 13286560.139069047
     }
   ],
   "matrix": [
     {
-      "protocol": "Uniswap V3",
-      "total_vol": 218969638,
+      "protocol": "pancakeswap",
+      "total_vol": 2040821938.8994555,
+      "bnb": 1917693737.844271,
+      "ethereum": 4441951.66506475,
+      "base": 111799222.76495709,
+      "arbitrum": 6887026.625162487,
+      "polygon": 0,
+      "avalanche_c": 0,
+      "optimism": 0
+    },
+    {
+      "protocol": "uniswap",
+      "total_vol": 1113872909.5506308,
+      "bnb": 156611533.56043532,
+      "ethereum": 739630124.7389742,
+      "base": 92128246.72043861,
+      "arbitrum": 77879082.11628273,
+      "polygon": 38526459.84659606,
+      "avalanche_c": 3022799.705236662,
+      "optimism": 6074662.8626673
+    },
+    {
+      "protocol": "aerodrome",
+      "total_vol": 491639216.89890647,
+      "bnb": 0,
       "ethereum": 0,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
+      "base": 491639216.89890647,
       "arbitrum": 0,
-      "monad": 4165088,
       "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 214802888,
-      "gnosis": 0,
-      "mantle": 1662,
-      "blast": 0
+      "optimism": 0
     },
     {
-      "protocol": "PancakeSwap AMM",
-      "total_vol": 81707517,
-      "ethereum": 337223,
-      "bnb": 81349405,
-      "base": 20708,
-      "hyperevm": 0,
-      "arbitrum": 181,
-      "monad": 0,
+      "protocol": "native",
+      "total_vol": 237089511.161693,
+      "bnb": 224987993.39609462,
+      "ethereum": 11707905.149505153,
+      "base": 182300.6585850916,
+      "arbitrum": 211311.95750815,
       "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 0
     },
     {
-      "protocol": "Curve DEX",
-      "total_vol": 36328890,
-      "ethereum": 30798555,
-      "bnb": 5059,
-      "base": 844763,
-      "hyperevm": 155867,
-      "arbitrum": 288272,
-      "monad": 1496534,
-      "polygon": 99161,
-      "avalanche_c": 182,
-      "robinhood": 2030242,
-      "gnosis": 610255,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "Uniswap V2",
-      "total_vol": 16895603,
+      "protocol": "tessera_v",
+      "total_vol": 228808743.05232787,
+      "bnb": 218807027.92326558,
       "ethereum": 0,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
+      "base": 10001715.129062282,
       "arbitrum": 0,
-      "monad": 0,
       "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 16895603,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 0
     },
     {
-      "protocol": "Quickswap Dex",
-      "total_vol": 14434149,
+      "protocol": "curve",
+      "total_vol": 66181248.45088218,
+      "bnb": 0,
+      "ethereum": 66134658.5368326,
+      "base": 0,
+      "arbitrum": 0,
+      "polygon": 0,
+      "avalanche_c": 0,
+      "optimism": 46589.914049581654
+    },
+    {
+      "protocol": "fluid",
+      "total_vol": 51016028.62678888,
+      "bnb": 0,
+      "ethereum": 44994975.26172805,
+      "base": 428718.35552004515,
+      "arbitrum": 5559627.26086137,
+      "polygon": 32707.74867941156,
+      "avalanche_c": 0,
+      "optimism": 0
+    },
+    {
+      "protocol": "pharaoh_v3",
+      "total_vol": 47322607.745964326,
+      "bnb": 0,
       "ethereum": 0,
-      "bnb": 0,
       "base": 0,
-      "hyperevm": 0,
       "arbitrum": 0,
-      "monad": 0,
-      "polygon": 14434149,
-      "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "polygon": 0,
+      "avalanche_c": 47322607.745964326,
+      "optimism": 0
     },
     {
-      "protocol": "DODO AMM",
-      "total_vol": 4803342,
+      "protocol": "ekubo",
+      "total_vol": 27967252.072197307,
+      "bnb": 0,
+      "ethereum": 27967252.072197307,
+      "base": 0,
+      "arbitrum": 0,
+      "polygon": 0,
+      "avalanche_c": 0,
+      "optimism": 0
+    },
+    {
+      "protocol": "lista_smartswap",
+      "total_vol": 23601384.835874178,
+      "bnb": 23601384.835874178,
       "ethereum": 0,
-      "bnb": 38812,
       "base": 0,
-      "hyperevm": 0,
-      "arbitrum": 1392105,
-      "monad": 0,
-      "polygon": 3372425,
+      "arbitrum": 0,
+      "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 0
     },
     {
-      "protocol": "Pendle",
-      "total_vol": 2859715,
+      "protocol": "quickswap",
+      "total_vol": 15745126.472745972,
+      "bnb": 0,
       "ethereum": 0,
-      "bnb": 0,
-      "base": 25951,
-      "hyperevm": 299761,
+      "base": 0,
       "arbitrum": 0,
-      "monad": 2534003,
-      "polygon": 0,
+      "polygon": 15745126.472745972,
       "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 0
     },
     {
-      "protocol": "PancakeSwap AMM V3",
-      "total_vol": 1813634,
+      "protocol": "dodo",
+      "total_vol": 7973538.644078303,
+      "bnb": 199831.66814101802,
+      "ethereum": 6574269.461581009,
+      "base": 0,
+      "arbitrum": 867912.1097624215,
+      "polygon": 331525.4045938543,
+      "avalanche_c": 0,
+      "optimism": 0
+    },
+    {
+      "protocol": "velodrome",
+      "total_vol": 6042672.639022354,
+      "bnb": 0,
       "ethereum": 0,
-      "bnb": 0,
       "base": 0,
-      "hyperevm": 0,
       "arbitrum": 0,
-      "monad": 1046223,
       "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 767411,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 6042672.639022354
     },
     {
-      "protocol": "Ekubo",
-      "total_vol": 1109564,
+      "protocol": "swaap",
+      "total_vol": 4692421.318115762,
+      "bnb": 63697.41136666023,
+      "ethereum": 4605855.3312335955,
+      "base": 0,
+      "arbitrum": 0,
+      "polygon": 0,
+      "avalanche_c": 0,
+      "optimism": 22868.575515506327
+    },
+    {
+      "protocol": "elfomofi",
+      "total_vol": 4610971.7224998865,
+      "bnb": 0,
       "ethereum": 0,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
+      "base": 4610971.7224998865,
       "arbitrum": 0,
-      "monad": 0,
       "polygon": 0,
       "avalanche_c": 0,
-      "robinhood": 1109564,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "SushiSwap",
-      "total_vol": 363657,
-      "ethereum": 150225,
-      "bnb": 915,
-      "base": 0,
-      "hyperevm": 0,
-      "arbitrum": 184989,
-      "monad": 0,
-      "polygon": 26096,
-      "avalanche_c": 341,
-      "robinhood": 0,
-      "gnosis": 1091,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "Defi Swap",
-      "total_vol": 262777,
-      "ethereum": 262777,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
-      "arbitrum": 0,
-      "monad": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "Joe DEX",
-      "total_vol": 142285,
-      "ethereum": 0,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
-      "arbitrum": 0,
-      "monad": 0,
-      "polygon": 0,
-      "avalanche_c": 142285,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "Balancer V1",
-      "total_vol": 64032,
-      "ethereum": 64032,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 0,
-      "arbitrum": 0,
-      "monad": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "WOOFi Swap",
-      "total_vol": 40863,
-      "ethereum": 0,
-      "bnb": 0,
-      "base": 0,
-      "hyperevm": 28366,
-      "arbitrum": 0,
-      "monad": 12497,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
-    },
-    {
-      "protocol": "Overtime",
-      "total_vol": 40650,
-      "ethereum": 0,
-      "bnb": 0,
-      "base": 40650,
-      "hyperevm": 0,
-      "arbitrum": 0,
-      "monad": 0,
-      "polygon": 0,
-      "avalanche_c": 0,
-      "robinhood": 0,
-      "gnosis": 0,
-      "mantle": 0,
-      "blast": 0
+      "optimism": 0
     }
   ]
 }
