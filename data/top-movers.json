@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T12:16:06Z",
+  "updated_at": "2026-08-05T12:30:25Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002514,
+        "price": 0.002536,
         "change_24h": 12.7,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.088985,
+        "price": 0.089589,
         "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 518.43,
+        "price": 523.37,
         "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.032895,
+        "price": 0.032872,
         "change_24h": 4.5,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.08501,
+        "price": 0.085218,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -119,8 +119,15 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.45,
+        "price": 2.43,
         "change_24h": -14.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.491298,
+        "change_24h": -10.9,
         "asset": "crypto"
       },
       {
@@ -133,7 +140,7 @@
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 353.42,
+        "price": 354.77,
         "change_24h": -3.5,
         "asset": "crypto"
       },
@@ -142,13 +149,6 @@
         "name": "MemeCore",
         "price": 1.17,
         "change_24h": -3.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.35,
-        "change_24h": -2.7,
         "asset": "crypto"
       }
     ]
