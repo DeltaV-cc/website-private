@@ -237,10 +237,10 @@ export function MetricValue({
 }: {
   ready: boolean;
   loading?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   emptyLabel?: string;
 }) {
-  if (ready) return <>{children}</>;
+  if (ready) return <>{children ?? null}</>;
   if (loading) {
     return (
       <div className="space-y-2">
