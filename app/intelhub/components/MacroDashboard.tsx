@@ -10,8 +10,11 @@ import { CategoryBox, fmtNum, PanelMeta, FieldStatusChip, MetricValue } from './
 import MarketNewsTicker from './MarketNewsTicker';
 import { macroMoverLink } from '@/lib/entity-links';
 
-// Align with hooks.ts SSOT (Pages project path).
-const DATA_BASE = 'https://deltav-cc.github.io/website-private';
+// Prefer jsDelivr tip (Pages CDN can lag Hermes pushes by hours).
+const DATA_BASES = [
+  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
+  'https://deltav-cc.github.io/website-private',
+] as const;
 
 /* -- Inline SVG Icons -- */
 const TrendUp = () => (
@@ -65,10 +68,22 @@ export default function MacroDashboard({
       setCalendar(fromDd);
       return;
     }
-    fetch(`${DATA_BASE}/data/macro-calendar.json?v=${Math.floor(Date.now()/60000)}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (d?.events) setCalendar(d.events); })
-      .catch(() => {});
+    const bust = Math.floor(Date.now() / 60000);
+    (async () => {
+      for (const base of DATA_BASES) {
+        try {
+          const r = await fetch(`${base}/data/macro-calendar.json?v=${bust}`);
+          if (!r.ok) continue;
+          const d = await r.json();
+          if (d?.events?.length) {
+            setCalendar(d.events);
+            return;
+          }
+        } catch {
+          /* next mirror */
+        }
+      }
+    })();
   }, [dd?.macroCalendar]);
 
   useEffect(() => {
