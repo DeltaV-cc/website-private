@@ -1,63 +1,160 @@
 {
-  "updated_at": "2026-08-05T11:45:11Z",
-  "source": "defillama historicalChainTvl",
+  "updated_at": "2026-08-05T12:00:50Z",
+  "source": "DeFiLlama (per-chain historical TVL)",
   "gainers": [
     {
       "name": "Monad",
       "tvl": 848640723.9672025,
-      "change_1d": 10.245811154740556
+      "change_24h": 10.25
+    },
+    {
+      "name": "Robinhood Chain",
+      "tvl": 431008528.5546833,
+      "change_24h": 6.95
     },
     {
       "name": "Hyperliquid L1",
       "tvl": 1267807607.376614,
-      "change_1d": 3.8764178068162325
+      "change_24h": 3.88
+    },
+    {
+      "name": "Stellar",
+      "tvl": 217735307.6076069,
+      "change_24h": 2.2
     },
     {
       "name": "Ethereum",
       "tvl": 40994288457.47547,
-      "change_1d": 1.835301565011953
-    },
-    {
-      "name": "Base",
-      "tvl": 4588359844.23566,
-      "change_1d": 1.045200232005448
-    },
-    {
-      "name": "Solana",
-      "tvl": 4794904604.973928,
-      "change_1d": 0.9589135306654074
-    },
-    {
-      "name": "Provenance",
-      "tvl": 1576429488.1920469,
-      "change_1d": 0.591856582629999
-    },
-    {
-      "name": "Arbitrum",
-      "tvl": 1188973403.2210455,
-      "change_1d": 0.5893031548864299
-    },
-    {
-      "name": "BSC",
-      "tvl": 4889913241.698613,
-      "change_1d": 0.4206326866306699
+      "change_24h": 1.84
     }
   ],
   "losers": [
     {
       "name": "Bitcoin",
       "tvl": 3506306421.0232506,
-      "change_1d": -2.5123456163915123
+      "change_24h": -2.51
     },
     {
       "name": "Plasma",
       "tvl": 666679992.9539632,
-      "change_1d": -2.0385080278350056
+      "change_24h": -2.04
+    },
+    {
+      "name": "Cronos",
+      "tvl": 250904329.05183616,
+      "change_24h": -1.39
+    },
+    {
+      "name": "Sui",
+      "tvl": 412811095.33956516,
+      "change_24h": -1.19
     },
     {
       "name": "Tron",
       "tvl": 4832303950.391233,
-      "change_1d": -0.804598254724043
+      "change_24h": -0.8
+    }
+  ],
+  "all": [
+    {
+      "name": "Ethereum",
+      "tvl": 40994288457.47547,
+      "change_24h": 1.84
+    },
+    {
+      "name": "BSC",
+      "tvl": 4889913241.698613,
+      "change_24h": 0.42
+    },
+    {
+      "name": "Tron",
+      "tvl": 4832303950.391233,
+      "change_24h": -0.8
+    },
+    {
+      "name": "Solana",
+      "tvl": 4794904604.973928,
+      "change_24h": 0.96
+    },
+    {
+      "name": "Base",
+      "tvl": 4588359844.23566,
+      "change_24h": 1.05
+    },
+    {
+      "name": "Bitcoin",
+      "tvl": 3506306421.0232506,
+      "change_24h": -2.51
+    },
+    {
+      "name": "Provenance",
+      "tvl": 1576429488.1920469,
+      "change_24h": 0.59
+    },
+    {
+      "name": "Hyperliquid L1",
+      "tvl": 1267807607.376614,
+      "change_24h": 3.88
+    },
+    {
+      "name": "Arbitrum",
+      "tvl": 1188973403.2210455,
+      "change_24h": 0.59
+    },
+    {
+      "name": "Monad",
+      "tvl": 848640723.9672025,
+      "change_24h": 10.25
+    },
+    {
+      "name": "Polygon",
+      "tvl": 798686463.7062191,
+      "change_24h": 0.15
+    },
+    {
+      "name": "Plasma",
+      "tvl": 666679992.9539632,
+      "change_24h": -2.04
+    },
+    {
+      "name": "Avalanche",
+      "tvl": 441588109.0412574,
+      "change_24h": 1.58
+    },
+    {
+      "name": "Robinhood Chain",
+      "tvl": 431008528.5546833,
+      "change_24h": 6.95
+    },
+    {
+      "name": "Sui",
+      "tvl": 412811095.33956516,
+      "change_24h": -1.19
+    },
+    {
+      "name": "OP Mainnet",
+      "tvl": 309942708.6683416,
+      "change_24h": 1.59
+    },
+    {
+      "name": "Cronos",
+      "tvl": 250904329.05183616,
+      "change_24h": -1.39
+    },
+    {
+      "name": "Stellar",
+      "tvl": 217735307.6076069,
+      "change_24h": 2.2
+    },
+    {
+      "name": "Anubis",
+      "tvl": 188871409.6655288,
+      "change_24h": -0.35
+    },
+    {
+      "name": "Starknet",
+      "tvl": 165579873.0170157,
+      "change_24h": -0.52
     }
   ]
 }
