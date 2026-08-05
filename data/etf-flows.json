@@ -1,17 +1,13 @@
 {
-  "updated_at": "2026-08-04T15:48:07.078494Z",
+  "updated_at": "2026-08-05T10:30:38.396458Z",
   "source": "Farside Investors via haturatu/crypto-etf-flow",
   "btc": {
-    "latest_total": 170.1,
-    "latest_date": "2026-08-03",
-    "prev_total": -265.4,
-    "change": 435.5,
-    "ytd_flows": -5046.9,
+    "latest_total": 211.5,
+    "latest_date": "2026-08-04",
+    "prev_total": 170.1,
+    "change": 41.400000000000006,
+    "ytd_flows": -4835.4,
     "sparkline": [
-      {
-        "d": "2026-06-22",
-        "v": -68.3
-      },
       {
         "d": "2026-06-23",
         "v": -113.8
@@ -127,20 +123,20 @@
       {
         "d": "2026-08-03",
         "v": 170.1
+      },
+      {
+        "d": "2026-08-04",
+        "v": 211.5
       }
     ]
   },
   "eth": {
-    "latest_total": -11.9,
-    "latest_date": "2026-08-03",
-    "prev_total": 9.0,
-    "change": -20.9,
-    "ytd_flows": -1138.2,
+    "latest_total": 53.1,
+    "latest_date": "2026-08-04",
+    "prev_total": -11.9,
+    "change": 65.0,
+    "ytd_flows": -1085.1000000000001,
     "sparkline": [
-      {
-        "d": "2026-06-22",
-        "v": -66.1
-      },
       {
         "d": "2026-06-23",
         "v": -82.4
@@ -256,6 +252,10 @@
       {
         "d": "2026-08-03",
         "v": -11.9
+      },
+      {
+        "d": "2026-08-04",
+        "v": 53.1
       }
     ]
   }
