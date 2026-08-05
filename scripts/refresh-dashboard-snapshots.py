@@ -349,8 +349,11 @@ def push_to_gh_pages(payloads: dict[str, str]) -> None:
             print("  · no dashboard snapshot changes")
             return
 
-        subprocess.run(["git", "-C", tmpdir, "config", "user.email", "deltav.go@gmail.com"], check=True)
-        subprocess.run(["git", "-C", tmpdir, "config", "user.name", "Delta V ZHC"], check=True)
+        # Prefer env overrides; never hardcode personal emails in the public repo.
+        git_email = os.environ.get("DASHBOARD_GIT_EMAIL", "noreply@deltav.cc")
+        git_name = os.environ.get("DASHBOARD_GIT_NAME", "Delta V Bot")
+        subprocess.run(["git", "-C", tmpdir, "config", "user.email", git_email], check=True)
+        subprocess.run(["git", "-C", tmpdir, "config", "user.name", git_name], check=True)
         subprocess.run(
             ["git", "-C", tmpdir, "add"] + [f"data/{n}" for n in changed],
             check=True,

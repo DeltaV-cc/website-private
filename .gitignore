@@ -47,3 +47,13 @@ scripts/sync-intel-to-site.py
 scripts/add-to-watchlist.py
 scripts/macro-pull.py
 app/intelhub/sources-patch.txt
+
+# Ops credentials / local intel state (never commit)
+**/artemis-config.json
+**/artemis-config.*.json
+**/*stytch*token*
+**/*stycth*
+*.sqlite
+*.sqlite3
+intel.db
+**/intel.db
