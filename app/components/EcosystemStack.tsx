@@ -1,21 +1,49 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useVisibilityTicker } from '../intelhub/components/useVisibilityTicker';
+import { withBasePath } from '@/lib/site';
 
 export type EcosystemItem = {
   name: string;
-  /** X / Twitter handle without @ - X profile handle for the partner link */
+  /** X / Twitter handle without @ — used for local avatar path + link title */
   x?: string;
   href?: string;
 };
 
+/** Self-hosted avatar under public/images/ecosystem/{handle}.webp (no third-party requests). */
+function avatarSrc(x?: string): string | null {
+  if (!x) return null;
+  return withBasePath(`/images/ecosystem/${x}.webp`);
+}
+
 /**
- * Monogram brand mark (self-hosted, privacy-preserving).
- * Renders the partner initial locally — no third-party avatar request.
+ * Local profile mark — prefers self-hosted X PP; falls back to monogram.
+ * No remote avatar CDN (unavatar / twimg) at runtime.
  */
-function BrandMark({ name }: { name: string; x?: string }) {
+function BrandMark({ name, x }: { name: string; x?: string }) {
+  const src = avatarSrc(x);
+  const [failed, setFailed] = useState(false);
   const initial = name.trim().charAt(0).toUpperCase() || '?';
+
+  if (src && !failed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element -- static local asset; avoid Image optimizer dependency for tiny rail icons
+      <img
+        src={src}
+        alt=""
+        width={20}
+        height={20}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        className="w-5 h-5 rounded-full object-cover border border-[var(--border-default)] bg-[var(--bg-elevated)]"
+        onError={() => setFailed(true)}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <span
       className="w-5 h-5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-default)] flex items-center justify-center text-[9px] font-semibold text-[var(--text-tertiary)]"
@@ -66,8 +94,7 @@ function Chip({
 
 /**
  * IntelHub-style horizontal logo rail for pillar ecosystem rows.
- * Native scrolling stays available on touch/mouse while the low-cost ticker
- * pauses whenever the user hovers or focuses the rail.
+ * Avatars are self-hosted under /images/ecosystem — zero third-party tracking.
  */
 export default function EcosystemStack({
   items,
@@ -132,7 +159,7 @@ export default function EcosystemStack({
   );
 }
 
-/** AI pillar ecosystem - X handles for profile avatars */
+/** AI pillar ecosystem - X handles map to public/images/ecosystem/{handle}.webp */
 export const AI_ECOSYSTEM: EcosystemItem[] = [
   { name: 'Hugging Face', x: 'huggingface', href: 'https://x.com/huggingface' },
   { name: 'OpenCode', x: 'opencode', href: 'https://x.com/opencode' },
@@ -144,7 +171,7 @@ export const AI_ECOSYSTEM: EcosystemItem[] = [
   { name: 'Cocktail Peanut', x: 'cocktailpeanut', href: 'https://x.com/cocktailpeanut' },
 ];
 
-/** Web3 pillar ecosystem - X handles for profile avatars */
+/** Web3 pillar ecosystem - X handles map to public/images/ecosystem/{handle}.webp */
 export const WEB3_ECOSYSTEM: EcosystemItem[] = [
   { name: 'DeFiLlama', x: 'DefiLlama', href: 'https://x.com/DefiLlama' },
   { name: 'Artemis', x: 'Artemis__xyz', href: 'https://x.com/Artemis__xyz' },
