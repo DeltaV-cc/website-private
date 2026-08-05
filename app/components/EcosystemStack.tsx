@@ -186,6 +186,9 @@ export const AI_ECOSYSTEM: EcosystemItem[] = [
   { name: 'OpenRouter', x: 'OpenRouterAI', href: 'https://x.com/OpenRouterAI' },
   { name: 'Cocktail Peanut', x: 'cocktailpeanut', href: 'https://x.com/cocktailpeanut' },
   { name: 'Buzz', x: 'buzz', href: 'https://github.com/chidiwilliams/buzz' },
+  { name: 'Mercury', x: 'mercury__agent', href: 'https://x.com/mercury__agent' },
+  { name: 'Pi', x: 'pidotdev', href: 'https://x.com/pidotdev' },
+  { name: 'herdr', x: 'herdrdev', href: 'https://x.com/herdrdev' },
   // Hardware / silicon
   { name: 'NVIDIA', x: 'nvidia', href: 'https://x.com/nvidia' },
   { name: 'Raspberry Pi', x: 'Raspberry_Pi', href: 'https://x.com/Raspberry_Pi' },
