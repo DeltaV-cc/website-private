@@ -1,340 +1,156 @@
 {
-  "updated_at": "2026-08-05T11:46:40Z",
-  "source": "Yahoo \u00b7 CoinGecko",
-  "equities": [
-    {
-      "symbol": "AMD",
-      "name": "AMD",
-      "price": 518.58,
-      "changePct": 7.0
-    },
-    {
-      "symbol": "AVGO",
-      "name": "AVGO",
-      "price": 418.16,
-      "changePct": 6.61
-    },
-    {
-      "symbol": "ORCL",
-      "name": "ORCL",
-      "price": 145.74,
-      "changePct": 2.74
-    },
-    {
-      "symbol": "CRM",
-      "name": "CRM",
-      "price": 190.99,
-      "changePct": 2.71
-    },
-    {
-      "symbol": "NVDA",
-      "name": "NVDA",
-      "price": 211.94,
-      "changePct": 2.56
-    },
-    {
-      "symbol": "AAPL",
-      "name": "AAPL",
-      "price": 309.38,
-      "changePct": 1.96
-    },
-    {
-      "symbol": "TSLA",
-      "name": "TSLA",
-      "price": 327.35,
-      "changePct": 1.64
-    },
-    {
-      "symbol": "JPM",
-      "name": "JPM",
-      "price": 357.52,
-      "changePct": 1.38
-    },
-    {
-      "symbol": "AMZN",
-      "name": "AMZN",
-      "price": 277.42,
-      "changePct": -2.32
-    },
-    {
-      "symbol": "UNH",
-      "name": "UNH",
-      "price": 407.55,
-      "changePct": -1.88
-    },
-    {
-      "symbol": "XOM",
-      "name": "XOM",
-      "price": 153.96,
-      "changePct": -0.71
-    },
-    {
-      "symbol": "COST",
-      "name": "COST",
-      "price": 947.85,
-      "changePct": -0.65
-    }
-  ],
-  "crypto": [
-    {
-      "symbol": "ZEC",
-      "name": "Zcash",
-      "price": 516.23,
-      "changePct": 6.3
-    },
-    {
-      "symbol": "HYPE",
-      "name": "Hyperliquid",
-      "price": 57.07,
-      "changePct": 4.9
-    },
-    {
-      "symbol": "UNI",
-      "name": "Uniswap",
-      "price": 3.98,
-      "changePct": 3.5
-    },
-    {
-      "symbol": "XAUT",
-      "name": "Tether Gold",
-      "price": 4166.85,
-      "changePct": 2.6
-    },
-    {
-      "symbol": "BNB",
-      "name": "BNB",
-      "price": 596.33,
-      "changePct": 1.4
-    },
-    {
-      "symbol": "LTC",
-      "name": "Litecoin",
-      "price": 44.75,
-      "changePct": 1.1
-    },
-    {
-      "symbol": "SOL",
-      "name": "Solana",
-      "price": 73.73,
-      "changePct": 0.9
-    },
-    {
-      "symbol": "BTC",
-      "name": "Bitcoin",
-      "price": 64053,
-      "changePct": 0.8
-    },
-    {
-      "symbol": "XMR",
-      "name": "Monero",
-      "price": 352.73,
-      "changePct": -3.3
-    },
-    {
-      "symbol": "HBAR",
-      "name": "Hedera",
-      "price": 0.069284,
-      "changePct": -2.7
-    },
-    {
-      "symbol": "XLM",
-      "name": "Stellar",
-      "price": 0.166617,
-      "changePct": -2.5
-    },
-    {
-      "symbol": "RAIN",
-      "name": "Rain",
-      "price": 0.01240317,
-      "changePct": -2.0
-    }
-  ],
-  "equity_gainers": [
-    {
-      "symbol": "AMD",
-      "name": "AMD",
-      "price": 518.58,
-      "changePct": 7.0
-    },
-    {
-      "symbol": "AVGO",
-      "name": "AVGO",
-      "price": 418.16,
-      "changePct": 6.61
-    },
-    {
-      "symbol": "ORCL",
-      "name": "ORCL",
-      "price": 145.74,
-      "changePct": 2.74
-    },
-    {
-      "symbol": "CRM",
-      "name": "CRM",
-      "price": 190.99,
-      "changePct": 2.71
-    },
-    {
-      "symbol": "NVDA",
-      "name": "NVDA",
-      "price": 211.94,
-      "changePct": 2.56
-    },
-    {
-      "symbol": "AAPL",
-      "name": "AAPL",
-      "price": 309.38,
-      "changePct": 1.96
-    },
-    {
-      "symbol": "TSLA",
-      "name": "TSLA",
-      "price": 327.35,
-      "changePct": 1.64
-    },
-    {
-      "symbol": "JPM",
-      "name": "JPM",
-      "price": 357.52,
-      "changePct": 1.38
-    }
-  ],
-  "equity_losers": [
-    {
-      "symbol": "AMZN",
-      "name": "AMZN",
-      "price": 277.42,
-      "changePct": -2.32
-    },
-    {
-      "symbol": "UNH",
-      "name": "UNH",
-      "price": 407.55,
-      "changePct": -1.88
-    },
-    {
-      "symbol": "XOM",
-      "name": "XOM",
-      "price": 153.96,
-      "changePct": -0.71
-    },
-    {
-      "symbol": "COST",
-      "name": "COST",
-      "price": 947.85,
-      "changePct": -0.65
-    },
-    {
-      "symbol": "LLY",
-      "name": "LLY",
-      "price": 1115.68,
-      "changePct": -0.51
-    },
-    {
-      "symbol": "META",
-      "name": "META",
-      "price": 587.94,
-      "changePct": -0.39
-    }
-  ],
-  "crypto_gainers": [
-    {
-      "symbol": "ZEC",
-      "name": "Zcash",
-      "price": 516.23,
-      "changePct": 6.3
-    },
-    {
-      "symbol": "HYPE",
-      "name": "Hyperliquid",
-      "price": 57.07,
-      "changePct": 4.9
-    },
-    {
-      "symbol": "UNI",
-      "name": "Uniswap",
-      "price": 3.98,
-      "changePct": 3.5
-    },
-    {
-      "symbol": "XAUT",
-      "name": "Tether Gold",
-      "price": 4166.85,
-      "changePct": 2.6
-    },
-    {
-      "symbol": "BNB",
-      "name": "BNB",
-      "price": 596.33,
-      "changePct": 1.4
-    },
-    {
-      "symbol": "LTC",
-      "name": "Litecoin",
-      "price": 44.75,
-      "changePct": 1.1
-    },
-    {
-      "symbol": "SOL",
-      "name": "Solana",
-      "price": 73.73,
-      "changePct": 0.9
-    },
-    {
-      "symbol": "BTC",
-      "name": "Bitcoin",
-      "price": 64053,
-      "changePct": 0.8
-    }
-  ],
-  "crypto_losers": [
-    {
-      "symbol": "XMR",
-      "name": "Monero",
-      "price": 352.73,
-      "changePct": -3.3
-    },
-    {
-      "symbol": "HBAR",
-      "name": "Hedera",
-      "price": 0.069284,
-      "changePct": -2.7
-    },
-    {
-      "symbol": "XLM",
-      "name": "Stellar",
-      "price": 0.166617,
-      "changePct": -2.5
-    },
-    {
-      "symbol": "RAIN",
-      "name": "Rain",
-      "price": 0.01240317,
-      "changePct": -2.0
-    },
-    {
-      "symbol": "AVAX",
-      "name": "Avalanche",
-      "price": 6.67,
-      "changePct": -1.9
-    },
-    {
-      "symbol": "NEAR",
-      "name": "NEAR Protocol",
-      "price": 1.7,
-      "changePct": -1.8
-    },
-    {
-      "symbol": "SHIB",
-      "name": "Shiba Inu",
-      "price": 4.89e-06,
-      "changePct": -1.2
-    },
-    {
-      "symbol": "XRP",
-      "name": "XRP",
-      "price": 1.06,
-      "changePct": -1.0
-    }
-  ]
+  "updated_at": "2026-08-05T12:16:06Z",
+  "source": "Yahoo Finance screener + CoinGecko markets",
+  "equities": {
+    "gainers": [
+      {
+        "symbol": "W",
+        "name": "Wayfair Inc.",
+        "price": 116.08,
+        "change_24h": 29.97,
+        "asset": "equity"
+      },
+      {
+        "symbol": "PLTR",
+        "name": "Palantir Technologies Inc.",
+        "price": 162.66,
+        "change_24h": 29.45,
+        "asset": "equity"
+      },
+      {
+        "symbol": "PAY",
+        "name": "Paymentus Holdings, Inc.",
+        "price": 44.6,
+        "change_24h": 29.2,
+        "asset": "equity"
+      },
+      {
+        "symbol": "ZBRA",
+        "name": "Zebra Technologies Corporation",
+        "price": 368.83,
+        "change_24h": 26.47,
+        "asset": "equity"
+      },
+      {
+        "symbol": "UFPT",
+        "name": "UFP Technologies, Inc.",
+        "price": 334.84,
+        "change_24h": 25.16,
+        "asset": "equity"
+      }
+    ],
+    "losers": [
+      {
+        "symbol": "BRKR",
+        "name": "Bruker Corporation",
+        "price": 50.3,
+        "change_24h": -21.79,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CTRI",
+        "name": "Centuri Holdings, Inc.",
+        "price": 21.88,
+        "change_24h": -21.46,
+        "asset": "equity"
+      },
+      {
+        "symbol": "APTV",
+        "name": "Aptiv PLC",
+        "price": 47.72,
+        "change_24h": -16.62,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CIFR",
+        "name": "Cipher Digital Inc.",
+        "price": 20.38,
+        "change_24h": -15.65,
+        "asset": "equity"
+      },
+      {
+        "symbol": "NRG",
+        "name": "NRG Energy, Inc.",
+        "price": 117.04,
+        "change_24h": -15.48,
+        "asset": "equity"
+      }
+    ]
+  },
+  "crypto": {
+    "gainers": [
+      {
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002514,
+        "change_24h": 12.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.088985,
+        "change_24h": 6.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 518.43,
+        "change_24h": 5.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.032895,
+        "change_24h": 4.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.08501,
+        "change_24h": 3.9,
+        "asset": "crypto"
+      }
+    ],
+    "losers": [
+      {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 2.45,
+        "change_24h": -14.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.22,
+        "change_24h": -6.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 353.42,
+        "change_24h": -3.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.17,
+        "change_24h": -3.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ATOM",
+        "name": "Cosmos Hub",
+        "price": 1.35,
+        "change_24h": -2.7,
+        "asset": "crypto"
+      }
+    ]
+  }
 }
