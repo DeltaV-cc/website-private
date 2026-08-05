@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T13:00:31Z",
+  "updated_at": "2026-08-05T13:15:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -83,72 +83,72 @@
         "symbol": "PUMP",
         "name": "Pump.fun",
         "price": 0.002528,
-        "change_24h": 12.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.088084,
-        "change_24h": 6.0,
+        "change_24h": 13.4,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 522.23,
-        "change_24h": 5.8,
+        "price": 520.8,
+        "change_24h": 7.3,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.032837,
-        "change_24h": 4.5,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.087548,
+        "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.086028,
-        "change_24h": 3.9,
+        "price": 0.086295,
+        "change_24h": 5.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.032824,
+        "change_24h": 4.4,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 2.4,
-        "change_24h": -14.7,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.49373,
+        "change_24h": -9.1,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.492335,
-        "change_24h": -10.9,
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 2.42,
+        "change_24h": -9.0,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
         "price": 11.33,
-        "change_24h": -6.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 353.73,
-        "change_24h": -3.5,
+        "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
         "price": 1.18,
-        "change_24h": -3.2,
+        "change_24h": -3.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SHIB",
+        "name": "Shiba Inu",
+        "price": 5e-06,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
