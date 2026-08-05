@@ -153,12 +153,21 @@ def main() -> int:
     }
 
     os.makedirs(OUT_DIR, exist_ok=True)
+    payload = json.dumps(out, indent=2) + "\n"
     with open(OUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(out, f, indent=2)
-        f.write("\n")
+        f.write(payload)
 
     print(f"✓ bold-yields.json — SP weighted APY {weighted_apy:.2f}% · TVL ${sp_tvl:,.0f}" if weighted_apy is not None else "✓ bold-yields.json")
     print(f"  stability={len(stability)} venues={len(venues)}")
+
+    # Push SSOT for IntelHub (Pages), not only local public/
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        from _gh_pages_push import push_data_files  # type: ignore
+
+        push_data_files({"bold-yields.json": payload}, commit_prefix="data: bold-yields")
+    except Exception as e:
+        print(f"  ⚠ gh-pages push skipped: {e}", file=sys.stderr)
     return 0
 
 

@@ -100,13 +100,22 @@ def main():
     }
 
     out_path = os.path.join(PUBLIC_DIR, 'etf-flows.json')
+    payload = json.dumps(output, indent=2)
     with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(output, f, indent=2)
+        f.write(payload)
 
     btc_str = f"${btc_latest['total']:+.1f}M" if btc_latest else 'N/A'
     eth_str = f"${eth_latest['total']:+.1f}M" if eth_latest else 'N/A'
     print(f'✓ ETF flows cached: BTC {btc_str} ({btc_latest["date"] if btc_latest else "?"})  ETH {eth_str} ({eth_latest["date"] if eth_latest else "?"})')
     print(f'  BTC YTD: ${btc_ytd:+,.1f}M  |  ETH YTD: ${eth_ytd:+,.1f}M')
+
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        from _gh_pages_push import push_data_files  # type: ignore
+
+        push_data_files({'etf-flows.json': payload}, commit_prefix='data: etf-flows')
+    except Exception as e:
+        print(f'  ⚠ gh-pages push skipped: {e}', file=sys.stderr)
 
 if __name__ == '__main__':
     main()

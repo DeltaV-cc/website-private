@@ -14,6 +14,9 @@ import { Item, PatentsData } from './types';
 // intel backwards; crons keep pushing data/ directly to gh-pages.
 const DATA_BASE = 'https://deltav-cc.github.io/website-private';
 const BASE = DATA_BASE;
+/** Minute-bucket cache-bust so Pages CDN does not serve multi-hour-stale JSON after Hermes pushes. */
+const dataUrl = (path: string) =>
+  `${BASE}${path}${path.includes('?') ? '&' : '?'}v=${Math.floor(Date.now() / 60_000)}`;
 
 /* ---- Helpers ---- */
 const CATS: { id: string; label: string; color: string; accent: string; bg: string; kw: string[] }[] = [
@@ -339,7 +342,7 @@ export function useIntelData(activeTab: string = 'macro') {
   const loadAll = useCallback(async () => {
     try {
       await Promise.allSettled([
-        fetchJson(`${BASE}/data/raw-items.json`).then((d) => {
+        fetchJson(dataUrl('/data/raw-items.json')).then((d) => {
           if (Array.isArray(d)) {
             const tagged = d.map((x: any) => ({ ...x, title: cleanTitle(x.title || ''), summary: cleanSummary(x.summary || ''), tag: getTag(x.title || '', x.summary || '', x.source || '') })).filter(rel);
             // Deduplicate: same source + similar normalized title → keep first
@@ -355,7 +358,7 @@ export function useIntelData(activeTab: string = 'macro') {
             setLastFetch(new Date());
           }
         }),
-        fetchJson(`${BASE}/data/cybersec-watchlist.json`).then((wl) => {
+        fetchJson(dataUrl('/data/cybersec-watchlist.json')).then((wl) => {
           if (Array.isArray(wl)) {
             // Prefer non-expired; if all expired, still surface items so the panel is useful
             const now = Date.now();
@@ -363,7 +366,7 @@ export function useIntelData(activeTab: string = 'macro') {
             setWatchlist(active.length ? active : wl.slice(0, 8));
           }
         }),
-        fetchJson(`${BASE}/data/patents.json`).then((d) => { if (d) setPatents(d); }),
+        fetchJson(dataUrl('/data/patents.json')).then((d) => { if (d) setPatents(d); }),
       ]);
     } finally {
       setLoading(false);
@@ -405,59 +408,72 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Shared light market (Macro default + useful on Web3 banners) ──
     if (tab === 'macro' || tab === 'web3') {
       staticTasks.push(
-        loadField('crypto', `${BASE}/data/crypto.json`, (d) => merge({ crypto: d })),
-        loadField('btcTrend', `${BASE}/data/btc-trend.json`, (d) => merge({ btcTrend: d })),
+        loadField('crypto', dataUrl('/data/crypto.json'), (d) => merge({ crypto: d })),
+        loadField('btcTrend', dataUrl('/data/btc-trend.json'), (d) => merge({ btcTrend: d })),
       );
     }
 
     // ── Macro-only static ──
     if (tab === 'macro') {
       staticTasks.push(
-        loadField('gold', `${BASE}/data/gold.json`, (d) => merge({ gold: d })),
-        loadField('oil', `${BASE}/data/oil.json`, (d) => merge({ oil: d })),
-        loadField('us10y', `${BASE}/data/us10y.json`, (d) => merge({ us10y: d })),
-        loadField('indices', `${BASE}/data/indices.json`, (d) => {
-          if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) merge({ indices: d });
-        }),
-        loadField('topMovers', `${BASE}/data/top-movers.json`, (d) => merge({ topMovers: d })),
-        loadField('forex', `${BASE}/data/forex.json`, (d) => setForex((prev: any) => prev || d)),
+        loadField('gold', dataUrl('/data/gold.json'), (d) => merge({ gold: d })),
+        loadField('oil', dataUrl('/data/oil.json'), (d) => merge({ oil: d })),
+        loadField('us10y', dataUrl('/data/us10y.json'), (d) => merge({ us10y: d })),
+        (async () => {
+          const d = await fetchJson(dataUrl('/data/indices.json'));
+          if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) {
+            merge({ indices: d });
+            const need = ['spx', 'csi', 'smi', 'stoxx', 'dax'];
+            const missing = need.filter((k) => !d[k]);
+            if (missing.length) {
+              markMeta(merge, 'indices', 'error', `partial — missing ${missing.join(',')}`);
+            } else {
+              markMeta(merge, 'indices', 'ok');
+            }
+          } else {
+            markMeta(merge, 'indices', 'error', 'fetch failed');
+          }
+        })(),
+        loadField('topMovers', dataUrl('/data/top-movers.json'), (d) => merge({ topMovers: d })),
+        loadField('forex', dataUrl('/data/forex.json'), (d) => setForex((prev: any) => prev || d)),
         // TradFi F&G snapshot fallback when live feargreedchart fails
-        loadField('cnnFg', `${BASE}/data/cnn-fg.json`, (d) => {
+        loadField('cnnFg', dataUrl('/data/cnn-fg.json'), (d) => {
           if (d && typeof d.value === 'number') {
             merge({
               fearGreed: {
                 score: d.value,
                 rating: d.label || d.rating || '',
                 date: d.updated_at || d.timestamp || '',
-                source: 'snapshot',
+                source: d.source || 'snapshot',
               },
             });
+            markMeta(merge, 'fearGreed', 'ok', 'snapshot');
           }
         }),
-        loadField('macroCalendar', `${BASE}/data/macro-calendar.json`, (d) => merge({ macroCalendar: d })),
+        loadField('macroCalendar', dataUrl('/data/macro-calendar.json'), (d) => merge({ macroCalendar: d })),
       );
     }
 
     // ── Web3-only static (snapshot-first; live Llama enhances in loadWeb3Live) ──
     if (tab === 'web3') {
       staticTasks.push(
-        loadField('etfFlows', `${BASE}/data/etf-flows.json`, (d) => merge({ etfFlows: d })),
-        loadField('netFlows', `${BASE}/data/net-flows.json`, (d) => merge({ netFlows: d })),
-        loadField('boldYields', `${BASE}/data/bold-yields.json`, (d) => merge({ boldYields: d })),
-        loadField('exchangeVol', `${BASE}/data/exchange-vol.json`, (d) => merge({ exchangeVol: d })),
-        loadField('artemisNewsletter', `${BASE}/data/artemis-newsletter.json`, (d) => merge({ artemisNewsletter: d })),
-        loadField('dexMatrix', `${BASE}/data/dex-matrix.json`, (d) => merge({ dexMatrix: d })),
-        loadField('dexMetrics', `${BASE}/data/dex-metrics.json`, (d) => merge({ dexMetrics: d })),
-        loadField('chainMovers', `${BASE}/data/chain-movers.json`, (d) => merge({ chainMovers: d })),
+        loadField('etfFlows', dataUrl('/data/etf-flows.json'), (d) => merge({ etfFlows: d })),
+        loadField('netFlows', dataUrl('/data/net-flows.json'), (d) => merge({ netFlows: d })),
+        loadField('boldYields', dataUrl('/data/bold-yields.json'), (d) => merge({ boldYields: d })),
+        loadField('exchangeVol', dataUrl('/data/exchange-vol.json'), (d) => merge({ exchangeVol: d })),
+        loadField('artemisNewsletter', dataUrl('/data/artemis-newsletter.json'), (d) => merge({ artemisNewsletter: d })),
+        loadField('dexMatrix', dataUrl('/data/dex-matrix.json'), (d) => merge({ dexMatrix: d })),
+        loadField('dexMetrics', dataUrl('/data/dex-metrics.json'), (d) => merge({ dexMetrics: d })),
+        loadField('chainMovers', dataUrl('/data/chain-movers.json'), (d) => merge({ chainMovers: d })),
         // Snapshot-first so stables/TVL paint before Llama live
-        loadField('stables', `${BASE}/data/stables.json`, (d) => {
+        loadField('stables', dataUrl('/data/stables.json'), (d) => {
           merge({
             stablecoins: d.stablecoins || d.stables || [],
             stablecoinChains: d.stablecoinChains || d.chains || [],
             stablesUpdatedAt: d.updated_at || null,
           });
         }),
-        loadField('tvlTop', `${BASE}/data/tvl-top.json`, (d) => {
+        loadField('tvlTop', dataUrl('/data/tvl-top.json'), (d) => {
           const chains = d.chains || d.tvl || [];
           if (Array.isArray(chains) && chains.length) {
             merge({
@@ -481,7 +497,7 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── AI-only static ──
     if (tab === 'ai') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/hf.json`).then((d) => {
+        fetchJson(dataUrl('/data/hf.json')).then((d) => {
           if (d) {
             merge({
               ...(d.models ? { hfModels: d.models } : {}),
@@ -490,7 +506,7 @@ export function useIntelData(activeTab: string = 'macro') {
             });
           }
         }),
-        fetchJson(`${BASE}/data/arena-leaderboard.json`).then((d) => {
+        fetchJson(dataUrl('/data/arena-leaderboard.json')).then((d) => {
           if (!d) return;
           const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
           merge({ arenaLB: models, arenaUpdated: d.updated || null });
@@ -501,7 +517,7 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Infosec snapshot for fast first paint (live refresh still on Infosec tab) ──
     if (tab === 'infosec') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/infosec.json`).then((d) => {
+        fetchJson(dataUrl('/data/infosec.json')).then((d) => {
           if (!d) return;
           setDd2((prev: any) => {
             if (prev && (prev.kev?.length || prev.cves?.length || prev.breaches?.length)) return prev;
@@ -522,8 +538,9 @@ export function useIntelData(activeTab: string = 'macro') {
             const score = latest.score || 0;
             const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
             merge({ fearGreed: { score, rating, date: latest.date, source: 'live' } });
-            markMeta(merge, 'fearGreed', 'ok');
+            markMeta(merge, 'fearGreed', 'ok', 'live');
           } else {
+            // Keep snapshot fearGreed if already merged — only mark meta
             markMeta(merge, 'fearGreed', 'error', 'live failed — using snapshot if any');
           }
         }),
@@ -939,7 +956,7 @@ export function useIntelData(activeTab: string = 'macro') {
     ]);
     let snapUpdated: string | null = null;
     if (!result.kev.length || !result.cves.length || !result.breaches.length) {
-      const c = await fetchJson(`${BASE}/data/infosec.json`);
+      const c = await fetchJson(dataUrl('/data/infosec.json'));
       if (c) {
         snapUpdated = c.updatedAt || null;
         if (!result.kev.length) result.kev = c.kev || [];

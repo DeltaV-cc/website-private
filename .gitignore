@@ -42,7 +42,7 @@ data/
 
 # ── Scripts with credentials/internal paths — keep local only ──
 scripts/fetch-dune-dex-matrix.py
-scripts/refresh-data.py
+# scripts/refresh-data.py  # tracked again — pure public APIs, no secrets
 scripts/sync-intel-to-site.py
 scripts/add-to-watchlist.py
 scripts/macro-pull.py
