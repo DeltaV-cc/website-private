@@ -1,68 +1,6 @@
 {
-  "updated_at": "2026-08-04T13:19:59Z",
-  "source": "DeFiLlama (overview/dexs + totalChart)",
-  "chains": [
-    {
-      "chain": "bnb",
-      "volume_24h": 1444086165.81,
-      "delta_pct": -14.48
-    },
-    {
-      "chain": "ethereum",
-      "volume_24h": 778816506.1700002,
-      "delta_pct": 41.59
-    },
-    {
-      "chain": "base",
-      "volume_24h": 751559531.38,
-      "delta_pct": 34.56
-    },
-    {
-      "chain": "robinhood",
-      "volume_24h": 352321653.37,
-      "delta_pct": 39.24
-    },
-    {
-      "chain": "polygon",
-      "volume_24h": 161151887.41,
-      "delta_pct": -9.12
-    },
-    {
-      "chain": "hyperevm",
-      "volume_24h": 158013186.91,
-      "delta_pct": 20.23
-    },
-    {
-      "chain": "arbitrum",
-      "volume_24h": 125261576.81,
-      "delta_pct": 50.83
-    },
-    {
-      "chain": "avalanche_c",
-      "volume_24h": 42886613.65,
-      "delta_pct": -31.88
-    },
-    {
-      "chain": "monad",
-      "volume_24h": 29770850.550000004,
-      "delta_pct": -46.8
-    },
-    {
-      "chain": "mantle",
-      "volume_24h": 10562857.78,
-      "delta_pct": 4.63
-    },
-    {
-      "chain": "gnosis",
-      "volume_24h": 5607193.62,
-      "delta_pct": 68.97
-    },
-    {
-      "chain": "blast",
-      "volume_24h": 7468.72,
-      "delta_pct": 3.89
-    }
-  ],
+  "updated_at": "2026-08-05T12:15:57Z",
+  "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
       "week": "2022-W31",
@@ -1242,9 +1180,9 @@
     },
     {
       "week": "2026-W19",
-      "curated": 48679833976.71,
-      "filtered": 48679833976.71,
-      "raw": 48679833976.71
+      "curated": 48679833976.70999,
+      "filtered": 48679833976.70999,
+      "raw": 48679833976.70999
     },
     {
       "week": "2026-W20",
@@ -1278,9 +1216,9 @@
     },
     {
       "week": "2026-W25",
-      "curated": 45683274192.02,
-      "filtered": 45683274192.02,
-      "raw": 45683274192.02
+      "curated": 45683274192.020004,
+      "filtered": 45683274192.020004,
+      "raw": 45683274192.020004
     },
     {
       "week": "2026-W26",
@@ -1290,9 +1228,9 @@
     },
     {
       "week": "2026-W27",
-      "curated": 44974912005.95,
-      "filtered": 44974912005.95,
-      "raw": 44974912005.95
+      "curated": 44974912019.95,
+      "filtered": 44974912019.95,
+      "raw": 44974912019.95
     },
     {
       "week": "2026-W28",
@@ -1302,27 +1240,89 @@
     },
     {
       "week": "2026-W29",
-      "curated": 46373493690.74,
-      "filtered": 46373493690.74,
-      "raw": 46373493690.74
+      "curated": 46373650408.74,
+      "filtered": 46373650408.74,
+      "raw": 46373650408.74
     },
     {
       "week": "2026-W30",
-      "curated": 43031979498.88,
-      "filtered": 43031979498.88,
-      "raw": 43031979498.88
+      "curated": 43034275363.78001,
+      "filtered": 43034275363.78001,
+      "raw": 43034275363.78001
     },
     {
       "week": "2026-W31",
-      "curated": 47564986959.26,
-      "filtered": 47564986959.26,
-      "raw": 47564986959.26
+      "curated": 47756075345.56001,
+      "filtered": 47756075345.56001,
+      "raw": 47756075345.56001
     },
     {
       "week": "2026-W32",
-      "curated": 13066737066.69,
-      "filtered": 13066737066.69,
-      "raw": 13066737066.69
+      "curated": 20308779314.850002,
+      "filtered": 20308779314.850002,
+      "raw": 20308779314.850002
+    }
+  ],
+  "chains": [
+    {
+      "chain": "Orca DEX",
+      "volume_24h": 156720526.0,
+      "delta_pct": 29.75
+    },
+    {
+      "chain": "Raydium AMM",
+      "volume_24h": 77249244.0,
+      "delta_pct": 0.49
+    },
+    {
+      "chain": "PancakeSwap AMM",
+      "volume_24h": 70534553.0,
+      "delta_pct": -13.69
+    },
+    {
+      "chain": "Curve DEX",
+      "volume_24h": 43281947.0,
+      "delta_pct": -65.23
+    },
+    {
+      "chain": "Quickswap Dex",
+      "volume_24h": 13411851.0,
+      "delta_pct": -7.18
+    },
+    {
+      "chain": "DODO AMM",
+      "volume_24h": 10651517.0,
+      "delta_pct": 121.75
+    },
+    {
+      "chain": "Integral",
+      "volume_24h": 1701358.0,
+      "delta_pct": 43.73
+    },
+    {
+      "chain": "SushiSwap",
+      "volume_24h": 344690.0,
+      "delta_pct": 0.33
+    },
+    {
+      "chain": "Balancer V1",
+      "volume_24h": 59782.0,
+      "delta_pct": -19.67
+    },
+    {
+      "chain": "Bancor V2.1",
+      "volume_24h": 27621.0,
+      "delta_pct": -57.09
+    },
+    {
+      "chain": "Nerve",
+      "volume_24h": 17411.0,
+      "delta_pct": -42.86
+    },
+    {
+      "chain": "Pangolin V2",
+      "volume_24h": 16408.0,
+      "delta_pct": -25.96
     }
   ]
 }
