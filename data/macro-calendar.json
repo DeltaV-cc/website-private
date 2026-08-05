@@ -1,14 +1,7 @@
 {
-  "updated": "2026-07-30T00:00:00Z",
-  "period": "2026-07-30 \u2192 2026-09-13",
+  "updated": "2026-08-05T11:44:42Z",
+  "period": "2026-08-05 \u2192 2026-09-19",
   "events": [
-    {
-      "date": "2026-07-30",
-      "label": "US Initial Jobless Claims",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
     {
       "date": "2026-08-05",
       "label": "US Treasury Auction",
@@ -144,14 +137,14 @@
     },
     {
       "date": "2026-08-20",
-      "label": "US Initial Jobless Claims",
+      "label": "US ISM Services PMI",
       "currency": "USD",
       "impact": "medium",
       "country": "US"
     },
     {
       "date": "2026-08-20",
-      "label": "US ISM Services PMI",
+      "label": "US Initial Jobless Claims",
       "currency": "USD",
       "impact": "medium",
       "country": "US"
@@ -221,14 +214,14 @@
     },
     {
       "date": "2026-08-26",
-      "label": "US Treasury Auction",
+      "label": "US Existing Home Sales",
       "currency": "USD",
       "impact": "low",
       "country": "US"
     },
     {
       "date": "2026-08-26",
-      "label": "US Existing Home Sales",
+      "label": "US Treasury Auction",
       "currency": "USD",
       "impact": "low",
       "country": "US"
@@ -242,13 +235,6 @@
     },
     {
       "date": "2026-08-27",
-      "label": "US Initial Jobless Claims",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-27",
       "label": "US GDP (QoQ advance)",
       "currency": "USD",
       "impact": "high",
@@ -259,6 +245,13 @@
       "label": "US New Home Sales",
       "currency": "USD",
       "impact": "low",
+      "country": "US"
+    },
+    {
+      "date": "2026-08-27",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
       "country": "US"
     },
     {
@@ -281,6 +274,13 @@
       "currency": "CHF",
       "impact": "medium",
       "country": "CH"
+    },
+    {
+      "date": "2026-09-03",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
     }
   ]
 }

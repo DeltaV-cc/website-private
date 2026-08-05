@@ -1,1 +1,13 @@
-{"total_mcap": 2272542894135.2095, "total_volume": 54241718312.772446, "btc_dominance": 56.52291000052998, "eth_dominance": 9.918531818212635, "mcap_change_24h": 0.1687401426921681, "active_cryptos": 18130, "btc_price": 64003.51953125, "btc_change_24h": -0.0818559262519755, "eth_price": 1866.300048828125, "eth_change_24h": -0.11163729450051572}
+{
+  "updated_at": "2026-08-05T11:44:36Z",
+  "total_mcap": 2273198177801.2095,
+  "total_volume": 54182971287.015144,
+  "btc_dominance": 56.54487601588705,
+  "eth_dominance": 9.915476343540284,
+  "mcap_change_24h": 0.1669581509158936,
+  "active_cryptos": 18130,
+  "btc_price": 64042.94921875,
+  "btc_change_24h": -0.020300855136171234,
+  "eth_price": 1867.56005859375,
+  "eth_change_24h": -0.04419888203288985
+}
