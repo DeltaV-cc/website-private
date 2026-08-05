@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T10:01:07Z",
+  "updated_at": "2026-08-05T10:16:08Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002503,
+        "price": 0.002482,
         "change_24h": 12.4,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 516.24,
+        "price": 516.18,
         "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.08765,
+        "price": 0.088841,
         "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.13,
+        "price": 2.1,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 57.27,
+        "price": 57.08,
         "change_24h": 4.7,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.41,
+        "price": 2.4,
         "change_24h": -13.7,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.493958,
+        "price": 0.492819,
         "change_24h": -9.9,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 353.13,
+        "price": 350.67,
         "change_24h": -3.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.63,
+        "price": 11.61,
         "change_24h": -3.2,
         "asset": "crypto"
       },
