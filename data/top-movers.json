@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-04T15:30:46Z",
+  "updated_at": "2026-08-05T09:50:47Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "W",
         "name": "Wayfair Inc.",
-        "price": 115.0,
-        "change_24h": 28.76,
+        "price": 116.08,
+        "change_24h": 29.97,
         "asset": "equity"
       },
       {
         "symbol": "PLTR",
         "name": "Palantir Technologies Inc.",
-        "price": 159.47,
-        "change_24h": 26.92,
+        "price": 162.66,
+        "change_24h": 29.45,
         "asset": "equity"
       },
       {
         "symbol": "PAY",
         "name": "Paymentus Holdings, Inc.",
-        "price": 43.11,
-        "change_24h": 24.88,
+        "price": 44.6,
+        "change_24h": 29.2,
         "asset": "equity"
       },
       {
-        "symbol": "VOYG",
-        "name": "Voyager Technologies, Inc.",
-        "price": 34.28,
-        "change_24h": 22.37,
+        "symbol": "ZBRA",
+        "name": "Zebra Technologies Corporation",
+        "price": 368.83,
+        "change_24h": 26.47,
         "asset": "equity"
       },
       {
-        "symbol": "AAOI",
-        "name": "Applied Optoelectronics, Inc.",
-        "price": 132.32,
-        "change_24h": 20.07,
+        "symbol": "UFPT",
+        "name": "UFP Technologies, Inc.",
+        "price": 334.84,
+        "change_24h": 25.16,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "BRKR",
         "name": "Bruker Corporation",
-        "price": 52.84,
-        "change_24h": -17.82,
-        "asset": "equity"
-      },
-      {
-        "symbol": "APTV",
-        "name": "Aptiv PLC",
-        "price": 47.67,
-        "change_24h": -16.71,
+        "price": 50.3,
+        "change_24h": -21.79,
         "asset": "equity"
       },
       {
         "symbol": "CTRI",
         "name": "Centuri Holdings, Inc.",
-        "price": 23.91,
-        "change_24h": -14.16,
+        "price": 21.88,
+        "change_24h": -21.46,
+        "asset": "equity"
+      },
+      {
+        "symbol": "APTV",
+        "name": "Aptiv PLC",
+        "price": 47.72,
+        "change_24h": -16.62,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CIFR",
+        "name": "Cipher Digital Inc.",
+        "price": 20.38,
+        "change_24h": -15.65,
         "asset": "equity"
       },
       {
         "symbol": "NRG",
         "name": "NRG Energy, Inc.",
-        "price": 120.63,
-        "change_24h": -12.88,
-        "asset": "equity"
-      },
-      {
-        "symbol": "ULS",
-        "name": "UL Solutions Inc.",
-        "price": 80.0,
-        "change_24h": -12.14,
+        "price": 117.04,
+        "change_24h": -15.48,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002252,
-        "change_24h": 7.9,
+        "price": 0.002507,
+        "change_24h": 11.2,
         "asset": "crypto"
       },
       {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.37,
-        "change_24h": 6.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ALGO",
-        "name": "Algorand",
-        "price": 0.089775,
-        "change_24h": 3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.18,
-        "change_24h": 3.7,
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 516.62,
+        "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 55.26,
-        "change_24h": 3.5,
+        "price": 57.38,
+        "change_24h": 5.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LIT",
+        "name": "Lighter",
+        "price": 2.12,
+        "change_24h": 4.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.032701,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.44,
-        "change_24h": -19.6,
+        "price": 2.42,
+        "change_24h": -10.1,
         "asset": "crypto"
       },
       {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 3.8,
-        "change_24h": -6.4,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.494612,
+        "change_24h": -9.9,
         "asset": "crypto"
       },
       {
-        "symbol": "FIGR_HELOC",
-        "name": "Figure Heloc",
-        "price": 1.008,
-        "change_24h": -4.9,
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.62,
+        "change_24h": -4.3,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.111709,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 352.27,
+        "change_24h": -3.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "MORPHO",
+        "name": "Morpho",
+        "price": 1.86,
         "change_24h": -3.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "FLR",
-        "name": "Flare",
-        "price": 0.006096,
-        "change_24h": -2.9,
         "asset": "crypto"
       }
     ]
