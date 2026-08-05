@@ -185,18 +185,42 @@ const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComp
 
 // Fetch JSON with a hard timeout so a hanging host can never stall the dashboard.
 // Returns null on any failure (timeout, network, non-2xx, bad JSON).
+// One quick retry for transient CDN/network blips.
 const fetchJson = async (url: string, ms = 8000): Promise<any | null> => {
-  try {
-    // Cache bust: GitHub Pages CDN caches aggressively (max-age=600).
-    // 60s bucket — cron can push every 15m; avoid multi-hour stickiness.
-    const sep = url.includes('?') ? '&' : '?';
-    const bucket = Math.floor(Date.now() / 60000);
-    const r = await fetch(`${url}${sep}_t=${bucket}`, { signal: AbortSignal.timeout(ms) });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch {
-    return null;
+  const sep = url.includes('?') ? '&' : '?';
+  const bucket = Math.floor(Date.now() / 60000);
+  const busted = `${url}${sep}_t=${bucket}`;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const r = await fetch(busted, { signal: AbortSignal.timeout(ms) });
+      if (!r.ok) {
+        if (attempt === 0) continue;
+        return null;
+      }
+      return await r.json();
+    } catch {
+      if (attempt === 0) continue;
+      return null;
+    }
   }
+  return null;
+};
+
+/** Per-field load status for empty-slot debugging / stale chips */
+export type FieldStatus = 'ok' | 'error' | 'empty';
+type MetaMap = Record<string, { status: FieldStatus; at: string; note?: string }>;
+
+const markMeta = (
+  merge: (p: any) => void,
+  key: string,
+  status: FieldStatus,
+  note?: string,
+) => {
+  merge({
+    _meta: {
+      [key]: { status, at: new Date().toISOString(), ...(note ? { note } : {}) },
+    },
+  });
 };
 
 const fetchText = async (url: string, ms = 10000): Promise<string | null> => {
@@ -354,8 +378,26 @@ export function useIntelData(activeTab: string = 'macro') {
     // Each task fetches, transforms, and merges its own patch into `dd` the moment
     // it lands. Everything runs in parallel with per-fetch timeouts, so one slow or
     // hanging host can never keep the rest of the dashboard in a skeleton state.
+    // Nested `_meta` patches are deep-merged so field statuses accumulate.
     const merge = (patch: any) => {
-      if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
+      if (!patch || Object.keys(patch).length === 0) return;
+      setDd((prev: any) => {
+        const next = { ...prev, ...patch };
+        if (patch._meta && typeof patch._meta === 'object') {
+          next._meta = { ...(prev._meta || {}), ...patch._meta };
+        }
+        return next;
+      });
+    };
+
+    const loadField = async (key: string, url: string, apply: (d: any) => void, ms = 8000) => {
+      const d = await fetchJson(url, ms);
+      if (d) {
+        apply(d);
+        markMeta(merge, key, 'ok');
+      } else {
+        markMeta(merge, key, 'error', 'fetch failed');
+      }
     };
 
     const staticTasks: Array<Promise<void>> = [];
@@ -363,37 +405,76 @@ export function useIntelData(activeTab: string = 'macro') {
     // ── Shared light market (Macro default + useful on Web3 banners) ──
     if (tab === 'macro' || tab === 'web3') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/crypto.json`).then((d) => { if (d) merge({ crypto: d }); }),
-        fetchJson(`${BASE}/data/btc-trend.json`).then((d) => { if (d) merge({ btcTrend: d }); }),
+        loadField('crypto', `${BASE}/data/crypto.json`, (d) => merge({ crypto: d })),
+        loadField('btcTrend', `${BASE}/data/btc-trend.json`, (d) => merge({ btcTrend: d })),
       );
     }
 
     // ── Macro-only static ──
     if (tab === 'macro') {
       staticTasks.push(
-        fetchJson(`${BASE}/data/gold.json`).then((d) => { if (d) merge({ gold: d }); }),
-        fetchJson(`${BASE}/data/oil.json`).then((d) => { if (d) merge({ oil: d }); }),
-        fetchJson(`${BASE}/data/us10y.json`).then((d) => { if (d) merge({ us10y: d }); }),
-        fetchJson(`${BASE}/data/indices.json`).then((d) => { if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) merge({ indices: d }); }),
-        // Macro Top Movers: equity + crypto price (Yahoo + CoinGecko via Hermes refresh-data)
-        fetchJson(`${BASE}/data/top-movers.json`).then((d) => { if (d) merge({ topMovers: d }); }),
-        // Prefer static forex baseline (live Yahoo only enhances when macro is active)
-        fetchJson(`${BASE}/data/forex.json`).then((d) => { if (d) setForex((prev: any) => prev || d); }),
+        loadField('gold', `${BASE}/data/gold.json`, (d) => merge({ gold: d })),
+        loadField('oil', `${BASE}/data/oil.json`, (d) => merge({ oil: d })),
+        loadField('us10y', `${BASE}/data/us10y.json`, (d) => merge({ us10y: d })),
+        loadField('indices', `${BASE}/data/indices.json`, (d) => {
+          if (d && (d.spx || d.csi || d.smi || d.stoxx || d.dax || d.cac)) merge({ indices: d });
+        }),
+        loadField('topMovers', `${BASE}/data/top-movers.json`, (d) => merge({ topMovers: d })),
+        loadField('forex', `${BASE}/data/forex.json`, (d) => setForex((prev: any) => prev || d)),
+        // TradFi F&G snapshot fallback when live feargreedchart fails
+        loadField('cnnFg', `${BASE}/data/cnn-fg.json`, (d) => {
+          if (d && typeof d.value === 'number') {
+            merge({
+              fearGreed: {
+                score: d.value,
+                rating: d.label || d.rating || '',
+                date: d.updated_at || d.timestamp || '',
+                source: 'snapshot',
+              },
+            });
+          }
+        }),
+        loadField('macroCalendar', `${BASE}/data/macro-calendar.json`, (d) => merge({ macroCalendar: d })),
       );
     }
 
-    // ── Web3-only static ──
+    // ── Web3-only static (snapshot-first; live Llama enhances in loadWeb3Live) ──
     if (tab === 'web3') {
       staticTasks.push(
-        // ETF flows belong on Web3 (desk + full ETF card) — was wrongly macro-only after 0b
-        fetchJson(`${BASE}/data/etf-flows.json`).then((d) => { if (d) merge({ etfFlows: d }); }),
-        fetchJson(`${BASE}/data/net-flows.json`).then((d) => { if (d) merge({ netFlows: d }); }),
-        fetchJson(`${BASE}/data/bold-yields.json`).then((d) => { if (d) merge({ boldYields: d }); }),
-        fetchJson(`${BASE}/data/exchange-vol.json`).then((d) => { if (d) merge({ exchangeVol: d }); }),
-        fetchJson(`${BASE}/data/artemis-newsletter.json`).then((d) => { if (d) merge({ artemisNewsletter: d }); }),
-        fetchJson(`${BASE}/data/dex-matrix.json`).then((d) => { if (d) merge({ dexMatrix: d }); }),
-        fetchJson(`${BASE}/data/dex-metrics.json`).then((d) => { if (d) merge({ dexMetrics: d }); }),
-        fetchJson(`${BASE}/data/chain-movers.json`).then((d) => { if (d) merge({ chainMovers: d }); }),
+        loadField('etfFlows', `${BASE}/data/etf-flows.json`, (d) => merge({ etfFlows: d })),
+        loadField('netFlows', `${BASE}/data/net-flows.json`, (d) => merge({ netFlows: d })),
+        loadField('boldYields', `${BASE}/data/bold-yields.json`, (d) => merge({ boldYields: d })),
+        loadField('exchangeVol', `${BASE}/data/exchange-vol.json`, (d) => merge({ exchangeVol: d })),
+        loadField('artemisNewsletter', `${BASE}/data/artemis-newsletter.json`, (d) => merge({ artemisNewsletter: d })),
+        loadField('dexMatrix', `${BASE}/data/dex-matrix.json`, (d) => merge({ dexMatrix: d })),
+        loadField('dexMetrics', `${BASE}/data/dex-metrics.json`, (d) => merge({ dexMetrics: d })),
+        loadField('chainMovers', `${BASE}/data/chain-movers.json`, (d) => merge({ chainMovers: d })),
+        // Snapshot-first so stables/TVL paint before Llama live
+        loadField('stables', `${BASE}/data/stables.json`, (d) => {
+          merge({
+            stablecoins: d.stablecoins || d.stables || [],
+            stablecoinChains: d.stablecoinChains || d.chains || [],
+            stablesUpdatedAt: d.updated_at || null,
+          });
+        }),
+        loadField('tvlTop', `${BASE}/data/tvl-top.json`, (d) => {
+          const chains = d.chains || d.tvl || [];
+          if (Array.isArray(chains) && chains.length) {
+            merge({
+              tvl: chains.map((c: any) => ({
+                name: c.name,
+                tvl: c.tvl,
+                change_1d: c.change_1d ?? 0,
+                fees24h: c.fees24h,
+              })),
+              tvlUpdatedAt: d.updated_at || null,
+              dominance: chains.slice(0, 5).map((c: any) => {
+                const total = chains.reduce((s: number, x: any) => s + (x.tvl || 0), 0) || 1;
+                return { name: c.name, pct: `${((c.tvl / total) * 100).toFixed(1)}%`, tvl: c.tvl };
+              }),
+            });
+          }
+        }),
       );
     }
 
@@ -440,14 +521,22 @@ export function useIntelData(activeTab: string = 'macro') {
             const latest = history[history.length - 1];
             const score = latest.score || 0;
             const rating = score <= 20 ? 'Extreme Fear' : score <= 40 ? 'Fear' : score <= 60 ? 'Neutral' : score <= 80 ? 'Greed' : 'Extreme Greed';
-            merge({ fearGreed: { score, rating, date: latest.date } });
+            merge({ fearGreed: { score, rating, date: latest.date, source: 'live' } });
+            markMeta(merge, 'fearGreed', 'ok');
+          } else {
+            markMeta(merge, 'fearGreed', 'error', 'live failed — using snapshot if any');
           }
         }),
       );
     }
     if (tab === 'web3' || tab === 'macro') {
       coreLive.push(
-        fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => { if (d) merge({ cryptoFG: d }); }),
+        fetchJson('https://api.alternative.me/fng/?limit=1').then((d) => {
+          if (d) {
+            merge({ cryptoFG: d });
+            markMeta(merge, 'cryptoFG', 'ok');
+          } else markMeta(merge, 'cryptoFG', 'error');
+        }),
       );
     }
     // Llama TVL chain fan-out lives only in loadWeb3Live (Web3 tab) — not on Macro land.
@@ -462,11 +551,19 @@ export function useIntelData(activeTab: string = 'macro') {
    */
   const loadWeb3Live = useCallback(async () => {
     const merge = (patch: any) => {
-      if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
+      if (!patch || Object.keys(patch).length === 0) return;
+      setDd((prev: any) => {
+        const next = { ...prev, ...patch };
+        if (patch._meta && typeof patch._meta === 'object') {
+          next._meta = { ...(prev._meta || {}), ...patch._meta };
+        }
+        return next;
+      });
     };
 
     // 1) TVL + per-chain fees (joined)
     // Note: /v2/chains no longer exposes change_1d — derive from historicalChainTvl.
+    // Snapshot tvl-top already painted; live overwrites on success only.
     const chains = await fetchJson('https://api.llama.fi/v2/chains', 12000);
     if (Array.isArray(chains)) {
       const sorted = chains.filter((c: any) => c.tvl > 0).sort((a: any, b: any) => b.tvl - a.tvl);
@@ -537,6 +634,7 @@ export function useIntelData(activeTab: string = 'macro') {
         })),
         tvlUpdatedAt: new Date().toISOString(),
       });
+      markMeta(merge, 'tvl', 'ok', 'live');
 
       // 2) Live DEX × chain matrix from top chains by TVL (refresh every loadWeb3Live)
       const matrixChains = top.slice(0, 7).map((c: any) => c.name);
@@ -597,6 +695,9 @@ export function useIntelData(activeTab: string = 'macro') {
           },
         });
       }
+    } else {
+      // Keep tvl-top snapshot if present
+      markMeta(merge, 'tvl', 'error', 'live Llama failed — snapshot retained if any');
     }
 
     // 3) Global DEX volume + stables (parallel)
@@ -665,6 +766,7 @@ export function useIntelData(activeTab: string = 'macro') {
           stablecoinChains,
           stablesUpdatedAt: new Date().toISOString(),
         });
+        markMeta(merge, 'stables', 'ok', 'live');
       }),
       // BOLD Stability Pool APYs — small chart endpoints (avoid full 11MB pools dump in browser)
       // Mirrors Liquity Dune board: https://dune.com/liquity/bold-yields

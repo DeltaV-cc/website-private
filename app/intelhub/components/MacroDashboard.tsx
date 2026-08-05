@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import PatentsTable from './PatentsTable';
-import { CategoryBox, fmtNum, PanelMeta } from './Shared';
+import { CategoryBox, fmtNum, PanelMeta, FieldStatusChip } from './Shared';
 import MarketNewsTicker from './MarketNewsTicker';
 import { macroMoverLink } from '@/lib/entity-links';
 
@@ -105,7 +105,12 @@ export default function MacroDashboard({
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
         <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] to-transparent">
           <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Market</span>
-          <PanelMeta source="Alpha Vantage / Yahoo" />
+          <div className="flex items-center gap-2">
+            <FieldStatusChip meta={dd?._meta} field="indices" />
+            <FieldStatusChip meta={dd?._meta} field="oil" />
+            <FieldStatusChip meta={dd?._meta} field="gold" />
+            <PanelMeta source="Yahoo · Hermes snapshots" />
+          </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 divide-x divide-y divide-white/[0.03]">
           {/* S&P 500 */}

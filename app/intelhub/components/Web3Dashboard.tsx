@@ -4,7 +4,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { CategoryBox, SkeletonBlock, fmtCurrency, fmtCompact, PanelMeta } from './Shared';
+import { CategoryBox, SkeletonBlock, fmtCurrency, fmtCompact, PanelMeta, FieldStatusChip } from './Shared';
 import CryptoFrontierSignals from './CryptoFrontierSignals';
 import { useChartHover, formatDate, formatValue, sanitizeUsdVolumeHistory } from './ChartHover';
 import AnimatedValue from './AnimatedValue';
@@ -181,11 +181,28 @@ function ETFAssetColumn({
 }
 
 /* -- ETF Flows Card (BTC + ETH spot ETF daily net flows) -- */
-function ETFFlowsCard({ etf }: { etf: any }) {
-  if (!etf) return null;
-  const btc = etf.btc;
-  const eth = etf.eth;
-  if (btc?.latest_total == null && eth?.latest_total == null) return null;
+function ETFFlowsCard({ etf, meta }: { etf: any; meta?: any }) {
+  // Never unmount: empty shell when snapshot missing (tab-scope / fetch miss)
+  const btc = etf?.btc;
+  const eth = etf?.eth;
+  const hasData = btc?.latest_total != null || eth?.latest_total != null;
+  if (!hasData) {
+    return (
+      <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+        <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-gold)]/[0.06] to-transparent">
+          <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">ETF Net Flows</span>
+          <FieldStatusChip meta={meta} field="etfFlows" />
+        </div>
+        <div className="p-8 text-center text-xs text-[var(--text-disabled)]">
+          Spot BTC/ETH flows unavailable · waiting for <code className="text-[var(--text-muted)]">etf-flows.json</code>
+          {' · '}
+          <a href="https://defillama.com/etfs" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">
+            DeFi Llama ETFs ↗
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   const fmtDate = (iso?: string) =>
     iso ? new Date(iso + (iso.includes('T') ? '' : 'T12:00:00')).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : '—';
@@ -512,8 +529,8 @@ export default function Web3Dashboard({
         )}
       </div>
 
-      {/* -- ETF Flows (BTC + ETH) -- */}
-      <ETFFlowsCard etf={dd?.etfFlows} />
+      {/* -- ETF Flows (BTC + ETH) -- always mounted -- */}
+      <ETFFlowsCard etf={dd?.etfFlows} meta={dd?._meta} />
 
       {/* -- TVL + fees (joined) + DEX volume -- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -647,6 +664,11 @@ export default function Web3Dashboard({
             stableChains={stableChains}
             updatedAt={dd?.stablesUpdatedAt || null}
           />
+          {dd?._meta?.stables?.status === 'error' && !(dd?.stablecoins || []).length && (
+            <div className="mt-2 text-[10px] text-[var(--accent-amber)]">
+              Stables snapshot/live failed · check Hermes <code>refresh-dashboard-snapshots.py</code>
+            </div>
+          )}
         </div>
 
         {/* DEX Volume — Dune charts + chain movers */}
