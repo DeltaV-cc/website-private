@@ -203,6 +203,27 @@ export function PanelMeta({
   );
 }
 
+/** Field load status from dd._meta — avoids infinite silent skeletons */
+export function FieldStatusChip({
+  meta,
+  field,
+}: {
+  meta?: Record<string, { status: string; at?: string; note?: string }> | null;
+  field: string;
+}) {
+  const m = meta?.[field];
+  if (!m || m.status === 'ok') return null;
+  const label = m.status === 'error' ? 'unavailable' : m.status;
+  return (
+    <span
+      className="text-[9px] px-1.5 py-0.5 rounded bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] tabular-nums"
+      title={m.note || m.at || field}
+    >
+      {label}
+    </span>
+  );
+}
+
 /* -- helpers -- */
 export function fmtCompact(n: number | null | undefined): string {
   if (n == null || isNaN(n)) return '...';

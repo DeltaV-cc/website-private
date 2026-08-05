@@ -12,8 +12,9 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `fetch-*.py` | Manual / ops refresh | Live APIs | Updates specific `public/data/*.json` files |
 | `fetch-bold-yields.py` | Hermes / manual | DefiLlama Yields (Liquity V2 BOLD SP + venues) | `public/data/bold-yields.json` — mirrors [Dune BOLD Yields](https://dune.com/liquity/bold-yields) without a Dune API key |
 | `refresh-data.py` | Ops / Hermes `no_agent` cron `*/15` | Yahoo, CoinGecko, HF, … | Market snapshots → `public/data/` + gh-pages. Includes **`top-movers.json`** (equity + crypto **price** movers for Macro) and **`macro-calendar.json`** (date-computed economic calendar, rolls daily). Does **not** use LLM tokens. |
+| **`refresh-dashboard-snapshots.py`** | **Hermes cron `*/15–30` (recommended)** | Yahoo + DeFi Llama | Fills empty Macro/Web3 slots: full **`indices.json`** (spx/csi/smi/stoxx/dax, never drops keys), **`oil.json`**, **`stables.json`**, **`tvl-top.json`**, **`chain-movers.json`**, best-effort **`cnn-fg.json`**. Snapshot-first paint; live Llama still enhances. |
 | `macro-pull.py` | Optional daily / manual | None (pure date math) | Regenerates `macro-calendar.json` and invokes `refresh-data.py` for gh-pages push |
-| — | Hermes `fetch-chain-movers.py` `*/30` | DefiLlama historical TVL | `chain-movers.json` — **chain TVL** movers for **Web3** only (not Macro price movers) |
+| — | Hermes `fetch-chain-movers.py` `*/30` | DefiLlama historical TVL | `chain-movers.json` — also produced by `refresh-dashboard-snapshots.py` |
 
 ## Deploy config
 
