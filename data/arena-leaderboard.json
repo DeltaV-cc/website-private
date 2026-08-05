@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-04",
+  "updated": "2026-08-05",
   "models": [
     {
       "rank": 1,
@@ -113,7 +113,7 @@
       "rank": 13,
       "name": "kimi-k3-max",
       "vendor": "Moonshot",
-      "license": null,
+      "license": "open",
       "elo": 1485.0,
       "ci": 10.0,
       "votes": 3556
