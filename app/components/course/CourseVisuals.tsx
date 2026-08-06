@@ -1,0 +1,696 @@
+'use client';
+
+import React from 'react';
+import ArchitectureDiagram, { ArchitectureFlow } from '@/app/components/ArchitectureDiagram';
+
+/* ─── Shared primitives ───────────────────────────────── */
+
+export function CompareTwoPanel({
+  leftTitle,
+  leftAccent = 'amber',
+  leftItems,
+  leftFooter,
+  rightTitle,
+  rightAccent = 'cyan',
+  rightItems,
+  rightFooter,
+}: {
+  leftTitle: string;
+  leftAccent?: 'cyan' | 'orange' | 'amber' | 'purple';
+  leftItems: { t: string; d: string }[];
+  leftFooter?: string;
+  rightTitle: string;
+  rightAccent?: 'cyan' | 'orange' | 'amber' | 'purple';
+  rightItems: { t: string; d: string }[];
+  rightFooter?: string;
+}) {
+  const accent = (a: string) =>
+    a === 'orange'
+      ? 'var(--accent-orange)'
+      : a === 'amber'
+        ? 'var(--accent-amber)'
+        : a === 'purple'
+          ? 'var(--accent-purple)'
+          : 'var(--accent-cyan)';
+
+  return (
+    <figure className="my-8 rounded-2xl border border-[var(--border-default)] overflow-hidden">
+      <div className="grid md:grid-cols-2">
+        <div className="p-5 md:p-6 border-b md:border-b-0 md:border-r border-[var(--border-default)] bg-[var(--bg-deep)]">
+          <div
+            className="font-mono text-[10px] tracking-[2px] uppercase"
+            style={{ color: accent(leftAccent) }}
+          >
+            {leftTitle}
+          </div>
+          <div className="mt-3 space-y-3">
+            {leftItems.map((row) => (
+              <div
+                key={row.t}
+                className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3"
+              >
+                <div className="text-sm font-medium">{row.t}</div>
+                <div className="text-xs text-[var(--text-muted)] mt-1">{row.d}</div>
+              </div>
+            ))}
+          </div>
+          {leftFooter && (
+            <p className="mt-4 text-xs text-[var(--text-tertiary)]">{leftFooter}</p>
+          )}
+        </div>
+        <div className="p-5 md:p-6 bg-[var(--bg-card)]">
+          <div
+            className="font-mono text-[10px] tracking-[2px] uppercase"
+            style={{ color: accent(rightAccent) }}
+          >
+            {rightTitle}
+          </div>
+          <div className="mt-3 space-y-3">
+            {rightItems.map((row) => (
+              <div
+                key={row.t}
+                className="rounded-xl border px-4 py-3 bg-[var(--bg-deep)]"
+                style={{ borderColor: `color-mix(in srgb, ${accent(rightAccent)} 35%, transparent)` }}
+              >
+                <div className="text-sm font-medium">{row.t}</div>
+                <div className="text-xs text-[var(--text-muted)] mt-1">{row.d}</div>
+              </div>
+            ))}
+          </div>
+          {rightFooter && (
+            <p className="mt-4 text-xs" style={{ color: accent(rightAccent) }}>
+              {rightFooter}
+            </p>
+          )}
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+export function TwoPartStrip({
+  part1Title,
+  part1Chips,
+  part1Footer,
+  part2Title,
+  part2Chips,
+  part2Footer,
+  outOfScope,
+  accent1 = 'orange',
+  accent2 = 'cyan',
+}: {
+  part1Title: string;
+  part1Chips: string[];
+  part1Footer: string;
+  part2Title: string;
+  part2Chips: string[];
+  part2Footer: string;
+  outOfScope?: string;
+  accent1?: 'cyan' | 'orange';
+  accent2?: 'cyan' | 'orange';
+}) {
+  const c1 = accent1 === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
+  const c2 = accent2 === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
+  return (
+    <figure className="my-8 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] overflow-hidden">
+      <div className="p-4 md:p-5 flex flex-col md:flex-row gap-3 items-stretch">
+        <div
+          className="flex-1 rounded-xl border bg-[var(--bg-deep)] p-4"
+          style={{ borderColor: `color-mix(in srgb, ${c1} 40%, transparent)` }}
+        >
+          <div className="font-mono text-[10px] tracking-[2px] uppercase" style={{ color: c1 }}>
+            Part I
+          </div>
+          <div className="mt-2 text-base font-semibold">{part1Title}</div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {part1Chips.map((s) => (
+              <span
+                key={s}
+                className="rounded-full border border-[var(--border-default)] px-2.5 py-1 text-[11px] text-[var(--text-secondary)]"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-[var(--text-muted)]">{part1Footer}</p>
+        </div>
+        <div className="hidden md:flex items-center text-[var(--text-muted)]" aria-hidden>
+          →
+        </div>
+        <div
+          className="flex-1 rounded-xl border bg-[var(--bg-deep)] p-4"
+          style={{ borderColor: `color-mix(in srgb, ${c2} 40%, transparent)` }}
+        >
+          <div className="font-mono text-[10px] tracking-[2px] uppercase" style={{ color: c2 }}>
+            Part II
+          </div>
+          <div className="mt-2 text-base font-semibold">{part2Title}</div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {part2Chips.map((s) => (
+              <span
+                key={s}
+                className="rounded-full border border-[var(--border-default)] px-2.5 py-1 text-[11px] text-[var(--text-secondary)]"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-[var(--text-muted)]">{part2Footer}</p>
+        </div>
+      </div>
+      {outOfScope && (
+        <div className="px-5 pb-4">
+          <div className="rounded-lg border border-dashed border-[var(--border-default)] px-3 py-2 text-xs text-[var(--text-tertiary)]">
+            {outOfScope}
+          </div>
+        </div>
+      )}
+    </figure>
+  );
+}
+
+/** Forge learning path: live tracks first, room for more harnesses later */
+export function ForgePathVisual() {
+  return (
+    <ArchitectureFlow
+      title="Forge path (today)"
+      accent="orange"
+      steps={[
+        { label: '01 Open Harness', detail: 'Main entry · Hermes' },
+        { label: '02 Open Design', detail: 'Decks · images · content' },
+        { label: 'Labs', detail: 'After Harness Part I' },
+        { label: 'More later', detail: 'Video · x402 · new tracks' },
+      ]}
+    />
+  );
+}
+
+/** CSS mock of Desktop chrome — no third-party screenshots required */
+export function DesktopChromeMock() {
+  return (
+    <figure className="my-8 rounded-2xl border border-[var(--border-default)] overflow-hidden bg-[var(--bg-deep)]">
+      <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 bg-[var(--bg-card)]">
+        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-orange)]/60" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-amber)]/50" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-cyan)]/40" />
+        <span className="ml-3 font-mono text-[10px] tracking-[1px] uppercase text-[var(--text-muted)]">
+          Hermes Desktop · mock
+        </span>
+      </div>
+      <div className="grid md:grid-cols-[9rem_1fr]">
+        <div className="border-b md:border-b-0 md:border-r border-[var(--border-default)] p-3 space-y-1.5 text-[11px] text-[var(--text-tertiary)]">
+          {['Chat', 'Tools', 'Skills', 'Gateway', 'Cron', 'Profiles'].map((item, i) => (
+            <div
+              key={item}
+              className={`rounded-md px-2 py-1.5 ${i === 0 ? 'bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]' : ''}`}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className="p-4 space-y-3">
+          <div className="rounded-lg border border-[var(--border-default)] bg-[var(--bg-surface)] px-3 py-2 text-xs text-[var(--text-secondary)]">
+            You: Reply with one sentence confirming you are online.
+          </div>
+          <div className="rounded-lg border border-[var(--accent-cyan)]/25 bg-[var(--bg-card)] px-3 py-2 text-xs text-[var(--text-secondary)]">
+            Hermes: Online on this profile. Ready for your first proof task.
+          </div>
+          <p className="text-[10px] font-mono text-[var(--text-muted)]">
+            Module 03 target · real labels may move — docs win
+          </p>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+/* ─── Open Harness ────────────────────────────────────── */
+
+export function HarnessLandingVisuals() {
+  return (
+    <>
+      <TwoPartStrip
+        part1Title="Your sovereign agent"
+        part1Chips={['00–01 Words', '02 Runtime', '03 Desktop', '04 Soul', '05 Gateway', '06 Tools']}
+        part1Footer="Exit: Desktop + SOUL + Telegram + one tool proof"
+        part2Title="Your compounding harness"
+        part2Chips={['07 Memory', '08 Vault', '09 Skills', '10 Security', '11 Cron', '12 Own']}
+        part2Footer="Exit: memory, vault, skills, dials, cron runbook, backup"
+        outOfScope="Day one = Desktop local · Docker/VPS in Settings when relevant · Labs after"
+        accent1="orange"
+        accent2="cyan"
+      />
+      <ArchitectureDiagram
+        title="What you are building"
+        subtitle="Files beat chat history"
+        layers={[
+          {
+            id: 'loop',
+            label: 'Harness loop',
+            accent: 'orange',
+            nodes: [
+              { title: 'Model', subtitle: 'Brain (swappable)', accent: 'orange' },
+              { title: 'Tools + MCP', subtitle: 'Hands', accent: 'orange' },
+              { title: 'Memory + SOUL', subtitle: 'Identity on disk', accent: 'orange' },
+            ],
+          },
+          {
+            id: 'surfaces',
+            label: 'Surfaces',
+            accent: 'cyan',
+            nodes: [
+              { title: 'Desktop / CLI', subtitle: 'Local cockpit', accent: 'cyan' },
+              { title: 'Gateway', subtitle: 'Telegram pocket', accent: 'cyan' },
+              { title: 'Cron', subtitle: 'Runs without you', accent: 'cyan' },
+            ],
+          },
+        ]}
+      />
+    </>
+  );
+}
+
+export function HarnessModuleVisual({ slug }: { slug: string }) {
+  switch (slug) {
+    case '00':
+      return (
+        <TwoPartStrip
+          part1Title="Sovereign agent"
+          part1Chips={['Install', 'Soul', 'Gateway', 'Tools']}
+          part1Footer="Acts from your pocket"
+          part2Title="Compounding harness"
+          part2Chips={['Memory', 'Vault', 'Skills', 'Cron']}
+          part2Footer="Survives restart"
+          accent1="orange"
+          accent2="cyan"
+        />
+      );
+    case '01':
+      return (
+        <ArchitectureDiagram
+          title="From chat to agent"
+          subtitle="Lexicon spine"
+          layers={[
+            {
+              id: 'llm',
+              label: '01 LLM',
+              accent: 'purple',
+              nodes: [{ title: 'Next-token brain', subtitle: 'Answers only', accent: 'purple' }],
+            },
+            {
+              id: 'agent',
+              label: '02 Agent',
+              accent: 'cyan',
+              nodes: [
+                { title: '+ Tools', subtitle: 'Acts on the world', accent: 'cyan' },
+                { title: '+ Memory', subtitle: 'Survives sessions', accent: 'cyan' },
+              ],
+            },
+            {
+              id: 'harness',
+              label: '03 Harness',
+              accent: 'orange',
+              nodes: [
+                { title: 'Loop · approvals · gateway · skills', subtitle: 'What makes it yours', accent: 'orange' },
+              ],
+            },
+          ]}
+        />
+      );
+    case '02':
+      return (
+        <ArchitectureDiagram
+          title="Day one vs later (same Desktop)"
+          subtitle="Advanced tabs exist — don’t configure them for Part I proofs"
+          layers={[
+            {
+              id: 'day1',
+              label: 'Day one',
+              accent: 'orange',
+              nodes: [
+                { title: 'Your PC', subtitle: 'Awake for gateway', accent: 'orange' },
+                { title: 'Desktop app', subtitle: 'Course cockpit', accent: 'orange' },
+                { title: 'Local terminal', subtitle: 'Default tools', accent: 'orange' },
+              ],
+            },
+            {
+              id: 'later',
+              label: 'When relevant (Settings)',
+              accent: 'cyan',
+              nodes: [
+                { title: 'Advanced · Docker', subtitle: 'Isolate shell tools', accent: 'cyan' },
+                { title: 'Providers', subtitle: 'Remote / local models', accent: 'cyan' },
+                { title: 'Gateway host', subtitle: 'Always-on / VPS later', accent: 'cyan' },
+              ],
+            },
+          ]}
+        />
+      );
+    case '03':
+      return (
+        <>
+          <ArchitectureFlow
+            title="Install path"
+            accent="orange"
+            steps={[
+              { label: 'Download', detail: 'Desktop' },
+              { label: 'Setup', detail: 'One provider' },
+              { label: 'Chat OK', detail: 'Smoke reply' },
+              { label: 'Doctor', detail: 'Health check' },
+              { label: 'Know paths', detail: 'Profile home' },
+            ]}
+          />
+          <DesktopChromeMock />
+        </>
+      );
+    case '04':
+      return (
+        <CompareTwoPanel
+          leftTitle="SOUL.md (home)"
+          leftAccent="orange"
+          leftItems={[
+            { t: 'HERMES_HOME only', d: 'Not project CWD' },
+            { t: 'Identity · tone · limits', d: 'Follows you everywhere' },
+          ]}
+          leftFooter="Primary identity"
+          rightTitle="AGENTS.md (project)"
+          rightAccent="cyan"
+          rightItems={[
+            { t: 'Repo / design-lab', d: 'Conventions · paths' },
+            { t: 'One type per session', d: '.hermes / AGENTS / …' },
+          ]}
+          rightFooter="Project context"
+        />
+      );
+    case '05':
+      return (
+        <ArchitectureFlow
+          title="Pocket harness"
+          accent="cyan"
+          steps={[
+            { label: 'Bot token', detail: '.env only' },
+            { label: 'Allowlist', detail: 'You alone' },
+            { label: 'Gateway up', detail: 'Desktop / CLI' },
+            { label: 'Pair', detail: 'Trust code' },
+            { label: 'Task', detail: 'SOUL replies' },
+          ]}
+        />
+      );
+    case '06':
+      return (
+        <ArchitectureFlow
+          title="Agency loop"
+          accent="orange"
+          steps={[
+            { label: 'You ask', detail: 'Goal' },
+            { label: 'Model plans', detail: 'Brain' },
+            { label: 'Tools run', detail: 'Hermes executes' },
+            { label: 'Approve', detail: 'Smart / manual' },
+            { label: 'File on disk', detail: 'Receipt' },
+          ]}
+        />
+      );
+    case '07':
+      return (
+        <ArchitectureDiagram
+          title="Three memory floors"
+          subtitle="Cap is a feature · writes often load next session"
+          layers={[
+            {
+              id: '1',
+              label: 'Floor 1 · Notebook',
+              accent: 'orange',
+              nodes: [{ title: 'SOUL · MEMORY · USER', subtitle: 'Always loaded · capped', accent: 'orange' }],
+            },
+            {
+              id: '2',
+              label: 'Floor 2 · Journal',
+              accent: 'cyan',
+              nodes: [{ title: 'Session recall / FTS', subtitle: 'Verbatim search', accent: 'cyan' }],
+            },
+            {
+              id: '3',
+              label: 'Floor 3 · Library',
+              accent: 'purple',
+              nodes: [{ title: 'Vault / notes', subtitle: 'Next module', accent: 'purple' }],
+            },
+          ]}
+        />
+      );
+    case '08':
+      return (
+        <ArchitectureFlow
+          title="Vault pattern"
+          accent="purple"
+          steps={[
+            { label: 'inbox/', detail: 'Drops' },
+            { label: 'sources/', detail: 'Cited inputs' },
+            { label: 'synthesis/', detail: 'Linked notes' },
+            { label: 'Retrieve', detail: 'Agent cites files' },
+          ]}
+        />
+      );
+    case '09':
+      return (
+        <ArchitectureFlow
+          title="Skills path"
+          accent="cyan"
+          steps={[
+            { label: 'Catalog', detail: 'Names only' },
+            { label: 'Select', detail: 'Right skill' },
+            { label: 'Body loads', detail: 'Procedure' },
+            { label: 'Run', detail: 'Proof file' },
+          ]}
+        />
+      );
+    case '10':
+      return (
+        <ArchitectureDiagram
+          title="Security dials"
+          subtitle="Fail closed · least privilege"
+          layers={[
+            {
+              id: 'edge',
+              label: 'Edge',
+              accent: 'amber',
+              nodes: [
+                { title: 'Allowlist', subtitle: 'Who may talk', accent: 'amber' },
+                { title: 'Approvals', subtitle: 'Smart / manual', accent: 'amber' },
+              ],
+            },
+            {
+              id: 'core',
+              label: 'Core',
+              accent: 'orange',
+              nodes: [
+                { title: 'Secrets out of chat', subtitle: '.env only', accent: 'orange' },
+                { title: 'Least tool surface', subtitle: 'Per profile', accent: 'orange' },
+              ],
+            },
+          ]}
+        />
+      );
+    case '11':
+      return (
+        <ArchitectureFlow
+          title="Cron amnesia loop"
+          accent="orange"
+          steps={[
+            { label: 'Schedule', detail: 'When' },
+            { label: 'Runbook', detail: 'Full context' },
+            { label: 'Fire', detail: 'Fresh session' },
+            { label: 'Deliver', detail: 'File / TG' },
+            { label: 'Fail path', detail: 'Alert human' },
+          ]}
+        />
+      );
+    case '12':
+      return (
+        <ArchitectureFlow
+          title="After mastery"
+          accent="orange"
+          steps={[
+            { label: 'Backup files', detail: 'Copy folders' },
+            { label: 'Labs', detail: 'Optional drills' },
+            { label: 'Open Design', detail: 'Decks · images' },
+            { label: 'Roadmap Video', detail: 'Motion later' },
+          ]}
+        />
+      );
+    default:
+      return null;
+  }
+}
+
+/* ─── Labs ────────────────────────────────────────────── */
+
+export function LabsLandingVisual() {
+  return (
+    <CompareTwoPanel
+      leftTitle="Mastery"
+      leftAccent="orange"
+      leftItems={[
+        { t: 'Install · SOUL · gateway', d: 'Full pedagogy' },
+        { t: 'Memory · vault · cron', d: 'Required proofs' },
+      ]}
+      leftFooter="Do this first"
+      rightTitle="Labs"
+      rightAccent="cyan"
+      rightItems={[
+        { t: 'Assumes Hermes runs', d: 'No second install' },
+        { t: 'Drill → artifact', d: 'spend-log · keys-audit · …' },
+      ]}
+      rightFooter="After Part I (often Part II)"
+    />
+  );
+}
+
+export function LabVisual({ slug }: { slug: string }) {
+  const map: Record<string, React.ReactNode> = {
+    'desktop-cockpit': (
+      <ArchitectureFlow
+        title="Cockpit confirm only"
+        accent="orange"
+        steps={[
+          { label: 'Profile', detail: 'Already exists' },
+          { label: 'Skills panel', detail: 'Opens' },
+          { label: 'Tools glance', detail: 'Known on' },
+          { label: 'File path', detail: 'Write + open' },
+        ]}
+      />
+    ),
+    'model-spend': (
+      <ArchitectureFlow
+        title="Spend drill"
+        accent="amber"
+        steps={[
+          { label: 'Log primary', detail: 'Model ID' },
+          { label: 'Cheap task', detail: 'Compare' },
+          { label: 'Tighten cron', detail: 'Runbook' },
+          { label: 'Cut toolset', detail: 'Or justify' },
+        ]}
+      />
+    ),
+    'grok-wire': (
+      <ArchitectureFlow
+        title="Add provider"
+        accent="cyan"
+        steps={[
+          { label: 'Hermes works', detail: 'Prereq' },
+          { label: 'Add Grok', detail: 'Key / OAuth' },
+          { label: 'GROK_OK', detail: 'Smoke' },
+          { label: 'Imagine', detail: '→ Design later' },
+        ]}
+      />
+    ),
+    'api-key-hygiene': (
+      <ArchitectureFlow
+        title="Key drill"
+        accent="amber"
+        steps={[
+          { label: 'Audit', detail: 'Where secrets live' },
+          { label: 'Move', detail: 'Env only' },
+          { label: 'Rotate', detail: 'Retest chat' },
+          { label: 'Git clean', detail: '.env ignored' },
+        ]}
+      />
+    ),
+    webhooks: (
+      <ArchitectureFlow
+        title="Event → runbook"
+        accent="purple"
+        steps={[
+          { label: 'Event', detail: 'What fired' },
+          { label: 'Auth', detail: 'Secret / sig' },
+          { label: 'Runbook', detail: 'Amnesia prompt' },
+          { label: 'Fail path', detail: 'Alert human' },
+        ]}
+      />
+    ),
+    'vps-ship': (
+      <ArchitectureFlow
+        title="Ship on existing host"
+        accent="orange"
+        steps={[
+          { label: 'Host ready', detail: 'Hermes already there' },
+          { label: 'Scaffold dir', detail: 'Isolated path' },
+          { label: 'Human review', detail: 'Read code' },
+          { label: 'Serve + notes', detail: 'Restart / rollback' },
+        ]}
+      />
+    ),
+    'wiki-kanban': (
+      <ArchitectureFlow
+        title="Staged wiki"
+        accent="purple"
+        steps={[
+          { label: 'S1 Sources', detail: 'Vault exists' },
+          { label: 'S2 Notes', detail: '[[links]]' },
+          { label: 'S3 Gaps', detail: 'Open Qs' },
+          { label: 'S4 Retrieve', detail: 'Cite files' },
+        ]}
+      />
+    ),
+    'remote-access': (
+      <ArchitectureFlow
+        title="Mesh shell"
+        accent="cyan"
+        steps={[
+          { label: 'Mesh both ends', detail: 'Tailscale etc.' },
+          { label: 'SSH private', detail: 'No WAN :22' },
+          { label: 'hermes status', detail: 'Proof' },
+          { label: 'Document host', detail: 'remote-access.md' },
+        ]}
+      />
+    ),
+    'failure-studio': (
+      <ArchitectureFlow
+        title="Failure studio"
+        accent="amber"
+        steps={[
+          { label: 'Break auth', detail: 'Doctor + logs' },
+          { label: 'Stuck approval', detail: 'Timeout path' },
+          { label: 'Tool thrash', detail: 'Stop + scope' },
+          { label: 'failure-log.md', detail: 'Three rows' },
+        ]}
+      />
+    ),
+  };
+  return <div className="my-6">{map[slug] ?? null}</div>;
+}
+
+/* ─── Open Video ──────────────────────────────────────── */
+
+export function VideoLandingVisuals() {
+  return (
+    <>
+      <CompareTwoPanel
+        leftTitle="Open Design (static)"
+        leftAccent="cyan"
+        leftItems={[
+          { t: 'Deck / image / post', d: 'Open offline in seconds' },
+          { t: 'Success', d: 'File opens · brand matches' },
+        ]}
+        leftFooter="Course 02"
+        rightTitle="Open Video (motion)"
+        rightAccent="orange"
+        rightItems={[
+          { t: 'Timeline · render', d: 'Minutes per iteration' },
+          { t: 'Success', d: 'Clean MP4 · audio · captions' },
+        ]}
+        rightFooter="Course 03 — different stack"
+      />
+      <ArchitectureFlow
+        title="Planned motion path"
+        accent="orange"
+        steps={[
+          { label: 'A Model', detail: 'Timeline vs slides' },
+          { label: 'B HyperFrames', detail: 'Default' },
+          { label: 'C Stills→motion', detail: 'From Design' },
+          { label: 'D Remotion', detail: 'Advanced' },
+          { label: 'E Studio habits', detail: 'Render budget' },
+        ]}
+      />
+    </>
+  );
+}

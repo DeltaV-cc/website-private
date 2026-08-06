@@ -1,14 +1,23 @@
 /**
  * Site deploy constants — re-exported from site.config.json.
  * Change paths/URLs there; do not scatter hard-coded basePath strings.
+ *
+ * Dev: empty basePath (match next.config) so localhost:/forge/ works.
+ * Production build: site.basePath for GitHub Pages.
+ * Force prod path in dev: LOCAL_BASEPATH=1
  */
 import site from '../site.config.json';
 
-/** GitHub Pages project base path (e.g. `/website-private`). Empty string for custom domain root. */
-export const BASE_PATH: string = site.basePath;
+const useProdBasePath =
+  process.env.NODE_ENV === 'production' || process.env.LOCAL_BASEPATH === '1';
+
+/** GitHub Pages project base path (e.g. `/website-private`). Empty in local next dev. */
+export const BASE_PATH: string = useProdBasePath ? site.basePath : '';
 
 /** Canonical public origin including base path (no trailing slash). */
-export const SITE_URL: string = site.siteUrl.replace(/\/$/, '');
+export const SITE_URL: string = useProdBasePath
+  ? site.siteUrl.replace(/\/$/, '')
+  : 'http://localhost:3001';
 
 /** GitHub repository URL. */
 export const REPO_URL: string = site.repoUrl;
