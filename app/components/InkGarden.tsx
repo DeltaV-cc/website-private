@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { withBasePath } from '@/lib/site';
 
 type RenderMode = 'characters' | 'dither' | 'mosaic' | 'pixel' | 'dots' | 'cross' | 'diamond' | 'voxel' | 'lego' | 'mixed' | 'lines' | 'diagonal' | 'braille' | 'disco' | 'hexdump' | 'matrix' | 'rings' | 'hearts' | 'stars' | 'hexagons' | 'triangles' | 'bubbles' | 'hatch' | 'contour' | 'halfblocks';
 type InkGardenProps = { compact?: boolean; background?: boolean; source?: string; renderMode?: RenderMode; className?: string };
 
 const chars = ' .·:;+*#%@ΔV';
 const tint = '#8d79b4';
-const sourcePhoto = '/website-private/images/ink-garden-panorama.webp';
+const sourcePhoto = withBasePath('/images/ink-garden-panorama.webp');
 const sourceComet = { headX: 638, headY: 518, tailX: 724, tailY: 356 };
 
 function hexRgb(hex: string) {
