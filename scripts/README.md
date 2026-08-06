@@ -2,6 +2,8 @@
 
 Build and data helpers for the static site. Prefer `pnpm build` over calling these by hand unless you are refreshing a single pipeline.
 
+> **Colleague / ops onboarding:** how Hermes crons refresh IntelHub data (diagram, schedule, files, smoke test, what not to commit) is documented in **[`docs/ops-crons.md`](../docs/ops-crons.md)**. Start there.
+
 **Intel volume budget (per-source caps):** SSOT is ops `DeltaV-ops/intel/sync-intel-to-site.py` — caps limit export slots only (not source deletion). This repo does not vendor that script.
 
 | Script | When it runs | Inputs | Outputs |
@@ -9,15 +11,15 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `copy-data.py` | `prebuild` / `build` | Optional sibling workspaces (`wiki/signals`, `DeltaV-persistent-workspace/intel`); otherwise uses committed snapshots under `public/data/` | Copies/merges into `public/data/` |
 | `generate-intelhub-rss.py` | `prebuild` / `build` | `public/data/raw-items.json`, `picks.json` | `public/intelhub/feed/*.xml`, `feeds.opml` |
 | `patch-basepath.py` | end of `build` | Static export under `out/` | Rewrites root-relative paths with `basePath` from `site.config.json` |
+| `preserve-live-data.py` | CI after `pnpm build` | Live `gh-pages` `data/*` + `out/data` | Overlays fresher JSON so HTML deploys never roll tickers backwards |
 | `fetch-*.py` | Manual / ops refresh | Live APIs | Updates specific `public/data/*.json` files |
 | `fetch-bold-yields.py` | Hermes / manual | DefiLlama Yields (Liquity V2 BOLD SP + venues) | `public/data/bold-yields.json` — mirrors [Dune BOLD Yields](https://dune.com/liquity/bold-yields) without a Dune API key |
-| `refresh-data.py` | Hermes **IntelHub Market Data Refresh** `*/15` | Yahoo, CoinGecko, HF, CNN/F&G, Artemis RSS | **Tracked** market SSOT → `public/data/` + gh-pages. Full **indices** (spx/csi/smi/stoxx/dax, merge never drops keys), gold/oil/us10y, forex, crypto, hf, cnn-fg, btc-trend, exchange-vol, **top-movers**, artemis-newsletter, **macro-calendar**. No LLM tokens. |
-| **`refresh-dashboard-snapshots.py`** | Hermes **IntelHub Dashboard Snapshots** `*/30` | Yahoo + DeFi Llama | Defensive fill: indices merge, oil/gold/us10y, **stables**, **tvl-top**, **chain-movers**, cnn-fg. Complements refresh-data (Web3 TVL/stables). |
-| `fetch-bold-yields.py` | Hermes cron `0 */12` (recommended) | DefiLlama Yields | `bold-yields.json` + gh-pages push |
-| `fetch-etf-flows.py` | Hermes ETF `*/15` | Farside CSV mirror | `etf-flows.json` + gh-pages push |
-| `audit-dashboard-data.py` | Manual / watchdog | Pages `data/*` | Scorecard PASS/WARN/FAIL for Macro·AI·Web3 (no Infosec). Exit 1 on FAIL. |
-| `_gh_pages_push.py` | Library | — | Shared force-with-lease push for data files |
-| `macro-pull.py` | Optional / Hermes 6h | Date math | macro-calendar only; prefers invoking refresh-data when present |
+| `fetch-etf-flows.py` | Hermes / manual | Public ETF flow sources | `etf-flows.json` on gh-pages |
+| `refresh-data.py` | Ops / Hermes `no_agent` cron `*/15` | Yahoo, CoinGecko, HF, … | Market snapshots → local `public/data/` + **push `data/*` to `gh-pages`**. Includes **`top-movers.json`** (equity + crypto **price** movers for Macro) and **`macro-calendar.json`**. **Zero LLM tokens.** |
+| `refresh-dashboard-snapshots.py` | Ops / Hermes `no_agent` ~15–30m | Yahoo, DefiLlama, … | Fills Macro/Web3 gaps (`indices` merge, `stables`, `tvl-top`, `chain-movers`, …) → gh-pages |
+| `_gh_pages_push.py` | Imported by fetch helpers | In-memory JSON map | Shared shallow-clone push of `data/*` only (`force-with-lease` + retry) |
+| `macro-pull.py` | Optional daily / manual (often local-only) | None (pure date math) | Regenerates `macro-calendar.json` and can invoke refresh push |
+| — | Optional Hermes job `*/30` | DefiLlama historical TVL | `chain-movers.json` — **chain TVL** movers for **Web3** only (not Macro price movers) |
 
 ## Deploy config
 
