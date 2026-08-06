@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T11:45:45Z",
+  "updated_at": "2026-08-06T12:00:46Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,21 +82,21 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.524916,
+        "price": 0.525547,
         "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.09233,
+        "price": 0.092211,
         "change_24h": 4.1,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.2,
+        "price": 2.22,
         "change_24h": 3.9,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.086576,
+        "price": 0.086633,
         "change_24h": 3.0,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 1.75,
+        "price": 1.76,
         "change_24h": -29.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002295,
+        "price": 0.002316,
         "change_24h": -8.1,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.100749,
+        "price": 0.100967,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.305363,
+        "price": 0.305356,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.077682,
+        "price": 0.077787,
         "change_24h": -4.4,
         "asset": "crypto"
       }
