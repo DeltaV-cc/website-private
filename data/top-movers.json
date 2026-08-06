@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-05T14:15:26Z",
+  "updated_at": "2026-08-06T08:39:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "MTRN",
         "name": "Materion Corporation",
-        "price": 282.94,
-        "change_24h": 24.59,
+        "price": 297.08,
+        "change_24h": 30.81,
+        "asset": "equity"
+      },
+      {
+        "symbol": "WTTR",
+        "name": "Select Water Solutions, Inc.",
+        "price": 22.26,
+        "change_24h": 20.32,
         "asset": "equity"
       },
       {
         "symbol": "SHOP",
         "name": "Shopify Inc.",
-        "price": 144.31,
-        "change_24h": 17.04,
+        "price": 144.24,
+        "change_24h": 16.98,
         "asset": "equity"
       },
       {
-        "symbol": "ZETA",
-        "name": "Zeta Global Holdings Corp.",
-        "price": 28.25,
-        "change_24h": 16.45,
+        "symbol": "BSP",
+        "name": "Bending Spoons S.p.A.",
+        "price": 43.75,
+        "change_24h": 16.82,
         "asset": "equity"
       },
       {
-        "symbol": "QLYS",
-        "name": "Qualys, Inc.",
-        "price": 185.48,
-        "change_24h": 15.16,
-        "asset": "equity"
-      },
-      {
-        "symbol": "TVTX",
-        "name": "Travere Therapeutics, Inc.",
-        "price": 63.99,
-        "change_24h": 14.23,
+        "symbol": "URGN",
+        "name": "UroGen Pharma Ltd.",
+        "price": 46.43,
+        "change_24h": 16.31,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SEDG",
         "name": "SolarEdge Technologies, Inc.",
-        "price": 38.74,
-        "change_24h": -20.54,
+        "price": 33.9,
+        "change_24h": -30.48,
         "asset": "equity"
       },
       {
         "symbol": "TDC",
         "name": "Teradata Corporation",
-        "price": 27.7,
-        "change_24h": -19.46,
-        "asset": "equity"
-      },
-      {
-        "symbol": "EXTR",
-        "name": "Extreme Networks, Inc.",
-        "price": 26.34,
-        "change_24h": -18.55,
+        "price": 26.23,
+        "change_24h": -23.73,
         "asset": "equity"
       },
       {
         "symbol": "PODD",
         "name": "Insulet Corporation",
-        "price": 136.59,
-        "change_24h": -18.12,
+        "price": 133.26,
+        "change_24h": -20.12,
         "asset": "equity"
       },
       {
-        "symbol": "DVA",
-        "name": "DaVita Inc.",
-        "price": 189.05,
-        "change_24h": -17.08,
+        "symbol": "EXTR",
+        "name": "Extreme Networks, Inc.",
+        "price": 26.19,
+        "change_24h": -19.02,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CC",
+        "name": "Chemours Company (The)",
+        "price": 14.59,
+        "change_24h": -18.63,
         "asset": "equity"
       }
     ]
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002552,
-        "change_24h": 15.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 523.0,
-        "change_24h": 6.7,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.091127,
+        "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.08661,
-        "change_24h": 5.5,
+        "price": 0.086824,
+        "change_24h": 4.8,
         "asset": "crypto"
       },
       {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 4.08,
-        "change_24h": 5.1,
+        "symbol": "GT",
+        "name": "Gate",
+        "price": 6.72,
+        "change_24h": 4.4,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.087007,
-        "change_24h": 4.3,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 363.95,
+        "change_24h": 3.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "APT",
+        "name": "Aptos",
+        "price": 0.595823,
+        "change_24h": 2.9,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.494582,
-        "change_24h": -7.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 11.27,
-        "change_24h": -6.8,
-        "asset": "crypto"
-      },
-      {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.4,
-        "change_24h": -6.5,
+        "price": 1.68,
+        "change_24h": -30.5,
         "asset": "crypto"
       },
       {
-        "symbol": "AVAX",
-        "name": "Avalanche",
-        "price": 6.64,
-        "change_24h": -2.8,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.100505,
+        "change_24h": -7.1,
         "asset": "crypto"
       },
       {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.053579,
-        "change_24h": -2.7,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002342,
+        "change_24h": -4.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.310769,
+        "change_24h": -4.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "AAVE",
+        "name": "Aave",
+        "price": 88.49,
+        "change_24h": -4.0,
         "asset": "crypto"
       }
     ]
