@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T15:18:15Z",
+  "updated_at": "2026-08-06T15:30:38Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -62,17 +62,17 @@
         "asset": "equity"
       },
       {
-        "symbol": "HONA",
-        "name": "Honeywell Aerospace Inc.",
-        "price": 203.64,
-        "change_24h": -5.93,
-        "asset": "equity"
-      },
-      {
         "symbol": "APP",
         "name": "Applovin Corporation",
         "price": 417.8,
         "change_24h": -0.45,
+        "asset": "equity"
+      },
+      {
+        "symbol": "HONA",
+        "name": "Honeywell Aerospace Inc.",
+        "price": 203.64,
+        "change_24h": -5.93,
         "asset": "equity"
       }
     ]
@@ -82,7 +82,7 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.532271,
+        "price": 0.533916,
         "change_24h": 7.0,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.091328,
+        "price": 0.09122,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.202309,
+        "price": 0.202908,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.69,
+        "price": 6.68,
         "change_24h": 3.8,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.06,
+        "price": 1.97,
         "change_24h": -12.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002319,
+        "price": 0.002296,
         "change_24h": -9.2,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.099579,
+        "price": 0.099684,
         "change_24h": -7.6,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 497.5,
+        "price": 496.01,
         "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.304266,
+        "price": 0.303505,
         "change_24h": -3.8,
         "asset": "crypto"
       }
