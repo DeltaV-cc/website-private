@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T08:45:55Z",
+  "updated_at": "2026-08-06T09:12:38Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.090991,
-        "change_24h": 7.0,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.518426,
+        "change_24h": 6.0,
         "asset": "crypto"
       },
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.08679,
-        "change_24h": 4.8,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.090576,
+        "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
         "price": 6.72,
-        "change_24h": 4.4,
+        "change_24h": 4.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.086809,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 364.42,
-        "change_24h": 3.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "APT",
-        "name": "Aptos",
-        "price": 0.597101,
-        "change_24h": 2.9,
+        "price": 363.15,
+        "change_24h": 3.1,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 1.66,
-        "change_24h": -30.5,
+        "price": 1.68,
+        "change_24h": -34.0,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.100007,
-        "change_24h": -7.1,
+        "price": 0.100904,
+        "change_24h": -8.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002347,
-        "change_24h": -4.6,
+        "price": 0.002343,
+        "change_24h": -5.8,
         "asset": "crypto"
       },
       {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.31072,
-        "change_24h": -4.1,
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.08725,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 88.49,
-        "change_24h": -4.0,
+        "price": 88.47,
+        "change_24h": -3.4,
         "asset": "crypto"
       }
     ]
