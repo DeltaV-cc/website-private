@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-06T15:30:38Z",
+  "updated_at": "2026-08-06T23:15:32Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
+        "symbol": "BRVE",
+        "name": "Braveheart Bio, Inc. Common Stock",
+        "price": 29.8,
+        "change_24h": 65.56,
+        "asset": "equity"
+      },
+      {
         "symbol": "IOVA",
         "name": "Iovance Biotherapeutics, Inc.",
-        "price": 4.34,
-        "change_24h": -0.46,
+        "price": 6.21,
+        "change_24h": 43.09,
         "asset": "equity"
       },
       {
         "symbol": "INSM",
         "name": "Insmed Incorporated",
-        "price": 99.02,
-        "change_24h": 0.27,
+        "price": 132.55,
+        "change_24h": 33.86,
+        "asset": "equity"
+      },
+      {
+        "symbol": "SITM",
+        "name": "SiTime Corporation",
+        "price": 687.5,
+        "change_24h": 26.58,
         "asset": "equity"
       },
       {
         "symbol": "WPP",
         "name": "WPP plc",
-        "price": 20.61,
-        "change_24h": 0.05,
-        "asset": "equity"
-      },
-      {
-        "symbol": "CHYM",
-        "name": "Chime Financial, Inc.",
-        "price": 25.92,
-        "change_24h": 3.89,
-        "asset": "equity"
-      },
-      {
-        "symbol": "PAYC",
-        "name": "Paycom Software, Inc.",
-        "price": 174.8,
-        "change_24h": -0.29,
+        "price": 25.95,
+        "change_24h": 25.91,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "BLLN",
         "name": "BillionToOne, Inc.",
-        "price": 149.97,
-        "change_24h": 5.43,
-        "asset": "equity"
-      },
-      {
-        "symbol": "ATS",
-        "name": "ATS Corporation",
-        "price": 27.95,
-        "change_24h": -0.75,
-        "asset": "equity"
-      },
-      {
-        "symbol": "HUBS",
-        "name": "HubSpot, Inc.",
-        "price": 250.21,
-        "change_24h": 0.53,
-        "asset": "equity"
-      },
-      {
-        "symbol": "APP",
-        "name": "Applovin Corporation",
-        "price": 417.8,
-        "change_24h": -0.45,
+        "price": 91.65,
+        "change_24h": -38.89,
         "asset": "equity"
       },
       {
         "symbol": "HONA",
         "name": "Honeywell Aerospace Inc.",
-        "price": 203.64,
-        "change_24h": -5.93,
+        "price": 156.47,
+        "change_24h": -23.16,
+        "asset": "equity"
+      },
+      {
+        "symbol": "APP",
+        "name": "Applovin Corporation",
+        "price": 335.67,
+        "change_24h": -19.66,
+        "asset": "equity"
+      },
+      {
+        "symbol": "HUBS",
+        "name": "HubSpot, Inc.",
+        "price": 202.43,
+        "change_24h": -19.1,
+        "asset": "equity"
+      },
+      {
+        "symbol": "DDOG",
+        "name": "Datadog, Inc.",
+        "price": 229.29,
+        "change_24h": -19.03,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.533916,
-        "change_24h": 7.0,
+        "price": 0.556147,
+        "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.24,
-        "change_24h": 6.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.09122,
-        "change_24h": 4.9,
+        "price": 2.35,
+        "change_24h": 7.7,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.202908,
-        "change_24h": 4.6,
+        "price": 0.20103,
+        "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.68,
-        "change_24h": 3.8,
+        "price": 6.67,
+        "change_24h": 3.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.088041,
+        "change_24h": 3.1,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "BEAT",
         "name": "Audiera",
         "price": 1.97,
-        "change_24h": -12.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002296,
-        "change_24h": -9.2,
+        "change_24h": -18.4,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.099684,
-        "change_24h": -7.6,
+        "price": 0.092476,
+        "change_24h": -12.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.14,
+        "change_24h": -6.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SHIB",
+        "name": "Shiba Inu",
+        "price": 5e-06,
+        "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 496.01,
-        "change_24h": -4.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.303505,
-        "change_24h": -3.8,
+        "price": 495.89,
+        "change_24h": -4.2,
         "asset": "crypto"
       }
     ]
