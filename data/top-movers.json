@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T09:31:09Z",
+  "updated_at": "2026-08-06T09:45:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.518084,
+        "price": 0.516944,
         "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.091007,
+        "price": 0.091225,
         "change_24h": 5.9,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.086932,
+        "price": 0.086767,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 363.52,
+        "price": 363.93,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 1.7,
+        "price": 1.68,
         "change_24h": -34.0,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.100188,
+        "price": 0.099952,
         "change_24h": -8.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002334,
+        "price": 0.002328,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.08701,
+        "price": 0.087003,
         "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 88.41,
+        "price": 88.38,
         "change_24h": -3.4,
         "asset": "crypto"
       }
