@@ -153,28 +153,44 @@ export default function WeeklyDeltaFinancialBriefAugust03() {
       </div>
 
       {/* ========================================================
-          REKT WATCH — Last 2 Weeks (July 19 – Aug 3)
+          REKT WATCH — Week of July 27 – August 2, 2026
           ======================================================== */}
-      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — Last 2 Weeks</h2>
+      <h2 className="text-2xl font-semibold text-[#ededed] mb-4">Rekt Watch — This Week</h2>
       <div className="bg-[#111] border border-[#222] rounded-2xl p-5 my-4">
+        <div className="border-l-2 border-[#ef4444] pl-4 mb-4">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-semibold text-[#ededed]">COLDCARD — ~$88M (~1,370 BTC)</span>
+            <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Firmware Entropy Failure</span>
+            <span className="text-[10px] text-[#666]">July 27 – Aug 2</span>
+          </div>
+          <p className="text-xs text-[#888]">Hardware wallet firmware entropy failure: a build guard checked whether an RNG configuration macro <em>existed</em> rather than whether it was <em>enabled</em>, routing seed generation to a deterministic software fallback. An attacker recovered affected seeds and swept ~1,370 BTC across a series of on-chain drain waves. This is the nightmare scenario for hardware wallet users: the device you trusted was generating keys deterministically, not randomly, potentially since the firmware was shipped.<br/>
+            <a href="https://blocksec.com/blog/web3-security-coldcard-entropy-lula-exploits" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">BlockSec full analysis</a></p>
+        </div>
         <div className="border-l-2 border-[#ef4444] pl-4 mb-4">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-semibold text-[#ededed]">Ostium — $23.8M</span>
             <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Oracle Key Compromise</span>
             <span className="text-[10px] text-[#666]">July 22</span>
           </div>
-          <p className="text-xs text-[#888]">Oracle signer key compromise on Arbitrum perp DEX — attacker manipulated price feed to drain vault. Protocol reopened trading July 23. The difference from typical oracle exploits: this was a targeted key compromise, not a logic flaw.</p>
+          <p className="text-xs text-[#888]">Oracle signer key compromise on Arbitrum perp DEX — attacker manipulated price feed to drain vault in a single 5.5-minute atomic transaction. Protocol reopened trading July 23. The keeper/forwarder path used was explicitly excluded from the bug bounty.</p>
         </div>
-        <div className="border-l-2 border-[#ef4444] pl-4 mb-4">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-semibold text-[#ededed]">Wanchain Cardano Bridge (Midnight) — ~$9M</span>
-            <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444]">Signature Replay</span>
-            <span className="text-[10px] text-[#666]">July 21</span>
-          </div>
-          <p className="text-xs text-[#888]">Non-injective signed-message encoding in TreasuryCheck validator enabled replay attacks. 515M NIGHT drained. Third cross-chain bridge exploit this summer — signature validation failures remain the dominant bridge attack vector.</p>
-        </div>
-        <p className="text-xs text-[#666] mb-3">Also in recent weeks:</p>
+        <p className="text-xs text-[#666] mb-3">Also this period:</p>
         <div className="space-y-2">
+          <div className="border-l-2 border-[#ef4444]/50 pl-4">
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-xs text-[#aaa]">Wanchain Cardano Bridge (Midnight) — ~$9M</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444]/70">Signature Replay</span>
+            </div>
+            <p className="text-[10px] text-[#666]">Non-injective signed-message encoding enabled replay attacks. 515M NIGHT drained. Third cross-chain bridge exploit this summer.</p>
+          </div>
+          <div className="border-l-2 border-[#ef4444]/50 pl-4">
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-xs text-[#aaa]">LULA — $578K</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444]/70">Reserve Manipulation</span>
+              <span className="text-[10px] text-[#666]">July 27 – Aug 2</span>
+            </div>
+            <p className="text-[10px] text-[#666]">BNB Chain token exploit: attacker-reachable path triggered privileged <code>recycle()</code> function to drain LULA from PancakeSwap V2 pair, resync reserves to manipulated balance, then swap back for nearly all USDT. <a href="https://blocksec.com/blog/web3-security-coldcard-entropy-lula-exploits" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Analysis</a></p>
+          </div>
           <div className="border-l-2 border-[#ef4444]/50 pl-4">
             <div className="flex items-center gap-2 mb-0.5">
               <span className="text-xs text-[#aaa]">Balance Coin — $912K</span>
@@ -185,24 +201,17 @@ export default function WeeklyDeltaFinancialBriefAugust03() {
           <div className="border-l-2 border-[#ef4444]/50 pl-4">
             <div className="flex items-center gap-2 mb-0.5">
               <span className="text-xs text-[#aaa]">Zilliqa Ledger App — Undetermined</span>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444]/70">Nonce-Generation Flaw (Since 2019)</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444]/70">Nonce Flaw (Since 2019)</span>
             </div>
-            <p className="text-[10px] text-[#666]">7-year-old bug in Ledger app: after ~5 native txs, private keys become recoverable from public signatures. Upbit flagged ZIL as cautionary.</p>
-          </div>
-          <div className="border-l-2 border-[#ef4444]/50 pl-4">
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-xs text-[#aaa]">SecondFi (Yoroi) — $2.4M</span>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444]/70">Wallet Key Derivation</span>
-            </div>
-            <p className="text-[10px] text-[#666]">Cardano wallet-generation vulnerability. Up to $20M at risk. June 24.</p>
+            <p className="text-[10px] text-[#666]">7-year-old bug: after ~5 native txs, private keys become recoverable from public signatures. Upbit flagged ZIL as cautionary.</p>
           </div>
         </div>
         <div className="mt-4 p-3 rounded-xl bg-[#1a1a1a] border border-[#222]">
           <p className="text-xs text-[#aaa]">
-            <strong className="text-[#ededed]">Takeaway:</strong> Oracle manipulation is the #1 DeFi attack vector — Ostium ($23.8M) and Balance Coin ($912K) both fell to price feed attacks in the same week. Bridge season continues with Wanchain. Zilliqa&apos;s 7-year time bomb is the nightmare scenario for hardware wallet users: the device you trusted was generating keys incorrectly the whole time. Total verified losses this period: ~$36M+ across five tracked incidents.
+            <strong className="text-[#ededed]">Takeaway:</strong> COLDCARD is the nightmare scenario — hardware wallet firmware that generated <em>deterministic</em> seeds instead of random ones, potentially for years. This isn&apos;t a smart contract bug; it&apos;s a build-system configuration check that tested existence instead of enablement. Oracle manipulation remains the #1 DeFi attack vector (Ostium $23.8M, Balance Coin $912K). Total verified losses this period: ~$122M+ across six tracked incidents. <a href="https://blocksec.com/blog/web3-security-coldcard-entropy-lula-exploits" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Full BlockSec roundup</a>
           </p>
         </div>
-        <p className="text-xs text-[#444] mt-3">Sources: BlockSec Phalcon, The Defiant, WuBlockchain, CoinDesk</p>
+        <p className="text-xs text-[#444] mt-3">Sources: BlockSec Weekly (July 27 – Aug 2), BlockSec Phalcon, The Defiant, WuBlockchain</p>
       </div>
 
       {/* ========================================================
