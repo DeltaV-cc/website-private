@@ -11,11 +11,13 @@ import { Item, PatentsData } from './types';
 // (observed: indices stuck on SPX+CSI while tip had SMI/STOXX/DAX).
 // Prefer jsDelivr @gh-pages (tracks git tip), then Pages, then raw.
 const DATA_MIRRORS = [
-  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
+  // Pages first: same-origin for the deployed site and always fresh.
+  // jsDelivr caches @gh-pages and ignores query cache-busting, so it can be hours stale — fallback only.
   'https://deltav-cc.github.io/website-private',
+  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
   'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages',
 ] as const;
-const DATA_BASE = DATA_MIRRORS[1]; // site asset base (HTML still on Pages)
+const DATA_BASE = DATA_MIRRORS[0]; // site asset base (HTML still on Pages)
 const BASE = DATA_BASE;
 /** First successful mirror wins; minute-bucket bust for sticky CDNs. */
 const dataUrl = (path: string) => {
