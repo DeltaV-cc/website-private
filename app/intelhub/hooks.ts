@@ -1158,7 +1158,6 @@ export function useIntelData(activeTab: string = 'macro') {
   // Shared feed always; tab-scoped snapshots + only the active tab's heavy path every 5 min
   useEffect(() => {
     const refresh = () => {
-      if (document.visibilityState !== 'visible') return;
       loadAll();
       loadLive(activeTab);
       if (activeTab === 'macro') loadForex();
@@ -1167,10 +1166,11 @@ export function useIntelData(activeTab: string = 'macro') {
       if (activeTab === 'infosec') loadInfosec();
       if (activeTab === 'ai') loadAIFeeds();
     };
+    const refreshIfVisible = () => { if (document.visibilityState === 'visible') refresh(); };
     refresh();
-    const i = window.setInterval(refresh, 5 * 60_000);
-    document.addEventListener('visibilitychange', refresh);
-    return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refresh); };
+    const i = window.setInterval(refreshIfVisible, 5 * 60_000);
+    document.addEventListener('visibilitychange', refreshIfVisible);
+    return () => { window.clearInterval(i); document.removeEventListener('visibilitychange', refreshIfVisible); };
   }, [activeTab, loadAll, loadLive, loadForex, loadWeb3Live, loadInfosec, loadAIFeeds]);
 
   /* ---- Derived ---- */
