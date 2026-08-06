@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T23:30:28Z",
+  "updated_at": "2026-08-06T23:45:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.553696,
+        "price": 0.547734,
         "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.32,
+        "price": 2.35,
         "change_24h": 7.7,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.199846,
+        "price": 0.200308,
         "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.67,
+        "price": 6.66,
         "change_24h": 3.2,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.087867,
+        "price": 0.087831,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 1.98,
+        "price": 1.99,
         "change_24h": -18.4,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.09244,
+        "price": 0.091534,
         "change_24h": -12.2,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 494.67,
+        "price": 495.98,
         "change_24h": -4.2,
         "asset": "crypto"
       }
