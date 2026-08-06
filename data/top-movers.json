@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T14:15:37Z",
+  "updated_at": "2026-08-06T14:30:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -62,17 +62,17 @@
         "asset": "equity"
       },
       {
-        "symbol": "HUBS",
-        "name": "HubSpot, Inc.",
-        "price": 250.21,
-        "change_24h": 0.53,
-        "asset": "equity"
-      },
-      {
         "symbol": "APP",
         "name": "Applovin Corporation",
         "price": 417.8,
         "change_24h": -0.45,
+        "asset": "equity"
+      },
+      {
+        "symbol": "HUBS",
+        "name": "HubSpot, Inc.",
+        "price": 250.21,
+        "change_24h": 0.53,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.526591,
+        "price": 0.525741,
         "change_24h": 6.9,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.093188,
+        "price": 0.092485,
         "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.21,
+        "price": 2.23,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.66,
+        "price": 6.67,
         "change_24h": 3.3,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 363.33,
+        "price": 364.28,
         "change_24h": 2.4,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.12,
+        "price": 2.06,
         "change_24h": -10.3,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.100694,
+        "price": 0.100541,
         "change_24h": -6.5,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 491.42,
+        "price": 493.38,
         "change_24h": -5.3,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.304661,
+        "price": 0.303386,
         "change_24h": -4.8,
         "asset": "crypto"
       }
