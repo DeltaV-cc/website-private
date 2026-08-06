@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T14:30:43Z",
+  "updated_at": "2026-08-06T15:18:15Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -18,13 +18,6 @@
         "asset": "equity"
       },
       {
-        "symbol": "SITM",
-        "name": "SiTime Corporation",
-        "price": 543.12,
-        "change_24h": -6.85,
-        "asset": "equity"
-      },
-      {
         "symbol": "WPP",
         "name": "WPP plc",
         "price": 20.61,
@@ -36,6 +29,13 @@
         "name": "Chime Financial, Inc.",
         "price": 25.92,
         "change_24h": 3.89,
+        "asset": "equity"
+      },
+      {
+        "symbol": "PAYC",
+        "name": "Paycom Software, Inc.",
+        "price": 174.8,
+        "change_24h": -0.29,
         "asset": "equity"
       }
     ],
@@ -55,6 +55,13 @@
         "asset": "equity"
       },
       {
+        "symbol": "HUBS",
+        "name": "HubSpot, Inc.",
+        "price": 250.21,
+        "change_24h": 0.53,
+        "asset": "equity"
+      },
+      {
         "symbol": "HONA",
         "name": "Honeywell Aerospace Inc.",
         "price": 203.64,
@@ -67,13 +74,6 @@
         "price": 417.8,
         "change_24h": -0.45,
         "asset": "equity"
-      },
-      {
-        "symbol": "HUBS",
-        "name": "HubSpot, Inc.",
-        "price": 250.21,
-        "change_24h": 0.53,
-        "asset": "equity"
       }
     ]
   },
@@ -82,36 +82,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.525741,
-        "change_24h": 6.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.092485,
-        "change_24h": 6.2,
+        "price": 0.532271,
+        "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.23,
-        "change_24h": 4.7,
+        "price": 2.24,
+        "change_24h": 6.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.091328,
+        "change_24h": 4.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.202309,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.67,
-        "change_24h": 3.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 364.28,
-        "change_24h": 2.4,
+        "price": 6.69,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "BEAT",
         "name": "Audiera",
         "price": 2.06,
-        "change_24h": -10.3,
+        "change_24h": -12.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002311,
-        "change_24h": -8.1,
+        "price": 0.002319,
+        "change_24h": -9.2,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.100541,
-        "change_24h": -6.5,
+        "price": 0.099579,
+        "change_24h": -7.6,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 493.38,
-        "change_24h": -5.3,
+        "price": 497.5,
+        "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.303386,
-        "change_24h": -4.8,
+        "price": 0.304266,
+        "change_24h": -3.8,
         "asset": "crypto"
       }
     ]
