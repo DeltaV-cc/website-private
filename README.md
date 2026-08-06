@@ -70,6 +70,7 @@ components/          Shared reading layout (BlogPostLayout, TOC, progress)
 lib/                 Shared TS helpers (site.ts deploy constants)
 public/              Static assets, brand, images, JSON data, RSS feeds
 scripts/             Data copy, RSS generation, basePath helpers (see scripts/README.md)
+docs/                Ops notes (see docs/ops-crons.md for IntelHub Hermes crons)
 workers/             Cloudflare Worker(s) — CORS proxy (see docs/proxy.md)
 wrangler.toml        Worker deploy config (proxy.hub.deltav.cc)
 site.config.json     basePath / siteUrl / repoUrl single source of truth
@@ -83,7 +84,7 @@ _headers             Security headers for static hosting
 - **SOTA Operator Stack** — `/opsec/sota-stack/` (DeFi treasury + key management blueprint)
 - **Top-tier pointers** — Taurus (institutional custody), Opsek (HNW security)
 - **Tutorials** — local AI stacks, optional x402 reference
-- **IntelHub** — static data dashboards + feeds
+- **IntelHub** — static data dashboards + feeds (how crons refresh JSON: [`docs/ops-crons.md`](./docs/ops-crons.md))
 
 ### Shared UI contracts
 
