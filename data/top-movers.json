@@ -1,20 +1,20 @@
 {
-  "updated_at": "2026-08-06T13:39:28Z",
+  "updated_at": "2026-08-06T13:45:37Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
-      {
-        "symbol": "IOVA",
-        "name": "Iovance Biotherapeutics, Inc.",
-        "price": 4.34,
-        "change_24h": -0.46,
-        "asset": "equity"
-      },
       {
         "symbol": "INSM",
         "name": "Insmed Incorporated",
         "price": 99.02,
         "change_24h": 0.27,
+        "asset": "equity"
+      },
+      {
+        "symbol": "IOVA",
+        "name": "Iovance Biotherapeutics, Inc.",
+        "price": 4.34,
+        "change_24h": -0.46,
         "asset": "equity"
       },
       {
@@ -25,17 +25,17 @@
         "asset": "equity"
       },
       {
-        "symbol": "PAYC",
-        "name": "Paycom Software, Inc.",
-        "price": 174.8,
-        "change_24h": -0.29,
-        "asset": "equity"
-      },
-      {
         "symbol": "CLOV",
         "name": "Clover Health Investments, Corp",
         "price": 4.14,
         "change_24h": -3.04,
+        "asset": "equity"
+      },
+      {
+        "symbol": "SITM",
+        "name": "SiTime Corporation",
+        "price": 543.12,
+        "change_24h": -6.85,
         "asset": "equity"
       }
     ],
@@ -48,10 +48,10 @@
         "asset": "equity"
       },
       {
-        "symbol": "ATS",
-        "name": "ATS Corporation",
-        "price": 27.95,
-        "change_24h": -0.75,
+        "symbol": "HONA",
+        "name": "Honeywell Aerospace Inc.",
+        "price": 203.64,
+        "change_24h": -5.93,
         "asset": "equity"
       },
       {
@@ -62,17 +62,17 @@
         "asset": "equity"
       },
       {
-        "symbol": "HONA",
-        "name": "Honeywell Aerospace Inc.",
-        "price": 203.64,
-        "change_24h": -5.93,
+        "symbol": "ATS",
+        "name": "ATS Corporation",
+        "price": 27.95,
+        "change_24h": -0.75,
         "asset": "equity"
       },
       {
-        "symbol": "FIG",
-        "name": "Figma, Inc.",
-        "price": 28.15,
-        "change_24h": 3.8,
+        "symbol": "APP",
+        "name": "Applovin Corporation",
+        "price": 417.8,
+        "change_24h": -0.45,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.520084,
+        "price": 0.522066,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.092985,
+        "price": 0.093054,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.19,
+        "price": 2.21,
         "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.63,
+        "price": 6.64,
         "change_24h": 3.1,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 362.05,
+        "price": 362.46,
         "change_24h": 3.0,
         "asset": "crypto"
       }
@@ -126,28 +126,28 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002324,
+        "price": 0.002336,
         "change_24h": -7.2,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.101081,
+        "price": 0.101154,
         "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.302766,
+        "price": 0.305063,
         "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 490.1,
+        "price": 493.08,
         "change_24h": -4.9,
         "asset": "crypto"
       }
