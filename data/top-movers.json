@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T22:45:46Z",
+  "updated_at": "2026-08-07T23:00:46Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 2.14,
+        "change_24h": 15.1,
+        "asset": "crypto"
+      },
+      {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 90.23,
-        "change_24h": 5.8,
+        "price": 90.25,
+        "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091898,
-        "change_24h": 4.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 2.12,
-        "change_24h": 4.0,
+        "price": 0.091728,
+        "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 508.0,
-        "change_24h": 3.2,
+        "price": 509.17,
+        "change_24h": 2.9,
         "asset": "crypto"
       },
       {
-        "symbol": "KAS",
-        "name": "Kaspa",
-        "price": 0.026259,
-        "change_24h": 2.8,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.16,
+        "change_24h": 2.7,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.513022,
-        "change_24h": -9.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002262,
-        "change_24h": -5.5,
+        "price": 0.507711,
+        "change_24h": -9.7,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.05084,
+        "price": 0.050726,
+        "change_24h": -4.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002271,
         "change_24h": -4.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.346451,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
         "price": 1.59,
-        "change_24h": -3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ONDO",
-        "name": "Ondo",
-        "price": 0.345807,
-        "change_24h": -3.7,
+        "change_24h": -4.2,
         "asset": "crypto"
       }
     ]
