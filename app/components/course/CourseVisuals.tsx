@@ -655,6 +655,42 @@ export function LabVisual({ slug }: { slug: string }) {
         ]}
       />
     ),
+    'session-control': (
+      <ArchitectureFlow
+        title="Session control"
+        accent="cyan"
+        steps={[
+          { label: '/context', detail: 'Budget map' },
+          { label: '/compress', detail: 'Keep last N' },
+          { label: '/undo', detail: 'Rewrite ask' },
+          { label: '/rollback', detail: 'Files only' },
+        ]}
+      />
+    ),
+    'prompt-budget': (
+      <ArchitectureFlow
+        title="Prompt budget"
+        accent="amber"
+        steps={[
+          { label: 'prompt-size', detail: 'Empty cost' },
+          { label: 'Cut tools', detail: 'One toolset' },
+          { label: 'Cut skills', detail: 'One skill' },
+          { label: 'Re-audit', detail: 'Before → after' },
+        ]}
+      />
+    ),
+    'kanban-board': (
+      <ArchitectureFlow
+        title="Kanban plugin"
+        accent="purple"
+        steps={[
+          { label: 'Enable plugin', detail: 'Desktop' },
+          { label: 'One card', detail: 'Small scope' },
+          { label: 'Profiles', detail: '1–2 agents' },
+          { label: 'kanban-notes', detail: 'Artifact' },
+        ]}
+      />
+    ),
   };
   return <div className="my-6">{map[slug] ?? null}</div>;
 }

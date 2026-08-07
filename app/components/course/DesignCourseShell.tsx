@@ -410,23 +410,6 @@ export function DesignModuleBody({ module }: { module: CourseModule }) {
                 ))}
               </ul>
             )}
-            {section.steps && (
-              <ol className="mt-5 space-y-3 max-w-2xl">
-                {section.steps.map((s, j) => (
-                  <li
-                    key={j}
-                    className="flex gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] px-4 py-3.5"
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--accent-cyan)]/40 font-mono text-[10px] text-[var(--accent-cyan)]">
-                      {j + 1}
-                    </span>
-                    <span className="text-sm text-[var(--text-secondary)] leading-relaxed pt-0.5">
-                      {t(s)}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            )}
             {section.table && (
               <div className="mt-5 overflow-x-auto rounded-xl border border-[var(--border-default)]">
                 <table className="w-full text-sm">
@@ -452,6 +435,16 @@ export function DesignModuleBody({ module }: { module: CourseModule }) {
                   </tbody>
                 </table>
               </div>
+            )}
+            {section.steps && (
+              <InteractiveChecklist
+                courseId="open-design"
+                moduleSlug={module.slug}
+                sectionKey={`${i}-steps`}
+                items={section.steps.map((s) => t(s))}
+                accent="cyan"
+                mode="steps"
+              />
             )}
             {section.checklist && (
               <InteractiveChecklist
@@ -511,6 +504,14 @@ export function DesignModuleBody({ module }: { module: CourseModule }) {
       <div className="course-proof mt-12">
         <div className="eyebrow text-[var(--accent-orange)]">{t(OD_UI.proof)}</div>
         <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">{t(module.proof)}</p>
+        <InteractiveChecklist
+          courseId="open-design"
+          moduleSlug={module.slug}
+          sectionKey="module-proof"
+          items={[t(module.proof)]}
+          accent="orange"
+          mode="proof"
+        />
         <MarkCompleteButton courseId="open-design" slug={module.slug} accent="cyan" />
       </div>
 

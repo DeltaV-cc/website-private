@@ -731,3 +731,16 @@ body {
     padding-right: 12px;
   }
 }
+
+/* Interactive course steps */
+.course-check-item--step .course-check-box {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+}
+.course-check-item--step.is-on .course-check-box {
+  font-size: 0.75rem;
+}
