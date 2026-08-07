@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-07T18:30:32Z",
+  "updated_at": "2026-08-07T18:45:33Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "DOCS",
         "name": "Doximity, Inc.",
-        "price": 28.64,
-        "change_24h": 38.63,
+        "price": 28.66,
+        "change_24h": 38.71,
         "asset": "equity"
       },
       {
         "symbol": "TEAM",
         "name": "Atlassian Corporation",
-        "price": 152.41,
-        "change_24h": 38.34,
+        "price": 150.43,
+        "change_24h": 36.54,
         "asset": "equity"
       },
       {
         "symbol": "FIGS",
         "name": "FIGS, Inc.",
-        "price": 14.39,
-        "change_24h": 28.02,
+        "price": 14.38,
+        "change_24h": 27.94,
         "asset": "equity"
       },
       {
         "symbol": "TWLO",
         "name": "Twilio Inc.",
-        "price": 245.98,
-        "change_24h": 27.32,
+        "price": 240.35,
+        "change_24h": 24.41,
         "asset": "equity"
       },
       {
         "symbol": "BTG",
         "name": "B2Gold Corp",
-        "price": 5.005,
-        "change_24h": 22.37,
+        "price": 5.0301,
+        "change_24h": 22.99,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SEZL",
         "name": "Sezzle Inc.",
-        "price": 115.02,
-        "change_24h": -35.57,
+        "price": 115.13,
+        "change_24h": -35.51,
         "asset": "equity"
       },
       {
         "symbol": "LASR",
         "name": "nLIGHT, Inc.",
-        "price": 57.82,
-        "change_24h": -23.36,
+        "price": 57.91,
+        "change_24h": -23.23,
         "asset": "equity"
       },
       {
         "symbol": "TTD",
         "name": "The Trade Desk, Inc.",
-        "price": 13.91,
-        "change_24h": -21.25,
+        "price": 13.85,
+        "change_24h": -21.65,
         "asset": "equity"
       },
       {
         "symbol": "POST",
         "name": "Post Holdings, Inc.",
-        "price": 79.68,
-        "change_24h": -11.69,
+        "price": 78.92,
+        "change_24h": -12.54,
         "asset": "equity"
       },
       {
         "symbol": "TDS",
         "name": "Telephone and Data Systems, Inc",
-        "price": 31.88,
-        "change_24h": -11.44,
+        "price": 32.01,
+        "change_24h": -11.08,
         "asset": "equity"
       }
     ]
@@ -82,21 +82,21 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091625,
+        "price": 0.09177,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 90.09,
+        "price": 89.96,
         "change_24h": 4.8,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 511.7,
+        "price": 509.23,
         "change_24h": 3.1,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.026205,
+        "price": 0.026158,
         "change_24h": 2.6,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.16,
+        "price": 2.1,
         "change_24h": -10.6,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.680978,
+        "price": 0.679739,
         "change_24h": -7.0,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.345458,
+        "price": 0.345716,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.092921,
+        "price": 0.092933,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.6,
+        "price": 1.59,
         "change_24h": -4.5,
         "asset": "crypto"
       }
