@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T08:30:18Z",
+  "updated_at": "2026-08-07T08:45:18Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.17,
+        "price": 2.15,
         "change_24h": 12.0,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.202341,
+        "price": 0.201529,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.536863,
+        "price": 0.540746,
         "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.08988,
+        "price": 0.089913,
         "change_24h": 2.7,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.088586,
+        "price": 0.089919,
         "change_24h": -13.5,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.350385,
+        "price": 0.350589,
         "change_24h": -6.4,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.64,
+        "price": 1.65,
         "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.086575,
+        "price": 0.087487,
         "change_24h": -4.3,
         "asset": "crypto"
       }
