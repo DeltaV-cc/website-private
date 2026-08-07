@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T12:00:41Z",
+  "updated_at": "2026-08-07T12:15:41Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.23,
-        "change_24h": 24.2,
+        "price": 2.22,
+        "change_24h": 31.4,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.39,
-        "change_24h": 11.0,
+        "price": 2.41,
+        "change_24h": 9.1,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.201347,
-        "change_24h": 7.2,
+        "price": 0.20143,
+        "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.096508,
-        "change_24h": 6.2,
+        "price": 0.096623,
+        "change_24h": 6.4,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.536965,
-        "change_24h": 2.8,
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 513.13,
+        "change_24h": 3.6,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.08949,
-        "change_24h": -10.9,
+        "price": 0.089119,
+        "change_24h": -11.8,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.35225,
-        "change_24h": -5.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SKY",
-        "name": "Sky",
-        "price": 0.0546,
-        "change_24h": -4.1,
+        "price": 0.353936,
+        "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.088285,
-        "change_24h": -3.9,
+        "price": 0.088049,
+        "change_24h": -3.2,
         "asset": "crypto"
       },
       {
         "symbol": "GRAM",
         "name": "Gram (prev. Toncoin)",
         "price": 1.34,
-        "change_24h": -3.0,
+        "change_24h": -2.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.055156,
+        "change_24h": -2.7,
         "asset": "crypto"
       }
     ]
