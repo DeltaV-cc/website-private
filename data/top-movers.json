@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T00:15:25Z",
+  "updated_at": "2026-08-07T00:30:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.39,
+        "price": 2.4,
         "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.200915,
+        "price": 0.202323,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.548575,
+        "price": 0.549314,
         "change_24h": 4.5,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.088479,
+        "price": 0.088699,
         "change_24h": 3.4,
         "asset": "crypto"
       },
       {
         "symbol": "GT",
         "name": "Gate",
-        "price": 6.65,
+        "price": 6.66,
         "change_24h": 2.0,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.0,
+        "price": 2.05,
         "change_24h": -17.7,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.091658,
+        "price": 0.090635,
         "change_24h": -11.9,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.14,
+        "price": 1.13,
         "change_24h": -5.3,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.302516,
+        "price": 0.302244,
         "change_24h": -4.3,
         "asset": "crypto"
       }
