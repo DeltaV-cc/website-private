@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T23:15:48Z",
+  "updated_at": "2026-08-07T23:30:50Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.12,
+        "price": 2.11,
         "change_24h": 15.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 90.64,
+        "price": 90.44,
         "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091749,
+        "price": 0.091579,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 509.93,
+        "price": 509.49,
         "change_24h": 2.9,
         "asset": "crypto"
       },
@@ -119,28 +119,28 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.512457,
+        "price": 0.509116,
         "change_24h": -9.7,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.050683,
+        "price": 0.050623,
         "change_24h": -4.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002271,
+        "price": 0.002261,
         "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.347689,
+        "price": 0.347327,
         "change_24h": -4.2,
         "asset": "crypto"
       },
