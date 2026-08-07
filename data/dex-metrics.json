@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T20:04:03Z",
+  "updated_at": "2026-08-07T21:06:27Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1258,26 +1258,26 @@
     },
     {
       "week": "2026-W32",
-      "curated": 34501764999.37,
-      "filtered": 34501764999.37,
-      "raw": 34501764999.37
+      "curated": 34504653144.79,
+      "filtered": 34504653144.79,
+      "raw": 34504653144.79
     }
   ],
   "chains": [
     {
       "chain": "Orca DEX",
-      "volume_24h": 106023339.0,
-      "delta_pct": -24.28
+      "volume_24h": 108836509.0,
+      "delta_pct": -22.27
     },
     {
       "chain": "Curve DEX",
-      "volume_24h": 91031717.0,
-      "delta_pct": -24.05
+      "volume_24h": 96756313.0,
+      "delta_pct": -19.27
     },
     {
       "chain": "Raydium AMM",
-      "volume_24h": 89609961.0,
-      "delta_pct": -1.2
+      "volume_24h": 91095794.0,
+      "delta_pct": 0.44
     },
     {
       "chain": "PancakeSwap AMM",
@@ -1296,33 +1296,33 @@
     },
     {
       "chain": "Integral",
-      "volume_24h": 1180168.0,
-      "delta_pct": -23.59
+      "volume_24h": 1196775.0,
+      "delta_pct": -22.51
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 425251.0,
-      "delta_pct": -5.36
-    },
-    {
-      "chain": "Defi Swap",
-      "volume_24h": 263253.0,
-      "delta_pct": 1976.46
-    },
-    {
-      "chain": "Balancer V1",
-      "volume_24h": 43544.0,
-      "delta_pct": -23.48
+      "volume_24h": 434868.0,
+      "delta_pct": -3.22
     },
     {
       "chain": "Bancor V2.1",
-      "volume_24h": 43141.0,
-      "delta_pct": -12.38
+      "volume_24h": 42899.0,
+      "delta_pct": -12.87
     },
     {
       "chain": "Nerve",
-      "volume_24h": 36103.0,
-      "delta_pct": 158.19
+      "volume_24h": 36099.0,
+      "delta_pct": 158.16
+    },
+    {
+      "chain": "Balancer V1",
+      "volume_24h": 27864.0,
+      "delta_pct": -51.03
+    },
+    {
+      "chain": "Defi Swap",
+      "volume_24h": 19885.0,
+      "delta_pct": 56.85
     }
   ]
 }
