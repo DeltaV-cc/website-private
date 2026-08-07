@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-07T13:45:43Z",
+  "updated_at": "2026-08-07T14:00:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "DOCS",
         "name": "Doximity, Inc.",
-        "price": 33.25,
-        "change_24h": 61.17,
+        "price": 32.06,
+        "change_24h": 55.18,
         "asset": "equity"
       },
       {
         "symbol": "FIGS",
         "name": "FIGS, Inc.",
-        "price": 15.35,
-        "change_24h": 36.44,
+        "price": 15.33,
+        "change_24h": 36.39,
         "asset": "equity"
       },
       {
         "symbol": "TEAM",
         "name": "Atlassian Corporation",
-        "price": 144.03,
-        "change_24h": 30.73,
+        "price": 144.57,
+        "change_24h": 31.22,
         "asset": "equity"
       },
       {
         "symbol": "TWLO",
         "name": "Twilio Inc.",
-        "price": 234.08,
-        "change_24h": 21.15,
+        "price": 238.9,
+        "change_24h": 23.65,
         "asset": "equity"
       },
       {
-        "symbol": "ROAD",
-        "name": "Construction Partners, Inc.",
-        "price": 119.66,
-        "change_24h": 19.46,
+        "symbol": "NTRA",
+        "name": "Natera, Inc.",
+        "price": 316.3,
+        "change_24h": 19.19,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SEZL",
         "name": "Sezzle Inc.",
-        "price": 124.8,
-        "change_24h": -30.09,
+        "price": 121.97,
+        "change_24h": -31.68,
         "asset": "equity"
       },
       {
         "symbol": "TTD",
         "name": "The Trade Desk, Inc.",
-        "price": 13.62,
-        "change_24h": -22.89,
+        "price": 13.71,
+        "change_24h": -22.38,
         "asset": "equity"
       },
       {
         "symbol": "LASR",
         "name": "nLIGHT, Inc.",
-        "price": 60.33,
-        "change_24h": -20.04,
+        "price": 60.34,
+        "change_24h": -20.02,
         "asset": "equity"
       },
       {
-        "symbol": "PGNY",
-        "name": "Progyny, Inc.",
-        "price": 27.58,
-        "change_24h": -8.71,
+        "symbol": "POST",
+        "name": "Post Holdings, Inc.",
+        "price": 81.35,
+        "change_24h": -9.84,
         "asset": "equity"
       },
       {
         "symbol": "ARW",
         "name": "Arrow Electronics, Inc.",
-        "price": 199.9,
-        "change_24h": -10.05,
+        "price": 199.86,
+        "change_24h": -10.09,
         "asset": "equity"
       }
     ]
@@ -89,28 +89,28 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.45,
+        "price": 2.46,
         "change_24h": 10.4,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.200058,
+        "price": 0.199008,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.095807,
+        "price": 0.095297,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.089426,
+        "price": 0.090478,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.089783,
+        "price": 0.090205,
         "change_24h": -11.0,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.353754,
+        "price": 0.352583,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.088658,
+        "price": 0.088505,
         "change_24h": -4.3,
         "asset": "crypto"
       },
