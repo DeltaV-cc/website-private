@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-07T16:15:25Z",
+  "updated_at": "2026-08-07T16:30:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "DOCS",
         "name": "Doximity, Inc.",
-        "price": 27.55,
-        "change_24h": 33.3,
+        "price": 28.0,
+        "change_24h": 35.5,
         "asset": "equity"
       },
       {
         "symbol": "TEAM",
         "name": "Atlassian Corporation",
-        "price": 144.34,
-        "change_24h": 31.02,
+        "price": 145.92,
+        "change_24h": 32.45,
         "asset": "equity"
       },
       {
         "symbol": "TWLO",
         "name": "Twilio Inc.",
-        "price": 252.63,
-        "change_24h": 30.76,
+        "price": 253.37,
+        "change_24h": 31.14,
         "asset": "equity"
       },
       {
         "symbol": "FIGS",
         "name": "FIGS, Inc.",
-        "price": 14.33,
-        "change_24h": 27.49,
+        "price": 14.46,
+        "change_24h": 28.6,
         "asset": "equity"
       },
       {
-        "symbol": "ROAD",
-        "name": "Construction Partners, Inc.",
-        "price": 120.74,
-        "change_24h": 20.55,
+        "symbol": "BTG",
+        "name": "B2Gold Corp",
+        "price": 4.98,
+        "change_24h": 21.76,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "SEZL",
         "name": "Sezzle Inc.",
-        "price": 116.81,
-        "change_24h": -34.57,
-        "asset": "equity"
-      },
-      {
-        "symbol": "TTD",
-        "name": "The Trade Desk, Inc.",
-        "price": 13.94,
-        "change_24h": -21.14,
+        "price": 115.29,
+        "change_24h": -35.42,
         "asset": "equity"
       },
       {
         "symbol": "LASR",
         "name": "nLIGHT, Inc.",
-        "price": 59.73,
-        "change_24h": -20.83,
+        "price": 58.2,
+        "change_24h": -22.85,
+        "asset": "equity"
+      },
+      {
+        "symbol": "TTD",
+        "name": "The Trade Desk, Inc.",
+        "price": 13.93,
+        "change_24h": -21.17,
         "asset": "equity"
       },
       {
         "symbol": "POST",
         "name": "Post Holdings, Inc.",
-        "price": 78.78,
-        "change_24h": -12.69,
+        "price": 79.33,
+        "change_24h": -12.08,
         "asset": "equity"
       },
       {
         "symbol": "ARW",
         "name": "Arrow Electronics, Inc.",
-        "price": 200.5,
-        "change_24h": -9.8,
+        "price": 199.22,
+        "change_24h": -10.38,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.39,
+        "price": 2.37,
         "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 514.34,
+        "price": 512.33,
         "change_24h": 3.4,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.095488,
+        "price": 0.095027,
         "change_24h": 3.4,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 89.34,
+        "price": 90.39,
         "change_24h": 3.3,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.090031,
+        "price": 0.089858,
         "change_24h": 3.2,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.093238,
+        "price": 0.095169,
         "change_24h": -7.4,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.348872,
+        "price": 0.348886,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 1.99,
+        "price": 1.98,
         "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.62,
+        "price": 1.61,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "GRAM",
         "name": "Gram (prev. Toncoin)",
-        "price": 1.34,
+        "price": 1.33,
         "change_24h": -3.6,
         "asset": "crypto"
       }
