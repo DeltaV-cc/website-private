@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T21:06:27Z",
+  "updated_at": "2026-08-07T22:04:21Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1240,9 +1240,9 @@
     },
     {
       "week": "2026-W29",
-      "curated": 46241660119.74,
-      "filtered": 46241660119.74,
-      "raw": 46241660119.74
+      "curated": 46241749409.74,
+      "filtered": 46241749409.74,
+      "raw": 46241749409.74
     },
     {
       "week": "2026-W30",
@@ -1258,26 +1258,26 @@
     },
     {
       "week": "2026-W32",
-      "curated": 34504653144.79,
-      "filtered": 34504653144.79,
-      "raw": 34504653144.79
+      "curated": 34527082636.62,
+      "filtered": 34527082636.62,
+      "raw": 34527082636.62
     }
   ],
   "chains": [
     {
       "chain": "Orca DEX",
-      "volume_24h": 108836509.0,
-      "delta_pct": -22.27
+      "volume_24h": 109092200.0,
+      "delta_pct": -22.08
     },
     {
       "chain": "Curve DEX",
-      "volume_24h": 96756313.0,
-      "delta_pct": -19.27
+      "volume_24h": 97549175.0,
+      "delta_pct": -18.61
     },
     {
       "chain": "Raydium AMM",
-      "volume_24h": 91095794.0,
-      "delta_pct": 0.44
+      "volume_24h": 90003085.0,
+      "delta_pct": -0.77
     },
     {
       "chain": "PancakeSwap AMM",
@@ -1296,33 +1296,33 @@
     },
     {
       "chain": "Integral",
-      "volume_24h": 1196775.0,
-      "delta_pct": -22.51
+      "volume_24h": 1190312.0,
+      "delta_pct": -22.93
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 434868.0,
-      "delta_pct": -3.22
+      "volume_24h": 431355.0,
+      "delta_pct": -4.0
     },
     {
       "chain": "Bancor V2.1",
-      "volume_24h": 42899.0,
-      "delta_pct": -12.87
+      "volume_24h": 43337.0,
+      "delta_pct": -11.98
     },
     {
       "chain": "Nerve",
-      "volume_24h": 36099.0,
-      "delta_pct": 158.16
+      "volume_24h": 34628.0,
+      "delta_pct": 147.64
     },
     {
       "chain": "Balancer V1",
-      "volume_24h": 27864.0,
-      "delta_pct": -51.03
+      "volume_24h": 28054.0,
+      "delta_pct": -50.7
     },
     {
       "chain": "Defi Swap",
-      "volume_24h": 19885.0,
-      "delta_pct": 56.85
+      "volume_24h": 19012.0,
+      "delta_pct": 49.96
     }
   ]
 }
