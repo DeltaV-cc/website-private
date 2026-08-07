@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T20:45:39Z",
+  "updated_at": "2026-08-07T21:00:49Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 90.02,
-        "change_24h": 5.6,
+        "price": 90.11,
+        "change_24h": 5.4,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091424,
-        "change_24h": 5.0,
+        "price": 0.091492,
+        "change_24h": 5.2,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 510.77,
-        "change_24h": 3.5,
+        "price": 511.24,
+        "change_24h": 3.6,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.026339,
-        "change_24h": 3.0,
+        "price": 0.026334,
+        "change_24h": 3.3,
         "asset": "crypto"
       },
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.32,
-        "change_24h": 2.9,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 377.37,
+        "change_24h": 3.0,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "BEAT",
         "name": "Audiera",
         "price": 2.09,
-        "change_24h": -12.6,
+        "change_24h": -12.4,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.504556,
-        "change_24h": -7.1,
+        "price": 0.504852,
+        "change_24h": -9.0,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.347888,
-        "change_24h": -5.6,
+        "price": 0.3487,
+        "change_24h": -5.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002299,
+        "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.59,
-        "change_24h": -4.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.090892,
-        "change_24h": -3.6,
+        "price": 1.6,
+        "change_24h": -3.7,
         "asset": "crypto"
       }
     ]
