@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T08:09:54Z",
+  "updated_at": "2026-08-07T08:15:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.15,
+        "price": 2.16,
         "change_24h": 12.0,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.36,
+        "price": 2.35,
         "change_24h": 8.9,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.20184,
+        "price": 0.202433,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.540791,
+        "price": 0.539663,
         "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.089574,
+        "price": 0.089836,
         "change_24h": 2.7,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.087761,
+        "price": 0.0884,
         "change_24h": -13.5,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.350498,
+        "price": 0.34989,
         "change_24h": -6.4,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.086667,
+        "price": 0.086806,
         "change_24h": -4.3,
         "asset": "crypto"
       }
