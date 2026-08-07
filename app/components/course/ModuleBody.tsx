@@ -57,6 +57,14 @@ export function ModuleBodyView({ module, lang }: { module: CourseModule; lang: C
       <div className="course-proof mt-12">
         <div className="eyebrow text-[var(--accent-cyan)]">{t(UI_COPY.proof, lang)}</div>
         <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">{t(module.proof, lang)}</p>
+        <InteractiveChecklist
+          courseId="open-harness"
+          moduleSlug={module.slug}
+          sectionKey="module-proof"
+          items={[t(module.proof, lang)]}
+          accent="cyan"
+          mode="proof"
+        />
         <MarkCompleteButton courseId="open-harness" slug={module.slug} accent="orange" />
       </div>
 
@@ -98,19 +106,14 @@ function SectionBlock({
       )}
 
       {section.steps && (
-        <ol className="mt-5 space-y-3 max-w-2xl">
-          {section.steps.map((s, i) => (
-            <li
-              key={i}
-              className="flex gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] px-4 py-3"
-            >
-              <span className="font-mono text-xs text-[var(--accent-orange)] shrink-0 pt-0.5">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(s, lang)}</span>
-            </li>
-          ))}
-        </ol>
+        <InteractiveChecklist
+          courseId="open-harness"
+          moduleSlug={moduleSlug}
+          sectionKey={`${sectionKey}-steps`}
+          items={section.steps.map((s) => t(s, lang))}
+          accent="orange"
+          mode="steps"
+        />
       )}
 
       {section.lexicon && (

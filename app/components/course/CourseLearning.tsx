@@ -213,12 +213,15 @@ export function InteractiveChecklist({
   sectionKey,
   items,
   accent = 'orange',
+  mode = 'checklist',
 }: {
   courseId: string;
   moduleSlug: string;
   sectionKey: string;
   items: string[];
   accent?: 'orange' | 'cyan' | 'green';
+  /** checklist = default; steps = numbered; proof = end-of-module claim */
+  mode?: 'checklist' | 'steps' | 'proof';
 }) {
   const [flags, setFlags] = useState<boolean[]>(() => items.map(() => false));
 
@@ -233,6 +236,7 @@ export function InteractiveChecklist({
       setFlags((prev) => {
         const next = items.map((_, i) => (i === index ? !prev[i] : Boolean(prev[i])));
         writeChecklist(courseId, moduleSlug, sectionKey, next);
+        window.dispatchEvent(new Event('dv-course-progress'));
         return next;
       });
     },
@@ -247,11 +251,13 @@ export function InteractiveChecklist({
         : 'var(--accent-orange)';
 
   const checked = flags.filter(Boolean).length;
+  const label =
+    mode === 'steps' ? 'Steps · tap to check' : mode === 'proof' ? 'Proof · this device' : 'Checklist · this device';
 
   return (
     <div className="mt-5 max-w-2xl">
       <div className="mb-2 flex justify-between text-[10px] font-mono uppercase tracking-[1px] text-[var(--text-muted)]">
-        <span>Checklist · this device</span>
+        <span>{label}</span>
         <span className="tabular-nums">
           {checked}/{items.length}
         </span>
@@ -265,7 +271,7 @@ export function InteractiveChecklist({
                 type="button"
                 onClick={() => toggle(i)}
                 aria-pressed={on}
-                className={`course-check-item ${on ? 'is-on' : ''}`}
+                className={`course-check-item ${on ? 'is-on' : ''} ${mode === 'steps' ? 'course-check-item--step' : ''}`}
               >
                 <span
                   className="course-check-box shrink-0"
@@ -278,7 +284,7 @@ export function InteractiveChecklist({
                   }}
                   aria-hidden
                 >
-                  {on ? '✓' : ''}
+                  {on ? '✓' : mode === 'steps' ? String(i + 1).padStart(2, '0') : ''}
                 </span>
                 <span className={on ? 'text-[var(--text-tertiary)]' : ''}>{item}</span>
               </button>

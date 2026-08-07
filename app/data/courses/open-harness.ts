@@ -1,7 +1,7 @@
 /**
  * Open Harness — curriculum (EN primary; FR fields kept for a later translate job).
- * Sources: Delta V ateliers + official Hermes docs. A1 basics pass: high-priority operator gaps only.
- * No Docker track in this revision.
+ * Sources: Delta V ateliers + official Hermes docs.
+ * Voice: formal, concise (offer-card tone). Basics/lexicon first; Desktop day-one; no Docker track.
  */
 
 export type CourseLang = 'en' | 'fr';
@@ -63,9 +63,11 @@ export const OPEN_HARNESS_PARTS: {
     id: 1,
     code: 'I',
     title: L('Your sovereign agent'),
-    subtitle: L('From zero to an agent that acts — Hermes Desktop on your PC, in your pocket via Telegram.'),
+    subtitle: L(
+      'Basics and lexicon, then Hermes Desktop on your PC — soul, Telegram gateway, and a first tools proof.',
+    ),
     promise: L(
-      'You understand the words, install Hermes, give it a soul, prove it can use tools, and reach it from Telegram. One agent. Yours.',
+      'You leave with shared vocabulary, a working Desktop install, a written soul, Telegram access, and proof the agent can act with tools.',
     ),
     startSlug: '00',
     slugs: ['00', '01', '02', '03', '04', '05', '06'],
@@ -74,9 +76,11 @@ export const OPEN_HARNESS_PARTS: {
     id: 2,
     code: 'II',
     title: L('Your compounding harness'),
-    subtitle: L('Memory, vault, then skills, security, and cron as separate modules — so it compounds.'),
+    subtitle: L(
+      'Memory, vault, skills, security dials, and cron — each as its own module so the system compounds.',
+    ),
     promise: L(
-      'You fix the memory gotcha, open files on disk, link a vault, load skills, set trust dials, and write a cron runbook. The harness compounds.',
+      'You leave with durable memory on disk, a linked vault, skills under control, documented trust settings, and one self-contained cron runbook.',
     ),
     startSlug: '07',
     slugs: ['07', '08', '09', '10', '11', '12'],
@@ -91,15 +95,15 @@ export const OPEN_HARNESS_META = {
     fr: 'Open Harness',
   } satisfies LocaleString,
   tagline: {
-    en: 'Two parts. One harness you own forever.',
-    fr: 'Two parts. One harness you own forever.',
+    en: 'From lexicon to a harness you own — Hermes Desktop, end to end.',
+    fr: 'From lexicon to a harness you own — Hermes Desktop, end to end.',
   } satisfies LocaleString,
   description: {
-    en: 'Part I: Hermes Desktop on your PC — soul, Telegram, tools. Part II: memory, vault, skills, security, cron. Day one is local Desktop; Docker, remote providers, and always-on hosts show up in Settings when relevant. Labels follow official docs.',
-    fr: 'Part I: Hermes Desktop on your PC — soul, Telegram, tools. Part II: memory, vault, skills, security, cron. Day one is local Desktop; Docker, remote providers, and always-on hosts show up in Settings when relevant. Labels follow official docs.',
+    en: 'Part I covers AI basics, install, soul, gateway, and tools. Part II covers memory, vault, skills, security, and cron. Day one is local Desktop; advanced hosts and Docker appear in Settings only when needed. Labels follow official Hermes docs.',
+    fr: 'Part I covers AI basics, install, soul, gateway, and tools. Part II covers memory, vault, skills, security, and cron. Day one is local Desktop; advanced hosts and Docker appear in Settings only when needed. Labels follow official Hermes docs.',
   } satisfies LocaleString,
   verifiedAsOf: '2026-08-06',
-  revision: 'docs-refresh-2026-08',
+  revision: 'mvp-forge-2026-08',
 } as const;
 
 export const UI_COPY = {
@@ -135,25 +139,25 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Welcome — Open Harness'),
     subtitle: L(
-      'Two parts: first an agent that acts, then a harness that remembers and compounds.',
+      'Two parts: vocabulary and a working agent, then a harness that remembers and compounds.',
     ),
     minutes: 5,
     proof: L(
-      'You can name Part I and Part II in one sentence each.',
+      'You can state Part I and Part II outcomes in one sentence each, and name why module 01 (lexicon) comes before install.',
     ),
     sections: [
       {
         heading: L('The promise'),
         paragraphs: [
           L(
-            'Most people rent intelligence: a browser tab, a subscription, a memory they cannot open. This course builds the opposite — an open Hermes harness whose identity, memory, tools, and gateway live in files you control.',
+            'Most people rent intelligence: a browser tab, a subscription, and memory they cannot open offline. This course builds the opposite — a Hermes harness whose identity, tools, memory, and gateway live in files you control.',
           ),
           L(
-            'This course is Hermes Desktop on your PC. Same ownership later if you move files — but we do not teach CLI or day-one VPS here (too messy for a first harness).',
+            'Day one is Hermes Desktop on your PC. The same files remain portable later; we do not teach CLI or VPS install here. We do cover the basics — lexicon, mental models, and ownership — so the stack is intelligible before you configure anything.',
           ),
         ],
         callout: L(
-          'Harness > model. Models change. Your loop, tools, soul, and memory stay. UI labels follow official Hermes docs and will move as the product does.',
+          'Prefer harness over model. Models change; your loop, tools, soul, and memory remain. UI labels follow official Hermes docs and may move with the product.',
         ),
         calloutVariant: 'quote',
       },
@@ -161,7 +165,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('How the course is built'),
         paragraphs: [
           L(
-            'Two arcs. Finish Part I before Part II — Part II assumes Desktop chats, SOUL exists, and Telegram gateway works.',
+            'Two arcs. Complete Part I before Part II. Part II assumes Desktop chat works, SOUL.md exists, and the Telegram gateway is trusted.',
           ),
         ],
         table: {
@@ -170,12 +174,12 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             [
               L('I'),
               L('Your sovereign agent'),
-              L('Hermes Desktop, SOUL, Telegram gateway, tools proof'),
+              L('Lexicon, Desktop, SOUL, Telegram gateway, tools proof'),
             ],
             [
               L('II'),
               L('Your compounding harness'),
-              L('Memory, vault, skills, security, cron runbook, backup'),
+              L('Memory, vault, skills, security dials, cron runbook, backup map'),
             ],
           ],
         },
@@ -183,18 +187,19 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
       {
         heading: L('What you leave with'),
         checklist: [
-          L('Part I: Desktop cockpit + agent from your phone'),
-          L('Part II: memory + vault + skills + cron on disk'),
+          L('Shared vocabulary (agent, harness, token, context, cron)'),
+          L('Part I: Desktop cockpit and the agent reachable from your phone'),
+          L('Part II: memory, vault, skills, and cron on disk'),
           L('Files you can open offline and back up by copy'),
         ],
       },
       {
         heading: L('How to follow'),
         bullets: [
-          L('Desktop only — ignore CLI install guides for this course.'),
-          L('Modules in order; each ends with a proof.'),
-          L('Lightning path: 02 → 03 → 04 → 05 → 06, then 00–01 if words are fuzzy.'),
-          L('If a button label moved, official docs win — we pin a verified date on install.'),
+          L('Desktop path only — skip CLI-first install guides for this course.'),
+          L('Modules in order; each ends with a binary proof.'),
+          L('Do not skip module 01 unless you already explain agent vs chat and harness vs runtime cleanly.'),
+          L('If a button label moved, official docs win. Install carries a verified-as-of date.'),
         ],
       },
     ],
@@ -208,114 +213,121 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Lexicon', 'Le lexique'),
     subtitle: L(
-      'The words everyone uses without really understanding them.',
-      'Les mots qu’on entend partout sans vraiment les comprendre.',
+      'Shared vocabulary before install — so every later module is precise.',
+      'Vocabulaire commun avant l’install — pour que chaque module soit précis.',
     ),
     minutes: 20,
     proof: L(
-      'You can explain agent vs chat, and harness vs runtime, without jargon theater.',
-      'Tu expliques agent vs chat, et harness vs runtime, sans théâtre de jargon.',
+      'You can define agent vs chat and harness vs runtime in plain language, without empty jargon.',
+      'Tu définis agent vs chat et harness vs runtime en langage clair, sans jargon vide.',
     ),
     sections: [
+      {
+        heading: L('Why this module first'),
+        paragraphs: [
+          L(
+            'Open Harness is not only install steps. Without a shared lexicon, Settings screens and official docs stay opaque. Read the cards; the table at the end is the decision frame for the rest of the course.',
+          ),
+        ],
+      },
       {
         heading: L('Definition cards', 'Cartes de définition'),
         lexicon: [
           {
             term: L('LLM', 'LLM'),
             body: L(
-              'Large Language Model: a brain trained on huge amounts of text. It does not “understand” like you — it predicts the next token extremely well. It answers, drafts, translates, codes.',
-              'Large Language Model : un cerveau entraîné sur d’énormes quantités de texte. Il ne « comprend » pas comme toi — il prédit le prochain token extrêmement bien. Il répond, rédige, traduit, code.',
+              'Large Language Model: a model trained on large text corpora. It predicts the next token with high skill. It answers, drafts, translates, and codes — it does not “understand” the way a person does.',
+              'Large Language Model : un modèle entraîné sur de grands corpus. Il prédit le prochain token avec une grande habileté. Il répond, rédige, traduit, code — il ne « comprend » pas comme une personne.',
             ),
-            remember: L('A brilliant intern who has read the whole library — still needs hands and memory to become an agent.', 'Un stagiaire brillant qui a lu toute la bibliothèque — il lui faut des mains et une mémoire pour devenir agent.'),
+            remember: L('Strong next-token prediction is not agency by itself.', 'Une forte prédiction de tokens n’est pas l’agency.'),
           },
           {
             term: L('Agent', 'Agent'),
             body: L(
-              'LLM + tools + memory. ChatGPT answers. An agent acts: files, terminal, browser, messages, scheduled work.',
-              'LLM + outils + mémoire. ChatGPT répond. Un agent agit : fichiers, terminal, navigateur, messages, tâches planifiées.',
+              'LLM plus tools plus memory. A chat product answers. An agent acts: files, terminal, browser, messages, scheduled work.',
+              'LLM + outils + mémoire. Un chat répond. Un agent agit : fichiers, terminal, navigateur, messages, tâches planifiées.',
             ),
             remember: L('Brain + hands + memory = agent.', 'Cerveau + mains + mémoire = agent.'),
           },
           {
             term: L('Token', 'Token'),
             body: L(
-              'The unit of measure and cloud cost. Roughly three-quarters of a word. Local inference: token cost collapses to electricity and time.',
-              'L’unité de mesure et de coût cloud. Environ trois quarts d’un mot. En local : le coût par token tombe à l’électricité et au temps.',
+              'The unit of model I/O and, for cloud APIs, cost. Roughly three-quarters of a word. Local inference shifts cost to hardware and time.',
+              'Unité d’entrée/sortie du modèle et, en cloud, de facturation. Environ trois quarts d’un mot. En local, le coût bascule vers le matériel et le temps.',
             ),
-            remember: L('Cloud bills in tokens. Local bills in hardware and patience.', 'Le cloud facture au token. Le local facture le matos et la patience.'),
+            remember: L('Cloud bills tokens; local bills hardware and patience.', 'Le cloud facture le token ; le local facture le matériel et le temps.'),
           },
           {
             term: L('API key & .env', 'Clé API & .env'),
             body: L(
-              'An API key is a password programs present to a provider. A .env file stores secrets outside the repo. A leaked key = someone spends as you.',
-              'Une clé API est un mot de passe que les programmes présentent à un fournisseur. Un .env range les secrets hors du dépôt. Une clé volée = quelqu’un dépense à ta place.',
+              'An API key authenticates a program to a provider. A .env file holds secrets outside the repository. A leaked key is unauthorized spend in your name.',
+              'Une clé API authentifie un programme auprès d’un fournisseur. Un .env stocke les secrets hors du dépôt. Une clé exposée, c’est de la dépense non autorisée à ton nom.',
             ),
-            remember: L('Keys in .env. .env never in Git.', 'Clés dans .env. .env jamais dans Git.'),
+            remember: L('Keys in .env. Never commit .env.', 'Clés dans .env. Ne jamais committer .env.'),
           },
           {
             term: L('Runtime vs harness', 'Runtime vs harness'),
             body: L(
-              'Runtime is where it runs: your PC, a VPS, a container. Harness is the frame that turns a model into an agent: loop, tools, context, memory, approvals, gateways.',
-              'Le runtime, c’est où ça tourne : ton PC, un VPS, un conteneur. Le harness, c’est le cadre qui transforme un modèle en agent : boucle, outils, contexte, mémoire, approbations, gateways.',
+              'Runtime is where the process runs: PC, VPS, container. Harness is the frame that turns a model into an agent: loop, tools, context, memory, approvals, gateways.',
+              'Le runtime est le lieu d’exécution : PC, VPS, conteneur. Le harness est le cadre qui fait d’un modèle un agent : boucle, outils, contexte, mémoire, approbations, gateways.',
             ),
             remember: L('Runtime = where. Harness = how it becomes yours.', 'Runtime = où. Harness = comment ça devient à toi.'),
           },
           {
             term: L('Skills, plugins, MCP', 'Skills, plugins, MCP'),
             body: L(
-              'A skill is a reusable procedure (often a SKILL.md). A plugin adds capability. MCP is an open standard — the USB-C of AI: one socket, many services.',
-              'Une skill est une procédure réutilisable (souvent un SKILL.md). Un plugin ajoute une capacité. MCP est un standard ouvert — l’USB-C de l’IA : une prise, plein de services.',
+              'A skill is a reusable procedure (often SKILL.md). A plugin adds product capability. MCP is an open standard for connecting external services through one interface.',
+              'Une skill est une procédure réutilisable (souvent SKILL.md). Un plugin ajoute une capacité produit. MCP est un standard ouvert pour brancher des services externes via une interface unique.',
             ),
-            remember: L('Skills = how. MCP = plug anything in safely.', 'Skills = comment faire. MCP = brancher n’importe quoi, proprement.'),
+            remember: L('Skills describe how; MCP describes what you plug in.', 'Les skills décrivent le comment ; MCP ce que l’on branche.'),
           },
           {
             term: L('Local vs cloud models', 'Modèles local vs cloud'),
             body: L(
-              'Local: model on your machine (e.g. Ollama) — data stays, you pay hardware. Cloud: model at a provider — pay per use, stronger models, data leaves. An agnostic harness lets you switch.',
-              'Local : le modèle sur ta machine (ex. Ollama) — données chez toi, tu paies le matos. Cloud : chez le fournisseur — à l’usage, plus puissant, les données sortent. Un harness agnostique te laisse choisir.',
+              'Local models run on your machine — data stays, you pay hardware. Cloud models run at a provider — pay per use, often higher capability, data leaves. A good harness lets you change this choice without rewriting the agent.',
+              'Local : modèle sur ta machine — données chez toi, coût matériel. Cloud : chez le fournisseur — à l’usage, souvent plus capable, les données sortent. Un bon harness permet de changer ce choix sans réécrire l’agent.',
             ),
-            remember: L('The important part is knowing what you chose — not purity cosplay.', 'L’important n’est pas lequel, mais de savoir ce qu’on choisit.'),
+            remember: L('What matters is an explicit choice, not ideological purity.', 'L’essentiel est un choix explicite, non une pureté idéologique.'),
           },
           {
             term: L('Cron', 'Cron'),
             body: L(
-              'A scheduled job. Example: every morning at 08:00 fetch AI headlines, summarize three, send to your phone. An employee who worked while you slept.',
-              'Une tâche planifiée. Exemple : chaque matin à 8h, récupérer l’actu IA, résumer 3 titres, envoyer sur ton téléphone. Un employé qui a bossé pendant que tu dormais.',
+              'A scheduled job. Example: each weekday at 08:00, fetch headlines, summarize three items, deliver to Telegram. Work that continues without you in the chair.',
+              'Une tâche planifiée. Exemple : chaque jour ouvré à 8h, récupérer des titres, en résumer trois, livrer sur Telegram. Du travail qui continue sans toi devant l’écran.',
             ),
-            remember: L('Harness + cron = work without you in the chair.', 'Harness + cron = du travail sans toi devant l’écran.'),
+            remember: L('Harness + cron = recurring work without a live session.', 'Harness + cron = travail récurrent sans session ouverte.'),
           },
           {
             term: L('Context window', 'Fenêtre de contexte'),
             body: L(
-              'Everything the model can “see” in the current session — huge and volatile. Close the session (or prune context) and it fades. That is RAM, not disk.',
-              'Tout ce que le modèle « voit » dans la session — immense et volatile. Tu fermes (ou on prune) : ça s’efface. C’est la RAM, pas le disque.',
+              'Everything the model can see in the current session. Large and volatile: close or prune the session and it fades. Treat it as RAM, not permanent storage.',
+              'Tout ce que le modèle voit dans la session. Large et volatile : fermer ou élaguer efface. C’est de la RAM, pas un stockage permanent.',
             ),
-            remember: L('Context is session RAM. Memory is what you write down.', 'Le contexte, c’est la RAM de session. La mémoire, c’est ce qui est écrit.'),
+            remember: L('Context is session RAM; durable memory is what you write to disk.', 'Le contexte est la RAM de session ; la mémoire durable s’écrit sur disque.'),
           },
           {
             term: L('Hallucination', 'Hallucination'),
             body: L(
-              'A model must produce tokens. When it does not know, it fills gaps with plausible text. It is not “lying” for sport — it completes the pattern. Memory and sources reduce that.',
-              'Un modèle doit produire des tokens. Quand il ignore, il comble avec du plausible. Il ne ment pas pour le plaisir — il complète le motif. Mémoire et sources réduisent ça.',
+              'Models must emit tokens. When evidence is missing, they complete the pattern with plausible text. Grounding in files and sources reduces, but does not eliminate, that risk.',
+              'Un modèle doit émettre des tokens. Sans évidence, il complète le motif avec du texte plausible. Ancrer dans des fichiers et sources réduit le risque sans l’éliminer.',
             ),
-            remember: L('It does not know → it invents. Ground it in files.', 'Il ne sait pas → il invente. Ancre-le dans des fichiers.'),
+            remember: L('Unknown → invention. Prefer files you can open.', 'Inconnu → invention. Préférer des fichiers ouverts.'),
           },
         ],
       },
       {
-        heading: L('The click', 'Le déclic'),
+        heading: L('Chat product vs harness agent'),
         table: {
-          headers: [L('Chat in the browser', 'Chat dans le navigateur'), L('Agent on your harness', 'Agent sur ton harness')],
+          headers: [L('Chat in the browser'), L('Agent on your harness')],
           rows: [
-            [L('Answers; you copy-paste', 'Répond ; tu copies-colles'), L('Acts on files and tools', 'Agit sur fichiers et outils')],
-            [L('Forgets when you close', 'Oublie à la fermeture'), L('Can remember you and projects', 'Peut se souvenir de toi et des projets')],
-            [L('You must be present', 'Tu dois être devant'), L('Can run on schedule / gateway', 'Tourne en cron / gateway')],
-            [L('One reply at a time', 'Une réponse à la fois'), L('Chains multi-step work', 'Enchaîne plusieurs étapes')],
+            [L('Answers; you copy-paste'), L('Acts on files and tools')],
+            [L('Forgets when the tab closes'), L('Can persist facts and projects on disk')],
+            [L('Requires you present'), L('Can run on schedule or gateway')],
+            [L('One reply at a time'), L('Chains multi-step work')],
           ],
         },
         callout: L(
-          'As soon as you want it to do something — not just say something — you need an agent in a harness.',
-          'Dès que tu veux qu’il fasse quelque chose — pas seulement le dire — il te faut un agent dans un harness.',
+          'When you need action rather than prose alone, you need an agent inside a harness you control.',
         ),
         calloutVariant: 'note',
       },
@@ -330,49 +342,53 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Your machine + Desktop'),
     subtitle: L(
-      'Day one: PC + Hermes Desktop. Advanced options (Docker, remote hosts) live in the app — learn where, not install menus of five paths.',
+      'Day-one runtime: this PC and Hermes Desktop. Advanced hosts stay in Settings until you need them.',
     ),
     minutes: 10,
     proof: L(
-      'You know the day-one path (Desktop on this PC), that Hermes home is on disk, and where advanced settings live for Docker / remote later.',
+      'You can state the day-one path (Desktop on this PC), that Hermes home is a folder on disk, and where Advanced / Providers / Gateway live for later.',
     ),
     sections: [
       {
         heading: L('Day one (this course)'),
         paragraphs: [
           L(
-            'Install Hermes Desktop on the computer you use every day. Wizard, chat, profiles, tools, gateway, cron — one UI. Finish Part I here before you chase always-on boxes.',
+            'Use Hermes Desktop on the computer you use every day. Chat, profiles, tools, gateway, and cron share one UI. Complete Part I on this path before always-on hosts.',
           ),
         ],
         bullets: [
-          L('Machine: your PC (awake when you want Telegram/cron to answer)'),
-          L('App: Hermes Desktop installer (not a CLI-first install for this course)'),
-          L('Files: Hermes home on disk — back up by copy'),
+          L('Machine: your PC (awake when Telegram or cron must answer)'),
+          L('App: Hermes Desktop installer — not a CLI-first install for this course'),
+          L('Files: Hermes home on disk; back up by copying folders'),
+        ],
+        checklist: [
+          L('You know which PC will host the course proofs'),
+          L('You accept Desktop as the cockpit for modules 03–12'),
         ],
       },
       {
         heading: L('Model location is separate'),
         paragraphs: [
           L(
-            'Where Hermes runs (Desktop on your PC) is not the same as where the model runs. Most learners use a cloud provider while Hermes stays local. Fully local models are optional.',
+            'Where Hermes runs is not where the model runs. Most learners keep Hermes local and call a cloud provider. Fully local models are optional and do not change the Desktop path.',
           ),
         ],
       },
       {
-        heading: L('Where advanced options appear (peek, don’t configure yet)'),
+        heading: L('Advanced options (map only — do not configure yet)'),
         paragraphs: [
           L(
-            'Docker, remote terminals, and always-on hosts are real Hermes features. They show up inside Desktop when you need them — not as day-one forks of this course.',
+            'Docker, remote terminals, and always-on hosts are real product features. They appear inside Desktop when relevant — not as alternate day-one curricula.',
           ),
         ],
         bullets: [
-          L('Settings → Advanced (or similar): terminal backend / Docker — isolate tool commands from the host'),
-          L('Providers: remote or local OpenAI-compatible endpoints (including a model host that is not your laptop)'),
-          L('Gateway: keep messaging up; later you can run the same profile on a box that stays awake (VPS) with Desktop or gateway still in the picture'),
-          L('Phone-only installs (e.g. Termux) exist in official docs — useful later, not the course cockpit'),
+          L('Settings → Advanced: terminal backend / Docker (isolate tool commands)'),
+          L('Providers: cloud APIs or local OpenAI-compatible endpoints'),
+          L('Gateway: messaging surfaces; later, the same profile can run on a host that stays awake'),
+          L('Phone-only paths (e.g. Termux) exist in official docs — not the course cockpit'),
         ],
         callout: L(
-          'For Open Harness proofs: leave Advanced on local defaults. Know the tabs exist so you are not surprised later.',
+          'For Open Harness proofs, leave Advanced on local defaults. Knowing the map is enough for now.',
         ),
         calloutVariant: 'note',
         links: [
@@ -392,37 +408,37 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Install Hermes Desktop'),
     subtitle: L(
-      'Download Desktop, finish setup, chat once. Advanced settings can wait.',
+      'Download, complete setup, obtain one chat reply. Leave Advanced settings for later.',
     ),
     minutes: 25,
     proof: L(
-      'Hermes Desktop is open, setup finished, one chat reply works. You left Advanced/Docker alone for now.',
+      'Hermes Desktop is open, setup is finished, one chat reply works, and Advanced/Docker was left at defaults.',
     ),
     sections: [
       {
         heading: L('You need'),
         bullets: [
-          L('A PC you control (Windows or macOS — Linux Desktop if offered for your build)'),
-          L('Network access for download + one model provider'),
+          L('A PC you control (Windows or macOS; Linux Desktop if offered for your build)'),
+          L('Network for download and one model provider'),
         ],
       },
       {
         heading: L('Install Desktop'),
         paragraphs: [
           L(
-            'Every later module assumes this cockpit: chat, profiles, tools, approvals, gateway, cron.',
+            'Later modules assume this cockpit: chat, profiles, tools, approvals, gateway, and cron.',
           ),
         ],
         steps: [
           L('Open hermes-agent.nousresearch.com and download Hermes Desktop for your OS.'),
-          L('Install and launch the app.'),
-          L('Run the setup wizard. One reliable provider first. Optional: Portal / “setup with portal” if the app offers it (model + Tool Gateway in one go).'),
-          L('Stop when chat works — do not configure Telegram yet. Do not open Settings → Advanced yet.'),
+          L('Install and launch the application.'),
+          L('Complete the setup wizard with one reliable provider. Optional: Portal / “setup with portal” if offered (model + Tool Gateway).'),
+          L('Stop when chat works. Do not configure Telegram yet. Do not change Settings → Advanced.'),
           L('Send: “Reply with one sentence confirming you are online.”'),
-          L('Optional: open health / doctor in the app if shown; fix only what blocks chat.'),
+          L('Optional: use health / doctor in the app if shown; fix only what blocks chat.'),
         ],
         callout: L(
-          `Day-one path is Desktop on this PC (as of ${OPEN_HARNESS_META.verifiedAsOf}). If a wizard label moved, official Installation docs win.`,
+          `Day-one path is Desktop on this PC (verified ${OPEN_HARNESS_META.verifiedAsOf}). If a wizard label moved, official Installation docs win.`,
         ),
         calloutVariant: 'note',
         links: [
@@ -432,19 +448,19 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
-        heading: L('Peek: Settings you will meet later'),
+        heading: L('Settings map (inspect, then leave defaults)'),
         paragraphs: [
           L(
-            'After chat works, open Settings once just to know the map — then close without changing Advanced defaults.',
+            'After chat works, open Settings once to learn the layout, then close without changing Advanced defaults.',
           ),
         ],
         bullets: [
-          L('Providers / models — cloud APIs, local endpoints, routing (where the brain lives)'),
+          L('Providers / models — APIs, local endpoints, routing'),
           L('Gateway / messaging — Telegram and other surfaces (module 05)'),
-          L('Advanced — terminal backend, Docker, isolation (do not enable for Part I proofs)'),
+          L('Advanced — terminal backend, Docker, isolation (not required for Part I proofs)'),
         ],
         callout: L(
-          'CLI install, Termux, and bare VPS installs are valid Hermes paths in official docs. This course stays on Desktop so newbies are not juggling shells on day one.',
+          'CLI, Termux, and VPS installs are documented officially. This course stays on Desktop so the first harness is not a shell exercise.',
         ),
         calloutVariant: 'note',
         links: [
@@ -456,7 +472,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Stabilize one provider'),
         paragraphs: [
           L(
-            'Pick one model provider you can call reliably, then stop. Do not debug gateway, Docker, and auth at the same time.',
+            'Choose one model provider you can call reliably, then stop. Do not debug gateway, Docker, and authentication in parallel.',
           ),
         ],
       },
@@ -464,7 +480,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Where your files live'),
         paragraphs: [
           L(
-            'Desktop still stores the harness on disk (Hermes home — often ~/.hermes or under your user AppData). Profiles isolate homes: each profile is a sealed house. You back up by copying folders — same files if you later run that home on a VPS.',
+            'Desktop stores the harness on disk (Hermes home — often ~/.hermes or under user AppData). Each profile is an isolated home. Back up by copying folders; the same files can move later to another host.',
           ),
         ],
         links: [
@@ -476,7 +492,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Optional companions'),
         paragraphs: [
           L(
-            'Other coding agents are optional. This course’s home base is Hermes. Add an IDE-shaped companion later only if you want that workflow.',
+            'IDE-shaped coding agents are optional. This course’s home base is Hermes; add companions only after the harness works.',
           ),
         ],
       },
@@ -484,7 +500,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('After this proof'),
         paragraphs: [
           L(
-            'Install lives only here. Ops drills (Desktop checklist, key rotation, extra models) are Harness Labs — after this module’s proof, not instead of it.',
+            'Install is complete here. Ops drills (Desktop checklist, key rotation, extra models) belong in Harness Labs — after this proof, not instead of it.',
           ),
         ],
         links: [
@@ -503,41 +519,41 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Soul pack', 'Pack d’âmes'),
     subtitle: L(
-      'Adopt a personality in Hermes home. Project rules live elsewhere.',
-      'Adopte une personnalité dans le home Hermes. Les règles de projet vivent ailleurs.',
+      'Write identity into Hermes home. Keep project rules in project context files.',
+      'Écris l’identité dans le home Hermes. Garde les règles de projet dans les fichiers de contexte projet.',
     ),
     minutes: 25,
     proof: L(
-      'A profile exists with a SOUL.md from the pack (or a clear edit of one) under Hermes home. The agent answers in that voice. You can name SOUL vs AGENTS.md in one sentence.',
+      'A profile has SOUL.md under Hermes home (template or edited). The agent answers in that voice. You can state SOUL vs AGENTS.md in one sentence.',
     ),
     sections: [
       {
         heading: L('What SOUL.md is', 'Ce qu’est SOUL.md'),
         paragraphs: [
           L(
-            'SOUL.md is the agent’s primary identity: name, role, tone, hard limits. Official docs put it in slot #1 of the system prompt. You write it (or adopt a template). Three lines is marketing; a solid soul is closer to a short brief (~12–20 lines).',
+            'SOUL.md is primary identity: name, role, tone, hard limits. Official docs place it first in the system prompt. Prefer a short brief (~12–20 lines) over a one-line slogan.',
           ),
           L(
-            'Location (important): Hermes loads SOUL.md from the instance home only — typically ~/.hermes/SOUL.md, or $HERMES_HOME/SOUL.md for a profile/custom home. It does not probe your project working directory for SOUL.md. That keeps personality stable across folders.',
+            'Location: Hermes loads SOUL.md from the instance home only — typically ~/.hermes/SOUL.md or $HERMES_HOME/SOUL.md for a profile. It does not load SOUL from the project working directory. Personality stays stable across folders.',
           ),
         ],
         callout: L(
-          'One profile = one house (own HERMES_HOME). Two profiles never share soul or memory by accident.',
+          'One profile = one home (own HERMES_HOME). Profiles do not share soul or memory by accident.',
         ),
         calloutVariant: 'quote',
       },
       {
-        heading: L('SOUL vs project context (do not mix)'),
+        heading: L('SOUL vs project context'),
         paragraphs: [
           L(
-            'If it should follow you everywhere → SOUL.md. If it belongs to a repo or campaign folder → project context files (AGENTS.md, .hermes.md / HERMES.md, or CLAUDE.md / .cursorrules when present). Only one project-context type loads per session (first match wins). SOUL still loads independently as identity.',
+            'If it should follow every session → SOUL.md. If it belongs to a repository or campaign → project context (AGENTS.md, .hermes.md / HERMES.md, or CLAUDE.md / .cursorrules when present). One project-context type loads per session (first match). SOUL still loads as identity.',
           ),
         ],
         bullets: [
           L('SOUL.md — identity, tone, limits (Hermes home only)'),
-          L('AGENTS.md or .hermes.md — architecture, conventions, ports, “never do X” for this project'),
-          L('/personality — temporary session overlay, not a replacement for SOUL'),
-          L('Context files are scanned for injection before load — still review files in repos you did not write'),
+          L('AGENTS.md or .hermes.md — architecture, conventions, ports, project “never do X”'),
+          L('/personality — temporary session overlay, not a SOUL replacement'),
+          L('Context files are scanned for injection; review files from untrusted repos'),
         ],
         links: [
           { label: L('Personality & SOUL.md'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/personality' },
@@ -549,14 +565,14 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Ready-to-adopt souls', 'Âmes prêtes à adopter'),
         paragraphs: [
           L(
-            'Download a template, copy it into SOUL.md under this profile’s Hermes home, rename the agent, restart or open a new session.',
+            'Download a template, copy it to SOUL.md under this profile’s Hermes home, set the agent name, then start a new session.',
           ),
         ],
         souls: [
           { id: 'orchestrator', name: L('Orchestrator', 'Orchestrateur'), blurb: L('Morning brief, triage, delegates work.', 'Brief du matin, triage, délègue le travail.') },
           { id: 'analyst', name: L('Analyst', 'Analyste'), blurb: L('Research, structure, cites sources.', 'Recherche, structure, cite les sources.') },
           { id: 'ops', name: L('Ops', 'Ops'), blurb: L('Files, cleanup, local automation.', 'Fichiers, ménage, automation locale.') },
-          { id: 'writer', name: L('Writer', 'Rédacteur'), blurb: L('Drafts with tone control, no flattery.', 'Brouillons avec ton maîtrisé, sans flatterie.') },
+          { id: 'writer', name: L('Writer', 'Rédacteur'), blurb: L('Drafts with controlled tone.', 'Brouillons avec ton maîtrisé.') },
           { id: 'coach', name: L('Coach', 'Coach'), blurb: L('Direct accountability, short check-ins.', 'Responsabilité directe, check-ins courts.') },
           { id: 'coder', name: L('Coder', 'Codeur'), blurb: L('Engineering pair inside Hermes.', 'Binôme d’ingénierie dans Hermes.') },
           { id: 'kids-safe', name: L('Kids-safe', 'Kids-safe'), blurb: L('Strict boundaries, simple language.', 'Limites strictes, langage simple.') },
@@ -568,9 +584,9 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         steps: [
           L('Create or select a profile in Desktop (Profiles).'),
           L('Open that profile’s Hermes home and locate SOUL.md (not a random project folder).'),
-          L('Paste a soul from the pack. Change the name to yours. Keep project paths out of SOUL — use AGENTS.md later.'),
+          L('Paste a pack soul. Set the name. Keep project paths out of SOUL — use AGENTS.md later.'),
           L('Start a session and ask: “Who are you and what are your hard limits?”'),
-          L('Optional stretch: drop a short AGENTS.md in a real project folder and ask a project-specific question from that directory.'),
+          L('Optional: place a short AGENTS.md in a real project folder and ask a project-specific question from that directory.'),
         ],
         links: [
           { label: L('Use SOUL.md guide'), href: 'https://hermes-agent.nousresearch.com/docs/guides/use-soul-with-hermes' },
@@ -587,25 +603,25 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Gateway (required)'),
     subtitle: L(
-      'Right after the soul: put the harness in your pocket. Telegram is the course path.',
+      'After soul: put the harness on Telegram. Pocket access is the course path.',
     ),
     minutes: 25,
     proof: L(
-      'You messaged the bot from Telegram, got a real reply from your profile, and allowlist/pairing is on.',
+      'You messaged the bot from Telegram, received a reply from your profile, and allowlist or pairing is enabled.',
     ),
     sections: [
       {
-        heading: L('Why gateway sits here (not at the end)'),
+        heading: L('Why gateway sits here'),
         paragraphs: [
           L(
-            'Once Hermes is installed and has a SOUL, pocket access is the fastest proof the harness is real. We wire Telegram before deep tool/MCP theory so you feel the agent outside the laptop early — then Part I finishes by expanding what it can do with tools.',
+            'With Desktop installed and SOUL written, messaging is the fastest proof the harness is real outside the laptop window. Wire Telegram before deep tool and MCP theory; Part I then expands capability with tools.',
           ),
           L(
-            'A harness that only lives in one window is half a harness. Messaging is how you run work from the couch, the street, or a VPS you never SSH into daily.',
+            'A harness confined to one desktop window is incomplete. Gateway is how you operate from phone or, later, from an always-on host without daily SSH.',
           ),
         ],
         callout: L(
-          'Order: Install → Soul → Gateway → Tools. Not “tools first, phone never.”',
+          'Order: Install → Soul → Gateway → Tools.',
         ),
         calloutVariant: 'note',
       },
@@ -613,24 +629,29 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Telegram path (Desktop)'),
         steps: [
           L('Open Telegram → @BotFather → create a bot → copy the token.'),
-          L('In Hermes Desktop: gateway / messaging setup → Telegram. Paste the token into the app (stored in env — never in a public chat).'),
+          L('In Hermes Desktop: gateway / messaging → Telegram. Paste the token into the app (env storage — never a public chat).'),
           L('Allowlist: only your Telegram user id. Empty allowlists fail closed.'),
-          L('Start the gateway with the Desktop control. Leave Desktop running while you test.'),
+          L('Start the gateway from Desktop. Leave Desktop running during the test.'),
           L('Message the bot. If a pairing code appears, approve only on your side. Do not share codes.'),
-          L('Send: “Who are you and what are your hard limits?” — it should match your SOUL.'),
+          L('Send: “Who are you and what are your hard limits?” — the answer should match SOUL.'),
         ],
         callout: L(
-          'Trust: pairing + allowlist. Never open the bot to everyone for this course. Official Telegram docs win if labels move.',
+          'Trust model: pairing plus allowlist. Do not open the bot to everyone for this course. Official Telegram docs win if labels move.',
         ),
         calloutVariant: 'warning',
       },
       {
-        heading: L('Runtime note (Desktop gateway)'),
+        heading: L('Runtime notes'),
         bullets: [
-          L('PC must be awake for the gateway while you rely on Telegram from this machine.'),
-          L('Desktop gateway settings also surface other platforms (Discord, etc.) — Telegram is the course proof; add others only after it works.'),
-          L('Always-on later: same allowlist habits if you run gateway on a VPS or always-on host — providers and gateway screens are where remote/host options show up.'),
-          L('One profile ≈ one bot token when you need concurrent personas later.'),
+          L('The PC must stay awake while this machine hosts Telegram gateway.'),
+          L('Other platforms (Discord, etc.) may appear in Settings — Telegram is the course proof; add others after it works.'),
+          L('Always-on later: keep the same allowlist discipline on VPS or always-on hosts.'),
+          L('One profile ≈ one bot token when you need concurrent personas.'),
+        ],
+        checklist: [
+          L('Bot replies from your profile'),
+          L('Allowlist or pairing confirmed'),
+          L('Token not written into notes or git'),
         ],
         links: [
           { label: L('Telegram setup'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram' },
@@ -649,29 +670,29 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('First agency'),
     subtitle: L(
-      'You already have the pocket. Now tools, spend control, and a Desktop quick win.',
+      'Tools, spend control, and a multi-step proof on Desktop after the gateway works.',
     ),
     minutes: 30,
     proof: L(
-      'In Desktop (default): a multi-step tool task left a file or on-screen result you can open. Telegram optional for the same task. You know where model cost leaks happen.',
+      'A multi-step tool task left a file or on-screen result you can open. You know where model cost is decided (provider vs model).',
     ),
     sections: [
       {
-        heading: L('Type 1 — agent with tools'),
+        heading: L('Agent with tools'),
         paragraphs: [
           L(
-            'You already talk to Hermes from Telegram (previous module). Now open its hands: terminal, browser, filesystem, search (when configured). The model requests; Hermes executes.',
+            'Telegram already reaches the agent. Now enable hands: terminal, browser, filesystem, search when configured. The model requests; Hermes executes.',
           ),
           L(
-            'In Desktop: open Tools / Dashboard, confirm toolsets for this profile, run the proof from Desktop chat (Telegram is fine as a second surface).',
+            'In Desktop: open Tools / Dashboard, confirm toolsets for this profile, run the proof from Desktop chat. Telegram remains a second surface.',
           ),
         ],
         bullets: [
           L('Prefer structured tools over long shell improvisation when both exist.'),
-          L('A failing tool should return a clean error so the model can recover.'),
-          L('Scope tools to the job. Research does not need full write+shell if read+web is enough.'),
-          L('If Portal setup enabled Tool Gateway tools, verify them in the Tools UI.'),
-          L('Sessions can resume — continue a known thread for long jobs when the UI offers it.'),
+          L('A failing tool should return a clear error so the model can recover.'),
+          L('Scope tools to the job — research often needs read and web, not full shell write.'),
+          L('If Portal enabled Tool Gateway tools, verify them in the Tools UI.'),
+          L('Resume sessions for long jobs when the UI offers it.'),
         ],
         links: [
           { label: L('Tools'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/tools' },
@@ -679,19 +700,19 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
-        heading: L('Terminal backend (Advanced — relevant when tools hit the shell)'),
+        heading: L('Terminal backend (Advanced — when tools hit the shell)'),
         paragraphs: [
           L(
-            'When tools run shell/file work, Hermes uses a terminal backend. Day one stays local (host process). In Desktop Settings → Advanced you will often see Docker (and other backends): commands run in a container so mistakes are less likely to wreck the host.',
+            'Shell and file tools use a terminal backend. Day one stays local (host process). Settings → Advanced may offer Docker and other backends so commands run with isolation from the host.',
           ),
         ],
         bullets: [
-          L('Local (default for this course) — simplest; approvals still matter'),
-          L('Docker — isolation; enable only after chat + tools work and you understand the trade-off'),
-          L('SSH / cloud sandboxes — remote workers; same idea as “brain local, hands elsewhere”'),
+          L('Local (course default) — simplest; approvals still apply'),
+          L('Docker — isolation; enable only after chat and tools work'),
+          L('SSH / cloud sandboxes — remote workers for later'),
         ],
         callout: L(
-          'Do not flip Advanced → Docker mid-proof just to experiment. Know the setting; harden after Part I if you want.',
+          'Do not enable Advanced → Docker mid-proof for experiment. Map the setting; harden after Part I if required.',
         ),
         calloutVariant: 'note',
         links: [
@@ -700,17 +721,17 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
-        heading: L('MCP — plug services carefully'),
+        heading: L('MCP — connect services carefully'),
         paragraphs: [
           L(
-            'MCP connects external services (docs, drives, repos, APIs) through a standard interface. Treat every MCP server as new code on the agent’s trust surface.',
+            'MCP connects external services (docs, drives, repos, APIs) through a standard interface. Treat each server as new code on the trust surface.',
           ),
         ],
         bullets: [
-          L('Add one server for a real need — not every server you can find.'),
+          L('Add one server for a concrete need.'),
           L('Filter tools to the smallest useful surface.'),
-          L('Prefer OAuth over long-lived tokens when the server offers it.'),
-          L('Secrets should not appear in chat; store them in .env / setup.'),
+          L('Prefer OAuth over long-lived tokens when available.'),
+          L('Keep secrets out of chat; store them in .env / setup.'),
         ],
         links: [
           { label: L('MCP with Hermes'), href: 'https://hermes-agent.nousresearch.com/docs/guides/use-mcp-with-hermes' },
@@ -718,51 +739,98 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
-        heading: L('Spend intelligence wisely'),
+        heading: L('Spend control'),
         paragraphs: [
           L(
-            'Provider and model are different decisions. Provider = auth and billing. Model = capability and price. Use a strong model where mistakes are expensive; cheap models for auxiliary jobs (titles, search helpers, compression) when your setup supports them.',
+            'Provider and model are separate decisions. Provider is auth and billing; model is capability and price. Use a strong model where mistakes are expensive; cheaper models for auxiliary jobs when supported.',
           ),
         ],
         bullets: [
-          L('Stabilize one primary model before adding fallbacks.'),
-          L('Credential pools (multiple keys) help survive rate limits — not only multi-billing.'),
-          L('Local models: set a large enough context window; broken tool loops are often truncated context, not “Hermes is dumb.”'),
-          L('Providers screen is also where remote/local OpenAI-compatible endpoints show up (including a model host that is not this PC).'),
-          L('If you run a local OpenAI-compatible endpoint later, keep real OAuth credentials out of third-party tools.'),
+          L('Stabilize one primary model before fallbacks.'),
+          L('Credential pools help with rate limits, not only multi-billing.'),
+          L('Local models: set sufficient context; broken tool loops are often truncated context.'),
+          L('Providers is also where remote or local OpenAI-compatible endpoints appear.'),
         ],
         links: [
           { label: L('Configuration / providers'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/configuration' },
         ],
       },
       {
-        heading: L('Proof task'),
+        heading: L('Fixed cost of an empty session'),
+        paragraphs: [
+          L(
+            'Before the first user message, Hermes already loads system prompt, skills index, MEMORY/USER snapshots, tool schemas, and project context (for example AGENTS.md). That fixed budget is often why an agent feels slow or expensive — not a “weak model.”',
+          ),
+        ],
         steps: [
-          L('Ask: “List the largest folders in my Downloads (or home), propose an archive plan, write the plan to a markdown file in a safe path I choose.”'),
-          L('Approve tool actions if prompted. Prefer smart approvals: safe actions pass, dangerous ones ask.'),
-          L('Open the markdown file yourself. That file is the receipt.'),
+          L('Run hermes prompt-size (CLI) or the Desktop equivalent that audits assembled prompt size. It works offline — no API key required.'),
+          L('Note the largest slices: tools, skills, memory, context files.'),
+          L('Disable one unused toolset (hermes tools or Desktop Tools) and re-check. Prefer fewer tools over a stronger model until the budget is sane.'),
+        ],
+        callout: L(
+          'More tools do not always make a smarter agent. They give the model more instructions to read before it can start. Deep drills: Labs → Prompt budget audit.',
+        ),
+        calloutVariant: 'note',
+        links: [
+          { label: L('Lab: Prompt budget audit'), href: '/forge/course/open-harness/labs/prompt-budget/' },
         ],
       },
       {
-        heading: L('Desktop cockpit (expected on the default path)'),
+        heading: L('Session commands (map)'),
         paragraphs: [
           L(
-            'If you followed module 03’s default path, Hermes Desktop is your everyday cockpit for tools, approvals, and sessions for the rest of the course — not an optional extra.',
+            'Long sessions fill the context window. Official and community practice uses in-session commands rather than starting over every time.',
+          ),
+        ],
+        bullets: [
+          L('/context — what consumes the window and how much room remains'),
+          L('/compress — summarize older turns; keep recent exchanges or focus a topic (session file stays)'),
+          L('/undo — rewind last user turn(s) into the composer; does not restore files already changed'),
+          L('/retry · /branch — same prompt again, or explore another path without losing the first'),
+          L('/rollback + checkpoints — restore files when the agent already wrote to disk'),
+        ],
+        callout: L(
+          'Practice these in Labs → Session control studio after tools work. Do not skip the multi-step proof below to chase commands.',
+        ),
+        calloutVariant: 'note',
+        links: [
+          { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
+        ],
+      },
+      {
+        heading: L('Proof task'),
+        steps: [
+          L('Ask: “List the largest folders in Downloads (or home), propose an archive plan, write the plan to a markdown file in a path I choose.”'),
+          L('Approve tool actions if prompted. Prefer smart approvals: safe actions pass, dangerous ones ask.'),
+          L('Open the markdown file yourself — that file is the receipt.'),
+          L('Optional stretch: run prompt-size once and write the top two budget lines into the same notes folder.'),
+        ],
+        checklist: [
+          L('Multi-step tool task left a file I can open offline'),
+          L('Approvals stayed smart or manual (not YOLO)'),
+          L('I know where fixed session cost is audited (prompt-size)'),
+        ],
+      },
+      {
+        heading: L('Desktop cockpit'),
+        paragraphs: [
+          L(
+            'If you followed module 03, Hermes Desktop is the everyday surface for tools, approvals, and sessions for the rest of the course.',
           ),
           L(
-            'Stretch proof (recommended): ask the agent to create a small custom UI widget (e.g. system memory monitor) if your build supports it. If it can change the Desktop, you felt agency twice — phone + machine.',
+            'Optional stretch: request a small custom Desktop widget if your build supports it (for example a memory monitor). Agency on phone and machine is the goal.',
           ),
         ],
         callout: L(
-          'Keep Desktop open as the home surface for the rest of the course.',
+          'Keep Desktop as the home surface through Part II.',
         ),
         calloutVariant: 'note',
       },
       {
-        heading: L('Human in the loop (type 6)'),
+        heading: L('Human in the loop'),
         paragraphs: [
           L(
-            'Default safety: dangerous actions need approval. Smart mode lets an auxiliary judgment pass low-risk actions and escalate uncertainty. Keep this on. Mistakes on email, deletes, and deploys are expensive. YOLO-style modes exist for experts; they are not the course default. Even with YOLO, a hardline blocklist still refuses catastrophic host wipes — do not treat YOLO as “safe.”',
+            'Dangerous actions require approval. Smart mode may pass low-risk actions and escalate uncertainty. Keep approvals on for this course. YOLO-style modes are expert-only and still cannot bypass hardline host protections — do not treat them as safe defaults.',
           ),
         ],
       },
@@ -770,12 +838,12 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('After this proof'),
         paragraphs: [
           L(
-            'Spend and tools intro live here. To measure one job and cut a toolset, use the spend drill lab — not a second lecture.',
+            'Tools and spend are introduced here. To measure one job and reduce a toolset, use the spend drill lab — not a second lecture.',
           ),
         ],
         links: [
           { label: L('Lab: spend drill'), href: '/forge/course/open-harness/labs/model-spend/' },
-          { label: L('Lab: failure studio (after tools work)'), href: '/forge/course/open-harness/labs/failure-studio/' },
+          { label: L('Lab: failure studio'), href: '/forge/course/open-harness/labs/failure-studio/' },
           { label: L('Tips & best practices'), href: 'https://hermes-agent.nousresearch.com/docs/guides/tips' },
         ],
       },
@@ -791,7 +859,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Memory floors'),
     subtitle: L(
-      'Context is RAM. Memory is disk. Cap is a feature. Writes often show next session.',
+      'Context is session RAM. Durable memory is on disk. Caps are intentional.',
     ),
     minutes: 30,
     proof: L(
@@ -800,24 +868,29 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     sections: [
       {
         heading: L('Three floors'),
+        paragraphs: [
+          L(
+            'Part II starts with memory because tools without durable facts re-hallucinate preferences every session. Map the floors before you write anything.',
+          ),
+        ],
         table: {
           headers: [L('Floor'), L('What'), L('Limit')],
           rows: [
             [L('1 · Notebook'), L('SOUL, MEMORY, USER — always loaded'), L('Intentionally capped')],
-            [L('2 · Journal'), L('Session recall — verbatim / FTS search'), L('Local history size')],
+            [L('2 · Journal'), L('Session recall — verbatim / full-text search'), L('Local history size')],
             [L('3 · Library'), L('Vault / external notes (next module)'), L('Your disk')],
           ],
         },
       },
       {
-        heading: L('Cap-as-feature'),
+        heading: L('Cap as a feature'),
         paragraphs: [
           L(
-            'MEMORY.md and USER.md share a tight prompt budget on purpose. The small cap forces durable preferences, facts, corrections, and conventions — not a junk drawer of chat logs. Near capacity, merge, compress, and drop stale lines.',
+            'MEMORY.md and USER.md share a tight prompt budget on purpose. The cap forces durable preferences, facts, corrections, and conventions — not a dump of chat logs. Near capacity: merge, compress, drop stale lines.',
           ),
         ],
         callout: L(
-          'Remembering everything is remembering nothing. Prefer dense facts over chatty logs.',
+          'Remembering everything is remembering nothing. Prefer dense facts.',
         ),
         calloutVariant: 'quote',
       },
@@ -825,7 +898,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Gotcha: write now, load next session'),
         paragraphs: [
           L(
-            'Disk updates can succeed immediately while the current system prompt stays frozen for cache efficiency. A same-session “do you remember?” test can look like failure even when the file on disk is correct. Always verify the file, then open a new session for the behavioral proof.',
+            'Disk updates can succeed while the current system prompt stays frozen for cache efficiency. A same-session “do you remember?” check can look like failure when the file is already correct. Verify the file, then open a new session for the behavioral proof.',
           ),
         ],
         callout: L(
@@ -837,11 +910,11 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('MEMORY.md and USER.md'),
         paragraphs: [
           L(
-            'MEMORY.md is the agent’s notebook (environment, conventions, lessons). USER.md is your card (name, preferences, avoid-list). The agent writes them; you can open and edit them in any text editor. If it is not written, it disappears.',
+            'MEMORY.md is the agent notebook (environment, conventions, lessons). USER.md is your card (name, preferences, avoid-list). The agent writes them; you may edit them in any text editor. Unwritten facts do not persist.',
           ),
         ],
         callout: L(
-          'File over app: try the same honesty with a closed chat product. You cannot.',
+          'File over app: closed chat products do not offer this honesty.',
         ),
         calloutVariant: 'quote',
       },
@@ -849,13 +922,13 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('External providers (optional)'),
         paragraphs: [
           L(
-            'Pluggable providers (user modeling, fact extraction, graphs, etc.) augment the built-in layer — they do not replace your files. Run one provider at a time. Switching providers does not migrate what you accumulated in the previous one.',
+            'Pluggable providers (user modeling, fact extraction, graphs) augment the built-in layer; they do not replace your files. Run one provider at a time. Switching does not migrate prior accumulation.',
           ),
         ],
         bullets: [
-          L('Default for this course: files + vault.'),
-          L('Add one provider only when built-in memory is clearly not enough.'),
-          L('Export or note important facts before you switch providers.'),
+          L('Default for this course: files plus vault.'),
+          L('Add a provider only when built-in memory is clearly insufficient.'),
+          L('Export or note important facts before switching providers.'),
         ],
       },
       {
@@ -863,9 +936,9 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         steps: [
           L('Tell the agent: “Remember that project codename is HARNESS-01 and I prefer short answers.”'),
           L('Ask it to write that to durable memory.'),
-          L('Open MEMORY.md / USER.md on disk and verify the lines (this is the real check).'),
+          L('Open MEMORY.md / USER.md on disk and verify the lines.'),
           L('Fully close the session. Reopen. Ask: “What is my project codename and answer length preference?”'),
-          L('Bonus: “What did we say about the vault?” via session recall if available.'),
+          L('Optional: query session recall for an earlier vault mention if available.'),
         ],
         links: [
           { label: L('Memory system'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/memory' },
@@ -875,8 +948,23 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Memory vs hallucination'),
         paragraphs: [
           L(
-            'Without memory the model fills gaps with confidence. With memory and sources it consults first. Not infallible — but checkable by you and by it.',
+            'Without memory the model fills gaps with confidence. With memory and sources it consults first. Still fallible — but checkable by you and by the agent.',
           ),
+        ],
+      },
+      {
+        heading: L('Context window vs durable memory'),
+        paragraphs: [
+          L(
+            'The context window is session RAM. Hermes may auto-compress long threads; you can also run /context and /compress so the active prompt shrinks while the stored session remains. Prefer writing durable facts to MEMORY.md / USER.md rather than hoping a long chat will still “know” them next week.',
+          ),
+        ],
+        checklist: [
+          L('Durable fact verified on disk and in a new session'),
+          L('I can state context window vs MEMORY.md in one sentence'),
+        ],
+        links: [
+          { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
         ],
       },
     ],
@@ -890,8 +978,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Data vault', 'Data vault'),
     subtitle: L(
-      'Obsidian as the unlimited library floor. Notes you keep forever.',
-      'Obsidian comme étage bibliothèque illimité. Des notes pour toujours.',
+      'A markdown vault as the library floor — notes you keep and the agent can retrieve.',
+      'Un vault markdown comme étage bibliothèque — des notes durables que l’agent peut retrouver.',
     ),
     minutes: 25,
     proof: L(
@@ -903,15 +991,15 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Vault = a folder', 'Vault = un dossier'),
         paragraphs: [
           L(
-            'An Obsidian vault is a folder of markdown on your disk. Free, no account required for local use. Your agent reads and writes there when connected.',
-            'Un vault Obsidian est un dossier de markdown sur ton disque. Gratuit, sans compte pour l’usage local. Ton agent y lit et écrit une fois connecté.',
+            'An Obsidian vault is a folder of markdown on disk. Local use needs no account. Once connected, the agent can read and write there. This is floor three from the memory module: unlimited library, still files you own.',
+            'Un vault Obsidian est un dossier de markdown sur disque. L’usage local n’exige pas de compte. Une fois connecté, l’agent y lit et écrit. C’est l’étage trois du module mémoire : bibliothèque large, toujours des fichiers à toi.',
           ),
         ],
         steps: [
-          L('Install Obsidian. Create a vault named second-brain (or similar).', 'Installe Obsidian. Crée un vault second-brain (ou similaire).'),
+          L('Install Obsidian. Create a vault (for example second-brain).', 'Installe Obsidian. Crée un vault (ex. second-brain).'),
           L('Create three folders: inbox / sources / synthesis.', 'Crée trois dossiers : inbox / sources / synthesis.'),
-          L('Drop two or three short notes about a real project.', 'Dépose deux ou trois notes courtes sur un vrai projet.'),
-          L('Connect Hermes to the vault path (Obsidian skill / config as in your Hermes version).', 'Branche Hermes sur le chemin du vault (skill Obsidian / config selon ta version).'),
+          L('Add two or three short notes about a real project.', 'Ajoute deux ou trois notes courtes sur un vrai projet.'),
+          L('Connect Hermes to the vault path (Obsidian skill / config for your version).', 'Connecte Hermes au chemin du vault (skill Obsidian / config de ta version).'),
           L('Ask: “Find my notes on X and summarize with quotes.”', 'Demande : « Retrouve mes notes sur X et résume avec citations. »'),
         ],
       },
@@ -919,26 +1007,32 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Linked notes', 'Notes liées'),
         paragraphs: [
           L(
-            'Double brackets [[like this]] turn notes into a network. The graph is a map of what you know — the agent navigates links, not only keyword search.',
-            'Les doubles crochets [[comme ça]] font réseau. Le graphe est la carte de ce que tu sais — l’agent navigue les liens, pas seulement les mots-clés.',
+            'Double brackets [[like this]] build a network. The graph maps what you know; the agent can follow links, not only keyword search.',
+            'Les doubles crochets [[comme ça]] forment un réseau. Le graphe cartographie ce que tu sais ; l’agent suit les liens, pas seulement les mots-clés.',
           ),
         ],
       },
       {
-        heading: L('Wiki pattern (advanced idea)', 'Pattern wiki (idée avancée)'),
+        heading: L('Wiki pattern (advanced)', 'Pattern wiki (avancé)'),
         paragraphs: [
           L(
-            'Pure RAG re-searches every time and nothing compounds. A wiki-style loop deposits sources, summarizes, updates linked pages, flags contradictions. Your vault becomes compiled knowledge.',
-            'Le RAG pur re-cherche à chaque fois et rien ne s’accumule. Une boucle type wiki dépose des sources, résume, met à jour les pages liées, signale les contradictions. Le vault devient du savoir compilé.',
+            'Pure retrieval re-searches every time and compounds little. A wiki-style loop deposits sources, summarizes, updates linked pages, and flags contradictions. The vault becomes compiled knowledge.',
+            'La recherche pure recommence à chaque fois et accumule peu. Une boucle type wiki dépose des sources, résume, met à jour les pages liées et signale les contradictions. Le vault devient du savoir compilé.',
           ),
         ],
+        checklist: [
+          L('Vault path connected in Hermes'),
+          L('At least one retrieval with a quote from your note'),
+          L('You can open the same note offline without Hermes'),
+        ],
         callout: L(
-          'Default for this course: files on disk + vault. External memory providers are optional and never replace your files. Run one provider at a time if you add any.',
+          'Course default: files on disk plus vault. External memory providers remain optional and never replace your files.',
         ),
         calloutVariant: 'note',
         links: [
           { label: L('Obsidian'), href: 'https://obsidian.md' },
           { label: L('File over app'), href: 'https://stephango.com/file-over-app' },
+          { label: L('Lab: staged wiki'), href: '/forge/course/open-harness/labs/wiki-kanban/' },
         ],
       },
     ],
@@ -952,41 +1046,41 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Skills'),
     subtitle: L(
-      'Procedural memory that loads on demand — not a second system prompt dump.',
+      'On-demand procedural memory — not a second system-prompt dump.',
     ),
     minutes: 20,
     proof: L(
-      'You listed skills for this profile, ran or inspected one, and wrote skills-notes.md with name + when to use it.',
+      'You listed skills for this profile, ran or inspected one, and wrote skills-notes.md with name and when to use it.',
     ),
     sections: [
       {
         heading: L('What a skill is'),
         paragraphs: [
           L(
-            'A skill is a reusable instruction package (SKILL.md). Front matter names and describes it; the body teaches the procedure. Hermes sees names + descriptions first — a vague description means the right skill may never load.',
+            'A skill is a reusable instruction package (SKILL.md). Front matter names and describes it; the body teaches the procedure. Hermes sees names and descriptions first — a vague description means the right skill may never load.',
           ),
           L(
-            'Skills are progressive disclosure: the catalog stays cheap; only the selected skill body enters the prompt. That is how you keep a large library without burning the context window every turn.',
+            'Skills use progressive disclosure: the catalog stays cheap; only the selected body enters the prompt. That is how a large library avoids burning the context window every turn.',
           ),
         ],
         bullets: [
           L('Skill = procedure / knowledge package (agentskills-compatible).'),
-          L('Plugin / MCP = executable surface or product hooks — different layer.'),
-          L('Slash commands (e.g. /plan) and /learn can capture workflows as skills when your build supports them.'),
-          L('Install narrowly; let security scans run on hub skills before you trust them.'),
-          L('Pin / curator: business-critical skills should not vanish to automated cleanup — see Curator docs when you outgrow defaults.'),
+          L('Plugin / MCP = executable surface or product hooks — a different layer.'),
+          L('Slash commands (for example /plan) and /learn can capture workflows as skills when supported.'),
+          L('Install narrowly; run security scans on hub skills before trust.'),
+          L('Pin or curator: critical skills should not vanish to automated cleanup when you outgrow defaults.'),
         ],
       },
       {
         heading: L('Desktop first'),
         steps: [
           L('Open Skills in Hermes Desktop.'),
-          L('Paste the list into skills-notes.md under your course notes folder.'),
-          L('Try one bundled skill appropriate to your OS (e.g. a file or shell helper).'),
-          L('Optional: browse hub and install one official skill after reading the scan warning — log why you installed it. Do not install a catalog “for later.”'),
+          L('Copy the list into skills-notes.md under your course notes folder.'),
+          L('Run or inspect one bundled skill appropriate to your OS.'),
+          L('Optional: install one official hub skill after reading the scan warning — log the reason. Do not install a catalog “for later.”'),
         ],
         callout: L(
-          'If everything is “on,” the model spends tokens deciding which skill, not doing the job. Least privilege on skills. Skills Hub is a map — not homework.',
+          'If every skill is enabled, the model spends tokens choosing rather than working. Least privilege. Skills Hub is a map, not homework.',
         ),
         calloutVariant: 'note',
         links: [
@@ -996,11 +1090,28 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
+        heading: L('Skills tax the fixed budget'),
+        paragraphs: [
+          L(
+            'The skills index and every enabled tool schema load into the empty-session budget (see module 06 — prompt-size). A large “install for later” catalog costs tokens before any task starts.',
+          ),
+        ],
+        steps: [
+          L('Run hermes prompt-size (or Desktop equivalent). Note the skills / tools share.'),
+          L('Disable or uninstall one skill you will not use this week. Re-run the audit.'),
+          L('Record before/after in skills-notes.md (one line each is enough).'),
+        ],
+        links: [
+          { label: L('Lab: Prompt budget audit'), href: '/forge/course/open-harness/labs/prompt-budget/' },
+        ],
+      },
+      {
         heading: L('Proof'),
         checklist: [
-          L('skills-notes.md exists with at least three skill names'),
+          L('skills-notes.md lists at least three skill names'),
           L('One skill run or inspect logged with outcome'),
-          L('You can say skill vs MCP in one sentence'),
+          L('You can state skill vs MCP in one sentence'),
+          L('You re-checked fixed budget after trimming at least one skill or toolset'),
         ],
         links: [
           { label: L('Next: Security'), href: '/forge/course/open-harness/10/' },
@@ -1018,32 +1129,32 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Security dials'),
     subtitle: L(
-      'There is no fully capable, fully safe agent. Tune trust for who can reach it.',
+      'Capability and safety trade off. Document who may reach tools and how approvals work.',
     ),
     minutes: 20,
     proof: L(
-      'You confirmed allowlist + approval mode (smart or manual), wrote security-dials.md with three settings and why, and did not enable YOLO for this course.',
+      'You confirmed allowlist and approval mode (smart or manual), wrote security-dials.md with three settings and rationale, and did not enable YOLO for this course.',
     ),
     sections: [
       {
-        heading: L('Threat model in one page'),
+        heading: L('Threat model'),
         paragraphs: [
           L(
-            'Private laptop ≠ public bot. Capability and safety trade off — pick deliberately. Gateway should fail closed: strangers never reach tools by default.',
+            'A private laptop is not a public bot. Choose capability deliberately. Gateway should fail closed: strangers never reach tools by default.',
           ),
         ],
         bullets: [
-          L('Allowlist who may talk on messaging gateways (fail closed if unset).'),
-          L('Approvals: manual | smart (default) | off — course uses smart or manual. YOLO / --yolo is expert-only and still cannot bypass the hardline blocklist.'),
+          L('Allowlist messaging gateway users (fail closed if unset).'),
+          L('Approvals: manual | smart (default) | off — course uses smart or manual. YOLO is expert-only and still cannot bypass the hardline blocklist.'),
           L('Timeouts deny by default when you do not answer.'),
-          L('Secret filtering: tokens stay out of prompts and MCP child envs where possible.'),
-          L('Injection scans on SOUL / AGENTS.md / context files; tirith-style scanners catch pipe-to-shell and homoglyph tricks when enabled.'),
-          L('Network: SSRF protections block private ranges; only open them for a trusted local service you understand.'),
-          L('Profile least privilege: a researcher does not need the same surface as a coder.'),
-          L('Optional later: hermes approvals suggest mines past approvals into allowlist proposals — never auto-applies destructive classes.'),
+          L('Secret filtering: keep tokens out of prompts and MCP child environments where possible.'),
+          L('Injection scans on SOUL / AGENTS.md / context files when enabled.'),
+          L('Network: SSRF protections block private ranges; open only for a trusted local service you understand.'),
+          L('Profile least privilege: research does not need a coder tool surface.'),
+          L('Optional later: approval suggestions mine past decisions — they should never auto-apply destructive classes.'),
         ],
         callout: L(
-          'Leave defaults on for this course. “Disable approvals to go faster” is how harnesses become liabilities. Checkpoints/rollback (if your build offers them) are a safety net — not a substitute for approvals.',
+          'Keep defaults for this course. Disabling approvals for speed is how harnesses become liabilities. Checkpoints and rollback, if available, support recovery — they do not replace approvals.',
         ),
         calloutVariant: 'warning',
         links: [
@@ -1056,18 +1167,18 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
       {
         heading: L('Desktop check'),
         steps: [
-          L('Open gateway / security / approvals UI for this profile (or config.yaml approvals.mode).'),
-          L('Confirm allowlist still only your user id (Telegram path from module 05).'),
-          L('Set or confirm smart approvals (or manual if you prefer slower). Never YOLO for course work.'),
-          L('Write security-dials.md: allowlist status, approval mode, one tool surface you turned off or left off.'),
+          L('Open gateway / security / approvals for this profile (or config.yaml approvals.mode).'),
+          L('Confirm allowlist is only your user id (Telegram path from module 05).'),
+          L('Confirm smart or manual approvals. Do not use YOLO for course work.'),
+          L('Write security-dials.md: allowlist status, approval mode, one tool surface left off.'),
         ],
       },
       {
         heading: L('Proof'),
         checklist: [
-          L('security-dials.md has three concrete settings'),
-          L('YOLO is off (or explicitly documented expert exception)'),
-          L('You know where logs live if something scary happens'),
+          L('security-dials.md records three concrete settings'),
+          L('YOLO is off (or documented expert exception)'),
+          L('You know where logs live if something fails'),
         ],
         links: [
           { label: L('Next: Cron'), href: '/forge/course/open-harness/11/' },
@@ -1084,52 +1195,52 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Cron runbooks'),
     subtitle: L(
-      'Automation that is a full runbook — not a one-line hope. Each fire is amnesia.',
+      'Scheduled work as a full runbook. Each fire starts without prior session memory.',
     ),
     minutes: 25,
     proof: L(
-      'You created one self-contained cron job (or a fully written plan) with host/path/success/failure/delivery — and ran it once or dry-ran the prompt.',
+      'You created one self-contained cron job (or a complete plan) covering host, path, success, failure, and delivery — and ran it once or dry-ran the prompt.',
     ),
     sections: [
       {
-        heading: L('Amnesia is a feature'),
+        heading: L('Amnesia is intentional'),
         paragraphs: [
           L(
-            'Cron usually lives with the always-on gateway. Each run is a fresh, isolated session that knows nothing about “that issue from yesterday.” Write a self-contained runbook in the job prompt.',
+            'Cron usually runs with the always-on gateway. Each execution is an isolated session that does not inherit “yesterday’s issue.” Write a self-contained runbook into the job prompt.',
           ),
         ],
         bullets: [
-          L('Include host/path/command/expected state/delivery target/success and failure behavior.'),
+          L('Include host, path, command, expected state, delivery target, success and failure behavior.'),
           L('silent: suppress “all good” noise; still surface failures.'),
-          L('no_agent / script-only path: when a deterministic check needs no model tokens.'),
+          L('no_agent / script-only: deterministic checks that need no model tokens.'),
           L('Wake gate: cheap pre-check first; wake the model only when something changed.'),
-          L('Jobs should not spawn infinite new jobs — runaway self-scheduling is blocked in healthy setups.'),
-          L('Dangerous commands in cron: prefer approvals.cron_mode deny (default) so headless jobs cannot YOLO host damage.'),
+          L('Jobs must not spawn unbounded new jobs — runaway self-scheduling is blocked in healthy setups.'),
+          L('Dangerous commands: prefer approvals.cron_mode deny (default) so headless jobs cannot YOLO host damage.'),
         ],
       },
       {
         heading: L('Build one job'),
         steps: [
-          L('Define a tiny job: e.g. weekday 08:00 — three AI headlines, short summary, deliver to Telegram (or a local file if no gateway).'),
-          L('Write the prompt as if the agent has amnesia (full runbook). Save as cron-runbook.md.'),
-          L('Create it in Desktop cron UI or Hermes cron flow for your version.'),
-          L('Run once manually if possible, then leave it scheduled — or stop after dry-run if you are offline.'),
+          L('Define a small job: for example weekday 08:00 — three headlines, short summary, deliver to Telegram (or a local file if gateway is off).'),
+          L('Write the prompt as if the agent has amnesia. Save as cron-runbook.md.'),
+          L('Create it in the Desktop cron UI or Hermes cron flow for your version.'),
+          L('Run once manually if possible, then schedule — or stop after dry-run if offline.'),
         ],
         callout: L(
-          'Spend on cron is easy to waste. Prefer script checks first; wake the model only when the check fails or changes.',
+          'Cron spend is easy to waste. Prefer script checks first; wake the model only when the check fails or changes.',
         ),
         calloutVariant: 'note',
         links: [
           { label: L('Cron feature docs'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/cron' },
           { label: L('Automate with cron (guide)'), href: 'https://hermes-agent.nousresearch.com/docs/guides/automate-with-cron' },
-          { label: L('Lab: webhooks (events beyond cron)'), href: '/forge/course/open-harness/labs/webhooks/' },
+          { label: L('Lab: webhooks'), href: '/forge/course/open-harness/labs/webhooks/' },
           { label: L('Sample runbook'), href: '/courses/open-harness/samples/cron-runbook.example.md' },
         ],
       },
       {
         heading: L('Proof'),
         checklist: [
-          L('cron-runbook.md is self-contained (stranger could run it)'),
+          L('cron-runbook.md is self-contained (a stranger could execute it)'),
           L('Job created in Desktop/CLI or fully planned with schedule'),
           L('Success and failure paths both named'),
         ],
@@ -1149,19 +1260,19 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Own it forever'),
     subtitle: L(
-      'Backup, growth map, and the next moves — without bloating the basics path.',
+      'Backup, update habit, and growth map — without expanding the day-one path.',
     ),
     minutes: 20,
     proof: L(
-      'You know which folders to back up, how to brief a sub-agent, and which growth step fits your next pain.',
+      'You know which folders to back up, how to brief a sub-agent, and which growth step matches your next constraint.',
     ),
     sections: [
       {
         heading: L('What to back up'),
         bullets: [
-          L('Hermes home / profile directory (SOUL, memory, config, skills you care about)'),
-          L('Your Obsidian vault and any AGENTS.md / project context you rely on'),
-          L('.env is secrets — back up encrypted, never publish'),
+          L('Hermes home / profile directory (SOUL, memory, config, skills you keep)'),
+          L('Obsidian vault and AGENTS.md / project context you rely on'),
+          L('.env holds secrets — back up encrypted; never publish'),
         ],
         callout: L(
           'Copy the folders. That is the backup. The harness is portable because it is files.',
@@ -1175,7 +1286,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Stay current'),
         paragraphs: [
           L(
-            'Official docs refresh often. Run hermes update (or reinstall Desktop) on a cadence you can keep. After updates: hermes doctor, one chat smoke, gateway still allowlisted. If a flag renames, Installation / Updating docs win over this course page.',
+            'Official docs change often. Run hermes update (or reinstall Desktop) on a cadence you can keep. After updates: doctor or health check, one chat smoke test, gateway still allowlisted. If a flag renames, Installation / Updating docs win over this page.',
           ),
         ],
         links: [
@@ -1184,20 +1295,20 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
       {
-        heading: L('When you outgrow one agent'),
+        heading: L('When one agent is not enough'),
         paragraphs: [
           L(
-            'Sub-agents: spawn helpers for independent messy work. Brief them like strangers (exact failure, paths, definition of done). Give least tools. Prefer cheap children + a strong parent for synthesis. Do not delegate tightly sequential interactive work.',
+            'Sub-agents: spawn helpers for independent work. Brief them as strangers (failure, paths, definition of done). Least tools. Prefer cheaper children and a strong parent for synthesis. Avoid delegating tightly sequential interactive work.',
           ),
           L(
-            'Profiles: a full second Hermes home (own model, memory, gateway, persona) — not a temporary helper. Use when roles must stay isolated forever.',
+            'Profiles: a second Hermes home (own model, memory, gateway, persona) when roles must stay isolated permanently — not a temporary helper.',
           ),
           L(
-            'Kanban / boards: when work must cross agents and survive restarts. Official multi-agent Kanban docs exist — use them when serial pain is real, not for vanity.',
+            'Kanban / boards: when work must cross agents and survive restarts. Use official multi-agent docs when serial pain is real.',
           ),
         ],
         callout: L(
-          'Basics stop at one solid harness. Multi-agent and extra messaging platforms are optional growth — or a future Forge track — not Part I homework.',
+          'Basics stop at one solid harness. Multi-agent and extra platforms are optional growth — not Part I homework.',
         ),
         calloutVariant: 'note',
         links: [
@@ -1209,52 +1320,74 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Growth map — seven patterns'),
         paragraphs: [
           L(
-            'You already practice tools + approvals. Add the rest when pain appears — not for vanity.',
+            'You already practice tools and approvals. Add the rest when a concrete constraint appears.',
           ),
         ],
         bullets: [
           L('1 Tools — day one (done)'),
-          L('2 MCP servers — when work lives across Notion/GitHub/Slack/APIs'),
-          L('3 Sequential pipeline — multi-step jobs via profiles + wake gates'),
+          L('2 MCP servers — when work spans external services and APIs'),
+          L('3 Sequential pipeline — multi-step jobs via profiles and wake gates'),
           L('4 Parallel — research fan-out / batch delegation'),
-          L('5 Routers — assign by type to specialist profiles / board'),
-          L('6 Human in the loop — keep forever for high-impact actions'),
+          L('5 Routers — assign by type to specialist profiles or board'),
+          L('6 Human in the loop — keep for high-impact actions'),
           L('7 Dynamic sub-agents — orchestrator spawns help mid-task'),
         ],
       },
       {
         heading: L('Course completion checklist'),
         checklist: [
-          L('Lexicon: agent vs chat, harness vs runtime'),
+          L('Lexicon: agent vs chat; harness vs runtime; token, context, cron'),
           L('Hermes Desktop on this PC; chat works; Advanced left default for proofs'),
-          L('You know where Settings → Advanced / Providers / Gateway live for later'),
+          L('You know Settings → Advanced / Providers / Gateway for later'),
           L('SOUL in Hermes home (not project CWD); SOUL vs AGENTS.md clear'),
-          L('Tool task completed; smart approvals on'),
+          L('Tool task completed; smart or manual approvals on'),
           L('Telegram gateway trusted and working'),
-          L('Memory fact on disk + survives new session (not same-session only)'),
+          L('Memory fact on disk and survives a new session'),
           L('Vault note retrieved'),
           L('Skills listed (09); security dials written (10); cron runbook (11)'),
           L('Backup locations known; update habit named'),
         ],
       },
       {
-        heading: L('Next ops (when Desktop basics feel boring)'),
+        heading: L('Next ops (optional)'),
         paragraphs: [
           L(
-            'Same product, deeper Settings: Docker terminal backend, remote providers, always-on gateway host, Termux/phone paths. Official docs + Harness Labs (VPS ship, remote shell) cover them — optional after this checklist, not instead of it.',
+            'Same product, deeper Settings: Docker terminal backend, remote providers, always-on gateway host, Termux paths. Official docs and Harness Labs (VPS ship, remote shell, session control, prompt budget) cover them after this checklist — not instead of it.',
           ),
         ],
         links: [
           { label: L('Docker guide'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/docker' },
           { label: L('Lab: VPS ship'), href: '/forge/course/open-harness/labs/vps-ship/' },
           { label: L('Lab: remote shell'), href: '/forge/course/open-harness/labs/remote-access/' },
+          { label: L('Lab: Session control'), href: '/forge/course/open-harness/labs/session-control/' },
+          { label: L('Lab: Prompt budget'), href: '/forge/course/open-harness/labs/prompt-budget/' },
+        ],
+      },
+      {
+        heading: L('Desktop Kanban (growth)'),
+        paragraphs: [
+          L(
+            'The first official Hermes Desktop plugin is Kanban: a board in the app for multi-step work across profiles. Enable it only after one profile, tools, and approvals are solid. It is not Part I homework.',
+          ),
+        ],
+        bullets: [
+          L('Plugin can add a page, sidebar entry, hotkeys, and backend endpoints.'),
+          L('Multi-profile boards need SOUL + tools working per profile first.'),
+          L('Write your own plugin or import via the Desktop plugin SDK when you outgrow defaults.'),
+        ],
+        links: [
+          { label: L('Lab: Kanban multi-profile'), href: '/forge/course/open-harness/labs/kanban-board/' },
+          {
+            label: L('Desktop plugin SDK'),
+            href: 'https://hermes-agent.nousresearch.com/docs/developer-guide/desktop-plugin-sdk',
+          },
         ],
       },
       {
         heading: L('Keep going'),
         paragraphs: [
           L(
-            'Official docs are the living manual. Optional labs deepen ops. Open Design is the next live mastery track. More harness courses may join Forge later.',
+            'Official docs are the living manual. Optional labs deepen operations. Open Design is the next live mastery track on Forge.',
           ),
         ],
         links: [

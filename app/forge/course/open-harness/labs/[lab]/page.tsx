@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { LabVisual } from '@/app/components/course/CourseVisuals';
-import { HarnessCourseTabs, MarkCompleteButton } from '@/app/components/course/CourseLearning';
+import {
+  HarnessCourseTabs,
+  InteractiveChecklist,
+  MarkCompleteButton,
+} from '@/app/components/course/CourseLearning';
 import { HARNESS_LABS, getHarnessLab } from '@/app/data/courses/harness-labs';
 import { SITE_URL } from '@/lib/site';
 
@@ -117,19 +121,14 @@ export default async function HarnessLabPage({
               </ul>
             )}
             {section.steps && (
-              <ol className="mt-5 space-y-3">
-                {section.steps.map((s, j) => (
-                  <li
-                    key={j}
-                    className="flex gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] px-4 py-3"
-                  >
-                    <span className="font-mono text-xs text-[var(--accent-orange)] shrink-0 pt-0.5">
-                      {String(j + 1).padStart(2, '0')}
-                    </span>
-                    <span className="text-sm text-[var(--text-secondary)]">{s}</span>
-                  </li>
-                ))}
-              </ol>
+              <InteractiveChecklist
+                courseId="harness-labs"
+                moduleSlug={lab.slug}
+                sectionKey={`${i}-steps`}
+                items={section.steps}
+                accent="orange"
+                mode="steps"
+              />
             )}
             {section.callout && (
               <div
@@ -173,6 +172,14 @@ export default async function HarnessLabPage({
       <div className="mt-12 rounded-2xl border border-[var(--border-default)] bg-[var(--surface-card)] p-6">
         <div className="eyebrow text-[var(--accent-cyan)]">Outcome</div>
         <p className="mt-3 text-[var(--text-secondary)]">{lab.outcome}</p>
+        <InteractiveChecklist
+          courseId="harness-labs"
+          moduleSlug={lab.slug}
+          sectionKey="lab-outcome"
+          items={[lab.outcome]}
+          accent="cyan"
+          mode="proof"
+        />
         <MarkCompleteButton courseId="harness-labs" slug={lab.slug} accent="orange" />
       </div>
 

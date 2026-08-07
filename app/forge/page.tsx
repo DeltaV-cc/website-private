@@ -49,7 +49,7 @@ type CourseCardProps = {
   forWho: string;
   ctaLabel: string;
   ctaHref: string;
-  secondary?: { label: string; href: string };
+  secondary?: { label: string; href: string; tone?: 'default' | 'quiet' };
   accent: string;
 };
 
@@ -139,14 +139,22 @@ function CourseCard({
         <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed">
           <span className="font-semibold text-[var(--text-primary)]">For:</span> {forWho}
         </div>
-        {secondary && (
-          <Link
-            href={secondary.href}
-            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] rounded-xl text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all"
-          >
-            {secondary.label}
-          </Link>
-        )}
+        {secondary &&
+          (secondary.tone === 'quiet' ? (
+            <Link
+              href={secondary.href}
+              className="text-xs tracking-wide text-[var(--text-muted)] hover:text-[var(--text-secondary)] underline-offset-4 hover:underline transition-colors"
+            >
+              {secondary.label}
+            </Link>
+          ) : (
+            <Link
+              href={secondary.href}
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] rounded-xl text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all"
+            >
+              {secondary.label}
+            </Link>
+          ))}
         <Link
           href={ctaHref}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
@@ -166,39 +174,41 @@ function CourseCard({
 const COURSES: CourseCardProps[] = [
   {
     id: 'open-harness',
-    code: 'Course 01 · Flagship · Start here · Live',
+    code: 'Course 01 · Flagship · Live',
     title: 'Open Harness',
     pitch: (
       <>
-        <span className="font-medium text-[var(--text-primary)]">Anyone can do this.</span> If you
-        can install an app and follow steps, you will learn what you need to{' '}
-        <span className="font-medium text-[var(--text-primary)]">get started in AI with ownership</span>
-        — your agent on your machine, not a rented chat tab. We walk you through{' '}
-        <span className="font-medium text-[var(--text-primary)]">Hermes Desktop</span> end to end:
-        soul, Telegram gateway, tools, then memory, vault, skills, security, and cron. Labs are
-        optional drills inside this same course after Part I.
+        A free path from first principles to a working agent you{' '}
+        <span className="font-medium text-[var(--text-primary)]">own on Hermes Desktop</span> —
+        lexicon and mental models, then install, soul, gateway, tools, memory, vault, skills,
+        security, and cron. Accessible without an ML background; designed for lasting ownership,
+        not a rented chat tab.
       </>
     ),
     product: 'Product: Hermes Desktop',
     adapt:
-      'Written for first-timers, not ML researchers. Steps track official Hermes docs. Day one stays local Desktop — Advanced/Docker, providers, and gateway show up later only when you need them.',
+      'Aligned with official Hermes docs. Day one is local Desktop; Advanced settings appear only when needed.',
     get: [
-      'A clear zero → first agent path you can finish on a normal PC',
-      'What ownership actually means: keys, soul, memory, and tools on your side',
-      'Desktop install + first chat proof (you will see it work)',
-      'Telegram in your pocket, then tools, vault, skills, security, cron',
-      'Optional labs after Part I when you want deeper drills — still this course',
+      'AI basics and lexicon so the stack is intelligible from day one',
+      'Desktop install with a verified first chat',
+      'Identity (SOUL.md), project context, and pocket gateway',
+      'Tools, memory, vault, skills, security dials, and cron runbooks',
+      'Optional post–Part I labs for deeper operational drills',
     ],
     path: [
-      { step: 'Part I', desc: 'install, soul, pocket gateway — first agency that is yours' },
-      { step: 'Part II', desc: 'memory, vault, skills, security, cron — the ownership stack' },
-      { step: 'Labs', desc: 'optional drills after install (same course, not a second track)' },
+      { step: 'Part I', desc: 'foundations, install, soul, gateway, first agency' },
+      { step: 'Part II', desc: 'memory, vault, skills, security, cron' },
+      { step: 'Labs', desc: 'optional drills after install' },
     ],
     forWho:
-      'Anyone who wants to start in AI with real ownership — curious beginners, builders, and operators. No research lab required; a normal PC is enough.',
-    ctaLabel: 'Start free — Open Harness',
+      'Anyone building personal AI with ownership — beginners through operators on a standard PC.',
+    ctaLabel: 'Open Harness',
     ctaHref: '/forge/course/open-harness/',
-    secondary: { label: 'Labs (after Part I)', href: '/forge/course/open-harness/labs/' },
+    secondary: {
+      label: 'Labs after Part I',
+      href: '/forge/course/open-harness/labs/',
+      tone: 'quiet',
+    },
     accent: 'var(--accent-orange)',
   },
   {
@@ -240,7 +250,7 @@ export default function ForgePage() {
         <PageHero
           label="Pillar 03 · Forge"
           title="Skill Forge"
-          description="Start with Open Harness: anyone can learn to run AI with ownership on Hermes Desktop. Free courses on real products — each track adapts as the product moves."
+          description="Free courses on real products. Each track names the product it follows and adapts as that product moves."
           accent="purple"
           backFallback="/"
           backLabel="Home"

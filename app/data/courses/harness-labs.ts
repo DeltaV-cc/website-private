@@ -424,6 +424,178 @@ Secrets: none pasted
       },
     ],
   },
+  {
+    id: 'session-control',
+    slug: 'session-control',
+    number: '10',
+    title: 'Session control studio',
+    subtitle: 'Long threads without a new session: /context, /compress, /undo, /rollback.',
+    minutes: 25,
+    level: 'after-part-i',
+    tags: ['Sessions', 'Context', 'Ops'],
+    requires: 'Open Harness 06 (tools proof); chat works on Desktop or CLI',
+    assumes: 'You can run a multi-turn conversation. You are not learning install here.',
+    ifNotHref: '/forge/course/open-harness/06/',
+    ifNotLabel: 'Harness 06 — First agency',
+    outcome:
+      'session-control.md with: context snapshot, one compress result, one undo test, and a one-line note that file restore needs /rollback + checkpoints.',
+    sections: [
+      {
+        heading: 'Why this lab',
+        paragraphs: [
+          'Mastery 06–07 map session commands. This lab drills them so you stop burning a new session every time the window fills or a prompt goes wrong.',
+        ],
+        links: [
+          { label: 'Harness 06 — First agency', href: '/forge/course/open-harness/06/' },
+          { label: 'Harness 07 — Memory floors', href: '/forge/course/open-harness/07/' },
+        ],
+      },
+      {
+        heading: 'Commands under test',
+        bullets: [
+          '/context — budget and what consumes the window',
+          '/compress here N — keep last N exchanges full; summarize the rest',
+          '/compress focus <topic> — protect a subject while compressing elsewhere',
+          '/undo · /undo N — rewind user turns into the composer (conversation only)',
+          '/retry · /branch — same prompt again, or a side path without losing the first',
+          '/rollback + checkpoints — restore files Hermes already changed (not /undo)',
+        ],
+        callout:
+          '/undo rewinds chat. It does not restore files. For disk damage, use checkpoints and /rollback when enabled.',
+        calloutVariant: 'warning',
+      },
+      {
+        heading: 'Drill',
+        steps: [
+          'Open a throwaway session. Have a 6–10 turn chat about a fake task (no production paths).',
+          'Run /context. Paste redacted numbers into session-control.md (tokens used / remaining).',
+          'Run /compress here 3 (or Desktop equivalent). Note roughly how much room returned.',
+          'Send a deliberately wrong ask, then /undo. Edit and resend a corrected prompt. Confirm prior good turns remain.',
+          'Optional: enable checkpoints if available; touch one throwaway file; /rollback and confirm file restore vs /undo.',
+          'Write one sentence: when you will use compress vs new session vs undo.',
+        ],
+      },
+      {
+        heading: 'session-control.md template',
+        callout: `# session-control.md
+Profile: [...]
+/context: used […] remaining […]
+/compress: kept N=… · room after: […]
+/undo: worked yes/no · note: […]
+Files: /rollback needed for disk — tested yes/no
+Rule of thumb: […]
+`,
+        calloutVariant: 'note',
+      },
+    ],
+  },
+  {
+    id: 'prompt-budget',
+    slug: 'prompt-budget',
+    number: '11',
+    title: 'Prompt budget audit',
+    subtitle: 'Measure fixed empty-session cost; cut tools and skills; re-measure.',
+    minutes: 20,
+    level: 'after-part-i',
+    tags: ['Cost', 'Tools', 'Skills'],
+    requires: 'Open Harness 06; better after 09 skills',
+    assumes: 'Primary model works. You can open Tools and Skills panels (or CLI hermes tools / hermes skills).',
+    ifNotHref: '/forge/course/open-harness/06/',
+    ifNotLabel: 'Harness 06 — First agency',
+    outcome:
+      'prompt-budget.md with before/after prompt-size (or Desktop audit) and two concrete cuts (toolset and/or skill).',
+    sections: [
+      {
+        heading: 'Why this lab',
+        paragraphs: [
+          'Empty sessions still load system prompt, skills index, memory snapshots, tool schemas, and AGENTS.md. Upgrading the model will not fix a bloated fixed budget. This lab measures and cuts.',
+        ],
+        links: [
+          { label: 'Harness 06 — Spend / fixed cost', href: '/forge/course/open-harness/06/' },
+          { label: 'Harness 09 — Skills', href: '/forge/course/open-harness/09/' },
+        ],
+      },
+      {
+        heading: 'Audit',
+        steps: [
+          'Run hermes prompt-size (offline OK) or the Desktop prompt-budget / context audit if labeled differently. Record total and top slices in prompt-budget.md.',
+          'List enabled toolsets. Disable one you never use for this profile (hermes tools or Desktop Tools).',
+          'List skills. Uninstall or disable one “for later” skill.',
+          'Re-run the audit. Write before → after numbers.',
+          'One-line chat: confirm the agent still works for a simple task.',
+        ],
+        callout:
+          'Do not delete SOUL or MEMORY to win the audit. Cut unused tools and skills first.',
+        calloutVariant: 'note',
+      },
+      {
+        heading: 'prompt-budget.md template',
+        callout: `# prompt-budget.md
+Before: total […] · top slices: tools […] skills […] memory […]
+Cuts: toolset […] · skill […]
+After: total […]
+Still works: yes/no
+`,
+        calloutVariant: 'note',
+      },
+    ],
+  },
+  {
+    id: 'kanban-board',
+    slug: 'kanban-board',
+    number: '12',
+    title: 'Kanban multi-profile',
+    subtitle: 'Enable the official Desktop Kanban plugin; run one card across profiles.',
+    minutes: 30,
+    level: 'advanced',
+    tags: ['Desktop', 'Multi-agent', 'Plugin'],
+    requires: 'Open Harness Part I; two profiles with SOUL optional but recommended',
+    assumes: 'Desktop chat works on at least one profile. You are not installing Hermes here.',
+    ifNotHref: '/forge/course/open-harness/04/',
+    ifNotLabel: 'Harness 04 — Soul pack',
+    outcome:
+      'kanban-notes.md: plugin enabled, one card moved through columns, which profile ran which step, screenshot optional (no secrets).',
+    sections: [
+      {
+        heading: 'Why this lab',
+        paragraphs: [
+          'Kanban is the first official Hermes Desktop plugin: board UI, sidebar, hotkeys, backend. It is multi-step / multi-profile work — growth after a solid single harness, not Part I.',
+        ],
+        links: [
+          { label: 'Harness 12 — Own it forever', href: '/forge/course/open-harness/12/' },
+          {
+            label: 'Desktop plugin SDK',
+            href: 'https://hermes-agent.nousresearch.com/docs/developer-guide/desktop-plugin-sdk',
+          },
+        ],
+      },
+      {
+        heading: 'Enable and run',
+        steps: [
+          'In Desktop, open Plugins (or Extensions). Enable Kanban if not already on. Restart Desktop if required.',
+          'Confirm a Kanban page or sidebar entry appears.',
+          'Create one real-ish task card (e.g. “Draft weekly notes outline”). Keep scope small.',
+          'If you have two profiles: assign steps so each profile handles a different stage (research vs draft). If one profile only: run the board end-to-end on that profile and note “single profile” in kanban-notes.md.',
+          'Move the card through at least two columns. Capture which agent/profile acted.',
+          'Write kanban-notes.md: enable path, columns used, profile map, one friction note.',
+        ],
+        callout:
+          'Do not open the board to untrusted users. Same allowlist discipline as gateway. Plugins extend trust surface.',
+        calloutVariant: 'warning',
+      },
+      {
+        heading: 'kanban-notes.md template',
+        callout: `# kanban-notes.md
+Plugin enabled: how […]
+Card: […]
+Columns: […]
+Profiles: […]
+Friction / next: […]
+`,
+        calloutVariant: 'note',
+      },
+    ],
+  },
 ];
 
 export function getHarnessLab(slug: string) {
