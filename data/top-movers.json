@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T06:01:06Z",
+  "updated_at": "2026-08-08T06:16:07Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 2.15,
+        "change_24h": 11.3,
+        "asset": "crypto"
+      },
+      {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.23,
-        "change_24h": 8.0,
+        "price": 93.05,
+        "change_24h": 4.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.091467,
+        "change_24h": 4.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.091711,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
         "price": 0.026425,
-        "change_24h": 4.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BEAT",
-        "name": "Audiera",
-        "price": 2.16,
-        "change_24h": 4.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.091926,
-        "change_24h": 4.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.307281,
-        "change_24h": 3.6,
+        "change_24h": 3.9,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.510955,
-        "change_24h": -6.3,
+        "price": 0.511213,
+        "change_24h": -7.9,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049921,
-        "change_24h": -5.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ALGO",
-        "name": "Algorand",
-        "price": 0.087405,
-        "change_24h": -2.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 54.41,
-        "change_24h": -2.5,
+        "price": 0.049805,
+        "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002286,
-        "change_24h": -2.3,
+        "price": 0.002293,
+        "change_24h": -3.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.6,
+        "change_24h": -3.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.22,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
