@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T02:01:11Z",
+  "updated_at": "2026-08-08T02:16:03Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.227817,
+        "price": 0.228615,
         "change_24h": 26.6,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 92.52,
+        "price": 92.5,
         "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091795,
+        "price": 0.091798,
         "change_24h": 3.3,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.026549,
+        "price": 0.026544,
         "change_24h": 3.2,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 380.83,
+        "price": 380.87,
         "change_24h": 3.0,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.512118,
+        "price": 0.511067,
         "change_24h": -7.7,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002273,
+        "price": 0.002282,
         "change_24h": -5.4,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.31,
+        "price": 2.3,
         "change_24h": -3.8,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.051426,
+        "price": 0.051405,
         "change_24h": -3.6,
         "asset": "crypto"
       }
