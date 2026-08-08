@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T17:03:20Z",
+  "updated_at": "2026-08-08T17:15:49Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,21 +82,21 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.72,
+        "price": 2.66,
         "change_24h": 37.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.17,
+        "price": 93.44,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 385.04,
+        "price": 385.02,
         "change_24h": 4.3,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.697982,
+        "price": 0.697135,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049842,
+        "price": 0.049819,
         "change_24h": -6.6,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.24,
+        "price": 11.23,
         "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.090816,
+        "price": 0.090606,
         "change_24h": -4.3,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.101404,
+        "price": 0.101351,
         "change_24h": -4.0,
         "asset": "crypto"
       }

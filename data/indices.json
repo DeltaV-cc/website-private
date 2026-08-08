@@ -1,1 +1,12 @@
-{"spx": {"price": "7758", "change": 47.68017578125, "changePct": "+0.62%"}, "csi": {"price": "3940", "change": 39.68505859375, "changePct": "+1.02%"}}
+{
+  "spx": {
+    "price": "7758",
+    "change": 47.68017578125,
+    "changePct": "+0.62%"
+  },
+  "csi": {
+    "price": "3940",
+    "change": 39.68505859375,
+    "changePct": "+1.02%"
+  }
+}
