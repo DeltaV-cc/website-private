@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T06:46:09Z",
+  "updated_at": "2026-08-08T07:00:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.11,
+        "price": 2.12,
         "change_24h": 11.3,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 92.6,
+        "price": 92.96,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.092036,
+        "price": 0.092405,
         "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091426,
+        "price": 0.091234,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.026418,
+        "price": 0.026443,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.508918,
+        "price": 0.508634,
         "change_24h": -7.9,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048925,
+        "price": 0.047858,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002281,
+        "price": 0.00228,
         "change_24h": -3.2,
         "asset": "crypto"
       },
