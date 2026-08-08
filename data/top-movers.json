@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T00:01:01Z",
+  "updated_at": "2026-08-08T00:15:50Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.11,
-        "change_24h": 15.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.224162,
-        "change_24h": 14.9,
+        "price": 2.13,
+        "change_24h": 11.9,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 89.95,
-        "change_24h": 5.9,
+        "price": 90.24,
+        "change_24h": 5.4,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091364,
-        "change_24h": 5.0,
+        "price": 0.092451,
+        "change_24h": 3.8,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 511.38,
-        "change_24h": 2.9,
+        "price": 509.48,
+        "change_24h": 3.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "KAS",
+        "name": "Kaspa",
+        "price": 0.026437,
+        "change_24h": 3.0,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.509121,
-        "change_24h": -9.7,
+        "price": 0.512857,
+        "change_24h": -8.8,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.050414,
-        "change_24h": -4.9,
+        "price": 0.050432,
+        "change_24h": -5.4,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002267,
-        "change_24h": -4.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ONDO",
-        "name": "Ondo",
-        "price": 0.347574,
-        "change_24h": -4.2,
+        "price": 0.002281,
+        "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
         "price": 1.59,
-        "change_24h": -4.2,
+        "change_24h": -4.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "MORPHO",
+        "name": "Morpho",
+        "price": 1.84,
+        "change_24h": -3.6,
         "asset": "crypto"
       }
     ]
