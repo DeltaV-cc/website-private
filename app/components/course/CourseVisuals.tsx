@@ -179,7 +179,7 @@ export function ForgePathVisual() {
         { label: '01 Open Harness', detail: 'Main entry · Hermes' },
         { label: '02 Open Design', detail: 'Decks · images · content' },
         { label: 'Labs', detail: 'After Harness Part I' },
-        { label: 'More later', detail: 'Video · x402 · new tracks' },
+        { label: 'More later', detail: 'Video Studio · Agentic Commerce' },
       ]}
     />
   );
@@ -232,11 +232,11 @@ export function HarnessLandingVisuals() {
       <TwoPartStrip
         part1Title="Your sovereign agent"
         part1Chips={['00–01 Words', '02 Runtime', '03 Desktop', '04 Soul', '05 Gateway', '06 Tools']}
-        part1Footer="Exit: Desktop + SOUL + Telegram + one tool proof"
+        part1Footer="Exit: Desktop + SOUL + gateway + one tool proof"
         part2Title="Your compounding harness"
         part2Chips={['07 Memory', '08 Vault', '09 Skills', '10 Security', '11 Cron', '12 Own']}
         part2Footer="Exit: memory, vault, skills, dials, cron runbook, backup"
-        outOfScope="Day one = Desktop local · Docker/VPS in Settings when relevant · Labs after"
+        outOfScope="Dedicated host preferred · Docker/VPS if personal PC · Labs after"
         accent1="orange"
         accent2="cyan"
       />
@@ -260,7 +260,7 @@ export function HarnessLandingVisuals() {
             accent: 'cyan',
             nodes: [
               { title: 'Desktop / CLI', subtitle: 'Local cockpit', accent: 'cyan' },
-              { title: 'Gateway', subtitle: 'Telegram pocket', accent: 'cyan' },
+              { title: 'Gateway', subtitle: 'Your messenger', accent: 'cyan' },
               { title: 'Cron', subtitle: 'Runs without you', accent: 'cyan' },
             ],
           },
@@ -270,57 +270,96 @@ export function HarnessLandingVisuals() {
   );
 }
 
-export function HarnessModuleVisual({ slug }: { slug: string }) {
+/**
+ * Module diagrams. Prefer section `visual` keys (concept first, diagram after).
+ * `variant` selects a single clarifying map; bare slug is the module default (top/mid placement).
+ */
+export function HarnessModuleVisual({
+  slug,
+  variant,
+}: {
+  slug: string;
+  variant?: string;
+}) {
+  // Section-level maps — one idea, only where the section asks for it
+  if (variant === 'lexicon-loop') {
+    return (
+      <ArchitectureFlow
+        title="Agent loop — who does each step"
+        accent="cyan"
+        steps={[
+          { label: 'Think', detail: 'LLM plans' },
+          { label: 'Act', detail: 'Harness runs tool' },
+          { label: 'Observe', detail: 'Harness → messages' },
+          { label: 'Again', detail: 'LLM thinks next' },
+        ]}
+      />
+    );
+  }
+  if (variant === 'lexicon-chat-vs-agent') {
+    return (
+      <ArchitectureDiagram
+        title="From chat to agent"
+        subtitle="Same kind of brain · different ownership"
+        layers={[
+          {
+            id: 'chat',
+            label: 'Browser chat',
+            accent: 'purple',
+            nodes: [
+              { title: 'Vendor tools & history', subtitle: 'On their servers', accent: 'purple' },
+              { title: 'Fast answers', subtitle: 'Less local control', accent: 'purple' },
+            ],
+          },
+          {
+            id: 'agent',
+            label: 'Harness on your host',
+            accent: 'orange',
+            nodes: [
+              { title: 'Your loop · your tools', subtitle: 'Think → Act → Observe', accent: 'orange' },
+              { title: 'Files · rules · receipts', subtitle: 'Open offline', accent: 'cyan' },
+            ],
+          },
+        ]}
+      />
+    );
+  }
+  if (variant === 'agency-mission') {
+    return (
+      <ArchitectureFlow
+        title="This mission end-to-end"
+        accent="cyan"
+        steps={[
+          { label: 'You ask', detail: 'Folder + plan' },
+          { label: 'Tools run', detail: 'List · write' },
+          { label: 'You gate', detail: 'Approve / deny' },
+          { label: 'Open file', detail: 'Offline proof' },
+        ]}
+      />
+    );
+  }
+
   switch (slug) {
     case '00':
       return (
         <TwoPartStrip
-          part1Title="Sovereign agent"
-          part1Chips={['Install', 'Soul', 'Gateway', 'Tools']}
-          part1Footer="Acts from your pocket"
-          part2Title="Compounding harness"
-          part2Chips={['Memory', 'Vault', 'Skills', 'Cron']}
-          part2Footer="Survives restart"
+          part1Title="Part I · Working assistant"
+          part1Chips={['Words', 'Install', 'Behaviour', 'Messages', 'File receipt']}
+          part1Footer="Lessons 00–06"
+          part2Title="Part II · Memory & routines"
+          part2Chips={['Remember', 'Notes', 'Rules', 'Scheduled job', 'Backup']}
+          part2Footer="Lessons 07–12"
           accent1="orange"
           accent2="cyan"
         />
       );
     case '01':
-      return (
-        <ArchitectureDiagram
-          title="From chat to agent"
-          subtitle="Lexicon spine"
-          layers={[
-            {
-              id: 'llm',
-              label: '01 LLM',
-              accent: 'purple',
-              nodes: [{ title: 'Next-token brain', subtitle: 'Answers only', accent: 'purple' }],
-            },
-            {
-              id: 'agent',
-              label: '02 Agent',
-              accent: 'cyan',
-              nodes: [
-                { title: '+ Tools', subtitle: 'Acts on the world', accent: 'cyan' },
-                { title: '+ Memory', subtitle: 'Survives sessions', accent: 'cyan' },
-              ],
-            },
-            {
-              id: 'harness',
-              label: '03 Harness',
-              accent: 'orange',
-              nodes: [
-                { title: 'Loop · approvals · gateway · skills', subtitle: 'What makes it yours', accent: 'orange' },
-              ],
-            },
-          ]}
-        />
-      );
+      // No pile under the title — section visuals only
+      return null;
     case '02':
       return (
         <ArchitectureDiagram
-          title="Day one vs later (same Desktop)"
+          title="Host paths (same Desktop cockpit)"
           subtitle="Advanced tabs exist — don’t configure them for Part I proofs"
           layers={[
             {
@@ -397,16 +436,16 @@ export function HarnessModuleVisual({ slug }: { slug: string }) {
         />
       );
     case '06':
+      // Section visuals via `lexicon-loop` etc.; optional mid-page default unused
       return (
         <ArchitectureFlow
-          title="Agency loop"
-          accent="orange"
+          title="Mission of the Day"
+          accent="cyan"
           steps={[
-            { label: 'You ask', detail: 'Goal' },
-            { label: 'Model plans', detail: 'Brain' },
-            { label: 'Tools run', detail: 'Hermes executes' },
-            { label: 'Approve', detail: 'Smart / manual' },
-            { label: 'File on disk', detail: 'Receipt' },
+            { label: 'You ask', detail: 'Folder + plan' },
+            { label: 'Tools run', detail: 'List · write' },
+            { label: 'You gate', detail: 'Approve / deny' },
+            { label: 'Open file', detail: 'Offline proof' },
           ]}
         />
       );
@@ -526,21 +565,14 @@ export function HarnessModuleVisual({ slug }: { slug: string }) {
 
 export function LabsLandingVisual() {
   return (
-    <CompareTwoPanel
-      leftTitle="Mastery"
-      leftAccent="orange"
-      leftItems={[
-        { t: 'Install · SOUL · gateway', d: 'Full pedagogy' },
-        { t: 'Memory · vault · cron', d: 'Required proofs' },
+    <ArchitectureFlow
+      title="Three layers"
+      accent="orange"
+      steps={[
+        { label: 'Mastery', detail: 'Teach · proofs · install first' },
+        { label: 'Labs', detail: 'Drills · artifacts after Part I' },
+        { label: 'Skills', detail: 'Curated packages · enable few' },
       ]}
-      leftFooter="Do this first"
-      rightTitle="Labs"
-      rightAccent="cyan"
-      rightItems={[
-        { t: 'Assumes Hermes runs', d: 'No second install' },
-        { t: 'Drill → artifact', d: 'spend-log · keys-audit · …' },
-      ]}
-      rightFooter="After Part I (often Part II)"
     />
   );
 }
@@ -568,18 +600,6 @@ export function LabVisual({ slug }: { slug: string }) {
           { label: 'Cheap task', detail: 'Compare' },
           { label: 'Tighten cron', detail: 'Runbook' },
           { label: 'Cut toolset', detail: 'Or justify' },
-        ]}
-      />
-    ),
-    'grok-wire': (
-      <ArchitectureFlow
-        title="Add provider"
-        accent="cyan"
-        steps={[
-          { label: 'Hermes works', detail: 'Prereq' },
-          { label: 'Add Grok', detail: 'Key / OAuth' },
-          { label: 'GROK_OK', detail: 'Smoke' },
-          { label: 'Imagine', detail: '→ Design later' },
         ]}
       />
     ),
@@ -695,7 +715,7 @@ export function LabVisual({ slug }: { slug: string }) {
   return <div className="my-6">{map[slug] ?? null}</div>;
 }
 
-/* ─── Open Video ──────────────────────────────────────── */
+/* ─── AI Video Studio ─────────────────────────────────── */
 
 export function VideoLandingVisuals() {
   return (
@@ -708,7 +728,7 @@ export function VideoLandingVisuals() {
           { t: 'Success', d: 'File opens · brand matches' },
         ]}
         leftFooter="Course 02"
-        rightTitle="Open Video (motion)"
+        rightTitle="AI Video Studio (motion)"
         rightAccent="orange"
         rightItems={[
           { t: 'Timeline · render', d: 'Minutes per iteration' },

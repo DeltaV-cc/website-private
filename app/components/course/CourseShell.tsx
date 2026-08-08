@@ -65,7 +65,11 @@ export function CourseToc({
   return (
     <nav
       aria-label={t(UI_COPY.modules, lang)}
-      className={compact ? '' : 'course-toc sticky top-24'}
+      className={
+        compact
+          ? ''
+          : 'course-toc course-toc--scroll sticky top-24 max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-y-contain'
+      }
     >
       <div className="eyebrow text-[var(--accent-orange)] mb-4">{t(UI_COPY.syllabus, lang)}</div>
       <div className="space-y-5">
@@ -106,7 +110,13 @@ export function CourseToc({
           </div>
         ))}
       </div>
-      <div className="mt-5 pt-4 border-t border-[var(--border-default)]">
+      <div className="mt-5 pt-4 border-t border-[var(--border-default)] space-y-2">
+        <Link
+          href="/forge/course/open-harness/glossary/"
+          className="block text-xs text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
+        >
+          {t(UI_COPY.glossary, lang)} →
+        </Link>
         <Link
           href="/forge/course/open-harness/labs/"
           className="block text-xs text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
@@ -272,7 +282,7 @@ function CoursePageChromeInner({
               Syllabus
               <span className="text-[var(--text-muted)]">tap</span>
             </summary>
-            <div className="mt-4 max-h-[50vh] overflow-y-auto">
+            <div className="mt-4 max-h-[50vh] overflow-y-auto overscroll-y-contain">
               <CourseToc activeSlug={activeSlug} lang={lang} compact />
             </div>
           </details>
@@ -303,12 +313,34 @@ export function CourseLandingBody() {
         </p>
         <div className="mt-5 relative rounded-xl border border-[var(--accent-orange)]/30 bg-[var(--bg-surface)] px-4 py-3 max-w-2xl">
           <div className="font-mono text-[10px] tracking-[2px] uppercase text-[var(--accent-orange)]">
-            Desktop only
+            What you need
           </div>
           <p className="mt-1 text-sm text-[var(--text-secondary)] leading-relaxed">
-            Download <strong className="text-[var(--text-primary)] font-medium">Hermes Desktop</strong>.
-            Day one is local Desktop. Docker, remote providers, and always-on hosts appear in Settings
-            when relevant — after chat works. UI labels follow official docs and will move.
+            Prefer a{' '}
+            <strong className="text-[var(--text-primary)] font-medium">dedicated machine</strong>{' '}
+            (spare PC or VPS) — not the laptop you bank and work on every day. Internet for install +
+            models, about one hour for the first lessons. You install{' '}
+            <strong className="text-[var(--text-primary)] font-medium">Hermes Desktop</strong> and may
+            connect free models through{' '}
+            <a
+              href="https://openrouter.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent-orange)] hover:underline"
+            >
+              OpenRouter
+            </a>{' '}
+            and/or{' '}
+            <a
+              href="https://opencode.ai/auth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent-orange)] hover:underline"
+            >
+              OpenCode
+            </a>
+            . Cloud models send conversation content to model hosts. If you only have a personal
+            machine, isolate tools with Docker or use a VPS (lesson 02). No coding degree required.
           </p>
         </div>
         <div className="mt-6 relative max-w-2xl">
@@ -320,31 +352,34 @@ export function CourseLandingBody() {
           />
         </div>
         <div className="mt-6 flex flex-wrap gap-3 relative">
-          <a
-            href={HERMES_DESKTOP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button-primary"
-          >
-            {t(UI_COPY.downloadDesktop, lang)} <span aria-hidden>↗</span>
-          </a>
           <ResumeCourseLink
             courseId="open-harness"
             orderedSlugs={HARNESS_SLUGS}
             basePath="/forge/course/open-harness/"
-            className="button-secondary"
+            className="button-primary"
             startLabel={t(UI_COPY.start, lang)}
-            continueLabel="Continue"
+            continueLabel="Continue where I left off"
           />
-          <Link href="/forge/course/open-harness/07/" className="button-secondary">
-            {t(UI_COPY.startPart2, lang)}
-          </Link>
-          <Link href="/forge/course/open-design/" className="button-secondary">
-            Open Design
-          </Link>
+          <a
+            href={HERMES_DESKTOP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-secondary"
+          >
+            {t(UI_COPY.downloadDesktop, lang)} <span aria-hidden>↗</span>
+          </a>
         </div>
-        <p className="mt-4 text-xs text-[var(--text-tertiary)] relative max-w-2xl">
-          Fast path: 02 → 03 install → 04–06. Full path from 00 if you want the lexicon first.
+        <p className="mt-4 text-sm text-[var(--text-secondary)] relative max-w-2xl leading-relaxed">
+          <strong className="text-[var(--text-primary)] font-medium">New here?</strong> Press
+          “Start from the beginning” — lesson 00, then the word cards, then install. Skip nothing
+          until chat works.
+        </p>
+        <p className="mt-2 text-xs text-[var(--text-tertiary)] relative max-w-2xl">
+          Already comfortable with install? Jump to{' '}
+          <Link href="/forge/course/open-harness/03/" className="underline hover:text-[var(--text-secondary)]">
+            lesson 03
+          </Link>
+          . Part II and Labs wait until after Part I.
         </p>
       </header>
 
@@ -365,8 +400,8 @@ export function CourseLandingBody() {
           The course has two parts
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-[var(--text-secondary)] leading-relaxed">
-          Finish Part I first (Desktop default). Part II assumes Hermes is running, has a soul, and can
-          talk from Telegram.
+          Do Part I first. Part II only makes sense once the app chats, has a personality file, and
+          can reach you on a messaging surface you trust.
         </p>
         <div className="mt-8 grid md:grid-cols-2 gap-px border border-[var(--border-default)] bg-[var(--border-default)]">
           {OPEN_HARNESS_PARTS.map((part) => {
@@ -420,28 +455,77 @@ export function CourseLandingBody() {
         <h2 id="outcomes-heading" className="text-2xl font-semibold tracking-tight">
           {t(UI_COPY.outcomes, lang)}
         </h2>
+        <p className="mt-3 max-w-2xl text-sm text-[var(--text-secondary)] leading-relaxed">
+          Real capabilities on a host you control — not jargon. After each part you should feel the
+          difference, with clear eyes about isolation and cloud data.
+        </p>
         <div className="mt-6 grid md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-[var(--border-default)] bg-[var(--surface-card)] p-5">
             <div className="font-mono text-[10px] tracking-[2px] uppercase text-[var(--accent-orange)]">
               After Part I
             </div>
-            <ul className="mt-3 space-y-2 text-sm text-[var(--text-secondary)]">
-              <li>· Hermes Desktop on your PC</li>
-              <li>· SOUL.md in Hermes home</li>
-              <li>· One real tool task + file receipt</li>
-              <li>· Telegram gateway with allowlist</li>
+            <ul className="mt-3 space-y-3 text-sm text-[var(--text-secondary)] leading-relaxed">
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">Your own AI app on a host you chose</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Dedicated machine preferred — free cloud models to start, with content leaving the box.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">An assistant that behaves as you defined</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Tone, role, and hard limits you can open and change anytime.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">Work that leaves a real file</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Not only chat text — a document you can open offline and keep.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">Help from your phone, privately</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Message it from an app you already use; only you can talk to it.
+                </span>
+              </li>
             </ul>
           </div>
           <div className="rounded-xl border border-[var(--border-default)] bg-[var(--surface-card)] p-5">
             <div className="font-mono text-[10px] tracking-[2px] uppercase text-[var(--accent-cyan)]">
               After Part II
             </div>
-            <ul className="mt-3 space-y-2 text-sm text-[var(--text-secondary)]">
-              <li>· Memory on disk (and the next-session gotcha)</li>
-              <li>· Obsidian vault retrieval proof</li>
-              <li>· Skills + security dials</li>
-              <li>· Cron written as a full runbook</li>
-              <li>· Backup paths known</li>
+            <ul className="mt-3 space-y-3 text-sm text-[var(--text-secondary)] leading-relaxed">
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">It remembers what matters to you</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Preferences and project facts still there next week — not a blank chat.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">Your notes stay searchable</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  A personal knowledge folder the assistant can use, still yours offline.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">You decide how far it may go</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Clear yes/no rules before risky actions — no “trust me” black box.
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">Routine work can run without you staring</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  One scheduled job you wrote as a checklist (brief, backup reminder, …).
+                </span>
+              </li>
+              <li>
+                <span className="font-medium text-[var(--text-primary)]">You know how to take it with you</span>
+                <span className="block text-[var(--text-tertiary)]">
+                  Which folders to copy so nothing important lives only in a cloud tab.
+                </span>
+              </li>
             </ul>
           </div>
         </div>

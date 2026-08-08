@@ -15,6 +15,7 @@ import {
   writeDesignPrereqOk,
   type CourseProgressId,
 } from '@/lib/course-progress';
+import { formatCourseText } from '@/app/components/course/formatCourseText';
 
 /* ─── Privacy (local-only) ─────────────────────────────── */
 
@@ -286,7 +287,9 @@ export function InteractiveChecklist({
                 >
                   {on ? '✓' : mode === 'steps' ? String(i + 1).padStart(2, '0') : ''}
                 </span>
-                <span className={on ? 'text-[var(--text-tertiary)]' : ''}>{item}</span>
+                <span className={on ? 'text-[var(--text-tertiary)]' : 'text-[var(--text-secondary)]'}>
+                  {formatCourseText(item)}
+                </span>
               </button>
             </li>
           );
@@ -296,12 +299,90 @@ export function InteractiveChecklist({
   );
 }
 
+/* ─── Retrieval quiz (shuffled equal options) ──────────── */
+
+function shuffleCopy<T>(arr: T[]): T[] {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export function CourseQuizBlock({
+  question,
+  options,
+  correct,
+  explain,
+  label = 'Check yourself',
+}: {
+  question: string;
+  options: string[];
+  correct: string;
+  explain: string;
+  label?: string;
+}) {
+  // SSR uses given order; shuffle once after mount (stable key) to avoid hydration mismatch.
+  const optionsKey = options.join('\0');
+  const [order, setOrder] = useState(options);
+  const [picked, setPicked] = useState<string | null>(null);
+
+  useEffect(() => {
+    setOrder(shuffleCopy(options));
+    setPicked(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reshuffle only when option set changes
+  }, [optionsKey]);
+
+  const answered = picked !== null;
+  const ok = picked === correct;
+
+  return (
+    <div className="course-quiz mt-5 max-w-2xl">
+      <div className="mb-2 font-mono text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)]">
+        {label}
+      </div>
+      <p className="text-sm font-medium text-[var(--text-primary)] leading-snug">{question}</p>
+      <div className="mt-3 space-y-2">
+        {order.map((opt) => {
+          let cls = 'course-quiz-opt';
+          if (answered) {
+            if (opt === correct) cls += ' is-correct';
+            else if (opt === picked) cls += ' is-wrong';
+            else cls += ' is-dim';
+          }
+          return (
+            <button
+              key={opt}
+              type="button"
+              className={cls}
+              disabled={answered}
+              onClick={() => setPicked(opt)}
+            >
+              {opt}
+            </button>
+          );
+        })}
+      </div>
+      {answered && (
+        <p
+          className={`mt-3 text-sm leading-relaxed ${ok ? 'text-[var(--accent-green)]' : 'text-[var(--accent-cyan)]'}`}
+        >
+          {ok ? 'Correct. ' : 'Not quite. '}
+          {explain}
+        </p>
+      )}
+    </div>
+  );
+}
+
 /* ─── Mastery | Labs tabs ──────────────────────────────── */
 
-export function HarnessCourseTabs({ active }: { active: 'mastery' | 'labs' }) {
+export function HarnessCourseTabs({ active }: { active: 'mastery' | 'labs' | 'glossary' }) {
   const tabs = [
     { id: 'mastery' as const, href: '/forge/course/open-harness/', label: 'Mastery' },
-    { id: 'labs' as const, href: '/forge/course/open-harness/labs/', label: 'Labs' },
+    { id: 'labs' as const, href: '/forge/course/open-harness/labs/', label: 'Labs & skills' },
+    { id: 'glossary' as const, href: '/forge/course/open-harness/glossary/', label: 'Glossary' },
   ];
   return (
     <div className="course-segmented" role="tablist" aria-label="Open Harness sections">

@@ -744,3 +744,266 @@ body {
 .course-check-item--step.is-on .course-check-box {
   font-size: 0.75rem;
 }
+
+/* ── Course tables / prose (teach→Forge) ── */
+.course-reading {
+  max-width: 42rem;
+}
+/* Course tables — clear grid for scanning */
+.course-table-wrap {
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+.course-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.course-table th,
+.course-table td {
+  border-bottom: 1px solid var(--border-default);
+  border-right: 1px solid color-mix(in srgb, var(--border-default) 85%, transparent);
+  vertical-align: top;
+}
+.course-table th:last-child,
+.course-table td:last-child {
+  border-right: 0;
+}
+.course-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.course-table thead tr {
+  background: var(--surface-card);
+}
+.course-table th {
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.course-table td {
+  color: var(--text-secondary);
+}
+/* First column = row labels — scan anchors */
+.course-table td:first-child {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.course-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--surface-card) 55%, transparent);
+}
+
+/* Inline emphasis from **bold** in course strings */
+.course-em {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.course-prose p,
+.course-prose li {
+  color: var(--text-secondary);
+}
+
+/* Light: stronger table rails + denser body for reading */
+html[data-theme='light'] .course-table-wrap {
+  border-color: #94a3b8;
+  border-width: 1.5px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+html[data-theme='light'] .course-table th,
+html[data-theme='light'] .course-table td {
+  border-bottom-color: #cbd5e1;
+  border-right-color: #d8dee6;
+}
+html[data-theme='light'] .course-table thead tr {
+  background: #e8edf3;
+}
+html[data-theme='light'] .course-table th {
+  color: #0f172a;
+  border-bottom: 2px solid #94a3b8;
+}
+html[data-theme='light'] .course-table td {
+  color: rgba(15, 23, 42, 0.84);
+}
+html[data-theme='light'] .course-table td:first-child {
+  color: #0f172a;
+  background: color-mix(in srgb, #e8edf3 70%, #ffffff);
+}
+html[data-theme='light'] .course-table tbody tr:nth-child(even) td {
+  background: #f4f6f9;
+}
+html[data-theme='light'] .course-table tbody tr:nth-child(even) td:first-child {
+  background: #e8edf3;
+}
+html[data-theme='light'] .course-prose p,
+html[data-theme='light'] .course-prose li {
+  color: rgba(15, 23, 42, 0.86);
+}
+html[data-theme='light'] .course-prose .course-em {
+  color: #0f172a;
+  font-weight: 700;
+}
+.course-em {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.course-prose p,
+.course-prose li {
+  color: var(--text-secondary);
+}
+
+/* Light: stronger table rails + denser body for reading */
+html[data-theme='light'] .course-table-wrap {
+  border-color: #94a3b8;
+  border-width: 1.5px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+html[data-theme='light'] .course-table th,
+html[data-theme='light'] .course-table td {
+  border-bottom-color: #cbd5e1;
+  border-right-color: #d8dee6;
+}
+html[data-theme='light'] .course-table thead tr {
+  background: #e8edf3;
+}
+html[data-theme='light'] .course-table th {
+  color: #0f172a;
+  border-bottom: 2px solid #94a3b8;
+}
+html[data-theme='light'] .course-table td {
+  color: rgba(15, 23, 42, 0.84);
+}
+html[data-theme='light'] .course-table td:first-child {
+  color: #0f172a;
+  background: color-mix(in srgb, #e8edf3 70%, #ffffff);
+}
+html[data-theme='light'] .course-table tbody tr:nth-child(even) td {
+  background: #f4f6f9;
+}
+html[data-theme='light'] .course-table tbody tr:nth-child(even) td:first-child {
+  background: #e8edf3;
+}
+html[data-theme='light'] .course-prose p,
+html[data-theme='light'] .course-prose li {
+  color: rgba(15, 23, 42, 0.86);
+}
+html[data-theme='light'] .course-prose .course-em {
+  color: #0f172a;
+  font-weight: 700;
+}
+/* ── /teach integration: who-steps, remember, quizzes ── */
+/* /teach integration: who-steps, remember, win-when, primary sources */
+.course-who-steps {
+  display: grid;
+  gap: 0.5rem;
+}
+.course-who-step {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.65rem;
+  background: var(--surface-card);
+}
+.course-who-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  padding-top: 0.15rem;
+  line-height: 1.35;
+}
+.course-who-body {
+  min-width: 0;
+}
+.course-remember {
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--accent-orange);
+  border-radius: 0.65rem;
+  background: var(--surface-card);
+  padding: 0.85rem 1rem;
+}
+.course-win-when {
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--accent-orange);
+  border-radius: 0.65rem;
+  background: var(--surface-card);
+  padding: 0.85rem 1rem;
+}
+.course-primary-sources {
+  border: 1px solid var(--border-default);
+  border-radius: 0.65rem;
+  background: var(--bg-surface);
+  padding: 0.85rem 1rem;
+}
+.course-citations {
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .course-who-step {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+html[data-theme='light'] .course-who-step,
+html[data-theme='light'] .course-remember,
+html[data-theme='light'] .course-win-when {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+html[data-theme='light'] .course-primary-sources {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Retrieval quizzes (from /teach steal list) */
+.course-quiz {
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  background: var(--surface-card);
+  padding: 1rem 1.1rem;
+}
+.course-quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-default);
+  background: var(--bg-deep);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.course-quiz-opt:hover:not(:disabled) {
+  border-color: var(--accent-orange);
+  color: var(--text-primary);
+}
+.course-quiz-opt:disabled {
+  cursor: default;
+}
+.course-quiz-opt.is-correct {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+.course-quiz-opt.is-wrong {
+  border-color: #ef8b8b;
+  color: #ef8b8b;
+}
+.course-quiz-opt.is-dim {
+  opacity: 0.55;
+}
+html[data-theme='light'] .course-quiz {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+html[data-theme='light'] .course-quiz-opt {
+  background: #fff;
+  border-color: #cbd5e1;
+  color: rgba(15, 23, 42, 0.86);
+}
+
