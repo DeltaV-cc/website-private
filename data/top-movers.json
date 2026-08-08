@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T07:00:22Z",
+  "updated_at": "2026-08-08T07:15:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.12,
-        "change_24h": 11.3,
+        "price": 2.11,
+        "change_24h": 6.5,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 92.96,
-        "change_24h": 4.9,
+        "price": 93.42,
+        "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.092405,
-        "change_24h": 4.3,
+        "price": 0.093229,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.091234,
-        "change_24h": 4.2,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.091598,
+        "change_24h": 4.0,
         "asset": "crypto"
       },
       {
-        "symbol": "KAS",
-        "name": "Kaspa",
-        "price": 0.026443,
-        "change_24h": 3.9,
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.306799,
+        "change_24h": 3.6,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.508634,
-        "change_24h": -7.9,
-        "asset": "crypto"
-      },
-      {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.047858,
-        "change_24h": -5.8,
+        "price": 0.047879,
+        "change_24h": -9.5,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.00228,
-        "change_24h": -3.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.59,
-        "change_24h": -3.0,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.508739,
+        "change_24h": -8.1,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.2,
+        "price": 11.21,
+        "change_24h": -3.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.08716,
         "change_24h": -2.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.007,
+        "change_24h": -2.7,
         "asset": "crypto"
       }
     ]
