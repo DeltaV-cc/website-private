@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T14:01:07Z",
+  "updated_at": "2026-08-08T14:16:13Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.65,
+        "price": 2.64,
         "change_24h": 21.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.39,
+        "price": 93.36,
         "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.4,
+        "price": 1.39,
         "change_24h": 3.9,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.429357,
+        "price": 0.429022,
         "change_24h": 3.6,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.091252,
+        "price": 0.091151,
         "change_24h": 3.3,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048675,
+        "price": 0.048861,
         "change_24h": -8.7,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.090815,
+        "price": 0.090654,
         "change_24h": -5.3,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.33,
+        "price": 2.35,
         "change_24h": -4.3,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.22,
+        "price": 11.2,
         "change_24h": -3.6,
         "asset": "crypto"
       }
