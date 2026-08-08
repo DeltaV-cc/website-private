@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T13:16:07Z",
+  "updated_at": "2026-08-08T13:31:05Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.61,
+        "price": 2.62,
         "change_24h": 13.5,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.75,
+        "price": 93.55,
         "change_24h": 6.3,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.429735,
+        "price": 0.428998,
         "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.092278,
+        "price": 0.092233,
         "change_24h": 3.7,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048544,
+        "price": 0.048641,
         "change_24h": -8.9,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.090924,
+        "price": 0.090827,
         "change_24h": -5.9,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.511236,
+        "price": 0.513244,
         "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.68,
+        "price": 54.43,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.22,
+        "price": 11.21,
         "change_24h": -3.5,
         "asset": "crypto"
       }
