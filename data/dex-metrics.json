@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T10:04:15Z",
+  "updated_at": "2026-08-08T12:04:24Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1252,15 +1252,15 @@
     },
     {
       "week": "2026-W31",
-      "curated": 47775633006.56001,
-      "filtered": 47775633006.56001,
-      "raw": 47775633006.56001
+      "curated": 48487592054.56001,
+      "filtered": 48487592054.56001,
+      "raw": 48487592054.56001
     },
     {
       "week": "2026-W32",
-      "curated": 40149044585.43001,
-      "filtered": 40149044585.43001,
-      "raw": 40149044585.43001
+      "curated": 40496256443.869995,
+      "filtered": 40496256443.869995,
+      "raw": 40496256443.869995
     }
   ],
   "chains": [
@@ -1270,14 +1270,14 @@
       "delta_pct": 11.74
     },
     {
-      "chain": "Raydium AMM",
-      "volume_24h": 74743533.0,
-      "delta_pct": -20.3
-    },
-    {
       "chain": "PancakeSwap AMM",
       "volume_24h": 74463573.0,
       "delta_pct": 15.31
+    },
+    {
+      "chain": "Raydium AMM",
+      "volume_24h": 73928505.0,
+      "delta_pct": -21.17
     },
     {
       "chain": "Quickswap Dex",
@@ -1285,24 +1285,24 @@
       "delta_pct": 33.41
     },
     {
+      "chain": "Curve DEX",
+      "volume_24h": 16909771.0,
+      "delta_pct": -84.76
+    },
+    {
       "chain": "DODO AMM",
       "volume_24h": 15990276.0,
       "delta_pct": 136.94
     },
     {
-      "chain": "Curve DEX",
-      "volume_24h": 15483928.0,
-      "delta_pct": -86.04
-    },
-    {
       "chain": "Integral",
-      "volume_24h": 1021974.0,
-      "delta_pct": 3.64
+      "volume_24h": 986336.0,
+      "delta_pct": 0.03
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 377786.0,
-      "delta_pct": -33.8
+      "volume_24h": 378664.0,
+      "delta_pct": -33.65
     },
     {
       "chain": "Defi Swap",
@@ -1311,18 +1311,18 @@
     },
     {
       "chain": "Bancor V2.1",
-      "volume_24h": 48236.0,
-      "delta_pct": 28.66
+      "volume_24h": 46450.0,
+      "delta_pct": 23.9
     },
     {
       "chain": "Balancer V1",
-      "volume_24h": 39988.0,
-      "delta_pct": 32.86
+      "volume_24h": 40714.0,
+      "delta_pct": 35.27
     },
     {
       "chain": "Nerve",
-      "volume_24h": 36285.0,
-      "delta_pct": 87.51
+      "volume_24h": 37685.0,
+      "delta_pct": 94.74
     }
   ]
 }
