@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T07:45:15Z",
+  "updated_at": "2026-08-08T08:00:23Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.05,
+        "price": 92.81,
         "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.090699,
+        "price": 0.09081,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.091555,
+        "price": 0.091746,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.306098,
+        "price": 0.30605,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.047912,
+        "price": 0.046345,
         "change_24h": -9.5,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.506633,
+        "price": 0.507735,
         "change_24h": -8.1,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.21,
+        "price": 11.2,
         "change_24h": -3.3,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.087134,
+        "price": 0.087131,
         "change_24h": -2.8,
         "asset": "crypto"
       },
