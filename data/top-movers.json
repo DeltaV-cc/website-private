@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T12:16:04Z",
+  "updated_at": "2026-08-08T12:31:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.49,
+        "price": 2.56,
         "change_24h": 12.3,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.47,
+        "price": 93.53,
         "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.091935,
+        "price": 0.091692,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.0928,
+        "price": 0.092455,
         "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.4,
+        "price": 1.39,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048012,
+        "price": 0.048342,
         "change_24h": -8.4,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.090824,
+        "price": 0.090906,
         "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.512538,
+        "price": 0.513678,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 54.45,
+        "price": 54.5,
         "change_24h": -4.0,
         "asset": "crypto"
       },
