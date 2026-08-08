@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T06:16:07Z",
+  "updated_at": "2026-08-08T06:31:08Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.15,
+        "price": 2.12,
         "change_24h": 11.3,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 93.05,
+        "price": 92.86,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.091467,
+        "price": 0.092371,
         "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.091711,
+        "price": 0.091727,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.026425,
+        "price": 0.026436,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.511213,
+        "price": 0.509066,
         "change_24h": -7.9,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049805,
+        "price": 0.049324,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002293,
+        "price": 0.002288,
         "change_24h": -3.2,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.6,
+        "price": 1.59,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.22,
+        "price": 11.21,
         "change_24h": -2.8,
         "asset": "crypto"
       }
