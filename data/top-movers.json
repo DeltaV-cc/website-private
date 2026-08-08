@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T03:01:13Z",
+  "updated_at": "2026-08-08T03:16:03Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.236959,
-        "change_24h": 26.6,
+        "price": 0.234231,
+        "change_24h": 37.9,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 92.88,
-        "change_24h": 7.9,
+        "price": 93.44,
+        "change_24h": 8.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BEAT",
+        "name": "Audiera",
+        "price": 2.13,
+        "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.092688,
-        "change_24h": 3.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "KAS",
-        "name": "Kaspa",
-        "price": 0.026468,
-        "change_24h": 3.2,
+        "price": 0.092737,
+        "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 381.17,
-        "change_24h": 3.0,
+        "price": 380.32,
+        "change_24h": 3.3,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.512356,
-        "change_24h": -7.7,
+        "price": 0.516306,
+        "change_24h": -7.1,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002257,
-        "change_24h": -5.4,
+        "price": 0.002262,
+        "change_24h": -5.1,
         "asset": "crypto"
       },
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.32,
-        "change_24h": -3.8,
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.050486,
+        "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
         "price": 1.59,
-        "change_24h": -3.8,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.050707,
-        "change_24h": -3.6,
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.090078,
+        "change_24h": -3.4,
         "asset": "crypto"
       }
     ]
