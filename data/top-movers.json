@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T15:45:17Z",
+  "updated_at": "2026-08-08T16:02:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.72,
-        "change_24h": 25.0,
+        "price": 2.73,
+        "change_24h": 29.8,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
         "price": 93.73,
-        "change_24h": 6.9,
+        "change_24h": 6.4,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.702815,
-        "change_24h": 4.8,
+        "price": 0.700285,
+        "change_24h": 5.0,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.091028,
-        "change_24h": 3.9,
+        "symbol": "APT",
+        "name": "Aptos",
+        "price": 0.610935,
+        "change_24h": 4.4,
         "asset": "crypto"
       },
       {
-        "symbol": "KAS",
-        "name": "Kaspa",
-        "price": 0.026838,
-        "change_24h": 3.5,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 383.81,
+        "change_24h": 4.0,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049139,
-        "change_24h": -8.0,
+        "price": 0.049167,
+        "change_24h": -7.5,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.28,
-        "change_24h": -6.0,
+        "price": 2.27,
+        "change_24h": -6.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.092281,
+        "change_24h": -4.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.101871,
-        "change_24h": -4.0,
+        "price": 0.101605,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.091379,
-        "change_24h": -3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.52132,
-        "change_24h": -2.7,
+        "price": 0.091441,
+        "change_24h": -3.0,
         "asset": "crypto"
       }
     ]
