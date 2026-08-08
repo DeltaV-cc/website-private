@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T01:04:48Z",
+  "updated_at": "2026-08-08T02:04:35Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1258,16 +1258,16 @@
     },
     {
       "week": "2026-W32",
-      "curated": 38805228325.68,
-      "filtered": 38805228325.68,
-      "raw": 38805228325.68
+      "curated": 40565530726.68,
+      "filtered": 40565530726.68,
+      "raw": 40565530726.68
     }
   ],
   "chains": [
     {
       "chain": "Orca DEX",
-      "volume_24h": 108703878.0,
-      "delta_pct": 20.96
+      "volume_24h": 108072713.0,
+      "delta_pct": 20.26
     },
     {
       "chain": "Curve DEX",
@@ -1276,8 +1276,8 @@
     },
     {
       "chain": "Raydium AMM",
-      "volume_24h": 90841775.0,
-      "delta_pct": -3.13
+      "volume_24h": 90741485.0,
+      "delta_pct": -3.24
     },
     {
       "chain": "PancakeSwap AMM",
@@ -1285,14 +1285,14 @@
       "delta_pct": 15.31
     },
     {
+      "chain": "Quickswap Dex",
+      "volume_24h": 18237617.0,
+      "delta_pct": 33.41
+    },
+    {
       "chain": "DODO AMM",
       "volume_24h": 15990276.0,
       "delta_pct": 136.94
-    },
-    {
-      "chain": "Quickswap Dex",
-      "volume_24h": 13670172.0,
-      "delta_pct": 0.0
     },
     {
       "chain": "Integral",
