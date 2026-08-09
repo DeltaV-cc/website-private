@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T13:00:25Z",
+  "updated_at": "2026-08-09T18:55:41Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.34,
-        "change_24h": 35.7,
+        "price": 3.62,
+        "change_24h": 35.5,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002599,
-        "change_24h": 12.0,
+        "price": 0.002699,
+        "change_24h": 12.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098278,
-        "change_24h": 9.3,
+        "price": 0.098715,
+        "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 206.28,
-        "change_24h": 5.0,
+        "price": 207.39,
+        "change_24h": 4.5,
         "asset": "crypto"
       },
       {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 521.81,
-        "change_24h": 4.8,
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.84,
+        "change_24h": 4.4,
         "asset": "crypto"
       }
     ],
@@ -119,14 +119,21 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.087191,
-        "change_24h": -3.9,
+        "price": 0.087024,
+        "change_24h": -4.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.048211,
+        "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.12,
+        "price": 1.11,
         "change_24h": -2.7,
         "asset": "crypto"
       },
@@ -138,16 +145,9 @@
         "asset": "crypto"
       },
       {
-        "symbol": "ARB",
-        "name": "Arbitrum",
-        "price": 0.077559,
-        "change_24h": -2.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "GRAM",
-        "name": "Gram (prev. Toncoin)",
-        "price": 1.34,
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.032499,
         "change_24h": -2.0,
         "asset": "crypto"
       }
