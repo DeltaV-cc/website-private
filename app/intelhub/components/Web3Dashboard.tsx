@@ -14,6 +14,7 @@ import NetFlowsPanel from './NetFlowsPanel';
 import BoldYieldsPanel from './BoldYieldsPanel';
 import { defillamaChainUrl, defillamaProtocolUrl, web3EntityLink } from '@/lib/entity-links';
 import CypherpunkFeed from './CypherpunkFeed';
+import { blogIndex } from '@/app/data/content-index';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
 
@@ -21,9 +22,25 @@ function fmtBig(n: number): string { return fmtCurrency(n); }
 function ArtemisWeeklyCard({ dd }: { dd: any }) {
   const nl = dd?.artemisNewsletter;
   const latest = nl?.latest_weekly;
-  if (!latest) return null;
 
-  const date = latest.date ? new Date(latest.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+  // Latest Delta V-published brief from the site's content index (SSOT).
+  // This is what keeps the dashboard in sync with the blog: when we publish
+  // a new Weekly Delta Financial Brief, the content-index PR makes it appear
+  // here automatically. Falls back to the raw Artemis edition if no brief
+  // has been published yet.
+  const deltaBrief = blogIndex.find(
+    (e) => e.domain === 'Weekly Delta Financial Brief'
+  );
+
+  const title = deltaBrief?.title || latest?.title;
+  const excerpt = (deltaBrief?.excerpt || latest?.excerpt || '').slice(0, 160);
+  const href = deltaBrief?.href || latest?.link;
+  const isDelta = Boolean(deltaBrief);
+  const date = (deltaBrief?.date || latest?.date)
+    ? new Date(deltaBrief?.date || latest?.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+
+  if (!latest && !deltaBrief) return null;
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
@@ -35,24 +52,33 @@ function ArtemisWeeklyCard({ dd }: { dd: any }) {
           </svg>
           <span className="text-xs text-[var(--accent-gold)] uppercase tracking-[1.5px] font-bold">DeFi Weekly</span>
           {date && <span className="text-[10px] text-[var(--text-muted)]">· {date}</span>}
+          {isDelta && <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">Delta V Brief</span>}
         </div>
       </div>
       <div className="p-5">
-        <a href={latest.link} target="_blank" rel="noopener noreferrer"
+        <a href={href} target={isDelta ? undefined : '_blank'} rel={isDelta ? undefined : 'noopener noreferrer'}
           className="text-lg font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors leading-snug block mb-2">
-          {latest.title}
+          {title}
         </a>
         <p className="text-sm text-[var(--text-tertiary)] leading-relaxed mb-3 line-clamp-3">
-          {latest.excerpt}
+          {excerpt}
         </p>
         <div className="flex items-center justify-between">
-          {latest.author && <span className="text-[10px] text-[var(--text-muted)]">by {latest.author}</span>}
-          <a href={latest.link} target="_blank" rel="noopener noreferrer"
+          {latest?.author && <span className="text-[10px] text-[var(--text-muted)]">source: {latest.author}</span>}
+          <a href={href} target={isDelta ? undefined : '_blank'} rel={isDelta ? undefined : 'noopener noreferrer'}
             className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent-gold)] hover:underline">
-            Read edition
+            {isDelta ? 'Read the brief' : 'Read edition'}
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </div>
+        {isDelta && latest?.link && (
+          <div className="mt-3 pt-3 border-t border-[var(--border-default)]">
+            <a href={latest.link} target="_blank" rel="noopener noreferrer"
+              className="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              Artemis source edition ↗
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
