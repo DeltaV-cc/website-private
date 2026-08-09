@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T17:15:49Z",
+  "updated_at": "2026-08-09T09:05:42Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.66,
-        "change_24h": 37.1,
+        "price": 3.22,
+        "change_24h": 50.7,
         "asset": "crypto"
       },
       {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 93.44,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002513,
+        "change_24h": 10.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.098815,
+        "change_24h": 8.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.048681,
+        "change_24h": 5.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "TAO",
+        "name": "Bittensor",
+        "price": 206.28,
         "change_24h": 4.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 385.02,
-        "change_24h": 4.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 1.93,
-        "change_24h": 4.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SUI",
-        "name": "Sui",
-        "price": 0.697135,
-        "change_24h": 3.9,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.049819,
-        "change_24h": -6.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.28,
-        "change_24h": -4.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 11.23,
-        "change_24h": -4.3,
-        "asset": "crypto"
-      },
-      {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.090606,
-        "change_24h": -4.3,
+        "price": 0.087705,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
-        "symbol": "JST",
-        "name": "JUST",
-        "price": 0.101351,
-        "change_24h": -4.0,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.12,
+        "change_24h": -3.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.001,
+        "change_24h": -2.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.089874,
+        "change_24h": -2.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.348058,
+        "change_24h": -1.9,
         "asset": "crypto"
       }
     ]
