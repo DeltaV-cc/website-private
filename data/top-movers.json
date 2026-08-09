@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T10:30:44Z",
+  "updated_at": "2026-08-09T10:45:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.22,
+        "price": 3.2,
         "change_24h": 42.6,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.097086,
+        "price": 0.096503,
         "change_24h": 9.1,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002526,
+        "price": 0.002544,
         "change_24h": 9.1,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.04885,
+        "price": 0.0488,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 205.64,
+        "price": 205.16,
         "change_24h": 4.6,
         "asset": "crypto"
       }
@@ -126,7 +126,7 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.088458,
+        "price": 0.088517,
         "change_24h": -3.2,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.090028,
+        "price": 0.090134,
         "change_24h": -2.1,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.196427,
+        "price": 0.195883,
         "change_24h": -1.9,
         "asset": "crypto"
       }
