@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T11:03:32Z",
+  "updated_at": "2026-08-09T18:56:03Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1258,9 +1258,9 @@
     },
     {
       "week": "2026-W32",
-      "curated": 43207459593.46,
-      "filtered": 43207459593.46,
-      "raw": 43207459593.46
+      "curated": 43473654890.34,
+      "filtered": 43473654890.34,
+      "raw": 43473654890.34
     }
   ],
   "chains": [
@@ -1271,18 +1271,18 @@
     },
     {
       "chain": "Raydium AMM",
-      "volume_24h": 63582748.0,
-      "delta_pct": -30.01
+      "volume_24h": 62385188.0,
+      "delta_pct": -31.33
     },
     {
       "chain": "Orca DEX",
-      "volume_24h": 63143717.0,
-      "delta_pct": -41.91
+      "volume_24h": 59225049.0,
+      "delta_pct": -45.52
     },
     {
       "chain": "Curve DEX",
-      "volume_24h": 14879009.0,
-      "delta_pct": -85.2
+      "volume_24h": 30948146.0,
+      "delta_pct": -69.21
     },
     {
       "chain": "Quickswap Dex",
@@ -1296,33 +1296,33 @@
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 407140.0,
-      "delta_pct": -2.11
+      "volume_24h": 526500.0,
+      "delta_pct": 26.59
     },
     {
       "chain": "Integral",
-      "volume_24h": 315930.0,
-      "delta_pct": -74.57
+      "volume_24h": 295992.0,
+      "delta_pct": -76.17
     },
     {
       "chain": "Bancor V2.1",
-      "volume_24h": 89605.0,
-      "delta_pct": 96.5
-    },
-    {
-      "chain": "Defi Swap",
-      "volume_24h": 71025.0,
-      "delta_pct": 52.09
+      "volume_24h": 106419.0,
+      "delta_pct": 133.37
     },
     {
       "chain": "Balancer V1",
-      "volume_24h": 29060.0,
-      "delta_pct": -2.16
+      "volume_24h": 84158.0,
+      "delta_pct": 183.34
+    },
+    {
+      "chain": "Defi Swap",
+      "volume_24h": 19138.0,
+      "delta_pct": -59.02
     },
     {
       "chain": "Pangolin V2",
-      "volume_24h": 17093.0,
-      "delta_pct": -12.1
+      "volume_24h": 16068.0,
+      "delta_pct": -17.37
     }
   ]
 }
