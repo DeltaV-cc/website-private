@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T10:45:44Z",
+  "updated_at": "2026-08-09T11:00:32Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.2,
-        "change_24h": 42.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.096503,
-        "change_24h": 9.1,
+        "price": 3.24,
+        "change_24h": 29.7,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
         "price": 0.002544,
-        "change_24h": 9.1,
+        "change_24h": 10.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.096683,
+        "change_24h": 6.1,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.0488,
-        "change_24h": 5.1,
+        "price": 0.048761,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 205.16,
-        "change_24h": 4.6,
+        "price": 204.72,
+        "change_24h": 4.3,
         "asset": "crypto"
       }
     ],
@@ -120,13 +120,13 @@
         "symbol": "M",
         "name": "MemeCore",
         "price": 1.12,
-        "change_24h": -3.3,
+        "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.088517,
+        "price": 0.088133,
         "change_24h": -3.2,
         "asset": "crypto"
       },
@@ -138,17 +138,17 @@
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.090134,
-        "change_24h": -2.1,
+        "symbol": "ARB",
+        "name": "Arbitrum",
+        "price": 0.077562,
+        "change_24h": -1.7,
         "asset": "crypto"
       },
       {
-        "symbol": "ADA",
-        "name": "Cardano",
-        "price": 0.195883,
-        "change_24h": -1.9,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.090149,
+        "change_24h": -1.7,
         "asset": "crypto"
       }
     ]
