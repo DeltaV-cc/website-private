@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T20:33:14Z",
+  "updated_at": "2026-08-09T20:45:38Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.64,
+        "price": 3.67,
         "change_24h": 30.4,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002701,
+        "price": 0.002702,
         "change_24h": 14.3,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.321453,
+        "price": 0.3212,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 206.32,
+        "price": 205.89,
         "change_24h": 4.6,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.087598,
+        "price": 0.087573,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048326,
+        "price": 0.048332,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.084971,
+        "price": 0.084603,
         "change_24h": -2.9,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.032592,
+        "price": 0.032572,
         "change_24h": -2.0,
         "asset": "crypto"
       }
