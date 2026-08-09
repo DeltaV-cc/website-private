@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T21:45:43Z",
+  "updated_at": "2026-08-09T22:00:42Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002672,
+        "price": 0.002663,
         "change_24h": 12.7,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.099803,
+        "price": 0.099412,
         "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.82,
+        "price": 11.77,
         "change_24h": 5.1,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.322129,
+        "price": 0.322081,
         "change_24h": 4.6,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.084726,
+        "price": 0.084855,
         "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.088044,
+        "price": 0.087796,
         "change_24h": -2.8,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.04791,
+        "price": 0.04796,
         "change_24h": -2.3,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.12,
+        "price": 1.11,
         "change_24h": -2.0,
         "asset": "crypto"
       }
