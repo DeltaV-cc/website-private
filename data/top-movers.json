@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T12:00:23Z",
+  "updated_at": "2026-08-09T12:52:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,52 +82,52 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.28,
-        "change_24h": 29.7,
+        "price": 3.29,
+        "change_24h": 29.5,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002536,
-        "change_24h": 10.3,
+        "price": 0.002623,
+        "change_24h": 10.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.09667,
-        "change_24h": 6.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.048889,
-        "change_24h": 4.6,
+        "price": 0.098393,
+        "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 206.6,
-        "change_24h": 4.3,
+        "price": 205.77,
+        "change_24h": 5.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 522.67,
+        "change_24h": 3.7,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.12,
-        "change_24h": -3.4,
+        "symbol": "ENA",
+        "name": "Ethena",
+        "price": 0.087369,
+        "change_24h": -3.6,
         "asset": "crypto"
       },
       {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.087705,
-        "change_24h": -3.2,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.12,
+        "change_24h": -3.3,
         "asset": "crypto"
       },
       {
@@ -140,15 +140,15 @@
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.077485,
-        "change_24h": -1.7,
+        "price": 0.077569,
+        "change_24h": -2.6,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.090194,
-        "change_24h": -1.7,
+        "symbol": "GRAM",
+        "name": "Gram (prev. Toncoin)",
+        "price": 1.34,
+        "change_24h": -1.9,
         "asset": "crypto"
       }
     ]
