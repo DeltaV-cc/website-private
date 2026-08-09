@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T11:00:32Z",
+  "updated_at": "2026-08-09T11:15:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.24,
+        "price": 3.22,
         "change_24h": 29.7,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002544,
+        "price": 0.002554,
         "change_24h": 10.3,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.096683,
+        "price": 0.096538,
         "change_24h": 6.1,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048761,
+        "price": 0.048723,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 204.72,
+        "price": 204.69,
         "change_24h": 4.3,
         "asset": "crypto"
       }
@@ -126,7 +126,7 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.088133,
+        "price": 0.087967,
         "change_24h": -3.2,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.077562,
+        "price": 0.077416,
         "change_24h": -1.7,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.090149,
+        "price": 0.090007,
         "change_24h": -1.7,
         "asset": "crypto"
       }
