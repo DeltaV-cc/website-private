@@ -31,7 +31,7 @@ CHECKS = [
     ("crypto", "crypto.json", "A", {"has": ["btc_price"]}),
     ("forex", "forex.json", "A", {"keys": ["EUR", "JPY", "GBP"]}),
     ("cnn-fg", "cnn-fg.json", "A", {"has": ["value"]}),
-    ("top-movers", "top-movers.json", "A", {"min_list": [("equities", 2), ("crypto", 2)]}),
+    ("top-movers", "top-movers.json", "A", {"min_list": [("equities.gainers", 2), ("crypto.gainers", 2)]}),
     ("macro-calendar", "macro-calendar.json", "E", {"min_list": [("events", 5)]}),
     ("btc-trend", "btc-trend.json", "B", {"min_array": 30}),
     # Web3
@@ -153,7 +153,13 @@ def grade_one(field: str, fname: str, cls: str, rules: dict) -> dict:
                 notes.append(f"empty:{k}")
     if "min_list" in rules and isinstance(data, dict):
         for key, n in rules["min_list"]:
-            arr = data.get(key) or []
+            # dotted paths (e.g. "equities.gainers") walk nested dicts
+            walk = data
+            for part in key.split("."):
+                walk = walk.get(part) if isinstance(walk, dict) else None
+                if walk is None:
+                    break
+            arr = walk or []
             if not isinstance(arr, list) or len(arr) < n:
                 ok = False
                 notes.append(f"{key}<{n}")
