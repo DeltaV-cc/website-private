@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T19:15:09Z",
+  "updated_at": "2026-08-09T19:30:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 3.68,
+        "price": 3.66,
         "change_24h": 35.1,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002708,
+        "price": 0.002704,
         "change_24h": 12.9,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098156,
+        "price": 0.098397,
         "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.79,
+        "price": 11.85,
         "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "TAO",
         "name": "Bittensor",
-        "price": 206.72,
+        "price": 206.34,
         "change_24h": 4.1,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.087209,
+        "price": 0.087111,
         "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048279,
+        "price": 0.048358,
         "change_24h": -3.0,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.090798,
+        "price": 0.09086,
         "change_24h": -2.1,
         "asset": "crypto"
       }
