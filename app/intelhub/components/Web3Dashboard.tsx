@@ -847,7 +847,7 @@ export default function Web3Dashboard({
             <ThreatIntelFeed
               title="Web3 Threat Intel"
               accent="var(--accent-purple)"
-              categories={['web3-security', 'supply-chain']}
+              categories={['web3-security', 'supply-chain', 'operational-security']}
             />
 
             {/* -- Cypherpunk / EVM voices (X) — prioritised over generic crypto RSS -- */}
