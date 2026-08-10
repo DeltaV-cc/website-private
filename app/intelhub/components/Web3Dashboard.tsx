@@ -14,6 +14,7 @@ import NetFlowsPanel from './NetFlowsPanel';
 import BoldYieldsPanel from './BoldYieldsPanel';
 import { defillamaChainUrl, defillamaProtocolUrl, web3EntityLink } from '@/lib/entity-links';
 import CypherpunkFeed from './CypherpunkFeed';
+import ThreatIntelFeed from './ThreatIntelFeed';
 import { blogIndex } from '@/app/data/content-index';
 
 function fmtBig(n: number): string { return fmtCurrency(n); }
@@ -842,8 +843,15 @@ export default function Web3Dashboard({
         </div>
       )}
 
-      {/* -- Cypherpunk / EVM voices (X) — prioritised over generic crypto RSS -- */}
-      <CypherpunkFeed items={items} ago={ago} />
+      {/* -- Live threat intel (severity-tagged web3 + supply-chain) -- */}
+            <ThreatIntelFeed
+              title="Web3 Threat Intel"
+              accent="var(--accent-purple)"
+              categories={['web3-security', 'supply-chain', 'operational-security']}
+            />
+
+            {/* -- Cypherpunk / EVM voices (X) — prioritised over generic crypto RSS -- */}
+            <CypherpunkFeed items={items} ago={ago} />
 
       {/* Secondary: remaining crypto category signals (news RSS, non-cypherpunk) */}
       {web3Cats[0] && (() => {
