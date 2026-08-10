@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T10:15:47Z",
+  "updated_at": "2026-08-10T10:30:49Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.339784,
+        "price": 0.340004,
         "change_24h": 11.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00272,
+        "price": 0.002742,
         "change_24h": 10.8,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.18,
+        "price": 12.16,
         "change_24h": 8.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.182157,
-        "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 396.51,
+        "price": 396.57,
         "change_24h": 3.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ARB",
+        "name": "Arbitrum",
+        "price": 0.079521,
+        "change_24h": 3.3,
         "asset": "crypto"
       }
     ],
@@ -119,28 +119,28 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.49,
+        "price": 2.35,
         "change_24h": -17.9,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.082271,
+        "price": 0.082452,
         "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.10071,
+        "price": 0.100678,
         "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.047426,
+        "price": 0.047418,
         "change_24h": -2.7,
         "asset": "crypto"
       },
