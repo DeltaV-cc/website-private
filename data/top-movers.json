@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T10:00:47Z",
+  "updated_at": "2026-08-10T10:15:47Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.342937,
-        "change_24h": 13.4,
+        "price": 0.339784,
+        "change_24h": 11.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002788,
-        "change_24h": 12.9,
+        "price": 0.00272,
+        "change_24h": 10.8,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.14,
-        "change_24h": 9.2,
+        "price": 12.18,
+        "change_24h": 8.6,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.52673,
-        "change_24h": 3.7,
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.182157,
+        "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 396.54,
-        "change_24h": 3.4,
+        "price": 396.51,
+        "change_24h": 3.9,
         "asset": "crypto"
       }
     ],
@@ -119,29 +119,29 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.63,
-        "change_24h": -18.0,
+        "price": 2.49,
+        "change_24h": -17.9,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.082363,
-        "change_24h": -5.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.04737,
-        "change_24h": -3.1,
+        "price": 0.082271,
+        "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.10085,
-        "change_24h": -3.0,
+        "price": 0.10071,
+        "change_24h": -3.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.047426,
+        "change_24h": -2.7,
         "asset": "crypto"
       },
       {
