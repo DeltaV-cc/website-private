@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { KevEntry, CveEntry, BreachEntry } from '../types';
 import { SeverityBadge, fmtCompact, PanelMeta } from './Shared';
+import ThreatIntelFeed from './ThreatIntelFeed';
 
 type InfosecMeta = {
   source: 'live' | 'snapshot' | 'mixed' | 'empty';
@@ -303,10 +304,13 @@ export default function InfosecDashboard({
               <Link href="/opsec/sota-stack/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">SOTA Operator Stack</Link>
               <Link href="/opsec/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">OpSec pillar</Link>
               <Link href="/tutorials/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">Tutorials</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* -- Live threat intel (severity-tagged web3 + infosec feed) -- */}
+                    <ThreatIntelFeed />
+                  </div>
+                );
+              }
