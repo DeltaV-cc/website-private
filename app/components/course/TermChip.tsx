@@ -5,19 +5,10 @@ import Link from 'next/link';
 import { OPEN_HARNESS_GLOSSARY, type CourseLang, t } from '@/app/data/courses/open-harness';
 
 export function TermChip({ termId, lang = 'en' }: { termId: string; lang: CourseLang }) {
-  const glossaryTerm = OPEN_HARNESS_GLOSSARY.find((g) => g.id === termId);
-  if (!glossaryTerm) {
-    console.warn(`TermChip: glossary term "${termId}" not found`);
-    return null;
-  }
-
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
-
-  const termName = t(glossaryTerm.term, lang);
-  const termDef = t(glossaryTerm.def, lang);
 
   useEffect(() => {
     if (!open || !buttonRef.current) return;
@@ -47,6 +38,15 @@ export function TermChip({ termId, lang = 'en' }: { termId: string; lang: Course
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open]);
+
+  const glossaryTerm = OPEN_HARNESS_GLOSSARY.find((g) => g.id === termId);
+  if (!glossaryTerm) {
+    console.warn(`TermChip: glossary term "${termId}" not found`);
+    return null;
+  }
+
+  const termName = t(glossaryTerm.term, lang);
+  const termDef = t(glossaryTerm.def, lang);
 
   return (
     <>
