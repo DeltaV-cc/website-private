@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T11:15:50Z",
+  "updated_at": "2026-08-10T12:15:52Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.340809,
-        "change_24h": 9.3,
+        "price": 0.339338,
+        "change_24h": 9.7,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002733,
-        "change_24h": 8.3,
+        "price": 0.002731,
+        "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.06,
-        "change_24h": 7.5,
+        "price": 12.1,
+        "change_24h": 4.9,
         "asset": "crypto"
       },
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.181805,
-        "change_24h": 4.6,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 396.96,
+        "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.542787,
-        "change_24h": 4.5,
+        "price": 0.53756,
+        "change_24h": 4.3,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.49,
-        "change_24h": -23.3,
+        "price": 2.42,
+        "change_24h": -22.5,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.0825,
-        "change_24h": -4.4,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 506.4,
-        "change_24h": -3.4,
+        "price": 0.082652,
+        "change_24h": -3.8,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.100643,
-        "change_24h": -3.3,
+        "price": 0.100452,
+        "change_24h": -3.2,
         "asset": "crypto"
       },
       {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.088,
-        "change_24h": -3.1,
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 508.08,
+        "change_24h": -3.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.04761,
+        "change_24h": -2.2,
         "asset": "crypto"
       }
     ]
