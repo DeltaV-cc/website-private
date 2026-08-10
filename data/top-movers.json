@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T10:45:49Z",
+  "updated_at": "2026-08-10T11:15:50Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.339381,
-        "change_24h": 11.6,
+        "price": 0.340809,
+        "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002734,
-        "change_24h": 10.8,
+        "price": 0.002733,
+        "change_24h": 8.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.11,
-        "change_24h": 8.6,
+        "price": 12.06,
+        "change_24h": 7.5,
         "asset": "crypto"
       },
       {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 395.38,
-        "change_24h": 3.9,
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.181805,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
-        "symbol": "ARB",
-        "name": "Arbitrum",
-        "price": 0.079434,
-        "change_24h": 3.3,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.542787,
+        "change_24h": 4.5,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.51,
-        "change_24h": -17.9,
+        "price": 2.49,
+        "change_24h": -23.3,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.082673,
-        "change_24h": -4.8,
+        "price": 0.0825,
+        "change_24h": -4.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 506.4,
+        "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.100784,
-        "change_24h": -3.5,
+        "price": 0.100643,
+        "change_24h": -3.3,
         "asset": "crypto"
       },
       {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.047505,
-        "change_24h": -2.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "FIGR_HELOC",
-        "name": "Figure Heloc",
-        "price": 1.001,
-        "change_24h": -2.7,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.088,
+        "change_24h": -3.1,
         "asset": "crypto"
       }
     ]
