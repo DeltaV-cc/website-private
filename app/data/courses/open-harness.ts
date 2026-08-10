@@ -70,6 +70,8 @@ export type CourseSection = {
    * Collapsed by default. Not normal pedagogy — only infrastructure options.
    */
   advanced?: boolean;
+  paths?: Array<{ id: string; label: LocaleString; minutes: number; steps: LocaleString[] }>;
+  termChips?: string[];
 };
 
 /** Compressed terms for the printable glossary page (and /teach parity). */
@@ -102,6 +104,10 @@ export type CourseModule = {
    * - `none`: no diagram
    */
   visualPlacement?: 'top' | 'none' | number;
+  /**
+   * Term IDs to highlight in this module with TermChip popovers.
+   */
+  termChips?: string[];
 };
 
 /** EN is source of truth; omit `fr` to mirror EN until a full translate pass. */
@@ -1115,6 +1121,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
     ],
+    termChips: ['harness', 'dedicated-host'],
   },
 
   // ─── 03 ─────────────────────────────────────────────
@@ -1491,6 +1498,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
     ],
+    termChips: ['soul'],
   },
 
   // ─── 05 Gateway (after soul, before deep tools) ─
@@ -1636,10 +1644,10 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         calloutVariant: 'note',
         links: [
           { label: L('Messaging overview'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/messaging' },
-          { label: L('Contact Delta V — tailored setup'), href: '/contact/?topic=open-harness' },
         ],
       },
     ],
+    termChips: ['harness', 'soul', 'gateway', 'tool'],
   },
 
   // ─── 06 First agency ─────────────────────────
@@ -1935,6 +1943,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         ],
       },
     ],
+    termChips: ['loop', 'tool', 'harness', 'agent'],
   },
 
 
