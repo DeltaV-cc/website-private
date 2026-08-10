@@ -24,6 +24,8 @@ import {
   WinWhenList,
 } from '@/app/components/course/CourseBlocks';
 import { formatCourseText } from '@/app/components/course/formatCourseText';
+import { PathTabs } from '@/app/components/course/PathTabs';
+import { TermChip } from '@/app/components/course/TermChip';
 import { ModuleNav, useOpenHarnessLang } from './CourseShell';
 
 export function ModuleBody({ module }: { module: CourseModule }) {
@@ -62,13 +64,21 @@ export function ModuleBodyView({ module, lang }: { module: CourseModule; lang: C
         </span>
       </div>
 
+      {module.termChips && module.termChips.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {module.termChips.map((termId) => (
+            <TermChip key={termId} termId={termId} lang={lang} />
+          ))}
+        </div>
+      )}
+
       {showTopVisual && (
         <div className="mt-8">
           <HarnessModuleVisual slug={module.slug} />
         </div>
       )}
 
-      <div className="mt-10 space-y-12">
+      <div className="mt-12 space-y-16">
         {main.map(({ section, i }, mainIdx) => (
           <div key={i}>
             <SectionBlock
@@ -78,7 +88,7 @@ export function ModuleBodyView({ module, lang }: { module: CourseModule; lang: C
               sectionKey={String(i)}
             />
             {visualAfterMainIndex === mainIdx && (
-              <div className="mt-8">
+              <div className="mt-10">
                 <HarnessModuleVisual slug={module.slug} />
               </div>
             )}
@@ -209,26 +219,28 @@ function SectionInner({
 
       {/* Concepts first: prose → whoSteps → table → cards → remember → callout → drills → diagram */}
       {section.paragraphs?.map((p, i) => (
-        <p key={i} className="mt-4 text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+        <p key={i} className={`${i === 0 ? 'mt-0' : 'mt-5'} text-[var(--text-secondary)] leading-relaxed max-w-2xl`}>
           {formatCourseText(t(p, lang))}
         </p>
       ))}
 
       {section.whoSteps && section.whoSteps.length > 0 && (
-        <WhoSteps
-          steps={section.whoSteps.map((s) => ({
-            who: t(s.who, lang),
-            title: t(s.title, lang),
-            body: t(s.body, lang),
-          }))}
-        />
+        <div className="mt-6">
+          <WhoSteps
+            steps={section.whoSteps.map((s) => ({
+              who: t(s.who, lang),
+              title: t(s.title, lang),
+              body: t(s.body, lang),
+            }))}
+          />
+        </div>
       )}
 
       {section.bullets && (
-        <ul className="mt-4 space-y-2 max-w-2xl">
+        <ul className={`${section.paragraphs?.length ? 'mt-6' : 'mt-0'} space-y-3 max-w-2xl`}>
           {section.bullets.map((b, i) => (
             <li key={i} className="flex gap-3 text-sm text-[var(--text-secondary)] leading-relaxed">
-              <span className="text-[var(--accent-orange)] font-mono shrink-0">·</span>
+              <span className="text-[var(--accent-orange)] font-mono shrink-0 text-base">·</span>
               <span>{formatCourseText(t(b, lang))}</span>
             </li>
           ))}
@@ -236,12 +248,12 @@ function SectionInner({
       )}
 
       {section.table && (
-        <div className="course-table-wrap mt-5 overflow-x-auto rounded-xl">
+        <div className="course-table-wrap mt-7 overflow-x-auto rounded-lg border border-[var(--border-default)]">
           <table className="course-table w-full text-sm">
-            <thead>
+            <thead className="bg-[var(--surface-secondary)]">
               <tr>
                 {section.table.headers.map((h, i) => (
-                  <th key={i} className="px-4 py-3 text-left">
+                  <th key={i} className="px-5 py-4 text-left font-semibold text-[var(--text-primary)] border-b border-[var(--border-default)]">
                     {formatCourseText(t(h, lang))}
                   </th>
                 ))}
@@ -249,9 +261,9 @@ function SectionInner({
             </thead>
             <tbody>
               {section.table.rows.map((row, ri) => (
-                <tr key={ri}>
+                <tr key={ri} className={`${ri % 2 === 1 ? 'bg-[var(--surface-card)]' : ''} hover:bg-[var(--surface-card-hover)] transition-colors`}>
                   {row.map((cell, ci) => (
-                    <td key={ci} className="px-4 py-3 align-top">
+                    <td key={ci} className="px-5 py-4 align-top border-b border-[var(--border-subtle)] text-[var(--text-secondary)]">
                       {formatCourseText(t(cell, lang))}
                     </td>
                   ))}
@@ -263,36 +275,44 @@ function SectionInner({
       )}
 
       {section.lexicon && (
-        <div className="mt-6 grid sm:grid-cols-2 xl:grid-cols-3 gap-3">
-          {section.lexicon.map((card, i) => (
-            <article
-              key={i}
-              className="rounded-xl border border-[var(--border-default)] bg-[var(--surface-card)] p-4 flex flex-col min-h-[9.5rem]"
-            >
-              <h3 className="font-mono text-[11px] text-[var(--accent-orange)] tracking-[1.5px] uppercase font-semibold">
-                {t(card.term, lang)}
-              </h3>
-              <p className="mt-2 text-[13px] text-[var(--text-secondary)] leading-snug flex-1">
-                {formatCourseText(t(card.body, lang))}
-              </p>
-              <p className="mt-3 text-[12px] italic text-[var(--text-tertiary)] border-t border-[var(--border-default)] pt-2">
-                {formatCourseText(t(card.remember, lang))}
-              </p>
-            </article>
-          ))}
+        <div className="mt-8 space-y-4">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {section.lexicon.map((card, i) => (
+              <article
+                key={i}
+                className="group rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-card)] hover:bg-[var(--surface-card-hover)] hover:border-[var(--border-default)] transition-all duration-200 p-5 flex flex-col"
+              >
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <h3 className="font-mono text-[10px] text-[var(--accent-orange)] tracking-[2px] uppercase font-semibold flex-1 leading-tight">
+                    {t(card.term, lang)}
+                  </h3>
+                </div>
+                <p className="mt-3 text-sm text-[var(--text-secondary)] leading-relaxed flex-1">
+                  {formatCourseText(t(card.body, lang))}
+                </p>
+                <p className="mt-4 pt-4 text-xs italic text-[var(--text-tertiary)] border-t border-[var(--border-subtle)]">
+                  {formatCourseText(t(card.remember, lang))}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       )}
 
-      {section.remember && <RememberLine text={t(section.remember, lang)} />}
+      {section.remember && (
+        <div className="mt-7">
+          <RememberLine text={t(section.remember, lang)} />
+        </div>
+      )}
 
       {section.callout && (
         <div
-          className={`mt-5 rounded-r-xl border-l-[3px] bg-[var(--bg-surface)] p-5 text-sm leading-relaxed ${
+          className={`mt-7 rounded-lg border-l-4 bg-[var(--bg-surface)] px-6 py-5 text-sm leading-relaxed ${
             section.calloutVariant === 'warning'
-              ? 'border-[var(--accent-amber)] text-[var(--text-secondary)]'
+              ? 'border-[var(--accent-amber)] bg-[var(--accent-amber)]/5 text-[var(--text-secondary)]'
               : section.calloutVariant === 'quote'
-                ? 'border-[var(--accent-cyan)] italic text-[var(--text-secondary)]'
-                : 'border-[var(--accent-orange)] text-[var(--text-secondary)]'
+                ? 'border-[var(--accent-cyan)] bg-[var(--accent-cyan)]/5 italic text-[var(--text-secondary)]'
+                : 'border-[var(--accent-orange)] bg-[var(--accent-orange)]/5 text-[var(--text-secondary)]'
           }`}
         >
           {formatCourseText(t(section.callout, lang))}
@@ -303,7 +323,19 @@ function SectionInner({
         <WinWhenList items={section.winWhen.map((w) => t(w, lang))} />
       )}
 
-      {section.steps && (
+      {section.paths && section.paths.length > 0 ? (
+        <PathTabs
+          paths={section.paths.map((p) => ({
+            id: p.id,
+            label: p.label,
+            minutes: p.minutes,
+            steps: p.steps.map((s) => t(s, lang)),
+          }))}
+          lang={lang}
+          moduleSlug={moduleSlug}
+          sectionKey={sectionKey}
+        />
+      ) : section.steps ? (
         <InteractiveChecklist
           courseId="open-harness"
           moduleSlug={moduleSlug}
@@ -312,7 +344,7 @@ function SectionInner({
           accent="orange"
           mode="steps"
         />
-      )}
+      ) : null}
 
       {section.checklist && (
         <InteractiveChecklist
@@ -335,31 +367,42 @@ function SectionInner({
         />
       ))}
 
-      {section.souls && (
-        <div className="mt-6 grid sm:grid-cols-2 gap-3">
-          {section.souls.map((soul) => (
-            <div
-              key={soul.id}
-              className="rounded-xl border border-[var(--border-default)] bg-[var(--surface-card)] p-4 flex flex-col"
-            >
-              <div className="font-semibold text-[var(--text-primary)]">{t(soul.name, lang)}</div>
-              <p className="mt-1 text-sm text-[var(--text-secondary)] flex-1">
-                {formatCourseText(t(soul.blurb, lang))}
-              </p>
-              <a
-                href={withBasePath(`/courses/open-harness/souls/${soul.id}.md`)}
-                download
-                className="mt-3 text-xs font-mono text-[var(--accent-orange)] hover:underline"
-              >
-                {t(UI_COPY.downloadSoul, lang)} ↘
-              </a>
-            </div>
+      {section.termChips && section.termChips.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-2">
+          <span className="text-xs text-[var(--text-muted)] mr-2">Terms in this section:</span>
+          {section.termChips.map((termId) => (
+            <TermChip key={termId} termId={termId} lang={lang} />
           ))}
         </div>
       )}
 
+      {section.souls && (
+        <div className="mt-8">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+            {section.souls.map((soul) => (
+              <div
+                key={soul.id}
+                className="rounded-lg border border-[var(--border-default)] bg-[var(--surface-card)] hover:bg-[var(--surface-card-hover)] hover:border-[var(--border-subtle)] transition-all duration-200 p-5 flex flex-col"
+              >
+                <div className="font-semibold text-base text-[var(--text-primary)]">{t(soul.name, lang)}</div>
+                <p className="mt-3 text-sm text-[var(--text-secondary)] leading-relaxed flex-1">
+                  {formatCourseText(t(soul.blurb, lang))}
+                </p>
+                <a
+                  href={withBasePath(`/courses/open-harness/souls/${soul.id}.md`)}
+                  download
+                  className="mt-4 inline-flex text-xs font-mono text-[var(--accent-orange)] hover:text-[var(--accent-orange-dark)] transition-colors"
+                >
+                  {t(UI_COPY.downloadSoul, lang)} ↘
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {section.links && (
-        <ul className="mt-5 space-y-2">
+        <ul className="mt-7 space-y-3 max-w-2xl">
           {section.links.map((link, i) => (
             <li key={i}>
               {link.href.startsWith('http') ? (
@@ -367,19 +410,19 @@ function SectionInner({
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[var(--accent-orange)] hover:underline"
+                  className="text-sm text-[var(--accent-orange)] hover:text-[var(--accent-orange-dark)] hover:underline transition-colors"
                 >
                   {t(link.label, lang)} ↗
                 </a>
               ) : link.href.startsWith('/courses/') ? (
                 <a
                   href={withBasePath(link.href)}
-                  className="text-sm text-[var(--accent-orange)] hover:underline"
+                  className="text-sm text-[var(--accent-orange)] hover:text-[var(--accent-orange-dark)] hover:underline transition-colors"
                 >
                   {t(link.label, lang)} ↘
                 </a>
               ) : (
-                <Link href={link.href} className="text-sm text-[var(--accent-orange)] hover:underline">
+                <Link href={link.href} className="text-sm text-[var(--accent-orange)] hover:text-[var(--accent-orange-dark)] hover:underline transition-colors">
                   {t(link.label, lang)} →
                 </Link>
               )}
