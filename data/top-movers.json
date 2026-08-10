@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-10T14:53:16Z",
+  "updated_at": "2026-08-10T15:01:04Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ABCL",
         "name": "AbCellera Biologics Inc.",
-        "price": 9.375,
-        "change_24h": 35.28,
+        "price": 9.2218,
+        "change_24h": 33.07,
         "asset": "equity"
       },
       {
         "symbol": "NESR",
         "name": "National Energy Services Reunit",
-        "price": 34.1,
-        "change_24h": 17.51,
+        "price": 34.41,
+        "change_24h": 18.57,
         "asset": "equity"
       },
       {
         "symbol": "FSLY",
         "name": "Fastly, Inc.",
-        "price": 26.71,
-        "change_24h": 16.33,
+        "price": 27.02,
+        "change_24h": 17.68,
         "asset": "equity"
       },
       {
         "symbol": "ACHR",
         "name": "Archer Aviation Inc.",
-        "price": 6.5,
-        "change_24h": 16.28,
+        "price": 6.508,
+        "change_24h": 16.42,
         "asset": "equity"
       },
       {
         "symbol": "LFST",
         "name": "LifeStance Health Group, Inc.",
-        "price": 12.38,
-        "change_24h": 14.25,
+        "price": 12.35,
+        "change_24h": 13.88,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "BTDR",
         "name": "Bitdeer Technologies Group",
-        "price": 9.39,
-        "change_24h": -13.69,
+        "price": 9.125,
+        "change_24h": -16.13,
         "asset": "equity"
       },
       {
         "symbol": "COHR",
         "name": "Coherent Corp.",
-        "price": 331.0,
-        "change_24h": -12.69,
+        "price": 328.62,
+        "change_24h": -13.32,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 79.22,
-        "change_24h": -10.57,
+        "price": 77.5,
+        "change_24h": -12.51,
+        "asset": "equity"
+      },
+      {
+        "symbol": "SIMO",
+        "name": "Silicon Motion Technology Corpo",
+        "price": 233.53,
+        "change_24h": -8.82,
         "asset": "equity"
       },
       {
         "symbol": "AAON",
         "name": "AAON, Inc.",
-        "price": 86.62,
-        "change_24h": -8.65,
-        "asset": "equity"
-      },
-      {
-        "symbol": "B",
-        "name": "Barrick Mining Corporation",
-        "price": 40.05,
-        "change_24h": -8.32,
+        "price": 86.44,
+        "change_24h": -8.85,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.342684,
+        "price": 0.342301,
         "change_24h": 10.4,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002704,
+        "price": 0.002692,
         "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.080155,
+        "price": 0.079983,
         "change_24h": 3.5,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 393.3,
+        "price": 392.56,
         "change_24h": 3.4,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.519877,
+        "price": 0.518292,
         "change_24h": 3.2,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.14,
+        "price": 2.1,
         "change_24h": -27.3,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.083244,
+        "price": 0.083051,
         "change_24h": -3.1,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 502.94,
+        "price": 502.15,
         "change_24h": -3.1,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.100276,
+        "price": 0.100128,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.047315,
+        "price": 0.047122,
         "change_24h": -2.8,
         "asset": "crypto"
       }
