@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T08:20:57Z",
+  "updated_at": "2026-08-10T08:34:24Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.350791,
+        "price": 0.352674,
         "change_24h": 13.0,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.199663,
+        "price": 0.203444,
         "change_24h": 10.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002776,
+        "price": 0.002766,
         "change_24h": 8.8,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.01,
+        "price": 12.06,
         "change_24h": 8.0,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 392.03,
+        "price": 392.25,
         "change_24h": 3.4,
         "asset": "crypto"
       }
@@ -119,28 +119,28 @@
       {
         "symbol": "BEAT",
         "name": "Audiera",
-        "price": 2.6,
+        "price": 2.59,
         "change_24h": -20.2,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.0824,
+        "price": 0.082426,
         "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.09,
+        "price": 1.11,
         "change_24h": -3.3,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.088502,
+        "price": 0.088495,
         "change_24h": -2.8,
         "asset": "crypto"
       },
