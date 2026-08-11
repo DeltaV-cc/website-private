@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-08-11T15:30:25Z",
+  "updated_at": "2026-08-11T15:45:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ABCL",
         "name": "AbCellera Biologics Inc.",
-        "price": 9.65,
-        "change_24h": 3.32,
+        "price": 9.8195,
+        "change_24h": 5.13,
         "asset": "equity"
       },
       {
@@ -20,22 +20,22 @@
       {
         "symbol": "NESR",
         "name": "National Energy Services Reunit",
-        "price": 35.58,
-        "change_24h": -0.59,
+        "price": 35.47,
+        "change_24h": -0.89,
         "asset": "equity"
       },
       {
         "symbol": "FSLY",
         "name": "Fastly, Inc.",
-        "price": 28.35,
-        "change_24h": 2.17,
+        "price": 28.3,
+        "change_24h": 1.98,
         "asset": "equity"
       },
       {
         "symbol": "BSP",
         "name": "Bending Spoons S.p.A.",
-        "price": 58.13,
-        "change_24h": 13.03,
+        "price": 58.1,
+        "change_24h": 12.98,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "BTDR",
         "name": "Bitdeer Technologies Group",
-        "price": 8.755,
-        "change_24h": 0.69,
+        "price": 8.7799,
+        "change_24h": 0.98,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 74.78,
-        "change_24h": 1.32,
+        "price": 75.33,
+        "change_24h": 2.06,
         "asset": "equity"
       },
       {
         "symbol": "COHR",
         "name": "Coherent Corp.",
-        "price": 328.45,
-        "change_24h": 1.01,
+        "price": 329.01,
+        "change_24h": 1.19,
         "asset": "equity"
       },
       {
         "symbol": "SIMO",
         "name": "Silicon Motion Technology Corpo",
-        "price": 225.76,
-        "change_24h": -2.1,
+        "price": 225.78,
+        "change_24h": -2.09,
         "asset": "equity"
       },
       {
         "symbol": "NYAX",
         "name": "Nayax Ltd.",
-        "price": 52.66,
-        "change_24h": -15.06,
+        "price": 52.97,
+        "change_24h": -14.56,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.44,
+        "price": 2.42,
         "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "ICP",
         "name": "Internet Computer",
-        "price": 2.3,
+        "price": 2.25,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.195795,
+        "price": 0.196907,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.055238,
+        "price": 0.055014,
         "change_24h": 4.1,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.59,
+        "price": 8.5,
         "change_24h": 2.8,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.74,
+        "price": 3.72,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.55,
+        "price": 1.54,
         "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 473.97,
+        "price": 470.06,
         "change_24h": -6.4,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.184539,
+        "price": 0.183928,
         "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.087074,
+        "price": 0.086997,
         "change_24h": -5.3,
         "asset": "crypto"
       }
