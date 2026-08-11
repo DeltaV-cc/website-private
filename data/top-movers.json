@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T10:45:49Z",
+  "updated_at": "2026-08-11T11:55:15Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.47,
-        "change_24h": 7.0,
+        "price": 2.49,
+        "change_24h": 7.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "HASH",
+        "name": "Provenance Blockchain",
+        "price": 0.008418,
+        "change_24h": 7.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.193203,
+        "change_24h": 5.6,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.62,
-        "change_24h": 5.6,
+        "price": 8.68,
+        "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.45174,
-        "change_24h": 5.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.055259,
-        "change_24h": 4.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ICP",
-        "name": "Internet Computer",
-        "price": 2.29,
-        "change_24h": 4.0,
+        "price": 0.4512,
+        "change_24h": 5.0,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.087207,
-        "change_24h": -5.5,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.095221,
+        "change_24h": -4.9,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 484.88,
-        "change_24h": -4.7,
+        "price": 489.25,
+        "change_24h": -4.3,
         "asset": "crypto"
       },
       {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.335683,
-        "change_24h": -4.1,
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.087896,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "SHIB",
         "name": "Shiba Inu",
         "price": 5e-06,
-        "change_24h": -3.9,
+        "change_24h": -4.1,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.094474,
-        "change_24h": -3.9,
+        "symbol": "RENDER",
+        "name": "Render",
+        "price": 1.26,
+        "change_24h": -3.8,
         "asset": "crypto"
       }
     ]
