@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T13:00:37Z",
+  "updated_at": "2026-08-11T13:15:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.194745,
+        "change_24h": 10.9,
+        "asset": "crypto"
+      },
+      {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008408,
-        "change_24h": 9.4,
+        "price": 0.00841,
+        "change_24h": 8.8,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
         "price": 2.48,
-        "change_24h": 8.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.194694,
-        "change_24h": 8.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 8.66,
-        "change_24h": 5.0,
+        "change_24h": 6.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.05532,
-        "change_24h": 4.7,
+        "price": 0.055298,
+        "change_24h": 4.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LINK",
+        "name": "Chainlink",
+        "price": 8.68,
+        "change_24h": 4.2,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.521192,
-        "change_24h": -4.2,
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.187059,
+        "change_24h": -5.0,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.09525,
-        "change_24h": -4.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 5e-06,
-        "change_24h": -3.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.087875,
-        "change_24h": -3.8,
+        "symbol": "ONDO",
+        "name": "Ondo",
+        "price": 0.338465,
+        "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.58,
-        "change_24h": -3.6,
+        "price": 1.59,
+        "change_24h": -4.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.65,
+        "change_24h": -4.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 487.59,
+        "change_24h": -4.3,
         "asset": "crypto"
       }
     ]
