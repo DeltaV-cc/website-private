@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T12:15:25Z",
+  "updated_at": "2026-08-11T12:30:25Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008421,
+        "price": 0.008406,
         "change_24h": 9.4,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.49,
+        "price": 2.48,
         "change_24h": 8.8,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.193448,
+        "price": 0.192534,
         "change_24h": 8.2,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.67,
+        "price": 8.64,
         "change_24h": 5.0,
         "asset": "crypto"
       },
@@ -119,14 +119,14 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.520381,
+        "price": 0.519817,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.095343,
+        "price": 0.095469,
         "change_24h": -4.2,
         "asset": "crypto"
       },
@@ -140,7 +140,7 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.087897,
+        "price": 0.087852,
         "change_24h": -3.8,
         "asset": "crypto"
       },
