@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-11T15:45:20Z",
+  "updated_at": "2026-08-11T16:00:35Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "ABCL",
         "name": "AbCellera Biologics Inc.",
-        "price": 9.8195,
-        "change_24h": 5.13,
+        "price": 9.73,
+        "change_24h": 4.18,
         "asset": "equity"
       },
       {
         "symbol": "OBX",
         "name": "Obsidian Therapeutics, Inc. Common Stock",
-        "price": 35.5,
-        "change_24h": 1.43,
+        "price": 33.0,
+        "change_24h": -5.71,
         "asset": "equity"
       },
       {
         "symbol": "NESR",
         "name": "National Energy Services Reunit",
-        "price": 35.47,
-        "change_24h": -0.89,
+        "price": 35.3,
+        "change_24h": -1.36,
         "asset": "equity"
       },
       {
         "symbol": "FSLY",
         "name": "Fastly, Inc.",
-        "price": 28.3,
-        "change_24h": 1.98,
+        "price": 28.15,
+        "change_24h": 1.44,
         "asset": "equity"
       },
       {
         "symbol": "BSP",
         "name": "Bending Spoons S.p.A.",
-        "price": 58.1,
-        "change_24h": 12.98,
+        "price": 57.94,
+        "change_24h": 12.66,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "BTDR",
         "name": "Bitdeer Technologies Group",
-        "price": 8.7799,
-        "change_24h": 0.98,
+        "price": 8.6699,
+        "change_24h": -0.29,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 75.33,
-        "change_24h": 2.06,
+        "price": 73.71,
+        "change_24h": -0.14,
         "asset": "equity"
       },
       {
         "symbol": "COHR",
         "name": "Coherent Corp.",
-        "price": 329.01,
-        "change_24h": 1.19,
+        "price": 325.31,
+        "change_24h": 0.05,
         "asset": "equity"
       },
       {
         "symbol": "SIMO",
         "name": "Silicon Motion Technology Corpo",
-        "price": 225.78,
-        "change_24h": -2.09,
+        "price": 224.86,
+        "change_24h": -2.49,
         "asset": "equity"
       },
       {
         "symbol": "NYAX",
         "name": "Nayax Ltd.",
-        "price": 52.97,
-        "change_24h": -14.56,
+        "price": 53.97,
+        "change_24h": -12.95,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.42,
+        "price": 2.4,
         "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "ICP",
         "name": "Internet Computer",
-        "price": 2.25,
+        "price": 2.26,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.196907,
+        "price": 0.195984,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.055014,
+        "price": 0.054981,
         "change_24h": 4.1,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.5,
+        "price": 8.55,
         "change_24h": 2.8,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.72,
+        "price": 3.7,
         "change_24h": -6.9,
         "asset": "crypto"
       },
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.54,
+        "price": 1.55,
         "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 470.06,
+        "price": 470.15,
         "change_24h": -6.4,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.183928,
+        "price": 0.184666,
         "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.086997,
+        "price": 0.087013,
         "change_24h": -5.3,
         "asset": "crypto"
       }
