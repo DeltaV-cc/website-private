@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T08:01:36Z",
+  "updated_at": "2026-08-11T08:15:35Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.44,
+        "price": 2.43,
         "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "ICP",
         "name": "Internet Computer",
-        "price": 2.32,
+        "price": 2.3,
         "change_24h": 4.9,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.448131,
+        "price": 0.448289,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.055072,
+        "price": 0.055057,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.45,
+        "price": 8.46,
         "change_24h": 2.8,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.188441,
+        "price": 0.18857,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "ONDO",
         "name": "Ondo",
-        "price": 0.337004,
+        "price": 0.3373,
         "change_24h": -4.8,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.096949,
+        "price": 0.096971,
         "change_24h": -4.6,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.330552,
+        "price": 0.330279,
         "change_24h": -4.6,
         "asset": "crypto"
       }
