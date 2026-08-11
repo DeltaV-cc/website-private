@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-10T16:03:56Z",
+  "updated_at": "2026-08-11T08:06:09Z",
   "source": "https://stablecoins.llama.fi/stablecoins",
   "stablecoins": [
     {
       "name": "Tether",
       "symbol": "USDT",
-      "circulating": 182008828980.6414
+      "circulating": 181971316682.3847
     },
     {
       "name": "USD Coin",
       "symbol": "USDC",
-      "circulating": 72311607121.18091
+      "circulating": 72279399545.09163
     },
     {
       "name": "Sky Dollar",
       "symbol": "USDS",
-      "circulating": 6654467324.913461
+      "circulating": 6646655450.458821
     },
     {
       "name": "Dai",
       "symbol": "DAI",
-      "circulating": 4776181723.441397
+      "circulating": 4789598173.549054
     },
     {
       "name": "World Liberty Financial USD",
       "symbol": "USD1",
-      "circulating": 4028499744.701578
+      "circulating": 4028373287.6557097
     },
     {
       "name": "Ethena USDe",
       "symbol": "USDe",
-      "circulating": 3924677863.557324
+      "circulating": 3928065995.79947
     },
     {
       "name": "Global Dollar",
       "symbol": "USDG",
-      "circulating": 3395009546.3731546
+      "circulating": 3410072371.5205216
     },
     {
       "name": "Circle USYC",
@@ -45,24 +45,24 @@
     {
       "name": "PayPal USD",
       "symbol": "PYUSD",
-      "circulating": 2767136611.1720066
+      "circulating": 2765171842.0688396
     },
     {
       "name": "BlackRock USD",
       "symbol": "BUIDL",
-      "circulating": 2708202194.7704487
+      "circulating": 2709401699.150449
     },
     {
       "name": "Ondo US Dollar Yield",
       "symbol": "USDY",
-      "circulating": 2141601698.5960705
+      "circulating": 2140712113.501536
     },
     {
       "name": "Ripple USD",
       "symbol": "RLUSD",
-      "circulating": 1544828215.280513
+      "circulating": 1553971674.173102
     }
   ],
   "stablecoinChains": [],
-  "total_circulating": 289266418220.6006
+  "total_circulating": 289228116031.3262
 }
