@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T10:00:55Z",
+  "updated_at": "2026-08-12T10:15:55Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.215722,
+        "price": 0.223159,
         "change_24h": 11.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.102492,
+        "price": 0.102587,
         "change_24h": 4.2,
         "asset": "crypto"
       },
@@ -103,7 +103,7 @@
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.088563,
+        "price": 0.088834,
         "change_24h": 3.6,
         "asset": "crypto"
       },
@@ -119,35 +119,35 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.54,
+        "price": 3.55,
         "change_24h": -10.0,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.484183,
+        "price": 0.484426,
         "change_24h": -6.8,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.31,
+        "price": 2.32,
         "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.432142,
+        "price": 0.431415,
         "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002698,
+        "price": 0.002694,
         "change_24h": -4.0,
         "asset": "crypto"
       }
