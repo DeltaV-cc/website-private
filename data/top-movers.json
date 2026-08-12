@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T08:45:52Z",
+  "updated_at": "2026-08-12T09:00:59Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,29 +82,22 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.237025,
-        "change_24h": 17.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.09822,
-        "change_24h": 5.2,
+        "price": 0.215413,
+        "change_24h": 11.3,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.102263,
-        "change_24h": 5.0,
+        "price": 0.102267,
+        "change_24h": 5.5,
         "asset": "crypto"
       },
       {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 8.75,
-        "change_24h": 3.7,
+        "symbol": "PI",
+        "name": "Pi Network",
+        "price": 0.088416,
+        "change_24h": 3.8,
         "asset": "crypto"
       },
       {
@@ -113,41 +106,48 @@
         "price": 1.038,
         "change_24h": 3.5,
         "asset": "crypto"
+      },
+      {
+        "symbol": "LINK",
+        "name": "Chainlink",
+        "price": 8.74,
+        "change_24h": 2.9,
+        "asset": "crypto"
       }
     ],
     "losers": [
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.51,
-        "change_24h": -11.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.00266,
-        "change_24h": -7.4,
+        "price": 3.52,
+        "change_24h": -10.8,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.477432,
-        "change_24h": -6.0,
+        "price": 0.477375,
+        "change_24h": -7.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002641,
+        "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.31,
-        "change_24h": -6.0,
+        "price": 2.29,
+        "change_24h": -6.1,
         "asset": "crypto"
       },
       {
-        "symbol": "ICP",
-        "name": "Internet Computer",
-        "price": 2.22,
+        "symbol": "JUP",
+        "name": "Jupiter",
+        "price": 0.17129,
         "change_24h": -5.0,
         "asset": "crypto"
       }
