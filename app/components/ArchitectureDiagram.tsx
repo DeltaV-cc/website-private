@@ -93,10 +93,11 @@ export default function ArchitectureDiagram({
                 </div>
               )}
 
-              <div
-                className={`relative rounded-xl border bg-[var(--bg-surface)]/90 p-3 md:p-4 ${layerAccent[la]}`}
-              >
-                <div className={`text-[10px] font-semibold tracking-[2px] uppercase mb-3 ${layerAccent[la].split(' ')[0]}`}>
+              {/* The layer is a label + a row of nodes, not a card. It used to
+                  be a bordered panel holding bordered nodes inside a bordered
+                  figure — three frames deep for one idea. */}
+              <div className="relative">
+                <div className={`text-[11px] font-semibold tracking-[2px] uppercase mb-2.5 ${layerAccent[la].split(' ')[0]}`}>
                   {layer.label}
                 </div>
                 <div
@@ -170,7 +171,7 @@ export function ArchitectureFlow({
               </div>
             )}
             <div className="flex-1 min-w-[140px] rounded-xl border border-[var(--border-default)] bg-[var(--bg-deep)] px-3.5 py-3">
-              <div className="text-[10px] font-semibold tracking-[1.5px] uppercase mb-1" style={{ color }}>
+              <div className="text-[11px] font-semibold tracking-[1.5px] uppercase mb-1" style={{ color }}>
                 {String(i + 1).padStart(2, '0')}
               </div>
               <div className="text-sm font-medium text-[var(--text-primary)]">{step.label}</div>

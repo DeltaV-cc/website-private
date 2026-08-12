@@ -17,6 +17,11 @@ const FORGE_LINKS = [
   { href: '/blog/', label: 'Blog', detail: 'Essays and field notes' },
   { href: '/tutorials/', label: 'Tutorials', detail: 'Builds and walkthroughs' },
   { href: '/forge/course/', label: 'AI Course', detail: 'AI Mastery curriculum' },
+  {
+    href: '/forge/course/open-harness-2/',
+    label: 'Open Harness 2',
+    detail: 'New reading experience — same course',
+  },
 ];
 
 function isActive(pathname: string, href: string) {

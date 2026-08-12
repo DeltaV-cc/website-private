@@ -27,13 +27,13 @@ export default function HarnessLabsIndexPage() {
   return (
     <main className="page-container pt-16 md:pt-20 pb-24">
       <div className="mb-8 flex flex-wrap items-center gap-3 text-sm">
-        <Link href="/forge/" className="text-[var(--text-muted)] hover:text-[var(--accent-orange)]">
+        <Link href="/forge/" className="text-[var(--text-muted)] hover:text-[var(--course-accent)]">
           Forge
         </Link>
         <span className="text-[var(--text-disabled)]">/</span>
         <Link
           href="/forge/course/open-harness/"
-          className="text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
+          className="text-[var(--text-muted)] hover:text-[var(--course-accent)]"
         >
           Open Harness
         </Link>
@@ -45,7 +45,7 @@ export default function HarnessLabsIndexPage() {
         <HarnessCourseTabs active="labs" />
         <span className="course-privacy-chip">Local only</span>
       </div>
-      <div className="eyebrow text-[var(--accent-orange)]">After mastery · not a second course</div>
+      <div className="eyebrow course-eyebrow text-[var(--course-accent)]">After mastery · not a second course</div>
       <h1 className="section-title mt-3">{HARNESS_LABS_META.title}</h1>
       <CoursePrivacyNote className="mt-4" />
       <p className="mt-6 max-w-2xl text-xl text-[var(--text-secondary)] leading-relaxed">
@@ -68,7 +68,7 @@ export default function HarnessLabsIndexPage() {
         </p>
         <Link
           href="/forge/course/open-harness/"
-          className="mt-3 inline-block text-sm font-medium text-[var(--accent-orange)]"
+          className="mt-3 inline-block text-sm font-medium text-[var(--course-accent)]"
         >
           Open Harness mastery →
         </Link>
@@ -100,9 +100,9 @@ export default function HarnessLabsIndexPage() {
             href={`/forge/course/open-harness/labs/${lab.slug}/`}
             className="forge-course-link group grid md:grid-cols-[4rem_minmax(0,1fr)_8rem] gap-4 py-6"
           >
-            <span className="font-mono text-xs text-[var(--accent-orange)]">{lab.number}</span>
+            <span className="font-mono text-xs text-[var(--course-accent)]">{lab.number}</span>
             <span>
-              <h2 className="text-lg font-semibold group-hover:text-[var(--accent-orange)]">
+              <h2 className="text-lg font-semibold group-hover:text-[var(--course-accent)]">
                 {lab.title}
               </h2>
               <p className="mt-1 text-sm text-[var(--text-secondary)]">{lab.subtitle}</p>

@@ -32,11 +32,11 @@ const GROUPS: { id: GlossaryTerm['group']; title: string }[] = [
 export default function OpenHarnessGlossaryPage() {
   return (
     <CoursePageChrome>
-      <div className="max-w-2xl">
+      <div className="course-measure">
         <HarnessCourseTabs active="glossary" />
-        <p className="eyebrow mt-8 text-[var(--accent-orange)]">Reference · print-friendly</p>
+        <p className="eyebrow course-eyebrow mt-8 text-[var(--course-accent)]">Reference · print-friendly</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-[-2px] leading-[1.05]">Glossary</h1>
-        <p className="mt-4 text-lg text-[var(--text-secondary)] leading-relaxed">
+        <p className="mt-4 course-t-h3 text-[var(--text-secondary)] leading-relaxed">
           Canonical language for Open Harness. Tight definitions for review — not a substitute for
           the lessons. Prefer these terms in every module.
         </p>
@@ -46,7 +46,7 @@ export default function OpenHarnessGlossaryPage() {
           if (!terms.length) return null;
           return (
             <section key={g.id} className="mt-12">
-              <h2 className="text-xl font-semibold tracking-tight">{g.title}</h2>
+              <h2 className="course-t-h3 font-semibold tracking-tight">{g.title}</h2>
               <div className="mt-4 space-y-6">
                 {terms.map((term) => (
                   <article
@@ -54,14 +54,14 @@ export default function OpenHarnessGlossaryPage() {
                     id={term.id}
                     className="border-b border-[var(--border-default)] pb-5"
                   >
-                    <h3 className="font-mono text-[12px] tracking-[1.5px] uppercase text-[var(--accent-orange)] font-semibold">
+                    <h3 className="font-mono course-t-meta tracking-[1.5px] uppercase text-[var(--course-accent)] font-semibold">
                       {term.term.en}
                     </h3>
-                    <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
+                    <p className="mt-2 course-t-small text-[var(--text-secondary)] leading-relaxed">
                       {formatCourseText(term.def.en)}
                     </p>
                     {term.avoid && (
-                      <p className="mt-2 font-mono text-[11px] text-[var(--text-muted)]">
+                      <p className="mt-2 font-mono course-t-meta text-[var(--text-muted)]">
                         Avoid: {term.avoid.en}
                       </p>
                     )}
@@ -72,12 +72,12 @@ export default function OpenHarnessGlossaryPage() {
           );
         })}
 
-        <p className="mt-12 text-sm text-[var(--text-muted)]">
-          <Link href="/forge/course/open-harness/" className="text-[var(--accent-orange)] hover:underline">
+        <p className="mt-12 course-t-small text-[var(--text-muted)]">
+          <Link href="/forge/course/open-harness/" className="text-[var(--course-accent)] hover:underline">
             ← Back to Open Harness
           </Link>
           {' · '}
-          <Link href="/forge/course/open-harness/01/" className="text-[var(--accent-orange)] hover:underline">
+          <Link href="/forge/course/open-harness/01/" className="text-[var(--course-accent)] hover:underline">
             Lexicon lesson
           </Link>
         </p>

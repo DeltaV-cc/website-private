@@ -107,8 +107,7 @@ export function DesignPageChrome({
     : null;
 
   return (
-    <div className="min-h-screen">
-      <div className="course-rail course-rail--cyan" aria-hidden />
+    <div className="course-surface course-surface--cyan min-h-screen">
       <div className="page-container pt-10 md:pt-14 pb-24">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <nav className="flex flex-wrap items-center gap-3 text-sm" aria-label="Breadcrumb">
@@ -156,7 +155,7 @@ export function DesignPageChrome({
           <aside className="hidden lg:block">
             <DesignToc activeSlug={activeSlug} />
           </aside>
-          <div className="min-w-0 course-reading lg:max-w-none">{children}</div>
+          <div className="course-reading">{children}</div>
         </div>
         <div className="course-mobile-toc-wrap lg:hidden">
           <details className="course-toc">

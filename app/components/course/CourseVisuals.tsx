@@ -34,11 +34,11 @@ export function CompareTwoPanel({
           : 'var(--accent-cyan)';
 
   return (
-    <figure className="my-8 rounded-2xl border border-[var(--border-default)] overflow-hidden">
+    <figure className="my-8 course-r-md border border-[var(--border-default)] overflow-hidden">
       <div className="grid md:grid-cols-2">
         <div className="p-5 md:p-6 border-b md:border-b-0 md:border-r border-[var(--border-default)] bg-[var(--bg-deep)]">
           <div
-            className="font-mono text-[10px] tracking-[2px] uppercase"
+            className="font-mono course-t-meta tracking-[2px] uppercase"
             style={{ color: accent(leftAccent) }}
           >
             {leftTitle}
@@ -47,20 +47,20 @@ export function CompareTwoPanel({
             {leftItems.map((row) => (
               <div
                 key={row.t}
-                className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3"
+                className="course-r-md border border-[var(--border-default)] bg-[var(--bg-surface)] px-4 py-3"
               >
-                <div className="text-sm font-medium">{row.t}</div>
-                <div className="text-xs text-[var(--text-muted)] mt-1">{row.d}</div>
+                <div className="course-t-small font-medium">{row.t}</div>
+                <div className="course-t-meta text-[var(--text-muted)] mt-1">{row.d}</div>
               </div>
             ))}
           </div>
           {leftFooter && (
-            <p className="mt-4 text-xs text-[var(--text-tertiary)]">{leftFooter}</p>
+            <p className="mt-4 course-t-meta text-[var(--text-tertiary)]">{leftFooter}</p>
           )}
         </div>
         <div className="p-5 md:p-6 bg-[var(--bg-card)]">
           <div
-            className="font-mono text-[10px] tracking-[2px] uppercase"
+            className="font-mono course-t-meta tracking-[2px] uppercase"
             style={{ color: accent(rightAccent) }}
           >
             {rightTitle}
@@ -69,16 +69,16 @@ export function CompareTwoPanel({
             {rightItems.map((row) => (
               <div
                 key={row.t}
-                className="rounded-xl border px-4 py-3 bg-[var(--bg-deep)]"
+                className="course-r-md border px-4 py-3 bg-[var(--bg-deep)]"
                 style={{ borderColor: `color-mix(in srgb, ${accent(rightAccent)} 35%, transparent)` }}
               >
-                <div className="text-sm font-medium">{row.t}</div>
-                <div className="text-xs text-[var(--text-muted)] mt-1">{row.d}</div>
+                <div className="course-t-small font-medium">{row.t}</div>
+                <div className="course-t-meta text-[var(--text-muted)] mt-1">{row.d}</div>
               </div>
             ))}
           </div>
           {rightFooter && (
-            <p className="mt-4 text-xs" style={{ color: accent(rightAccent) }}>
+            <p className="mt-4 course-t-meta" style={{ color: accent(rightAccent) }}>
               {rightFooter}
             </p>
           )}
@@ -111,60 +111,29 @@ export function TwoPartStrip({
 }) {
   const c1 = accent1 === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
   const c2 = accent2 === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
-  return (
-    <figure className="my-8 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] overflow-hidden">
-      <div className="p-4 md:p-5 flex flex-col md:flex-row gap-3 items-stretch">
-        <div
-          className="flex-1 rounded-xl border bg-[var(--bg-deep)] p-4"
-          style={{ borderColor: `color-mix(in srgb, ${c1} 40%, transparent)` }}
-        >
-          <div className="font-mono text-[10px] tracking-[2px] uppercase" style={{ color: c1 }}>
-            Part I
-          </div>
-          <div className="mt-2 text-base font-semibold">{part1Title}</div>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {part1Chips.map((s) => (
-              <span
-                key={s}
-                className="rounded-full border border-[var(--border-default)] px-2.5 py-1 text-[11px] text-[var(--text-secondary)]"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-[var(--text-muted)]">{part1Footer}</p>
-        </div>
-        <div className="hidden md:flex items-center text-[var(--text-muted)]" aria-hidden>
-          →
-        </div>
-        <div
-          className="flex-1 rounded-xl border bg-[var(--bg-deep)] p-4"
-          style={{ borderColor: `color-mix(in srgb, ${c2} 40%, transparent)` }}
-        >
-          <div className="font-mono text-[10px] tracking-[2px] uppercase" style={{ color: c2 }}>
-            Part II
-          </div>
-          <div className="mt-2 text-base font-semibold">{part2Title}</div>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {part2Chips.map((s) => (
-              <span
-                key={s}
-                className="rounded-full border border-[var(--border-default)] px-2.5 py-1 text-[11px] text-[var(--text-secondary)]"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-[var(--text-muted)]">{part2Footer}</p>
-        </div>
+  // One border for the whole figure. The two halves are separated by a single
+  // rule and the items are plain text — the previous version nested a bordered
+  // card and bordered pills inside a bordered figure, three frames deep.
+  const half = (label: string, accent: string, title: string, items: string[], footer: string) => (
+    <div className="course-fig-half">
+      <div className="course-fig-label" style={{ color: accent }}>
+        {label}
       </div>
-      {outOfScope && (
-        <div className="px-5 pb-4">
-          <div className="rounded-lg border border-dashed border-[var(--border-default)] px-3 py-2 text-xs text-[var(--text-tertiary)]">
-            {outOfScope}
-          </div>
-        </div>
-      )}
+      <div className="course-fig-title">{title}</div>
+      <ul className="course-fig-items">
+        {items.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+      <p className="course-fig-foot">{footer}</p>
+    </div>
+  );
+
+  return (
+    <figure className="course-fig course-fig--split my-10">
+      {half('Part I', c1, part1Title, part1Chips, part1Footer)}
+      {half('Part II', c2, part2Title, part2Chips, part2Footer)}
+      {outOfScope && <p className="course-fig-note">{outOfScope}</p>}
     </figure>
   );
 }
@@ -188,34 +157,34 @@ export function ForgePathVisual() {
 /** CSS mock of Desktop chrome — no third-party screenshots required */
 export function DesktopChromeMock() {
   return (
-    <figure className="my-8 rounded-2xl border border-[var(--border-default)] overflow-hidden bg-[var(--bg-deep)]">
+    <figure className="my-8 course-r-md border border-[var(--border-default)] overflow-hidden bg-[var(--bg-deep)]">
       <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 bg-[var(--bg-card)]">
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-orange)]/60" />
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-amber)]/50" />
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-cyan)]/40" />
-        <span className="ml-3 font-mono text-[10px] tracking-[1px] uppercase text-[var(--text-muted)]">
+        <span className="ml-3 font-mono course-t-meta tracking-[1px] uppercase text-[var(--text-muted)]">
           Hermes Desktop · mock
         </span>
       </div>
       <div className="grid md:grid-cols-[9rem_1fr]">
-        <div className="border-b md:border-b-0 md:border-r border-[var(--border-default)] p-3 space-y-1.5 text-[11px] text-[var(--text-tertiary)]">
+        <div className="border-b md:border-b-0 md:border-r border-[var(--border-default)] p-3 space-y-1.5 course-t-meta text-[var(--text-tertiary)]">
           {['Chat', 'Tools', 'Skills', 'Gateway', 'Cron', 'Profiles'].map((item, i) => (
             <div
               key={item}
-              className={`rounded-md px-2 py-1.5 ${i === 0 ? 'bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]' : ''}`}
+              className={`course-r-sm px-2 py-1.5 ${i === 0 ? 'bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]' : ''}`}
             >
               {item}
             </div>
           ))}
         </div>
         <div className="p-4 space-y-3">
-          <div className="rounded-lg border border-[var(--border-default)] bg-[var(--bg-surface)] px-3 py-2 text-xs text-[var(--text-secondary)]">
+          <div className="course-r-sm border border-[var(--border-default)] bg-[var(--bg-surface)] px-3 py-2 course-t-meta text-[var(--text-secondary)]">
             You: Reply with one sentence confirming you are online.
           </div>
-          <div className="rounded-lg border border-[var(--accent-cyan)]/25 bg-[var(--bg-card)] px-3 py-2 text-xs text-[var(--text-secondary)]">
+          <div className="course-r-sm border border-[var(--accent-cyan)]/25 bg-[var(--bg-card)] px-3 py-2 course-t-meta text-[var(--text-secondary)]">
             Hermes: Online on this profile. Ready for your first proof task.
           </div>
-          <p className="text-[10px] font-mono text-[var(--text-muted)]">
+          <p className="course-t-meta font-mono text-[var(--text-muted)]">
             Module 03 target · real labels may move — docs win
           </p>
         </div>

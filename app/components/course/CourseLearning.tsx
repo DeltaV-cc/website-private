@@ -22,10 +22,10 @@ import { formatCourseText } from '@/app/components/course/formatCourseText';
 export function CoursePrivacyNote({ className = '' }: { className?: string }) {
   return (
     <p
-      className={`text-[11px] leading-relaxed text-[var(--text-tertiary)] max-w-xl ${className}`}
+      className={`course-t-meta leading-relaxed text-[var(--text-tertiary)] max-w-xl ${className}`}
       role="note"
     >
-      <span className="font-mono text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)]">
+      <span className="font-mono course-t-meta uppercase tracking-[1.5px] text-[var(--text-muted)]">
         Privacy
       </span>
       <br />
@@ -62,16 +62,16 @@ export function CourseProgressBar({
 
   const pct = Math.round(ratio * 100);
   const done = Math.round(ratio * orderedSlugs.length);
-  const color = accent === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
+  const color = accent === 'cyan' ? 'var(--accent-cyan)' : 'var(--course-accent)';
 
   return (
     <div className="course-progress mb-6">
       <div className="flex flex-wrap items-end justify-between gap-2 mb-2">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)]">
+          <div className="font-mono course-t-meta uppercase tracking-[1.5px] text-[var(--text-muted)]">
             On this device
           </div>
-          <div className="mt-0.5 text-sm text-[var(--text-secondary)]">
+          <div className="mt-0.5 course-t-small text-[var(--text-secondary)]">
             <span className="text-[var(--text-primary)] font-medium tabular-nums">
               {done}
             </span>
@@ -135,7 +135,7 @@ export function MarkCompleteButton({
     window.dispatchEvent(new Event('dv-course-progress'));
   };
 
-  const color = accent === 'cyan' ? 'var(--accent-cyan)' : 'var(--accent-orange)';
+  const color = accent === 'cyan' ? 'var(--accent-cyan)' : 'var(--course-accent)';
 
   return (
     <div className="mt-6">
@@ -152,7 +152,7 @@ export function MarkCompleteButton({
       >
         {done ? '✓ Proof marked complete' : 'Mark proof complete'}
       </button>
-      <p className="mt-2 text-[11px] text-[var(--text-muted)]">
+      <p className="mt-2 course-t-meta text-[var(--text-muted)]">
         Stored on this device only — not sent anywhere.
       </p>
     </div>
@@ -208,6 +208,42 @@ export function ResumeCourseLink({
 
 /* ─── Interactive checklist ────────────────────────────── */
 
+/**
+ * The persistence half of a checklist, extracted so CourseSteps can share the
+ * exact same storage without nesting a copy button inside a toggle <button>
+ * (invalid HTML, and the click would be stolen). Behaviour is byte-identical
+ * to what lived inline here: positional flags under
+ * `dv-check:{courseId}:{moduleSlug}:{sectionKey}`.
+ */
+export function useChecklistFlags(
+  courseId: string,
+  moduleSlug: string,
+  sectionKey: string,
+  length: number,
+) {
+  const [flags, setFlags] = useState<boolean[]>(() => Array.from({ length }, () => false));
+
+  useEffect(() => {
+    const saved = readChecklist(courseId, moduleSlug, sectionKey);
+    setFlags(Array.from({ length }, (_, i) => Boolean(saved[i])));
+  }, [courseId, moduleSlug, sectionKey, length]);
+
+  // Side effects stay at statement level. Dispatching from inside a setState
+  // updater lets React replay them during render, which fires setState on the
+  // 'dv-course-progress' listeners (CourseToc, CourseProgressBar) mid-render.
+  const toggle = useCallback(
+    (index: number) => {
+      const next = flags.map((v, i) => (i === index ? !v : Boolean(v)));
+      setFlags(next);
+      writeChecklist(courseId, moduleSlug, sectionKey, next);
+      window.dispatchEvent(new Event('dv-course-progress'));
+    },
+    [flags, courseId, moduleSlug, sectionKey],
+  );
+
+  return { flags, toggle };
+}
+
 export function InteractiveChecklist({
   courseId,
   moduleSlug,
@@ -224,40 +260,22 @@ export function InteractiveChecklist({
   /** checklist = default; steps = numbered; proof = end-of-module claim */
   mode?: 'checklist' | 'steps' | 'proof';
 }) {
-  const [flags, setFlags] = useState<boolean[]>(() => items.map(() => false));
-
-  useEffect(() => {
-    const saved = readChecklist(courseId, moduleSlug, sectionKey);
-    setFlags(items.map((_, i) => Boolean(saved[i])));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [courseId, moduleSlug, sectionKey, items.length]);
-
-  const toggle = useCallback(
-    (index: number) => {
-      setFlags((prev) => {
-        const next = items.map((_, i) => (i === index ? !prev[i] : Boolean(prev[i])));
-        writeChecklist(courseId, moduleSlug, sectionKey, next);
-        window.dispatchEvent(new Event('dv-course-progress'));
-        return next;
-      });
-    },
-    [courseId, moduleSlug, sectionKey, items],
-  );
+  const { flags, toggle } = useChecklistFlags(courseId, moduleSlug, sectionKey, items.length);
 
   const mark =
     accent === 'cyan'
       ? 'var(--accent-cyan)'
       : accent === 'green'
         ? 'var(--accent-green)'
-        : 'var(--accent-orange)';
+        : 'var(--course-accent)';
 
   const checked = flags.filter(Boolean).length;
   const label =
     mode === 'steps' ? 'Steps · tap to check' : mode === 'proof' ? 'Proof · this device' : 'Checklist · this device';
 
   return (
-    <div className="mt-5 max-w-2xl">
-      <div className="mb-2 flex justify-between text-[10px] font-mono uppercase tracking-[1px] text-[var(--text-muted)]">
+    <div className="mt-5 course-measure">
+      <div className="mb-2 flex justify-between course-t-meta font-mono uppercase tracking-[1px] text-[var(--text-muted)]">
         <span>{label}</span>
         <span className="tabular-nums">
           {checked}/{items.length}
@@ -338,11 +356,17 @@ export function CourseQuizBlock({
   const ok = picked === correct;
 
   return (
-    <div className="course-quiz mt-5 max-w-2xl">
-      <div className="mb-2 font-mono text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)]">
-        {label}
+    <div className="course-quiz mt-7">
+      {/* Labelled as an exercise up front: readers were scrolling past these
+          without registering that they were meant to answer something. */}
+      <div className="course-quiz-tag">
+        <span className="course-quiz-tag-mark" aria-hidden>
+          ?
+        </span>
+        <span>Exercise · {label}</span>
       </div>
-      <p className="text-sm font-medium text-[var(--text-primary)] leading-snug">{question}</p>
+      <p className="course-quiz-question">{question}</p>
+      <p className="course-quiz-hint">Pick one — the answer is revealed straight away.</p>
       <div className="mt-3 space-y-2">
         {order.map((opt) => {
           let cls = 'course-quiz-opt';
@@ -366,7 +390,7 @@ export function CourseQuizBlock({
       </div>
       {answered && (
         <p
-          className={`mt-3 text-sm leading-relaxed ${ok ? 'text-[var(--accent-green)]' : 'text-[var(--accent-cyan)]'}`}
+          className={`mt-3 course-t-small leading-relaxed ${ok ? 'text-[var(--accent-green)]' : 'text-[var(--accent-cyan)]'}`}
         >
           {ok ? 'Correct. ' : 'Not quite. '}
           {explain}
@@ -418,16 +442,16 @@ export function DesignPrereqGate() {
   if (!ready || ok) return null;
 
   return (
-    <div className="course-callout course-callout--warn mt-8 max-w-2xl">
-      <div className="font-mono text-[10px] tracking-[2px] uppercase text-[var(--accent-amber)]">
+    <div className="course-callout course-callout--warn mt-8 course-measure">
+      <div className="font-mono course-t-meta tracking-[2px] uppercase text-[var(--accent-amber)]">
         Soft gate · Open Harness Part I
       </div>
-      <p className="mt-3 text-sm text-[var(--text-secondary)] leading-relaxed">
+      <p className="mt-3 course-t-small text-[var(--text-secondary)] leading-relaxed">
         Open Design assumes Hermes Desktop (or CLI) chats, a profile with SOUL.md, and that you can
         list/install a skill. If any of that is false, finish Open Harness Part I first — Design will
         not re-teach install.
       </p>
-      <p className="mt-2 text-[11px] text-[var(--text-muted)]">
+      <p className="mt-2 course-t-meta text-[var(--text-muted)]">
         Confirmation is stored on this device only.
       </p>
       <div className="mt-5 flex flex-wrap gap-3">

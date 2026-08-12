@@ -53,11 +53,11 @@ export function TermChip({ termId, lang = 'en' }: { termId: string; lang: Course
       <button
         ref={buttonRef}
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center w-5 h-5 ml-1 rounded-full bg-[var(--accent-orange)]/20 text-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/30 transition-colors"
+        className="course-term-chip"
         title={`${termName} definition`}
         aria-label={`Show definition of ${termName}`}
       >
-        <span className="text-xs font-bold">ⓘ</span>
+        <span aria-hidden>i</span>
       </button>
 
       {open && position && (
@@ -69,15 +69,17 @@ export function TermChip({ termId, lang = 'en' }: { termId: string; lang: Course
             left: `${position.left}px`,
           }}
         >
-          <div className="font-mono text-[10px] tracking-[1.5px] uppercase text-[var(--accent-orange)] font-semibold">
+          <div className="font-mono text-[11px] tracking-[1.5px] uppercase text-[var(--course-accent)] font-semibold">
             {termName}
           </div>
           <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{termDef}</p>
+          {/* The glossary page sets id={term.id} on every entry, so this anchor
+              always resolves. Lesson 01's lexicon cards use their own slugs. */}
           <Link
-            href={`/forge/course/open-harness/01/#${termId}`}
+            href={`/forge/course/open-harness/glossary/#${termId}`}
             className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--accent-cyan)] hover:underline"
           >
-            📖 See full definition in Lesson 01
+            📖 See full definition in the glossary
           </Link>
         </div>
       )}

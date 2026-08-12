@@ -7,6 +7,11 @@ out/
 *.log
 .cache/
 tsconfig.tsbuildinfo
+
+# Codemod scratch (progress-key baseline + derived block census)
+scripts/.keys-before.txt
+scripts/.blocks-report.json
+scripts/.density-proposals.json
 __pycache__/
 *.py[cod]
 .Python

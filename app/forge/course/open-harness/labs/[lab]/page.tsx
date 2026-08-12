@@ -54,24 +54,24 @@ export default async function HarnessLabPage({
         <div className="flex flex-wrap items-center gap-3 text-sm">
           <Link
             href="/forge/course/open-harness/"
-            className="text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
+            className="text-[var(--text-muted)] hover:text-[var(--course-accent)]"
           >
             Open Harness
           </Link>
           <span className="text-[var(--text-disabled)]">/</span>
           <Link
             href="/forge/course/open-harness/labs/"
-            className="text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
+            className="text-[var(--text-muted)] hover:text-[var(--course-accent)]"
           >
             Labs
           </Link>
           <span className="text-[var(--text-disabled)]">/</span>
-          <span className="font-mono text-[var(--accent-orange)]">{lab.number}</span>
+          <span className="font-mono text-[var(--course-accent)]">{lab.number}</span>
         </div>
         <HarnessCourseTabs active="labs" />
       </div>
 
-      <div className="eyebrow text-[var(--accent-orange)]">Harness Lab · {lab.number}</div>
+      <div className="eyebrow course-eyebrow text-[var(--course-accent)]">Harness Lab · {lab.number}</div>
       <h1 className="mt-3 text-4xl md:text-5xl font-semibold tracking-[-2px] leading-[1.05]">
         {lab.title}
       </h1>
@@ -93,7 +93,7 @@ export default async function HarnessLabPage({
         </div>
         <p className="text-sm text-[var(--text-tertiary)]">
           If not ready:{' '}
-          <Link href={lab.ifNotHref} className="text-[var(--accent-orange)] hover:underline">
+          <Link href={lab.ifNotHref} className="text-[var(--course-accent)] hover:underline">
             {lab.ifNotLabel} →
           </Link>
         </p>
@@ -114,7 +114,7 @@ export default async function HarnessLabPage({
               <ul className="mt-4 space-y-2">
                 {section.bullets.map((b, j) => (
                   <li key={j} className="flex gap-3 text-sm text-[var(--text-secondary)]">
-                    <span className="text-[var(--accent-orange)] font-mono">·</span>
+                    <span className="text-[var(--course-accent)] font-mono">·</span>
                     <span>{b}</span>
                   </li>
                 ))}
@@ -137,7 +137,7 @@ export default async function HarnessLabPage({
                     ? 'border-[var(--accent-amber)]'
                     : section.calloutVariant === 'quote'
                       ? 'border-[var(--accent-cyan)] italic'
-                      : 'border-[var(--accent-orange)]'
+                      : 'border-[var(--course-accent)]'
                 }`}
               >
                 {section.callout}
@@ -152,12 +152,12 @@ export default async function HarnessLabPage({
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-[var(--accent-orange)] hover:underline"
+                        className="text-sm text-[var(--course-accent)] hover:underline"
                       >
                         {link.label} ↗
                       </a>
                     ) : (
-                      <Link href={link.href} className="text-sm text-[var(--accent-orange)] hover:underline">
+                      <Link href={link.href} className="text-sm text-[var(--course-accent)] hover:underline">
                         {link.label} →
                       </Link>
                     )}
@@ -187,7 +187,7 @@ export default async function HarnessLabPage({
         {prev ? (
           <Link
             href={`/forge/course/open-harness/labs/${prev.slug}/`}
-            className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-orange)]"
+            className="text-sm text-[var(--text-secondary)] hover:text-[var(--course-accent)]"
           >
             ← {prev.title}
           </Link>
@@ -199,7 +199,7 @@ export default async function HarnessLabPage({
         {next ? (
           <Link
             href={`/forge/course/open-harness/labs/${next.slug}/`}
-            className="text-sm font-medium text-[var(--accent-orange)]"
+            className="text-sm font-medium text-[var(--course-accent)]"
           >
             {next.title} →
           </Link>
