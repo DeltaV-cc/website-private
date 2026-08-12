@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fforge\u002Fcourse\u002Fopen-design\u002F[module]","\u002Fforge\u002Fcourse\u002Fopen-harness-2\u002F[module]","\u002Fforge\u002Fcourse\u002Fopen-harness\u002F[module]","\u002Fforge\u002Fcourse\u002Fopen-harness\u002Flabs\u002F[lab]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
