@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11",
+  "updated": "2026-08-12",
   "models": [
     {
       "rank": 1,
@@ -8,7 +8,7 @@
       "license": "proprietary",
       "elo": 1506.0,
       "ci": 5.0,
-      "votes": 20982
+      "votes": 21242
     },
     {
       "rank": 2,
@@ -17,7 +17,7 @@
       "license": "proprietary",
       "elo": 1505.0,
       "ci": 4.0,
-      "votes": 71992
+      "votes": 72311
     },
     {
       "rank": 3,
@@ -26,25 +26,25 @@
       "license": "proprietary",
       "elo": 1502.0,
       "ci": 4.0,
-      "votes": 59748
+      "votes": 60106
     },
     {
       "rank": 4,
       "name": "muse-spark-1.2 (xHigh)",
       "vendor": "Meta",
       "license": "proprietary",
-      "elo": 1499.0,
+      "elo": 1498.0,
       "ci": 10.0,
-      "votes": 3278
+      "votes": 3275
     },
     {
       "rank": 5,
       "name": "claude-opus-4-6",
       "vendor": "Anthropic",
       "license": "proprietary",
-      "elo": 1498.0,
+      "elo": 1497.0,
       "ci": 3.0,
-      "votes": 75983
+      "votes": 76334
     },
     {
       "rank": 6,
@@ -53,7 +53,7 @@
       "license": "proprietary",
       "elo": 1494.0,
       "ci": 4.0,
-      "votes": 60850
+      "votes": 61204
     },
     {
       "rank": 7,
@@ -62,7 +62,7 @@
       "license": "proprietary",
       "elo": 1494.0,
       "ci": 5.0,
-      "votes": 18726
+      "votes": 19353
     },
     {
       "rank": 8,
@@ -71,16 +71,16 @@
       "license": "proprietary",
       "elo": 1491.0,
       "ci": 7.0,
-      "votes": 9018
+      "votes": 9353
     },
     {
       "rank": 9,
       "name": "qwen3.8-max",
       "vendor": "Alibaba",
       "license": "proprietary",
-      "elo": 1491.0,
+      "elo": 1490.0,
       "ci": 8.0,
-      "votes": 6404
+      "votes": 6717
     },
     {
       "rank": 10,
@@ -89,7 +89,7 @@
       "license": "proprietary",
       "elo": 1489.0,
       "ci": 6.0,
-      "votes": 16226
+      "votes": 16577
     },
     {
       "rank": 11,
@@ -98,7 +98,7 @@
       "license": "proprietary",
       "elo": 1488.0,
       "ci": 6.0,
-      "votes": 13602
+      "votes": 13593
     },
     {
       "rank": 12,
@@ -107,7 +107,7 @@
       "license": null,
       "elo": 1487.0,
       "ci": 6.0,
-      "votes": 11438
+      "votes": 11706
     },
     {
       "rank": 13,
@@ -116,7 +116,7 @@
       "license": "proprietary",
       "elo": 1486.0,
       "ci": 3.0,
-      "votes": 94409
+      "votes": 94728
     },
     {
       "rank": 14,
@@ -125,16 +125,16 @@
       "license": "proprietary",
       "elo": 1485.0,
       "ci": 4.0,
-      "votes": 41497
+      "votes": 41508
     },
     {
       "rank": 15,
       "name": "gemini-3.6-flash",
       "vendor": "Google",
       "license": "proprietary",
-      "elo": 1484.0,
+      "elo": 1483.0,
       "ci": 6.0,
-      "votes": 13123
+      "votes": 13481
     },
     {
       "rank": 16,
@@ -143,7 +143,7 @@
       "license": "proprietary",
       "elo": 1482.0,
       "ci": 5.0,
-      "votes": 39987
+      "votes": 40328
     },
     {
       "rank": 17,
@@ -152,7 +152,7 @@
       "license": "proprietary",
       "elo": 1481.0,
       "ci": 4.0,
-      "votes": 54790
+      "votes": 55130
     },
     {
       "rank": 18,
@@ -161,7 +161,7 @@
       "license": "proprietary",
       "elo": 1481.0,
       "ci": 6.0,
-      "votes": 14900
+      "votes": 15226
     },
     {
       "rank": 19,
@@ -170,7 +170,7 @@
       "license": "proprietary",
       "elo": 1477.0,
       "ci": 5.0,
-      "votes": 25170
+      "votes": 25538
     },
     {
       "rank": 20,
@@ -179,7 +179,7 @@
       "license": "proprietary",
       "elo": 1477.0,
       "ci": 4.0,
-      "votes": 56079
+      "votes": 56427
     }
   ]
 }
