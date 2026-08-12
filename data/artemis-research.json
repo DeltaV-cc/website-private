@@ -1,5 +1,37 @@
 [
   {
+    "title": "Aave Protocol Q2 Financials 2026",
+    "url": "https://www.artemis.ai/articles/345696854671752807",
+    "source": "Artemis Research (Dhru Patel)",
+    "published_at": "2026-08-11T22:44:19.992146+00:00",
+    "summary": "The financial performance of Aave is measured by aggregating ALL on-chain transactions through an Extract Load Transform (ELT) data pipeline from January 1st 2026 to June 30th 2026. Classification is derived by applying relevant accounting standard codifications (ASC) to each transaction type in an ",
+    "category": "crypto",
+    "artemis_id": "77f38f93-dd4c-43b3-a54d-4cbc6bfc4453",
+    "tags": [],
+    "categories": [
+      "fundamental",
+      "macro",
+      "fintech",
+      "ai",
+      "portfolio",
+      "defi",
+      "quant",
+      "crypto",
+      "regulation"
+    ]
+  },
+  {
+    "title": "$FIGR: The Market May Be Underwriting the Wrong Business",
+    "url": "https://www.artemis.ai/articles/345646214223920953",
+    "source": "Artemis Research (Artemis)",
+    "published_at": "2026-08-11T19:35:24.041420+00:00",
+    "summary": "Figure spent six years building a home equity lending platform designed to shorten origination times and reduce costs. Today, a growing portion of its business consists of marketplace activity involving loans that Figure neither sources nor funds, a model that we believe may generate attractive incr",
+    "category": "general",
+    "artemis_id": "ea4612d2-d570-4ca3-86fd-69c0aff156de",
+    "tags": [],
+    "categories": []
+  },
+  {
     "title": "Nvidia Is Mispriced Heading Into Q2 Earnings",
     "url": "https://www.artemis.ai/articles/344242939645549859",
     "source": "Artemis Research (steven.fiorillo)",
