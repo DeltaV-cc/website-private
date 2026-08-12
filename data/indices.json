@@ -11,18 +11,18 @@
   },
   "smi": {
     "price": "14474",
-    "change": -100.8798828125,
+    "change": -100.75,
     "changePct": "-0.69%"
   },
   "stoxx": {
-    "price": "6562",
-    "change": 10.5498046875,
-    "changePct": "+0.16%"
+    "price": "6569",
+    "change": 17.53955078125,
+    "changePct": "+0.27%"
   },
   "dax": {
-    "price": "26495",
-    "change": 103.109375,
-    "changePct": "+0.39%"
+    "price": "26518",
+    "change": 126.630859375,
+    "changePct": "+0.48%"
   },
-  "updated_at": "2026-08-12T10:16:03.147775Z"
+  "updated_at": "2026-08-12T10:31:06.903748Z"
 }
