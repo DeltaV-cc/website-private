@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T06:49:39Z",
+  "updated_at": "2026-08-12T07:10:40Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.218764,
-        "change_24h": 13.8,
+        "price": 0.221844,
+        "change_24h": 14.1,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098476,
-        "change_24h": 5.0,
+        "price": 0.098449,
+        "change_24h": 4.8,
         "asset": "crypto"
       },
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.64,
-        "change_24h": 5.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 8.71,
-        "change_24h": 4.1,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.12,
+        "change_24h": 3.9,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.101635,
-        "change_24h": 3.7,
+        "price": 0.102183,
+        "change_24h": 3.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LINK",
+        "name": "Chainlink",
+        "price": 8.75,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
+        "symbol": "UNI",
+        "name": "Uniswap",
+        "price": 3.62,
+        "change_24h": -9.0,
+        "asset": "crypto"
+      },
+      {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.28,
-        "change_24h": -6.6,
+        "price": 2.29,
+        "change_24h": -7.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.480795,
+        "change_24h": -5.5,
         "asset": "crypto"
       },
       {
         "symbol": "ICP",
         "name": "Internet Computer",
         "price": 2.23,
-        "change_24h": -5.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 3.7,
         "change_24h": -5.5,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.48907,
-        "change_24h": -4.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.14,
-        "change_24h": -3.9,
+        "symbol": "JUP",
+        "name": "Jupiter",
+        "price": 0.173895,
+        "change_24h": -4.3,
         "asset": "crypto"
       }
     ]
