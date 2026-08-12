@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-12T14:00:30Z",
+  "updated_at": "2026-08-12T14:15:29Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "ATRO",
-        "name": "Astronics Corporation",
-        "price": 91.0,
-        "change_24h": 21.46,
-        "asset": "equity"
-      },
-      {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 13.44,
-        "change_24h": 19.44,
-        "asset": "equity"
-      },
-      {
-        "symbol": "CRWV",
-        "name": "CoreWeave, Inc.",
-        "price": 107.27,
-        "change_24h": 18.77,
-        "asset": "equity"
-      },
-      {
-        "symbol": "HRB",
-        "name": "H&R Block, Inc.",
-        "price": 54.67,
-        "change_24h": 17.14,
+        "price": 14.17,
+        "change_24h": 25.96,
         "asset": "equity"
       },
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 228.67,
-        "change_24h": 18.34,
+        "price": 232.9,
+        "change_24h": 20.54,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CRWV",
+        "name": "CoreWeave, Inc.",
+        "price": 108.99,
+        "change_24h": 20.67,
+        "asset": "equity"
+      },
+      {
+        "symbol": "ATRO",
+        "name": "Astronics Corporation",
+        "price": 88.6,
+        "change_24h": 18.31,
+        "asset": "equity"
+      },
+      {
+        "symbol": "QNT",
+        "name": "Quantinuum Inc.",
+        "price": 65.55,
+        "change_24h": 16.93,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "OCTV",
         "name": "Octave Intelligence plc",
-        "price": 17.77,
-        "change_24h": -9.89,
+        "price": 17.99,
+        "change_24h": -8.77,
         "asset": "equity"
       },
       {
         "symbol": "BSP",
         "name": "Bending Spoons S.p.A.",
-        "price": 48.56,
-        "change_24h": -9.12,
-        "asset": "equity"
-      },
-      {
-        "symbol": "BETA",
-        "name": "Beta Technologies, Inc.",
-        "price": 22.59,
-        "change_24h": -8.14,
+        "price": 49.43,
+        "change_24h": -7.5,
         "asset": "equity"
       },
       {
         "symbol": "PFGC",
         "name": "Performance Food Group Company",
-        "price": 106.55,
-        "change_24h": -6.5,
+        "price": 106.19,
+        "change_24h": -6.82,
+        "asset": "equity"
+      },
+      {
+        "symbol": "BETA",
+        "name": "Beta Technologies, Inc.",
+        "price": 22.94,
+        "change_24h": -6.72,
         "asset": "equity"
       },
       {
         "symbol": "ACM",
         "name": "AECOM",
-        "price": 63.27,
-        "change_24h": -5.63,
+        "price": 62.96,
+        "change_24h": -6.1,
         "asset": "equity"
       }
     ]
@@ -82,21 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.213657,
-        "change_24h": 19.2,
+        "price": 0.211715,
+        "change_24h": 9.7,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098788,
-        "change_24h": 4.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.64,
+        "price": 0.097787,
         "change_24h": 3.7,
         "asset": "crypto"
       },
@@ -108,10 +101,17 @@
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.088099,
-        "change_24h": 3.0,
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.64,
+        "change_24h": 3.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 11.87,
+        "change_24h": 2.8,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.53,
-        "change_24h": -8.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.490204,
-        "change_24h": -6.4,
+        "price": 3.54,
+        "change_24h": -8.3,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.31,
-        "change_24h": -5.3,
+        "price": 2.28,
+        "change_24h": -6.6,
         "asset": "crypto"
       },
       {
-        "symbol": "JUP",
-        "name": "Jupiter",
-        "price": 0.173272,
-        "change_24h": -3.6,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.488621,
+        "change_24h": -6.3,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.432645,
-        "change_24h": -3.6,
+        "price": 0.434638,
+        "change_24h": -3.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "JUP",
+        "name": "Jupiter",
+        "price": 0.172182,
+        "change_24h": -3.7,
         "asset": "crypto"
       }
     ]
