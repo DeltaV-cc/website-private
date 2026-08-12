@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T07:46:00Z",
+  "updated_at": "2026-08-12T08:00:53Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.225674,
+        "price": 0.226803,
         "change_24h": 14.1,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098102,
+        "price": 0.098034,
         "change_24h": 4.8,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.10207,
+        "price": 0.102035,
         "change_24h": 3.9,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 8.73,
+        "price": 8.74,
         "change_24h": 3.8,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.54,
+        "price": 3.5,
         "change_24h": -9.0,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.3,
+        "price": 2.31,
         "change_24h": -7.3,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.480248,
+        "price": 0.481634,
         "change_24h": -5.5,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "JUP",
         "name": "Jupiter",
-        "price": 0.173765,
+        "price": 0.173886,
         "change_24h": -4.3,
         "asset": "crypto"
       }
