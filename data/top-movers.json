@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T07:59:50Z",
+  "updated_at": "2026-08-13T08:15:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.252379,
-        "change_24h": 10.3,
+        "price": 0.251708,
+        "change_24h": 14.4,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 102.49,
-        "change_24h": 7.9,
+        "price": 102.83,
+        "change_24h": 7.4,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.460869,
-        "change_24h": 5.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 57.36,
-        "change_24h": 5.0,
+        "price": 0.460142,
+        "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.033506,
-        "change_24h": 4.2,
+        "price": 0.033524,
+        "change_24h": 4.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "HYPE",
+        "name": "Hyperliquid",
+        "price": 57.12,
+        "change_24h": 4.6,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 3.59,
-        "change_24h": -5.0,
-        "asset": "crypto"
-      },
-      {
         "symbol": "PEPE",
         "name": "Pepe",
         "price": 3e-06,
-        "change_24h": -4.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ARB",
-        "name": "Arbitrum",
-        "price": 0.075399,
-        "change_24h": -3.8,
+        "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.01236,
-        "change_24h": -3.8,
+        "price": 0.012343,
+        "change_24h": -4.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ARB",
+        "name": "Arbitrum",
+        "price": 0.075191,
+        "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.676824,
+        "price": 0.674154,
         "change_24h": -3.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ALGO",
+        "name": "Algorand",
+        "price": 0.079317,
+        "change_24h": -2.5,
         "asset": "crypto"
       }
     ]
