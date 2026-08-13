@@ -1,24 +1,17 @@
 import type { Metadata } from 'next';
-import { CourseLandingBody, CoursePageChrome } from '@/app/components/course/CourseShell';
-import { OPEN_HARNESS_META } from '@/app/data/courses/open-harness';
-import { SITE_URL } from '@/lib/site';
+import { AihChrome } from '@/app/components/course/aihero/AihChrome';
+import { AihLanding } from '@/app/components/course/aihero/AihLanding';
 
 export const metadata: Metadata = {
-  title: 'Open Harness — Hermes course | Delta V',
-  description: OPEN_HARNESS_META.description.en,
-  openGraph: {
-    title: 'Open Harness — Build a Hermes harness you own',
-    description: OPEN_HARNESS_META.tagline.en,
-    url: `${SITE_URL}/forge/course/open-harness/`,
-    siteName: 'Delta V',
-    type: 'website',
-  },
+  title: 'Own Your AI — build your own agent harness | Delta V',
+  description:
+    'Thirteen free lessons to build your own agent harness — yours to run and change, instead of renting one from Claude or OpenAI. No code required.',
 };
 
-export default function OpenHarnessLandingPage() {
+export default function OwnYourAILandingPage() {
   return (
-    <CoursePageChrome>
-      <CourseLandingBody />
-    </CoursePageChrome>
+    <AihChrome>
+      <AihLanding />
+    </AihChrome>
   );
 }

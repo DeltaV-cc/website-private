@@ -81,7 +81,7 @@ export function DesignToc({ activeSlug }: { activeSlug?: string }) {
           href="/forge/course/open-harness/"
           className="block text-xs text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
         >
-          Prereq: Open Harness →
+          Prereq: Own Your AI →
         </Link>
         <Link
           href="/forge/course/open-video/"
@@ -197,7 +197,7 @@ export function DesignLandingBody() {
             href="/forge/course/open-harness/00/"
             className="mt-2 inline-block text-sm text-[var(--accent-orange)] hover:underline"
           >
-            Open Harness Part I →
+            Own Your AI Part I →
           </Link>
         </div>
         <DesignPrereqGate />

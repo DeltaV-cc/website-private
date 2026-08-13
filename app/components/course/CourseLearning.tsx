@@ -409,7 +409,7 @@ export function HarnessCourseTabs({ active }: { active: 'mastery' | 'labs' | 'gl
     { id: 'glossary' as const, href: '/forge/course/open-harness/glossary/', label: 'Glossary' },
   ];
   return (
-    <div className="course-segmented" role="tablist" aria-label="Open Harness sections">
+    <div className="course-segmented" role="tablist" aria-label="Own Your AI sections">
       {tabs.map((tab) => {
         const on = active === tab.id;
         return (
@@ -444,11 +444,11 @@ export function DesignPrereqGate() {
   return (
     <div className="course-callout course-callout--warn mt-8 course-measure">
       <div className="font-mono course-t-meta tracking-[2px] uppercase text-[var(--accent-amber)]">
-        Soft gate · Open Harness Part I
+        Soft gate · Own Your AI Part I
       </div>
       <p className="mt-3 course-t-small text-[var(--text-secondary)] leading-relaxed">
         Open Design assumes Hermes Desktop (or CLI) chats, a profile with SOUL.md, and that you can
-        list/install a skill. If any of that is false, finish Open Harness Part I first — Design will
+        list/install a skill. If any of that is false, finish Own Your AI Part I first — Design will
         not re-teach install.
       </p>
       <p className="mt-2 course-t-meta text-[var(--text-muted)]">
@@ -456,7 +456,7 @@ export function DesignPrereqGate() {
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
         <Link href="/forge/course/open-harness/00/" className="button-primary">
-          Open Harness Part I ↗
+          Own Your AI Part I ↗
         </Link>
         <button
           type="button"

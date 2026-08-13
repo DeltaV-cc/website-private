@@ -1,4 +1,4 @@
-# Open Harness — sample gallery
+# Own Your AI — sample gallery
 
 Filled examples of course artifacts. Copy into your own notes folder; do not commit secrets.
 

@@ -2,20 +2,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CoursePageChrome } from '@/app/components/course/CourseShell';
 import { HarnessCourseTabs } from '@/app/components/course/CourseLearning';
-import {
-  OPEN_HARNESS_GLOSSARY,
-  OPEN_HARNESS_META,
-  type GlossaryTerm,
-} from '@/app/data/courses/open-harness';
+import { OPEN_HARNESS_GLOSSARY, type GlossaryTerm } from '@/app/data/courses/open-harness';
 import { formatCourseText } from '@/app/components/course/formatCourseText';
 import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Open Harness glossary | Delta V',
-  description: 'Compressed terms for the Open Harness course — stack, loop, ops, Part II.',
+  title: 'Own Your AI — glossary | Delta V',
+  description: 'Compressed terms for the Own Your AI course — stack, loop, ops, Part II.',
   openGraph: {
-    title: 'Open Harness glossary',
-    description: OPEN_HARNESS_META.tagline.en,
+    title: 'Own Your AI — glossary',
+    description: 'Every term from lesson 01 on one printable page.',
     url: `${SITE_URL}/forge/course/open-harness/glossary/`,
     siteName: 'Delta V',
     type: 'website',
@@ -37,7 +33,7 @@ export default function OpenHarnessGlossaryPage() {
         <p className="eyebrow course-eyebrow mt-8 text-[var(--course-accent)]">Reference · print-friendly</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-[-2px] leading-[1.05]">Glossary</h1>
         <p className="mt-4 course-t-h3 text-[var(--text-secondary)] leading-relaxed">
-          Canonical language for Open Harness. Tight definitions for review — not a substitute for
+          Canonical language for Own Your AI. Tight definitions for review — not a substitute for
           the lessons. Prefer these terms in every module.
         </p>
 
@@ -74,7 +70,7 @@ export default function OpenHarnessGlossaryPage() {
 
         <p className="mt-12 course-t-small text-[var(--text-muted)]">
           <Link href="/forge/course/open-harness/" className="text-[var(--course-accent)] hover:underline">
-            ← Back to Open Harness
+            ← Back to Own Your AI
           </Link>
           {' · '}
           <Link href="/forge/course/open-harness/01/" className="text-[var(--course-accent)] hover:underline">

@@ -145,51 +145,12 @@ export function ForgePathVisual() {
       title="Forge path (today)"
       accent="orange"
       steps={[
-        { label: '01 Open Harness', detail: 'Main entry · Hermes' },
+        { label: "01 Own Your AI", detail: 'Main entry · Hermes' },
         { label: '02 Open Design', detail: 'Decks · images · content' },
         { label: 'Labs', detail: 'After Harness Part I' },
         { label: 'More later', detail: 'Video Studio · Agentic Commerce' },
       ]}
     />
-  );
-}
-
-/** CSS mock of Desktop chrome — no third-party screenshots required */
-export function DesktopChromeMock() {
-  return (
-    <figure className="my-8 course-r-md border border-[var(--border-default)] overflow-hidden bg-[var(--bg-deep)]">
-      <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 bg-[var(--bg-card)]">
-        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-orange)]/60" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-amber)]/50" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-cyan)]/40" />
-        <span className="ml-3 font-mono course-t-meta tracking-[1px] uppercase text-[var(--text-muted)]">
-          Hermes Desktop · mock
-        </span>
-      </div>
-      <div className="grid md:grid-cols-[9rem_1fr]">
-        <div className="border-b md:border-b-0 md:border-r border-[var(--border-default)] p-3 space-y-1.5 course-t-meta text-[var(--text-tertiary)]">
-          {['Chat', 'Tools', 'Skills', 'Gateway', 'Cron', 'Profiles'].map((item, i) => (
-            <div
-              key={item}
-              className={`course-r-sm px-2 py-1.5 ${i === 0 ? 'bg-[var(--accent-orange)]/15 text-[var(--accent-orange)]' : ''}`}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="p-4 space-y-3">
-          <div className="course-r-sm border border-[var(--border-default)] bg-[var(--bg-surface)] px-3 py-2 course-t-meta text-[var(--text-secondary)]">
-            You: Reply with one sentence confirming you are online.
-          </div>
-          <div className="course-r-sm border border-[var(--accent-cyan)]/25 bg-[var(--bg-card)] px-3 py-2 course-t-meta text-[var(--text-secondary)]">
-            Hermes: Online on this profile. Ready for your first proof task.
-          </div>
-          <p className="course-t-meta font-mono text-[var(--text-muted)]">
-            Module 03 target · real labels may move — docs win
-          </p>
-        </div>
-      </div>
-    </figure>
   );
 }
 
@@ -339,6 +300,7 @@ export function HarnessModuleVisual({
                 { title: 'Your PC', subtitle: 'Awake for gateway', accent: 'orange' },
                 { title: 'Desktop app', subtitle: 'Course cockpit', accent: 'orange' },
                 { title: 'Local terminal', subtitle: 'Default tools', accent: 'orange' },
+                { title: 'Providers', subtitle: 'Free cloud route + API key', accent: 'orange' },
               ],
             },
             {
@@ -347,7 +309,7 @@ export function HarnessModuleVisual({
               accent: 'cyan',
               nodes: [
                 { title: 'Advanced · Docker', subtitle: 'Isolate shell tools', accent: 'cyan' },
-                { title: 'Providers', subtitle: 'Remote / local models', accent: 'cyan' },
+                { title: 'Local models', subtitle: 'Open weights on your GPU', accent: 'cyan' },
                 { title: 'Gateway host', subtitle: 'Always-on / VPS later', accent: 'cyan' },
               ],
             },
@@ -356,20 +318,17 @@ export function HarnessModuleVisual({
       );
     case '03':
       return (
-        <>
-          <ArchitectureFlow
-            title="Install path"
-            accent="orange"
-            steps={[
-              { label: 'Download', detail: 'Desktop' },
-              { label: 'Setup', detail: 'One provider' },
-              { label: 'Chat OK', detail: 'Smoke reply' },
-              { label: 'Doctor', detail: 'Health check' },
-              { label: 'Know paths', detail: 'Profile home' },
-            ]}
-          />
-          <DesktopChromeMock />
-        </>
+        <ArchitectureFlow
+          title="Install path"
+          accent="orange"
+          steps={[
+            { label: 'Download', detail: 'Desktop' },
+            { label: 'Setup', detail: 'One provider' },
+            { label: 'Chat OK', detail: 'Smoke reply' },
+            { label: 'Doctor', detail: 'Health check' },
+            { label: 'Know paths', detail: 'Profile home' },
+          ]}
+        />
       );
     case '04':
       return (

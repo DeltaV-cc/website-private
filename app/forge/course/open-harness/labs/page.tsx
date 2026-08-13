@@ -6,7 +6,7 @@ import { HARNESS_LABS, HARNESS_LABS_META } from '@/app/data/courses/harness-labs
 import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Open Harness Labs | Delta V',
+  title: 'Own Your AI — Harness Labs | Delta V',
   description: HARNESS_LABS_META.description,
   openGraph: {
     title: HARNESS_LABS_META.title,
@@ -35,7 +35,7 @@ export default function HarnessLabsIndexPage() {
           href="/forge/course/open-harness/"
           className="text-[var(--text-muted)] hover:text-[var(--course-accent)]"
         >
-          Open Harness
+          Own Your AI
         </Link>
         <span className="text-[var(--text-disabled)]">/</span>
         <span className="text-[var(--text-secondary)]">Labs</span>
@@ -60,7 +60,7 @@ export default function HarnessLabsIndexPage() {
           Assumes
         </div>
         <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
-          Hermes is already installed and chatting (Open Harness Part I). Course default is{' '}
+          Hermes is already installed and chatting (Own Your AI Part I). Course default is{' '}
           <strong className="font-medium text-[var(--text-primary)]">Hermes Desktop</strong> from mastery
           03 — profile + SOUL exist; several drills open the Desktop cockpit. Labs do not re-teach install,
           BotFather from zero, or vault setup. CLI-only is fine if you can map the same proofs. If anything
@@ -70,7 +70,7 @@ export default function HarnessLabsIndexPage() {
           href="/forge/course/open-harness/"
           className="mt-3 inline-block text-sm font-medium text-[var(--course-accent)]"
         >
-          Open Harness mastery →
+          Own Your AI course →
         </Link>
       </div>
 
@@ -88,7 +88,7 @@ export default function HarnessLabsIndexPage() {
           Mastery vs labs
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-[var(--text-secondary)]">
-          Pedagogy lives in Open Harness. Labs only drill and produce artifacts.
+          Pedagogy lives in Own Your AI. Labs only drill and produce artifacts.
         </p>
         <LabsLandingVisual />
       </section>

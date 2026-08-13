@@ -22,7 +22,7 @@ export default function AICoursePage() {
 
       <section className="mt-14">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className="text-2xl font-semibold tracking-tight">01 · Open Harness</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">01 · Own Your AI</h2>
           <Link
             href="/forge/course/open-harness/"
             className="text-sm font-medium text-[var(--accent-orange)]"

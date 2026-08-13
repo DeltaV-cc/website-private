@@ -18,9 +18,9 @@ const FORGE_LINKS = [
   { href: '/tutorials/', label: 'Tutorials', detail: 'Builds and walkthroughs' },
   { href: '/forge/course/', label: 'AI Course', detail: 'AI Mastery curriculum' },
   {
-    href: '/forge/course/open-harness-2/',
-    label: 'Open Harness 2',
-    detail: 'New reading experience — same course',
+    href: '/forge/course/open-harness/',
+    label: 'Own Your AI',
+    detail: 'Build your own agent harness — free, no code',
   },
 ];
 

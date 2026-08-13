@@ -6,6 +6,8 @@ import { t, type CourseBlock, type CourseLang, type CourseLink } from '@/app/dat
 import { formatCourseText } from '@/app/components/course/formatCourseText';
 import { CourseQuizBlock, InteractiveChecklist } from '@/app/components/course/CourseLearning';
 import { HarnessModuleVisual } from '@/app/components/course/CourseVisuals';
+import { CopyCards } from '@/app/components/course/CopyCards';
+import { CourseTweet } from '@/app/components/course/CourseTweet';
 import { CourseCode } from './CourseCode';
 import { CourseSteps } from './CourseSteps';
 
@@ -202,6 +204,40 @@ export function BlockRenderer({
 
     case 'figure':
       return <HarnessModuleVisual slug={moduleSlug} variant={block.variant} />;
+
+    case 'copycards':
+      return <CopyCards items={block.items} />;
+
+    case 'tweet':
+      return (
+        <CourseTweet
+          id={block.id}
+          author={block.author}
+          href={block.href}
+          height={block.height}
+          caption={block.caption ? formatCourseText(t(block.caption, lang)) : undefined}
+        />
+      );
+
+    case 'image':
+      return (
+        <figure className="course-shot">
+          {/* Plain <img>: the export is static (images.unoptimized) and these are
+              screenshots of third-party UIs, so next/image buys nothing here. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={withBasePath(block.src)}
+            alt={t(block.alt, lang)}
+            width={block.width}
+            height={block.height}
+            loading="lazy"
+            decoding="async"
+          />
+          {block.caption && (
+            <figcaption>{formatCourseText(t(block.caption, lang))}</figcaption>
+          )}
+        </figure>
+      );
 
     default: {
       // Exhaustiveness guard — see the comment above.

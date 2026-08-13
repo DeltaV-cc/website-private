@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { CoursePageChrome } from '@/app/components/course/CourseShell';
-import { LessonBody } from '@/app/components/course/lesson/LessonBody';
+import { AihChrome } from '@/app/components/course/aihero/AihChrome';
+import { AihLessonBody } from '@/app/components/course/aihero/AihLessonBody';
 import { OPEN_HARNESS_MODULES, getModule } from '@/app/data/courses/open-harness';
 import { SITE_URL } from '@/lib/site';
 
@@ -16,12 +16,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { module: slug } = await params;
   const mod = getModule(slug);
-  if (!mod) return { title: 'Open Harness' };
+  if (!mod) return { title: 'Own Your AI' };
   return {
-    title: `${mod.number} · ${mod.title.en} — Open Harness | Delta V`,
+    title: `${mod.number} · ${mod.title.en} — Own Your AI | Delta V`,
     description: mod.subtitle.en,
     openGraph: {
-      title: `${mod.title.en} — Open Harness`,
+      title: `${mod.title.en} — Own Your AI`,
       description: mod.subtitle.en,
       url: `${SITE_URL}/forge/course/open-harness/${mod.slug}/`,
       siteName: 'Delta V',
@@ -30,7 +30,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function OpenHarnessModulePage({
+export default async function OwnYourAIModulePage({
   params,
 }: {
   params: Promise<{ module: string }>;
@@ -40,8 +40,8 @@ export default async function OpenHarnessModulePage({
   if (!mod) notFound();
 
   return (
-    <CoursePageChrome activeSlug={mod.slug}>
-      <LessonBody module={mod} />
-    </CoursePageChrome>
+    <AihChrome activeSlug={mod.slug}>
+      <AihLessonBody module={mod} />
+    </AihChrome>
   );
 }
