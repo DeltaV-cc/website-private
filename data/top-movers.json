@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T11:30:42Z",
+  "updated_at": "2026-08-13T11:45:41Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.258274,
+        "price": 0.261238,
         "change_24h": 20.2,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.87,
+        "price": 101.57,
         "change_24h": 6.6,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.458989,
+        "price": 0.458886,
         "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "AVAX",
         "name": "Avalanche",
-        "price": 6.49,
+        "price": 6.48,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 57.22,
+        "price": 56.99,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -126,28 +126,28 @@
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.074818,
+        "price": 0.074499,
         "change_24h": -5.0,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012308,
+        "price": 0.012267,
         "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.085972,
+        "price": 0.085701,
         "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.673162,
+        "price": 0.671191,
         "change_24h": -3.8,
         "asset": "crypto"
       }
