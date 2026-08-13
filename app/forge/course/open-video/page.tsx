@@ -53,7 +53,7 @@ export default function OpenVideoTeaserPage() {
           Do Open Design first ↗
         </Link>
         <Link href="/forge/course/open-harness/" className="button-secondary">
-          Open Harness
+          Own Your AI
         </Link>
         <Link href="/contact/?topic=open-video" className="button-secondary">
           Contact

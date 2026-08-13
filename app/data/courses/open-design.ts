@@ -1,6 +1,6 @@
 /**
  * Open Design 01 — decks, images, content (EN).
- * Quality bar: same density as Open Harness — briefs you can paste, proofs you can fail,
+ * Quality bar: same density as Own Your AI — briefs you can paste, proofs you can fail,
  * failure modes, folder contracts. Motion → Open Video.
  */
 
@@ -65,10 +65,10 @@ export const OPEN_DESIGN_META = {
   title: L('Open Design'),
   tagline: L('Stop renting slides. Ship decks and images as files you can open tomorrow.'),
   description: L(
-    'Course 02. After Open Harness Part I: Open Design + Hermes for PPTX/HTML decks, stills (Grok Imagine), and content packs. Brand file + Kimi for structure. Video engines are Course 03 — not here.',
+    'Course 02. After Own Your AI Part I: Open Design + Hermes for PPTX/HTML decks, stills (Grok Imagine), and content packs. Brand file + Kimi for structure. Video engines are Course 03 — not here.',
   ),
   prereq: L(
-    'Open Harness Part I done on Hermes Desktop: chat works, SOUL.md in Hermes home, you can list/install a skill. Optional: AGENTS.md for design-lab. Gateway optional for Design labs.',
+    'Own Your AI Part I done on Hermes Desktop: chat works, SOUL.md in Hermes home, you can list/install a skill. Optional: AGENTS.md for design-lab. Gateway optional for Design labs.',
   ),
   verifiedAsOf: '2026-08',
 } as const;
@@ -161,7 +161,7 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
         heading: L('Prerequisite (hard gate)'),
         paragraphs: [
           L(
-            'If Hermes does not chat yet, stop. Finish Open Harness Part I first. Design without an agent that can write files is just another prompt box.',
+            'If Hermes does not chat yet, stop. Finish Own Your AI Part I first. Design without an agent that can write files is just another prompt box.',
           ),
         ],
         checklist: [
@@ -171,8 +171,8 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
           L('You know where agent-written files land on disk'),
         ],
         links: [
-          { label: L('Open Harness — start'), href: '/forge/course/open-harness/00/' },
-          { label: L('Open Harness — install'), href: '/forge/course/open-harness/03/' },
+          { label: L('Own Your AI — start'), href: '/forge/course/open-harness/00/' },
+          { label: L('Own Your AI — install'), href: '/forge/course/open-harness/03/' },
         ],
       },
       {
@@ -215,7 +215,7 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
         heading: L('Prerequisite — do not re-install Hermes here'),
         paragraphs: [
           L(
-            'Open Harness Part I already taught Desktop/CLI install, SOUL, gateway, and first tools. If chat fails or you have no profile, stop and open mastery — this module will not re-teach install.',
+            'Own Your AI Part I already taught Desktop/CLI install, SOUL, gateway, and first tools. If chat fails or you have no profile, stop and open mastery — this module will not re-teach install.',
           ),
         ],
         checklist: [
@@ -623,7 +623,7 @@ Don't:
           ],
         },
         callout: L(
-          'Course rule: Kimi builds the artifact; Imagine paints the stills. General token/tool cost theory lives in Open Harness 06 — do not re-learn it here; only assign jobs to models.',
+          'Course rule: Kimi builds the artifact; Imagine paints the stills. General token/tool cost theory lives in Own Your AI 06 — do not re-learn it here; only assign jobs to models.',
         ),
         calloutVariant: 'quote',
         links: [
@@ -676,7 +676,7 @@ Don't:
         heading: L('Theory lives in Harness 09'),
         paragraphs: [
           L(
-            'What a skill is, progressive disclosure, and hub scans are Open Harness 09. This module only filters the skill list for a design profile — studio, not VFX house.',
+            'What a skill is, progressive disclosure, and hub scans are Own Your AI 09. This module only filters the skill list for a design profile — studio, not VFX house.',
           ),
           L(
             'A design profile that loads HyperFrames or Remotion skills will spend tokens deciding whether to animate a slide. That is the wrong failure mode for Course 02.',
@@ -940,7 +940,7 @@ Do not publish without human review.`,
         ],
         links: [
           { label: L('Open Video teaser (roadmap)'), href: '/forge/course/open-video/' },
-          { label: L('Open Harness'), href: '/forge/course/open-harness/' },
+          { label: L('Own Your AI'), href: '/forge/course/open-harness/' },
           { label: L('Harness Labs'), href: '/forge/course/open-harness/labs/' },
           { label: L('Sample design-lab tree'), href: '/courses/open-design/samples/design-lab-tree.example.md' },
           { label: L('Contact'), href: '/contact/?topic=open-design' },

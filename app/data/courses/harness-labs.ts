@@ -1,6 +1,6 @@
 /**
- * Open Harness Labs — drills AFTER mastery, not a second install path.
- * Assumes Hermes already installed (Open Harness Part I).
+ * Harness Labs — drills AFTER mastery, not a second install path.
+ * Assumes Hermes already installed (Own Your AI Part I).
  * Mastery owns pedagogy; labs own measurement artifacts and extensions.
  */
 
@@ -39,10 +39,10 @@ export type HarnessLab = {
 };
 
 export const HARNESS_LABS_META = {
-  title: 'Open Harness Labs',
+  title: 'Harness Labs',
   tagline: 'Drills after mastery — not a second install course.',
   description:
-    'Optional ops drills once Open Harness Part I is done. Mastery default is Hermes Desktop (profile + SOUL). Labs do not re-teach install, gateway setup from zero, or memory theory. Prefer finishing the mastery modules first; CLI-only learners map Desktop steps themselves.',
+    'Optional ops drills once Own Your AI Part I is done. Mastery default is Hermes Desktop (profile + SOUL). Labs do not re-teach install, gateway setup from zero, or memory theory. Prefer finishing the mastery modules first; CLI-only learners map Desktop steps themselves.',
   href: '/forge/course/open-harness/labs/',
   courseHref: '/forge/course/open-harness/',
 };
@@ -57,7 +57,7 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 10,
     level: 'after-part-i',
     tags: ['Desktop', 'Checklist'],
-    requires: 'Open Harness Part I (modules 03–06 proofs)',
+    requires: 'Own Your AI Part I (modules 03–06 proofs)',
     assumes: 'Hermes Desktop already installed and chatting; profile + SOUL exist; gateway optional.',
     ifNotHref: '/forge/course/open-harness/03/',
     ifNotLabel: 'Harness 03 — Install',
@@ -99,7 +99,7 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 20,
     level: 'after-part-i',
     tags: ['Cost', 'Models'],
-    requires: 'Open Harness 06 (agency/spend intro); better after 09 if you have a cron',
+    requires: 'Own Your AI 06 (agency/spend intro); better after 09 if you have a cron',
     assumes: 'Primary model already works. You are not choosing a provider for the first time.',
     ifNotHref: '/forge/course/open-harness/06/',
     ifNotLabel: 'Harness 06 — First agency',
@@ -109,7 +109,7 @@ export const HARNESS_LABS: HarnessLab[] = [
       {
         heading: 'Mastery owns the theory',
         paragraphs: [
-          'Token tiers, tool catalogs, and cron-as-runbook are taught in Open Harness 06 and 09. Do not re-read a lecture here. Open those modules if the ideas are new.',
+          'Token tiers, tool catalogs, and cron-as-runbook are taught in Own Your AI 06 and 09. Do not re-read a lecture here. Open those modules if the ideas are new.',
         ],
         links: [
           { label: '06 Spend / tools intro', href: '/forge/course/open-harness/06/' },
@@ -209,7 +209,7 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 25,
     level: 'after-part-ii',
     tags: ['Automation', 'Webhooks'],
-    requires: 'Open Harness 11 cron proof (runbook-style job understood)',
+    requires: 'Own Your AI 11 cron proof (runbook-style job understood)',
     assumes: 'You can write a full amnesia cron prompt. Hermes is installed and online.',
     ifNotHref: '/forge/course/open-harness/11/',
     ifNotLabel: 'Harness 11 — Cron runbooks',
@@ -290,7 +290,7 @@ Human approval for:`,
     minutes: 30,
     level: 'after-part-ii',
     tags: ['Wiki', 'Kanban', 'Memory'],
-    requires: 'Open Harness 08 vault proof (Obsidian path linked, retrieval worked once)',
+    requires: 'Own Your AI 08 vault proof (Obsidian path linked, retrieval worked once)',
     assumes: 'Vault folder exists and Hermes can read it. You are not installing Obsidian here.',
     ifNotHref: '/forge/course/open-harness/08/',
     ifNotLabel: 'Harness 08 — Data vault',
@@ -361,7 +361,7 @@ Human approval for:`,
     minutes: 30,
     level: 'after-part-i',
     tags: ['Ops', 'Debug', 'Security'],
-    requires: 'Open Harness Part I (Hermes chats; gateway optional)',
+    requires: 'Own Your AI Part I (Hermes chats; gateway optional)',
     assumes: 'Desktop or CLI install works on a good day; you have not turned YOLO on for the course.',
     ifNotHref: '/forge/course/open-harness/03/',
     ifNotLabel: 'Harness 03 — Install',
@@ -439,7 +439,7 @@ Secrets: none pasted
     minutes: 25,
     level: 'after-part-i',
     tags: ['Sessions', 'Context', 'Ops'],
-    requires: 'Open Harness 06 (tools proof); chat works on Desktop or CLI',
+    requires: 'Own Your AI 06 (tools proof); chat works on Desktop or CLI',
     assumes: 'You can run a multi-turn conversation. You are not learning install here.',
     ifNotHref: '/forge/course/open-harness/06/',
     ifNotLabel: 'Harness 06 — First agency',
@@ -504,7 +504,7 @@ Rule of thumb: […]
     minutes: 20,
     level: 'after-part-i',
     tags: ['Cost', 'Tools', 'Skills'],
-    requires: 'Open Harness 06; better after 09 skills',
+    requires: 'Own Your AI 06; better after 09 skills',
     assumes: 'Primary model works. You can open Tools and Skills panels (or CLI hermes tools / hermes skills).',
     ifNotHref: '/forge/course/open-harness/06/',
     ifNotLabel: 'Harness 06 — First agency',
@@ -555,7 +555,7 @@ Still works: yes/no
     minutes: 30,
     level: 'advanced',
     tags: ['Desktop', 'Multi-agent', 'Plugin'],
-    requires: 'Open Harness Part I; two profiles with SOUL optional but recommended',
+    requires: 'Own Your AI Part I; two profiles with SOUL optional but recommended',
     assumes: 'Desktop chat works on at least one profile. You are not installing Hermes here.',
     ifNotHref: '/forge/course/open-harness/04/',
     ifNotLabel: 'Harness 04 — Soul pack',

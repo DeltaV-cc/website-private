@@ -82,7 +82,7 @@ export function DesignStackVisual() {
           accent: 'cyan',
           nodes: [
             { title: 'Agent loop', subtitle: 'Tools · skills · write files', accent: 'cyan' },
-            { title: 'Profile + SOUL', subtitle: 'From Open Harness Part I', accent: 'cyan' },
+            { title: 'Profile + SOUL', subtitle: 'From Own Your AI Part I', accent: 'cyan' },
           ],
         },
         {
