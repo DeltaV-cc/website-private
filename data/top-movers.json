@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T10:15:36Z",
+  "updated_at": "2026-08-13T11:30:42Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.257909,
-        "change_24h": 18.4,
+        "price": 0.258274,
+        "change_24h": 20.2,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 102.01,
-        "change_24h": 7.1,
+        "price": 101.87,
+        "change_24h": 6.6,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.460325,
-        "change_24h": 6.9,
+        "price": 0.458989,
+        "change_24h": 6.2,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 12.5,
-        "change_24h": 6.9,
+        "symbol": "AVAX",
+        "name": "Avalanche",
+        "price": 6.49,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002785,
-        "change_24h": 5.2,
+        "symbol": "HYPE",
+        "name": "Hyperliquid",
+        "price": 57.22,
+        "change_24h": 3.9,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "RAIN",
-        "name": "Rain",
-        "price": 0.012324,
-        "change_24h": -4.5,
+        "symbol": "PEPE",
+        "name": "Pepe",
+        "price": 3e-06,
+        "change_24h": -5.3,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.074645,
-        "change_24h": -4.2,
+        "price": 0.074818,
+        "change_24h": -5.0,
         "asset": "crypto"
       },
       {
-        "symbol": "FIL",
-        "name": "Filecoin",
-        "price": 0.672314,
-        "change_24h": -3.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PEPE",
-        "name": "Pepe",
-        "price": 3e-06,
-        "change_24h": -3.5,
+        "symbol": "RAIN",
+        "name": "Rain",
+        "price": 0.012308,
+        "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.08636,
-        "change_24h": -2.8,
+        "price": 0.085972,
+        "change_24h": -3.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIL",
+        "name": "Filecoin",
+        "price": 0.673162,
+        "change_24h": -3.8,
         "asset": "crypto"
       }
     ]
