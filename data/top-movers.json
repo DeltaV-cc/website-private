@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T10:00:46Z",
+  "updated_at": "2026-08-13T10:15:36Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.258934,
-        "change_24h": 10.6,
+        "price": 0.257909,
+        "change_24h": 18.4,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 102.21,
-        "change_24h": 7.2,
+        "price": 102.01,
+        "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.460498,
-        "change_24h": 6.8,
+        "price": 0.460325,
+        "change_24h": 6.9,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.59,
-        "change_24h": 6.8,
+        "price": 12.5,
+        "change_24h": 6.9,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.033611,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002785,
         "change_24h": 5.2,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
+        "symbol": "RAIN",
+        "name": "Rain",
+        "price": 0.012324,
+        "change_24h": -4.5,
+        "asset": "crypto"
+      },
+      {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.074823,
-        "change_24h": -4.9,
+        "price": 0.074645,
+        "change_24h": -4.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIL",
+        "name": "Filecoin",
+        "price": 0.672314,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "PEPE",
         "name": "Pepe",
         "price": 3e-06,
-        "change_24h": -4.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "RAIN",
-        "name": "Rain",
-        "price": 0.012332,
-        "change_24h": -4.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "FIL",
-        "name": "Filecoin",
-        "price": 0.67247,
-        "change_24h": -4.0,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.086678,
-        "change_24h": -2.7,
+        "price": 0.08636,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
