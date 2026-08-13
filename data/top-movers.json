@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T08:15:43Z",
+  "updated_at": "2026-08-13T08:30:44Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.251708,
+        "price": 0.250777,
         "change_24h": 14.4,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 102.83,
+        "price": 102.44,
         "change_24h": 7.4,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.460142,
+        "price": 0.460865,
         "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.033524,
+        "price": 0.033527,
         "change_24h": 4.8,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 57.12,
+        "price": 56.87,
         "change_24h": 4.6,
         "asset": "crypto"
       }
@@ -126,28 +126,28 @@
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012343,
+        "price": 0.012352,
         "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.075191,
+        "price": 0.074922,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.674154,
+        "price": 0.674457,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "ALGO",
         "name": "Algorand",
-        "price": 0.079317,
+        "price": 0.079522,
         "change_24h": -2.5,
         "asset": "crypto"
       }
