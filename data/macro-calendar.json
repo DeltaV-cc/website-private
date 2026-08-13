@@ -1,21 +1,7 @@
 {
-  "updated": "2026-08-12T16:00:55.468770Z",
-  "period": "2026-08-12 \u2192 2026-09-26",
+  "updated": "2026-08-13T07:34:21.426091Z",
+  "period": "2026-08-13 \u2192 2026-09-27",
   "events": [
-    {
-      "date": "2026-08-12",
-      "label": "US CPI (MoM)",
-      "currency": "USD",
-      "impact": "high",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-12",
-      "label": "EU Final CPI (YoY)",
-      "currency": "EUR",
-      "impact": "medium",
-      "country": "EU"
-    },
     {
       "date": "2026-08-13",
       "label": "US Initial Jobless Claims",
@@ -281,6 +267,20 @@
       "currency": "USD",
       "impact": "medium",
       "country": "US"
+    },
+    {
+      "date": "2026-09-10",
+      "label": "ECB Rate Decision",
+      "currency": "EUR",
+      "impact": "high",
+      "country": "EU"
+    },
+    {
+      "date": "2026-09-10",
+      "label": "Japan GDP (QoQ)",
+      "currency": "JPY",
+      "impact": "medium",
+      "country": "JP"
     }
   ]
 }
