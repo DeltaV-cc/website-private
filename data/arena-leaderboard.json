@@ -1,41 +1,41 @@
 {
-  "updated": "2026-08-12",
+  "updated": "2026-08-13",
   "models": [
     {
       "rank": 1,
       "name": "claude-fable-5",
       "vendor": "Anthropic",
       "license": "proprietary",
-      "elo": 1506.0,
+      "elo": 1507.0,
       "ci": 5.0,
-      "votes": 21242
+      "votes": 21439
     },
     {
       "rank": 2,
-      "name": "claude-opus-4-6-thinking",
+      "name": "claude-opus-4-6-high",
       "vendor": "Anthropic",
       "license": "proprietary",
       "elo": 1505.0,
       "ci": 4.0,
-      "votes": 72311
+      "votes": 72466
     },
     {
       "rank": 3,
-      "name": "claude-opus-4-7-thinking",
+      "name": "claude-opus-4-7-high",
       "vendor": "Anthropic",
       "license": "proprietary",
       "elo": 1502.0,
       "ci": 4.0,
-      "votes": 60106
+      "votes": 60268
     },
     {
       "rank": 4,
       "name": "muse-spark-1.2 (xHigh)",
       "vendor": "Meta",
       "license": "proprietary",
-      "elo": 1498.0,
+      "elo": 1499.0,
       "ci": 10.0,
-      "votes": 3275
+      "votes": 3259
     },
     {
       "rank": 5,
@@ -44,7 +44,7 @@
       "license": "proprietary",
       "elo": 1497.0,
       "ci": 3.0,
-      "votes": 76334
+      "votes": 76428
     },
     {
       "rank": 6,
@@ -53,7 +53,7 @@
       "license": "proprietary",
       "elo": 1494.0,
       "ci": 4.0,
-      "votes": 61204
+      "votes": 61369
     },
     {
       "rank": 7,
@@ -62,7 +62,7 @@
       "license": "proprietary",
       "elo": 1494.0,
       "ci": 5.0,
-      "votes": 19353
+      "votes": 19792
     },
     {
       "rank": 8,
@@ -71,16 +71,16 @@
       "license": "proprietary",
       "elo": 1491.0,
       "ci": 7.0,
-      "votes": 9353
+      "votes": 9559
     },
     {
       "rank": 9,
       "name": "qwen3.8-max",
       "vendor": "Alibaba",
       "license": "proprietary",
-      "elo": 1490.0,
+      "elo": 1491.0,
       "ci": 8.0,
-      "votes": 6717
+      "votes": 6908
     },
     {
       "rank": 10,
@@ -89,25 +89,25 @@
       "license": "proprietary",
       "elo": 1489.0,
       "ci": 6.0,
-      "votes": 16577
+      "votes": 16805
     },
     {
       "rank": 11,
+      "name": "kimi-k3-max",
+      "vendor": "Moonshot",
+      "license": null,
+      "elo": 1489.0,
+      "ci": 6.0,
+      "votes": 11864
+    },
+    {
+      "rank": 12,
       "name": "muse-spark",
       "vendor": "Meta",
       "license": "proprietary",
       "elo": 1488.0,
       "ci": 6.0,
-      "votes": 13593
-    },
-    {
-      "rank": 12,
-      "name": "kimi-k3-max",
-      "vendor": "Moonshot",
-      "license": null,
-      "elo": 1487.0,
-      "ci": 6.0,
-      "votes": 11706
+      "votes": 13596
     },
     {
       "rank": 13,
@@ -116,7 +116,7 @@
       "license": "proprietary",
       "elo": 1486.0,
       "ci": 3.0,
-      "votes": 94728
+      "votes": 94989
     },
     {
       "rank": 14,
@@ -125,34 +125,34 @@
       "license": "proprietary",
       "elo": 1485.0,
       "ci": 4.0,
-      "votes": 41508
+      "votes": 41505
     },
     {
       "rank": 15,
-      "name": "gemini-3.6-flash",
+      "name": "gemini-3.6-flash-high",
       "vendor": "Google",
       "license": "proprietary",
-      "elo": 1483.0,
+      "elo": 1484.0,
       "ci": 6.0,
-      "votes": 13481
+      "votes": 13693
     },
     {
       "rank": 16,
-      "name": "claude-opus-4-8-thinking",
+      "name": "claude-opus-4-8-high",
       "vendor": "Anthropic",
       "license": "proprietary",
       "elo": 1482.0,
       "ci": 5.0,
-      "votes": 40328
+      "votes": 40588
     },
     {
       "rank": 17,
       "name": "gpt-5.5-high",
       "vendor": "OpenAI",
       "license": "proprietary",
-      "elo": 1481.0,
+      "elo": 1482.0,
       "ci": 4.0,
-      "votes": 55130
+      "votes": 55322
     },
     {
       "rank": 18,
@@ -161,7 +161,7 @@
       "license": "proprietary",
       "elo": 1481.0,
       "ci": 6.0,
-      "votes": 15226
+      "votes": 15450
     },
     {
       "rank": 19,
@@ -170,7 +170,7 @@
       "license": "proprietary",
       "elo": 1477.0,
       "ci": 5.0,
-      "votes": 25538
+      "votes": 25746
     },
     {
       "rank": 20,
@@ -179,7 +179,7 @@
       "license": "proprietary",
       "elo": 1477.0,
       "ci": 4.0,
-      "votes": 56427
+      "votes": 56647
     }
   ]
 }
