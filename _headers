@@ -10,10 +10,16 @@
 
   # Strict Content-Security-Policy
   # Allows self + unsafe-inline for Next.js hydration / Tailwind. No third-party origins.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;
+  # frame-src: course lessons embed a few cited posts from X via X's own iframe
+  # endpoint (platform.twitter.com) rather than re-hosting the media. No X
+  # script runs on our pages — script-src stays 'self'.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-src https://platform.twitter.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;
 
   # Additional hardening
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
+  # credentialless, not require-corp: X's embed frames do not send CORP headers,
+  # and require-corp would block them. Cross-origin subresources still load
+  # without credentials, so the isolation that matters here is kept.
+  Cross-Origin-Embedder-Policy: credentialless
   Cross-Origin-Resource-Policy: same-origin
   X-DNS-Prefetch-Control: off

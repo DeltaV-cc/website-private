@@ -7,6 +7,7 @@ import {
   InteractiveChecklist,
   MarkCompleteButton,
 } from '@/app/components/course/CourseLearning';
+import { CourseTweet } from '@/app/components/course/CourseTweet';
 import { HARNESS_LABS, getHarnessLab } from '@/app/data/courses/harness-labs';
 import { SITE_URL } from '@/lib/site';
 
@@ -56,7 +57,7 @@ export default async function HarnessLabPage({
             href="/forge/course/open-harness/"
             className="text-[var(--text-muted)] hover:text-[var(--course-accent)]"
           >
-            Open Harness
+            Own Your AI
           </Link>
           <span className="text-[var(--text-disabled)]">/</span>
           <Link
@@ -141,6 +142,17 @@ export default async function HarnessLabPage({
                 }`}
               >
                 {section.callout}
+              </div>
+            )}
+            {section.tweet && (
+              <div className="course-prose">
+                <CourseTweet
+                  id={section.tweet.id}
+                  author={section.tweet.author}
+                  href={section.tweet.href}
+                  height={section.tweet.height}
+                  caption={section.tweet.caption}
+                />
               </div>
             )}
             {section.links && (

@@ -10,10 +10,10 @@ import {
 import { OnThisPage } from '@/app/components/course/OnThisPage';
 import { OPEN_HARNESS_MODULES, OPEN_HARNESS_PARTS, UI_COPY, t } from '@/app/data/courses/open-harness';
 
-export const OH2_BASE = '/forge/course/open-harness-2/';
+export const OH2_BASE = '/forge/course/open-harness/';
 
 /**
- * Open Harness 2 chrome — the aihero.dev shell: flat opaque surface,
+ * Own Your AI chrome — the aihero.dev shell: flat opaque surface,
  * 273/699/232 columns, quiet breadcrumb, shared left nav and right rail.
  * Reuses CourseToc/OnThisPage; only the surface class and basePath differ.
  */
@@ -38,7 +38,7 @@ function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeS
           <span aria-hidden>/</span>
           {activeSlug ? (
             <>
-              <Link href={OH2_BASE}>Open Harness 2</Link>
+              <Link href={OH2_BASE}>Own Your AI</Link>
               <span aria-hidden>/</span>
               <span className="course-crumbs-here">
                 {activePart ? `${t(UI_COPY.part, lang)} ${activePart.code} · ` : ''}
@@ -46,7 +46,7 @@ function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeS
               </span>
             </>
           ) : (
-            <span className="course-crumbs-here">Open Harness 2</span>
+            <span className="course-crumbs-here">Own Your AI</span>
           )}
         </nav>
 

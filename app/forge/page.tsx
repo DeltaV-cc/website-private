@@ -169,19 +169,19 @@ function CourseCard({
 
 /**
  * Two live courses only.
- * Labs are folded into Open Harness (path + what-you-get) — never a third course card.
+ * Labs are folded into Own Your AI (path + what-you-get) — never a third course card.
  */
 const COURSES: CourseCardProps[] = [
   {
     id: 'open-harness',
     code: 'Course 01 · Flagship · Live',
-    title: 'Open Harness',
+    title: 'Own Your AI',
     pitch: (
       <>
-        A free path from first principles to a working agent you{' '}
+        Thirteen free lessons from first principles to a working agent you{' '}
         <span className="font-medium text-[var(--text-primary)]">own on Hermes Desktop</span> —
         lexicon and mental models, then install, soul, gateway, tools, memory, vault, skills,
-        security, and cron. Accessible without an ML background; designed for lasting ownership,
+        security, and cron. No code and no ML background required; designed for lasting ownership,
         not a rented chat tab.
       </>
     ),
@@ -202,7 +202,7 @@ const COURSES: CourseCardProps[] = [
     ],
     forWho:
       'Anyone building personal AI with ownership — beginners through operators on a standard PC.',
-    ctaLabel: 'Open Harness',
+    ctaLabel: 'Start Own Your AI',
     ctaHref: '/forge/course/open-harness/',
     secondary: {
       label: 'Labs after Part I',
@@ -233,12 +233,12 @@ const COURSES: CourseCardProps[] = [
     path: [
       { step: 'Part I', desc: 'stack, deck, images, content pack' },
       { step: 'Part II', desc: 'brand, models, skills filter, export, habits' },
-      { step: 'Prereq', desc: 'Open Harness Part I on Desktop' },
+      { step: 'Prereq', desc: 'Own Your AI Part I on Desktop' },
     ],
     forWho: 'Anyone who ships decks and content and is tired of renting design tabs.',
     ctaLabel: 'Open Design',
     ctaHref: '/forge/course/open-design/',
-    secondary: { label: 'Prereq: Harness', href: '/forge/course/open-harness/' },
+    secondary: { label: 'Prereq: Own Your AI', href: '/forge/course/open-harness/' },
     accent: 'var(--accent-cyan)',
   },
 ];

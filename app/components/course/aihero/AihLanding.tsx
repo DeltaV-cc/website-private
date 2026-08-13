@@ -9,7 +9,8 @@ import {
   OPEN_HARNESS_PARTS,
   t,
 } from '@/app/data/courses/open-harness';
-import { OH2_META, QUICK_WINS } from '@/app/data/courses/open-harness-2';
+import { HARNESS_LABS } from '@/app/data/courses/harness-labs';
+import { OH2_META } from '@/app/data/courses/open-harness-2';
 import { OH2_BASE } from './AihChrome';
 
 const SLUGS = OPEN_HARNESS_MODULES.map((m) => m.slug);
@@ -26,12 +27,7 @@ export function AihLanding() {
       <div className="course-meta">
         <span className="course-meta-num">{OPEN_HARNESS_MODULES.length} lessons</span>
         <span aria-hidden>·</span>
-        <span>
-          {OPEN_HARNESS_MODULES.reduce((a, m) => a + m.minutes, 0)} min ·{' '}
-          <Link href="/forge/course/open-harness/" className="course-link">
-            original edition
-          </Link>
-        </span>
+        <span>{OPEN_HARNESS_MODULES.reduce((a, m) => a + m.minutes, 0)} min · free</span>
       </div>
       <h1 className="course-h1 mt-4">{t(OH2_META.title, lang)}</h1>
       <p className="course-deck mt-4 course-measure">{t(OH2_META.tagline, lang)}</p>
@@ -77,19 +73,36 @@ export function AihLanding() {
         </section>
       ))}
 
+      {/* Optional drills, after the course. Unnumbered on purpose: nothing here
+          is required to finish, and the labs assume Part I is already done. */}
       <section className="mt-12">
-        <h2 className="course-h2">Bonus</h2>
+        <h2 className="course-h2">Go further</h2>
+        <p className="course-p mt-2 course-measure text-[var(--text-tertiary)]">
+          Optional drills once the course is done — deeper practice, not new theory.
+        </p>
         <ol className="mt-5">
           <li>
-            <Link href={`${OH2_BASE}quick-wins/`} className="aih-toc-row">
+            <Link href="/forge/course/open-harness/labs/" className="aih-toc-row">
               <span className="aih-toc-num">＋</span>
               <span className="aih-toc-title">
-                {t(QUICK_WINS.title, lang)}
+                Harness Labs
                 <span className="aih-toc-sub">
-                  Unbroker, book-to-skill, the HUD — real things to run today.
+                  {HARNESS_LABS.length} drills: spend, key rotation, session control, prompt
+                  budget, webhooks, VPS, Kanban, failure studio.
                 </span>
               </span>
-              <span className="aih-toc-min">{QUICK_WINS.minutes} min</span>
+              <span className="aih-toc-min">
+                {HARNESS_LABS.reduce((a, l) => a + l.minutes, 0)} min
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/forge/course/open-harness/glossary/" className="aih-toc-row">
+              <span className="aih-toc-num">＋</span>
+              <span className="aih-toc-title">
+                Printable glossary
+                <span className="aih-toc-sub">Every term from lesson 01, on one page.</span>
+              </span>
             </Link>
           </li>
         </ol>

@@ -2,20 +2,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CoursePageChrome } from '@/app/components/course/CourseShell';
 import { HarnessCourseTabs } from '@/app/components/course/CourseLearning';
-import {
-  OPEN_HARNESS_GLOSSARY,
-  OPEN_HARNESS_META,
-  type GlossaryTerm,
-} from '@/app/data/courses/open-harness';
+import { OPEN_HARNESS_GLOSSARY, type GlossaryTerm } from '@/app/data/courses/open-harness';
 import { formatCourseText } from '@/app/components/course/formatCourseText';
 import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Open Harness glossary | Delta V',
-  description: 'Compressed terms for the Open Harness course — stack, loop, ops, Part II.',
+  title: 'Own Your AI — glossary | Delta V',
+  description: 'Compressed terms for the Own Your AI course — stack, loop, ops, Part II.',
   openGraph: {
-    title: 'Open Harness glossary',
-    description: OPEN_HARNESS_META.tagline.en,
+    title: 'Own Your AI — glossary',
+    description: 'Every term from lesson 01 on one printable page.',
     url: `${SITE_URL}/forge/course/open-harness/glossary/`,
     siteName: 'Delta V',
     type: 'website',

@@ -29,6 +29,12 @@ export type HarnessLab = {
     callout?: string;
     calloutVariant?: 'note' | 'warning' | 'quote';
     links?: { label: string; href: string }[];
+    /**
+     * A cited post from X, embedded from X's own iframe endpoint — never
+     * re-hosted. `height` is tuned per post so the frame ends on the timestamp
+     * rather than the like/reply bar; see CourseTweet.
+     */
+    tweet?: { id: string; author: string; href: string; caption?: string; height?: number };
   }[];
 };
 
@@ -561,6 +567,15 @@ Still works: yes/no
         paragraphs: [
           'Kanban is the first official Hermes Desktop plugin: board UI, sidebar, hotkeys, backend. It is multi-step / multi-profile work — growth after a solid single harness, not Part I.',
         ],
+        tweet: {
+          id: '2083421808385307115',
+          author: '@tonbistudio',
+          href: 'https://x.com/tonbistudio/status/2083421808385307115',
+          caption: 'The Kanban board in use.',
+          // Tall on purpose: this is a quote-post, so the frame holds two
+          // stacked cards and the quoted Nous announcement video.
+          height: 1324,
+        },
         links: [
           { label: 'Harness 12 — Own it forever', href: '/forge/course/open-harness/12/' },
           {
