@@ -1,21 +1,7 @@
 {
-  "updated": "2026-08-13T19:46:04.504295Z",
-  "period": "2026-08-13 \u2192 2026-09-27",
+  "updated": "2026-08-14T07:29:43.689751Z",
+  "period": "2026-08-14 \u2192 2026-09-28",
   "events": [
-    {
-      "date": "2026-08-13",
-      "label": "US Initial Jobless Claims",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-13",
-      "label": "Japan GDP (QoQ)",
-      "currency": "JPY",
-      "impact": "medium",
-      "country": "JP"
-    },
     {
       "date": "2026-08-14",
       "label": "US PPI (MoM)",
@@ -281,6 +267,20 @@
       "currency": "JPY",
       "impact": "medium",
       "country": "JP"
+    },
+    {
+      "date": "2026-09-11",
+      "label": "US PPI (MoM)",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-09-11",
+      "label": "EU CPI Flash (YoY)",
+      "currency": "EUR",
+      "impact": "high",
+      "country": "EU"
     }
   ]
 }
