@@ -1257,8 +1257,14 @@ body {
     border-radius: var(--radius-md, 0.75rem);
     background: var(--bg-deep);
     overflow: hidden;
-    display: flex;
     flex-direction: column;
+  }
+
+  /* Only lay it out while open. A bare `display: flex` here would beat the UA's
+     `dialog:not([open]) { display: none }`, leaving a full-viewport panel over
+     the page after close — a dark veil you cannot click through. */
+  .course-shot-dialog[open] {
+    display: flex;
   }
 
   .course-shot-dialog::backdrop {
