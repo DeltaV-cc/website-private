@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T09:15:22Z",
+  "updated_at": "2026-08-14T09:30:33Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.290194,
+        "price": 0.287137,
         "change_24h": 16.4,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.55,
+        "price": 1.56,
         "change_24h": 9.5,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.01293,
+        "price": 0.012882,
         "change_24h": 5.2,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049204,
+        "price": 0.049189,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002884,
+        "price": 0.002885,
         "change_24h": 3.7,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.22,
+        "price": 2.23,
         "change_24h": -7.0,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031384,
+        "price": 0.03142,
         "change_24h": -6.4,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.68,
+        "price": 11.69,
         "change_24h": -5.6,
         "asset": "crypto"
       },
       {
         "symbol": "APT",
         "name": "Aptos",
-        "price": 0.540413,
+        "price": 0.54255,
         "change_24h": -4.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.38,
+        "price": 205.58,
         "change_24h": -4.6,
         "asset": "crypto"
       }
