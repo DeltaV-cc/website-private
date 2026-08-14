@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T11:45:30Z",
+  "updated_at": "2026-08-14T12:00:33Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,28 +89,28 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.294232,
+        "price": 0.294047,
         "change_24h": 9.6,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.01287,
+        "price": 0.012866,
         "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048495,
+        "price": 0.048485,
         "change_24h": 3.2,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.106324,
+        "price": 0.106474,
         "change_24h": 2.9,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.88,
+        "price": 11.87,
         "change_24h": -6.5,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.032046,
+        "price": 0.032212,
         "change_24h": -6.4,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "UNI",
         "name": "Uniswap",
-        "price": 3.22,
+        "price": 3.2,
         "change_24h": -5.5,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.27,
+        "price": 205.31,
         "change_24h": -4.5,
         "asset": "crypto"
       }
