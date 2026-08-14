@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T07:29:43Z",
+  "updated_at": "2026-08-14T07:31:02Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -89,14 +89,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.274844,
+        "price": 0.27544,
         "change_24h": 10.0,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049563,
+        "price": 0.049419,
         "change_24h": 5.0,
         "asset": "crypto"
       },
@@ -126,14 +126,14 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031457,
+        "price": 0.03145,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.99,
+        "price": 206.0,
         "change_24h": -4.1,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.443989,
+        "price": 0.443938,
         "change_24h": -3.8,
         "asset": "crypto"
       }
