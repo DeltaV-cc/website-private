@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-14T08:16:08Z",
-  "source": "Yahoo Finance screener + CoinGecko markets",
+  "updated_at": "2026-08-14T08:30:19Z",
+  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
   "equities": {
     "gainers": [
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.285361,
-        "change_24h": 21.3,
+        "symbol": "ACE",
+        "name": "ACE",
+        "price": 0.1542,
+        "change_24h": 47.42,
         "asset": "crypto"
       },
       {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.54,
-        "change_24h": 10.0,
+        "symbol": "SNXXB",
+        "name": "SNXXB",
+        "price": 15.18,
+        "change_24h": 38.25,
         "asset": "crypto"
       },
       {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.048745,
-        "change_24h": 5.1,
+        "symbol": "EDEN",
+        "name": "EDEN",
+        "price": 0.0632,
+        "change_24h": 37.93,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002888,
-        "change_24h": 3.1,
+        "symbol": "SNDKB",
+        "name": "SNDKB",
+        "price": 1586.0,
+        "change_24h": 18.43,
         "asset": "crypto"
       },
       {
-        "symbol": "JST",
-        "name": "JUST",
-        "price": 0.105204,
-        "change_24h": 2.5,
+        "symbol": "UTK",
+        "name": "UTK",
+        "price": 0.00795,
+        "change_24h": 16.23,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.23,
-        "change_24h": -6.5,
+        "symbol": "TUT",
+        "name": "TUT",
+        "price": 0.03902,
+        "change_24h": -32.33,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 11.61,
-        "change_24h": -5.5,
+        "symbol": "ATM",
+        "name": "ATM",
+        "price": 1.731,
+        "change_24h": -15.06,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.031471,
-        "change_24h": -5.5,
+        "symbol": "BICO",
+        "name": "BICO",
+        "price": 0.02785,
+        "change_24h": -12.01,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.461885,
-        "change_24h": -4.5,
+        "symbol": "KAITO",
+        "name": "KAITO",
+        "price": 0.4134,
+        "change_24h": -11.19,
         "asset": "crypto"
       },
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.6,
-        "change_24h": -4.3,
+        "symbol": "ALLO",
+        "name": "ALLO",
+        "price": 0.2635,
+        "change_24h": -9.64,
         "asset": "crypto"
       }
     ]
