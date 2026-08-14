@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T10:45:24Z",
+  "updated_at": "2026-08-14T11:00:36Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.283845,
+        "price": 0.283158,
         "change_24h": 17.3,
         "asset": "crypto"
       },
@@ -96,14 +96,14 @@
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012882,
+        "price": 0.012892,
         "change_24h": 4.0,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048541,
+        "price": 0.048487,
         "change_24h": 3.9,
         "asset": "crypto"
       },
@@ -119,35 +119,35 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.76,
+        "price": 11.74,
         "change_24h": -7.4,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.03156,
+        "price": 0.031604,
         "change_24h": -6.0,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.22,
+        "price": 2.23,
         "change_24h": -5.5,
         "asset": "crypto"
       },
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.465191,
+        "price": 0.468558,
         "change_24h": -5.1,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.11,
+        "price": 205.22,
         "change_24h": -4.9,
         "asset": "crypto"
       }
