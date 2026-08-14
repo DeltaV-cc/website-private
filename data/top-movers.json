@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T07:45:38Z",
+  "updated_at": "2026-08-14T08:00:47Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.54,
+        "price": 1.55,
         "change_24h": 10.7,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.274698,
+        "price": 0.275578,
         "change_24h": 10.0,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049195,
+        "price": 0.049227,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.14,
+        "price": 1.13,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105095,
+        "price": 0.105237,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.22,
+        "price": 2.23,
         "change_24h": -7.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031467,
+        "price": 0.031459,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.74,
+        "price": 205.5,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.73,
+        "price": 11.7,
         "change_24h": -3.8,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.443367,
+        "price": 0.442969,
         "change_24h": -3.8,
         "asset": "crypto"
       }
