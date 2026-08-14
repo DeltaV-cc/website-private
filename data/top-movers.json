@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T11:00:36Z",
+  "updated_at": "2026-08-14T11:15:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.283158,
-        "change_24h": 17.3,
+        "symbol": "ATOM",
+        "name": "Cosmos Hub",
+        "price": 1.55,
+        "change_24h": 10.5,
         "asset": "crypto"
       },
       {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.56,
-        "change_24h": 9.7,
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.276045,
+        "change_24h": 9.6,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.012892,
-        "change_24h": 4.0,
+        "price": 0.012903,
+        "change_24h": 4.3,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048487,
-        "change_24h": 3.9,
+        "price": 0.048444,
+        "change_24h": 3.2,
         "asset": "crypto"
       },
       {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.11,
-        "change_24h": 2.7,
+        "symbol": "JST",
+        "name": "JUST",
+        "price": 0.10617,
+        "change_24h": 2.9,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 11.74,
-        "change_24h": -7.4,
+        "price": 11.77,
+        "change_24h": -6.5,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.031604,
-        "change_24h": -6.0,
+        "price": 0.031601,
+        "change_24h": -6.4,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
         "price": 2.23,
-        "change_24h": -5.5,
+        "change_24h": -5.8,
         "asset": "crypto"
       },
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.468558,
-        "change_24h": -5.1,
+        "symbol": "UNI",
+        "name": "Uniswap",
+        "price": 3.33,
+        "change_24h": -5.5,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 205.22,
-        "change_24h": -4.9,
+        "price": 205.25,
+        "change_24h": -4.5,
         "asset": "crypto"
       }
     ]
