@@ -8,6 +8,7 @@ import { CourseQuizBlock, InteractiveChecklist } from '@/app/components/course/C
 import { HarnessModuleVisual } from '@/app/components/course/CourseVisuals';
 import { CopyCards } from '@/app/components/course/CopyCards';
 import { CourseTweet } from '@/app/components/course/CourseTweet';
+import { CourseShot } from '@/app/components/course/CourseShot';
 import { CourseCode } from './CourseCode';
 import { CourseSteps } from './CourseSteps';
 
@@ -221,22 +222,13 @@ export function BlockRenderer({
 
     case 'image':
       return (
-        <figure className="course-shot">
-          {/* Plain <img>: the export is static (images.unoptimized) and these are
-              screenshots of third-party UIs, so next/image buys nothing here. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={withBasePath(block.src)}
-            alt={t(block.alt, lang)}
-            width={block.width}
-            height={block.height}
-            loading="lazy"
-            decoding="async"
-          />
-          {block.caption && (
-            <figcaption>{formatCourseText(t(block.caption, lang))}</figcaption>
-          )}
-        </figure>
+        <CourseShot
+          src={block.src}
+          alt={t(block.alt, lang)}
+          width={block.width}
+          height={block.height}
+          caption={block.caption ? formatCourseText(t(block.caption, lang)) : undefined}
+        />
       );
 
     default: {
