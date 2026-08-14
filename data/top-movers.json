@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T07:31:02Z",
+  "updated_at": "2026-08-14T07:45:38Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.55,
+        "price": 1.54,
         "change_24h": 10.7,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.27544,
+        "price": 0.274698,
         "change_24h": 10.0,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.049419,
+        "price": 0.049195,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.16,
+        "price": 1.14,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.10543,
+        "price": 0.105095,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.23,
+        "price": 2.22,
         "change_24h": -7.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.03145,
+        "price": 0.031467,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 206.0,
+        "price": 205.74,
         "change_24h": -4.1,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.443938,
+        "price": 0.443367,
         "change_24h": -3.8,
         "asset": "crypto"
       }
