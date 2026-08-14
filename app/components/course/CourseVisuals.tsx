@@ -336,7 +336,7 @@ export function HarnessModuleVisual({
           leftTitle="SOUL.md (home)"
           leftAccent="orange"
           leftItems={[
-            { t: 'HERMES_HOME only', d: 'Not project CWD' },
+            { t: 'Hermes home only', d: 'Not a project folder' },
             { t: 'Identity · tone · limits', d: 'Follows you everywhere' },
           ]}
           leftFooter="Primary identity"
@@ -385,21 +385,25 @@ export function HarnessModuleVisual({
           layers={[
             {
               id: '1',
-              label: 'Floor 1 · Notebook',
+              label: '1 · The notebook',
               accent: 'orange',
-              nodes: [{ title: 'SOUL · MEMORY · USER', subtitle: 'Always loaded · capped', accent: 'orange' }],
+              nodes: [
+                { title: 'SOUL · MEMORY · USER', subtitle: 'Read every chat · kept small', accent: 'orange' },
+              ],
             },
             {
               id: '2',
-              label: 'Floor 2 · Journal',
+              label: '2 · Past chats',
               accent: 'cyan',
-              nodes: [{ title: 'Session recall / FTS', subtitle: 'Verbatim search', accent: 'cyan' }],
+              nodes: [
+                { title: 'Old conversations', subtitle: 'Searchable, word for word', accent: 'cyan' },
+              ],
             },
             {
               id: '3',
-              label: 'Floor 3 · Library',
+              label: '3 · Your notes',
               accent: 'purple',
-              nodes: [{ title: 'Vault / notes', subtitle: 'Next module', accent: 'purple' }],
+              nodes: [{ title: 'Your notes folder', subtitle: 'Next lesson', accent: 'purple' }],
             },
           ]}
         />

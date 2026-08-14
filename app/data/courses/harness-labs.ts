@@ -453,7 +453,7 @@ Secrets: none pasted
         ],
         links: [
           { label: 'Harness 06 — First agency', href: '/forge/course/open-harness/06/' },
-          { label: 'Harness 07 — Memory floors', href: '/forge/course/open-harness/07/' },
+          { label: 'Harness 07 — Making it remember', href: '/forge/course/open-harness/07/' },
         ],
       },
       {

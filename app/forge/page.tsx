@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { PageHero, PageContainer } from '../components/PageShell';
 import AnimatedBackground from '../components/AnimatedBackground';
+import { withBasePath } from '@/lib/site';
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -41,6 +42,8 @@ type CourseCardProps = {
   id: string;
   code: string;
   title: string;
+  /** Small product mark beside the title — self-hosted, no third-party request. */
+  logo?: { src: string; alt: string };
   pitch: ReactNode;
   product: string;
   adapt: string;
@@ -57,6 +60,7 @@ function CourseCard({
   id,
   code,
   title,
+  logo,
   pitch,
   product,
   adapt,
@@ -81,7 +85,20 @@ function CourseCard({
       <div className="font-mono text-[10px] tracking-[2px] uppercase mb-3" style={{ color: accent }}>
         {code}
       </div>
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">{title}</h2>
+      <div className="flex items-center gap-3 mb-4">
+        {logo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={withBasePath(logo.src)}
+            alt={logo.alt}
+            width={28}
+            height={28}
+            className="h-7 w-7 rounded-md border border-[var(--border-subtle)] shrink-0"
+            loading="lazy"
+          />
+        )}
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
+      </div>
       <p className="text-[var(--text-secondary)] mb-4 max-w-3xl leading-relaxed">{pitch}</p>
       <p className="text-xs text-[var(--text-tertiary)] mb-8 max-w-3xl leading-relaxed">
         <span className="font-medium text-[var(--text-secondary)]">{product}.</span> {adapt}
@@ -173,36 +190,37 @@ function CourseCard({
  */
 const COURSES: CourseCardProps[] = [
   {
-    id: 'open-harness',
+    id: 'my-first-ai-agent',
     code: 'Course 01 · Flagship · Live',
-    title: 'Own Your AI',
+    title: 'My First AI Agent',
+    logo: { src: '/images/ecosystem/NousResearch.webp', alt: 'Nous Research, makers of Hermes' },
     pitch: (
       <>
-        Thirteen free lessons from first principles to a working agent you{' '}
-        <span className="font-medium text-[var(--text-primary)]">own on Hermes Desktop</span> —
-        lexicon and mental models, then install, soul, gateway, tools, memory, vault, skills,
-        security, and cron. No code and no ML background required; designed for lasting ownership,
-        not a rented chat tab.
+        Thirteen free lessons to set up a real AI agent — the kind that{' '}
+        <span className="font-medium text-[var(--text-primary)]">
+          actually does things for you
+        </span>
+        , not just answers questions. Start from zero, finish with an agent that reads your files,
+        runs your errands, and answers on your phone. No code, no ML background.
       </>
     ),
     product: 'Product: Hermes Desktop',
     adapt:
-      'Aligned with official Hermes docs. Day one is local Desktop; Advanced settings appear only when needed.',
+      'Aligned with official Hermes docs. Every step has a screenshot; advanced settings stay out of the way until you want them.',
     get: [
-      'AI basics and lexicon so the stack is intelligible from day one',
-      'Desktop install with a verified first chat',
-      'Identity (SOUL.md), project context, and pocket gateway',
-      'Tools, memory, vault, skills, security dials, and cron runbooks',
-      'Optional post–Part I labs for deeper operational drills',
+      'The words you need, so nothing on screen is a mystery',
+      'A guided install with a verified first chat',
+      'Ready-made agent personalities — pick one, paste it, done',
+      'Your agent on your phone, answering only you',
+      'Memory, notes, skills, safety settings, and scheduled jobs',
     ],
     path: [
-      { step: 'Part I', desc: 'foundations, install, soul, gateway, first agency' },
-      { step: 'Part II', desc: 'memory, vault, skills, security, cron' },
-      { step: 'Labs', desc: 'optional drills after install' },
+      { step: 'Part I', desc: 'words, install, personality, phone, first real task' },
+      { step: 'Part II', desc: 'memory, notes, skills, safety, scheduled jobs' },
+      { step: 'Labs', desc: 'optional drills after the course' },
     ],
-    forWho:
-      'Anyone building personal AI with ownership — beginners through operators on a standard PC.',
-    ctaLabel: 'Start Own Your AI',
+    forWho: 'Anyone curious about AI agents — complete beginners welcome, on a standard PC.',
+    ctaLabel: 'Start the course',
     ctaHref: '/forge/course/open-harness/',
     secondary: {
       label: 'Labs after Part I',

@@ -250,7 +250,7 @@ export const OPEN_HARNESS_GLOSSARY: GlossaryTerm[] = [
     id: 'vault',
     group: 'part2',
     term: L('Vault'),
-    def: L('A notes folder (often Obsidian) the harness can search — library floor of memory.'),
+    def: L('A notes folder (often Obsidian) the agent can search — the third place it keeps things.'),
   },
   {
     id: 'cron',
@@ -390,26 +390,22 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Clear outputs'),
         blocks: [
           { k: 'p', text: L(
-            'This course teaches you to run a **personal AI assistant** you control ([Hermes Desktop](https://hermes-agent.nousresearch.com/docs/)), with optional free cloud models. Prefer a dedicated machine (spare PC or VPS) — not the computer that holds your daily life. Below is what you can do after each part.',
+            'You are going to set up [Hermes](https://hermes-agent.nousresearch.com/docs/), a state-of-the-art AI agent, on your own machine — free, with a screenshot for every step. Here is what you can do at the end of each part.',
           ) },
           { k: 'table', headers: [L('When'), L('You can')], rows: [
             [
               L('After Part I'),
               L(
-                'Have your **Hermes agent installed** and running on a free model, give it the personality you want, message it from your phone, and have it ready to work with you — with a file on disk that proves it acted.',
+                'Talk to your own agent, in a personality you picked, from your desktop **or your phone** — and put it to work on something real: scrubbing your name off data-broker sites, or learning a book you hand it.',
               ),
             ],
             [
               L('After Part II'),
               L(
-                '**Put it to work.** Automate the tasks you repeat, on a schedule. Scrub your name off data-broker sites. Hand it a book, a codebase or a docs site and have it learn the subject in depth. Give it a memory that survives next week, rules about what it may do unattended, and a backup you can carry to another machine — then keep adding jobs for as long as you keep finding them.',
+                'Give it a memory that survives next week, point it at your own notes so it answers from what you wrote, set rules for what it may do unsupervised, and leave it running jobs on a schedule while you are away.',
               ),
             ],
           ] },
-          { k: 'checklist', id: '0', items: [
-          L('I understand **Part I** ends with a working assistant + a file receipt'),
-          L('I understand **Part II** is memory, notes, rules, and one routine job'),
-        ] },
         ],
 
 
@@ -418,17 +414,12 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
       {
         heading: L('What this course is (and is not)'),
         blocks: [
-          { k: 'p', text: L(
-            'Day one is **Hermes Desktop** on a host you chose for the agent. Free model accounts ([OpenRouter](https://openrouter.ai/) and/or [OpenCode](https://opencode.ai/auth)) are set up at install if you use cloud brains. We teach vocabulary before install so Settings screens make sense — and we tell you honestly what leaves your machine.',
-          ) },
           { k: 'list', items: [
-          L('**Is:** a free path to own one agent — plus plain-language agent fundamentals (loop, messages, tools)'),
-          L('**Is:** proofs on disk (files, settings, backups), not only chat cleverness'),
-          L('**Is not:** a green light to run a tool-using agent on the same laptop as banking, work SSO, and family photos'),
-          L('**Is not:** a Python coding bootcamp or a framework comparison course (we stay on Hermes)'),
-          L('**Is not:** a guarantee of income, AGI, or a set-and-forget public bot'),
-          L('**Cloud models:** conversation content (and tool context) is sent to the model host — treat it as leaving your machine'),
-          L('**UI labels** follow official [Hermes docs](https://hermes-agent.nousresearch.com/docs/) and may change; docs win when labels move'),
+          L('**Is:** a free, guided setup — plus the handful of words that make the screens make sense'),
+          L('**Is:** real results on disk, not just clever chat'),
+          L('**Is not:** a coding bootcamp — we stay on Hermes, and you write no code'),
+          L('**Is not:** a green light to run a tool-using agent on the laptop that holds your banking and work logins'),
+          L('**Cloud models** send your conversation to the model provider. We say so each time it matters.'),
         ] },
         ],
 
@@ -471,12 +462,10 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('How to read this lesson'),
         blocks: [
           { k: 'p', text: L(
-            'This page is dense on purpose — it is a **dictionary for the course**, not a novel.',
+            'This is the **dictionary for the course**. Read the intro and the **remember** line on each card, then move on.',
           ) },
           { k: 'list', items: [
-          L('Read each section’s short intro and the **remember** line on each card. Skip the deep detail if your eyes glaze over.'),
           L('Come back to a card when a later lesson names that word (install, SOUL, tools…).'),
-          L('Diagrams sit **under** the idea they lock in — not as a separate tour at the top.'),
         ] },
           { k: 'callout', variant: 'note', text: L(
           'You do **not** need to memorize every term today. You need four pillars (stack), the loop, and “chat vs harness.” The rest is there so Settings and docs stop sounding like alien code.',
@@ -579,30 +568,26 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('I assign Think to the LLM and Act/Observe packaging to the harness'),
         ] },
           { k: 'quiz', quiz: {
-            question: L('Who typically executes a file-write tool call?'),
+            question: L('Who actually runs a file-write tool call?'),
             options: [
-              L('The LLM weights alone'),
-              L('The harness on the host'),
-              L('The model vendor chat UI'),
-              L('The system prompt alone'),
+              L('The model, on its own'),
+              L('The app on your machine'),
+              L('The model provider’s website'),
+              L('The personality file'),
             ],
-            correct: L('The harness on the host'),
-            explain: L(
-              'Think requests the tool; Act is the harness + tools on your runtime. The loop is not “inside the LLM alone.”',
-            ),
+            correct: L('The app on your machine'),
+            explain: L('The model asks for the tool; Hermes on your machine runs it. The loop is not “inside the model alone.”'),
           } },
           { k: 'quiz', quiz: {
-            question: L('A tool returns “permission denied.” What is that?'),
+            question: L('A tool comes back with “permission denied.” What is that?'),
             options: [
-              L('Noise to ignore always'),
-              L('Proof the LLM is broken'),
-              L('An observation for re-plan'),
-              L('A system role rewrite'),
+              L('Noise to ignore'),
+              L('Proof the model is broken'),
+              L('An observation — it should re-plan'),
+              L('A personality problem'),
             ],
-            correct: L('An observation for re-plan'),
-            explain: L(
-              'Errors are observations. Good agents re-plan; inventing success is the failure mode.',
-            ),
+            correct: L('An observation — it should re-plan'),
+            explain: L('Errors are observations. A good agent re-plans; pretending it worked is the failure mode.'),
           } },
           { k: 'refs', primary: [
           {
@@ -843,9 +828,9 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '02',
     number: '02',
     part: 1,
-    title: L('Before you start'),
+    title: L('Let’s get ready'),
     subtitle: L(
-      'Pick the machine, create one free model account, and have its API key ready to paste. Curated alternatives if you want a different shape later.',
+      'Pick the machine, create one free model account, and have its API key ready to paste.',
     ),
     minutes: 10,
     proof: L(
@@ -1236,7 +1221,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('What `AGENTS.md` is'),
         blocks: [
           { k: 'p', text: L(
-            '`AGENTS.md` is the other half: a [project context file](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files) that sits in one folder — a repo, a campaign workspace — and describes what *that* project needs. Paths, conventions, things never to do. It travels with the folder, so a teammate cloning the repo gets the same rules.',
+            '`AGENTS.md` is the other half: a [project context file](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files) that sits in one folder — a repo, a campaign workspace — and describes what **that** project needs. Paths, conventions, things never to do. It travels with the folder, so a teammate cloning the repo gets the same rules.',
           ) },
           { k: 'p', text: L(
             'The split is simple: if it should hold in every session, it is identity (`SOUL.md`). If it only makes sense inside one folder, it is project context (`AGENTS.md`). Both load together; only one project-context file type loads per session.',
@@ -1511,7 +1496,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** Loop diagram sits under the loop section — not a double stack under the title */
     visualPlacement: 'none',
     proof: L(
-      'Approval mode is Smart or Manual, you ran one real task end to end and made at least one deliberate approve or deny, you noted which provider and model handled it, and your agent built the `second-brain` folder you can open without Hermes.',
+      'Approval mode is Smart or Manual, you ran one real task end to end and made at least one deliberate approve or deny, and you noted which provider and model handled it.',
     ),
     sections: [
       {
@@ -1612,11 +1597,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             caption: L('Context management in practice.'),
           },
           { k: 'p', text: L(
-            'Then give it somewhere durable to write. Ask your agent to build the folder you will use for the rest of the course — this is also your last approval practice for Part I.',
-          ) },
-          { k: 'steps', id: '8-steps', items: [{ title: L('Ask: “Create a folder `second-brain` in [path I choose], with `inbox`, `sources` and `synthesis` inside it. Do not delete or move anything else.”') }, { title: L('Approve the writes inside that folder; deny anything outside it.') }, { title: L('Open the folder yourself, in a normal file browser. If you cannot open it without Hermes, you do not own it.') }] },
-          { k: 'callout', variant: 'note', text: L(
-            'Keep this folder. Lesson 08 points Obsidian straight at it — `inbox` for things to sort, `sources` for what you read, `synthesis` for what you concluded.',
+            'None of that is memory, though. It only tidies the chat you are in. Everything Part II adds — notes it keeps, a folder of your own writing it can search, jobs that run while you sleep — starts from one idea: **if you want it kept, it has to be written to a file.** That is lesson 07.',
           ) },
           { k: 'links', items: [
           { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
@@ -1671,7 +1652,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { label: L('Lab: spend drill'), href: '/forge/course/open-harness/labs/model-spend/' },
           { label: L('Lab: failure studio'), href: '/forge/course/open-harness/labs/failure-studio/' },
           { label: L('Tips'), href: 'https://hermes-agent.nousresearch.com/docs/guides/tips' },
-          { label: L('Next: Memory floors'), href: '/forge/course/open-harness/07/' },
+          { label: L('Next: Making it remember'), href: '/forge/course/open-harness/07/' },
         ] },
         ],
 
@@ -1688,49 +1669,35 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '07',
     number: '07',
     part: 2,
-    title: L('Memory floors'),
+    title: L('Making it remember'),
     subtitle: L(
-      'Context is session RAM. Durable memory is on disk. Caps are intentional.',
+      'Today’s chat disappears when you close it. What you want kept has to be written down.',
     ),
     minutes: 20,
     proof: L(
-      'You wrote a durable fact, verified it on disk, closed the session, reopened, and the agent still knew it.',
+      'You told the agent something, checked it landed in the file on disk, closed the chat completely, opened a new one — and it still knew.',
     ),
     sections: [
       {
-        heading: L('Three floors'),
+        heading: L('Where it keeps things'),
         blocks: [
           { k: 'p', text: L(
-            'Part II starts with memory because [tools](~tool) without durable facts re-hallucinate preferences every session. Map the floors before you write anything.',
+            'Part II starts here because an agent that forgets your preferences every morning makes you repeat yourself forever. Your agent keeps things in three places, and it is worth knowing which is which.',
           ) },
-          { k: 'table', headers: [L('Floor'), L('What'), L('Limit')], rows: [
-            [L('1 · Notebook'), L('SOUL, MEMORY, USER — always loaded'), L('Intentionally capped')],
-            [L('2 · Journal'), L('Session recall — verbatim / full-text search'), L('Local history size')],
-            [L('3 · Library'), L('Vault / external notes (next module)'), L('Your disk')],
+          { k: 'table', headers: [L('Where'), L('What it holds'), L('How much')], rows: [
+            [L('1 · The notebook'), L('`SOUL.md`, `MEMORY.md`, `USER.md` — read at the start of every chat'), L('Small on purpose')],
+            [L('2 · Past chats'), L('Old conversations it can search back through'), L('As much as your disk allows')],
+            [L('3 · Your notes'), L('A folder of your own notes it can read (next lesson)'), L('As much as you write')],
           ] },
         ],
 
 
       },
       {
-        heading: L('Cap as a feature'),
+        heading: L('It writes now, it reads next time'),
         blocks: [
           { k: 'p', text: L(
-            '`MEMORY.md` and `USER.md` share a tight prompt budget on purpose. The cap forces durable preferences, facts, corrections, and conventions — not a dump of chat logs. Near capacity: merge, compress, drop stale lines.',
-          ) },
-          { k: 'callout', variant: 'quote', text: L(
-          'Remembering everything is remembering nothing. Prefer dense facts.',
-        ) },
-        ],
-
-
-
-      },
-      {
-        heading: L('Gotcha: write now, load next session'),
-        blocks: [
-          { k: 'p', text: L(
-            'Disk updates can succeed while the current system prompt stays frozen for cache efficiency. A same-session “do you remember?” check can look like failure when the file is already correct. Verify the file, then open a new session for the behavioral proof.',
+            'The agent reads its notes once, when a chat starts. So if it writes something down mid-conversation, asking “do you remember?” in that same chat can still come up blank — the file is right, it just has not re-read it. Check the file, then start a new chat to see it in action.',
           ) },
           { k: 'callout', variant: 'warning', text: L(
           'If `MEMORY.md` has the line and this session ignores it — close and reopen before blaming the agent.',
@@ -1744,10 +1711,16 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('`MEMORY.md` and `USER.md`'),
         blocks: [
           { k: 'p', text: L(
-            '`MEMORY.md` is the [agent](~agent) notebook (environment, conventions, lessons). `USER.md` is your card (name, preferences, avoid-list). The agent writes them; you may edit them in any text editor. Unwritten facts do not persist.',
+            '`MEMORY.md` is the [agent](~agent) notebook — your setup, your conventions, what it learned. `USER.md` is your card: name, preferences, things to avoid. The agent writes both; you can edit them in any text editor. Anything it never writes down, it never keeps.',
           ) },
           { k: 'p', text: L(
-            'Three files now live in your Hermes home and all load every session, so it is worth being precise about which is which:',
+            'Both are deliberately small, because they are read at the start of **every** chat — every line you add is a line the agent carries around forever. Keep decisions, preferences and corrections; never transcripts. When they fill up: merge lines, shorten them, delete what is stale.',
+          ) },
+          { k: 'callout', variant: 'quote', text: L(
+            'Remembering everything is remembering nothing. Prefer dense facts.',
+          ) },
+          { k: 'p', text: L(
+            'That makes three files in your Hermes home, all loaded every chat, so it is worth being precise about which is which:',
           ) },
           { k: 'table', headers: [L('File'), L('Holds'), L('Who writes it')], rows: [
             [
@@ -1778,24 +1751,12 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
 
       },
       {
-        heading: L('External providers (optional)'),
+        heading: L('Prove it remembers'),
         blocks: [
-          { k: 'p', text: L(
-            'Pluggable providers (user modeling, fact extraction, graphs) augment the built-in layer; they do not replace your files. Run one provider at a time. Switching does not migrate prior accumulation.',
+          { k: 'callout', variant: 'warning', text: L(
+            'The one way to fool yourself here: if you do not **fully close** the chat, the fact is still on screen and the agent will repeat it back without ever reading the file. A half-closed session always passes. Close it properly.',
           ) },
-          { k: 'list', items: [
-          L('Default for this course: files plus vault.'),
-          L('Add a provider only when [built-in memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory) is clearly insufficient.'),
-          L('Export or note important facts before switching providers.'),
-        ] },
-        ],
-
-
-      },
-      {
-        heading: L('Proof ritual'),
-        blocks: [
-          { k: 'steps', id: '5-steps', items: [{ title: L('Tell the agent: “Remember that project codename is HARNESS-01 and I prefer short answers.”') }, { title: L('Ask it to write that to durable memory.') }, { title: L('Open `MEMORY.md` / `USER.md` on disk and verify the lines.') }, { title: L('Fully close the session. Reopen. Ask: “What is my project codename and answer length preference?”') }, { title: L('Optional: query session recall for an earlier vault mention if available.') }] },
+          { k: 'steps', id: '5-steps', items: [{ title: L('Tell the agent: “Remember that project codename is HARNESS-01 and I prefer short answers.”') }, { title: L('Ask it to write that to durable memory.') }, { title: L('Open `MEMORY.md` / `USER.md` on disk and check the lines are really there.') }, { title: L('Fully close the chat. Open a new one. Ask: “What is my project codename and answer length preference?”') }] },
           { k: 'links', items: [
           { label: L('Memory system'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/memory' },
         ] },
@@ -1810,8 +1771,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'Without memory the model fills gaps with confidence. With memory and sources it consults first. Still fallible — but checkable by you and by the agent.',
           ) },
           { k: 'checklist', id: '7', items: [
-          L('Durable fact verified on disk and in a new session'),
-          L('I can state context window vs `MEMORY.md` in one sentence'),
+          L('The fact is on disk, and a brand-new chat knew it'),
+          L('I can say in one sentence why today’s chat is not memory'),
         ] },
           { k: 'quiz', quiz: {
             question: L('Where do durable preferences live?'),
@@ -1822,7 +1783,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
               L('Only in the model weights'),
             ],
             correct: L('On disk (MEMORY / USER)'),
-            explain: L('Context window is session RAM. `MEMORY.md` / `USER.md` reload next session.'),
+            explain: L('The chat itself is temporary. `MEMORY.md` and `USER.md` are read again at the start of every new chat.'),
           } },
           { k: 'quiz', quiz: {
             question: L('File updated but chat “forgets” now?'),
@@ -1833,7 +1794,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
               L('Switch to YOLO approvals'),
             ],
             correct: L('Close/reopen for load proof'),
-            explain: L('Disk can update while this session’s system prompt stays frozen. Verify file, then new session.'),
+            explain: L('The file can be correct while this chat has not re-read it. Check the file, then open a new chat.'),
           } },
           { k: 'links', items: [
           { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
@@ -1854,24 +1815,59 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     number: '08',
     part: 2,
     title: L('Data vault'),
-    subtitle: L('A markdown vault as the library floor — notes you keep and the agent can retrieve.'),
+    subtitle: L('A folder of your own notes the agent can read and search.'),
     minutes: 20,
-    proof: L('Hermes retrieves a note you wrote in the vault — not a generic web answer.'),
+    proof: L('You asked a question only your own notes could answer, and the agent quoted your note back — with Obsidian showing the same file.'),
     sections: [
       {
-        heading: L('Vault = a folder'),
+        heading: L('Make the vault, then hand it over'),
         blocks: [
-          { k: 'p', text: L('An [Obsidian](https://obsidian.md) vault is a folder of markdown on disk. Local use needs no account. Once connected, the agent can read and write there. This is floor three from the memory module: unlimited library, still files you own — the [file over app](https://stephango.com/file-over-app) idea.') },
-          { k: 'p', text: L('You already have one. Your agent built `second-brain/` with `inbox`, `sources` and `synthesis` during the Mission of the Day in [lesson 06](/forge/course/open-harness/06/) — that folder **is** the vault. Obsidian just opens it. (Skipped lesson 06? Create those folders by hand and continue.)') },
-          { k: 'steps', id: '0-steps', items: [{ title: L('Install Obsidian, then choose **Open folder as vault** and point it at your `second-brain` folder.') }, { title: L('Add two or three short notes about a real project.') }, { title: L('Connect Hermes to the vault path (Obsidian skill / config for your version).') }, { title: L('Ask: “Find my notes on X and summarize with quotes.”') }] },
+          { k: 'p', text: L('A vault sounds like software. It is a **folder of markdown files** — no database, no API, no plugin. Nothing to integrate: you make the folder, then tell your agent where it is.') },
+          { k: 'callout', variant: 'note', text: L('Obsidian is the **window**, not the wiring. You install it for yourself — the graph view, backlinks, instant search. The agent works on the same files whether Obsidian is open or closed. That is the [file over app](https://stephango.com/file-over-app) idea, made concrete.') },
+          { k: 'p', text: L('Order matters here: **make the vault first, then hand it to your agent.** Obsidian creates the folder for you as part of its own setup, so there is nothing to build by hand.') },
+          { k: 'steps', id: '0-steps', items: [{ title: L('Download [Obsidian](https://obsidian.md) and install it. No account needed.') }, { title: L('On first launch choose **Create new vault**. Name it `second-brain`.') }, { title: L('Choose **where** it lives, and write the path down — you hand it to your agent in a moment. Somewhere plain like your home folder is ideal; avoid a cloud-synced folder, or you will be resolving sync conflicts later.') }, { title: L('Write **one** short note about something real — a decision you made this week, notes from a call. Just one; you need something in there worth finding.') }] },
+          { k: 'p', text: L('That is your part. Hermes ships an **Obsidian skill already installed**, so all it needs is the path — it reads `OBSIDIAN_VAULT_PATH` from the `.env` file in your Hermes home. Set it and restart Hermes.') },
+          { k: 'code', block: {
+            label: L('Add to ~/.hermes/.env'),
+            lang: 'sh',
+            code: 'OBSIDIAN_VAULT_PATH=/home/you/second-brain',
+            note: L('Use the **full** path you wrote down — file tools do not expand `~` or `$VARS`. If you skip this, the skill looks in `~/Documents/Obsidian Vault`, which is almost certainly not where yours is. Not sure where your Hermes home is? Ask your agent: “Where is your Hermes home folder?”'),
+          } },
+          { k: 'p', text: L('Now check it can **read**: ask something only your note could answer. If it quotes your own words back, the wiring is good.') },
+          { k: 'p', text: L('Then let it **write**, which is the more useful half. Ask it to set the place up for you:') },
+          { k: 'code', block: {
+            label: L('Ask your agent'),
+            lang: 'text',
+            code: 'Set up my vault: create folders for inbox, sources and synthesis,\nand add a short README note explaining what each one is for.',
+            note: L('Approve the writes. Then look at Obsidian — the folders and the note are there. That is the proof it can write as well as read, and you never had to make them by hand.'),
+          } },
+          { k: 'image', src: '/courses/open-harness/screenshots/hermes-vault-setup.png', width: 1920, height: 1040,
+            alt: L('A Hermes chat: the user asks it to use an Obsidian vault as their second-brain and create inbox, sources and synthesis folders with a README. The agent confirms the folders and README were created, then in a second message adds deltav.cc as a source file under sources/, and finishes with a table listing each folder and its purpose.'),
+            caption: L('What it looks like in practice. Note the second message — once the vault is wired, filing something new is one sentence: **“Add deltav.cc as a source for my OpSec in our vault.”** It created the note, put it in the right folder, and remembered.'),
+          },
         ],
 
 
       },
       {
-        heading: L('Linked notes'),
+        heading: L('Teach it your filing habits'),
         blocks: [
-          { k: 'p', text: L('Double brackets [[like this]] build a network. The graph maps what you know; the agent can follow links, not only keyword search.') },
+          { k: 'p', text: L('Those three folders are **our** suggestion, not a rule Obsidian or Hermes imposes. They exist to answer one question every notes system eventually faces — **where does this go?**'),
+          },
+          { k: 'list', items: [
+          L('**`inbox`** — anything you dumped in a hurry and have not sorted yet.'),
+          L('**`sources`** — things other people wrote: clippings, quotes, papers, links.'),
+          L('**`synthesis`** — what **you** concluded, in your own words. This is the folder that gets valuable.'),
+        ] },
+          { k: 'p', text: L('Rename them, drop one, use your own scheme — it makes no difference to the agent, as long as you tell it which scheme you chose. The skill knows **how** to work a vault; it does not know how **you** file. Two lines in `MEMORY.md` from the last lesson make your choice permanent:')},
+          { k: 'code', block: {
+            label: L('Add to MEMORY.md'),
+            lang: 'md',
+            code: '- My vault: inbox = unsorted, sources = what I read, synthesis = my own conclusions.\n- Search the vault before answering questions about my projects. File new notes in inbox/.',
+            note: L('Ask the agent to add these lines, or type them yourself — it is a plain text file.'),
+          } },
+          { k: 'p', text: L('Now the structure earns its keep: when the agent files things the way you do, its notes and your notes stay one library instead of two.') },
+          { k: 'p', text: L('The `[[double brackets]]` are plain text — nothing magic. Obsidian reads them and draws the graph you came for; the agent writes them too, so the graph keeps growing whether the note came from you or from it.') },
         ],
 
       },
@@ -1879,9 +1875,10 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Proof checklist'),
         blocks: [
           { k: 'checklist', id: '2', items: [
-          L('Vault path connected in Hermes'),
-          L('At least one retrieval with a quote from your note'),
-          L('You can open the same note offline without Hermes'),
+          L('`OBSIDIAN_VAULT_PATH` points at my real vault'),
+          L('It **read**: answered a question by quoting a note only I could have written'),
+          L('It **wrote**: folders and a note it created show up in Obsidian'),
+          L('My filing rules are in `MEMORY.md`, so it does not have to be told again'),
         ] },
           { k: 'quiz', quiz: {
             question: L('What is a vault in this course?'),
@@ -1892,29 +1889,14 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
               L('The gateway allowlist only'),
             ],
             correct: L('A notes folder on disk'),
-            explain: L('Vault = library floor: notes you open offline; Hermes searches the path.'),
+            explain: L('Your vault is just a notes folder: you open it offline, and Hermes searches the path.'),
           } },
           { k: 'links', items: [
+          { label: L('Hermes Obsidian skill (bundled)'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/note-taking/note-taking-obsidian' },
           { label: L('Obsidian'), href: 'https://obsidian.md' },
           { label: L('File over app'), href: 'https://stephango.com/file-over-app' },
         ] },
         ],
-
-
-
-      },
-      {
-        heading: L('Wiki pattern (later)'),
-        blocks: [
-          { k: 'p', text: L('Pure retrieval re-searches every time and compounds little. A [wiki-style loop](/forge/course/open-harness/labs/wiki-kanban/) deposits sources, summarizes, updates linked pages, and flags contradictions. The vault becomes compiled knowledge.') },
-          { k: 'callout', variant: 'note', text: L(
-          'Course default: files on disk plus vault. External memory providers remain optional and never replace your files.',
-        ) },
-          { k: 'links', items: [
-          { label: L('Lab: staged wiki'), href: '/forge/course/open-harness/labs/wiki-kanban/' },
-        ] },
-        ],
-
 
 
 
@@ -2010,7 +1992,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'callout', variant: 'note', text: L(
             'The one we do recommend by name is `official/security/unbroker`, which you met in [lesson 06](/forge/course/open-harness/06/) — because scrubbing data brokers is a real, repeating job that nobody wants to do by hand.',
           ) },
-          { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into `skills-notes.md` in your `second-brain` folder, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
+          { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into a note in your vault, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
           { k: 'links', items: [
           { label: L('Skills system'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/skills' },
           { label: L('Work with skills (guide)'), href: 'https://hermes-agent.nousresearch.com/docs/guides/work-with-skills' },
@@ -2334,7 +2316,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Lexicon: agent vs chat; harness vs runtime; token, context, cron'),
           L('Host path chosen (dedicated / VPS / personal+Docker); Hermes chats; isolation decided'),
           L('You know cloud models send chat content off-box; Providers / Gateway / Advanced mapped'),
-          L('SOUL in Hermes home (not project CWD); SOUL vs `AGENTS.md` clear'),
+          L('SOUL lives with the profile, not in a project folder; SOUL vs `AGENTS.md` clear'),
           L('Tool task completed; smart or manual approvals on'),
           L('Messaging gateway trusted and working (platform you chose)'),
           L('Memory fact on disk and survives a new session'),
