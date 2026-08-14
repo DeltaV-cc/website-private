@@ -24,10 +24,8 @@ export const OH2_META = {
   id: 'own-your-ai',
   href: '/forge/course/open-harness/',
   title: L('Own Your AI'),
-  tagline: L(
-    'Thirteen free lessons to build your own agent harness — yours to run and change, instead of renting one from Claude or OpenAI. No code required.',
-  ),
+  tagline: L('Set up a state-of-the-art AI agent, free, in thirteen lessons. No code required.'),
   description: L(
-    'Thirteen lessons across two parts. Start from zero — no engineering background needed — and finish with an agent installed, configured, and working for you. Bring your own models: free cloud routes to start, local weights when you want them.',
+    'Start from zero and finish with an agent that reads your files, runs real tasks, and answers on your phone. Free models throughout — you pay nothing to complete this course.',
   ),
 } as const;
