@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T09:00:30Z",
+  "updated_at": "2026-08-14T09:15:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.294428,
-        "change_24h": 21.3,
+        "price": 0.290194,
+        "change_24h": 16.4,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.54,
-        "change_24h": 10.0,
+        "price": 1.55,
+        "change_24h": 9.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "RAIN",
+        "name": "Rain",
+        "price": 0.01293,
+        "change_24h": 5.2,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.048941,
-        "change_24h": 5.1,
+        "price": 0.049204,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002891,
-        "change_24h": 3.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "JST",
-        "name": "JUST",
-        "price": 0.105271,
-        "change_24h": 2.5,
+        "price": 0.002884,
+        "change_24h": 3.7,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "LIT",
         "name": "Lighter",
         "price": 2.22,
-        "change_24h": -6.5,
+        "change_24h": -7.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.031384,
+        "change_24h": -6.4,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
         "price": 11.68,
-        "change_24h": -5.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.031403,
-        "change_24h": -5.5,
+        "change_24h": -5.6,
         "asset": "crypto"
       },
       {
         "symbol": "APT",
         "name": "Aptos",
-        "price": 0.538913,
+        "price": 0.540413,
         "change_24h": -4.8,
         "asset": "crypto"
       },
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.6,
-        "change_24h": -4.3,
+        "symbol": "BCH",
+        "name": "Bitcoin Cash",
+        "price": 205.38,
+        "change_24h": -4.6,
         "asset": "crypto"
       }
     ]
