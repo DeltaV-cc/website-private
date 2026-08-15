@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-15T20:16:59Z",
+  "updated_at": "2026-08-15T20:30:47Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.475977,
+        "price": 0.47751,
         "change_24h": 9.2,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 9.56,
+        "price": 9.55,
         "change_24h": 7.1,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 412.2,
+        "price": 412.5,
         "change_24h": 3.7,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 57.17,
+        "price": 57.15,
         "change_24h": 3.1,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.056571,
+        "price": 0.056572,
         "change_24h": 3.0,
         "asset": "crypto"
       }
@@ -126,14 +126,14 @@
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.434865,
+        "price": 0.434801,
         "change_24h": -2.2,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.047681,
+        "price": 0.047608,
         "change_24h": -1.6,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.080295,
+        "price": 0.080397,
         "change_24h": -1.4,
         "asset": "crypto"
       }
