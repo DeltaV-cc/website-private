@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-15T22:00:59Z",
+  "updated_at": "2026-08-15T22:16:01Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.477043,
+        "price": 0.477468,
         "change_24h": 7.4,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 9.57,
+        "price": 9.56,
         "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.025885,
+        "price": 0.025915,
         "change_24h": 2.9,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 407.84,
+        "price": 409.07,
         "change_24h": 2.8,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 56.99,
+        "price": 57.05,
         "change_24h": 2.6,
         "asset": "crypto"
       }
@@ -126,28 +126,28 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.079966,
+        "price": 0.080054,
         "change_24h": -2.5,
         "asset": "crypto"
       },
       {
         "symbol": "PI",
         "name": "Pi Network",
-        "price": 0.087106,
+        "price": 0.087311,
         "change_24h": -2.2,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.434832,
+        "price": 0.434697,
         "change_24h": -2.1,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.307023,
+        "price": 0.307358,
         "change_24h": -2.0,
         "asset": "crypto"
       }
