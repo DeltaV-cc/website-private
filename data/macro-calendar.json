@@ -1,28 +1,7 @@
 {
-  "updated": "2026-08-14T18:26:50.009422Z",
-  "period": "2026-08-14 \u2192 2026-09-28",
+  "updated": "2026-08-15T08:45:39.097863Z",
+  "period": "2026-08-15 \u2192 2026-09-29",
   "events": [
-    {
-      "date": "2026-08-14",
-      "label": "US PPI (MoM)",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-14",
-      "label": "EU CPI Flash (YoY)",
-      "currency": "EUR",
-      "impact": "high",
-      "country": "EU"
-    },
-    {
-      "date": "2026-08-14",
-      "label": "UK GDP (MoM)",
-      "currency": "GBP",
-      "impact": "medium",
-      "country": "UK"
-    },
     {
       "date": "2026-08-15",
       "label": "China Industrial Production",
@@ -280,6 +259,27 @@
       "label": "EU CPI Flash (YoY)",
       "currency": "EUR",
       "impact": "high",
+      "country": "EU"
+    },
+    {
+      "date": "2026-09-11",
+      "label": "UK GDP (MoM)",
+      "currency": "GBP",
+      "impact": "medium",
+      "country": "UK"
+    },
+    {
+      "date": "2026-09-15",
+      "label": "US Retail Sales (MoM)",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
+    },
+    {
+      "date": "2026-09-15",
+      "label": "ECB Speech",
+      "currency": "EUR",
+      "impact": "medium",
       "country": "EU"
     }
   ]
