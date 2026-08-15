@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-15T09:00:55Z",
+  "updated_at": "2026-08-15T20:16:59Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "VELVET",
-        "name": "Velvet",
-        "price": 1.18,
-        "change_24h": 24.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.31222,
-        "change_24h": 13.3,
+        "symbol": "ETHFI",
+        "name": "Ether.fi",
+        "price": 0.475977,
+        "change_24h": 9.2,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 9.28,
-        "change_24h": 5.9,
+        "price": 9.56,
+        "change_24h": 7.1,
         "asset": "crypto"
       },
       {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 107.3,
-        "change_24h": 5.4,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 412.2,
+        "change_24h": 3.7,
         "asset": "crypto"
       },
       {
-        "symbol": "ICP",
-        "name": "Internet Computer",
-        "price": 2.28,
-        "change_24h": 5.1,
+        "symbol": "HYPE",
+        "name": "Hyperliquid",
+        "price": 57.17,
+        "change_24h": 3.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLFI",
+        "name": "World Liberty Financial",
+        "price": 0.056571,
+        "change_24h": 3.0,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "UNI",
-        "name": "Uniswap",
-        "price": 3.24,
-        "change_24h": -6.5,
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 8.93,
+        "change_24h": -2.8,
         "asset": "crypto"
       },
       {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 8.79,
-        "change_24h": -4.3,
+        "symbol": "MNT",
+        "name": "Mantle",
+        "price": 0.434865,
+        "change_24h": -2.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CRO",
+        "name": "Cronos",
+        "price": 0.047681,
+        "change_24h": -1.6,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.48,
-        "change_24h": -4.0,
+        "price": 1.47,
+        "change_24h": -1.5,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002771,
-        "change_24h": -3.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SKY",
-        "name": "Sky",
-        "price": 0.051028,
-        "change_24h": -3.0,
+        "symbol": "BDX",
+        "name": "Beldex",
+        "price": 0.080295,
+        "change_24h": -1.4,
         "asset": "crypto"
       }
     ]
