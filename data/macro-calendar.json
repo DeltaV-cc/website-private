@@ -1,14 +1,7 @@
 {
-  "updated": "2026-08-15T20:45:48.945992Z",
-  "period": "2026-08-15 \u2192 2026-09-29",
+  "updated": "2026-08-15T21:01:00.100533Z",
+  "period": "2026-08-16 \u2192 2026-09-30",
   "events": [
-    {
-      "date": "2026-08-15",
-      "label": "China Industrial Production",
-      "currency": "CNY",
-      "impact": "medium",
-      "country": "CN"
-    },
     {
       "date": "2026-08-17",
       "label": "US Retail Sales (MoM)",
@@ -281,6 +274,13 @@
       "currency": "EUR",
       "impact": "medium",
       "country": "EU"
+    },
+    {
+      "date": "2026-09-15",
+      "label": "UK Unemployment Rate",
+      "currency": "GBP",
+      "impact": "medium",
+      "country": "UK"
     }
   ]
 }
