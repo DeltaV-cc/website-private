@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T17:15:53Z",
+  "updated_at": "2026-08-17T18:03:07Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1258,31 +1258,31 @@
     },
     {
       "week": "2026-W34",
-      "curated": 4786672417.549999,
-      "filtered": 4786672417.549999,
-      "raw": 4786672417.549999
+      "curated": 4880027937.109999,
+      "filtered": 4880027937.109999,
+      "raw": 4880027937.109999
     }
   ],
   "chains": [
+    {
+      "chain": "Orca DEX",
+      "volume_24h": 97211854.0,
+      "delta_pct": 91.75
+    },
     {
       "chain": "PancakeSwap AMM",
       "volume_24h": 87209822.0,
       "delta_pct": -24.35
     },
     {
-      "chain": "Orca DEX",
-      "volume_24h": 84105070.0,
-      "delta_pct": 65.89
-    },
-    {
       "chain": "Raydium AMM",
-      "volume_24h": 71032128.0,
-      "delta_pct": 22.49
+      "volume_24h": 77880134.0,
+      "delta_pct": 34.29
     },
     {
       "chain": "Curve DEX",
-      "volume_24h": 39544348.0,
-      "delta_pct": 0.07
+      "volume_24h": 49240285.0,
+      "delta_pct": 24.6
     },
     {
       "chain": "Quickswap Dex",
@@ -1291,28 +1291,28 @@
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 341412.0,
-      "delta_pct": -15.15
-    },
-    {
-      "chain": "Defi Swap",
-      "volume_24h": 261560.0,
-      "delta_pct": 1022.48
+      "volume_24h": 336897.0,
+      "delta_pct": -16.27
     },
     {
       "chain": "Bancor V2.1",
-      "volume_24h": 73658.0,
-      "delta_pct": -55.69
+      "volume_24h": 81852.0,
+      "delta_pct": -50.76
     },
     {
       "chain": "Balancer V1",
-      "volume_24h": 29392.0,
-      "delta_pct": 121.13
+      "volume_24h": 26420.0,
+      "delta_pct": 98.77
+    },
+    {
+      "chain": "Defi Swap",
+      "volume_24h": 15665.0,
+      "delta_pct": -32.77
     },
     {
       "chain": "Pangolin V2",
-      "volume_24h": 14831.0,
-      "delta_pct": -60.57
+      "volume_24h": 14276.0,
+      "delta_pct": -62.04
     },
     {
       "chain": "Flamingo Finance",
@@ -1321,8 +1321,8 @@
     },
     {
       "chain": "Swapr V2",
-      "volume_24h": 5117.0,
-      "delta_pct": -70.79
+      "volume_24h": 4497.0,
+      "delta_pct": -74.32
     }
   ]
 }
