@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-17T14:36:05Z",
+  "updated_at": "2026-08-17T14:45:41Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 268.46,
-        "change_24h": -3.32,
+        "price": 270.34,
+        "change_24h": -2.64,
         "asset": "equity"
       },
       {
         "symbol": "QNT",
         "name": "Quantinuum Inc.",
-        "price": 64.8,
-        "change_24h": 1.91,
+        "price": 65.62,
+        "change_24h": 3.21,
         "asset": "equity"
       },
       {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 17.37,
-        "change_24h": 3.89,
+        "price": 17.07,
+        "change_24h": 2.12,
         "asset": "equity"
       },
       {
         "symbol": "SHAZ",
         "name": "SharonAI Holdings, Inc.",
-        "price": 74.78,
-        "change_24h": -2.21,
+        "price": 74.47,
+        "change_24h": -2.61,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 103.94,
-        "change_24h": -1.25,
+        "price": 103.96,
+        "change_24h": -1.24,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MAAS",
         "name": "Maase Inc.",
-        "price": 16.39,
-        "change_24h": -1.59,
+        "price": 16.21,
+        "change_24h": -2.7,
         "asset": "equity"
       },
       {
         "symbol": "FRVO",
         "name": "Fervo Energy Company",
-        "price": 17.9,
-        "change_24h": -9.41,
+        "price": 17.84,
+        "change_24h": -9.72,
         "asset": "equity"
       },
       {
         "symbol": "LQDA",
         "name": "Liquidia Corporation",
-        "price": 77.22,
-        "change_24h": 3.73,
+        "price": 77.31,
+        "change_24h": 3.86,
         "asset": "equity"
       },
       {
         "symbol": "ALMR",
         "name": "Alamar Biosciences, Inc.",
-        "price": 32.7,
-        "change_24h": -1.39,
+        "price": 32.54,
+        "change_24h": -1.87,
         "asset": "equity"
       },
       {
         "symbol": "LB",
         "name": "LandBridge Company LLC",
-        "price": 79.38,
-        "change_24h": 0.87,
+        "price": 79.46,
+        "change_24h": 0.98,
         "asset": "equity"
       }
     ]
@@ -82,28 +82,28 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002886,
+        "price": 0.002899,
         "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.345843,
+        "price": 0.341735,
         "change_24h": 6.5,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 511.28,
+        "price": 511.7,
         "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.083057,
+        "price": 0.082975,
         "change_24h": 5.0,
         "asset": "crypto"
       },
@@ -119,7 +119,7 @@
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.025585,
+        "price": 0.025577,
         "change_24h": -4.9,
         "asset": "crypto"
       },
@@ -133,14 +133,14 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.092529,
+        "price": 0.09237,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.667117,
+        "price": 0.666662,
         "change_24h": -1.7,
         "asset": "crypto"
       },
