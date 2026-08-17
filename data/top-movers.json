@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-17T17:45:42Z",
+  "updated_at": "2026-08-17T18:00:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 276.0,
-        "change_24h": -0.6,
+        "price": 273.89,
+        "change_24h": -1.36,
         "asset": "equity"
       },
       {
         "symbol": "QNT",
         "name": "Quantinuum Inc.",
-        "price": 66.78,
-        "change_24h": 5.02,
+        "price": 66.59,
+        "change_24h": 4.73,
         "asset": "equity"
       },
       {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 17.52,
-        "change_24h": 4.75,
+        "price": 17.55,
+        "change_24h": 4.96,
         "asset": "equity"
       },
       {
         "symbol": "SHAZ",
         "name": "SharonAI Holdings, Inc.",
-        "price": 77.3,
-        "change_24h": 1.09,
+        "price": 77.13,
+        "change_24h": 0.87,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 107.83,
-        "change_24h": 2.44,
+        "price": 107.48,
+        "change_24h": 2.11,
         "asset": "equity"
       }
     ],
@@ -50,29 +50,29 @@
       {
         "symbol": "FRVO",
         "name": "Fervo Energy Company",
-        "price": 18.07,
-        "change_24h": -8.55,
+        "price": 18.11,
+        "change_24h": -8.32,
         "asset": "equity"
       },
       {
         "symbol": "LQDA",
         "name": "Liquidia Corporation",
-        "price": 77.11,
-        "change_24h": 3.59,
+        "price": 76.98,
+        "change_24h": 3.41,
         "asset": "equity"
       },
       {
         "symbol": "ALMR",
         "name": "Alamar Biosciences, Inc.",
-        "price": 32.38,
-        "change_24h": -2.34,
+        "price": 32.12,
+        "change_24h": -3.14,
         "asset": "equity"
       },
       {
         "symbol": "LB",
         "name": "LandBridge Company LLC",
-        "price": 79.82,
-        "change_24h": 1.44,
+        "price": 79.85,
+        "change_24h": 1.47,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002856,
+        "price": 0.002854,
         "change_24h": 6.6,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.13,
+        "price": 2.12,
         "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.65,
+        "price": 12.66,
         "change_24h": 5.9,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.08288,
+        "price": 0.083192,
         "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "RAIN",
         "name": "Rain",
-        "price": 0.013133,
+        "price": 0.01313,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -126,28 +126,28 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.091372,
+        "price": 0.091506,
         "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 100.42,
+        "price": 100.53,
         "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.490635,
+        "price": 0.491509,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "KAS",
         "name": "Kaspa",
-        "price": 0.025485,
+        "price": 0.025487,
         "change_24h": -3.0,
         "asset": "crypto"
       }
