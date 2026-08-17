@@ -16,7 +16,7 @@ export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 
 /** Root-relative paths (no locale prefix) that exist in French. */
-export const TRANSLATED = ['/contact/'] as const;
+export const TRANSLATED = ['/contact/', '/ai/', '/web3/', '/forge/'] as const;
 
 export function isTranslated(path: string): boolean {
   const clean = path.replace(/^\/fr/, '') || '/';
@@ -33,6 +33,15 @@ export function localePath(path: string, locale: Locale): string {
   const base = toBasePath(path);
   if (locale === DEFAULT_LOCALE) return base;
   return `/fr${base === '/' ? '/' : base}`;
+}
+
+/**
+ * Link to the same page in `locale` when it exists, otherwise leave the path
+ * alone. Use this for any cross-page link: it is what stops a French page
+ * linking to /fr/something-that-was-never-translated.
+ */
+export function hrefFor(path: string, locale: Locale): string {
+  return isTranslated(path) ? localePath(path, locale) : path;
 }
 
 export function localeFromPath(path: string): Locale {

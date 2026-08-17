@@ -4,7 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'rea
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { contentIndex } from '../data/content-index';
-import { isTranslated, localeFromPath, localePath, type Locale } from '@/lib/i18n';
+import { hrefFor, isTranslated, localeFromPath, localePath, type Locale } from '@/lib/i18n';
 import Logo from './Logo';
 
 const NAV_ITEMS = [
@@ -13,6 +13,15 @@ const NAV_ITEMS = [
   { href: '/intelhub/', label: 'IntelHub' },
   { href: '/contact/', label: 'Contact' },
 ];
+
+/**
+ * Keep the reader in their language: on a French page, nav entries that have a
+ * French version point at it. Entries that do not (IntelHub, blog, tutorials —
+ * English by design) stay as they are rather than 404.
+ */
+function navHref(href: string, lang: Locale) {
+  return isTranslated(href) ? localePath(href, lang) : href;
+}
 
 /**
  * Secondary reading only. Courses are listed on /forge/ itself, so linking
@@ -92,6 +101,7 @@ export default function Navbar() {
   const [query, setQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const pathname = usePathname() || '/';
+  const navLang = localeFromPath(pathname);
   const router = useRouter();
   const menuId = useId();
   const forgeId = useId();
@@ -133,15 +143,15 @@ export default function Navbar() {
           <Link href="/" className="group flex flex-shrink-0 items-center gap-2.5 text-[var(--text-primary)] transition-colors hover:text-[var(--accent-cyan)]" aria-label="Delta V - Home"><Logo size={28} priority /><span className="text-lg font-semibold tracking-[-.5px]">Delta V</span></Link>
 
           <div className="hidden items-center gap-0.5 lg:flex" role="list">
-            {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={item.href} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
+            {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
             <div ref={forgeRef} className="relative" onMouseEnter={() => setForgeOpen(true)} onMouseLeave={() => setForgeOpen(false)} onFocus={() => setForgeOpen(true)}>
               <div className={`flex items-center ${isActive(pathname, '/forge/') ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
-                <Link href="/forge/" className="relative px-3 py-2 text-sm">Forge{isActive(pathname, '/forge/') && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>
+                <Link href={navHref('/forge/', navLang)} className="relative px-3 py-2 text-sm">Forge{isActive(pathname, '/forge/') && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>
                 <button type="button" aria-expanded={forgeOpen} aria-controls={forgeId} aria-label="Show Forge resources" onClick={() => setForgeOpen((value) => !value)} className="px-1 py-2 text-xs text-[var(--accent-purple)]">⌄</button>
               </div>
               {forgeOpen && <div id={forgeId} className="absolute right-0 top-full z-50 w-64 border border-[var(--border-default)] bg-[rgba(8,11,10,0.94)] p-2 shadow-[var(--shadow-lg)]" role="menu">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} role="menuitem" className="block px-3 py-3 hover:bg-[var(--bg-hover)]" onClick={() => setForgeOpen(false)}><span className="block text-sm text-[var(--text-primary)]">{item.label}</span><span className="mt-1 block text-xs text-[var(--text-muted)]">{item.detail}</span></Link>)}</div>}
             </div>
-            {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={item.href} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
+            {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
             <LocaleToggle pathname={pathname} />
           </div>
 
@@ -158,10 +168,10 @@ export default function Navbar() {
 
       {mobileOpen && <div id={menuId} className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-[var(--border-default)] bg-[var(--bg-deep)] lg:hidden" role="dialog" aria-modal="true"><div className="px-5 py-4">
         <form className="relative mb-4 flex items-center gap-2 border-b border-[var(--border-default)]" onSubmit={submitSearch} onFocus={() => setSearchFocused(true)} onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}><span className="text-[var(--accent-cyan)]">⌕</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="look up" autoComplete="off" className="navbar-search-input w-full border-0 bg-transparent py-3 text-sm placeholder:text-[var(--text-muted)] focus:outline-none" /><SearchSuggestions query={query} visible={searchFocused} onSelect={() => setSearchFocused(false)} /></form>
-        {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={item.href} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
+        {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
         <button type="button" className="flex w-full items-center justify-between py-3 text-left text-[var(--text-secondary)]" aria-expanded={forgeOpen} onClick={() => setForgeOpen((value) => !value)}>Forge <span className="text-[var(--accent-purple)]">{forgeOpen ? '−' : '+'}</span></button>
         {forgeOpen && <div className="border-l border-[var(--border-default)] pl-4">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} className="block py-3 text-sm text-[var(--text-tertiary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}</div>}
-        {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={item.href} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
+        {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
       </div></div>}
     </nav>
   );

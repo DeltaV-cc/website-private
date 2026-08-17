@@ -95,8 +95,9 @@ const en: ContactCopy = {
 
 const fr: ContactCopy = {
   eyebrow: 'Contact',
-  title: 'Gardons le rythme',
-  intro: 'Des canaux de communication à haut signal. Chiffrés par défaut.',
+  title: 'Contactez notre équipe',
+  intro:
+    'Lancez votre aventure dans les technologies de pointe — et gardez une longueur d’avance. Échanges chiffrés par défaut.',
   emailLabel: 'E-mail',
   signalLabel: 'Signal',
   signalBlurb:
