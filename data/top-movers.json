@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-17T18:15:16Z",
+  "updated_at": "2026-08-17T18:30:28Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 274.69,
-        "change_24h": -1.08,
+        "price": 275.27,
+        "change_24h": -0.87,
         "asset": "equity"
       },
       {
         "symbol": "QNT",
         "name": "Quantinuum Inc.",
-        "price": 65.72,
-        "change_24h": 3.36,
+        "price": 66.08,
+        "change_24h": 3.92,
         "asset": "equity"
       },
       {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 17.43,
-        "change_24h": 4.22,
+        "price": 17.41,
+        "change_24h": 4.1,
         "asset": "equity"
       },
       {
         "symbol": "SHAZ",
         "name": "SharonAI Holdings, Inc.",
-        "price": 75.94,
-        "change_24h": -0.69,
+        "price": 76.53,
+        "change_24h": 0.09,
         "asset": "equity"
       },
       {
         "symbol": "CRWV",
         "name": "CoreWeave, Inc.",
-        "price": 107.78,
-        "change_24h": 2.4,
+        "price": 108.46,
+        "change_24h": 3.04,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MAAS",
         "name": "Maase Inc.",
-        "price": 16.2,
-        "change_24h": -2.73,
+        "price": 16.08,
+        "change_24h": -3.49,
         "asset": "equity"
       },
       {
         "symbol": "FRVO",
         "name": "Fervo Energy Company",
-        "price": 18.06,
-        "change_24h": -8.61,
+        "price": 18.01,
+        "change_24h": -8.85,
         "asset": "equity"
       },
       {
         "symbol": "LQDA",
         "name": "Liquidia Corporation",
-        "price": 76.81,
-        "change_24h": 3.18,
+        "price": 76.96,
+        "change_24h": 3.39,
         "asset": "equity"
       },
       {
         "symbol": "ALMR",
         "name": "Alamar Biosciences, Inc.",
-        "price": 32.06,
-        "change_24h": -3.32,
+        "price": 32.2,
+        "change_24h": -2.9,
         "asset": "equity"
       },
       {
         "symbol": "LB",
         "name": "LandBridge Company LLC",
-        "price": 79.66,
-        "change_24h": 1.23,
+        "price": 79.88,
+        "change_24h": 1.51,
         "asset": "equity"
       }
     ]
@@ -82,7 +82,7 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 12.72,
+        "price": 12.68,
         "change_24h": 6.2,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.083156,
+        "price": 0.082842,
         "change_24h": 5.5,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.358777,
+        "price": 0.356937,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.078631,
+        "price": 0.078806,
         "change_24h": 4.9,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.41,
+        "price": 1.42,
         "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.091083,
+        "price": 0.091023,
         "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.494198,
+        "price": 0.495659,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.354007,
+        "price": 0.354131,
         "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.01,
+        "price": 101.2,
         "change_24h": -3.9,
         "asset": "crypto"
       }
