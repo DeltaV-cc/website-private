@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T10:00:33Z",
+  "updated_at": "2026-08-17T12:00:20Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.342959,
-        "change_24h": 15.9,
+        "symbol": "RAIN",
+        "name": "Rain",
+        "price": 0.013357,
+        "change_24h": 5.8,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
         "price": 2.08,
-        "change_24h": 5.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ETHFI",
-        "name": "Ether.fi",
-        "price": 0.495719,
-        "change_24h": 4.7,
+        "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 508.61,
-        "change_24h": 4.4,
+        "price": 512.15,
+        "change_24h": 5.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.334591,
+        "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.359652,
-        "change_24h": 4.4,
+        "price": 0.359425,
+        "change_24h": 5.0,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.029246,
-        "change_24h": -3.6,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.468281,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
         "price": 1.44,
-        "change_24h": -2.7,
+        "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "QNT",
         "name": "Quant",
         "price": 55.78,
-        "change_24h": -2.6,
+        "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.66634,
-        "change_24h": -2.2,
+        "price": 0.667907,
+        "change_24h": -2.0,
         "asset": "crypto"
       },
       {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 4e-06,
-        "change_24h": -1.8,
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.175095,
+        "change_24h": -1.4,
         "asset": "crypto"
       }
     ]
