@@ -19,7 +19,7 @@ export type HomeCopy = {
   capabilities: { title: string; cta: string; bullets: string[] }[];
   offeringsEyebrow: string;
   offeringsTitle: string;
-  offerings: { title: string; text: string; cta: string }[];
+  offerings: { title: string; badge?: string; text: string; cta: string }[];
   loopEyebrow: string;
   loopTitle: string;
   loopBlurb: string;
@@ -75,6 +75,7 @@ const homeEn: HomeCopy = {
   offerings: [
     {
       title: 'My First AI Agent',
+      badge: '100% free',
       text: 'Thirteen free lessons to set up a real AI agent that reads your files, runs your errands, and answers on your phone.',
       cta: 'View Curriculum',
     },
@@ -147,6 +148,7 @@ const homeFr: HomeCopy = {
   offerings: [
     {
       title: 'Mon premier agent IA',
+      badge: '100 % gratuit',
       text: 'Treize leçons gratuites pour mettre en place un vrai agent IA qui lit vos fichiers, exécute vos tâches et vous répond sur votre téléphone.',
       cta: 'Voir le programme',
     },

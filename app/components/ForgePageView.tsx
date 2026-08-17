@@ -54,6 +54,7 @@ function CourseCard({
   id,
   code,
   title,
+  badge,
   pitch,
   product,
   adapt,
@@ -67,6 +68,7 @@ function CourseCard({
   id: string;
   code: string;
   title: string;
+  badge?: string;
   pitch: ReactNode;
   product: string;
   adapt: string;
@@ -89,7 +91,7 @@ function CourseCard({
       <div className="font-mono text-[10px] tracking-[2px] uppercase mb-3" style={{ color: accent }}>
         {code}
       </div>
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
         {s?.logo && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -102,6 +104,11 @@ function CourseCard({
           />
         )}
         <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
+        {badge && (
+          <span className="shrink-0 rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[1px] text-[var(--accent-green)]">
+            {badge}
+          </span>
+        )}
       </div>
       <p className="text-[var(--text-secondary)] mb-4 max-w-3xl leading-relaxed">{pitch}</p>
       <p className="text-xs text-[var(--text-tertiary)] mb-8 max-w-3xl leading-relaxed">
@@ -194,6 +201,7 @@ export default function ForgePageView({ lang }: { lang: Locale }) {
             id={course.id}
             code={course.code}
             title={course.title}
+            badge={course.badge}
             pitch={formatCourseText(course.pitch)}
             product={course.product}
             adapt={course.adapt}

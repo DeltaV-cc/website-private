@@ -8,6 +8,8 @@ export type ForgeCourseCopy = {
   id: string;
   code: string;
   title: string;
+  /** Optional pill next to the title, e.g. "Free". */
+  badge?: string;
   pitch: string;
   product: string;
   adapt: string;
@@ -43,6 +45,7 @@ const en: ForgeCopy = {
       id: 'my-first-ai-agent',
       code: 'Course 01 · Flagship · Live',
       title: 'My First AI Agent',
+      badge: '100% free',
       pitch:
         'Thirteen free lessons to set up a real AI agent — the kind that **actually does things for you**, not just answers questions. Start from zero, finish with an agent that reads your files, runs your errands, and answers on your phone. No code, no ML background.',
       product: 'Product: Hermes Desktop',
@@ -110,6 +113,7 @@ const fr: ForgeCopy = {
       id: 'my-first-ai-agent',
       code: 'Cours 01 · Phare · En ligne',
       title: 'Mon premier agent IA',
+      badge: '100 % gratuit',
       pitch:
         'Treize leçons gratuites pour mettre en place un vrai agent IA — celui qui **fait vraiment les choses à votre place**, au lieu de simplement répondre. Partez de zéro et terminez avec un agent qui lit vos fichiers, exécute vos tâches et vous répond sur votre téléphone. Sans code, sans bagage en machine learning.',
       product: 'Produit : Hermes Desktop',
