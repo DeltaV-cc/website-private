@@ -1841,7 +1841,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             code: 'Set up my vault: create folders for inbox, sources and synthesis,\nand add a short README note explaining what each one is for.',
             note: L('Approve the writes. Then look at Obsidian — the folders and the note are there. That is the proof it can write as well as read, and you never had to make them by hand.'),
           } },
-          { k: 'image', src: '/courses/open-harness/screenshots/hermes-vault-setup.png', width: 1920, height: 1040,
+          { k: 'image', src: '/courses/open-harness/screenshots/hermes-vault-setup.webp', width: 1280, height: 693,
             alt: L('A Hermes chat: the user asks it to use an Obsidian vault as their second-brain and create inbox, sources and synthesis folders with a README. The agent confirms the folders and README were created, then in a second message adds deltav.cc as a source file under sources/, and finishes with a table listing each folder and its purpose.'),
             caption: L('What it looks like in practice. Note the second message — once the vault is wired, filing something new is one sentence: **“Add deltav.cc as a source for my OpSec in our vault.”** It created the note, put it in the right folder, and remembered.'),
           },

@@ -1,5 +1,8 @@
-'use client';
-
+// Deliberately a server component: this file holds no state, no effect and no
+// handler, and marking it 'use client' shipped the whole HOME_PAGE dictionary
+// — both locales, ~23 KB — into every visitor's JavaScript bundle for nothing.
+// The interactive pieces below (InkGarden, CuratedIntel) carry their own
+// 'use client' and still work when rendered from here.
 import Link from 'next/link';
 import CuratedIntel from './CuratedIntel';
 import InkGarden from './InkGarden';
@@ -57,7 +60,11 @@ export default function HomeView({ lang }: { lang: Locale }) {
       <div className="home-hero-shade" aria-hidden="true" />
       <div className="page-container relative z-10 grid lg:grid-cols-[1.1fr_.9fr] gap-10 lg:gap-16 items-center pt-20 md:pt-28 pb-16 md:pb-24">
         <div>
-          <h1 id="hero-heading" className="max-w-4xl text-[clamp(1.5rem,7.5vw,3.4rem)] sm:text-[3.5rem] lg:text-[3.4rem] xl:text-7xl font-semibold tracking-[-.07em] leading-[.94] animate-fade-in-up"><span className="block whitespace-nowrap">{copy.heroLine1}</span><span className="block whitespace-nowrap"><span className="text-[var(--text-secondary)]">{copy.heroLine2Lead}</span><span className="gradient-text">{copy.heroLine2Accent}</span></span></h1>
+          {/* No fade on the h1: it is the Largest Contentful Paint element, and
+              LCP is stamped when the element reaches its final paint. Starting
+              it at opacity 0 for 300ms added those 300ms to the score for free.
+              The blurb and the buttons below still fade in. */}
+          <h1 id="hero-heading" className="max-w-4xl text-[clamp(1.5rem,7.5vw,3.4rem)] sm:text-[3.5rem] lg:text-[3.4rem] xl:text-7xl font-semibold tracking-[-.07em] leading-[.94]"><span className="block whitespace-nowrap">{copy.heroLine1}</span><span className="block whitespace-nowrap"><span className="text-[var(--text-secondary)]">{copy.heroLine2Lead}</span><span className="gradient-text">{copy.heroLine2Accent}</span></span></h1>
           <p className="mt-8 max-w-xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed animate-fade-in-up" style={{ animationDelay: '100ms' }}>{copy.heroBlurb}</p>
           <div className="mt-10 flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
             <Link href={to('/forge/')} className="button-primary">{copy.ctaUpskill} <Arrow /></Link>

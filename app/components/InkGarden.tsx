@@ -2,102 +2,159 @@
 
 import { useEffect, useRef } from 'react';
 import { withBasePath } from '@/lib/site';
+import { createInkGardenRenderer, type RenderMode, type Surface } from './inkGarden/renderer';
 
-type RenderMode = 'characters' | 'dither' | 'mosaic' | 'pixel' | 'dots' | 'cross' | 'diamond' | 'voxel' | 'lego' | 'mixed' | 'lines' | 'diagonal' | 'braille' | 'disco' | 'hexdump' | 'matrix' | 'rings' | 'hearts' | 'stars' | 'hexagons' | 'triangles' | 'bubbles' | 'hatch' | 'contour' | 'halfblocks';
 type InkGardenProps = { compact?: boolean; background?: boolean; source?: string; renderMode?: RenderMode; className?: string };
 
-const chars = ' .·:;+*#%@ΔV';
-const tint = '#8d79b4';
 const sourcePhoto = withBasePath('/images/ink-garden-panorama.webp');
-const sourceComet = { headX: 638, headY: 518, tailX: 724, tailY: 356 };
 
-function hexRgb(hex: string) {
-  const value = hex.replace('#', '');
-  return { r: parseInt(value.slice(0, 2), 16), g: parseInt(value.slice(2, 4), 16), b: parseInt(value.slice(4, 6), 16) };
-}
+/**
+ * Which worker owns which canvas.
+ *
+ * `transferControlToOffscreen` is one-shot per element, and React reuses the
+ * same <canvas> node across Fast Refresh and Activity reconnects — the effect
+ * re-runs on a node that was already handed over. A ref cannot survive that
+ * (it is reset on remount), so ownership is tracked on the element itself.
+ */
+const OWNERS = new WeakMap<HTMLCanvasElement, Worker>();
 
-function colour(r: number, g: number, b: number, settings: { brightness: number; contrast: number; saturation: number; grayscale: number; invert: boolean; tintOpacity: number }) {
-  const brightness = settings.brightness * 2.55;
-  r += brightness; g += brightness; b += brightness;
-  const factor = (259 * (settings.contrast + 255)) / (255 * (259 - settings.contrast));
-  r = factor * (r - 128) + 128; g = factor * (g - 128) + 128; b = factor * (b - 128) + 128;
-  const grey = .299 * r + .587 * g + .114 * b;
-  const saturation = settings.saturation / 100;
-  r = grey + (r - grey) * saturation; g = grey + (g - grey) * saturation; b = grey + (b - grey) * saturation;
-  const mono = settings.grayscale / 100;
-  r += (grey - r) * mono; g += (grey - g) * mono; b += (grey - b) * mono;
-  if (settings.invert) { r = 255 - r; g = 255 - g; b = 255 - b; }
-  if (settings.tintOpacity) { const t = hexRgb(tint); const mix = settings.tintOpacity / 100; r = r * (1 - mix) + t.r * mix; g = g * (1 - mix) + t.g * mix; b = b * (1 - mix) + t.b * mix; }
-  return `rgb(${Math.max(0, Math.min(255, r))},${Math.max(0, Math.min(255, g))},${Math.max(0, Math.min(255, b))})`;
-}
-
+/**
+ * Ink Garden — the ASCII field behind the whole site.
+ *
+ * The drawing itself lives in `inkGarden/renderer.ts` and runs inside
+ * `inkGarden/worker.ts`. That split is the whole point: a full-viewport field
+ * is ~19,000 cells and costs ~51 ms to draw, so running it on the main thread
+ * meant a long task eleven times a second, for as long as the page was open.
+ * Off-thread, the art is unchanged and the page stays responsive.
+ *
+ * Browsers without OffscreenCanvas (Safari before 16.4) fall back to the
+ * original main-thread loop, so nothing regresses for them.
+ */
 export default function InkGarden({ compact = false, background = false, source = sourcePhoto, renderMode = 'mixed', className = '' }: InkGardenProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const optionKey = `${background}|${compact}|${renderMode}|${source}`;
+
   useEffect(() => {
-    const canvas = canvasRef.current; const host = canvas?.parentElement; const ctx = canvas?.getContext('2d');
-    if (!canvas || !host || !ctx) return;
+    const canvas = canvasRef.current;
+    const host = canvas?.parentElement;
+    if (!canvas || !host) return;
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const photo = new Image(); photo.decoding = 'async';
-    const sourceCanvas = document.createElement('canvas'); const sourceCtx = sourceCanvas.getContext('2d');
-    let raf = 0; let lastFrame = 0; let imageData: Uint8ClampedArray | null = null; let visible = background; let loadStarted = false;
-    let cometHead = { x: .34, y: .63 }; let cometTail = { x: .39, y: .44 };
-    const settings = { cellSize: background ? 7 : compact ? 5 : 6, density: 20, coverage: 100, brightness: 30, contrast: 120, saturation: 100, grayscale: 0, invert: false, tintOpacity: 0, edgeEmphasis: 0, bgOpacity: 90, animSpeed: background ? 1.1 : .35, animIntensity: background ? .2 : .08 };
-    const renderScale = 1;
-    const frameInterval = background ? 90 : 32;
-    const scheduleFrame = () => { if (reduce || !visible || document.visibilityState !== 'visible' || raf) return; raf = requestAnimationFrame((next) => { raf = 0; if (next - lastFrame < frameInterval) { scheduleFrame(); return; } lastFrame = next; draw(next); }); };
-    const renderSize = () => ({ w: Math.max(1, Math.ceil(host.clientWidth * renderScale)), h: Math.max(1, Math.ceil(host.clientHeight * renderScale)) });
-    const resize = () => { const ratio = background ? 1 : Math.min(window.devicePixelRatio || 1, 2); const { w, h } = renderSize(); canvas.width = w * ratio; canvas.height = h * ratio; ctx.setTransform(ratio, 0, 0, ratio, 0, 0); sourceCanvas.width = w; sourceCanvas.height = h; imageData = null; if (photo.complete && photo.naturalWidth && sourceCtx) prepare(); };
-    const prepare = () => { if (!photo.complete || !photo.naturalWidth || !sourceCtx) return; const { w, h } = renderSize(); const scale = Math.max(w / photo.naturalWidth, h / photo.naturalHeight); const sw = photo.naturalWidth * scale; const sh = photo.naturalHeight * scale; const imagePosition = background ? (window.innerWidth <= 640 ? .24 : .48) : .38; const imageX = (w - sw) / 2 + Math.max(0, sw - w) * imagePosition; const imageY = (h - sh) / 2; cometHead = { x: (imageX + sourceComet.headX * scale) / w, y: (imageY + sourceComet.headY * scale) / h }; cometTail = { x: (imageX + sourceComet.tailX * scale) / w, y: (imageY + sourceComet.tailY * scale) / h }; sourceCtx.clearRect(0, 0, w, h); sourceCtx.globalAlpha = settings.bgOpacity / 100; sourceCtx.drawImage(photo, imageX, imageY, sw, sh); sourceCtx.globalAlpha = 1; imageData = sourceCtx.getImageData(0, 0, w, h).data; };
-    const drawShape = (mode: RenderMode, x: number, y: number, size: number, level: number, fill: string, time: number, ix: number, iy: number) => {
-      ctx.fillStyle = fill; ctx.strokeStyle = fill; ctx.lineWidth = Math.max(1, size / 8); const q = size * (.25 + level * .75);
-      if (mode === 'characters' || mode === 'hexdump' || mode === 'matrix') { ctx.font = `${size}px ui-monospace, monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; const set = mode === 'hexdump' ? '0123456789ABCDEF' : mode === 'matrix' ? '01アイ' : chars; const charIndex = Math.min(set.length - 1, Math.floor((level + ix * .013) * (set.length - 1))); ctx.fillText(set[charIndex], x, y); return; }
-      ctx.beginPath();
-      if (mode === 'dots' || mode === 'disco' || mode === 'bubbles') ctx.arc(x, y, q / 2, 0, Math.PI * 2);
-      else if (mode === 'rings') { ctx.arc(x, y, q / 2, 0, Math.PI * 2); ctx.stroke(); return; }
-      else if (mode === 'cross') { ctx.moveTo(x - q, y); ctx.lineTo(x + q, y); ctx.moveTo(x, y - q); ctx.lineTo(x, y + q); ctx.stroke(); return; }
-      else if (mode === 'diamond' || mode === 'triangles') { ctx.moveTo(x, y - q); ctx.lineTo(x + q, y + q); ctx.lineTo(mode === 'triangles' ? x - q : x - q, y + q); ctx.closePath(); }
-      else if (mode === 'hexagons') { for (let i = 0; i < 6; i++) ctx.lineTo(x + Math.cos(i * Math.PI / 3) * q, y + Math.sin(i * Math.PI / 3) * q); ctx.closePath(); }
-      else if (mode === 'hearts') { ctx.moveTo(x, y + q); ctx.bezierCurveTo(x - q * 1.5, y, x - q, y - q, x, y - q / 3); ctx.bezierCurveTo(x + q, y - q, x + q * 1.5, y, x, y + q); }
-      else if (mode === 'lines' || mode === 'diagonal' || mode === 'hatch' || mode === 'contour') { const offset = mode === 'diagonal' ? q : 0; ctx.moveTo(x - q, y - offset); ctx.lineTo(x + q, y + offset); if (mode === 'hatch' || mode === 'contour') { ctx.moveTo(x - q, y + offset); ctx.lineTo(x + q, y - offset); } ctx.stroke(); return; }
-      else { ctx.rect(x - q / 2, y - q / 2, q, q); }
-      if (mode === 'pixel' || mode === 'mosaic' || mode === 'lego' || mode === 'voxel' || mode === 'mixed' || level > .58) ctx.fill(); else ctx.stroke();
-      if (mode === 'halfblocks' || mode === 'braille') { ctx.fillRect(x - q / 2, y - q / 2, q, q / 2); }
-      void time; void iy;
-    };
-    const draw = (time: number) => {
-      const { w, h } = renderSize(); ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#080b0a'; ctx.fillRect(0, 0, w, h);
-      const backgroundPulse = 0;
-      if (imageData && sourceCanvas.width === w) { ctx.save(); ctx.globalAlpha = background ? .66 : .46; ctx.filter = 'blur(.8px) brightness(1.08) saturate(1.08)'; ctx.drawImage(sourceCanvas, 0, 0, w, h); ctx.restore(); }
-      if (background && cometHead.x > 0 && cometHead.x < 1 && cometHead.y > 0 && cometHead.y < 1) { const hx = cometHead.x * w; const hy = cometHead.y * h; const tx = cometTail.x * w; const ty = cometTail.y * h; ctx.save(); ctx.globalCompositeOperation = 'screen'; const headGlow = ctx.createRadialGradient(hx, hy, 0, hx, hy, Math.max(34, w * .055)); headGlow.addColorStop(0, 'rgba(238, 252, 255, .55)'); headGlow.addColorStop(.24, 'rgba(125, 220, 255, .24)'); headGlow.addColorStop(1, 'rgba(125, 220, 255, 0)'); ctx.fillStyle = headGlow; ctx.fillRect(0, 0, w, h); ctx.strokeStyle = 'rgba(151, 228, 255, .22)'; ctx.lineWidth = Math.max(2, w * .0022); ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(tx, ty); ctx.stroke(); ctx.restore(); }
-      const data = imageData; const cols = Math.ceil(w / settings.cellSize); const rows = Math.ceil(h / (settings.cellSize * 1.35));
-      ctx.save(); ctx.globalAlpha = background ? .3 : .34;
-      for (let iy = 0; iy < rows; iy++) for (let ix = 0; ix < cols; ix++) {
-        const px = Math.min(w - 1, Math.floor((ix + .5) * settings.cellSize)); const py = Math.min(h - 1, Math.floor((iy + .5) * settings.cellSize * 1.35)); const index = (py * w + px) * 4; const r = data?.[index] ?? 75; const g = data?.[index + 1] ?? 62; const b = data?.[index + 2] ?? 80; let level = (r * .299 + g * .587 + b * .114) / 255;
-        const xNorm = ix / Math.max(1, cols - 1); const yNorm = iy / Math.max(1, rows - 1); const cometDrift = background ? 0 : reduce ? 0 : Math.sin(time * .00045 * settings.animSpeed) * .045; const cometRise = background ? 0 : reduce ? 0 : -Math.sin(time * .00045 * settings.animSpeed) * .026; const trailCenter = .28 + (.58 - yNorm) * .52 + cometDrift; const trailFade = Math.max(0, 1 - Math.abs(yNorm - .38) * 1.25); const trail = Math.max(0, 1 - Math.abs(xNorm - trailCenter) * 18) * trailFade;
-        const headX = (background ? cometHead.x : .43) + cometDrift; const headY = (background ? cometHead.y : .58) + cometRise; const tailX = background ? cometTail.x : headX - .19; const tailY = background ? cometTail.y : headY - .16; const tailDx = tailX - headX; const tailDy = tailY - headY; const tailLength = tailDx * tailDx + tailDy * tailDy; const rawProjection = ((xNorm - headX) * tailDx + (yNorm - headY) * tailDy) / tailLength; const projection = Math.max(0, Math.min(1, rawProjection)); const closestX = headX + tailDx * projection; const closestY = headY + tailDy * projection; const tailWidth = .008 + projection * .018; const tailGlow = rawProjection >= 0 && rawProjection <= 1 ? Math.max(0, 1 - Math.hypot(xNorm - closestX, yNorm - closestY) / tailWidth) * (1 - projection * .72) : 0; const headGlow = Math.max(0, 1 - Math.hypot(xNorm - headX, yNorm - headY) / .04); level = Math.max(level * .7, trail * .58, tailGlow * .82, headGlow);
-        const globalPulse = backgroundPulse * .15; const wave = reduce ? 0 : (Math.sin(time * .0022 * settings.animSpeed + ix * .12 + iy * .035) * settings.animIntensity) + globalPulse; level = Math.max(0, Math.min(1, level + wave));
-        let mode: RenderMode = renderMode;
-        if (renderMode === 'mixed') {
-          const pattern = (ix * 7 + iy * 11) % 12;
-          mode = pattern < 5 ? 'characters' : pattern < 8 ? 'pixel' : pattern < 10 ? 'lines' : 'halfblocks';
-        }
-        const glow = Math.max(tailGlow, headGlow); const redAmount = 1 - projection; const cometFill = tailGlow > .06 ? `rgb(${Math.round(70 + redAmount * 180)},${Math.round(155 - redAmount * 80)},${Math.round(205 - redAmount * 90)})` : headGlow > .08 ? `rgb(${Math.round(210 + headGlow * 45)},${Math.round(175 + headGlow * 65)},${Math.round(160 + headGlow * 75)})` : null; const fill = cometFill || (glow > .08 ? `rgb(${Math.round(100 + glow * 155)},${Math.round(190 + glow * 65)},255)` : colour(r, g, b, settings)); const artFlicker = reduce ? 0 : Math.sin(time * .004 * settings.animSpeed + ix * .23 + iy * .17) * .5 + .5; ctx.globalAlpha = background ? .22 + artFlicker * .1 : .34; const wind = background || reduce ? 0 : Math.sin(time * .0014 * settings.animSpeed + iy * .15 + ix * .018) * Math.max(0, (yNorm - .68) / .32) * settings.cellSize * .62; const shapeSize = background ? settings.cellSize * .82 : settings.cellSize; drawShape(mode, px + wind, py, shapeSize, level, fill, time, ix, iy);
+    const metrics = () => ({
+      w: Math.max(1, host.clientWidth),
+      h: Math.max(1, host.clientHeight),
+      dpr: window.devicePixelRatio || 1,
+      narrow: window.innerWidth <= 640,
+    });
+
+    const offscreenSupported =
+      typeof Worker !== 'undefined' &&
+      typeof OffscreenCanvas !== 'undefined' &&
+      typeof canvas.transferControlToOffscreen === 'function';
+
+    if (offscreenSupported) {
+      let worker = OWNERS.get(canvas);
+      if (!worker) {
+        worker = new Worker(new URL('./inkGarden/worker.ts', import.meta.url), { type: 'module' });
+        OWNERS.set(canvas, worker);
+        const offscreen = canvas.transferControlToOffscreen();
+        worker.postMessage(
+          { type: 'init', canvas: offscreen, background, compact, renderMode, reduce, src: source, ...metrics() },
+          [offscreen],
+        );
+      } else {
+        // Re-attached to a canvas this worker already owns: just re-sync size.
+        worker.postMessage({ type: 'resize', ...metrics() });
       }
-      ctx.restore();
-      ctx.globalAlpha = background ? .045 : .07; ctx.fillStyle = '#d7f5f2';
-      for (let y = 0; y < h; y += 3) ctx.fillRect(0, y, w, 1);
-      ctx.globalAlpha = 1;
-      scheduleFrame();
+
+      let intersecting = background;
+      const sync = () => worker.postMessage({ type: 'run', running: intersecting && document.visibilityState === 'visible' });
+
+      const resizeObserver = new ResizeObserver(() => worker.postMessage({ type: 'resize', ...metrics() }));
+      resizeObserver.observe(host);
+
+      const intersectionObserver = 'IntersectionObserver' in window
+        ? new IntersectionObserver(([entry]) => { intersecting = entry?.isIntersecting ?? true; sync(); }, { rootMargin: '240px' })
+        : null;
+      intersectionObserver?.observe(host);
+
+      document.addEventListener('visibilitychange', sync);
+      sync();
+
+      const owned = worker;
+      return () => {
+        document.removeEventListener('visibilitychange', sync);
+        resizeObserver.disconnect();
+        intersectionObserver?.disconnect();
+        owned.postMessage({ type: 'run', running: false });
+        // Kill the worker only if the canvas really left the page. On a Fast
+        // Refresh or Activity reconnect the node is still in the document and
+        // gets its worker back, because it can never be transferred again.
+        setTimeout(() => {
+          if (!canvas.isConnected && OWNERS.get(canvas) === owned) {
+            OWNERS.delete(canvas);
+            owned.terminate();
+          }
+        }, 0);
+      };
+    }
+
+    // ── Fallback: the original main-thread loop, unchanged in behaviour ──
+    const renderer = createInkGardenRenderer({
+      background, compact, renderMode, reduce,
+      createSurface: (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c as Surface; },
+    });
+    renderer.attach(canvas as Surface);
+
+    let raf = 0; let lastFrame = 0; let visible = background; let loadStarted = false;
+    const photo = new Image(); photo.decoding = 'async';
+
+    const scheduleFrame = () => {
+      if (reduce || !visible || document.visibilityState !== 'visible' || raf) return;
+      raf = requestAnimationFrame((next) => {
+        raf = 0;
+        if (next - lastFrame < renderer.frameInterval) { scheduleFrame(); return; }
+        lastFrame = next; renderer.draw(next); scheduleFrame();
+      });
     };
+    const resize = () => { const m = metrics(); renderer.resize(m.w, m.h, m.dpr, m.narrow); };
     const startLoading = () => { if (loadStarted) return; loadStarted = true; photo.src = source; };
-    const start = () => { resize(); prepare(); draw(performance.now()); };
-    photo.onload = start;
-    const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => { visible = entries[0]?.isIntersecting ?? true; if (visible) { startLoading(); if (!raf) draw(performance.now()); } else { cancelAnimationFrame(raf); raf = 0; } }, { rootMargin: '240px' }) : null;
-    observer?.observe(host);
+    const paint = () => { resize(); renderer.draw(performance.now()); scheduleFrame(); };
+    photo.onload = () => { renderer.setImage(photo, photo.naturalWidth, photo.naturalHeight); paint(); };
+
+    const intersectionObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries) => {
+          visible = entries[0]?.isIntersecting ?? true;
+          if (visible) { startLoading(); scheduleFrame(); } else { cancelAnimationFrame(raf); raf = 0; }
+        }, { rootMargin: '240px' })
+      : null;
+    intersectionObserver?.observe(host);
     if (background) startLoading();
-    start();
-    const onVisibility = () => { if (document.visibilityState === 'visible' && visible && !raf) draw(performance.now()); else if (document.visibilityState !== 'visible') { cancelAnimationFrame(raf); raf = 0; } };
-    window.addEventListener('resize', resize); document.addEventListener('visibilitychange', onVisibility); return () => { cancelAnimationFrame(raf); observer?.disconnect(); window.removeEventListener('resize', resize); document.removeEventListener('visibilitychange', onVisibility); };
-  }, [background, compact, source, renderMode]);
-  return <div className={`ink-garden ${compact ? 'ink-garden-compact' : ''} ${background ? 'ink-garden-background' : ''} ${className}`} aria-label={background ? undefined : 'Ink Garden ASCII art field'} aria-hidden={background || undefined} role={background ? undefined : 'img'}><div className="ascii-mist-label">ΔV / INK GARDEN</div><canvas ref={canvasRef} /></div>;
+    resize();
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible' && visible) scheduleFrame();
+      else { cancelAnimationFrame(raf); raf = 0; }
+    };
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      cancelAnimationFrame(raf);
+      intersectionObserver?.disconnect();
+      window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [background, compact, source, renderMode, optionKey]);
+
+  return (
+    <div
+      className={`ink-garden ${compact ? 'ink-garden-compact' : ''} ${background ? 'ink-garden-background' : ''} ${className}`}
+      aria-label={background ? undefined : 'Ink Garden ASCII art field'}
+      aria-hidden={background || undefined}
+      role={background ? undefined : 'img'}
+    >
+      <div className="ascii-mist-label">ΔV / INK GARDEN</div>
+      <canvas key={optionKey} ref={canvasRef} />
+    </div>
+  );
 }

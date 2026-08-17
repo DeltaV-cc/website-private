@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
           </div>
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">{t.services}</h4>
+            <h2 className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[2px] mb-4">{t.services}</h2>
             <div className="space-y-2.5">
               <Link href={to('/ai/')} className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">{t.aiEngineering}</Link>
               <Link href={to('/web3/')} className="block text-[var(--text-tertiary)] hover:text-[var(--accent-orange)] transition-colors duration-150 text-sm">{t.web3}</Link>
@@ -38,7 +38,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">{t.resources}</h4>
+            <h2 className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[2px] mb-4">{t.resources}</h2>
             <div className="space-y-2.5">
               <Link href="/blog/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">{t.blog}</Link>
               <Link href="/intelhub/" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">{t.intelhub}</Link>
@@ -52,7 +52,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">{t.connect}</h4>
+            <h2 className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[2px] mb-4">{t.connect}</h2>
             <div className="space-y-2.5">
               <a href="mailto:engage@deltav.cc" target="_blank" rel="noopener noreferrer" className="block text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors duration-150 text-sm">engage@deltav.cc</a>
               <div className="text-sm text-[var(--text-tertiary)]">Signal: @DeltaV.01</div>
@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-[2px] mb-4">{t.values}</h4>
+            <h2 className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[2px] mb-4">{t.values}</h2>
             <div className="space-y-2.5">
               {t.valueList.map((v) => (
                 <div key={v} className="text-sm text-[var(--text-tertiary)]">{v}</div>
@@ -70,13 +70,16 @@ export default function Footer() {
         </div>
         <div className="pt-6 border-t border-[var(--border-default)] flex flex-col items-center justify-center gap-4 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {/* Quiet privacy transparency - no trackers, static export only */}
-            <span className="text-[10px] text-[var(--text-disabled)] tracking-wide" title={t.noTrackersTitle}>
+            {/* Quiet privacy transparency - no trackers, static export only.
+                Tertiary, not disabled: at 26% alpha this row sat at 2:1 against
+                the deep background, which is below the 4.5:1 floor for text
+                this small. Tertiary is the first step on the scale that clears it. */}
+            <span className="text-[10px] text-[var(--text-tertiary)] tracking-wide" title={t.noTrackersTitle}>
               {t.noTrackers}
             </span>
-            <span className="text-xs text-[var(--text-disabled)]">© 2026 Delta V</span>
-            <Link href="/cgu/" className="text-xs text-[var(--text-disabled)] hover:text-[var(--accent-cyan)] transition-colors">{t.terms}</Link>
-            <Link href="/privacy/" className="text-xs text-[var(--text-disabled)] hover:text-[var(--accent-cyan)] transition-colors">{t.privacy}</Link>
+            <span className="text-xs text-[var(--text-tertiary)]">© 2026 Delta V</span>
+            <Link href="/cgu/" className="text-xs text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors">{t.terms}</Link>
+            <Link href="/privacy/" className="text-xs text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors">{t.privacy}</Link>
           </div>
         </div>
       </div>

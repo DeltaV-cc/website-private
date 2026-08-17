@@ -1,5 +1,5 @@
-'use client';
-
+// Server component on purpose: pure markup, no state and no handler. Every
+// hover effect here is CSS, and `--card-accent` is a plain inline style.
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 
@@ -66,13 +66,17 @@ export default function CapabilityCard({
           {title}
         </h3>
 
+        {/* py-1 on the link, and the gap moved from the list to the padding:
+            each bullet is its own tap target sitting on top of the card-wide
+            link, and at 20px tall they were under the 24px floor. Same rhythm
+            on screen, 28px of hit area each. */}
         {bullets ? (
-          <ul className="mt-5 max-w-sm space-y-2 text-sm leading-relaxed">
+          <ul className="mt-4 max-w-sm space-y-1 text-sm leading-relaxed">
             {bullets.map((bullet) => (
               <li key={bullet.href}>
                 <Link
                   href={bullet.href}
-                  className="pointer-events-auto relative z-10 flex items-start gap-2 text-[var(--text-secondary)] underline-offset-4 transition-colors hover:underline focus-visible:underline"
+                  className="pointer-events-auto relative z-10 flex items-start gap-2 py-1 text-[var(--text-secondary)] underline-offset-4 transition-colors hover:underline focus-visible:underline"
                   style={{ textDecorationColor: accent }}
                 >
                   <span className="shrink-0" style={{ color: accent }} aria-hidden="true">•</span>

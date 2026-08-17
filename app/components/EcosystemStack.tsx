@@ -139,7 +139,9 @@ export default function EcosystemStack({
       <div
         ref={scrollRef}
         className="ecosystem-track relative overflow-x-auto scrollbar-none"
-        role="list"
+        // group, not list: the only direct child is the marquee wrapper, so a
+        // list role here has no listitem children and fails aria-required-children.
+        role="group"
         aria-label={label}
         onMouseEnter={pause}
         onMouseLeave={resume}
