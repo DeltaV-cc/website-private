@@ -159,6 +159,13 @@ def main() -> int:
                 print(f"  · {src.name} kept BUILD ({build_t.isoformat()} > live {live_t.isoformat()})")
 
         print(f"preserve-live-data: kept_live={kept} kept_build={skipped} added={added}")
+        # The homepage strip reads a slim derivative of raw-items.json. Rebuild
+        # it here so it always matches whichever snapshot won above.
+        raw = out_data / "raw-items.json"
+        if raw.exists():
+            sys.path.insert(0, str(Path(__file__).parent))
+            from curated_top20 import derive as derive_top20
+            derive_top20(str(raw), str(out_data))
         return 0
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

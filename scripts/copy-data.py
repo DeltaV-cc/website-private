@@ -117,6 +117,9 @@ if os.path.exists(raw_dir):
     shutil.copy(os.path.join(PUBLIC_DIR, 'raw-items.json'), os.path.join(SIGNALS_DIR, 'raw-items.json'))
     tagged = sum(1 for it in top200 if it.get('tag'))
     print(f'✓ tags assigned: {tagged}/{len(top200)} items')
+    # Slim payload for the homepage strip — see scripts/curated_top20.py
+    from curated_top20 import derive as _derive_top20
+    _derive_top20(out_path)
 
 # --- Copy picks ---
 picks_file = os.path.join(WORKSPACE_DIR, 'picks.json')

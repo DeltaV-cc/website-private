@@ -56,6 +56,11 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
   const speed = useRef(baseSpeed);
   const paused = useRef(false);
   const af = useRef(0);
+  // Half the strip, measured once. Reading scrollWidth right after writing
+  // scrollLeft forces a synchronous layout, and this loop ran 60 times a
+  // second on two rows — Lighthouse flagged it as the page's forced reflow.
+  // The value only depends on the card count, which is fixed per render.
+  const half = useRef(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -77,13 +82,18 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
     };
     // Pause while pointer/focus is on a card so users can click without the strip racing away
     const stop = () => { if (af.current) cancelAnimationFrame(af.current); af.current = 0; };
+    const measure = () => { half.current = el.scrollWidth / 2; };
+    measure();
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(el);
+
     const tick = () => {
       if (el && !paused.current && document.visibilityState === 'visible') {
         el.scrollLeft += speed.current;
-        const half = el.scrollWidth / 2;
-        if (half > 0) {
-          if (el.scrollLeft >= half) el.scrollLeft -= half;
-          else if (el.scrollLeft < 0) el.scrollLeft += half;
+        const h = half.current || (half.current = el.scrollWidth / 2);
+        if (h > 0) {
+          if (el.scrollLeft >= h) el.scrollLeft -= h;
+          else if (el.scrollLeft < 0) el.scrollLeft += h;
         }
       }
       af.current = requestAnimationFrame(tick);
@@ -105,6 +115,7 @@ function useSeamlessTicker(itemCount: number, baseSpeed = 0.85) {
 
     return () => {
       cancelAnimationFrame(af.current);
+      resizeObserver.disconnect();
       el.removeEventListener('mousemove', onMove);
       el.removeEventListener('mouseenter', onEnter);
       el.removeEventListener('mouseleave', onLeave);
@@ -122,21 +133,31 @@ export default function CuratedIntel() {
   const [items, setItems] = useState<IntelItem[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`${BASE_PATH}/data/raw-items.json`);
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          const normalized = data
-            .filter((x): x is IntelItem => !!x && typeof x === 'object' && typeof x.title === 'string' && typeof x.url === 'string')
-            .slice(0, 20);
-          setItems(normalized);
-        }
-      } catch {
-        // Silent fail - component gracefully degrades
-      }
+    // curated-top20.json holds exactly the 20 items and 5 fields this strip
+    // renders — around 8 KB instead of the 120 KB raw snapshot we used to
+    // download and then discard 90% of. The build derives it from
+    // raw-items.json (scripts/curated_top20.py); the raw file stays the
+    // fallback so an older deploy still works.
+    const load = async (url: string) => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(String(res.status));
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error('unexpected shape');
+      return data
+        .filter((x): x is IntelItem => !!x && typeof x === 'object' && typeof x.title === 'string' && typeof x.url === 'string')
+        .slice(0, 20);
     };
-    fetchData();
+    (async () => {
+      try {
+        setItems(await load(`${BASE_PATH}/data/curated-top20.json`));
+      } catch {
+        try {
+          setItems(await load(`${BASE_PATH}/data/raw-items.json`));
+        } catch {
+          // Silent fail - component gracefully degrades
+        }
+      }
+    })();
   }, []);
 
   const row1 = items.slice(0, 10);

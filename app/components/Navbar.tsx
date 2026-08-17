@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { contentIndex } from '../data/content-index';
+import type { ContentEntry } from '../data/content-index';
 import { hrefFor, isTranslated, localeFromPath, localePath, type Locale } from '@/lib/i18n';
 import Logo from './Logo';
 
@@ -39,7 +39,9 @@ const FORGE_LINKS = [
  */
 function LocaleToggle({
   pathname,
-  className = 'ml-1 px-2 py-1 text-xs font-medium uppercase tracking-[1px] text-[var(--text-muted)] hover:text-[var(--accent-cyan)] transition-colors',
+  // py-1.5 and tertiary, not py-1 and muted: this two-letter link was both
+  // under the 24px tap-target floor and under 4.5:1 against the navbar.
+  className = 'ml-1 inline-flex min-h-[24px] items-center px-2 py-1.5 text-xs font-medium uppercase tracking-[1px] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors',
   onSelect,
 }: {
   pathname: string;
@@ -67,10 +69,21 @@ function normalize(value: string) {
 }
 
 function SearchSuggestions({ query, visible, onSelect }: { query: string; visible: boolean; onSelect: () => void }) {
+  // The index is 45 entries with titles, tags and excerpts — 17 KB that used
+  // to ride along in the JavaScript of every page, for a typeahead most
+  // visitors never open. It now arrives the first time the search does.
+  const [index, setIndex] = useState<ContentEntry[]>([]);
+  useEffect(() => {
+    if (!visible || index.length) return;
+    let alive = true;
+    import('../data/content-index').then((m) => { if (alive) setIndex(m.contentIndex); });
+    return () => { alive = false; };
+  }, [visible, index.length]);
+
   const suggestions = useMemo(() => {
     const needle = normalize(query.trim());
     if (!needle) return [];
-    return contentIndex
+    return index
       .map((entry) => {
         const title = normalize(entry.title);
         const haystack = normalize(`${entry.title} ${entry.domain} ${entry.tags.join(' ')} ${entry.excerpt}`);
@@ -80,12 +93,12 @@ function SearchSuggestions({ query, visible, onSelect }: { query: string; visibl
       .filter(({ score }) => score > 0)
       .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title))
       .slice(0, 5);
-  }, [query]);
+  }, [query, index]);
 
   if (!visible || suggestions.length === 0) return null;
 
   return (
-    <div className="absolute left-0 right-0 top-full z-50 mt-2 border border-[var(--border-default)] bg-[var(--bg-surface)] p-1 shadow-[var(--shadow-lg)]" role="listbox" aria-label="Research suggestions">
+    <div className="absolute left-0 right-0 top-full z-50 mt-2 border border-[var(--border-default)] bg-[var(--bg-surface)] p-1 shadow-[var(--shadow-lg)]" role="group" aria-label="Research suggestions">
       {suggestions.map(({ entry }) => (
         <Link key={entry.id} href={entry.href} onClick={onSelect} className="block px-3 py-2.5 hover:bg-[var(--bg-hover)] focus-visible:bg-[var(--bg-hover)]">
           <span className="block truncate text-sm text-[var(--text-primary)]">{entry.title}</span>
@@ -146,16 +159,21 @@ export default function Navbar() {
         <div className="flex min-h-16 items-center gap-5">
           <Link href="/" className="group flex flex-shrink-0 items-center gap-2.5 text-[var(--text-primary)] transition-colors hover:text-[var(--accent-cyan)]" aria-label="Delta V - Home"><Logo size={28} priority /><span className="text-lg font-semibold tracking-[-.5px]">Delta V</span></Link>
 
-          <div className="hidden items-center gap-0.5 lg:flex" role="list">
-            {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
+          {/* This row carries no list semantics on purpose. It used to, but the
+              Forge disclosure and the locale toggle are not listitems, so the
+              list role failed aria-required-children — desktop only, since the
+              row is lg:flex. The <nav aria-label> already gives the landmark,
+              and the matching listitem roles came off the links with it. */}
+          <div className="hidden items-center gap-0.5 lg:flex">
+            {NAV_ITEMS.slice(0, 2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
             <div ref={forgeRef} className="relative" onMouseEnter={() => setForgeOpen(true)} onMouseLeave={() => setForgeOpen(false)} onFocus={() => setForgeOpen(true)}>
               <div className={`flex items-center ${isActive(pathname, '/forge/') ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
                 <Link href={navHref('/forge/', navLang)} className="relative px-3 py-2 text-sm">Forge{isActive(pathname, '/forge/') && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>
-                <button type="button" aria-expanded={forgeOpen} aria-controls={forgeId} aria-label="Show Forge resources" onClick={() => setForgeOpen((value) => !value)} className="px-1 py-2 text-xs text-[var(--accent-purple)]">⌄</button>
+                <button type="button" aria-expanded={forgeOpen} aria-controls={forgeId} aria-label="Show Forge resources" onClick={() => setForgeOpen((value) => !value)} className="inline-flex min-h-[24px] min-w-[24px] items-center justify-center px-1 py-2 text-xs text-[var(--accent-purple)]">⌄</button>
               </div>
               {forgeOpen && <div id={forgeId} className="absolute right-0 top-full z-50 w-64 border border-[var(--border-default)] bg-[rgba(8,11,10,0.94)] p-2 shadow-[var(--shadow-lg)]" role="menu">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} role="menuitem" className="block px-3 py-3 hover:bg-[var(--bg-hover)]" onClick={() => setForgeOpen(false)}><span className="block text-sm text-[var(--text-primary)]">{item.label}</span><span className="mt-1 block text-xs text-[var(--text-muted)]">{item.detail}</span></Link>)}</div>}
             </div>
-            {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
+            {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
             <LocaleToggle pathname={pathname} />
           </div>
 
@@ -185,7 +203,7 @@ export default function Navbar() {
         {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
         <LocaleToggle
           pathname={pathname}
-          className="mt-2 block border-t border-[var(--border-default)] pt-4 text-sm font-medium uppercase tracking-[1px] text-[var(--text-muted)]"
+          className="mt-2 block border-t border-[var(--border-default)] pt-4 text-sm font-medium uppercase tracking-[1px] text-[var(--text-tertiary)]"
           onSelect={() => setMobileOpen(false)}
         />
       </div></div>}
