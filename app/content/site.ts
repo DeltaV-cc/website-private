@@ -93,7 +93,7 @@ const homeEn: HomeCopy = {
   loopEyebrow: 'Stay in the Loop',
   loopTitle: 'The Delta V Feed.',
   loopBlurb:
-    'The day’s AI and Web3 news, sorted: what the research labs published, what the open-source teams shipped, and what the engineers and emerging talents moving the field are actually saying. The noise stays out.',
+    'AI and Web3, sorted daily without the noise: what the labs published, what open source shipped, what the engineers moving the field are saying.',
   tutorials: 'Tutorials',
   blog: 'Blog',
   getInTouch: 'Get in touch',
@@ -163,10 +163,10 @@ const homeFr: HomeCopy = {
       cta: 'Découvrir le Web3',
     },
   ],
-  loopEyebrow: 'Restez dans la boucle',
+  loopEyebrow: 'Restez informés',
   loopTitle: 'Le Flux Delta V.',
   loopBlurb:
-    'L’actualité de l’IA et du Web3, triée chaque jour : ce que publient les laboratoires, ce que sortent les équipes open source, et ce que disent vraiment les ingénieurs et les talents qui font bouger le secteur. Le bruit reste dehors.',
+    'L’actualité de l’IA et du Web3, triée chaque jour, sans le bruit : ce que publient les laboratoires, ce que sortent les équipes open source, et ce que disent les ingénieurs et les talents qui font bouger le secteur.',
   tutorials: 'Tutoriels',
   blog: 'Blog',
   getInTouch: 'Nous écrire',
