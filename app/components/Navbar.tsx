@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'rea
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { contentIndex } from '../data/content-index';
+import { isTranslated, localeFromPath, localePath, type Locale } from '@/lib/i18n';
 import Logo from './Logo';
 
 const NAV_ITEMS = [
@@ -22,6 +23,26 @@ const FORGE_LINKS = [
   { href: '/tutorials/', label: 'Tutorials', detail: 'Builds and walkthroughs' },
   { href: '/blog/', label: 'Blog', detail: 'Essays and field notes' },
 ];
+
+/**
+ * Shows only on pages that actually exist in both languages — linking to a
+ * French page we have not written yet would just be a 404 with a flag on it.
+ */
+function LocaleToggle({ pathname }: { pathname: string }) {
+  if (!isTranslated(pathname)) return null;
+  const current = localeFromPath(pathname);
+  const other: Locale = current === 'fr' ? 'en' : 'fr';
+  return (
+    <Link
+      href={localePath(pathname, other)}
+      hrefLang={other}
+      className="ml-1 px-2 py-1 text-xs font-medium uppercase tracking-[1px] text-[var(--text-muted)] hover:text-[var(--accent-cyan)] transition-colors"
+      aria-label={other === 'fr' ? 'Voir en français' : 'View in English'}
+    >
+      {other}
+    </Link>
+  );
+}
 
 function isActive(pathname: string, href: string) {
   const base = href.replace(/\/$/, '');
@@ -121,6 +142,7 @@ export default function Navbar() {
               {forgeOpen && <div id={forgeId} className="absolute right-0 top-full z-50 w-64 border border-[var(--border-default)] bg-[rgba(8,11,10,0.94)] p-2 shadow-[var(--shadow-lg)]" role="menu">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} role="menuitem" className="block px-3 py-3 hover:bg-[var(--bg-hover)]" onClick={() => setForgeOpen(false)}><span className="block text-sm text-[var(--text-primary)]">{item.label}</span><span className="mt-1 block text-xs text-[var(--text-muted)]">{item.detail}</span></Link>)}</div>}
             </div>
             {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={item.href} role="listitem" aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
+            <LocaleToggle pathname={pathname} />
           </div>
 
           <form className="relative ml-auto hidden w-44 items-center overflow-visible border-b border-[var(--border-default)] transition-colors focus-within:border-[var(--accent-cyan)] xl:w-56 md:flex" onSubmit={submitSearch} onFocus={() => setSearchFocused(true)} onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}>
