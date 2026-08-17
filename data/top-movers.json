@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T06:47:01Z",
+  "updated_at": "2026-08-17T07:00:43Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.362887,
+        "price": 0.363227,
         "change_24h": 25.9,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.508481,
+        "price": 0.5082,
         "change_24h": 7.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.060396,
+        "price": 0.060489,
         "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002957,
+        "price": 0.00297,
         "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.04,
+        "price": 2.05,
         "change_24h": 4.0,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "QNT",
         "name": "Quant",
-        "price": 55.72,
+        "price": 55.91,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029395,
+        "price": 0.029444,
         "change_24h": -3.0,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.095593,
+        "price": 0.095661,
         "change_24h": -2.0,
         "asset": "crypto"
       }
