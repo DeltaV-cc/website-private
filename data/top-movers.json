@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-17T07:46:17Z",
-  "source": "Yahoo Finance screener + CoinGecko markets",
+  "updated_at": "2026-08-17T08:01:06Z",
+  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
   "equities": {
     "gainers": [
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.362198,
-        "change_24h": 20.4,
+        "symbol": "PORTAL",
+        "name": "PORTAL",
+        "price": 0.01637,
+        "change_24h": 42.6,
         "asset": "crypto"
       },
       {
-        "symbol": "ETHFI",
-        "name": "Ether.fi",
-        "price": 0.511354,
-        "change_24h": 7.9,
+        "symbol": "GPS",
+        "name": "GPS",
+        "price": 0.01506,
+        "change_24h": 35.19,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002971,
-        "change_24h": 6.3,
+        "symbol": "ONG",
+        "name": "ONG",
+        "price": 0.05972,
+        "change_24h": 20.79,
         "asset": "crypto"
       },
       {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 513.86,
-        "change_24h": 6.0,
+        "symbol": "UTK",
+        "name": "UTK",
+        "price": 0.00795,
+        "change_24h": 16.23,
         "asset": "crypto"
       },
       {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.06,
-        "change_24h": 4.7,
+        "symbol": "CHIP",
+        "name": "CHIP",
+        "price": 0.03224,
+        "change_24h": 15.93,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "\u5e01\u5b89\u4eba\u751f",
-        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.470957,
-        "change_24h": -2.2,
+        "symbol": "HEMI",
+        "name": "HEMI",
+        "price": 0.00619,
+        "change_24h": -28.44,
         "asset": "crypto"
       },
       {
-        "symbol": "QNT",
-        "name": "Quant",
-        "price": 56.06,
-        "change_24h": -2.1,
+        "symbol": "HOME",
+        "name": "HOME",
+        "price": 0.00698,
+        "change_24h": -9.59,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.029353,
-        "change_24h": -1.9,
+        "symbol": "DOLO",
+        "name": "DOLO",
+        "price": 0.02297,
+        "change_24h": -7.0,
         "asset": "crypto"
       },
       {
-        "symbol": "ATOM",
-        "name": "Cosmos Hub",
-        "price": 1.45,
-        "change_24h": -1.5,
+        "symbol": "KAITO",
+        "name": "KAITO",
+        "price": 0.3393,
+        "change_24h": -5.96,
         "asset": "crypto"
       },
       {
-        "symbol": "SHIB",
-        "name": "Shiba Inu",
-        "price": 4e-06,
-        "change_24h": -1.3,
+        "symbol": "BICO",
+        "name": "BICO",
+        "price": 0.02234,
+        "change_24h": -5.34,
         "asset": "crypto"
       }
     ]
