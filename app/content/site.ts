@@ -80,14 +80,14 @@ const homeEn: HomeCopy = {
       cta: 'View Curriculum',
     },
     {
-      title: 'Growth Boost',
-      text: 'Strategic Web3 growth — community building, public good initiatives, and fundraising with OpSec foundations baked in.',
-      cta: 'Explore Web3',
-    },
-    {
       title: 'Tailored Multi-Agent Systems',
       text: 'Custom single and multi-agent architectures built around your workflows, data, and use case — shipped and hardened.',
       cta: 'Explore AI Engineering',
+    },
+    {
+      title: 'Growth Boost',
+      text: 'Strategic Web3 growth — community building, public good initiatives, and fundraising with OpSec foundations baked in.',
+      cta: 'Explore Web3',
     },
   ],
   loopEyebrow: 'Stay in the Loop',
@@ -153,14 +153,14 @@ const homeFr: HomeCopy = {
       cta: 'Voir le programme',
     },
     {
-      title: 'Traction, communauté et financement',
-      text: 'Croissance Web3 stratégique — animation de communauté, initiatives de bien commun et levée de fonds, avec l’OpSec intégrée dès le départ.',
-      cta: 'Découvrir le Web3',
-    },
-    {
       title: 'Systèmes multi-agents sur mesure',
       text: 'Des architectures à un ou plusieurs agents, bâties autour de vos processus, de vos données et de votre cas d’usage — livrées et durcies.',
       cta: 'Découvrir l’ingénierie IA',
+    },
+    {
+      title: 'Traction, communauté et financement',
+      text: 'Croissance Web3 stratégique — animation de communauté, initiatives de bien commun et levée de fonds, avec l’OpSec intégrée dès le départ.',
+      cta: 'Découvrir le Web3',
     },
   ],
   loopEyebrow: 'Restez dans la boucle',

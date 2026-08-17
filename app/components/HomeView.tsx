@@ -38,10 +38,11 @@ const CAPABILITY_STRUCTURE = [
   },
 ] as const;
 
+/** Index-for-index with `offerings` in the locale dictionary. */
 const OFFERING_STRUCTURE = [
   { href: '/forge/', index: '01', ctaColor: 'text-[var(--accent-purple)]' },
-  { href: '/web3/', index: '02', ctaColor: 'text-[var(--accent-orange)]' },
-  { href: '/ai/', index: '03', ctaColor: 'text-[var(--accent-cyan)]' },
+  { href: '/ai/', index: '02', ctaColor: 'text-[var(--accent-cyan)]' },
+  { href: '/web3/', index: '03', ctaColor: 'text-[var(--accent-orange)]' },
 ] as const;
 
 export default function HomeView({ lang }: { lang: Locale }) {
