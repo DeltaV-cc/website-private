@@ -85,11 +85,11 @@ const en: ForgeCopy = {
       path: [
         { step: 'Part I', desc: 'stack, deck, images, content pack' },
         { step: 'Part II', desc: 'brand, models, skills filter, export, habits' },
-        { step: 'Prereq', desc: 'Own Your AI Part I on Desktop' },
+        { step: 'Prereq', desc: 'My First AI Agent Part I on Desktop' },
       ],
       forWho: 'Anyone who ships decks and content and is tired of renting design tabs.',
       ctaLabel: 'Open Design',
-      secondaryLabel: 'Prereq: Own Your AI',
+      secondaryLabel: 'Prereq: My First AI Agent',
     },
   ],
   roadmapLabel: 'Later · not live mastery',

@@ -87,7 +87,7 @@ export function AihLanding() {
         </p>
         <ol className="mt-5">
           <li>
-            <Link href="/forge/course/open-harness/labs/" className="aih-toc-row">
+            <Link href="/forge/course/my-first-ai-agent/labs/" className="aih-toc-row">
               <span className="aih-toc-num">＋</span>
               <span className="aih-toc-title">
                 Harness Labs
@@ -102,7 +102,7 @@ export function AihLanding() {
             </Link>
           </li>
           <li>
-            <Link href="/forge/course/open-harness/glossary/" className="aih-toc-row">
+            <Link href="/forge/course/my-first-ai-agent/glossary/" className="aih-toc-row">
               <span className="aih-toc-num">＋</span>
               <span className="aih-toc-title">
                 Printable glossary

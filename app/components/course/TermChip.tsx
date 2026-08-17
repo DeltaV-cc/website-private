@@ -76,7 +76,7 @@ export function TermChip({ termId, lang = 'en' }: { termId: string; lang: Course
           {/* The glossary page sets id={term.id} on every entry, so this anchor
               always resolves. Lesson 01's lexicon cards use their own slugs. */}
           <Link
-            href={`/forge/course/open-harness/glossary/#${termId}`}
+            href={`/forge/course/my-first-ai-agent/glossary/#${termId}`}
             className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--accent-cyan)] hover:underline"
           >
             📖 See full definition in the glossary

@@ -89,7 +89,7 @@ const en: ContactCopy = {
     'web3-advisory': 'Setup & architecture advisory — my current setup and concerns:\n',
     osint: 'Intelligence / OSINT request — what I need investigated:\n',
     growth: 'Growth support — project stage and objectives:\n',
-    'open-harness': 'Own Your AI — the setup I want help with:\n',
+    'open-harness': 'My First AI Agent — the setup I want help with:\n',
   },
 };
 
@@ -146,7 +146,7 @@ const fr: ContactCopy = {
     'web3-advisory': 'Conseil architecture et mise en place — ma configuration et mes inquiétudes :\n',
     osint: 'Demande de renseignement / OSINT — ce que je cherche à investiguer :\n',
     growth: 'Accompagnement croissance — stade du projet et objectifs :\n',
-    'open-harness': 'Own Your AI — la configuration sur laquelle je veux de l’aide :\n',
+    'open-harness': 'Mon premier agent IA — la configuration sur laquelle je veux de l’aide :\n',
   },
 };
 

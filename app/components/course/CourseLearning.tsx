@@ -404,12 +404,12 @@ export function CourseQuizBlock({
 
 export function HarnessCourseTabs({ active }: { active: 'mastery' | 'labs' | 'glossary' }) {
   const tabs = [
-    { id: 'mastery' as const, href: '/forge/course/open-harness/', label: 'Mastery' },
-    { id: 'labs' as const, href: '/forge/course/open-harness/labs/', label: 'Labs & skills' },
-    { id: 'glossary' as const, href: '/forge/course/open-harness/glossary/', label: 'Glossary' },
+    { id: 'mastery' as const, href: '/forge/course/my-first-ai-agent/', label: 'Mastery' },
+    { id: 'labs' as const, href: '/forge/course/my-first-ai-agent/labs/', label: 'Labs & skills' },
+    { id: 'glossary' as const, href: '/forge/course/my-first-ai-agent/glossary/', label: 'Glossary' },
   ];
   return (
-    <div className="course-segmented" role="tablist" aria-label="Own Your AI sections">
+    <div className="course-segmented" role="tablist" aria-label="My First AI Agent sections">
       {tabs.map((tab) => {
         const on = active === tab.id;
         return (
@@ -444,19 +444,19 @@ export function DesignPrereqGate() {
   return (
     <div className="course-callout course-callout--warn mt-8 course-measure">
       <div className="font-mono course-t-meta tracking-[2px] uppercase text-[var(--accent-amber)]">
-        Soft gate · Own Your AI Part I
+        Soft gate · My First AI Agent Part I
       </div>
       <p className="mt-3 course-t-small text-[var(--text-secondary)] leading-relaxed">
         Open Design assumes Hermes Desktop (or CLI) chats, a profile with SOUL.md, and that you can
-        list/install a skill. If any of that is false, finish Own Your AI Part I first — Design will
+        list/install a skill. If any of that is false, finish My First AI Agent Part I first — Design will
         not re-teach install.
       </p>
       <p className="mt-2 course-t-meta text-[var(--text-muted)]">
         Confirmation is stored on this device only.
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
-        <Link href="/forge/course/open-harness/00/" className="button-primary">
-          Own Your AI Part I ↗
+        <Link href="/forge/course/my-first-ai-agent/00/" className="button-primary">
+          My First AI Agent Part I ↗
         </Link>
         <button
           type="button"

@@ -145,7 +145,7 @@ export function ForgePathVisual() {
       title="Forge path (today)"
       accent="orange"
       steps={[
-        { label: "01 Own Your AI", detail: 'Main entry · Hermes' },
+        { label: "01 My First AI Agent", detail: 'Main entry · Hermes' },
         { label: '02 Open Design', detail: 'Decks · images · content' },
         { label: 'Labs', detail: 'After Harness Part I' },
         { label: 'More later', detail: 'Video Studio · Agentic Commerce' },

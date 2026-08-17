@@ -38,14 +38,14 @@ const COURSE_STRUCTURE: Record<
 > = {
   'my-first-ai-agent': {
     logo: { src: '/images/ecosystem/NousResearch.webp', alt: 'Nous Research, makers of Hermes' },
-    href: '/forge/course/open-harness/',
-    secondaryHref: '/forge/course/open-harness/labs/',
+    href: '/forge/course/my-first-ai-agent/',
+    secondaryHref: '/forge/course/my-first-ai-agent/labs/',
     secondaryTone: 'quiet',
     accent: 'var(--accent-orange)',
   },
   'open-design': {
     href: '/forge/course/open-design/',
-    secondaryHref: '/forge/course/open-harness/',
+    secondaryHref: '/forge/course/my-first-ai-agent/',
     accent: 'var(--accent-cyan)',
   },
 };

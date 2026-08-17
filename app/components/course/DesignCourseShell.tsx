@@ -78,10 +78,10 @@ export function DesignToc({ activeSlug }: { activeSlug?: string }) {
       </div>
       <div className="mt-5 pt-4 border-t border-[var(--border-default)]">
         <Link
-          href="/forge/course/open-harness/"
+          href="/forge/course/my-first-ai-agent/"
           className="block text-xs text-[var(--text-muted)] hover:text-[var(--accent-orange)]"
         >
-          Prereq: Own Your AI →
+          Prereq: My First AI Agent →
         </Link>
         <Link
           href="/forge/course/open-video/"
@@ -194,10 +194,10 @@ export function DesignLandingBody() {
           </span>
           <p className="mt-1 text-sm text-[var(--text-secondary)]">{t(OPEN_DESIGN_META.prereq)}</p>
           <Link
-            href="/forge/course/open-harness/00/"
+            href="/forge/course/my-first-ai-agent/00/"
             className="mt-2 inline-block text-sm text-[var(--accent-orange)] hover:underline"
           >
-            Own Your AI Part I →
+            My First AI Agent Part I →
           </Link>
         </div>
         <DesignPrereqGate />

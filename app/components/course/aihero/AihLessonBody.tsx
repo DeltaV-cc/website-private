@@ -16,7 +16,7 @@ import { LessonSection } from '@/app/components/course/lesson/LessonSection';
 import { OH2_BASE } from './AihChrome';
 
 /**
- * The aihero page shape: one plain meta line ("03 / 13 · Own Your AI — Part I
+ * The aihero page shape: one plain meta line ("03 / 13 · My First AI Agent — Part I
  * · 30 min read"), the title, the deck, then a runnable command card. Same
  * block engine underneath — this file is furniture, not a renderer.
  */
@@ -43,7 +43,7 @@ export function AihLessonBodyView({ module, lang }: { module: CourseModule; lang
         </span>
         <span aria-hidden>·</span>
         <span>
-          Own Your AI — {partLabel} · {module.minutes} min read
+          My First AI Agent — {partLabel} · {module.minutes} min read
         </span>
       </div>
       <h1 className="course-h1 mt-4">{t(module.title, lang)}</h1>

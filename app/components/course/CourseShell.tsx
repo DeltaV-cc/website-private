@@ -46,7 +46,7 @@ export function CourseToc({
   activeSlug,
   lang,
   compact = false,
-  basePath = '/forge/course/open-harness/',
+  basePath = '/forge/course/my-first-ai-agent/',
 }: {
   activeSlug?: string;
   lang: CourseLang;
@@ -110,7 +110,7 @@ export function CourseToc({
         <div className="course-nav-group-label">Reference</div>
         <ol>
           <li>
-            <Link href="/forge/course/open-harness/glossary/" className="course-nav-item">
+            <Link href="/forge/course/my-first-ai-agent/glossary/" className="course-nav-item">
               <span className="course-nav-num" aria-hidden>
                 ·
               </span>
@@ -118,7 +118,7 @@ export function CourseToc({
             </Link>
           </li>
           <li>
-            <Link href="/forge/course/open-harness/labs/" className="course-nav-item">
+            <Link href="/forge/course/my-first-ai-agent/labs/" className="course-nav-item">
               <span className="course-nav-num" aria-hidden>
                 ·
               </span>
@@ -134,7 +134,7 @@ export function CourseToc({
 export function ModuleNav({
   module,
   lang,
-  basePath = '/forge/course/open-harness/',
+  basePath = '/forge/course/my-first-ai-agent/',
 }: {
   module: CourseModule;
   lang: CourseLang;
@@ -239,7 +239,7 @@ function CoursePageChromeInner({
           <span aria-hidden>/</span>
           {activeSlug ? (
             <>
-              <Link href="/forge/course/open-harness/">{t(UI_COPY.backCourse, lang)}</Link>
+              <Link href="/forge/course/my-first-ai-agent/">{t(UI_COPY.backCourse, lang)}</Link>
               <span aria-hidden>/</span>
               <span className="course-crumbs-here">
                 {activePart ? `${t(UI_COPY.part, lang)} ${activePart.code} · ` : ''}
