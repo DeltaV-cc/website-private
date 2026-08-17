@@ -1,6 +1,6 @@
 /**
  * Open Design 01 — decks, images, content (EN).
- * Quality bar: same density as Own Your AI — briefs you can paste, proofs you can fail,
+ * Quality bar: same density as My First AI Agent — briefs you can paste, proofs you can fail,
  * failure modes, folder contracts. Motion → Open Video.
  */
 
@@ -65,10 +65,10 @@ export const OPEN_DESIGN_META = {
   title: L('Open Design'),
   tagline: L('Stop renting slides. Ship decks and images as files you can open tomorrow.'),
   description: L(
-    'Course 02. After Own Your AI Part I: Open Design + Hermes for PPTX/HTML decks, stills (Grok Imagine), and content packs. Brand file + Kimi for structure. Video engines are Course 03 — not here.',
+    'Course 02. After My First AI Agent Part I: Open Design + Hermes for PPTX/HTML decks, stills (Grok Imagine), and content packs. Brand file + Kimi for structure. Video engines are Course 03 — not here.',
   ),
   prereq: L(
-    'Own Your AI Part I done on Hermes Desktop: chat works, SOUL.md in Hermes home, you can list/install a skill. Optional: AGENTS.md for design-lab. Gateway optional for Design labs.',
+    'My First AI Agent Part I done on Hermes Desktop: chat works, SOUL.md in Hermes home, you can list/install a skill. Optional: AGENTS.md for design-lab. Gateway optional for Design labs.',
   ),
   verifiedAsOf: '2026-08',
 } as const;
@@ -161,7 +161,7 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
         heading: L('Prerequisite (hard gate)'),
         paragraphs: [
           L(
-            'If Hermes does not chat yet, stop. Finish Own Your AI Part I first. Design without an agent that can write files is just another prompt box.',
+            'If Hermes does not chat yet, stop. Finish My First AI Agent Part I first. Design without an agent that can write files is just another prompt box.',
           ),
         ],
         checklist: [
@@ -171,8 +171,8 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
           L('You know where agent-written files land on disk'),
         ],
         links: [
-          { label: L('Own Your AI — start'), href: '/forge/course/open-harness/00/' },
-          { label: L('Own Your AI — install'), href: '/forge/course/open-harness/03/' },
+          { label: L('My First AI Agent — start'), href: '/forge/course/my-first-ai-agent/00/' },
+          { label: L('My First AI Agent — install'), href: '/forge/course/my-first-ai-agent/03/' },
         ],
       },
       {
@@ -215,7 +215,7 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
         heading: L('Prerequisite — do not re-install Hermes here'),
         paragraphs: [
           L(
-            'Own Your AI Part I already taught Desktop/CLI install, SOUL, gateway, and first tools. If chat fails or you have no profile, stop and open mastery — this module will not re-teach install.',
+            'My First AI Agent Part I already taught Desktop/CLI install, SOUL, gateway, and first tools. If chat fails or you have no profile, stop and open mastery — this module will not re-teach install.',
           ),
         ],
         checklist: [
@@ -224,8 +224,8 @@ export const OPEN_DESIGN_MODULES: CourseModule[] = [
           L('You know an absolute path where the agent can write files'),
         ],
         links: [
-          { label: L('If broken → Harness 03 Install'), href: '/forge/course/open-harness/03/' },
-          { label: L('Harness 04 Soul'), href: '/forge/course/open-harness/04/' },
+          { label: L('If broken → Harness 03 Install'), href: '/forge/course/my-first-ai-agent/03/' },
+          { label: L('Harness 04 Soul'), href: '/forge/course/my-first-ai-agent/04/' },
         ],
         callout: L(
           'Mastery owns Hermes. This course owns the design loop (Open Design + briefs + files).',
@@ -623,11 +623,11 @@ Don't:
           ],
         },
         callout: L(
-          'Course rule: Kimi builds the artifact; Imagine paints the stills. General token/tool cost theory lives in Own Your AI 06 — do not re-learn it here; only assign jobs to models.',
+          'Course rule: Kimi builds the artifact; Imagine paints the stills. General token/tool cost theory lives in My First AI Agent 06 — do not re-learn it here; only assign jobs to models.',
         ),
         calloutVariant: 'quote',
         links: [
-          { label: L('Harness 06 — spend/tools intro'), href: '/forge/course/open-harness/06/' },
+          { label: L('Harness 06 — spend/tools intro'), href: '/forge/course/my-first-ai-agent/06/' },
         ],
       },
       {
@@ -645,7 +645,7 @@ Don't:
             label: L('Hermes configuration'),
             href: 'https://hermes-agent.nousresearch.com/docs/user-guide/configuration',
           },
-          { label: L('Optional: Harness lab — add Grok text'), href: '/forge/course/open-harness/labs/grok-wire/' },
+          { label: L('Optional: Harness lab — add Grok text'), href: '/forge/course/my-first-ai-agent/labs/grok-wire/' },
         ],
       },
       {
@@ -676,14 +676,14 @@ Don't:
         heading: L('Theory lives in Harness 09'),
         paragraphs: [
           L(
-            'What a skill is, progressive disclosure, and hub scans are Own Your AI 09. This module only filters the skill list for a design profile — studio, not VFX house.',
+            'What a skill is, progressive disclosure, and hub scans are My First AI Agent 09. This module only filters the skill list for a design profile — studio, not VFX house.',
           ),
           L(
             'A design profile that loads HyperFrames or Remotion skills will spend tokens deciding whether to animate a slide. That is the wrong failure mode for Course 02.',
           ),
         ],
         links: [
-          { label: L('Harness 09 — skills theory'), href: '/forge/course/open-harness/09/' },
+          { label: L('Harness 09 — skills theory'), href: '/forge/course/my-first-ai-agent/09/' },
         ],
         table: {
           headers: [L('Keep / install for Design'), L('Disable / Open Video later')],
@@ -940,8 +940,8 @@ Do not publish without human review.`,
         ],
         links: [
           { label: L('Open Video teaser (roadmap)'), href: '/forge/course/open-video/' },
-          { label: L('Own Your AI'), href: '/forge/course/open-harness/' },
-          { label: L('Harness Labs'), href: '/forge/course/open-harness/labs/' },
+          { label: L('My First AI Agent'), href: '/forge/course/my-first-ai-agent/' },
+          { label: L('Harness Labs'), href: '/forge/course/my-first-ai-agent/labs/' },
           { label: L('Sample design-lab tree'), href: '/courses/open-design/samples/design-lab-tree.example.md' },
           { label: L('Contact'), href: '/contact/?topic=open-design' },
         ],

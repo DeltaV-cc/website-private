@@ -5,52 +5,41 @@
  * Used on the OpSec hub for pedagogy without raster images.
  */
 
-export function LayeredDefenseIllustration() {
-  const layers = [
-    {
-      n: '01',
-      label: 'Identity & Access',
-      detail: 'YubiKey / FIDO2 · passkeys · least privilege · session hygiene',
-      color: 'var(--accent-amber)',
-    },
-    {
-      n: '02',
-      label: 'Wallet & Key Custody',
-      detail: 'Hardware wallets · Safe multisig · Fluidkey receive patterns',
-      color: 'var(--accent-orange)',
-    },
-    {
-      n: '03',
-      label: 'Network & Privacy',
-      detail: 'VPN/Tor · DNS · RPC choice · leak checks',
-      color: 'var(--accent-cyan)',
-    },
-    {
-      n: '04',
-      label: 'Endpoint Hardening',
-      detail: 'Linux · macOS · Windows baselines',
-      color: 'var(--accent-purple)',
-    },
-    {
-      n: '05',
-      label: 'Ops & Recovery',
-      detail: 'Backups · drills · incident runbooks',
-      color: 'var(--accent-green)',
-    },
-  ];
+import { OPSEC_FIGURES } from '@/app/content/site';
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
+
+/** Colors and numbering only; the labels come from the locale dictionary. */
+const LAYER_STYLE = [
+  { n: '01', color: 'var(--accent-amber)' },
+  { n: '02', color: 'var(--accent-orange)' },
+  { n: '03', color: 'var(--accent-cyan)' },
+  { n: '04', color: 'var(--accent-purple)' },
+  { n: '05', color: 'var(--accent-green)' },
+];
+
+const STAGE_STYLE = [
+  { id: 'A', accent: 'var(--accent-cyan)' },
+  { id: 'B', accent: 'var(--accent-orange)' },
+  { id: 'C', accent: 'var(--accent-amber)' },
+  { id: 'D', accent: 'var(--accent-purple)' },
+];
+
+export function LayeredDefenseIllustration({ lang = DEFAULT_LOCALE }: { lang?: Locale }) {
+  const t = OPSEC_FIGURES[lang];
+  const layers = LAYER_STYLE.map((s, i) => ({ ...s, ...t.layers[i] }));
 
   return (
     <figure className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] overflow-hidden">
       <figcaption className="px-5 md:px-6 pt-5 pb-3 border-b border-[var(--border-default)] flex flex-wrap items-end justify-between gap-2">
         <div>
           <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-amber)] mb-1">
-            Threat Surface Model
+            {t.layeredEyebrow}
           </div>
           <div className="text-base md:text-lg font-semibold tracking-tight">
-            Layered defense for high-stakes operators
+            {t.layeredTitle}
           </div>
         </div>
-        <div className="text-[10px] text-[var(--text-muted)]">ETH-first · Ethereum operators</div>
+        <div className="text-[10px] text-[var(--text-muted)]">{t.layeredNote}</div>
       </figcaption>
 
       <div className="p-4 md:p-6 space-y-2">
@@ -81,42 +70,18 @@ export function LayeredDefenseIllustration() {
   );
 }
 
-export function Web3OpSecPathIllustration() {
-  const stages = [
-    {
-      id: 'A',
-      title: 'Baseline',
-      items: ['Clean OS', 'Disk encryption', 'YubiKey for login / SSH'],
-      accent: 'var(--accent-cyan)',
-    },
-    {
-      id: 'B',
-      title: 'Treasury keys',
-      items: ['Safe m-of-n', 'HW wallets / signer', 'Ceremony + backups'],
-      accent: 'var(--accent-orange)',
-    },
-    {
-      id: 'C',
-      title: 'DeFi ops',
-      items: ['Approvals scoped', 'Simulate → sign', 'Gov / bridge runbooks'],
-      accent: 'var(--accent-amber)',
-    },
-    {
-      id: 'D',
-      title: 'Team SOTA',
-      items: ['Role separation', 'Drills & recovery', 'High-decentralization friction'],
-      accent: 'var(--accent-purple)',
-    },
-  ];
+export function Web3OpSecPathIllustration({ lang = DEFAULT_LOCALE }: { lang?: Locale }) {
+  const t = OPSEC_FIGURES[lang];
+  const stages = STAGE_STYLE.map((s, i) => ({ ...s, ...t.stages[i] }));
 
   return (
     <figure className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] overflow-hidden">
       <figcaption className="px-5 md:px-6 pt-5 pb-3 border-b border-[var(--border-default)]">
         <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-orange)] mb-1">
-          Capability Path
+          {t.pathEyebrow}
         </div>
         <div className="text-base md:text-lg font-semibold tracking-tight">
-          From personal baseline to team-grade Web3 OpSec
+          {t.pathTitle}
         </div>
       </figcaption>
 
@@ -135,7 +100,7 @@ export function Web3OpSecPathIllustration() {
                 </div>
               )}
               <div className="text-[10px] font-semibold tracking-[2px] uppercase mb-2" style={{ color: s.accent }}>
-                Stage {s.id}
+                {t.stage} {s.id}
               </div>
               <div className="text-sm font-semibold text-[var(--text-primary)] mb-3">{s.title}</div>
               <ul className="space-y-1.5">
@@ -150,8 +115,7 @@ export function Web3OpSecPathIllustration() {
           ))}
         </div>
         <p className="mt-6 text-base md:text-lg text-[var(--text-primary)] leading-[1.7] max-w-none">
-          Focus: high-decentralization Ethereum / DeFi treasuries. YubiKeys gate humans; Safe + hardware wallets hold
-          capital; DeFi ops need runbooks. Learn from these blueprints, then ask us for training to put them into practice.
+          {t.pathFooter}
         </p>
       </div>
     </figure>

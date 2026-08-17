@@ -1,5 +1,5 @@
 /**
- * Own Your AI — the public course, in the aihero.dev reading experience.
+ * My First AI Agent — the public course, in the aihero.dev reading experience.
  *
  * The 13 modules are re-exported from open-harness.ts on purpose: that file
  * remains the single source of curriculum content and progress ids (courseId +
@@ -21,10 +21,13 @@ export {
 const L = (en: string, fr?: string): LocaleString => ({ en, fr: fr ?? en });
 
 export const OH2_META = {
-  id: 'own-your-ai',
-  href: '/forge/course/open-harness/',
-  title: L('Own Your AI'),
-  tagline: L('Set up a state-of-the-art AI agent, free, in thirteen lessons. No code required.'),
+  id: 'my-first-ai-agent',
+  href: '/forge/course/my-first-ai-agent/',
+  title: L('My First AI Agent', 'Mon premier agent IA'),
+  tagline: L(
+    'Set up a state-of-the-art AI agent, free, in thirteen lessons. No code required.',
+    'Mettez en place un agent IA à l’état de l’art, gratuitement, en treize leçons. Sans écrire une ligne de code.',
+  ),
   description: L(
     'Start from zero and finish with an agent that reads your files, runs real tasks, and answers on your phone. Free models throughout — you pay nothing to complete this course.',
   ),

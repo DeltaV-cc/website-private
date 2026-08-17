@@ -11,7 +11,7 @@ export const OPEN_VIDEO_META = {
   description:
     'Course 03 (teaser). After Open Design: timelines, renders, captions, HyperFrames-first motion, Remotion when you want React-level control. Do not start here if you cannot ship a deck offline yet.',
   prereq:
-    'Own Your AI Part I required. Open Design 01 strongly recommended (brief + stills + brand file).',
+    'My First AI Agent Part I required. Open Design 01 strongly recommended (brief + stills + brand file).',
   status: 'teaser' as const,
 };
 

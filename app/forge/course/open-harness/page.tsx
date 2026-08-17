@@ -1,17 +1,9 @@
 import type { Metadata } from 'next';
-import { AihChrome } from '@/app/components/course/aihero/AihChrome';
-import { AihLanding } from '@/app/components/course/aihero/AihLanding';
+import LegacyRedirect from '@/app/components/LegacyRedirect';
 
-export const metadata: Metadata = {
-  title: 'Own Your AI — build your own agent harness | Delta V',
-  description:
-    'Thirteen free lessons to build your own agent harness — yours to run and change, instead of renting one from Claude or OpenAI. No code required.',
-};
+/** The course used to live here, under its retired "Open Harness" name. */
+export const metadata: Metadata = { title: 'Moved', robots: { index: false, follow: true } };
 
-export default function OwnYourAILandingPage() {
-  return (
-    <AihChrome>
-      <AihLanding />
-    </AihChrome>
-  );
+export default function LegacyCourseIndex() {
+  return <LegacyRedirect to="/forge/course/my-first-ai-agent/" label="My First AI Agent" />;
 }

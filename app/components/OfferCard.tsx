@@ -3,6 +3,12 @@
 import React from 'react';
 import Link from 'next/link';
 import AnimatedBackground from './AnimatedBackground';
+ import { DEFAULT_LOCALE, localePath, type Locale } from '@/lib/i18n';
+
+ const LABELS: Record<Locale, { get: string; how: string; forWho: string }> = {
+   en: { get: 'What you get', how: 'How it works', forWho: 'For:' },
+   fr: { get: 'Ce que vous obtenez', how: 'Comment ça se passe', forWho: 'Pour :' },
+ };
 
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -15,8 +21,10 @@ const Check = () => (
 /** Shared detailed offer card for the AI and Web3 pillar pages. */
 export default function OfferCard({
   id, title, pitch, deliverables, process, audience, ctaLabel, ctaTopic, secondary, secondaryTone,
+  lang = DEFAULT_LOCALE,
 }: {
   id?: string;
+  lang?: Locale;
   title: string;
   pitch: React.ReactNode;
   deliverables: string[];
@@ -35,13 +43,13 @@ export default function OfferCard({
 
       <AnimatedBackground><div className="grid md:grid-cols-2 gap-8 mb-8">
         <div>
-          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">What you get</div>
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">{LABELS[lang].get}</div>
           <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
             {deliverables.map((d) => <li key={d} className="flex gap-2.5"><Check /> {d}</li>)}
           </ul>
         </div>
         <div>
-          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">How it works</div>
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[var(--accent-primary)] mb-3">{LABELS[lang].how}</div>
           <ol className="space-y-3 text-sm">
             {process.map((p, i) => (
               <li key={p.step} className="flex gap-3">
@@ -54,9 +62,9 @@ export default function OfferCard({
       </div></AnimatedBackground>
 
       <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[var(--border-default)]">
-        <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed"><span className="font-semibold text-[var(--text-primary)]">For:</span> {audience}</div>
+        <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed"><span className="font-semibold text-[var(--text-primary)]">{LABELS[lang].forWho}</span> {audience}</div>
         {secondary && <Link href={secondary.href} className={`inline-flex items-center gap-2 px-5 py-2.5 border rounded-xl text-sm font-medium hover:bg-[var(--bg-hover)] transition-all ${secondaryTone === 'forge' ? 'border-[var(--accent-purple)]/40 text-[var(--accent-purple)] hover:border-[var(--accent-purple)]' : 'border-[var(--border-default)] text-[var(--text-primary)] hover:border-[var(--border-hover)]'}`}>{secondary.label}</Link>}
-        <Link href={`/contact/?topic=${ctaTopic}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-primary)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors">{ctaLabel} <ArrowRight /></Link>
+        <Link href={`${localePath('/contact/', lang)}?topic=${ctaTopic}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-primary)] text-black rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors">{ctaLabel} <ArrowRight /></Link>
       </div>
     </article>
   );

@@ -1,4 +1,4 @@
-# Own Your AI — sample gallery
+# My First AI Agent — sample gallery
 
 Filled examples of course artifacts. Copy into your own notes folder; do not commit secrets.
 
@@ -12,4 +12,4 @@ Filled examples of course artifacts. Copy into your own notes folder; do not com
 | `cockpit-check.example.md` | Lab: desktop-cockpit |
 | `failure-log.example.md` | Lab: failure-studio |
 
-Back to course: `/forge/course/open-harness/`
+Back to course: `/forge/course/my-first-ai-agent/`

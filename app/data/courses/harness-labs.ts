@@ -1,6 +1,6 @@
 /**
  * Harness Labs — drills AFTER mastery, not a second install path.
- * Assumes Hermes already installed (Own Your AI Part I).
+ * Assumes Hermes already installed (My First AI Agent Part I).
  * Mastery owns pedagogy; labs own measurement artifacts and extensions.
  */
 
@@ -42,9 +42,9 @@ export const HARNESS_LABS_META = {
   title: 'Harness Labs',
   tagline: 'Drills after mastery — not a second install course.',
   description:
-    'Optional ops drills once Own Your AI Part I is done. Mastery default is Hermes Desktop (profile + SOUL). Labs do not re-teach install, gateway setup from zero, or memory theory. Prefer finishing the mastery modules first; CLI-only learners map Desktop steps themselves.',
-  href: '/forge/course/open-harness/labs/',
-  courseHref: '/forge/course/open-harness/',
+    'Optional ops drills once My First AI Agent Part I is done. Mastery default is Hermes Desktop (profile + SOUL). Labs do not re-teach install, gateway setup from zero, or memory theory. Prefer finishing the mastery modules first; CLI-only learners map Desktop steps themselves.',
+  href: '/forge/course/my-first-ai-agent/labs/',
+  courseHref: '/forge/course/my-first-ai-agent/',
 };
 
 export const HARNESS_LABS: HarnessLab[] = [
@@ -57,9 +57,9 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 10,
     level: 'after-part-i',
     tags: ['Desktop', 'Checklist'],
-    requires: 'Own Your AI Part I (modules 03–06 proofs)',
+    requires: 'My First AI Agent Part I (modules 03–06 proofs)',
     assumes: 'Hermes Desktop already installed and chatting; profile + SOUL exist; gateway optional.',
-    ifNotHref: '/forge/course/open-harness/03/',
+    ifNotHref: '/forge/course/my-first-ai-agent/03/',
     ifNotLabel: 'Harness 03 — Install',
     outcome:
       'cockpit-check.md with four yes/no lines: profile, skills panel, tools glance, file write path. No install steps performed in this lab.',
@@ -70,10 +70,10 @@ export const HARNESS_LABS: HarnessLab[] = [
           'Install, first Desktop run, SOUL writing, Telegram from zero, and first tool task are mastery topics. If any of those fail, leave this lab and open the linked modules.',
         ],
         links: [
-          { label: '03 Install (Desktop canonical)', href: '/forge/course/open-harness/03/' },
-          { label: '04 Soul pack', href: '/forge/course/open-harness/04/' },
-          { label: '05 Gateway', href: '/forge/course/open-harness/05/' },
-          { label: '06 First agency', href: '/forge/course/open-harness/06/' },
+          { label: '03 Install (Desktop canonical)', href: '/forge/course/my-first-ai-agent/03/' },
+          { label: '04 Soul pack', href: '/forge/course/my-first-ai-agent/04/' },
+          { label: '05 Gateway', href: '/forge/course/my-first-ai-agent/05/' },
+          { label: '06 First agency', href: '/forge/course/my-first-ai-agent/06/' },
         ],
       },
       {
@@ -99,9 +99,9 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 20,
     level: 'after-part-i',
     tags: ['Cost', 'Models'],
-    requires: 'Own Your AI 06 (agency/spend intro); better after 09 if you have a cron',
+    requires: 'My First AI Agent 06 (agency/spend intro); better after 09 if you have a cron',
     assumes: 'Primary model already works. You are not choosing a provider for the first time.',
-    ifNotHref: '/forge/course/open-harness/06/',
+    ifNotHref: '/forge/course/my-first-ai-agent/06/',
     ifNotLabel: 'Harness 06 — First agency',
     outcome:
       'spend-log.md with primary model ID, one timed cheap task, one tightened runbook (or cron prompt), one toolset disabled or justified.',
@@ -109,11 +109,11 @@ export const HARNESS_LABS: HarnessLab[] = [
       {
         heading: 'Mastery owns the theory',
         paragraphs: [
-          'Token tiers, tool catalogs, and cron-as-runbook are taught in Own Your AI 06 and 09. Do not re-read a lecture here. Open those modules if the ideas are new.',
+          'Token tiers, tool catalogs, and cron-as-runbook are taught in My First AI Agent 06 and 09. Do not re-read a lecture here. Open those modules if the ideas are new.',
         ],
         links: [
-          { label: '06 Spend / tools intro', href: '/forge/course/open-harness/06/' },
-          { label: '11 Cron runbooks', href: '/forge/course/open-harness/11/' },
+          { label: '06 Spend / tools intro', href: '/forge/course/my-first-ai-agent/06/' },
+          { label: '11 Cron runbooks', href: '/forge/course/my-first-ai-agent/11/' },
         ],
       },
       {
@@ -140,7 +140,7 @@ export const HARNESS_LABS: HarnessLab[] = [
     tags: ['Models', 'Grok'],
     requires: 'Hermes already chatting on another model (Harness 03 done)',
     assumes: 'Install complete. This is “add a provider,” not “install Hermes.”',
-    ifNotHref: '/forge/course/open-harness/03/',
+    ifNotHref: '/forge/course/my-first-ai-agent/03/',
     ifNotLabel: 'Harness 03 — Install',
     outcome:
       'GROK_OK (or equivalent) reply on this profile. models-grok.md notes auth path. Imagine: “configure in Open Design 03/06” unless already done.',
@@ -174,7 +174,7 @@ export const HARNESS_LABS: HarnessLab[] = [
     tags: ['OpSec', 'Keys'],
     requires: 'Hermes running with at least one provider key',
     assumes: 'You understand .env from mastery; this is audit + rotate practice.',
-    ifNotHref: '/forge/course/open-harness/03/',
+    ifNotHref: '/forge/course/my-first-ai-agent/03/',
     ifNotLabel: 'Harness 03 — Install',
     outcome:
       'keys-audit.md lists providers and secret locations; one key rotated and retested; git status clean of .env.',
@@ -209,9 +209,9 @@ export const HARNESS_LABS: HarnessLab[] = [
     minutes: 25,
     level: 'after-part-ii',
     tags: ['Automation', 'Webhooks'],
-    requires: 'Own Your AI 11 cron proof (runbook-style job understood)',
+    requires: 'My First AI Agent 11 cron proof (runbook-style job understood)',
     assumes: 'You can write a full amnesia cron prompt. Hermes is installed and online.',
-    ifNotHref: '/forge/course/open-harness/11/',
+    ifNotHref: '/forge/course/my-first-ai-agent/11/',
     ifNotLabel: 'Harness 11 — Cron runbooks',
     outcome:
       'webhook-design.md fully filled (event, auth, runbook, failure). Working test or honest design-only pass.',
@@ -257,7 +257,7 @@ Human approval for:`,
     tags: ['VPS', 'Deploy'],
     requires: 'Hermes already on a host (local always-on or VPS from mastery 02)',
     assumes: 'You are not learning SSH or “what is a VPS” for the first time here.',
-    ifNotHref: '/forge/course/open-harness/02/',
+    ifNotHref: '/forge/course/my-first-ai-agent/02/',
     ifNotLabel: 'Harness 02 — Where it runs',
     outcome:
       'URL or IP:port serves a reviewed page/API. deploy-notes.md with path, restart, rollback. Human-reviewed: yes.',
@@ -290,9 +290,9 @@ Human approval for:`,
     minutes: 30,
     level: 'after-part-ii',
     tags: ['Wiki', 'Kanban', 'Memory'],
-    requires: 'Own Your AI 08 vault proof (Obsidian path linked, retrieval worked once)',
+    requires: 'My First AI Agent 08 vault proof (Obsidian path linked, retrieval worked once)',
     assumes: 'Vault folder exists and Hermes can read it. You are not installing Obsidian here.',
-    ifNotHref: '/forge/course/open-harness/08/',
+    ifNotHref: '/forge/course/my-first-ai-agent/08/',
     ifNotLabel: 'Harness 08 — Data vault',
     outcome:
       'BOARD.md (or Kanban) stages complete; ≥3 linked notes; one new-session answer cites vault files only.',
@@ -302,7 +302,7 @@ Human approval for:`,
         paragraphs: [
           'Harness 08 owns inbox/sources/synthesis and first retrieval. This lab only enforces multi-stage work so research does not collapse into one muddy chat.',
         ],
-        links: [{ label: 'Harness 08 — vault', href: '/forge/course/open-harness/08/' }],
+        links: [{ label: 'Harness 08 — vault', href: '/forge/course/my-first-ai-agent/08/' }],
       },
       {
         heading: 'BOARD.md',
@@ -334,7 +334,7 @@ Human approval for:`,
     tags: ['Remote', 'Tailscale'],
     requires: 'Host already running Hermes (not a fresh install lab)',
     assumes: 'You can already use the agent; you need shell without opening WAN SSH.',
-    ifNotHref: '/forge/course/open-harness/05/',
+    ifNotHref: '/forge/course/my-first-ai-agent/05/',
     ifNotLabel: 'Harness 05 — Gateway (chat remote)',
     outcome:
       'SSH over mesh from a second network; hermes status works; remote-access.md notes hostnames; public :22 not required.',
@@ -361,9 +361,9 @@ Human approval for:`,
     minutes: 30,
     level: 'after-part-i',
     tags: ['Ops', 'Debug', 'Security'],
-    requires: 'Own Your AI Part I (Hermes chats; gateway optional)',
+    requires: 'My First AI Agent Part I (Hermes chats; gateway optional)',
     assumes: 'Desktop or CLI install works on a good day; you have not turned YOLO on for the course.',
-    ifNotHref: '/forge/course/open-harness/03/',
+    ifNotHref: '/forge/course/my-first-ai-agent/03/',
     ifNotLabel: 'Harness 03 — Install',
     outcome:
       'failure-log.md with three forced failures, what you saw (logs/UI), and the fix for each. No secrets pasted.',
@@ -374,8 +374,8 @@ Human approval for:`,
           'Mastery teaches the happy path. Production is the unhappy path: wrong key, hung approval, agent looping tools, gateway silent. This lab forces three failures so doctor and logs become muscle memory — not panic search.',
         ],
         links: [
-          { label: 'Harness 10 — Security dials', href: '/forge/course/open-harness/10/' },
-          { label: 'Harness 06 — First agency', href: '/forge/course/open-harness/06/' },
+          { label: 'Harness 10 — Security dials', href: '/forge/course/my-first-ai-agent/10/' },
+          { label: 'Harness 06 — First agency', href: '/forge/course/my-first-ai-agent/06/' },
         ],
       },
       {
@@ -439,9 +439,9 @@ Secrets: none pasted
     minutes: 25,
     level: 'after-part-i',
     tags: ['Sessions', 'Context', 'Ops'],
-    requires: 'Own Your AI 06 (tools proof); chat works on Desktop or CLI',
+    requires: 'My First AI Agent 06 (tools proof); chat works on Desktop or CLI',
     assumes: 'You can run a multi-turn conversation. You are not learning install here.',
-    ifNotHref: '/forge/course/open-harness/06/',
+    ifNotHref: '/forge/course/my-first-ai-agent/06/',
     ifNotLabel: 'Harness 06 — First agency',
     outcome:
       'session-control.md with: context snapshot, one compress result, one undo test, and a one-line note that file restore needs /rollback + checkpoints.',
@@ -452,8 +452,8 @@ Secrets: none pasted
           'Mastery 06–07 map session commands. This lab drills them so you stop burning a new session every time the window fills or a prompt goes wrong.',
         ],
         links: [
-          { label: 'Harness 06 — First agency', href: '/forge/course/open-harness/06/' },
-          { label: 'Harness 07 — Making it remember', href: '/forge/course/open-harness/07/' },
+          { label: 'Harness 06 — First agency', href: '/forge/course/my-first-ai-agent/06/' },
+          { label: 'Harness 07 — Making it remember', href: '/forge/course/my-first-ai-agent/07/' },
         ],
       },
       {
@@ -504,9 +504,9 @@ Rule of thumb: […]
     minutes: 20,
     level: 'after-part-i',
     tags: ['Cost', 'Tools', 'Skills'],
-    requires: 'Own Your AI 06; better after 09 skills',
+    requires: 'My First AI Agent 06; better after 09 skills',
     assumes: 'Primary model works. You can open Tools and Skills panels (or CLI hermes tools / hermes skills).',
-    ifNotHref: '/forge/course/open-harness/06/',
+    ifNotHref: '/forge/course/my-first-ai-agent/06/',
     ifNotLabel: 'Harness 06 — First agency',
     outcome:
       'prompt-budget.md with before/after prompt-size (or Desktop audit) and two concrete cuts (toolset and/or skill).',
@@ -517,8 +517,8 @@ Rule of thumb: […]
           'Empty sessions still load system prompt, skills index, memory snapshots, tool schemas, and AGENTS.md. Upgrading the model will not fix a bloated fixed budget. This lab measures and cuts.',
         ],
         links: [
-          { label: 'Harness 06 — Spend / fixed cost', href: '/forge/course/open-harness/06/' },
-          { label: 'Harness 09 — Skills', href: '/forge/course/open-harness/09/' },
+          { label: 'Harness 06 — Spend / fixed cost', href: '/forge/course/my-first-ai-agent/06/' },
+          { label: 'Harness 09 — Skills', href: '/forge/course/my-first-ai-agent/09/' },
         ],
       },
       {
@@ -555,9 +555,9 @@ Still works: yes/no
     minutes: 30,
     level: 'advanced',
     tags: ['Desktop', 'Multi-agent', 'Plugin'],
-    requires: 'Own Your AI Part I; two profiles with SOUL optional but recommended',
+    requires: 'My First AI Agent Part I; two profiles with SOUL optional but recommended',
     assumes: 'Desktop chat works on at least one profile. You are not installing Hermes here.',
-    ifNotHref: '/forge/course/open-harness/04/',
+    ifNotHref: '/forge/course/my-first-ai-agent/04/',
     ifNotLabel: 'Harness 04 — Soul pack',
     outcome:
       'kanban-notes.md: plugin enabled, one card moved through columns, which profile ran which step, screenshot optional (no secrets).',
@@ -577,7 +577,7 @@ Still works: yes/no
           height: 1324,
         },
         links: [
-          { label: 'Harness 12 — Own it forever', href: '/forge/course/open-harness/12/' },
+          { label: 'Harness 12 — Own it forever', href: '/forge/course/my-first-ai-agent/12/' },
           {
             label: 'Desktop plugin SDK',
             href: 'https://hermes-agent.nousresearch.com/docs/developer-guide/desktop-plugin-sdk',

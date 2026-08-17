@@ -1,5 +1,5 @@
 /**
- * Own Your AI — curriculum. English only: the language toggle was removed
+ * My First AI Agent — curriculum. English only: the language toggle was removed
  * rather than ship a half-translated UI, so `L()` takes one string and
  * `LocaleString.fr` mirrors `en`. Re-add FR as a complete pass, not per string.
  * Sources: Delta V ateliers + official Hermes docs.
@@ -301,10 +301,10 @@ export const OPEN_HARNESS_PARTS: {
 
 export const OPEN_HARNESS_META = {
   id: 'open-harness',
-  href: '/forge/course/open-harness/',
+  href: '/forge/course/my-first-ai-agent/',
   title: {
-    en: 'Own Your AI',
-    fr: 'Own Your AI',
+    en: 'My First AI Agent',
+    fr: 'My First AI Agent',
   } satisfies LocaleString,
   tagline: {
     en: 'Build your own agent harness — yours to run and change, step by step, in plain language.',
@@ -326,7 +326,7 @@ export const UI_COPY = {
   prev: { en: 'Previous', fr: 'Previous' },
   proof: { en: 'You are done when', fr: 'You are done when' },
   minRead: { en: 'min', fr: 'min' },
-  backCourse: { en: 'Own Your AI', fr: 'Own Your AI' },
+  backCourse: { en: 'My First AI Agent', fr: 'My First AI Agent' },
   backForge: { en: 'Forge', fr: 'Forge' },
   syllabus: { en: 'All lessons', fr: 'All lessons' },
   outcomes: { en: 'What this gives you', fr: 'What this gives you' },
@@ -430,13 +430,13 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         blocks: [
           { k: 'list', items: [
           L('Do lessons **in order**. Each ends with a short “you are done when” check.'),
-          L('Do **not skip 01** unless you can already explain agent vs chat, harness vs runtime, and Think → Act → Observe (the [printable glossary](/forge/course/open-harness/glossary/) helps).'),
+          L('Do **not skip 01** unless you can already explain agent vs chat, harness vs runtime, and Think → Act → Observe (the [printable glossary](/forge/course/my-first-ai-agent/glossary/) helps).'),
           L('Pick your **host** in lesson 02 before install (dedicated machine preferred).'),
           L('**Optional labs** exist after Part I for extra drills — not required to finish the main path.'),
           L('**Next:** lesson 01 — lexicon (stack, loop, messages, then the rest).'),
         ] },
           { k: 'links', items: [
-          { label: L('Printable glossary'), href: '/forge/course/open-harness/glossary/' },
+          { label: L('Printable glossary'), href: '/forge/course/my-first-ai-agent/glossary/' },
         ] },
         ],
 
@@ -1099,7 +1099,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           },
           { k: 'links', items: [
           { label: L('Hermes providers docs'), href: HERMES_PROVIDERS_DOCS },
-          { label: L('Lesson 02 — get your API key'), href: '/forge/course/open-harness/02/' },
+          { label: L('Lesson 02 — get your API key'), href: '/forge/course/my-first-ai-agent/02/' },
         ] },
         ],
 
@@ -1530,7 +1530,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             caption: L('`hermes prompt-size` prints the fixed budget of a fresh session — note that tool schemas are the bigger half, and that it runs offline with no API call.'),
           },
           { k: 'links', items: [
-          { label: L('Lab: Prompt budget audit'), href: '/forge/course/open-harness/labs/prompt-budget/' },
+          { label: L('Lab: Prompt budget audit'), href: '/forge/course/my-first-ai-agent/labs/prompt-budget/' },
           { label: L('Providers docs'), href: 'https://hermes-agent.nousresearch.com/docs/integrations/providers' },
         ] },
         ],
@@ -1600,7 +1600,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'None of that is memory, though. It only tidies the chat you are in. Everything Part II adds — notes it keeps, a folder of your own writing it can search, jobs that run while you sleep — starts from one idea: **if you want it kept, it has to be written to a file.** That is lesson 07.',
           ) },
           { k: 'links', items: [
-          { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
+          { label: L('Lab: Session control studio'), href: '/forge/course/my-first-ai-agent/labs/session-control/' },
         ] },
         ],
 
@@ -1649,10 +1649,10 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('I can narrate one Think → Act → Observe cycle from this mission'),
         ] },
           { k: 'links', items: [
-          { label: L('Lab: spend drill'), href: '/forge/course/open-harness/labs/model-spend/' },
-          { label: L('Lab: failure studio'), href: '/forge/course/open-harness/labs/failure-studio/' },
+          { label: L('Lab: spend drill'), href: '/forge/course/my-first-ai-agent/labs/model-spend/' },
+          { label: L('Lab: failure studio'), href: '/forge/course/my-first-ai-agent/labs/failure-studio/' },
           { label: L('Tips'), href: 'https://hermes-agent.nousresearch.com/docs/guides/tips' },
-          { label: L('Next: Making it remember'), href: '/forge/course/open-harness/07/' },
+          { label: L('Next: Making it remember'), href: '/forge/course/my-first-ai-agent/07/' },
         ] },
         ],
 
@@ -1797,7 +1797,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             explain: L('The file can be correct while this chat has not re-read it. Check the file, then open a new chat.'),
           } },
           { k: 'links', items: [
-          { label: L('Lab: Session control studio'), href: '/forge/course/open-harness/labs/session-control/' },
+          { label: L('Lab: Session control studio'), href: '/forge/course/my-first-ai-agent/labs/session-control/' },
         ] },
         ],
 
@@ -1932,7 +1932,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'In the **Think → Act → Observe** loop, a skill mostly shapes Think (and which tools to pick). It is not itself an Act unless it triggers tools. Tools execute; skills teach.',
           ) },
           { k: 'callout', variant: 'note', text: L(
-            'Skill vs tool vs plugin vs MCP was settled in [lesson 01 · Tools, skills, and services](/forge/course/open-harness/01/#5-tools-skills-plugins-and-mcp). Re-open that card if the words feel loose — this lesson assumes them and moves on to cost.',
+            'Skill vs tool vs plugin vs MCP was settled in [lesson 01 · Tools, skills, and services](/forge/course/my-first-ai-agent/01/#5-tools-skills-plugins-and-mcp). Re-open that card if the words feel loose — this lesson assumes them and moves on to cost.',
           ) },
           { k: 'list', items: [
           L('`/learn` authors a skill for you from a folder, a URL, a PDF, or a workflow you just ran — you rarely need to write `SKILL.md` by hand.'),
@@ -1990,7 +1990,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('**It survives the budget test** — see the next section. A shelf of unused skills costs tokens in every session.'),
         ] },
           { k: 'callout', variant: 'note', text: L(
-            'The one we do recommend by name is `official/security/unbroker`, which you met in [lesson 06](/forge/course/open-harness/06/) — because scrubbing data brokers is a real, repeating job that nobody wants to do by hand.',
+            'The one we do recommend by name is `official/security/unbroker`, which you met in [lesson 06](/forge/course/my-first-ai-agent/06/) — because scrubbing data brokers is a real, repeating job that nobody wants to do by hand.',
           ) },
           { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into a note in your vault, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
           { k: 'links', items: [
@@ -2011,9 +2011,9 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'p', text: L(
             'The skills index and every enabled tool schema load into the empty-session budget (see module 06 — context budget). A large “install for later” catalog costs tokens before any task starts.',
           ) },
-          { k: 'steps', id: '3-steps', items: [{ title: L('Open the context / usage view in Desktop. Note the skills / tools share.') }, { title: L('Disable or uninstall one skill you will not use this week. Re-run [the audit](/forge/course/open-harness/labs/prompt-budget/).') }, { title: L('Record before/after in `skills-notes.md` (one line each is enough).') }] },
+          { k: 'steps', id: '3-steps', items: [{ title: L('Open the context / usage view in Desktop. Note the skills / tools share.') }, { title: L('Disable or uninstall one skill you will not use this week. Re-run [the audit](/forge/course/my-first-ai-agent/labs/prompt-budget/).') }, { title: L('Record before/after in `skills-notes.md` (one line each is enough).') }] },
           { k: 'links', items: [
-          { label: L('Lab: Prompt budget audit'), href: '/forge/course/open-harness/labs/prompt-budget/' },
+          { label: L('Lab: Prompt budget audit'), href: '/forge/course/my-first-ai-agent/labs/prompt-budget/' },
         ] },
         ],
 
@@ -2040,7 +2040,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             explain: L('Progressive disclosure keeps skill **bodies** out of the prompt, but the catalog of names and descriptions still loads into the empty-session budget. Install narrowly.'),
           } },
           { k: 'links', items: [
-          { label: L('Next: Security'), href: '/forge/course/open-harness/10/' },
+          { label: L('Next: Security'), href: '/forge/course/my-first-ai-agent/10/' },
           { label: L('Sample skills-notes'), href: '/courses/open-harness/samples/skills-notes.example.md' },
         ] },
         ],
@@ -2093,7 +2093,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Secrets, network, least privilege'),
         blocks: [
           { k: 'list', items: [
-          L('Secret filtering: keep tokens out of prompts and MCP child environments where possible — practice this in the [key rotation lab](/forge/course/open-harness/labs/api-key-hygiene/).'),
+          L('Secret filtering: keep tokens out of prompts and MCP child environments where possible — practice this in the [key rotation lab](/forge/course/my-first-ai-agent/labs/api-key-hygiene/).'),
           L('Injection scans on SOUL / `AGENTS.md` / context files when enabled.'),
           L('Network: SSRF protections block private ranges; open only for a trusted local service you understand.'),
           L('Profile least privilege: research does not need a coder tool surface.'),
@@ -2111,8 +2111,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { label: L('Security guide'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/security' },
           { label: L('Docker / isolation'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/docker' },
           { label: L('Checkpoints & rollback'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/checkpoints-and-rollback' },
-          { label: L('Lab: key rotation'), href: '/forge/course/open-harness/labs/api-key-hygiene/' },
-          { label: L('Lab: failure studio'), href: '/forge/course/open-harness/labs/failure-studio/' },
+          { label: L('Lab: key rotation'), href: '/forge/course/my-first-ai-agent/labs/api-key-hygiene/' },
+          { label: L('Lab: failure studio'), href: '/forge/course/my-first-ai-agent/labs/failure-studio/' },
         ] },
         ],
 
@@ -2134,7 +2134,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'checklist', id: '2', items: [
           L('`security-dials.md` records host isolation + cloud-data note + three concrete settings'),
           L('YOLO is off (or documented expert exception)'),
-          L('You know where logs live if something fails (see the [failure studio lab](/forge/course/open-harness/labs/failure-studio/))'),
+          L('You know where logs live if something fails (see the [failure studio lab](/forge/course/my-first-ai-agent/labs/failure-studio/))'),
         ] },
           { k: 'quiz', quiz: {
             question: L('Course default for approvals?'),
@@ -2148,7 +2148,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             explain: L('YOLO is expert-only. Course work uses smart or manual approvals.'),
           } },
           { k: 'links', items: [
-          { label: L('Next: Cron'), href: '/forge/course/open-harness/11/' },
+          { label: L('Next: Cron'), href: '/forge/course/my-first-ai-agent/11/' },
         ] },
         ],
 
@@ -2209,7 +2209,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Build one job'),
         blocks: [
           { k: 'callout', variant: 'note', text: L(
-          'Cron spend is easy to waste. Prefer script checks first; wake the model only when the check fails or changes, or use [webhooks](/forge/course/open-harness/labs/webhooks/) instead of polling.',
+          'Cron spend is easy to waste. Prefer script checks first; wake the model only when the check fails or changes, or use [webhooks](/forge/course/my-first-ai-agent/labs/webhooks/) instead of polling.',
         ) },
           { k: 'steps', id: '1-steps', items: [{ title: L('Define a small job: for example weekday 08:00 — three headlines, short summary, deliver to your messaging app (or a local file if gateway is off).') }, { title: L('Write the prompt as if the agent has amnesia, starting from the [sample runbook](/courses/open-harness/samples/cron-runbook.example.md). Save as cron-runbook.md.') }, { title: L('Create it in the Desktop cron UI or [Hermes cron flow](https://hermes-agent.nousresearch.com/docs/guides/automate-with-cron) for your version.') }, { title: L('Run once manually if possible, then schedule — or stop after dry-run if offline.') }] },
         ],
@@ -2220,7 +2220,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'links', items: [
           { label: L('Cron feature docs'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/cron' },
           { label: L('Automate with cron (guide)'), href: 'https://hermes-agent.nousresearch.com/docs/guides/automate-with-cron' },
-          { label: L('Lab: webhooks'), href: '/forge/course/open-harness/labs/webhooks/' },
+          { label: L('Lab: webhooks'), href: '/forge/course/my-first-ai-agent/labs/webhooks/' },
           { label: L('Sample runbook'), href: '/courses/open-harness/samples/cron-runbook.example.md' },
         ] },
         ],
@@ -2249,8 +2249,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             explain: L('Scheduled jobs wake cold. The runbook must include host, path, success, and failure.'),
           } },
           { k: 'links', items: [
-          { label: L('Next: Own forever'), href: '/forge/course/open-harness/12/' },
-          { label: L('All Harness Labs'), href: '/forge/course/open-harness/labs/' },
+          { label: L('Next: Own forever'), href: '/forge/course/my-first-ai-agent/12/' },
+          { label: L('All Harness Labs'), href: '/forge/course/my-first-ai-agent/labs/' },
         ] },
         ],
 
@@ -2348,7 +2348,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'links', items: [
           { label: L('Hermes docs home'), href: 'https://hermes-agent.nousresearch.com/docs/' },
           { label: L('Docs index (llms.txt)'), href: 'https://hermes-agent.nousresearch.com/docs/llms.txt' },
-          { label: L('Harness Labs (after mastery)'), href: '/forge/course/open-harness/labs/' },
+          { label: L('Harness Labs (after mastery)'), href: '/forge/course/my-first-ai-agent/labs/' },
           { label: L('Open Design'), href: '/forge/course/open-design/' },
           { label: L('Sample gallery'), href: '/courses/open-harness/samples/README.md' },
           { label: L('Contact Delta V'), href: '/contact/?topic=open-harness' },
@@ -2414,7 +2414,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Write your own plugin or import via the [Desktop plugin SDK](https://hermes-agent.nousresearch.com/docs/developer-guide/desktop-plugin-sdk) when you outgrow defaults.'),
         ] },
           { k: 'links', items: [
-          { label: L('Lab: Kanban multi-profile'), href: '/forge/course/open-harness/labs/kanban-board/' },
+          { label: L('Lab: Kanban multi-profile'), href: '/forge/course/my-first-ai-agent/labs/kanban-board/' },
           {
             label: L('Desktop plugin SDK'),
             href: 'https://hermes-agent.nousresearch.com/docs/developer-guide/desktop-plugin-sdk',
