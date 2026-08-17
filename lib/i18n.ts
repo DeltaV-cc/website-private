@@ -16,7 +16,7 @@ export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 
 /** Root-relative paths (no locale prefix) that exist in French. */
-export const TRANSLATED = ['/contact/', '/ai/', '/web3/', '/forge/'] as const;
+export const TRANSLATED = ['/', '/contact/', '/ai/', '/web3/', '/forge/', '/opsec/'] as const;
 
 export function isTranslated(path: string): boolean {
   const clean = path.replace(/^\/fr/, '') || '/';

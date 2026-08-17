@@ -34,7 +34,7 @@ const aiEn: PillarCopy = {
   label: 'Pillar 01 · AI Engineering',
   title: 'AI Engineering',
   description:
-    'From generic AI tools to production-grade systems that fit your workflows — designed, shipped, and hardened by engineers who run these systems 24/7 on their own infrastructure.',
+    'AI tools built for your production systems. Designed and shipped by engineers who run these systems 24/7.',
   ecosystemLabel: 'Ecosystem & Stack',
   backLabel: 'Home',
   offers: [
@@ -42,7 +42,7 @@ const aiEn: PillarCopy = {
       id: 'agents',
       title: 'Tailored Multi-Agent Systems',
       pitch:
-        'We embed with your team, **map your real workflows and data**, then design and ship custom single or multi-agent systems built around the models that perform best for your use case — not the ones with the best marketing.',
+        'We embed with your team, **map your real workflows and data**, then design and ship custom single or multi-agent systems built around the models that perform best for your use case.',
       deliverables: [
         'Agent architecture designed around your workflows (orchestration, memory, tool use)',
         'Model selection benchmarked on your actual tasks — open-weight first when it wins',
@@ -199,7 +199,7 @@ const web3En: PillarCopy = {
       id: 'architecture',
       title: 'SOTA Setup & Architecture Advisory',
       pitch:
-        'We help you implement **best-in-class transaction execution, secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting** — the state of the art, not last cycle’s defaults.',
+        'We help you implement **best-in-class transaction execution, secure wallet architectures, optimal routing, privacy solutions, and decentralized hosting**.',
       deliverables: [
         'Wallet and key architecture review: self-custody, multisig, hardware, session keys',
         'Private RPCs, MEV protection, and optimal transaction routing',
@@ -221,7 +221,7 @@ const web3En: PillarCopy = {
       id: 'intelligence',
       title: 'Web3 Intelligence & OSINT',
       pitch:
-        'We conduct **onchain and offchain investigations** to help you assess risks and make informed decisions — powered by the same pipeline that feeds our public IntelHub.',
+        'We conduct **onchain and offchain investigations** to help you assess risks and make informed decisions.',
       deliverables: [
         'Counterparty due diligence: wallets, entities, funding trails, and infrastructure',
         'Protocol deep-dives: governance capture risk, admin keys, and upgrade paths',
@@ -245,7 +245,7 @@ const web3En: PillarCopy = {
       id: 'growth',
       title: 'Growth Boost',
       pitch:
-        'We help protect and foster the cypherpunk ethos by supporting **community building, public good initiatives, and fundraising efforts** — growth with OpSec foundations, not growth at any cost.',
+        'We help protect and foster the cypherpunk ethos by supporting **community building, public good initiatives, and fundraising efforts**.',
       deliverables: [
         'Positioning and narrative work grounded in what your protocol actually does',
         'Community architecture: channels, moderation, and contributor funnels',
@@ -278,7 +278,7 @@ const web3Fr: PillarCopy = {
       id: 'architecture',
       title: 'Conseil architecture et mise en place SOTA',
       pitch:
-        'Nous vous aidons à mettre en place **une exécution de transactions de premier plan, des architectures de portefeuilles sûres, un routage optimal, des solutions de confidentialité et un hébergement décentralisé** — l’état de l’art, pas les réglages par défaut du cycle précédent.',
+        'Nous vous aidons à mettre en place **une exécution de transactions de premier plan, des architectures de portefeuilles sûres, un routage optimal, des solutions de confidentialité et un hébergement décentralisé**.',
       deliverables: [
         'Revue de l’architecture des portefeuilles et des clés : auto-conservation, multisig, matériel, clés de session',
         'RPC privés, protection contre le MEV et routage optimal des transactions',
@@ -300,7 +300,7 @@ const web3Fr: PillarCopy = {
       id: 'intelligence',
       title: 'Renseignement Web3 et OSINT',
       pitch:
-        'Nous menons des **enquêtes onchain et offchain** pour vous aider à évaluer les risques et à décider en connaissance de cause — avec la chaîne de traitement qui alimente notre IntelHub public.',
+        'Nous menons des **enquêtes onchain et offchain** pour vous aider à évaluer les risques et à décider en connaissance de cause.',
       deliverables: [
         'Due diligence des contreparties : portefeuilles, entités, flux de financement et infrastructure',
         'Analyses approfondies de protocoles : risque de capture de la gouvernance, clés d’administration, chemins de mise à jour',
@@ -324,7 +324,7 @@ const web3Fr: PillarCopy = {
       id: 'growth',
       title: 'Accélération de la croissance',
       pitch:
-        'Nous défendons et cultivons l’éthique cypherpunk en accompagnant **la construction de communautés, les initiatives de bien commun et la levée de fonds** — une croissance adossée à l’OpSec, pas la croissance à tout prix.',
+        'Nous défendons et cultivons l’éthique cypherpunk en accompagnant **la construction de communautés, les initiatives de bien commun et la levée de fonds**.',
       deliverables: [
         'Positionnement et récit ancrés dans ce que votre protocole fait réellement',
         'Architecture de communauté : canaux, modération et parcours des contributeurs',

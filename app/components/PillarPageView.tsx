@@ -64,7 +64,7 @@ export default function PillarPageView({
           className="scroll-mt-16 border-t border-[var(--border-default)]"
           aria-labelledby="opsec-heading"
         >
-          <OpSec embedded />
+          <OpSec embedded lang={lang} />
         </section>
       )}
     </div>
