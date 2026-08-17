@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T06:46:07Z",
+  "updated_at": "2026-08-17T07:03:57Z",
   "source": "https://api.llama.fi/v2/chains",
   "chains": [
     {
@@ -10,7 +10,7 @@
     {
       "name": "BSC",
       "tvl": 4873283915.030116,
-      "change_1d": -0.22595336742305275
+      "change_1d": -0.2175387680867274
     },
     {
       "name": "Solana",
@@ -45,7 +45,7 @@
     {
       "name": "Arbitrum",
       "tvl": 1239764119.292035,
-      "change_1d": 0.8065473778111757
+      "change_1d": 0.8067377052717782
     },
     {
       "name": "Monad",
