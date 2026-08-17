@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T07:15:45Z",
+  "updated_at": "2026-08-17T07:46:17Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.364773,
+        "price": 0.362198,
         "change_24h": 20.4,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.506289,
+        "price": 0.511354,
         "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002989,
+        "price": 0.002971,
         "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 512.85,
+        "price": 513.86,
         "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.05,
+        "price": 2.06,
         "change_24h": 4.7,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "\u5e01\u5b89\u4eba\u751f",
         "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
-        "price": 0.472291,
+        "price": 0.470957,
         "change_24h": -2.2,
         "asset": "crypto"
       },
       {
         "symbol": "QNT",
         "name": "Quant",
-        "price": 55.98,
+        "price": 56.06,
         "change_24h": -2.1,
         "asset": "crypto"
       },
@@ -140,7 +140,7 @@
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
-        "price": 1.46,
+        "price": 1.45,
         "change_24h": -1.5,
         "asset": "crypto"
       },
