@@ -32,12 +32,12 @@ const homeEn: HomeCopy = {
   heroLine1: 'We don’t sell tools.',
   heroLine2Lead: 'We forge ',
   heroLine2Accent: 'future-aptness.',
-  heroBlurb: 'AI, Web3, and OpSec engineering for everyone. Adaptive by design. Open-source first.',
+  heroBlurb: 'AI, Web3, and OpSec engineering for everyone. Fitted to your systems. Open-source first.',
   ctaUpskill: 'Upskill',
   ctaServices: 'Explore services',
   ctaContact: 'Contact Us',
   stats: [
-    { label: 'Adaptive', sub: 'by design' },
+    { label: 'Fitted', sub: 'to your systems' },
     { label: 'Open-source', sub: 'first' },
     { label: 'State of the art', sub: 'solutions' },
   ],
@@ -90,9 +90,9 @@ const homeEn: HomeCopy = {
     },
   ],
   loopEyebrow: 'Stay in the Loop',
-  loopTitle: 'High-signal updates only.',
+  loopTitle: 'The Delta V Feed.',
   loopBlurb:
-    'Curated intel from research labs, key industry leaders, emerging talents, and engineering communities.',
+    'The day’s AI and Web3 news, sorted: what the research labs published, what the open-source teams shipped, and what the engineers and emerging talents moving the field are actually saying. The noise stays out.',
   tutorials: 'Tutorials',
   blog: 'Blog',
   getInTouch: 'Get in touch',
@@ -101,14 +101,14 @@ const homeEn: HomeCopy = {
 const homeFr: HomeCopy = {
   heroLine1: 'Nous ne vendons pas d’outils.',
   heroLine2Lead: 'Nous forgeons ',
-  heroLine2Accent: 'votre avance.',
+  heroLine2Accent: 'vos capacités.',
   heroBlurb:
-    'Ingénierie IA, Web3 et OpSec, pour tout le monde. Adaptatif par conception. L’open source d’abord.',
+    'Ingénierie IA, Web3 et OpSec, pour tout le monde. Adapté à vos systèmes. L’open source d’abord.',
   ctaUpskill: 'Monter en compétences',
   ctaServices: 'Voir nos services',
   ctaContact: 'Nous contacter',
   stats: [
-    { label: 'Adaptatif', sub: 'par conception' },
+    { label: 'Adapté', sub: 'à vos systèmes' },
     { label: 'Open source', sub: 'd’abord' },
     { label: 'État de l’art', sub: 'en solutions' },
   ],
@@ -162,9 +162,9 @@ const homeFr: HomeCopy = {
     },
   ],
   loopEyebrow: 'Restez dans la boucle',
-  loopTitle: 'Uniquement du signal.',
+  loopTitle: 'Le Flux Delta V.',
   loopBlurb:
-    'Une veille choisie : laboratoires de recherche, figures du secteur, talents émergents et communautés d’ingénierie.',
+    'L’actualité de l’IA et du Web3, triée chaque jour : ce que publient les laboratoires, ce que sortent les équipes open source, et ce que disent vraiment les ingénieurs et les talents qui font bouger le secteur. Le bruit reste dehors.',
   tutorials: 'Tutoriels',
   blog: 'Blog',
   getInTouch: 'Nous écrire',
@@ -194,7 +194,7 @@ export type FooterCopy = {
 };
 
 const footerEn: FooterCopy = {
-  tagline: 'AI, Web3, and OpSec engineering. Adaptive by design. Open-source first.',
+  tagline: 'AI, Web3, and OpSec engineering. Fitted to your systems. Open-source first.',
   services: 'Services',
   aiEngineering: 'AI Engineering',
   web3: 'Web3',
@@ -207,7 +207,7 @@ const footerEn: FooterCopy = {
   connect: 'Connect',
   contact: 'Contact',
   values: 'Values',
-  valueList: ['Open-source first', 'Privacy', 'Autonomy', 'Clear exit plan'],
+  valueList: ['Open source', 'Autonomy', 'Privacy', 'Clear exit strategy'],
   noTrackers: 'No trackers · Static export',
   noTrackersTitle: 'This site is statically exported. No analytics, cookies, or third-party trackers.',
   terms: 'Terms of Use',
@@ -215,7 +215,7 @@ const footerEn: FooterCopy = {
 };
 
 const footerFr: FooterCopy = {
-  tagline: 'Ingénierie IA, Web3 et OpSec. Adaptatif par conception. L’open source d’abord.',
+  tagline: 'Ingénierie IA, Web3 et OpSec. Adapté à vos systèmes. L’open source d’abord.',
   services: 'Services',
   aiEngineering: 'Ingénierie IA',
   web3: 'Web3',
@@ -228,12 +228,7 @@ const footerFr: FooterCopy = {
   connect: 'Nous joindre',
   contact: 'Contact',
   values: 'Nos principes',
-  valueList: [
-    'L’open source d’abord',
-    'Confidentialité',
-    'Autonomie',
-    'Une sortie toujours possible',
-  ],
+  valueList: ['Open source', 'Autonomie', 'Vie privée', 'Stratégie de sortie claire'],
   noTrackers: 'Aucun traceur · Export statique',
   noTrackersTitle:
     'Ce site est exporté en statique. Ni analytics, ni cookies, ni traceurs tiers.',

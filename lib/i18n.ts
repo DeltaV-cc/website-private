@@ -41,7 +41,13 @@ export function localePath(path: string, locale: Locale): string {
  * linking to /fr/something-that-was-never-translated.
  */
 export function hrefFor(path: string, locale: Locale): string {
-  return isTranslated(path) ? localePath(path, locale) : path;
+  // Deep links carry a fragment (`/ai/#agents`). Localize the path part and
+  // put the fragment back, otherwise every anchored link silently falls
+  // through to English.
+  const hash = path.indexOf('#');
+  const base = hash === -1 ? path : path.slice(0, hash);
+  const frag = hash === -1 ? '' : path.slice(hash);
+  return isTranslated(base) ? localePath(base, locale) + frag : path;
 }
 
 export function localeFromPath(path: string): Locale {

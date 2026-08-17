@@ -46,17 +46,21 @@ export default function CapabilityCard({
   };
 
   return (
-    <Link
-      href={href}
+    // Not a <Link> wrapper: the bullets are links of their own now, and an
+    // anchor cannot nest inside an anchor. The card-wide link is stretched
+    // over the whole box instead, and the bullets sit above it.
+    <div
       className={`capability-card group flex min-h-[260px] sm:min-h-[300px] flex-col border-l-2 p-5 sm:p-7 md:p-9 ${className}`}
       style={style}
     >
-      <div className="flex justify-between text-xs font-mono tracking-[.16em]" style={{ color: accent }}>
+      <Link href={href} className="absolute inset-0 z-0" aria-label={cta} />
+
+      <div className="pointer-events-none flex justify-between text-xs font-mono tracking-[.16em]" style={{ color: accent }}>
         <span>{index}</span>
         <span aria-hidden="true">↗</span>
       </div>
 
-      <div className="mt-8">
+      <div className="pointer-events-none mt-8">
         {label && <div className="text-xs uppercase tracking-[.16em]" style={{ color: accent }}>{label}</div>}
         <h3 className={`text-2xl md:text-3xl font-semibold tracking-tight ${titleTint}`}>
           {title}
@@ -66,10 +70,14 @@ export default function CapabilityCard({
           <ul className="mt-5 max-w-sm space-y-2 text-sm leading-relaxed">
             {bullets.map((bullet) => (
               <li key={bullet.href}>
-                <span className="flex items-start gap-2 text-[var(--text-secondary)]">
+                <Link
+                  href={bullet.href}
+                  className="pointer-events-auto relative z-10 flex items-start gap-2 text-[var(--text-secondary)] underline-offset-4 transition-colors hover:underline focus-visible:underline"
+                  style={{ textDecorationColor: accent }}
+                >
                   <span className="shrink-0" style={{ color: accent }} aria-hidden="true">•</span>
-                  <span className="flex-1">{bullet.label}</span>
-                </span>
+                  <span className="flex-1 hover:text-[var(--text-primary)]">{bullet.label}</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -78,9 +86,9 @@ export default function CapabilityCard({
         ) : null}
       </div>
 
-      <span className="mt-auto inline-flex pt-7 text-xs font-semibold uppercase tracking-[.14em] transition-opacity group-hover:opacity-100" style={{ color: accent }}>
+      <span className="pointer-events-none mt-auto inline-flex pt-7 text-xs font-semibold uppercase tracking-[.14em] transition-opacity group-hover:opacity-100" style={{ color: accent }}>
         {cta} <Arrow />
       </span>
-    </Link>
+    </div>
   );
 }
