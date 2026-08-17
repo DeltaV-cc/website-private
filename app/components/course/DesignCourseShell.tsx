@@ -535,8 +535,8 @@ export function DesignModuleBody({ module }: { module: CourseModule }) {
             {t(OD_UI.next)}: {t(next.title)} →
           </Link>
         ) : (
-          <Link href="/forge/course/" className="text-sm font-medium text-[var(--accent-orange)]">
-            Back to AI Mastery map →
+          <Link href="/forge/" className="text-sm font-medium text-[var(--accent-orange)]">
+            Back to Forge →
           </Link>
         )}
       </div>

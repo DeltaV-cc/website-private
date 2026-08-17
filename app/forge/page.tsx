@@ -310,8 +310,8 @@ export default function ForgePage() {
           </div>
 
           <div className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--text-muted)]">
-            <Link href="/forge/course/" className="hover:text-[var(--accent-cyan)]">
-              Full course map
+            <Link href="/tutorials/" className="hover:text-[var(--accent-cyan)]">
+              Tutorials
             </Link>
             <Link href="/blog/" className="hover:text-[var(--accent-cyan)]">
               Blog

@@ -13,15 +13,14 @@ const NAV_ITEMS = [
   { href: '/contact/', label: 'Contact' },
 ];
 
+/**
+ * Secondary reading only. Courses are listed on /forge/ itself, so linking
+ * individual courses (or a second course index) from here just competed with
+ * the page the "Forge" label already points at.
+ */
 const FORGE_LINKS = [
-  { href: '/blog/', label: 'Blog', detail: 'Essays and field notes' },
   { href: '/tutorials/', label: 'Tutorials', detail: 'Builds and walkthroughs' },
-  { href: '/forge/course/', label: 'AI Course', detail: 'AI Mastery curriculum' },
-  {
-    href: '/forge/course/open-harness/',
-    label: 'Own Your AI',
-    detail: 'Build your own agent harness — free, no code',
-  },
+  { href: '/blog/', label: 'Blog', detail: 'Essays and field notes' },
 ];
 
 function isActive(pathname: string, href: string) {
