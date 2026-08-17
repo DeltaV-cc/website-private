@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T09:16:36Z",
+  "updated_at": "2026-08-17T09:30:17Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,7 +82,7 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.350199,
+        "price": 0.343446,
         "change_24h": 15.9,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.504198,
+        "price": 0.50578,
         "change_24h": 4.7,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 510.88,
+        "price": 509.97,
         "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.360377,
+        "price": 0.359737,
         "change_24h": 4.4,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029076,
+        "price": 0.029074,
         "change_24h": -3.6,
         "asset": "crypto"
       },
@@ -133,14 +133,14 @@
       {
         "symbol": "QNT",
         "name": "Quant",
-        "price": 55.83,
+        "price": 55.86,
         "change_24h": -2.6,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.664768,
+        "price": 0.664612,
         "change_24h": -2.2,
         "asset": "crypto"
       },
