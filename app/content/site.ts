@@ -131,9 +131,9 @@ const homeFr: HomeCopy = {
       title: 'Web3',
       cta: 'Découvrir le Web3',
       bullets: [
-        'Mise en place et architecture SOTA',
-        'Renseignement Web3 et OSINT',
-        'Croissance, biens communs et animation de communauté',
+        'Architecture et fondations Web3',
+        'Renseignement onchain et OSINT',
+        'Traction, communauté et financement',
       ],
     },
     {
@@ -151,7 +151,7 @@ const homeFr: HomeCopy = {
       cta: 'Voir le programme',
     },
     {
-      title: 'Accélération de la croissance',
+      title: 'Traction, communauté et financement',
       text: 'Croissance Web3 stratégique — animation de communauté, initiatives de bien commun et levée de fonds, avec l’OpSec intégrée dès le départ.',
       cta: 'Découvrir le Web3',
     },

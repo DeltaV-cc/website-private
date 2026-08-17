@@ -276,7 +276,7 @@ const web3Fr: PillarCopy = {
   offers: [
     {
       id: 'architecture',
-      title: 'Conseil architecture et mise en place SOTA',
+      title: 'Architecture et fondations Web3',
       pitch:
         'Nous vous aidons à mettre en place **une exécution de transactions de premier plan, des architectures de portefeuilles sûres, un routage optimal, des solutions de confidentialité et un hébergement décentralisé**.',
       deliverables: [
@@ -298,7 +298,7 @@ const web3Fr: PillarCopy = {
     },
     {
       id: 'intelligence',
-      title: 'Renseignement Web3 et OSINT',
+      title: 'Renseignement onchain et OSINT',
       pitch:
         'Nous menons des **enquêtes onchain et offchain** pour vous aider à évaluer les risques et à décider en connaissance de cause.',
       deliverables: [
@@ -322,7 +322,7 @@ const web3Fr: PillarCopy = {
     },
     {
       id: 'growth',
-      title: 'Accélération de la croissance',
+      title: 'Traction, communauté et financement',
       pitch:
         'Nous défendons et cultivons l’éthique cypherpunk en accompagnant **la construction de communautés, les initiatives de bien commun et la levée de fonds**.',
       deliverables: [
