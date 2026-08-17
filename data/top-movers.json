@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T07:00:43Z",
+  "updated_at": "2026-08-17T07:15:45Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,73 +82,73 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.363227,
-        "change_24h": 25.9,
+        "price": 0.364773,
+        "change_24h": 20.4,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.5082,
-        "change_24h": 7.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.060489,
-        "change_24h": 4.4,
+        "price": 0.506289,
+        "change_24h": 7.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00297,
-        "change_24h": 4.4,
+        "price": 0.002989,
+        "change_24h": 6.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 512.85,
+        "change_24h": 6.0,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
         "price": 2.05,
-        "change_24h": 4.0,
+        "change_24h": 4.7,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.472291,
+        "change_24h": -2.2,
+        "asset": "crypto"
+      },
+      {
         "symbol": "QNT",
         "name": "Quant",
-        "price": 55.91,
-        "change_24h": -3.4,
+        "price": 55.98,
+        "change_24h": -2.1,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029444,
-        "change_24h": -3.0,
+        "price": 0.029353,
+        "change_24h": -1.9,
         "asset": "crypto"
       },
       {
         "symbol": "ATOM",
         "name": "Cosmos Hub",
         "price": 1.46,
-        "change_24h": -2.3,
+        "change_24h": -1.5,
         "asset": "crypto"
       },
       {
         "symbol": "SHIB",
         "name": "Shiba Inu",
         "price": 4e-06,
-        "change_24h": -2.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.095661,
-        "change_24h": -2.0,
+        "change_24h": -1.3,
         "asset": "crypto"
       }
     ]
