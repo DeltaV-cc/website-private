@@ -46,7 +46,7 @@ const aiEn: PillarCopy = {
       deliverables: [
         'Agent architecture designed around your workflows (orchestration, memory, tool use)',
         'Model selection benchmarked on your actual tasks — open-weight first when it wins',
-        'Local-first deployment: your data and keys never leave your infrastructure',
+        'Local-first wherever it is workable — we favour deployments where your data and keys never leave your infrastructure',
         'Guardrails, evaluation harness, and human-in-the-loop controls for high-stakes actions',
         'Documentation and handover so your team owns the system',
       ],
@@ -87,7 +87,7 @@ const aiEn: PillarCopy = {
       id: 'retainer',
       title: 'AI Engineer Retainer',
       pitch:
-        'Direct access to a **Delta V AI Engineer** (supported by dedicated ZHC subagents) for ongoing optimization, security, and capability expansion.',
+        'Direct access to a **Delta V AI Engineer** for ongoing optimization, security, and capability expansion.',
       deliverables: [
         'Reserved monthly engineering hours with same-week turnaround',
         'Continuous model and tooling watch as the frontier moves',
@@ -112,7 +112,7 @@ const aiFr: PillarCopy = {
   label: 'Pilier 01 · Ingénierie IA',
   title: 'Ingénierie IA',
   description:
-    'Des outils d’IA génériques aux systèmes de production taillés pour vos processus — conçus, livrés et durcis par des ingénieurs qui font tourner ces systèmes 24h/24 sur leur propre infrastructure.',
+    'Des outils d’IA taillés pour vos systèmes de production. Conçus et livrés par des ingénieurs qui font tourner ces systèmes 24h/24.',
   ecosystemLabel: 'Écosystème et stack',
   backLabel: 'Accueil',
   offers: [
@@ -120,11 +120,11 @@ const aiFr: PillarCopy = {
       id: 'agents',
       title: 'Systèmes multi-agents sur mesure',
       pitch:
-        'Nous nous intégrons à votre équipe, **cartographions vos processus et vos données réels**, puis concevons et livrons des systèmes à un ou plusieurs agents, bâtis autour des modèles les plus performants pour votre cas d’usage — pas ceux qui communiquent le mieux.',
+        'Nous nous intégrons à votre équipe, **cartographions vos processus et vos données réels**, puis concevons et livrons des systèmes à un ou plusieurs agents, bâtis autour des modèles les plus performants pour votre cas d’usage.',
       deliverables: [
         'Architecture d’agents pensée pour vos processus (orchestration, mémoire, usage des outils)',
         'Choix des modèles mesuré sur vos tâches réelles — poids ouverts en priorité quand ils gagnent',
-        'Déploiement local d’abord : vos données et vos clés ne quittent pas votre infrastructure',
+        'Le local en priorité quand c’est réalisable — nous privilégions les déploiements où vos données et vos clés ne quittent pas votre infrastructure',
         'Garde-fous, banc d’évaluation et validation humaine pour les actions sensibles',
         'Documentation et transfert de compétences : le système appartient à votre équipe',
       ],
@@ -163,9 +163,9 @@ const aiFr: PillarCopy = {
     },
     {
       id: 'retainer',
-      title: 'Accompagnement AI Engineer',
+      title: 'Consultant Ingénieur IA',
       pitch:
-        'Un accès direct à un **ingénieur IA Delta V** (épaulé par des sous-agents ZHC dédiés) pour l’optimisation continue, la sécurité et l’extension des capacités.',
+        'Un accès direct à un **ingénieur IA Delta V** pour l’optimisation continue, la sécurité et l’extension des capacités.',
       deliverables: [
         'Heures d’ingénierie réservées chaque mois, avec réponse dans la semaine',
         'Veille continue sur les modèles et les outils, au rythme de la frontière technologique',
