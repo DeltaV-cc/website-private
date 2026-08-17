@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-15T22:31:03Z",
+  "updated_at": "2026-08-17T06:43:01Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,74 +80,74 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.362004,
+        "change_24h": 25.9,
+        "asset": "crypto"
+      },
+      {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.478653,
-        "change_24h": 7.4,
+        "price": 0.509842,
+        "change_24h": 7.8,
         "asset": "crypto"
       },
       {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 9.57,
-        "change_24h": 6.7,
+        "symbol": "WLFI",
+        "name": "World Liberty Financial",
+        "price": 0.060424,
+        "change_24h": 4.4,
         "asset": "crypto"
       },
       {
-        "symbol": "KAS",
-        "name": "Kaspa",
-        "price": 0.025898,
-        "change_24h": 2.9,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002942,
+        "change_24h": 4.4,
         "asset": "crypto"
       },
       {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 409.6,
-        "change_24h": 2.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 56.99,
-        "change_24h": 2.6,
+        "symbol": "MORPHO",
+        "name": "Morpho",
+        "price": 2.04,
+        "change_24h": 4.0,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 8.93,
-        "change_24h": -2.8,
+        "symbol": "QNT",
+        "name": "Quant",
+        "price": 55.76,
+        "change_24h": -3.4,
         "asset": "crypto"
       },
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.080134,
-        "change_24h": -2.5,
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.029442,
+        "change_24h": -3.0,
         "asset": "crypto"
       },
       {
-        "symbol": "PI",
-        "name": "Pi Network",
-        "price": 0.087325,
-        "change_24h": -2.2,
+        "symbol": "ATOM",
+        "name": "Cosmos Hub",
+        "price": 1.46,
+        "change_24h": -2.3,
         "asset": "crypto"
       },
       {
-        "symbol": "MNT",
-        "name": "Mantle",
-        "price": 0.434094,
-        "change_24h": -2.1,
+        "symbol": "SHIB",
+        "name": "Shiba Inu",
+        "price": 4e-06,
+        "change_24h": -2.0,
         "asset": "crypto"
       },
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.308548,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.095349,
         "change_24h": -2.0,
         "asset": "crypto"
       }
