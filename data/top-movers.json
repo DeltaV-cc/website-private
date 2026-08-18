@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T20:15:27Z",
+  "updated_at": "2026-08-18T20:45:35Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.420163,
+        "price": 0.414164,
         "change_24h": 17.7,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008479,
+        "price": 0.008477,
         "change_24h": 16.5,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 13.68,
+        "price": 13.76,
         "change_24h": 10.4,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.055841,
+        "price": 0.055936,
         "change_24h": 3.0,
         "asset": "crypto"
       },
@@ -119,28 +119,28 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.324656,
+        "price": 0.322837,
         "change_24h": -8.3,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.632502,
+        "price": 0.631583,
         "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.426212,
+        "price": 0.426483,
         "change_24h": -3.4,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.482297,
+        "price": 0.481483,
         "change_24h": -3.3,
         "asset": "crypto"
       },
