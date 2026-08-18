@@ -1,21 +1,7 @@
 {
-  "updated": "2026-08-17T18:30:28.253905Z",
-  "period": "2026-08-17 \u2192 2026-10-01",
+  "updated": "2026-08-18T07:45:28.653333Z",
+  "period": "2026-08-18 \u2192 2026-10-02",
   "events": [
-    {
-      "date": "2026-08-17",
-      "label": "US Retail Sales (MoM)",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-17",
-      "label": "ECB Speech",
-      "currency": "EUR",
-      "impact": "medium",
-      "country": "EU"
-    },
     {
       "date": "2026-08-18",
       "label": "UK Unemployment Rate",
@@ -280,6 +266,20 @@
       "label": "UK Unemployment Rate",
       "currency": "GBP",
       "impact": "medium",
+      "country": "UK"
+    },
+    {
+      "date": "2026-09-15",
+      "label": "China Industrial Production",
+      "currency": "CNY",
+      "impact": "medium",
+      "country": "CN"
+    },
+    {
+      "date": "2026-09-16",
+      "label": "UK CPI (YoY)",
+      "currency": "GBP",
+      "impact": "high",
       "country": "UK"
     }
   ]
