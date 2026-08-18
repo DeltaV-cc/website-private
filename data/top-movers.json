@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T09:00:27Z",
+  "updated_at": "2026-08-18T10:45:03Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 13.97,
-        "change_24h": 12.4,
+        "price": 14.44,
+        "change_24h": 16.9,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008407,
-        "change_24h": 8.6,
+        "price": 0.0084,
+        "change_24h": 10.6,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.080037,
-        "change_24h": 6.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SKY",
-        "name": "Sky",
-        "price": 0.055002,
-        "change_24h": 4.2,
+        "price": 0.081234,
+        "change_24h": 6.7,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.030509,
-        "change_24h": 3.6,
+        "price": 0.030528,
+        "change_24h": 6.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.054751,
+        "change_24h": 4.9,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.321696,
-        "change_24h": -10.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002783,
-        "change_24h": -6.6,
+        "price": 0.324272,
+        "change_24h": -10.4,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.62685,
-        "change_24h": -6.1,
+        "price": 0.625532,
+        "change_24h": -5.7,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 97.83,
-        "change_24h": -5.2,
+        "price": 98.29,
+        "change_24h": -5.7,
         "asset": "crypto"
       },
       {
-        "symbol": "SUI",
-        "name": "Sui",
-        "price": 0.646535,
-        "change_24h": -4.8,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.091085,
+        "change_24h": -4.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ATOM",
+        "name": "Cosmos Hub",
+        "price": 1.39,
+        "change_24h": -4.2,
         "asset": "crypto"
       }
     ]
