@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-18T16:49:29Z",
+  "updated_at": "2026-08-18T19:45:50Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "AMLX",
         "name": "Amylyx Pharmaceuticals, Inc.",
-        "price": 32.52,
-        "change_24h": 51.75,
+        "price": 35.12,
+        "change_24h": 63.88,
         "asset": "equity"
       },
       {
         "symbol": "HAE",
         "name": "Haemonetics Corporation",
-        "price": 104.09,
-        "change_24h": 15.3,
+        "price": 104.8,
+        "change_24h": 16.1,
         "asset": "equity"
       },
       {
         "symbol": "UGI",
         "name": "UGI Corporation",
-        "price": 39.27,
-        "change_24h": 11.91,
+        "price": 38.59,
+        "change_24h": 9.97,
         "asset": "equity"
       },
       {
-        "symbol": "FOUR",
-        "name": "Shift4 Payments, Inc.",
-        "price": 47.95,
-        "change_24h": 8.12,
+        "symbol": "DUOL",
+        "name": "Duolingo, Inc.",
+        "price": 140.22,
+        "change_24h": 7.73,
         "asset": "equity"
       },
       {
-        "symbol": "TRGP",
-        "name": "Targa Resources, Inc.",
-        "price": 298.59,
-        "change_24h": 7.43,
+        "symbol": "DOO",
+        "name": "BRP Inc.",
+        "price": 68.5,
+        "change_24h": 7.37,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "KLAR",
         "name": "Klarna Group plc",
-        "price": 15.41,
-        "change_24h": -20.99,
+        "price": 15.14,
+        "change_24h": -22.4,
         "asset": "equity"
       },
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 124.29,
-        "change_24h": -14.64,
-        "asset": "equity"
-      },
-      {
-        "symbol": "AXTI",
-        "name": "AXT Inc",
-        "price": 82.38,
-        "change_24h": -14.17,
+        "price": 123.59,
+        "change_24h": -15.12,
         "asset": "equity"
       },
       {
         "symbol": "MXL",
         "name": "MaxLinear, Inc",
-        "price": 73.55,
-        "change_24h": -13.24,
+        "price": 72.38,
+        "change_24h": -14.61,
         "asset": "equity"
       },
       {
-        "symbol": "BIDU",
-        "name": "Baidu, Inc.",
-        "price": 90.33,
-        "change_24h": -13.24,
+        "symbol": "AAOI",
+        "name": "Applied Optoelectronics, Inc.",
+        "price": 132.94,
+        "change_24h": -14.17,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AXTI",
+        "name": "AXT Inc",
+        "price": 83.39,
+        "change_24h": -13.12,
         "asset": "equity"
       }
     ]
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 14.15,
-        "change_24h": 17.6,
-        "asset": "crypto"
-      },
-      {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.392394,
-        "change_24h": 10.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "POL",
-        "name": "POL (ex-MATIC)",
-        "price": 0.081849,
-        "change_24h": 4.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.16,
-        "change_24h": 4.1,
+        "price": 0.420983,
+        "change_24h": 17.4,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008421,
-        "change_24h": 3.9,
+        "price": 0.008444,
+        "change_24h": 15.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 13.92,
+        "change_24h": 9.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "POL",
+        "name": "POL (ex-MATIC)",
+        "price": 0.082216,
+        "change_24h": 4.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.055722,
+        "change_24h": 3.7,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.323846,
-        "change_24h": -8.8,
+        "price": 0.324647,
+        "change_24h": -8.1,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.623708,
-        "change_24h": -6.1,
+        "price": 0.635239,
+        "change_24h": -5.3,
         "asset": "crypto"
       },
       {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 99.36,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.14,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002815,
-        "change_24h": -3.5,
+        "symbol": "MNT",
+        "name": "Mantle",
+        "price": 0.427832,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.653673,
-        "change_24h": -3.1,
+        "price": 0.656663,
+        "change_24h": -2.9,
         "asset": "crypto"
       }
     ]
