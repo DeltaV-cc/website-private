@@ -1,78 +1,78 @@
 {
-  "updated_at": "2026-08-18T14:45:56Z",
+  "updated_at": "2026-08-18T16:10:54Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "NBIS",
-        "name": "Nebius Group N.V.",
-        "price": 258.18,
-        "change_24h": -3.97,
+        "symbol": "AMLX",
+        "name": "Amylyx Pharmaceuticals, Inc.",
+        "price": 32.01,
+        "change_24h": 49.37,
         "asset": "equity"
       },
       {
-        "symbol": "QNT",
-        "name": "Quantinuum Inc.",
-        "price": 59.76,
-        "change_24h": -9.48,
+        "symbol": "HAE",
+        "name": "Haemonetics Corporation",
+        "price": 104.51,
+        "change_24h": 15.77,
         "asset": "equity"
       },
       {
-        "symbol": "EROC",
-        "name": "ERock, Inc.",
-        "price": 16.59,
-        "change_24h": -4.68,
+        "symbol": "UGI",
+        "name": "UGI Corporation",
+        "price": 39.35,
+        "change_24h": 12.14,
         "asset": "equity"
       },
       {
-        "symbol": "SHAZ",
-        "name": "SharonAI Holdings, Inc.",
-        "price": 71.53,
-        "change_24h": -6.98,
+        "symbol": "DAO",
+        "name": "Youdao, Inc.",
+        "price": 17.5,
+        "change_24h": 7.46,
         "asset": "equity"
       },
       {
-        "symbol": "CRWV",
-        "name": "CoreWeave, Inc.",
-        "price": 97.12,
-        "change_24h": -8.37,
+        "symbol": "DUOL",
+        "name": "Duolingo, Inc.",
+        "price": 140.13,
+        "change_24h": 7.66,
         "asset": "equity"
       }
     ],
     "losers": [
       {
-        "symbol": "MAAS",
-        "name": "Maase Inc.",
-        "price": 16.44,
-        "change_24h": -2.61,
+        "symbol": "KLAR",
+        "name": "Klarna Group plc",
+        "price": 15.41,
+        "change_24h": -20.98,
         "asset": "equity"
       },
       {
-        "symbol": "FRVO",
-        "name": "Fervo Energy Company",
-        "price": 18.6,
-        "change_24h": 2.76,
+        "symbol": "AEHR",
+        "name": "Aehr Test Systems",
+        "price": 125.66,
+        "change_24h": -13.7,
         "asset": "equity"
       },
       {
-        "symbol": "LQDA",
-        "name": "Liquidia Corporation",
-        "price": 74.63,
-        "change_24h": -3.95,
+        "symbol": "MXL",
+        "name": "MaxLinear, Inc",
+        "price": 73.66,
+        "change_24h": -13.1,
         "asset": "equity"
       },
       {
-        "symbol": "ALMR",
-        "name": "Alamar Biosciences, Inc.",
-        "price": 32.8,
-        "change_24h": 2.07,
+        "symbol": "KALU",
+        "name": "Kaiser Aluminum Corporation",
+        "price": 162.13,
+        "change_24h": -12.6,
         "asset": "equity"
       },
       {
-        "symbol": "LB",
-        "name": "LandBridge Company LLC",
-        "price": 79.32,
-        "change_24h": -0.21,
+        "symbol": "AXTI",
+        "name": "AXT Inc",
+        "price": 83.79,
+        "change_24h": -12.69,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.03,
-        "change_24h": 20.4,
+        "price": 14.27,
+        "change_24h": 17.6,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.393599,
-        "change_24h": 15.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HASH",
-        "name": "Provenance Blockchain",
-        "price": 0.008426,
-        "change_24h": 10.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.17,
-        "change_24h": 4.4,
+        "price": 0.385878,
+        "change_24h": 10.5,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.082157,
-        "change_24h": 4.2,
+        "price": 0.081711,
+        "change_24h": 4.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "MORPHO",
+        "name": "Morpho",
+        "price": 2.18,
+        "change_24h": 4.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "HASH",
+        "name": "Provenance Blockchain",
+        "price": 0.008433,
+        "change_24h": 3.9,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.32523,
-        "change_24h": -8.7,
+        "price": 0.327678,
+        "change_24h": -8.8,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.623582,
-        "change_24h": -7.1,
+        "price": 0.628547,
+        "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 98.9,
-        "change_24h": -5.8,
+        "price": 99.39,
+        "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002821,
-        "change_24h": -3.7,
+        "price": 0.002809,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.65659,
-        "change_24h": -3.6,
+        "price": 0.655271,
+        "change_24h": -3.1,
         "asset": "crypto"
       }
     ]
