@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T12:30:39Z",
+  "updated_at": "2026-08-18T12:45:40Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.7,
+        "price": 14.49,
         "change_24h": 18.7,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.37363,
+        "price": 0.37877,
         "change_24h": 16.5,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.08082,
+        "price": 0.081068,
         "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.054401,
+        "price": 0.054428,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.325284,
+        "price": 0.32583,
         "change_24h": -10.7,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.625175,
+        "price": 0.62468,
         "change_24h": -7.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 98.65,
+        "price": 98.45,
         "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.652856,
+        "price": 0.65272,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.091899,
+        "price": 0.091861,
         "change_24h": -3.6,
         "asset": "crypto"
       }
