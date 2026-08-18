@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T08:30:17Z",
+  "updated_at": "2026-08-18T09:00:27Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 13.84,
+        "price": 13.97,
         "change_24h": 12.4,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008405,
+        "price": 0.008407,
         "change_24h": 8.6,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.079898,
+        "price": 0.080037,
         "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.054892,
+        "price": 0.055002,
         "change_24h": 4.2,
         "asset": "crypto"
       },
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.030636,
+        "price": 0.030509,
         "change_24h": 3.6,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.322427,
+        "price": 0.321696,
         "change_24h": -10.1,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002768,
+        "price": 0.002783,
         "change_24h": -6.6,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.627228,
+        "price": 0.62685,
         "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 97.96,
+        "price": 97.83,
         "change_24h": -5.2,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.644524,
+        "price": 0.646535,
         "change_24h": -4.8,
         "asset": "crypto"
       }
