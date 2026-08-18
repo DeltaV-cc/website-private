@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-18T16:11:08Z",
+  "updated_at": "2026-08-18T21:17:24Z",
   "source": "https://stablecoins.llama.fi/stablecoins",
   "stablecoins": [
     {
       "name": "Tether",
       "symbol": "USDT",
-      "circulating": 182959605094.74167
+      "circulating": 182942831468.6306
     },
     {
       "name": "USD Coin",
       "symbol": "USDC",
-      "circulating": 71903195882.33618
+      "circulating": 71921038006.43181
     },
     {
       "name": "Sky Dollar",
       "symbol": "USDS",
-      "circulating": 6701972611.050737
+      "circulating": 6720620201.4058695
     },
     {
       "name": "Dai",
       "symbol": "DAI",
-      "circulating": 4761413328.611135
-    },
-    {
-      "name": "World Liberty Financial USD",
-      "symbol": "USD1",
-      "circulating": 4010593356.2514005
+      "circulating": 4766110718.184486
     },
     {
       "name": "Ethena USDe",
       "symbol": "USDe",
-      "circulating": 3999032911.6941595
+      "circulating": 4035830739.4672985
+    },
+    {
+      "name": "World Liberty Financial USD",
+      "symbol": "USD1",
+      "circulating": 4011229968.9061165
     },
     {
       "name": "Global Dollar",
       "symbol": "USDG",
-      "circulating": 3405241674.1932735
+      "circulating": 3404733665.6435037
     },
     {
       "name": "Circle USYC",
@@ -43,26 +43,26 @@
       "circulating": 2981350884.8758874
     },
     {
-      "name": "PayPal USD",
-      "symbol": "PYUSD",
-      "circulating": 2742110638.5460267
-    },
-    {
       "name": "BlackRock USD",
       "symbol": "BUIDL",
-      "circulating": 2741623179.000449
+      "circulating": 2741885197.600449
+    },
+    {
+      "name": "PayPal USD",
+      "symbol": "PYUSD",
+      "circulating": 2740218531.270251
     },
     {
       "name": "Ondo US Dollar Yield",
       "symbol": "USDY",
-      "circulating": 2144904395.6640522
+      "circulating": 2146511322.3190362
     },
     {
       "name": "Ripple USD",
       "symbol": "RLUSD",
-      "circulating": 1755294840.9439814
+      "circulating": 1760871950.920518
     }
   ],
   "stablecoinChains": [],
-  "total_circulating": 290106338797.909
+  "total_circulating": 290173232655.65594
 }
