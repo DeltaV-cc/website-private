@@ -1,14 +1,7 @@
 {
-  "updated": "2026-08-18T20:45:35.504224Z",
-  "period": "2026-08-18 \u2192 2026-10-02",
+  "updated": "2026-08-18T21:15:16.941536Z",
+  "period": "2026-08-19 \u2192 2026-10-03",
   "events": [
-    {
-      "date": "2026-08-18",
-      "label": "UK Unemployment Rate",
-      "currency": "GBP",
-      "impact": "medium",
-      "country": "UK"
-    },
     {
       "date": "2026-08-19",
       "label": "UK CPI (YoY)",
@@ -281,6 +274,13 @@
       "currency": "GBP",
       "impact": "high",
       "country": "UK"
+    },
+    {
+      "date": "2026-09-17",
+      "label": "US Initial Jobless Claims",
+      "currency": "USD",
+      "impact": "medium",
+      "country": "US"
     }
   ]
 }
