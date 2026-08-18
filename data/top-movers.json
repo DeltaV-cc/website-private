@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T07:45:28Z",
+  "updated_at": "2026-08-18T08:30:17Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 13.74,
-        "change_24h": 12.5,
+        "price": 13.84,
+        "change_24h": 12.4,
         "asset": "crypto"
       },
       {
         "symbol": "HASH",
         "name": "Provenance Blockchain",
-        "price": 0.008407,
-        "change_24h": 8.8,
+        "price": 0.008405,
+        "change_24h": 8.6,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.079592,
-        "change_24h": 5.9,
+        "price": 0.079898,
+        "change_24h": 6.2,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.054759,
-        "change_24h": 4.5,
+        "price": 0.054892,
+        "change_24h": 4.2,
         "asset": "crypto"
       },
       {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.12,
-        "change_24h": 3.4,
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.030636,
+        "change_24h": 3.6,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.322284,
-        "change_24h": -10.8,
+        "price": 0.322427,
+        "change_24h": -10.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002768,
+        "change_24h": -6.6,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.626974,
-        "change_24h": -6.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.360146,
+        "price": 0.627228,
         "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 98.14,
-        "change_24h": -5.5,
+        "price": 97.96,
+        "change_24h": -5.2,
         "asset": "crypto"
       },
       {
-        "symbol": "ETHFI",
-        "name": "Ether.fi",
-        "price": 0.486284,
-        "change_24h": -4.1,
+        "symbol": "SUI",
+        "name": "Sui",
+        "price": 0.644524,
+        "change_24h": -4.8,
         "asset": "crypto"
       }
     ]
