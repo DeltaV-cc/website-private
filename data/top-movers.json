@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-18T16:45:28Z",
+  "updated_at": "2026-08-18T16:49:29Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "AMLX",
         "name": "Amylyx Pharmaceuticals, Inc.",
-        "price": 32.78,
-        "change_24h": 52.96,
+        "price": 32.52,
+        "change_24h": 51.75,
         "asset": "equity"
       },
       {
         "symbol": "HAE",
         "name": "Haemonetics Corporation",
-        "price": 104.19,
-        "change_24h": 15.42,
+        "price": 104.09,
+        "change_24h": 15.3,
         "asset": "equity"
       },
       {
         "symbol": "UGI",
         "name": "UGI Corporation",
-        "price": 39.3,
-        "change_24h": 11.98,
-        "asset": "equity"
-      },
-      {
-        "symbol": "TRGP",
-        "name": "Targa Resources, Inc.",
-        "price": 299.12,
-        "change_24h": 7.62,
+        "price": 39.27,
+        "change_24h": 11.91,
         "asset": "equity"
       },
       {
         "symbol": "FOUR",
         "name": "Shift4 Payments, Inc.",
-        "price": 47.72,
-        "change_24h": 7.6,
+        "price": 47.95,
+        "change_24h": 8.12,
+        "asset": "equity"
+      },
+      {
+        "symbol": "TRGP",
+        "name": "Targa Resources, Inc.",
+        "price": 298.59,
+        "change_24h": 7.43,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "KLAR",
         "name": "Klarna Group plc",
-        "price": 15.38,
-        "change_24h": -21.17,
+        "price": 15.41,
+        "change_24h": -20.99,
         "asset": "equity"
       },
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 123.62,
-        "change_24h": -15.1,
+        "price": 124.29,
+        "change_24h": -14.64,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 81.72,
-        "change_24h": -14.85,
+        "price": 82.38,
+        "change_24h": -14.17,
         "asset": "equity"
       },
       {
         "symbol": "MXL",
         "name": "MaxLinear, Inc",
-        "price": 73.04,
-        "change_24h": -13.83,
+        "price": 73.55,
+        "change_24h": -13.24,
         "asset": "equity"
       },
       {
-        "symbol": "AAOI",
-        "name": "Applied Optoelectronics, Inc.",
-        "price": 134.19,
-        "change_24h": -13.36,
+        "symbol": "BIDU",
+        "name": "Baidu, Inc.",
+        "price": 90.33,
+        "change_24h": -13.24,
         "asset": "equity"
       }
     ]
@@ -82,21 +82,21 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.17,
+        "price": 14.15,
         "change_24h": 17.6,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.390601,
+        "price": 0.392394,
         "change_24h": 10.5,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.081715,
+        "price": 0.081849,
         "change_24h": 4.6,
         "asset": "crypto"
       },
@@ -119,35 +119,35 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.324429,
+        "price": 0.323846,
         "change_24h": -8.8,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.62426,
+        "price": 0.623708,
         "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 99.3,
+        "price": 99.36,
         "change_24h": -4.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002816,
+        "price": 0.002815,
         "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.654315,
+        "price": 0.653673,
         "change_24h": -3.1,
         "asset": "crypto"
       }
