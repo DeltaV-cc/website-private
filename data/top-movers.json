@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T12:00:36Z",
+  "updated_at": "2026-08-18T12:30:39Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.62,
-        "change_24h": 18.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HASH",
-        "name": "Provenance Blockchain",
-        "price": 0.008399,
-        "change_24h": 10.4,
+        "price": 14.7,
+        "change_24h": 18.7,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.372551,
-        "change_24h": 8.2,
+        "price": 0.37363,
+        "change_24h": 16.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "HASH",
+        "name": "Provenance Blockchain",
+        "price": 0.008401,
+        "change_24h": 8.3,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.08042,
-        "change_24h": 6.3,
+        "price": 0.08082,
+        "change_24h": 4.4,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.054582,
-        "change_24h": 4.7,
+        "price": 0.054401,
+        "change_24h": 3.6,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.325422,
-        "change_24h": -9.5,
+        "price": 0.325284,
+        "change_24h": -10.7,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.622951,
-        "change_24h": -6.2,
+        "price": 0.625175,
+        "change_24h": -7.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 98.62,
-        "change_24h": -5.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.091507,
-        "change_24h": -4.6,
+        "price": 98.65,
+        "change_24h": -4.7,
         "asset": "crypto"
       },
       {
         "symbol": "SUI",
         "name": "Sui",
-        "price": 0.650418,
-        "change_24h": -4.0,
+        "price": 0.652856,
+        "change_24h": -4.2,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.091899,
+        "change_24h": -3.6,
         "asset": "crypto"
       }
     ]
