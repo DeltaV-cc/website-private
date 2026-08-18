@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-18T07:44:39Z",
+  "updated_at": "2026-08-18T09:01:01Z",
   "source": "DefiLlama Yields (Liquity V2 BOLD)",
   "dune_dashboard": "https://dune.com/liquity/bold-yields",
   "docs": "https://docs.liquity.org/v2-faq/bold-and-earn",
   "headline": {
-    "weighted_stability_apy": 4.882031834376479,
-    "stability_tvl_usd": 19158728,
+    "weighted_stability_apy": 4.882038488957596,
+    "stability_tvl_usd": 19157649,
     "pool_count": 3
   },
   "stability_pools": [
@@ -16,10 +16,10 @@
       "chain": "Ethereum",
       "collateral": "wstETH",
       "kind": "stability_pool",
-      "apy": 5.55997,
+      "apy": 5.55998,
       "apyBase": null,
       "apyReward": null,
-      "tvlUsd": 12802352,
+      "tvlUsd": 12801631,
       "meta": "BOLD deposited in the WSTETH Stability Pool earns continuous BOLD yield and periodic WSTETH rewards from Trove liquidations",
       "url": "https://defillama.com/yields/pool/dac71f4f-7b97-463a-b19f-9796c56c21f1"
     },
@@ -33,7 +33,7 @@
       "apy": 4.67957,
       "apyBase": null,
       "apyReward": null,
-      "tvlUsd": 3973960,
+      "tvlUsd": 3973736,
       "meta": "BOLD deposited in the ETH Stability Pool earns continuous BOLD yield and periodic ETH rewards from Trove liquidations",
       "url": "https://defillama.com/yields/pool/a635df9a-4cfc-4d17-86d0-934ea441e79f"
     },
@@ -47,7 +47,7 @@
       "apy": 1.57672,
       "apyBase": null,
       "apyReward": null,
-      "tvlUsd": 2382416,
+      "tvlUsd": 2382282,
       "meta": "BOLD deposited in the RETH Stability Pool earns continuous BOLD yield and periodic RETH rewards from Trove liquidations",
       "url": "https://defillama.com/yields/pool/326739f2-4650-4992-a8eb-a400e7790499"
     }
@@ -60,10 +60,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-USDC",
       "kind": "lp",
-      "apy": 0.888,
+      "apy": 0.88597,
       "apyBase": 0.53,
-      "apyReward": 0.358,
-      "tvlUsd": 7004575,
+      "apyReward": 0.35597,
+      "tvlUsd": 7004117,
       "meta": null,
       "url": "https://defillama.com/yields/pool/755529b5-fcf4-4ef0-a7c7-e4f49376706f"
     },
@@ -105,7 +105,7 @@
       "apy": 0.07811,
       "apyBase": 0.07811,
       "apyReward": null,
-      "tvlUsd": 1414899,
+      "tvlUsd": 1414870,
       "meta": "0.05%",
       "url": "https://defillama.com/yields/pool/8d4931e1-b573-4802-856d-244645926b19"
     },
@@ -116,10 +116,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-USDC",
       "kind": "vault",
-      "apy": 1.3423,
+      "apy": 1.33769,
       "apyBase": 0.53,
-      "apyReward": 0.8123,
-      "tvlUsd": 1260945,
+      "apyReward": 0.80769,
+      "tvlUsd": 1260862,
       "meta": null,
       "url": "https://defillama.com/yields/pool/beb8b374-06a3-40d5-a89b-8f7e8d0fcee6"
     },
@@ -133,7 +133,7 @@
       "apy": 0.04,
       "apyBase": 0.04,
       "apyReward": 0,
-      "tvlUsd": 785363,
+      "tvlUsd": 785290,
       "meta": null,
       "url": "https://defillama.com/yields/pool/80011215-3cbe-4d82-b6c6-5b7a69f729ce"
     },
@@ -144,10 +144,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-USDC",
       "kind": "vault",
-      "apy": 5.46912,
+      "apy": 5.46571,
       "apyBase": 0.24,
-      "apyReward": 5.22912,
-      "tvlUsd": 561139,
+      "apyReward": 5.22571,
+      "tvlUsd": 561114,
       "meta": "Curve",
       "url": "https://defillama.com/yields/pool/522041df-0037-41aa-8a54-87054a78ddbe"
     },
@@ -158,10 +158,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-LUSD",
       "kind": "vault",
-      "apy": 5.34826,
+      "apy": 5.34831,
       "apyBase": null,
       "apyReward": null,
-      "tvlUsd": 396685,
+      "tvlUsd": 396694,
       "meta": "Curve",
       "url": "https://defillama.com/yields/pool/1977885c-d5ae-4c9e-b4df-863b7e1578e6"
     },
@@ -186,10 +186,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-AVUSD",
       "kind": "lp",
-      "apy": 8.68913,
+      "apy": 8.63984,
       "apyBase": 0,
-      "apyReward": 8.68913,
-      "tvlUsd": 338276,
+      "apyReward": 8.63984,
+      "tvlUsd": 338254,
       "meta": null,
       "url": "https://defillama.com/yields/pool/1cb41712-6417-485e-aa23-db1d99a57b2b"
     },
@@ -200,10 +200,10 @@
       "chain": "Ethereum",
       "collateral": "BOLD-AVUSD",
       "kind": "vault",
-      "apy": 10.07384,
+      "apy": 10.0251,
       "apyBase": 0.09,
-      "apyReward": 9.98384,
-      "tvlUsd": 282803,
+      "apyReward": 9.9351,
+      "tvlUsd": 282791,
       "meta": "Curve",
       "url": "https://defillama.com/yields/pool/a740c473-a566-5478-bf1c-ecc69326d260"
     },
@@ -217,7 +217,7 @@
       "apy": 3.50599,
       "apyBase": 3.50599,
       "apyReward": null,
-      "tvlUsd": 247479,
+      "tvlUsd": 247397,
       "meta": "For buying PT-sBOLD-04FEB2027",
       "url": "https://defillama.com/yields/pool/2ce146c4-4443-50eb-851b-fc7d37a3cd0a"
     }
