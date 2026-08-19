@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://deltav-cc.github.io/website-private/sitemap.xml
+Sitemap: https://deltavgit.github.io/website-private/sitemap.xml
