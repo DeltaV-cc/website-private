@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T21:15:46Z",
+  "updated_at": "2026-08-19T21:30:28Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 70.35,
+        "price": 71.33,
         "change_24h": 19.8,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2258.65,
+        "price": 2268.83,
         "change_24h": 15.7,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.71,
+        "price": 2.66,
         "change_24h": 13.7,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.367962,
+        "price": 0.366104,
         "change_24h": 13.0,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.087434,
+        "price": 0.087901,
         "change_24h": 13.0,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.384776,
+        "price": 0.384048,
         "change_24h": -9.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.102885,
+        "price": 0.103415,
         "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "FIGR_HELOC",
         "name": "Figure Heloc",
-        "price": 1.008,
+        "price": 1.01,
         "change_24h": -2.5,
         "asset": "crypto"
       },
