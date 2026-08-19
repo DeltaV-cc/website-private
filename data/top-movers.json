@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T12:01:15Z",
+  "updated_at": "2026-08-19T12:15:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.628219,
-        "change_24h": 85.0,
+        "price": 0.620302,
+        "change_24h": 70.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.003,
+        "price": 0.002996,
         "change_24h": 7.6,
         "asset": "crypto"
       },
@@ -97,21 +97,21 @@
         "symbol": "CAKE",
         "name": "PancakeSwap",
         "price": 1.54,
-        "change_24h": 6.3,
+        "change_24h": 5.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.057162,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.773128,
-        "change_24h": 5.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 101.8,
-        "change_24h": 3.8,
+        "price": 0.777025,
+        "change_24h": 4.5,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029193,
-        "change_24h": -5.4,
+        "price": 0.029161,
+        "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.05,
-        "change_24h": -5.3,
+        "price": 2.06,
+        "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -3.9,
+        "change_24h": -4.1,
         "asset": "crypto"
       },
       {
-        "symbol": "LIT",
-        "name": "Lighter",
-        "price": 2.32,
-        "change_24h": -3.5,
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 14.0,
+        "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "LEO",
         "name": "LEO Token",
         "price": 9.15,
-        "change_24h": -2.8,
+        "change_24h": -3.4,
         "asset": "crypto"
       }
     ]
