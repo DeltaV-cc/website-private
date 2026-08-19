@@ -3,7 +3,7 @@ name: unbroker-eu
 description: >
   File GDPR erasure / objection requests for an EU or UK resident against
   adtech and data brokers that do not need an ID copy: YourOnlineChoices,
-  Acxiom, Criteo, LiveRamp, Google results-about-you, Dun & Bradstreet if
+  Acxiom, Criteo, LiveRamp, Oracle Advertising, Google results-about-you, Dun & Bradstreet if
   the person appears. Use when the user says unbroker-eu, GDPR opt-out,
   clean my digital footprint in the EU, Criteo, Acxiom, or runs /unbroker-eu.
   Do not use for third parties, credit bureaus that demand ID, or Swiss
@@ -34,11 +34,24 @@ identity document. SCHUFA / Experian / CRIF-EU stay in the digest.
 
 ## How to run
 
+Via `terminal`, from this skill's directory (not `execute_code` — it redacts
+dossiers). Interpreter is `python3` on macOS/Linux and `python` on native
+Windows; this one-liner picks whichever actually runs on the host (the Windows
+`python3` Store stub is skipped by the probe):
+
 ```bash
-UBGE="python3 scripts/ubge.py"
+PY="python3"; python3 -c "pass" >/dev/null 2>&1 || PY="python"; UBGE="$PY scripts/ubge.py"
 ```
 
-Data: `$UNBROKER_DATA_DIR` or `$HERMES_HOME/unbroker-eu`.
+Data: `$UBGE_DATA_DIR` / `$UNBROKER_DATA_DIR`, else `$HERMES_HOME/unbroker-eu`
+(mode `0600` on POSIX; profile-home isolation on Windows).
+
+## Verify
+
+```bash
+$UBGE setup && $UBGE doctor    # GDPR target list; data dir separate from unbroker-ge
+$PY tests/test_ubge.py         # hermetic tests, no network
+```
 
 ## Quick reference
 

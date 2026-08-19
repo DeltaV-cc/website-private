@@ -104,15 +104,14 @@ class UbgeEuTests(unittest.TestCase):
 
     def test_queue_drains(self) -> None:
         sid = self.intake()
-        for tid in (
-            "youronlinechoices",
-            "acxiom",
-            "criteo",
-            "liveramp",
-            "google_results",
-        ):
-            self.run_ubge("record", sid, tid, "submitted")
-        self.run_ubge("record", sid, "dnb", "not_found", "--found", "false")
+        catalog = json.loads((ROOT / "scripts" / "targets.json").read_text(encoding="utf-8"))
+        for tid, spec in catalog["targets"].items():
+            if spec["lane"] != "noid":
+                continue
+            if spec.get("scan"):
+                self.run_ubge("record", sid, tid, "not_found", "--found", "false")
+            if spec.get("blind_optout"):
+                self.run_ubge("record", sid, tid, "submitted")
         nxt = json.loads(self.run_ubge("next", sid).stdout)
         self.assertTrue(nxt["done_for_now"])
         self.assertEqual(nxt["actions"], [])

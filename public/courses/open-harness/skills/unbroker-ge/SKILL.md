@@ -1,9 +1,9 @@
 ---
 name: unbroker-ge
 description: >
-  File Swiss (Geneva) data-broker opt-outs that do not need an ID copy:
-  Robinson list, local.ch / search.ch, Moneyhouse, La Poste mailing stop,
-  Dun & Bradstreet if the person appears. Use when the user says unbroker-ge,
+  File Swiss data-broker and adtech opt-outs that do not need an ID copy:
+  Robinson, YourOnlineChoices, local.ch, Moneyhouse, Poste, KünzlerBachmann,
+  Intrum marketing, Google results, Criteo, Acxiom, LiveRamp, D&B if found. Use when the user says unbroker-ge,
   clean my digital footprint in Geneva or Switzerland, Robinson list, opt out
   of local.ch or Moneyhouse, or runs /unbroker-ge. Do not use for third
   parties, public registers, or requests that require a passport/ID scan.
@@ -35,7 +35,7 @@ intake conversation, (2) ONE digest at the end (`$UBGE tasks`). Between those:
 
 - Never ask the operator to pick brokers. `$UBGE next` is the queue.
 - Never pause before individual no-ID submissions. Consent is standing
-  authorization for Robinson, localsearch, Moneyhouse, Poste, and D&B-if-found.
+  authorization for every no-ID target in scripts/targets.json.
 - Never send, attach, or store a pièce d'identité / AVS / passport. ID-gated
   targets (CRIF, AZ Direct, Creditreform) only appear in the digest.
 - Drive the run as a loop over `$UBGE next <subject>` until `done_for_now`.
@@ -71,7 +71,7 @@ python3 scripts/ubge.py setup && python3 scripts/ubge.py doctor   # 8 targets, l
 python3 tests/test_ubge.py                                        # 9 hermetic tests
 ```
 
-`doctor` prints `setup: true` and lists 5 no-ID targets + 3 ID-gated. Dossiers
+`doctor` prints `setup: true` and the current no-ID vs ID-gated lists. Dossiers
 and the ledger stay inside the data dir — no ID ever leaves the machine.
 
 ## Quick reference
@@ -130,14 +130,13 @@ listing gone.
 
 ## Rules the queue already encodes
 
-- Robinson first (the Swiss one-shot).
-- Blind opt-out on localsearch / Moneyhouse / Poste even when the scan is
-  `not_found` — you only send the subject's own identifiers to the official
-  channel.
-- D&B only if `found` (a person/director page). Company pages stay.
+- Robinson first (paper mail). YourOnlineChoices next (digital ads).
+- Blind nLPD letter / form on every `blind_optout` target even when the scan
+  is `not_found`.
+- D&B only if `found`. Company pages stay.
 - CRIF / AZ Direct / Creditreform never become agent submit actions.
 - Prefer blocage over full deletion.
-- French nLPD letter only. Never CCPA.
+- French nLPD letter. Never CCPA. Live target list is `scripts/targets.json`.
 
 ## Out of scope
 

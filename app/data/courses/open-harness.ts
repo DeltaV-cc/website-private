@@ -1587,11 +1587,11 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             code: 'Use unbroker-eu. I consent. I live in the EU.',
           } },
           { k: 'table', headers: [L('Lane A files'), L('Lane B files')], rows: [
-            [L('Liste Robinson (SDV) — first'), L('YourOnlineChoices (EDAA) — first')],
-            [L('local.ch / search.ch'), L('Acxiom')],
-            [L('Moneyhouse'), L('Criteo')],
-            [L('La Poste mailing stop'), L('LiveRamp')],
-            [L('D&B CH if a person page exists'), L('Google results-about-you; D&B if found')],
+            [L('Robinson (paper) + YourOnlineChoices (ads)'), L('YourOnlineChoices (ads) — first')],
+            [L('local.ch, Moneyhouse, KünzlerBachmann, Intrum'), L('Acxiom, Criteo, LiveRamp, Oracle Ads')],
+            [L('Poste + Google results + Criteo/Acxiom/LiveRamp'), L('Google results-about-you')],
+            [L('D&B if a person page exists'), L('D&B if found')],
+            [L('CRIF / AZ Direct / Creditreform → digest (ID)'), L('SCHUFA / Experian / CRIF-EU → digest (ID)')],
           ] },
           { k: 'p', text: L(
             'If you still have time after the receipt exists: `/learn` on a file you own, or the Desktop HUD (“this” instead of describing a window). Neither replaces the footprint loop.',

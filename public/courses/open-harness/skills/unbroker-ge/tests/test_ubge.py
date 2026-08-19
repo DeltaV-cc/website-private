@@ -121,13 +121,16 @@ class UbgeTests(unittest.TestCase):
 
     def test_queue_drains_to_done(self) -> None:
         sid = self.intake()
-        self.run_ubge("record", sid, "robinson", "submitted")
-        self.run_ubge("record", sid, "localsearch", "not_found", "--found", "false")
-        self.run_ubge("record", sid, "localsearch", "submitted")
-        self.run_ubge("record", sid, "moneyhouse", "not_found", "--found", "false")
-        self.run_ubge("record", sid, "moneyhouse", "submitted")
-        self.run_ubge("record", sid, "poste", "submitted")
-        self.run_ubge("record", sid, "dnb", "not_found", "--found", "false")
+        catalog = json.loads((ROOT / "scripts" / "targets.json").read_text(encoding="utf-8"))
+        for tid, spec in catalog["targets"].items():
+            if spec["lane"] != "noid":
+                continue
+            if spec.get("scan"):
+                self.run_ubge("record", sid, tid, "not_found", "--found", "false")
+            if spec.get("blind_optout") or tid == "dnb":
+                if tid == "dnb":
+                    continue
+                self.run_ubge("record", sid, tid, "submitted")
         nxt = json.loads(self.run_ubge("next", sid).stdout)
         self.assertTrue(nxt["done_for_now"])
         self.assertEqual(nxt["actions"], [])

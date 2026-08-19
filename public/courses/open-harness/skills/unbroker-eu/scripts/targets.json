@@ -10,6 +10,7 @@
     "acxiom",
     "criteo",
     "liveramp",
+    "oracle_ads",
     "google_results",
     "dnb",
     "schufa",
@@ -56,6 +57,17 @@
       "optout_url": "https://liveramp.com/privacy/your-rights/",
       "email": null,
       "notes": "Identity-graph / marketing connectivity. Use their rights page."
+    },
+    "oracle_ads": {
+      "name": "Oracle Advertising",
+      "lane": "noid",
+      "kind": "adtech",
+      "scan": false,
+      "blind_optout": true,
+      "method": "web_form",
+      "optout_url": "https://www.oracle.com/legal/privacy/privacy-choices.html",
+      "email": "privacy_ww@oracle.com",
+      "notes": "BlueKai / addthis lineage. Privacy-choices page or privacy_ww@oracle.com. GDPR Art. 17/21."
     },
     "google_results": {
       "name": "Google — results about you",
