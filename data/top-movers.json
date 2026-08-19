@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T12:15:21Z",
+  "updated_at": "2026-08-19T12:46:04Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.620302,
+        "price": 0.628015,
         "change_24h": 70.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002996,
+        "price": 0.00301,
         "change_24h": 7.6,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.057162,
+        "price": 0.057224,
         "change_24h": 4.6,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.777025,
+        "price": 0.778274,
         "change_24h": 4.5,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029161,
+        "price": 0.029089,
         "change_24h": -4.4,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.0,
+        "price": 14.13,
         "change_24h": -3.6,
         "asset": "crypto"
       },
       {
         "symbol": "LEO",
         "name": "LEO Token",
-        "price": 9.15,
+        "price": 9.14,
         "change_24h": -3.4,
         "asset": "crypto"
       }
