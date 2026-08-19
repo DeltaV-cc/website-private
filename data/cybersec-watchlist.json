@@ -1,26 +1,130 @@
 [
   {
-    "title": "LastPass confirms data breach in Klue supply chain attack",
-    "url": "https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/",
+    "title": "Password spraying attacks surge 155x as hackers exploit MFA gaps",
+    "url": "https://www.bleepingcomputer.com/news/security/password-spraying-attacks-surge-155x-as-hackers-exploit-mfa-gaps/",
     "source": "BleepingComputer",
-    "summary": "LastPass confirmed a data breach after attackers compromised Klue, a third-party vendor, accessing customer account metadata.",
-    "added": "2026-06-23T20:00:00Z",
-    "expires": "2026-06-30T20:00:00Z"
+    "summary": "Huntress observed a 155x increase in password spraying attacks in H1 2026, including a campaign that generated more than 81 million login attempts in two weeks. The attacks exploited legacy authentication and gaps in MFA",
+    "added": "2026-08-19T14:00:10+00:00",
+    "expires": "2026-09-02T15:45:03Z"
   },
   {
-    "title": "Aztec Tells V4 Users to Withdraw Before June 25 as V5 Upgrade Exposes Security Flaw",
-    "url": "https://thedefiant.io/news/defi/aztec-tells-v4-users-to-withdraw-before-june-25",
-    "source": "The Defiant",
-    "summary": "Aztec Network warns V4 users to withdraw funds before June 25; V5 upgrade revealed a security vulnerability in the existing bridge contracts.",
-    "added": "2026-06-23T20:00:00Z",
-    "expires": "2026-06-30T20:00:00Z"
+    "title": "SilkParasite Espionage Campaign Targets Central Asian Governments with Five New RATs",
+    "url": "https://thehackernews.com/2026/08/silkparasite-espionage-campaign-targets.html",
+    "source": "The Hacker News",
+    "summary": "A previously unreported cyber espionage operation dubbed SilkParasite has been observed targeting government bodies in Central Asia. The intrusion set makes use of seven remote access tool (RAT) families, five of which h",
+    "added": "2026-08-19T13:12:17+00:00",
+    "expires": "2026-09-02T15:45:04Z"
   },
   {
-    "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
-    "url": "https://www.cisa.gov/news-events/alerts/2026/06/23/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+    "title": "Defending Against an Active Threat to Siemens S7 Series PLCs",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-231a",
     "source": "CISA Advisories",
-    "summary": "CISA added four new vulnerabilities to its Known Exploited Vulnerabilities catalog, requiring federal agencies to patch by deadline.",
-    "added": "2026-06-23T20:00:00Z",
-    "expires": "2026-06-30T20:00:00Z"
+    "summary": "Executive summary Note: This advisory relates to an active threat to Siemens S7 Series programmable logic controllers (PLCs). However, ongoing PLC targeting activity is broader than Siemens PLCs. All PLC owners and opera",
+    "added": "2026-08-19T12:00:00+00:00",
+    "expires": "2026-09-02T15:45:05Z"
+  },
+  {
+    "title": "Hackers Compromised 14,500+ Dahua Devices Using Credential Attacks, Auth Bypasses, and P2P",
+    "url": "https://thehackernews.com/2026/08/hackers-compromised-14500-dahua-devices.html",
+    "source": "The Hacker News",
+    "summary": "Cybersecurity researchers at Hunt.io have disclosed details of a campaign that they say compromised more than 14,530 Dahua devices between June 17 and July 22, 2026, using credential attacks, two authentication-bypass fl",
+    "added": "2026-08-19T11:34:28+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "Phishing 3.0: The Fight Moves to Agent Versus Agent",
+    "url": "https://thehackernews.com/2026/08/phishing-30-fight-moves-to-agent-versus.html",
+    "source": "The Hacker News",
+    "summary": "Most email defenses still do the job they did a decade ago. Scan the message, look for something malicious, block it. That worked when the danger sat in the payload, a bad link or an attachment. It stopped working when t",
+    "added": "2026-08-19T11:30:00+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "StopAndProtect Uses Nearly 2,000 Hacked WordPress Sites to Spread Malware and Steal Data",
+    "url": "https://thehackernews.com/2026/08/stopandprotect-uses-nearly-2000-hacked.html",
+    "source": "The Hacker News",
+    "summary": "Cybersecurity researchers have flagged a global cybercrime operation that abuses thousands of hacked WordPress websites as infrastructure to disseminate malware, commandeer infected hosts, store stolen documents, screens",
+    "added": "2026-08-19T11:25:28+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "Microsoft fixes known issue causing Windows Defender crashes",
+    "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-known-issue-causing-windows-defender-crashes/",
+    "source": "BleepingComputer",
+    "summary": "Microsoft has resolved a bug that caused Windows Defender to crash after a recent security update, resulting in 0xc0000005 access violation errors on some affected systems. [...]",
+    "added": "2026-08-19T11:14:28+00:00",
+    "expires": "2026-09-02T15:45:03Z"
+  },
+  {
+    "title": "Critical macOS, SharePoint, vCenter, and Microsoft IKE Flaws Under Active Exploitation",
+    "url": "https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html",
+    "source": "The Hacker News",
+    "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added four critical vulnerabilities to its Known Exploited Vulnerabilities (KEV) catalog, stating they are being exploited in the wild. The shor",
+    "added": "2026-08-19T11:01:48+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "Critical RCE flaw in Windows IKE Extension now actively exploited",
+    "url": "https://www.bleepingcomputer.com/news/security/cisa-critical-windows-ike-extension-flaw-now-exploited-in-attacks/",
+    "source": "BleepingComputer",
+    "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) warned that hackers are exploiting a critical-severity remote code execution (RCE) flaw in the Windows Internet Key Exchange (IKE) Service Extensions compo",
+    "added": "2026-08-19T10:12:24+00:00",
+    "expires": "2026-09-02T15:45:03Z"
+  },
+  {
+    "title": "Windows 11 24H2 Home and Pro reach end of support in 2 months",
+    "url": "https://www.bleepingcomputer.com/news/microsoft/windows-11-24h2-home-and-pro-reach-end-of-support-in-2-months/",
+    "source": "BleepingComputer",
+    "summary": "Microsoft has reminded customers that systems running Home and Pro editions of Windows 11 24H2 will stop receiving updates in two months. [...]",
+    "added": "2026-08-19T09:10:20+00:00",
+    "expires": "2026-09-02T15:45:03Z"
+  },
+  {
+    "title": "CISA: Medusa ransomware hit over 500 critical infrastructure orgs",
+    "url": "https://www.bleepingcomputer.com/news/security/cisa-medusa-ransomware-hit-over-500-critical-infrastructure-orgs/",
+    "source": "BleepingComputer",
+    "summary": "The FBI said Tuesday that the Medusa ransomware gang has breached more than 500 critical infrastructure organizations in the United States since June 2021. [...]",
+    "added": "2026-08-19T08:00:48+00:00",
+    "expires": "2026-09-02T15:45:03Z"
+  },
+  {
+    "title": "China-Linked Hacker Shows AI Capabilities in APAC Attack",
+    "url": "https://www.darkreading.com/cyberattacks-data-breaches/china-linked-hacker-ai-capabilities-apac-attack",
+    "source": "Dark Reading",
+    "summary": "In the first purported \"near-autonomous\" attack on a nation-state, a Chinese-language operator used a complex AI framework to target and compromise government agencies, likely in Taiwan.",
+    "added": "2026-08-19T01:00:00+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "Critical GitLab Zero-Click Flaw Poses Mitigation Challenges",
+    "url": "https://www.darkreading.com/application-security/critical-gitlab-zero-click-flaw-mitigation-challenges",
+    "source": "Dark Reading",
+    "summary": "A lack of technical details could make it hard for organizations running self-managed GitLab versions to detect potential exploitation of CVE-2026-19478.",
+    "added": "2026-08-18T21:25:58+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "'CoSnitch' Attack Tricked Copilot into Mapping Out Architecture",
+    "url": "https://www.darkreading.com/vulnerabilities-threats/cosnitch-attack-copilot-mapping-out-architecture",
+    "source": "Dark Reading",
+    "summary": "Researchers discovered a \"meta-hacking\" technique that can manipulate the AI service into revealing its own security weaknesses.",
+    "added": "2026-08-18T20:17:24+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "CISOs Break Their Silence in 'Declassified' Docuseries",
+    "url": "https://www.darkreading.com/cyber-risk/cisos-break-their-silence-in-declassified-docuseries",
+    "source": "Dark Reading",
+    "summary": "Million-dollar heists, divorce, and career-ending burnout are all stories told in the latest docuseries revealing a behind-the-scenes look at the cybersecurity community.",
+    "added": "2026-08-18T18:32:01+00:00",
+    "expires": "2026-09-02T15:45:04Z"
+  },
+  {
+    "title": "'Ransom Busters': Ransomware Actor Poses as Incident-Recovery Service",
+    "url": "https://www.darkreading.com/cyberattacks-data-breaches/ransom-busters-ransomware-actor-incident-recovery-service",
+    "source": "Dark Reading",
+    "summary": "A ransomware affiliate appears to be sidling up to victims with offers of aid, masking its true intention of diverting ransom payments.",
+    "added": "2026-08-18T13:00:00+00:00",
+    "expires": "2026-09-02T15:45:04Z"
   }
 ]
