@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-19T18:59:52Z",
+  "updated_at": "2026-08-19T19:38:40Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "TEM",
         "name": "Tempus AI, Inc.",
-        "price": 60.69,
-        "change_24h": 22.95,
+        "price": 60.56,
+        "change_24h": 22.69,
         "asset": "equity"
       },
       {
         "symbol": "BNTX",
         "name": "BioNTech SE",
-        "price": 111.98,
-        "change_24h": 20.73,
+        "price": 111.78,
+        "change_24h": 20.52,
         "asset": "equity"
       },
       {
         "symbol": "TWST",
         "name": "Twist Bioscience Corporation",
-        "price": 137.58,
-        "change_24h": 18.47,
+        "price": 140.08,
+        "change_24h": 20.66,
+        "asset": "equity"
+      },
+      {
+        "symbol": "HYMC",
+        "name": "Hycroft Mining Holding Corporat",
+        "price": 27.86,
+        "change_24h": 15.17,
         "asset": "equity"
       },
       {
         "symbol": "KC",
         "name": "Kingsoft Cloud Holdings Limited",
-        "price": 12.49,
-        "change_24h": 15.27,
-        "asset": "equity"
-      },
-      {
-        "symbol": "XXI",
-        "name": "Twenty One Capital, Inc.",
-        "price": 5.47,
-        "change_24h": 13.02,
+        "price": 12.4,
+        "change_24h": 14.44,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 217.95,
-        "change_24h": -12.27,
+        "price": 217.5,
+        "change_24h": -12.45,
         "asset": "equity"
       },
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 109.09,
-        "change_24h": -11.49,
+        "price": 109.36,
+        "change_24h": -11.27,
         "asset": "equity"
       },
       {
         "symbol": "VICR",
         "name": "Vicor Corporation",
-        "price": 214.32,
-        "change_24h": -11.59,
-        "asset": "equity"
-      },
-      {
-        "symbol": "FSLY",
-        "name": "Fastly, Inc.",
-        "price": 24.07,
-        "change_24h": -9.48,
+        "price": 214.86,
+        "change_24h": -11.37,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 74.72,
-        "change_24h": -9.22,
+        "price": 74.59,
+        "change_24h": -9.37,
+        "asset": "equity"
+      },
+      {
+        "symbol": "FSLY",
+        "name": "Fastly, Inc.",
+        "price": 24.11,
+        "change_24h": -9.33,
         "asset": "equity"
       }
     ]
@@ -80,37 +80,37 @@
   "crypto": {
     "gainers": [
       {
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.098059,
+        "change_24h": 9.8,
+        "asset": "crypto"
+      },
+      {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00308,
-        "change_24h": 11.7,
+        "price": 0.003092,
+        "change_24h": 9.5,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2088.57,
-        "change_24h": 9.2,
+        "price": 2094.85,
+        "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 550.94,
-        "change_24h": 9.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.22,
-        "change_24h": 8.6,
+        "price": 550.24,
+        "change_24h": 9.2,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.05999,
+        "price": 0.059945,
         "change_24h": 8.5,
         "asset": "crypto"
       }
@@ -119,36 +119,36 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.345695,
-        "change_24h": -9.6,
+        "price": 0.374688,
+        "change_24h": -11.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.006,
+        "change_24h": -3.3,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.103524,
-        "change_24h": -2.3,
+        "price": 0.103302,
+        "change_24h": -3.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "POL",
+        "name": "POL (ex-MATIC)",
+        "price": 0.080781,
+        "change_24h": -2.5,
         "asset": "crypto"
       },
       {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -2.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.27,
-        "change_24h": -1.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "POL",
-        "name": "POL (ex-MATIC)",
-        "price": 0.080608,
-        "change_24h": -1.8,
+        "change_24h": -2.0,
         "asset": "crypto"
       }
     ]
