@@ -71,17 +71,22 @@ def push_data_files(
                 if attempt >= 2:
                     print("  ⚠ gh-pages push failed", flush=True)
                     return []
+                # Hard reset to origin, then rewrite only data/*. A --soft
+                # reset kept the stale clone's HTML tree and the next commit
+                # wiped newly deployed pages (FR course, 2026-08-19).
                 subprocess.run(
                     ["git", "-C", tmpdir, "fetch", "origin", branch],
                     capture_output=True,
                     timeout=30,
                 )
                 subprocess.run(
-                    ["git", "-C", tmpdir, "reset", "--soft", f"origin/{branch}"],
+                    ["git", "-C", tmpdir, "reset", "--hard", f"origin/{branch}"],
                     capture_output=True,
                 )
                 for name in changed:
-                    (Path(tmpdir) / "data" / name).write_text(files[name], encoding="utf-8")
+                    dest = Path(tmpdir) / "data" / name
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    dest.write_text(files[name], encoding="utf-8")
                 subprocess.run(
                     ["git", "-C", tmpdir, "add"] + [f"data/{n}" for n in changed],
                     check=True,
