@@ -705,6 +705,64 @@
     background: color-mix(in srgb, var(--course-accent) 32%, transparent);
   }
 
+  .course-privacy-chip-wrap {
+    position: relative;
+  }
+  .course-privacy-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-left: 0.25rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent-warning) 35%, transparent);
+    background: color-mix(in srgb, var(--accent-warning) 12%, transparent);
+    color: var(--accent-warning);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: help;
+    transition:
+      transform var(--duration-fast) var(--ease-smooth),
+      background var(--duration-fast) var(--ease-smooth),
+      border-color var(--duration-fast) var(--ease-smooth);
+  }
+  .course-privacy-chip:hover,
+  .course-privacy-chip:focus-visible {
+    transform: translateY(-1px);
+    background: color-mix(in srgb, var(--accent-warning) 22%, transparent);
+    border-color: color-mix(in srgb, var(--accent-warning) 62%, transparent);
+    outline: none;
+  }
+  .course-privacy-chip-tooltip {
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.6rem);
+    z-index: 30;
+    width: min(18rem, 72vw);
+    transform: translateX(-50%) translateY(0.25rem);
+    border: 1px solid color-mix(in srgb, var(--accent-warning) 32%, transparent);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+    padding: 0.7rem 0.85rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    opacity: 0;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.36);
+    transition:
+      opacity var(--duration-fast) var(--ease-smooth),
+      transform var(--duration-fast) var(--ease-smooth);
+  }
+  .course-privacy-chip-wrap:hover .course-privacy-chip-tooltip,
+  .course-privacy-chip-wrap:focus-within .course-privacy-chip-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   /* ── Command blocks ────────────────────────────────────────────────────
      The one thing the course had no way to express. Flat mono on purpose:
      shell is nearly monochrome under a highlighter anyway, and no highlighter

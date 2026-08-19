@@ -26,8 +26,6 @@ export function AihLanding() {
     <article className="course-prose">
       <div className="course-meta">
         <span className="course-meta-num">{OPEN_HARNESS_MODULES.length} lessons</span>
-        <span aria-hidden>·</span>
-        <span>{OPEN_HARNESS_MODULES.reduce((a, m) => a + m.minutes, 0)} min</span>
         {/* "free" used to be a word at the end of this line and read as fine
             print. It is the strongest thing we have to say about the course. */}
         <span className="rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[1px] text-[var(--accent-green)]">

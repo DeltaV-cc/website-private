@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { withBasePath } from '@/lib/site';
+import { PrivacyWarningChip } from '@/app/components/course/PrivacyWarningChip';
 import { TermChip } from '@/app/components/course/TermChip';
 
 /**
@@ -50,6 +51,12 @@ export function formatCourseText(text: string): ReactNode {
     const link = LINK.exec(part);
     if (link) {
       const [, label, href] = link;
+
+      // `~term-id` → inline glossary chip on the word itself.
+      if (href === '~privacy-warning') {
+        nodes.push(<PrivacyWarningChip key={i} />);
+        return;
+      }
 
       // `~term-id` → inline glossary chip on the word itself.
       if (href.startsWith('~')) {

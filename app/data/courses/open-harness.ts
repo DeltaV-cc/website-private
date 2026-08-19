@@ -390,9 +390,9 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Clear outputs'),
         blocks: [
           { k: 'p', text: L(
-            'You are going to set up [Hermes](https://hermes-agent.nousresearch.com/docs/), a state-of-the-art AI agent, on your own machine — free, with a screenshot for every step. Here is what you can do at the end of each part.',
+            'You are going to set up [Hermes](https://hermes-agent.nousresearch.com/docs/), a state-of-the-art AI agent, on your own machine — free, with a screenshot for every step. Here is what you can do at the end of each part. [⚠](~privacy-warning)',
           ) },
-          { k: 'table', headers: [L('When'), L('You can')], rows: [
+          { k: 'table', headers: [L('When'), L('What you can do')], rows: [
             [
               L('After Part I'),
               L(
@@ -419,7 +419,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('**Is:** real results on disk, not just clever chat'),
           L('**Is not:** a coding bootcamp — we stay on Hermes, and you write no code'),
           L('**Is not:** a green light to run a tool-using agent on the laptop that holds your banking and work logins'),
-          L('**Cloud models** send your conversation to the model provider. We say so each time it matters.'),
+          L('**Cloud models** send your conversation to the model provider. [⚠](~privacy-warning)'),
         ] },
         ],
 
