@@ -3,6 +3,7 @@
 import {
   OPEN_HARNESS_MODULES,
   UI_COPY,
+  courseBase,
   t,
   type CourseLang,
   type CourseModule,
@@ -13,7 +14,6 @@ import { HarnessModuleVisual } from '@/app/components/course/CourseVisuals';
 import { ModuleNav, useOpenHarnessLang } from '@/app/components/course/CourseShell';
 import { CourseCode } from '@/app/components/course/lesson/CourseCode';
 import { LessonSection } from '@/app/components/course/lesson/LessonSection';
-import { OH2_BASE } from './AihChrome';
 
 /**
  * The aihero page shape: one plain meta line ("03 / 13 · My First AI Agent — Part I
@@ -27,7 +27,7 @@ export function AihLessonBody({ module }: { module: CourseModule }) {
 
 export function AihLessonBodyView({ module, lang }: { module: CourseModule; lang: CourseLang }) {
   const index = OPEN_HARNESS_MODULES.findIndex((m) => m.slug === module.slug) + 1;
-  const partLabel = module.part === 1 ? 'Part I' : 'Part II';
+  const partLabel = `${t(UI_COPY.part, lang)} ${module.part === 1 ? 'I' : 'II'}`;
   const main = module.sections.filter((s) => !s.advanced);
   const advanced = module.sections.filter((s) => s.advanced);
 
@@ -43,11 +43,11 @@ export function AihLessonBodyView({ module, lang }: { module: CourseModule; lang
         </span>
         <span aria-hidden>·</span>
         <span>
-          My First AI Agent — {partLabel} · {module.minutes} min read
+          {t(UI_COPY.backCourse, lang)} — {partLabel} · {module.minutes} {t(UI_COPY.minReadLong, lang)}
         </span>
       </div>
       <h1 className="course-h1 mt-4">{t(module.title, lang)}</h1>
-      <p className="course-deck mt-4">{formatCourseText(t(module.subtitle, lang))}</p>
+      <p className="course-deck mt-4">{formatCourseText(t(module.subtitle, lang), lang)}</p>
 
       {module.hero && (
         <div className="mt-8">
@@ -76,7 +76,7 @@ export function AihLessonBodyView({ module, lang }: { module: CourseModule; lang
 
       {advanced.length > 0 && (
         <div className="mt-14 space-y-3">
-          <h2 className="course-h3">Other ways to deploy</h2>
+          <h2 className="course-h3">{t(UI_COPY.otherDeploy, lang)}</h2>
           {advanced.map((section, i) => (
             <details key={i} className="course-advanced-details">
               <summary className="course-advanced-summary">
@@ -107,11 +107,12 @@ export function AihLessonBodyView({ module, lang }: { module: CourseModule; lang
           items={[t(module.proof, lang)]}
           accent="cyan"
           mode="proof"
+          lang={lang}
         />
-        <MarkCompleteButton courseId="open-harness" slug={module.slug} accent="orange" />
+        <MarkCompleteButton courseId="open-harness" slug={module.slug} accent="orange" lang={lang} />
       </div>
 
-      <ModuleNav module={module} lang={lang} basePath={OH2_BASE} />
+      <ModuleNav module={module} lang={lang} basePath={courseBase(lang)} />
     </article>
   );
 }

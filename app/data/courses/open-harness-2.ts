@@ -30,5 +30,6 @@ export const OH2_META = {
   ),
   description: L(
     'Start from zero and finish with an agent that reads your files, runs real tasks, and answers on your phone. Free models throughout — you pay nothing to complete this course. [⚠](~privacy-warning)',
+    'Partez de zéro et terminez avec un agent qui lit vos fichiers, exécute de vraies tâches et vous répond sur votre téléphone. Des modèles gratuits du début à la fin — vous ne payez rien pour suivre ce cours. [⚠](~privacy-warning)',
   ),
 } as const;

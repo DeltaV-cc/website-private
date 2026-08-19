@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { withBasePath } from '@/lib/site';
-import { t, type CourseBlock, type CourseLang, type CourseLink } from '@/app/data/courses/open-harness';
+import { hrefFor } from '@/lib/i18n';
+import { t, UI_COPY, type CourseBlock, type CourseLang, type CourseLink } from '@/app/data/courses/open-harness';
 import { formatCourseText } from '@/app/components/course/formatCourseText';
 import { CourseQuizBlock, InteractiveChecklist } from '@/app/components/course/CourseLearning';
 import { HarnessModuleVisual } from '@/app/components/course/CourseVisuals';
@@ -44,7 +45,7 @@ export function BlockRenderer({
     case 'p':
       return (
         <p className={block.lead ? 'course-lead' : 'course-p'}>
-          {formatCourseText(t(block.text, lang))}
+          {formatCourseText(t(block.text, lang), lang)}
         </p>
       );
 
@@ -56,7 +57,7 @@ export function BlockRenderer({
               <span className="course-bullet-mark" aria-hidden>
                 ·
               </span>
-              <span>{formatCourseText(t(item, lang))}</span>
+              <span>{formatCourseText(t(item, lang), lang)}</span>
             </li>
           ))}
         </ul>
@@ -86,6 +87,7 @@ export function BlockRenderer({
           moduleSlug={moduleSlug}
           sectionKey={block.id}
           items={block.items.map((i) => t(i, lang))}
+          lang={lang}
         />
       );
 
@@ -100,7 +102,7 @@ export function BlockRenderer({
                 : ''
           }`}
         >
-          {formatCourseText(t(block.text, lang))}
+          {formatCourseText(t(block.text, lang), lang)}
         </div>
       );
 
@@ -111,7 +113,7 @@ export function BlockRenderer({
             <thead>
               <tr>
                 {block.headers.map((h, i) => (
-                  <th key={i}>{formatCourseText(t(h, lang))}</th>
+                  <th key={i}>{formatCourseText(t(h, lang), lang)}</th>
                 ))}
               </tr>
             </thead>
@@ -119,7 +121,7 @@ export function BlockRenderer({
               {block.rows.map((row, ri) => (
                 <tr key={ri}>
                   {row.map((cell, ci) => (
-                    <td key={ci}>{formatCourseText(t(cell, lang))}</td>
+                    <td key={ci}>{formatCourseText(t(cell, lang), lang)}</td>
                   ))}
                 </tr>
               ))}
@@ -135,6 +137,8 @@ export function BlockRenderer({
           options={block.quiz.options.map((o) => t(o, lang))}
           correct={t(block.quiz.correct, lang)}
           explain={t(block.quiz.explain, lang)}
+          label={t(UI_COPY.quiz, lang)}
+          lang={lang}
         />
       );
 
@@ -149,10 +153,10 @@ export function BlockRenderer({
             >
               <h3 className="course-lex-term">{t(card.term, lang)}</h3>
               <p className="mt-3 course-t-small text-[var(--text-secondary)] flex-1">
-                {formatCourseText(t(card.body, lang))}
+                {formatCourseText(t(card.body, lang), lang)}
               </p>
               <p className="mt-4 pt-4 course-t-meta italic text-[var(--text-tertiary)] border-t border-[var(--border-subtle)]">
-                {formatCourseText(t(card.remember, lang))}
+                {formatCourseText(t(card.remember, lang), lang)}
               </p>
             </article>
           ))}
@@ -163,7 +167,7 @@ export function BlockRenderer({
       return (
         <div className="course-links">
           <div className="course-links-label">
-            {block.label ? t(block.label, lang) : 'Go deeper'}
+            {block.label ? t(block.label, lang) : t(UI_COPY.goFurther, lang)}
           </div>
           <ul className="course-links-list">
             {block.items.map((link, i) => (
@@ -216,7 +220,7 @@ export function BlockRenderer({
           author={block.author}
           href={block.href}
           height={block.height}
-          caption={block.caption ? formatCourseText(t(block.caption, lang)) : undefined}
+          caption={block.caption ? formatCourseText(t(block.caption, lang), lang) : undefined}
         />
       );
 
@@ -227,7 +231,7 @@ export function BlockRenderer({
           alt={t(block.alt, lang)}
           width={block.width}
           height={block.height}
-          caption={block.caption ? formatCourseText(t(block.caption, lang)) : undefined}
+          caption={block.caption ? formatCourseText(t(block.caption, lang), lang) : undefined}
         />
       );
 
@@ -262,7 +266,7 @@ function LinkItem({ link, lang }: { link: CourseLink; lang: CourseLang }) {
     );
   }
   return (
-    <Link href={link.href} className="course-links-item">
+    <Link href={hrefFor(link.href, lang)} className="course-links-item">
       <span>{label}</span>
       <span className="course-links-arrow" aria-hidden>
         →

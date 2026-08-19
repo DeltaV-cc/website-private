@@ -25,7 +25,7 @@ export function CourseCode({ block, lang }: { block: CourseCodeBlock; lang: Cour
         <code>{block.code}</code>
       </pre>
       {block.note && (
-        <figcaption className="course-code-note">{formatCourseText(t(block.note, lang))}</figcaption>
+        <figcaption className="course-code-note">{formatCourseText(t(block.note, lang), lang)}</figcaption>
       )}
     </figure>
   );

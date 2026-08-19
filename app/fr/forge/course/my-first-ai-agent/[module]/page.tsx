@@ -16,28 +16,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { module: slug } = await params;
   const mod = getModule(slug);
-  if (!mod) return { title: 'My First AI Agent' };
+  if (!mod) return { title: 'Mon premier agent IA' };
   return {
-    title: `${mod.number} · ${mod.title.en} — My First AI Agent | Delta V`,
-    description: mod.subtitle.en,
+    title: `${mod.number} · ${mod.title.fr} — Mon premier agent IA | Delta V`,
+    description: mod.subtitle.fr,
     alternates: {
-      canonical: `${SITE_URL}/forge/course/my-first-ai-agent/${mod.slug}/`,
+      canonical: `${SITE_URL}/fr/forge/course/my-first-ai-agent/${mod.slug}/`,
       languages: {
         en: `${SITE_URL}/forge/course/my-first-ai-agent/${mod.slug}/`,
         fr: `${SITE_URL}/fr/forge/course/my-first-ai-agent/${mod.slug}/`,
       },
     },
     openGraph: {
-      title: `${mod.title.en} — My First AI Agent`,
-      description: mod.subtitle.en,
-      url: `${SITE_URL}/forge/course/my-first-ai-agent/${mod.slug}/`,
+      title: `${mod.title.fr} — Mon premier agent IA`,
+      description: mod.subtitle.fr,
+      url: `${SITE_URL}/fr/forge/course/my-first-ai-agent/${mod.slug}/`,
       siteName: 'Delta V',
       type: 'article',
     },
   };
 }
 
-export default async function OwnYourAIModulePage({
+export default async function OwnYourAIModulePageFr({
   params,
 }: {
   params: Promise<{ module: string }>;

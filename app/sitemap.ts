@@ -58,7 +58,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   add('', 1);
   ['ai', 'web3', 'forge', 'intelhub', 'contact', 'tutorials', 'blog', 'opsec'].forEach((p) => add(p, 0.8));
+  ['fr', 'fr/ai', 'fr/web3', 'fr/forge', 'fr/contact', 'fr/opsec'].forEach((p) => add(p, 0.7));
   ['forge/course', 'forge/x402-workshop', 'research', 'cgu', 'privacy'].forEach((p) => add(p, 0.5));
+  add('forge/course/my-first-ai-agent', 0.7);
+  add('fr/forge/course/my-first-ai-agent', 0.7);
+  add('forge/course/my-first-ai-agent/glossary', 0.5);
+  add('fr/forge/course/my-first-ai-agent/glossary', 0.5);
+  for (let i = 0; i <= 12; i++) {
+    const slug = String(i).padStart(2, '0');
+    add(`forge/course/my-first-ai-agent/${slug}`, 0.6);
+    add(`fr/forge/course/my-first-ai-agent/${slug}`, 0.6);
+  }
   opsec.forEach((s) => add('opsec/' + s, 0.6));
   tutorials.forEach((s) => add('tutorials/' + s, 0.6));
   posts.forEach((s) => add('blog/' + s, 0.6));

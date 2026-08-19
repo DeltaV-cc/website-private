@@ -4,11 +4,11 @@ import { AihLanding } from '@/app/components/course/aihero/AihLanding';
 import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'My First AI Agent — build your own agent harness | Delta V',
+  title: 'Mon premier agent IA — construisez votre harness | Delta V',
   description:
-    'Thirteen free lessons to build your own agent harness — yours to run and change, instead of renting one from Claude or OpenAI. No code required.',
+    'Treize leçons gratuites pour mettre en place un vrai agent IA qui lit vos fichiers, exécute vos tâches et vous répond sur votre téléphone. Sans code.',
   alternates: {
-    canonical: `${SITE_URL}/forge/course/my-first-ai-agent/`,
+    canonical: `${SITE_URL}/fr/forge/course/my-first-ai-agent/`,
     languages: {
       en: `${SITE_URL}/forge/course/my-first-ai-agent/`,
       fr: `${SITE_URL}/fr/forge/course/my-first-ai-agent/`,
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function OwnYourAILandingPage() {
+export default function OwnYourAILandingPageFr() {
   return (
     <AihChrome>
       <AihLanding />
