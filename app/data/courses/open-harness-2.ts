@@ -29,6 +29,6 @@ export const OH2_META = {
     'Mettez en place un agent IA à l’état de l’art, gratuitement, en treize leçons. Sans écrire une ligne de code.',
   ),
   description: L(
-    'Start from zero and finish with an agent that reads your files, runs real tasks, and answers on your phone. Free models throughout — you pay nothing to complete this course.',
+    'Start from zero and finish with an agent that reads your files, runs real tasks, and answers on your phone. Free models throughout — you pay nothing to complete this course. [⚠](~privacy-warning)',
   ),
 } as const;
