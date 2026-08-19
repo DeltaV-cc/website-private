@@ -121,8 +121,10 @@ listing gone.
    - `optout_web_form` — drive `optout_url` with only `disclosure_fields`.
      CAPTCHA you cannot pass → `$UBGE letter` and record `human_task_queued`.
      Never a solver service.
-   - `optout_email` — `$UBGE letter <subject> <target>` then send that body
-     to `compose.to` via the operator's mail. Record `submitted`.
+   - `draft_letter` — `$UBGE letter <subject> <target>` writes a `.txt` under
+     the subject's `drafts/` folder. **Do not send mail.** The course does not
+     connect SMTP or webmail. Put the path + `to` in the digest; the student
+     copies the letter into their own mailbox. Record `human_task_queued`.
 4. **Wrap up.** `$UBGE tasks` (digest) then `$UBGE status --out unbroker-receipt.md`
    in the folder the operator named. Present the digest once.
 5. **Re-scan later.** `next_wake_at` is `+30d`. One cron that re-runs this

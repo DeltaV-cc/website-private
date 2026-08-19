@@ -89,6 +89,19 @@ class UbgeTests(unittest.TestCase):
         self.assertTrue({"crif", "az_direct", "creditreform"} <= digest_ids)
         self.assertNotIn("ccpa", json.dumps(nxt).lower())
 
+    def test_email_targets_draft_do_not_send(self) -> None:
+        sid = self.intake()
+        nxt = json.loads(self.run_ubge("next", sid).stdout)
+        mail = [a for a in nxt["actions"] if a["target"] == "moneyhouse"]
+        # moneyhouse is scan-first while unscanned; after not_found it must draft.
+        self.run_ubge("record", sid, "moneyhouse", "not_found", "--found", "false")
+        nxt = json.loads(self.run_ubge("next", sid).stdout)
+        mail = [a for a in nxt["actions"] if a["target"] == "moneyhouse"]
+        self.assertEqual(len(mail), 1)
+        self.assertEqual(mail[0]["type"], "draft_letter")
+        self.assertIn("human_task_queued", mail[0]["after"])
+        self.assertNotEqual(mail[0]["type"], "optout_email")
+
     def test_blind_optout_after_not_found(self) -> None:
         sid = self.intake()
         self.run_ubge("record", sid, "localsearch", "not_found", "--found", "false")

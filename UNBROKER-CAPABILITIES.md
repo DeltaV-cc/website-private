@@ -6,6 +6,8 @@ Robinson is **paper junk mail**. The suite also files **nLPD / GDPR demandes** (
 
 Live proof (2026-08-19): Robinson form POSTed for Marc de Maio, confirmation page `robinsonliste-bestaetigung-fr`. Engine, consent, ledger held on the chief profile.
 
+**No mailbox is connected.** The course never wires SMTP or webmail. Web forms the agent can drive (Robinson, Poste, rights portals) are submitted in the browser. Everything that is “an email” is a `.txt` draft on disk; the student copies it into their own inbox and sends. That is a successful run, not a failed send.
+
 ---
 
 ## Two lanes, same machine

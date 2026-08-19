@@ -350,16 +350,25 @@ def plan_next(
             continue
 
         if spec.get("blind_optout") or state == "found":
-            kind = "optout_web_form" if spec.get("method") == "web_form" else "optout_email"
             if tid == catalog.get("one_shot"):
                 kind = "robinson_submit" if tid == "robinson" else "one_shot_submit"
+                after = f"record {dossier['subject_id']} {tid} submitted"
+            elif spec.get("method") == "web_form":
+                kind = "optout_web_form"
+                after = f"record {dossier['subject_id']} {tid} submitted"
+            else:
+                kind = "draft_letter"
+                after = (
+                    f"record {dossier['subject_id']} {tid} human_task_queued "
+                    f"--reason \"student sends draft from own mailbox\""
+                )
             actions.append(
                 _action(
                     kind,
                     tid,
                     spec,
                     listing_urls=case.get("listing_urls") or [],
-                    after=f"record {dossier['subject_id']} {tid} submitted",
+                    after=after,
                 )
             )
 
