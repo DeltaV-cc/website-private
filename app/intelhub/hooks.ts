@@ -187,11 +187,13 @@ function getTag(title: string, summary?: string, source?: string): string {
 }
 
 const JHN = [/^Ask HN:/i, /^Tell HN:/i, /^Show HN:/i, /Who is hiring/i];
+const DEAL_NOISE = /save \$|just \$|for just|combo deal|discount on|gaming build|motherboard review|send their pee|beer drinkers/i;
 const XSOURCES = ['x:', 'nitter', 'twitter'];
 function rel(it: { title: string; source: string }) {
   // Prediction markets deliberately excluded from IntelHub surfaces for now
   const src = (it.source || '').toLowerCase();
   if (src.includes('polymarket') || src.includes('kalshi') || src.includes('predictit')) return false;
+  if (DEAL_NOISE.test(it.title || '')) return false;
   if (src.includes('hacker') || src.includes('y combinator'))
     return !JHN.some(p => p.test(it.title));
   return true;
