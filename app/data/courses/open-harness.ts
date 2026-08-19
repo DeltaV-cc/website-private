@@ -383,7 +383,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** The two-part strip carries the structure now that the prose section is gone. */
     visualPlacement: 0,
     proof: L(
-      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the lexicon (01).',
+      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the AI Cheat Sheet (01).',
     ),
     sections: [
       {
@@ -433,7 +433,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Do **not skip 01** unless you can already explain agent vs chat, harness vs runtime, and Think → Act → Observe (the [printable glossary](/forge/course/my-first-ai-agent/glossary/) helps).'),
           L('Pick your **host** in lesson 02 before install (dedicated machine preferred).'),
           L('**Optional labs** exist after Part I for extra drills — not required to finish the main path.'),
-          L('**Next:** lesson 01 — lexicon (stack, loop, messages, then the rest).'),
+          L('**Next:** lesson 01 — The AI Cheat Sheet (stack, loop, messages, then the rest).'),
         ] },
           { k: 'links', items: [
           { label: L('Printable glossary'), href: '/forge/course/my-first-ai-agent/glossary/' },
@@ -451,8 +451,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '01',
     number: '01',
     part: 1,
-    title: L('Lexicon'),
-    subtitle: L('Words you will meet often.'),
+    title: L('The AI Cheat Sheet'),
+    subtitle: L('Speak the language of agents.'),
     minutes: 25,
     /** Diagrams sit under the sections they clarify — not in a pile under the title */
     visualPlacement: 'none',
@@ -830,7 +830,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Let’s get ready'),
     subtitle: L(
-      'Pick the machine, create one free model account, and have its API key ready to paste.',
+      'Pick where you’ll run Hermes (your laptop is fine). Sign up for one free AI account — we’ll link the exact page. Copy the long string the site calls an “API key.” Treat it like a password.',
     ),
     minutes: 10,
     proof: L(
@@ -1005,7 +1005,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Install Hermes Desktop'),
     subtitle: L(
-      'Install on the host you chose in 02. Connect a free model route if you accept cloud data leaving the box.',
+      'Install on the host you chose in 02. If you’re OK with prompts processed on a remote server, enable the free cloud model now. (Switch to local later.)',
     ),
     minutes: 30,
     proof: L(
@@ -1197,7 +1197,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     number: '04',
     part: 1,
     title: L('Soul pack'),
-    subtitle: L('Write identity into Hermes home. Keep project rules in project context files.'),
+    subtitle: L('Giving Your Agent a Personality: tell it who it is and the rules it must follow.'),
     minutes: 25,
     proof: L(
       'You adopted a personality file for this profile; the agent describes itself and its hard limits in that voice. You know personality files live with the app profile — not inside a random project folder.',
@@ -1490,7 +1490,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('First agency'),
     subtitle: L(
-      'Set the gate, know what it costs, then run something real: tools touch disk, you approve risk, and the result opens without Hermes.',
+      'Your First Real Task: let it create files on your computer safely, with your permission.',
     ),
     minutes: 40,
     /** Loop diagram sits under the loop section — not a double stack under the title */
@@ -1912,7 +1912,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Skills'),
     subtitle: L(
-      'On-demand procedural memory — progressive disclosure, and what an idle skill library costs you every session.',
+      'Teaching New Tricks: give your agent abilities it calls on when needed.',
     ),
     minutes: 18,
     proof: L(
@@ -2166,7 +2166,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Cron runbooks'),
     subtitle: L(
-      'Scheduled work as a full runbook. Each fire starts without prior session memory.',
+      'Set it and forget it: a job that runs on schedule, fresh each time.',
     ),
     minutes: 20,
     proof: L(
@@ -2268,7 +2268,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Own it forever'),
     subtitle: L(
-      'Backup, update habit, and growth map — without expanding the day-one path.',
+      'Keep it alive: back up, update, and level up — without redoing lesson 1.',
     ),
     minutes: 15,
     proof: L(
@@ -2313,7 +2313,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Course completion checklist'),
         blocks: [
           { k: 'checklist', id: '2', items: [
-          L('Lexicon: agent vs chat; harness vs runtime; token, context, cron'),
+          L('Cheat sheet: agent vs chat; harness vs runtime; token, context, cron'),
           L('Host path chosen (dedicated / VPS / personal+Docker); Hermes chats; isolation decided'),
           L('You know cloud models send chat content off-box; Providers / Gateway / Advanced mapped'),
           L('SOUL lives with the profile, not in a project folder; SOUL vs `AGENTS.md` clear'),
