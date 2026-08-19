@@ -1,27 +1,27 @@
 {
-  "updated_at": "2026-08-19T14:54:42Z",
-  "source": "Yahoo Finance screener + CoinGecko markets",
+  "updated_at": "2026-08-19T14:55:25Z",
+  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
   "equities": {
     "gainers": [
       {
         "symbol": "BNTX",
         "name": "BioNTech SE",
-        "price": 113.41,
-        "change_24h": 22.27,
+        "price": 113.47,
+        "change_24h": 22.33,
         "asset": "equity"
       },
       {
         "symbol": "TWST",
         "name": "Twist Bioscience Corporation",
-        "price": 138.8,
-        "change_24h": 19.55,
+        "price": 138.31,
+        "change_24h": 19.13,
         "asset": "equity"
       },
       {
         "symbol": "TEM",
         "name": "Tempus AI, Inc.",
-        "price": 58.47,
-        "change_24h": 18.46,
+        "price": 58.39,
+        "change_24h": 18.29,
         "asset": "equity"
       },
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.661489,
-        "change_24h": 78.7,
+        "symbol": "HEMI",
+        "name": "HEMI",
+        "price": 0.00922,
+        "change_24h": 40.76,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.003022,
-        "change_24h": 7.1,
+        "symbol": "UTK",
+        "name": "UTK",
+        "price": 0.00795,
+        "change_24h": 16.23,
         "asset": "crypto"
       },
       {
-        "symbol": "CAKE",
-        "name": "PancakeSwap",
-        "price": 1.55,
-        "change_24h": 6.1,
+        "symbol": "EDEN",
+        "name": "EDEN",
+        "price": 0.0603,
+        "change_24h": 14.44,
         "asset": "crypto"
       },
       {
-        "symbol": "SKY",
-        "name": "Sky",
-        "price": 0.057374,
-        "change_24h": 4.9,
+        "symbol": "RE",
+        "name": "RE",
+        "price": 0.4393,
+        "change_24h": 12.58,
         "asset": "crypto"
       },
       {
-        "symbol": "DOT",
-        "name": "Polkadot",
-        "price": 0.772674,
-        "change_24h": 4.6,
+        "symbol": "CRCLB",
+        "name": "CRCLB",
+        "price": 79.71,
+        "change_24h": 9.93,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.11,
-        "change_24h": -5.9,
+        "symbol": "GPS",
+        "name": "GPS",
+        "price": 0.01198,
+        "change_24h": -32.24,
         "asset": "crypto"
       },
       {
-        "symbol": "HTX",
-        "name": "HTX DAO",
-        "price": 2e-06,
-        "change_24h": -3.5,
+        "symbol": "PORTAL",
+        "name": "PORTAL",
+        "price": 0.01089,
+        "change_24h": -22.44,
         "asset": "crypto"
       },
       {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.18,
-        "change_24h": -3.2,
+        "symbol": "TUT",
+        "name": "TUT",
+        "price": 0.03679,
+        "change_24h": -13.17,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 14.11,
-        "change_24h": -3.0,
+        "symbol": "ACE",
+        "name": "ACE",
+        "price": 0.2017,
+        "change_24h": -11.92,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.090833,
-        "change_24h": -1.9,
+        "symbol": "SNXXB",
+        "name": "SNXXB",
+        "price": 14.69,
+        "change_24h": -6.97,
         "asset": "crypto"
       }
     ]
