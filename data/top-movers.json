@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T11:31:07Z",
+  "updated_at": "2026-08-19T12:01:15Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.625083,
+        "price": 0.628219,
         "change_24h": 85.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002991,
+        "price": 0.003,
         "change_24h": 7.6,
         "asset": "crypto"
       },
       {
         "symbol": "CAKE",
         "name": "PancakeSwap",
-        "price": 1.55,
+        "price": 1.54,
         "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.775334,
+        "price": 0.773128,
         "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.74,
+        "price": 101.8,
         "change_24h": 3.8,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029163,
+        "price": 0.029193,
         "change_24h": -5.4,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.31,
+        "price": 2.32,
         "change_24h": -3.5,
         "asset": "crypto"
       },
       {
         "symbol": "LEO",
         "name": "LEO Token",
-        "price": 9.13,
+        "price": 9.15,
         "change_24h": -2.8,
         "asset": "crypto"
       }
