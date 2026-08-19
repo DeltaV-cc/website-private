@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T15:45:05Z",
+  "updatedAt": "2026-08-19T15:47:16Z",
   "kev": [
     {
       "cve": "CVE-2026-33824",
@@ -144,74 +144,67 @@
       "published": "2026-08-09T00:16:48.550"
     },
     {
-      "id": "CVE-2026-71992",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the macfilter function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can expl",
-      "published": "2026-08-09T00:16:48.410"
-    },
-    {
-      "id": "CVE-2026-71991",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the TelnetSSH function used for Telnet configuration that allows remote attackers to execute arbitrary commands on the affec",
-      "published": "2026-08-09T00:16:48.270"
-    },
-    {
-      "id": "CVE-2026-71990",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the TelnetSSH function used for SSH configuration that allows remote attackers to execute arbitrary commands on the affected",
-      "published": "2026-08-09T00:16:48.130"
-    },
-    {
-      "id": "CVE-2026-71989",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the porTrigger function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can exp",
-      "published": "2026-08-09T00:16:47.953"
-    },
-    {
-      "id": "CVE-2026-71988",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the portFw function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can exploit",
-      "published": "2026-08-09T00:16:47.780"
-    },
-    {
-      "id": "CVE-2026-71987",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the alg function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can exploit th",
-      "published": "2026-08-09T00:16:47.637"
-    },
-    {
-      "id": "CVE-2026-71986",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the dmz function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can exploit th",
-      "published": "2026-08-09T00:16:47.500"
-    },
-    {
-      "id": "CVE-2026-71985",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the accesscontrol function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can ",
-      "published": "2026-08-09T00:16:47.360"
-    },
-    {
-      "id": "CVE-2026-71984",
-      "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the urlfilter function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can expl",
-      "published": "2026-08-09T00:16:47.207"
-    },
-    {
       "id": "CVE-2026-18473",
       "severity": "CRITICAL",
       "score": 9.1,
       "description": "The WP Directory Kit WordPress plugin before 1.5.5 does not properly sanitise and escape a parameter before using it in a SQL statement, leading to a SQL injection exploitable by unauthenticated users.",
       "published": "2026-08-09T06:19:05.773"
+    },
+    {
+      "id": "CVE-2026-17044",
+      "severity": "HIGH",
+      "score": 8.6,
+      "description": "The Iptanus File Upload WordPress plugin before 5.1.8 does not properly sanitise and escape a parameter before using it in a SQL statement, leading to an SQL injection exploitable by unauthenticated users.",
+      "published": "2026-08-09T06:18:22.520"
+    },
+    {
+      "id": "CVE-2026-17017",
+      "severity": "HIGH",
+      "score": 8.1,
+      "description": "The CubeWP Framework WordPress plugin before 1.1.31 does not properly sanitize and escape a parameter before using it in a SQL statement through an AJAX action, and does not include a capability check on that action, all",
+      "published": "2026-08-09T06:18:17.940"
+    },
+    {
+      "id": "CVE-2026-18464",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "The WP MAPS PRO WordPress plugin before 6.1.3 does not perform a capability check in one of its AJAX actions, which is also available to unauthenticated users, and does not restrict the operation it dispatches, allowing ",
+      "published": "2026-08-09T06:18:34.450"
+    },
+    {
+      "id": "CVE-2026-18357",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "The WPC Order Tip for WooCommerce WordPress plugin before 3.3.1 does not perform authorisation or nonce checks in one of its reporting features, allowing unauthenticated attackers to retrieve sensitive order data belongi",
+      "published": "2026-08-09T06:18:34.330"
+    },
+    {
+      "id": "CVE-2026-18032",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "The WP Data Access WordPress plugin before 5.5.79 does not validate the column names it accepts on one of its unauthenticated AJAX actions, and the nonce guarding that action does not cover them, allowing unauthenticated",
+      "published": "2026-08-09T06:18:22.640"
+    },
+    {
+      "id": "CVE-2026-16988",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "The GeoDirectory WordPress plugin before 2.8.169 does not perform any authorization check when returning map marker data for a single requested listing, allowing unauthenticated users to disclose the title and exact geog",
+      "published": "2026-08-09T06:17:55.887"
+    },
+    {
+      "id": "CVE-2026-10595",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "A path traversal vulnerability exists in parisneo/lollms version 2.1.0, specifically in the SPA catch-all route implemented in `backend/routers/ui.py`. The vulnerability arises from the improper handling of user-controll",
+      "published": "2026-08-09T04:17:29.400"
+    },
+    {
+      "id": "CVE-2026-17510",
+      "severity": "HIGH",
+      "score": 7.5,
+      "description": "Crypt::OpenSSL::PKCS12 versions before 1.98 for Perl allow a NULL pointer dereference in print_attribute via a zero length BMPSTRING attribute. print_attribute() sizes the destination buffer for a BMPSTRING attribute fro",
+      "published": "2026-08-09T02:16:34.117"
     }
   ],
   "breaches": [
