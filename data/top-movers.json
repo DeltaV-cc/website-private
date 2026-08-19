@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-19T19:38:40Z",
+  "updated_at": "2026-08-19T19:45:36Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "TEM",
         "name": "Tempus AI, Inc.",
-        "price": 60.56,
-        "change_24h": 22.69,
+        "price": 60.62,
+        "change_24h": 22.81,
         "asset": "equity"
       },
       {
         "symbol": "BNTX",
         "name": "BioNTech SE",
-        "price": 111.78,
-        "change_24h": 20.52,
+        "price": 111.51,
+        "change_24h": 20.23,
         "asset": "equity"
       },
       {
         "symbol": "TWST",
         "name": "Twist Bioscience Corporation",
-        "price": 140.08,
-        "change_24h": 20.66,
+        "price": 139.51,
+        "change_24h": 20.17,
         "asset": "equity"
       },
       {
         "symbol": "HYMC",
         "name": "Hycroft Mining Holding Corporat",
-        "price": 27.86,
-        "change_24h": 15.17,
+        "price": 27.79,
+        "change_24h": 14.86,
         "asset": "equity"
       },
       {
-        "symbol": "KC",
-        "name": "Kingsoft Cloud Holdings Limited",
-        "price": 12.4,
-        "change_24h": 14.44,
+        "symbol": "IOVA",
+        "name": "Iovance Biotherapeutics, Inc.",
+        "price": 8.005,
+        "change_24h": 13.87,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 217.5,
-        "change_24h": -12.45,
+        "price": 216.57,
+        "change_24h": -12.83,
         "asset": "equity"
       },
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 109.36,
-        "change_24h": -11.27,
+        "price": 108.35,
+        "change_24h": -12.09,
         "asset": "equity"
       },
       {
         "symbol": "VICR",
         "name": "Vicor Corporation",
-        "price": 214.86,
-        "change_24h": -11.37,
-        "asset": "equity"
-      },
-      {
-        "symbol": "AXTI",
-        "name": "AXT Inc",
-        "price": 74.59,
-        "change_24h": -9.37,
+        "price": 216.92,
+        "change_24h": -10.52,
         "asset": "equity"
       },
       {
         "symbol": "FSLY",
         "name": "Fastly, Inc.",
-        "price": 24.11,
-        "change_24h": -9.33,
+        "price": 24.07,
+        "change_24h": -9.46,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AXTI",
+        "name": "AXT Inc",
+        "price": 73.89,
+        "change_24h": -10.22,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.098059,
+        "price": 0.098396,
         "change_24h": 9.8,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.003092,
+        "price": 0.003123,
         "change_24h": 9.5,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2094.85,
+        "price": 2098.03,
         "change_24h": 9.3,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 550.24,
+        "price": 549.03,
         "change_24h": 9.2,
         "asset": "crypto"
       },
       {
         "symbol": "SKY",
         "name": "Sky",
-        "price": 0.059945,
+        "price": 0.060101,
         "change_24h": 8.5,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.374688,
+        "price": 0.365689,
         "change_24h": -11.8,
         "asset": "crypto"
       },
@@ -133,14 +133,14 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.103302,
+        "price": 0.103274,
         "change_24h": -3.0,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.080781,
+        "price": 0.0808,
         "change_24h": -2.5,
         "asset": "crypto"
       },
