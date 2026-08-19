@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T08:31:11Z",
+  "updated_at": "2026-08-19T09:01:24Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.676171,
+        "price": 0.673195,
         "change_24h": 84.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002997,
+        "price": 0.002976,
         "change_24h": 5.7,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.085228,
+        "price": 0.085242,
         "change_24h": 3.2,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.14,
+        "price": 100.97,
         "change_24h": 3.1,
         "asset": "crypto"
       }
@@ -133,7 +133,7 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 58.29,
+        "price": 58.32,
         "change_24h": -2.9,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "NEAR",
         "name": "NEAR Protocol",
-        "price": 1.62,
+        "price": 1.61,
         "change_24h": -2.5,
         "asset": "crypto"
       }
