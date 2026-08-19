@@ -342,7 +342,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** Diagram sits with “Course structure”, after clear outputs */
     visualPlacement: 1,
     proof: L(
-      'You can name one concrete output for **Part I** and one for **Part II**, and you know the next lesson is the **lexicon (01)**.',
+      'You can name one concrete output for **Part I** and one for **Part II**, and you know the next lesson is the **AI Cheat Sheet (01)**.',
     ),
     sections: [
       {
@@ -395,7 +395,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           ],
         },
         bullets: [
-          L('**00** welcome · **01** lexicon (incl. agent loop) · **02** machine · **03** install · **04** personality · **05** messaging · **06** first action'),
+          L('**00** welcome · **01** cheat sheet (incl. agent loop) · **02** machine · **03** install · **04** personality · **05** messaging · **06** first action'),
           L('**07** memory · **08** notes folder · **09** skills · **10** safety rules · **11** scheduled job · **12** keep it'),
         ],
         callout: L(
@@ -426,7 +426,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Do lessons **in order**. Each ends with a short **“you are done when”** check.'),
           L('Do **not skip 01** unless you can already explain **agent vs chat**, **harness vs runtime**, and **Think → Act → Observe**.'),
           L('Pick your **host** in lesson **02** before install (dedicated machine preferred).'),
-          L('**Next:** lesson **01 — lexicon** (stack, loop, messages, then the rest).'),
+          L('**Next:** lesson **01 — The AI Cheat Sheet** (stack, loop, messages, then the rest).'),
         ],
         links: [
           { label: L('Printable glossary'), href: '/forge/course/open-harness/glossary/' },
@@ -441,10 +441,10 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '01',
     number: '01',
     part: 1,
-    title: L('Lexicon', 'Le lexique'),
+    title: L('The AI Cheat Sheet', 'L’antisèche IA'),
     subtitle: L(
-      'Words you will meet often. First pass = the short “remember” lines; details wait for later lessons.',
-      'Mots que tu croiseras souvent. Premier passage = les courtes lignes « remember » ; le détail vient plus tard.',
+      'Speak the language of agents. First pass = the short “remember” lines; details wait for later lessons.',
+      'Parle le langage des agents. Premier passage = les courtes lignes « remember » ; le détail vient plus tard.',
     ),
     minutes: 25,
     /** Diagrams sit under the sections they clarify — not in a pile under the title */
@@ -936,7 +936,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Your machine + Desktop'),
     subtitle: L(
-      'Baseline: dedicated hardware. Then Delta V SOTA prefs (Nous + VPS, open weights, Swiss host, Venice). Exceptions only if you must.',
+      'Pick where you’ll run Hermes (your laptop is fine). Sign up for one free AI account — we’ll link the exact page. Copy the long string the site calls an “API key.” Treat it like a password.',
     ),
     minutes: 10,
     proof: L(
@@ -1132,7 +1132,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Install Hermes Desktop'),
     subtitle: L(
-      'Install on the host you chose in 02. Connect a free model route if you accept cloud data leaving the box.',
+      'Install on the host you chose in 02. If you’re OK with prompts processed on a remote server, enable the free cloud model now. (Switch to local later.)',
     ),
     minutes: 30,
     proof: L(
@@ -1330,8 +1330,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Soul pack', 'Pack d’âmes'),
     subtitle: L(
-      'Write identity into Hermes home. Keep project rules in project context files.',
-      'Écris l’identité dans le home Hermes. Garde les règles de projet dans les fichiers de contexte projet.',
+      'Giving Your Agent a Personality: tell it who it is and the rules it must follow.',
+      'Donner une personnalité à ton agent : dis-lui qui il est et les règles qu’il doit suivre.',
     ),
     minutes: 25,
     proof: L(
@@ -1658,7 +1658,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('First agency'),
     subtitle: L(
-      'Feel Think → Act → Observe on a real task: tools touch disk, you approve risk, a file receipt opens offline.',
+      'Your First Real Task: let it create files on your computer safely, with your permission.',
     ),
     minutes: 40,
     /** Loop diagram sits under the loop section — not a double stack under the title */
@@ -2184,7 +2184,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Skills'),
     subtitle: L(
-      'On-demand procedural memory — how skills relate to tools, the agent loop, and fixed session cost.',
+      'Teaching New Tricks: give your agent abilities it calls on when needed.',
     ),
     minutes: 22,
     proof: L(
@@ -2399,7 +2399,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Cron runbooks'),
     subtitle: L(
-      'Scheduled work as a full runbook. Each fire starts without prior session memory.',
+      'Set it and forget it: a job that runs on schedule, fresh each time.',
     ),
     minutes: 25,
     proof: L(
@@ -2477,7 +2477,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Own it forever'),
     subtitle: L(
-      'Backup, update habit, and growth map — without expanding the day-one path.',
+      'Keep it alive: back up, update, and level up — without redoing lesson 1.',
     ),
     minutes: 20,
     proof: L(
