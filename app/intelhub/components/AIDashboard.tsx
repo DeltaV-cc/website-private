@@ -2,7 +2,7 @@
    Frontier Watch + labs research + personas + HF orgs + Arena */
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Item, PatentsData } from '../types';
 import { CategoryBox, fmtNum, fmtCompact, PanelMeta } from './Shared';
 import AIFrontierSignals from './AIFrontierSignals';
@@ -309,6 +309,144 @@ function AbliteratedModels({ models, updated }: { models: any[]; updated?: strin
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Curated HF watchlist — the frontier/open-weight repos Delta V
+   actually tracks. IDs verified against the HF API (Aug 2026);
+   gated repos (Meta Llama, MiniMax M1, …) still render as links,
+   live stats are simply skipped for them (HTTP 401).
+   The panel enriches from the hf.json snapshot AND a one-shot live
+   fetch, so the chips are a stable curated set instead of whatever
+   the trending cron happened to drop first.
+   ───────────────────────────────────────────────────────────── */
+const HF_WATCHLIST = [
+  'deepseek-ai/DeepSeek-V3.2',
+  'deepseek-ai/DeepSeek-R1',
+  'Qwen/Qwen3-235B-A22B',
+  'MiniMaxAI/MiniMax-M1-80k',
+  'moonshotai/Kimi-K2-Instruct',
+  'zai-org/GLM-4.6',
+  'meta-llama/Llama-4-Maverick-17B-128E',
+  'microsoft/Phi-4',
+  'google/gemma-3-27b-it',
+  'mistralai/Mistral-Small-3.2-24B-Instruct-2506',
+];
+
+const HF_WATCHLIST_KEYS = HF_WATCHLIST.map((id) => id.toLowerCase());
+
+/** Index hf.json snapshot models for lookups (full id, short name, url). */
+export function indexHfModels(models: any[]) {
+  const by = new Map<string, any>();
+  for (const m of models || []) {
+    const name = String(m?.name || '').trim();
+    if (!name) continue;
+    by.set(name.toLowerCase(), m);
+    const short = name.includes('/') ? name.split('/').pop()!.toLowerCase() : name.toLowerCase();
+    by.set(short, m);
+    if (m?.url) by.set(String(m.url).toLowerCase(), m);
+  }
+  return by;
+}
+
+function watchlistIdMatch(name: string): string | null {
+  const n = String(name || '').toLowerCase();
+  const short = n.includes('/') ? n.split('/').pop()! : n;
+  if (HF_WATCHLIST_KEYS.includes(n)) return n;
+  for (const key of HF_WATCHLIST_KEYS) {
+    if (key.endsWith('/' + short)) return key;
+  }
+  return null;
+}
+
+/** Returns the curated watchlist (ordered, stats-enriched) plus the full
+ *  display set: curated first, then snapshot models not already curated. */
+function useCuratedWatchlist(rawModels: any[]) {
+  const snapshotBy = useMemo(() => indexHfModels(rawModels), [rawModels]);
+  const [live, setLive] = useState<Record<string, any>>({});
+
+  const missing = useMemo(
+    () => HF_WATCHLIST.filter((id) => !snapshotBy.has(id.toLowerCase())),
+    [snapshotBy],
+  );
+  const missingKey = missing.join('|');
+
+  useEffect(() => {
+    if (!missingKey) return;
+    let cancelled = false;
+    Promise.allSettled(
+      missing.map((id) =>
+        fetch(`https://huggingface.co/api/models/${id}`, {
+          headers: { accept: 'application/json' },
+        })
+          .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`http ${r.status}`))))
+          .then((d) => {
+            const [author, short] = id.split('/');
+            return {
+              [id.toLowerCase()]: {
+                name: id,
+                author,
+                description:
+                  (typeof d?.cardData?.summary === 'string' ? d.cardData.summary : '') ||
+                  (typeof d?.description === 'string' ? d.description : '') ||
+                  '',
+                pipeline: d?.pipeline_tag || '',
+                likes: d?.likes || 0,
+                downloads: d?.downloads || 0,
+                url: `https://huggingface.co/${id}`,
+                short,
+              },
+            };
+          })
+          .catch(() => ({})),
+      ),
+    ).then((results) => {
+      if (cancelled) return;
+      const merged: Record<string, any> = {};
+      for (const r of results) {
+        if (r.status === 'fulfilled') Object.assign(merged, r.value);
+      }
+      setLive(merged);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [missingKey, missing]);
+
+  const curated = useMemo(() => {
+    return HF_WATCHLIST.map((id) => {
+      const k = id.toLowerCase();
+      const snap = snapshotBy.get(k);
+      const hit = live[k];
+      if (snap) return snap;
+      if (hit) return hit;
+      return {
+        name: id,
+        author: id.split('/')[0],
+        description: '',
+        pipeline: '',
+        likes: 0,
+        downloads: 0,
+        url: `https://huggingface.co/${id}`,
+      };
+    });
+  }, [snapshotBy, live]);
+
+  const display = useMemo(() => {
+    const seen = new Set<string>();
+    const out: any[] = [...curated];
+    for (const c of curated) seen.add(String(c?.name || '').toLowerCase());
+    for (const m of rawModels || []) {
+      const n = String(m?.name || '').toLowerCase();
+      if (!n || seen.has(n) || watchlistIdMatch(m?.name)) continue;
+      seen.add(n);
+      out.push(m);
+    }
+    return out;
+  }, [curated, rawModels]);
+
+  return { curated, display };
+}
+
 export default function AIDashboard({
   items, dd, catBoxes, TC, ago, ts,
 }: {
@@ -320,8 +458,9 @@ export default function AIDashboard({
   const hwCat = catBoxes.find((c: any) => c.id === 'hardware');
   const models: any[] = dd?.hfModels || [];
   const spaces: any[] = dd?.hfSpaces || [];
-  const totalModels = models.length;
-  const totalDownloads = models.reduce((s: number, m: any) => s + (m.downloads || 0), 0);
+  const { curated: hfWatch, display: hfDisplay } = useCuratedWatchlist(models);
+  const totalModels = hfWatch.length;
+  const totalDownloads = hfWatch.reduce((s: number, m: any) => s + (m.downloads || 0), 0);
   const totalSpaces = spaces.length;
 
   const externalLabFeed: Item[] = dd?.aiLabFeed || [];
@@ -407,12 +546,12 @@ export default function AIDashboard({
               </div>
               <div className="mt-1.5 max-w-md">
                 <PanelMeta
-                  source="Hugging Face multi-query snapshot"
-                  note="curated set (downloads · likes · gen · vision · moe · agent) — not the full HF catalog"
+                  source="Hugging Face live + snapshot"
+                  note="curated frontier watchlist (open-weight · MoE · vision) — not the full HF catalog"
                 />
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {models.slice(0, 6).map((m: any) => (
+                {hfWatch.slice(0, 6).map((m: any) => (
                   <a
                     key={m.name}
                     href={m.url || `https://huggingface.co/${m.name}`}
@@ -424,8 +563,8 @@ export default function AIDashboard({
                     {(m.name || '').split('/').pop()}
                   </a>
                 ))}
-                {models.length > 6 && (
-                  <span className="text-[10px] text-[var(--text-disabled)] self-center">+{models.length - 6} more</span>
+                {hfWatch.length > 6 && (
+                  <span className="text-[10px] text-[var(--text-disabled)] self-center">+{hfWatch.length - 6} more</span>
                 )}
               </div>
             </div>
@@ -450,12 +589,12 @@ export default function AIDashboard({
         )}
       </div>
 
-      <FrontierWatch models={models} spaces={spaces} />
+      <FrontierWatch models={hfDisplay} spaces={spaces} />
 
       <AbliteratedModels models={dd?.abliterated || []} updated={dd?.abliteratedAt || null} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <TopOrgs models={models} />
+        <TopOrgs models={hfDisplay} />
         <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
       </div>
 
