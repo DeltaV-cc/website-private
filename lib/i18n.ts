@@ -21,7 +21,13 @@ export const TRANSLATED = ['/', '/contact/', '/ai/', '/web3/', '/forge/', '/opse
 /** Strip `/fr` and force a trailing slash so `/forge` matches `/forge/`. */
 export function canonPath(path: string): string {
   const noHash = path.split('#')[0] ?? path;
-  let clean = noHash.replace(/^\/fr(?=\/|$)/, '') || '/';
+  // Some hosts / Next versions include the Pages project basePath in the
+  // client pathname. Strip it so /website-private/fr/forge/ still counts as FR.
+  let p = noHash;
+  if (p === '/website-private' || p.startsWith('/website-private/')) {
+    p = p.slice('/website-private'.length) || '/';
+  }
+  let clean = p.replace(/^\/fr(?=\/|$)/, '') || '/';
   if (clean !== '/' && !clean.endsWith('/')) clean += '/';
   return clean;
 }
@@ -41,7 +47,11 @@ export function isTranslated(path: string): boolean {
 
 /** Strip the locale prefix to get the canonical (English) path. */
 export function toBasePath(path: string): string {
-  return path.replace(/^\/fr(?=\/|$)/, '') || '/';
+  let p = path;
+  if (p === '/website-private' || p.startsWith('/website-private/')) {
+    p = p.slice('/website-private'.length) || '/';
+  }
+  return p.replace(/^\/fr(?=\/|$)/, '') || '/';
 }
 
 /** Build the URL for the same page in another locale. */
@@ -67,5 +77,9 @@ export function hrefFor(path: string, locale: Locale): string {
 }
 
 export function localeFromPath(path: string): Locale {
-  return path === '/fr' || path.startsWith('/fr/') ? 'fr' : 'en';
+  let p = path;
+  if (p === '/website-private' || p.startsWith('/website-private/')) {
+    p = p.slice('/website-private'.length) || '/';
+  }
+  return p === '/fr' || p.startsWith('/fr/') ? 'fr' : 'en';
 }
