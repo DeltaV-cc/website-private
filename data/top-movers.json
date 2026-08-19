@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T10:46:32Z",
+  "updated_at": "2026-08-19T11:00:17Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.705042,
+        "price": 0.683537,
         "change_24h": 92.6,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002983,
+        "price": 0.002978,
         "change_24h": 7.6,
         "asset": "crypto"
       },
       {
         "symbol": "CAKE",
         "name": "PancakeSwap",
-        "price": 1.54,
+        "price": 1.55,
         "change_24h": 5.3,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.769732,
+        "price": 0.775949,
         "change_24h": 4.1,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.53,
+        "price": 101.57,
         "change_24h": 3.9,
         "asset": "crypto"
       }
@@ -133,7 +133,7 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.02978,
+        "price": 0.029267,
         "change_24h": -2.7,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 58.3,
+        "price": 58.49,
         "change_24h": -2.2,
         "asset": "crypto"
       }
