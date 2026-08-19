@@ -48,14 +48,31 @@ intake conversation, (2) ONE digest at the end (`$UBGE tasks`). Between those:
 ## How to run
 
 Via `terminal`, from this skill's directory (not `execute_code` — it redacts
-dossiers):
+dossiers). Interpreter is `python3` on macOS/Linux and `python` on native
+Windows; this one-liner picks whichever exists on the host:
 
 ```bash
-UBGE="python3 scripts/ubge.py"
+PY="python3"; python3 -c "pass" >/dev/null 2>&1 || PY="python"; UBGE="$PY scripts/ubge.py"
 ```
 
 Data lives under `$UBGE_DATA_DIR` (default `$HERMES_HOME/unbroker-ge`, else
-`~/.hermes/unbroker-ge`), mode `0600`.
+`~/.hermes/unbroker-ge`), mode `0600` on POSIX; on Windows the profile-home
+isolation provides the equivalent protection.
+
+## Install & verify (students / clients)
+
+Copy the skill directory into your own Hermes skills dir (replace the paths for
+your machine; use `python` on Windows):
+
+```bash
+cp -a <course>/skills/unbroker-ge  ~/.hermes/skills/unbroker-ge
+cd ~/.hermes/skills/unbroker-ge
+python3 scripts/ubge.py setup && python3 scripts/ubge.py doctor   # 8 targets, legal_kind fadp
+python3 tests/test_ubge.py                                        # 9 hermetic tests
+```
+
+`doctor` prints `setup: true` and lists 5 no-ID targets + 3 ID-gated. Dossiers
+and the ledger stay inside the data dir — no ID ever leaves the machine.
 
 ## Quick reference
 

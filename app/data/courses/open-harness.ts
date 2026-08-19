@@ -1496,7 +1496,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** Loop diagram sits under the loop section — not a double stack under the title */
     visualPlacement: 'none',
     proof: L(
-      'Approval mode is Smart or Manual, you ran the Geneva no-ID footprint loop (Robinson + at least one broker that does not ask for an ID), made at least one deliberate approve or deny, and opened unbroker-receipt.md offline.',
+      'Approval mode is Smart or Manual, you ran one lane (unbroker-ge or unbroker-eu) through the queue, made at least one deliberate approve or deny, and opened unbroker-receipt.md offline.',
     ),
     sections: [
       {
@@ -1542,35 +1542,56 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Put your agent to work'),
         blocks: [
           { k: 'p', text: L(
-            'The required mission is a real privacy filing for **you**, in Geneva. Official Hermes `unbroker` is US people-search and California DROP. `unbroker-ge` is the same *shape* — install, consent, drain the queue — pointed at Swiss brokers that do **not** need an ID copy.',
+            'Pick **one** lane. Same job either way: install the skill, consent once, drain the queue, open the receipt. Official Hermes `unbroker` is US people-search — not this mission.',
           ) },
+          { k: 'table', headers: [L('You are'), L('Skill'), L('Law')], rows: [
+            [L('Living in **Geneva / Switzerland**'), L('`unbroker-ge`'), L('nLPD / FADP, French letters')],
+            [L('An **EU or UK** resident'), L('`unbroker-eu`'), L('GDPR Arts. 17 and 21')],
+          ] },
           { k: 'p', text: L(
-            'Read the approval prompt once. Approve steps that stay inside the folder you named and the official opt-out forms. Deny anything that deletes other files, wanders off, or tries to attach a pièce d\'identité.',
+            'Read the approval prompt once. Approve official opt-out forms and writes inside the folder you named. Deny deletes, anything that wanders off, and any attempt to attach an identity document.',
           ) },
           { k: 'callout', variant: 'warning', text: L(
-            'You only run this on **yourself**. The engine refuses to plan without recorded consent. It is not legal advice — letters follow the [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz). CRIF, AZ Direct and Creditreform want an ID scan: they land in the digest, not in this session.',
+            'You only run this on **yourself**. The engine refuses to plan without recorded consent. Not legal advice. Credit bureaus that demand an ID (CRIF, SCHUFA, Experian…) go in the digest — not in this session.',
           ) },
           { k: 'code', block: {
-            label: L('Install (then start a new session)'),
+            label: L('Lane A — Geneva / Switzerland'),
             lang: 'sh',
             code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-ge',
-            note: L('If that source is not on the machine yet, copy the `unbroker-ge` folder from this lesson into `~/.hermes/skills/unbroker-ge/` instead.'),
+            note: L('Fallback: copy the `unbroker-ge` folder into `~/.hermes/skills/unbroker-ge/`.'),
+          } },
+          { k: 'code', block: {
+            label: L('Lane B — EU / UK resident'),
+            lang: 'sh',
+            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-eu',
+            note: L('Fallback: copy the `unbroker-eu` folder into `~/.hermes/skills/unbroker-eu/`.'),
           } },
           { k: 'copycards', items: [
-            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Fallback: the skill folder if hub install is not available yet' },
+            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Geneva / CH — Robinson, local.ch, Moneyhouse, Poste' },
+            { src: '/courses/open-harness/skills/unbroker-eu/SKILL.md', title: 'unbroker-eu', why: 'EU / UK — YourOnlineChoices, Acxiom, Criteo, LiveRamp, Google' },
           ] },
           { k: 'steps', id: '3-steps', items: [
-            { title: L('Install `unbroker-ge` (command above). New session so Hermes loads it.') },
-            { title: L('Say: “Use unbroker-ge. I consent. I live in Geneva.” Give name, address, email, phone when it asks — once.') },
-            { title: L('Let it drain the queue. Approve searches and no-ID forms. Deny deletes, ID scans, and anything outside your folder.') },
+            { title: L('Install **one** skill (lane A or B). New session so Hermes loads it.') },
+            { title: L('Paste the matching line below. Give name, address, email, phone when it asks — once.') },
+            { title: L('Let it drain the queue. Approve searches and no-ID forms. Deny deletes and ID scans.') },
             { title: L('When it stops, open `unbroker-receipt.md` offline. If the file is missing, the mission failed.') },
           ] },
-          { k: 'table', headers: [L('Who gets a demand today'), L('What you ask')], rows: [
-            [L('**Liste Robinson** (SDV)'), L('Stop cold addressed advertising — file this first')],
-            [L('**local.ch / search.ch**'), L('Hide or delete the private listing')],
-            [L('**Moneyhouse**'), L('Stop publishing the private person page')],
-            [L('**La Poste**'), L('Unsubscribe addressed mailings; Stop Pub sticker is on you')],
-            [L('**Dun & Bradstreet CH**'), L('Only if a person page exists')],
+          { k: 'code', block: {
+            label: L('Paste — lane A (Geneva)'),
+            lang: 'text',
+            code: 'Use unbroker-ge. I consent. I live in Geneva.',
+          } },
+          { k: 'code', block: {
+            label: L('Paste — lane B (EU / UK)'),
+            lang: 'text',
+            code: 'Use unbroker-eu. I consent. I live in the EU.',
+          } },
+          { k: 'table', headers: [L('Lane A files'), L('Lane B files')], rows: [
+            [L('Liste Robinson (SDV) — first'), L('YourOnlineChoices (EDAA) — first')],
+            [L('local.ch / search.ch'), L('Acxiom')],
+            [L('Moneyhouse'), L('Criteo')],
+            [L('La Poste mailing stop'), L('LiveRamp')],
+            [L('D&B CH if a person page exists'), L('Google results-about-you; D&B if found')],
           ] },
           { k: 'p', text: L(
             'If you still have time after the receipt exists: `/learn` on a file you own, or the Desktop HUD (“this” instead of describing a window). Neither replaces the footprint loop.',
@@ -1580,7 +1601,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             caption: L('The HUD in use — optional after the receipt exists.'),
           },
           { k: 'callout', variant: 'note', text: L(
-            'The skill lives with the course: [unbroker-ge / SKILL.md](/courses/open-harness/skills/unbroker-ge/SKILL.md). Official US Unbroker stays optional for a later week if you also have a US footprint.',
+            'Skills live with the course: [unbroker-ge](/courses/open-harness/skills/unbroker-ge/SKILL.md) and [unbroker-eu](/courses/open-harness/skills/unbroker-eu/SKILL.md). Official US Unbroker stays optional if you also have a US footprint.',
           ) },
           { k: 'quiz', quiz: {
             question: L('You deny a delete tool call. Next?'),
@@ -2007,7 +2028,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('**It survives the budget test** — see the next section. A shelf of unused skills costs tokens in every session.'),
         ] },
           { k: 'callout', variant: 'note', text: L(
-            'The one we recommend by name is `unbroker-ge` from [lesson 06](/forge/course/my-first-ai-agent/06/) — Geneva brokers that accept a name and email, no ID scan. Official `unbroker` is the US people-search tool; only add it if you also have a US footprint.',
+            'The ones we recommend by name are `unbroker-ge` and `unbroker-eu` from [lesson 06](/forge/course/my-first-ai-agent/06/) — pick the lane that matches where you live. Official `unbroker` is the US people-search tool; only add it if you also have a US footprint.',
           ) },
           { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into a note in your vault, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
           { k: 'links', items: [

@@ -1,5 +1,9 @@
 {
+  "profile": "unbroker-ge",
+  "data_dirname": "unbroker-ge",
   "legal_kind": "fadp",
+  "letter_template": "opposition.fr.txt",
+  "default_country": "CH",
   "one_shot": "robinson",
   "order": [
     "robinson",
