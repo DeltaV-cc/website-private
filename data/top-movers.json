@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-19T16:09:05Z",
+  "updated_at": "2026-08-19T16:15:23Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "TEM",
-        "name": "Tempus AI, Inc.",
-        "price": 59.7,
-        "change_24h": 20.95,
+        "symbol": "BNTX",
+        "name": "BioNTech SE",
+        "price": 111.65,
+        "change_24h": 20.38,
         "asset": "equity"
       },
       {
-        "symbol": "BNTX",
-        "name": "BioNTech SE",
-        "price": 112.05,
-        "change_24h": 20.81,
+        "symbol": "TEM",
+        "name": "Tempus AI, Inc.",
+        "price": 59.54,
+        "change_24h": 20.6,
         "asset": "equity"
       },
       {
         "symbol": "TWST",
         "name": "Twist Bioscience Corporation",
-        "price": 136.88,
-        "change_24h": 17.9,
-        "asset": "equity"
-      },
-      {
-        "symbol": "CDE",
-        "name": "Coeur Mining, Inc.",
-        "price": 21.16,
-        "change_24h": 14.29,
+        "price": 135.83,
+        "change_24h": 16.99,
         "asset": "equity"
       },
       {
         "symbol": "MSTR",
         "name": "Strategy Inc",
-        "price": 105.52,
-        "change_24h": 14.04,
+        "price": 105.53,
+        "change_24h": 14.06,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CDE",
+        "name": "Coeur Mining, Inc.",
+        "price": 21.18,
+        "change_24h": 14.4,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "VICR",
         "name": "Vicor Corporation",
-        "price": 219.67,
-        "change_24h": -9.38,
+        "price": 219.44,
+        "change_24h": -9.48,
         "asset": "equity"
       },
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 113.04,
-        "change_24h": -8.28,
+        "price": 111.87,
+        "change_24h": -9.23,
         "asset": "equity"
       },
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 227.64,
-        "change_24h": -8.37,
-        "asset": "equity"
-      },
-      {
-        "symbol": "SEI",
-        "name": "Solaris Energy Infrastructure, ",
-        "price": 57.12,
-        "change_24h": -7.78,
+        "price": 226.74,
+        "change_24h": -8.73,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 75.87,
-        "change_24h": -7.82,
+        "price": 75.09,
+        "change_24h": -8.77,
+        "asset": "equity"
+      },
+      {
+        "symbol": "SEI",
+        "name": "Solaris Energy Infrastructure, ",
+        "price": 56.8,
+        "change_24h": -8.3,
         "asset": "equity"
       }
     ]
@@ -82,21 +82,21 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.003098,
+        "price": 0.003082,
         "change_24h": 9.4,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2098.47,
+        "price": 2090.94,
         "change_24h": 9.0,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 551.08,
+        "price": 552.0,
         "change_24h": 8.8,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.22,
+        "price": 1.21,
         "change_24h": 7.3,
         "asset": "crypto"
       }
@@ -119,7 +119,7 @@
       {
         "symbol": "FIGR_HELOC",
         "name": "Figure Heloc",
-        "price": 1.005,
+        "price": 1.004,
         "change_24h": -3.2,
         "asset": "crypto"
       },
@@ -133,21 +133,21 @@
       {
         "symbol": "LEO",
         "name": "LEO Token",
-        "price": 9.3,
+        "price": 9.27,
         "change_24h": -2.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.10494,
+        "price": 0.10511,
         "change_24h": -1.6,
         "asset": "crypto"
       },
       {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.14,
+        "price": 2.13,
         "change_24h": -1.6,
         "asset": "crypto"
       }
