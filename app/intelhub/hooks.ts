@@ -200,6 +200,45 @@ function notTweet(it: { source: string }) { return !XSOURCES.some(s => it.source
 
 const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComponent(url)}`;
 
+/* ---- HF abliterated models (live fallback, AI tab only) ---- */
+const ABLITERATED_SEARCH =
+  'https://huggingface.co/api/models?search=abliterated&limit=40&full=true';
+
+/** HF search result → dashboard row. Rank = blend of popularity (log downloads)
+ *  and recentness (30-day half-life on lastModified). Keep in sync with
+ *  scripts/collect-abliterated.py so snapshot and live fallback rank identically. */
+function mapAbliterated(raw: any[]): any[] {
+  const now = Date.now();
+  const rows = (raw || [])
+    .map((m: any) => {
+      const id = m.id || m.modelId || m.name || '';
+      const [author, ...rest] = String(id).split('/');
+      const name = rest.join('/') || id;
+      const last = m.lastModified || m.createdAt || null;
+      return {
+        id,
+        name,
+        author: author || '',
+        likes: m.likes || 0,
+        downloads: m.downloads || 0,
+        url: `https://huggingface.co/${id}`,
+        lastModified: last,
+        daysAgo: last ? Math.max(0, Math.floor((now - new Date(last).getTime()) / 86400000)) : null,
+      };
+    })
+    .filter((r) => r.id && r.id.includes('/'));
+  if (!rows.length) return [];
+  const maxPop = Math.max(1, ...rows.map((r) => Math.log10(r.downloads + 1)));
+  return rows
+    .map((r) => {
+      const pop = Math.log10(r.downloads + 1) / maxPop;
+      const rec = r.daysAgo == null ? 0.2 : 1 / (1 + r.daysAgo / 30);
+      return { ...r, pop, rec, combo: 0.65 * pop + 0.35 * rec };
+    })
+    .sort((a, b) => b.combo - a.combo)
+    .slice(0, 14);
+}
+
 // Fetch JSON with a hard timeout so a hanging host can never stall the dashboard.
 // Returns null on any failure (timeout, network, non-2xx, bad JSON).
 // One quick retry for transient CDN/network blips.
@@ -592,6 +631,19 @@ export function useIntelData(activeTab: string = 'macro') {
           const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
           merge({ arenaLB: models, arenaUpdated: d.updated || null });
         }),
+        // HF abliterated models — 6h cron snapshot first (collect-abliterated.py),
+        // live HF search as fallback so the panel never sits empty.
+        (async () => {
+          const snap = await fetchJson(dataUrl('/data/hf-abliterated.json'));
+          if (snap && Array.isArray(snap.models) && snap.models.length > 0) {
+            merge({ abliterated: snap.models, abliteratedAt: snap.updated || null });
+            return;
+          }
+          const live = await fetchJson(proxy(ABLITERATED_SEARCH));
+          if (Array.isArray(live)) {
+            merge({ abliterated: mapAbliterated(live), abliteratedAt: new Date().toISOString() });
+          }
+        })(),
       );
     }
 

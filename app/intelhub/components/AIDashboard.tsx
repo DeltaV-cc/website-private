@@ -245,6 +245,70 @@ function TopOrgs({ models }: { models: any[] }) {
   );
 }
 
+/** HF abliterated (refusal-removed) models — ranked by popularity × recentness.
+ *  Data comes from the 6h cron snapshot (data/hf-abliterated.json, already sorted
+ *  by `combo`); rendered defensively in case of missing sort. */
+function AbliteratedModels({ models, updated }: { models: any[]; updated?: string | null }) {
+  const rows = useMemo(() => {
+    const list = Array.isArray(models) ? [...models] : [];
+    const withCombo = list
+      .map((m: any) => (typeof m.combo === 'number' ? m : { ...m, combo: 0.5 }));
+    return withCombo.sort((a: any, b: any) => (b.combo ?? 0) - (a.combo ?? 0)).slice(0, 14);
+  }, [models]);
+
+  const updatedLabel = updated
+    ? (() => {
+        const d = new Date(updated);
+        return isNaN(d.getTime()) ? updated : d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      })()
+    : null;
+
+  return (
+    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
+        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Abliterated models</span>
+        <PanelMeta
+          source="HF live · search 'abliterated'"
+          note="ranked: popularity × recency"
+          updated={updatedLabel}
+        />
+      </div>
+      {rows.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
+          {rows.map((m: any, i: number) => (
+            <a
+              key={`${m.id || m.name}-${i}`}
+              href={m.url || `https://huggingface.co/${m.id || m.author}/${m.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-4 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg font-extrabold text-[var(--accent-green)] tabular-nums shrink-0 leading-none">#{i + 1}</span>
+                    <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-green)] truncate transition-colors">{m.name || m.id}</span>
+                  </div>
+                  <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 truncate">{m.author || 'HF'}{m.daysAgo != null ? ` · ${m.daysAgo}d ago` : ''}</div>
+                </div>
+                <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
+                  <span>{m.likes || 0} ♥</span>
+                  {m.downloads != null && <span>{fmtCompact(m.downloads || 0)} ↓</span>}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-3 p-5">
+          <div className="skeleton-shimmer h-3 w-40 rounded" />
+          <div className="skeleton-shimmer h-8 w-48 rounded" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AIDashboard({
   items, dd, catBoxes, TC, ago, ts,
 }: {
@@ -387,6 +451,8 @@ export default function AIDashboard({
       </div>
 
       <FrontierWatch models={models} spaces={spaces} />
+
+      <AbliteratedModels models={dd?.abliterated || []} updated={dd?.abliteratedAt || null} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <TopOrgs models={models} />
