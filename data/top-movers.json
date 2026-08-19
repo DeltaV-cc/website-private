@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T12:46:04Z",
+  "updated_at": "2026-08-19T13:16:06Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.628015,
+        "price": 0.627079,
         "change_24h": 70.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00301,
-        "change_24h": 7.6,
+        "price": 0.003014,
+        "change_24h": 7.0,
         "asset": "crypto"
       },
       {
         "symbol": "CAKE",
         "name": "PancakeSwap",
         "price": 1.54,
-        "change_24h": 5.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "SKY",
-        "name": "Sky",
-        "price": 0.057224,
-        "change_24h": 4.6,
+        "change_24h": 5.7,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.778274,
-        "change_24h": 4.5,
+        "price": 0.775326,
+        "change_24h": 5.1,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.05713,
+        "change_24h": 4.8,
         "asset": "crypto"
       }
     ],
@@ -119,8 +119,8 @@
       {
         "symbol": "STABLE",
         "name": "\u200b\u200bStable",
-        "price": 0.029089,
-        "change_24h": -4.4,
+        "price": 0.028813,
+        "change_24h": -5.0,
         "asset": "crypto"
       },
       {
@@ -131,24 +131,24 @@
         "asset": "crypto"
       },
       {
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.06,
+        "change_24h": -4.3,
+        "asset": "crypto"
+      },
+      {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -4.1,
+        "change_24h": -3.8,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 14.13,
-        "change_24h": -3.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.14,
-        "change_24h": -3.4,
+        "price": 14.21,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
