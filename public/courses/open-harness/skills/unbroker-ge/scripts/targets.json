@@ -1,0 +1,98 @@
+{
+  "legal_kind": "fadp",
+  "one_shot": "robinson",
+  "order": [
+    "robinson",
+    "localsearch",
+    "moneyhouse",
+    "poste",
+    "dnb",
+    "crif",
+    "az_direct",
+    "creditreform"
+  ],
+  "targets": {
+    "robinson": {
+      "name": "Liste Robinson (SDV)",
+      "lane": "noid",
+      "scan": false,
+      "blind_optout": true,
+      "method": "web_form",
+      "optout_url": "https://sdv-konsumenteninfo.ch/robinsonliste-fr/",
+      "email": null,
+      "notes": "Swiss DROP for cold addressed advertising. File first. Private persons living in Switzerland only."
+    },
+    "localsearch": {
+      "name": "local.ch / search.ch",
+      "lane": "noid",
+      "scan": true,
+      "blind_optout": true,
+      "method": "web_form",
+      "search_urls": [
+        "https://www.local.ch/fr/q/{commune}/{query}",
+        "https://tel.search.ch/?was={query}&wo={commune}"
+      ],
+      "optout_url": "https://www.localsearch.ch/fr/votre-inscription/",
+      "email": "dataprivacy@localsearch.ch",
+      "notes": "Phone-book listing. Prefer the inscription form; fall back to dataprivacy@ email with the FADP letter."
+    },
+    "moneyhouse": {
+      "name": "Moneyhouse",
+      "lane": "noid",
+      "scan": true,
+      "blind_optout": true,
+      "method": "email",
+      "search_urls": [
+        "https://www.moneyhouse.ch/fr/search?q={query}"
+      ],
+      "optout_url": "https://www.moneyhouse.ch/fr/about/contact",
+      "email": "contact@moneyhouse.ch",
+      "notes": "/fr/deletion was a 404 on 2026-08-19. Use contact form or email. Do not treat a commercial-register company page as deletable."
+    },
+    "poste": {
+      "name": "La Poste",
+      "lane": "noid",
+      "scan": false,
+      "blind_optout": true,
+      "method": "web_form",
+      "optout_url": "https://www.post.ch/fr/pages/unsubscribe-mailing",
+      "email": null,
+      "human_extra": "Yellow Stop Pub sticker on the letterbox — student, 30 seconds.",
+      "notes": "Addressed-mailing unsubscribe is the agent action. Sticker is human."
+    },
+    "dnb": {
+      "name": "Dun & Bradstreet CH",
+      "lane": "noid",
+      "scan": true,
+      "blind_optout": false,
+      "method": "web_form",
+      "search_urls": [
+        "https://www.dnb.com/de-ch.html"
+      ],
+      "optout_url": "https://submit-irm.trustarc.eu/services/validation/ba81b98f-997d-4216-b4cc-d64cf261b082",
+      "email": "info.ch@dnb.com",
+      "notes": "Opt out only if a person/director page is found. Company pages stay."
+    },
+    "crif": {
+      "name": "CRIF AG",
+      "lane": "id_gated",
+      "scan": false,
+      "email": "selbstauskunft.ch@crif.com",
+      "notes": "Requires a scan of an official ID. Digest only."
+    },
+    "az_direct": {
+      "name": "AZ Direct AG",
+      "lane": "id_gated",
+      "scan": false,
+      "email": "datenschutz@az-direct.ch",
+      "notes": "Sperrung / blocage needs a written request plus ID. Digest only. Prefer block over delete."
+    },
+    "creditreform": {
+      "name": "Creditreform",
+      "lane": "id_gated",
+      "scan": false,
+      "email": "info@creditreform.ch",
+      "notes": "Written ID copy required. Digest only."
+    }
+  }
+}

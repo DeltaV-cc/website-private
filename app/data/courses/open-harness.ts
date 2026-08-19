@@ -1542,23 +1542,28 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Put your agent to work'),
         blocks: [
           { k: 'p', text: L(
-            'The required mission is a real privacy filing for **you**, in Geneva. Official Hermes `unbroker` is built for US people-search sites and California\'s DROP. That is the wrong default here. `unbroker-ge` files the Swiss requests that do **not** need a copy of your ID: the Robinson list, local.ch / search.ch, Moneyhouse, La Poste\'s mailing stop, and Dun & Bradstreet if you appear as a person.',
+            'The required mission is a real privacy filing for **you**, in Geneva. Official Hermes `unbroker` is US people-search and California DROP. `unbroker-ge` is the same *shape* — install, consent, drain the queue — pointed at Swiss brokers that do **not** need an ID copy.',
           ) },
           { k: 'p', text: L(
             'Read the approval prompt once. Approve steps that stay inside the folder you named and the official opt-out forms. Deny anything that deletes other files, wanders off, or tries to attach a pièce d\'identité.',
           ) },
           { k: 'callout', variant: 'warning', text: L(
-            'You only run this on **yourself**. The skill refuses third parties. It is not legal advice — the French letter follows the [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz). CRIF, AZ Direct and Creditreform want an ID scan: they go in the receipt as homework, not in this session.',
+            'You only run this on **yourself**. The engine refuses to plan without recorded consent. It is not legal advice — letters follow the [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz). CRIF, AZ Direct and Creditreform want an ID scan: they land in the digest, not in this session.',
           ) },
+          { k: 'code', block: {
+            label: L('Install (then start a new session)'),
+            lang: 'sh',
+            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-ge',
+            note: L('If that source is not on the machine yet, copy the `unbroker-ge` folder from this lesson into `~/.hermes/skills/unbroker-ge/` instead.'),
+          } },
           { k: 'copycards', items: [
-            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Geneva no-ID opt-out procedure the agent follows' },
-            { src: '/courses/open-harness/skills/unbroker-ge/templates/receipt.md', title: 'unbroker-receipt.md', why: 'Blank receipt — the file that proves the loop' },
+            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Fallback: the skill folder if hub install is not available yet' },
           ] },
           { k: 'steps', id: '3-steps', items: [
-            { title: L('Copy `unbroker-ge` into a folder you own, then point Hermes at it (or paste the skill into chat). New session so it actually loads.') },
-            { title: L('Say this, with your real details: “I consent. I live in Geneva. Follow unbroker-ge for me only. Write the receipt to [folder I name]. Do not send any ID.”') },
-            { title: L('Approve the searches and the no-ID forms. Deny deletes, extra disclosure, and anything outside that folder.') },
-            { title: L('Open `unbroker-receipt.md` yourself, offline. If the file is missing, the mission failed.') },
+            { title: L('Install `unbroker-ge` (command above). New session so Hermes loads it.') },
+            { title: L('Say: “Use unbroker-ge. I consent. I live in Geneva.” Give name, address, email, phone when it asks — once.') },
+            { title: L('Let it drain the queue. Approve searches and no-ID forms. Deny deletes, ID scans, and anything outside your folder.') },
+            { title: L('When it stops, open `unbroker-receipt.md` offline. If the file is missing, the mission failed.') },
           ] },
           { k: 'table', headers: [L('Who gets a demand today'), L('What you ask')], rows: [
             [L('**Liste Robinson** (SDV)'), L('Stop cold addressed advertising — file this first')],

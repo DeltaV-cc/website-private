@@ -16,98 +16,113 @@ metadata:
 
 # unbroker-ge
 
-Remove a **consenting Geneva resident's** personal listing from the Swiss
-brokers that accept a name + address + email. No ID scan. Not legal advice.
-Letters follow the Confederation's [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz).
+Find where a consenting Geneva resident's name, address or phone is published
+on Swiss brokers and directories, then file the no-ID opt-outs. The Python
+CLI (`scripts/ubge.py`) owns consent, the queue, and the ledger. You scan and
+submit with native tools (`web_extract`, `browser_*`). It does **not** act
+without recorded consent, does **not** send an ID, does **not** cite CCPA, and
+does **not** touch official registers (OCPM, poursuites, Zefix).
 
-Official Hermes `unbroker` is US people-search (Spokeo, Whitepages, California
-DROP). This skill is the Geneva course loop. Do not install or run the US
-skill unless the person also has a US phone or a US stay and asks for it.
+Not legal advice. Letters follow the [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz).
 
-## Hard limits
+Official Hermes `unbroker` is US people-search + California DROP. Do not install
+it unless the person also has a US footprint and asks.
 
-- No consent recorded in the receipt → stop.
-- Act only on the person speaking. Family / clients need their own session.
-- Never send, attach, or store a pièce d'identité, AVS number, or passport.
-- Never volunteer date of birth. If a form requires it, queue that target as
-  `human_task` instead of inventing a date.
-- Prefer **blocage / opposition** over full deletion (address traders re-import
-  a deleted row).
-- Letters in **French**. Cite nLPD / FADP (art. 30 al. 2 let. b and art. 32).
-  Do not cite CCPA. Do not cite GDPR unless the person asked.
-- Do not file against OCPM, Office des poursuites, registre du commerce,
-  Zefix, HUG, SIG, TPG, the commune, or any organisation internationale.
-- A later reply that asks for ID is success: record it in the digest, do not
-  attach the scan.
-- `confirmed` only after you re-open the listing and it is gone. A thank-you
-  page is not confirmation.
+## Autonomy contract
 
-## Intake (one pass)
+After intake (+ recorded `--consent`) there are two human touchpoints: (1) the
+intake conversation, (2) ONE digest at the end (`$UBGE tasks`). Between those:
 
-Collect, write into the receipt, then start. Do not come back with extra
-questions mid-run.
+- Never ask the operator to pick brokers. `$UBGE next` is the queue.
+- Never pause before individual no-ID submissions. Consent is standing
+  authorization for Robinson, localsearch, Moneyhouse, Poste, and D&B-if-found.
+- Never send, attach, or store a pièce d'identité / AVS / passport. ID-gated
+  targets (CRIF, AZ Direct, Creditreform) only appear in the digest.
+- Drive the run as a loop over `$UBGE next <subject>` until `done_for_now`.
 
-- Full name + aliases (nom d'alliance, nom de célibataire)
-- Street, NPA, commune in canton **GE**
-- Prior Swiss addresses (optional)
-- `+41` phones, emails
-- Spoken consent: they want you to file **their** opt-outs
-- Working folder they own (default: a `unbroker-ge/` folder they name)
+## When to use
 
-If they are not in Geneva, say this skill is Geneva-shaped and still run only
-the nationwide targets (Robinson, localsearch, Moneyhouse, Poste, D&B).
+- "Remove my data from Swiss brokers / local.ch / Moneyhouse."
+- "Robinson list", "opt me out in Geneva", `/unbroker-ge`.
 
-## Loop
+## How to run
 
-1. Write `unbroker-receipt.md` in the working folder from
-   `templates/receipt.md` (create a stub if the template is missing).
-2. Search the person on every **scan** target below. Record found / not_found
-   with the listing URL. A 404 or block page is inconclusive, not `not_found`.
-3. File every **no-ID** action, including Robinson even when nothing was found
-   (blind opposition is allowed: you only send their own identifiers to the
-   controller's official channel).
-4. Skip a target when the live flow demands ID, a phone callback, or a
-   government portal login you cannot complete. Draft the letter, put it in
-   the digest.
-5. Re-check localsearch and Moneyhouse if the site said it would update
-   immediately. Otherwise stamp `awaiting` and a date +30 days.
-6. Present the receipt and the human digest. Stop.
+Via `terminal`, from this skill's directory (not `execute_code` — it redacts
+dossiers):
 
-Do not pause to ask which broker to do next. Drain the table.
+```bash
+UBGE="python3 scripts/ubge.py"
+```
 
-## Targets
+Data lives under `$UBGE_DATA_DIR` (default `$HERMES_HOME/unbroker-ge`, else
+`~/.hermes/unbroker-ge`), mode `0600`.
 
-| id | Who | Scan | File now (no ID) | If they demand ID |
-|---|---|---|---|---|
-| robinson | Liste Robinson (SDV) | — | French form [robinsonliste-fr](https://sdv-konsumenteninfo.ch/robinsonliste-fr/). Private persons living in Switzerland only. File **first**. | Digest |
-| localsearch | local.ch / search.ch (Swisscom Directories) | Search name + commune on local.ch and search.ch | (a) [Supprimer / modifier l'inscription](https://www.localsearch.ch/fr/votre-inscription/) — phone + email account. (b) Rights form or email `dataprivacy@localsearch.ch` with the letter | Digest |
-| moneyhouse | Moneyhouse (itonex) | Search name + Genève on moneyhouse.ch | Contact form or `contact@moneyhouse.ch` with the letter. `/fr/deletion` was a 404 on 2026-08-19 — do not use it | Digest |
-| poste | La Poste | — | [Désinscription mailing](https://www.post.ch/fr/pages/unsubscribe-mailing). Yellow **Stop Pub** sticker on the letterbox → digest (human, 30s) | — |
-| dnb | Dun & Bradstreet CH | Search only if they are (or were) a company officer | [TrustArc rights portal](https://submit-irm.trustarc.eu/services/validation/ba81b98f-997d-4216-b4cc-d64cf261b082) if a **person** page exists | Digest |
+## Quick reference
 
-### Do not file in this run
+| Command | Purpose |
+|---|---|
+| `$UBGE setup` | Create the data dir |
+| `$UBGE doctor` | Readiness: target count, no-ID vs ID-gated |
+| `$UBGE intake --full-name "…" --email … [--phone --street --npa --commune] --consent` | Create subject; refuses without `--consent`; prints `subject_id` |
+| `$UBGE next <subject>` | Ordered actions right now + human digest |
+| `$UBGE record <subject> <target> <state> [--found true] [--evidence JSON] [--reason "…"]` | Ledger (validated transitions) |
+| `$UBGE letter <subject> <target>` | Render the French nLPD letter (refuses ID-gated targets) |
+| `$UBGE status <subject> [--out PATH]` | Markdown receipt |
+| `$UBGE tasks <subject>` | Human digest only |
 
-CRIF (`selbstauskunft.ch@crif.com`), AZ Direct (`datenschutz@az-direct.ch`),
-Creditreform — they require an ID copy. If a scan finds a listing, add one
-line to the digest: print the EDÖB letter, attach ID, send. Do not send it.
+States: `unscanned` → `found`/`not_found`/`blocked` → `submitted` →
+`awaiting_processing` → `confirmed_removed`. `human_task_queued` for anything
+only a human can finish. `confirmed_removed` only after a re-scan shows the
+listing gone.
 
-## Letter
+## Procedure
 
-Use `templates/opposition.fr.txt`. Send only: name, postal address, contact
-email, listing URL if you have one. Nothing else.
+1. **Setup.** `$UBGE setup && $UBGE doctor`. Show the operator. Do not wait.
+2. **Intake + consent (the one conversation).** Collect name, aliases, street,
+   NPA, commune (GE), `+41` phones, emails in one pass. Then:
 
-If you cannot open the official web form (CAPTCHA you cannot pass, login
-wall), send the letter to the email in the table instead. Never use a
-CAPTCHA-solving service.
+   ```bash
+   $UBGE intake --full-name "…" --email "…" --street "…" --npa "…" --commune "…" --phone "…" --consent --consent-method spoken
+   ```
 
-## Receipt
+   Without `--consent` the engine exits. Do not work around it.
+3. **Drain the queue.**
 
-Overwrite the stub so it contains:
+   ```
+   while true:
+     q = $UBGE next <subject>
+     if q.done_for_now: break
+     execute EVERY action in order; $UBGE record each outcome
+   ```
 
-- Consent line + date
-- Provider + model that ran
-- Table: target / found URL / what was filed / awaiting or confirmed
-- Human digest (ID-gated, Stop Pub sticker, anything blocked)
-- Three lines: Think / Act / Observe
+   Action types:
+   - `robinson_submit` — open `optout_url`, file the French Robinson form
+     (name + Swiss address). Record `submitted`.
+   - `scan` — hit every `search_urls` entry. Confirm it is the subject, not a
+     namesake. Record `found` / `not_found` / `blocked` with listing URLs.
+     A 404 is inconclusive (`blocked`), not `not_found`.
+   - `optout_web_form` — drive `optout_url` with only `disclosure_fields`.
+     CAPTCHA you cannot pass → `$UBGE letter` and record `human_task_queued`.
+     Never a solver service.
+   - `optout_email` — `$UBGE letter <subject> <target>` then send that body
+     to `compose.to` via the operator's mail. Record `submitted`.
+4. **Wrap up.** `$UBGE tasks` (digest) then `$UBGE status --out unbroker-receipt.md`
+   in the folder the operator named. Present the digest once.
+5. **Re-scan later.** `next_wake_at` is `+30d`. One cron that re-runs this
+   loop is enough. Do not mark `confirmed_removed` off a thank-you page.
 
-The receipt is the proof. Chat is not.
+## Rules the queue already encodes
+
+- Robinson first (the Swiss one-shot).
+- Blind opt-out on localsearch / Moneyhouse / Poste even when the scan is
+  `not_found` — you only send the subject's own identifiers to the official
+  channel.
+- D&B only if `found` (a person/director page). Company pages stay.
+- CRIF / AZ Direct / Creditreform never become agent submit actions.
+- Prefer blocage over full deletion.
+- French nLPD letter only. Never CCPA.
+
+## Out of scope
+
+OCPM, Office des poursuites, registre du commerce / Zefix, HUG, SIG, TPG,
+the commune, organisations internationales, US people-search.
