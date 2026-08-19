@@ -126,9 +126,20 @@ def cve_rows(data: dict, limit: int = 12) -> list[dict]:
             "published": published,
         })
     out.sort(key=lambda r: (r.get("published") or ""), reverse=True)
-    # Prefer CRITICAL, then recency
     out.sort(key=lambda r: (0 if r["severity"] == "CRITICAL" else 1, -(r.get("score") or 0)))
-    return [r for r in out if r.get("id")][:limit]
+    seen_desc = set()
+    unique = []
+    for r in out:
+        if not r.get("id"):
+            continue
+        sig = re.sub(r"\s+", " ", (r.get("description") or "")[:80].lower())
+        if sig in seen_desc:
+            continue
+        seen_desc.add(sig)
+        unique.append(r)
+        if len(unique) >= limit:
+            break
+    return unique
 
 
 def breach_rows(data: list, limit: int = 12) -> list[dict]:
