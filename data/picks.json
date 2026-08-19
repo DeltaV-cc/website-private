@@ -1,26 +1,29 @@
 {
   "picks": [
     {
-      "title": "Morgan Stanley Expands Crypto Push With Ethereum and Solana ETPs",
+      "title": "Chinese InsurTech Firm Zhibao Adds 2,380 Bitcoin in $154.7M Treasury Pivot",
       "source": "Decrypt",
-      "category": "web3",
-      "url": "https://decrypt.co/374592/morgan-stanley-crypto-ethereum-solana-etps",
-      "published_at": "2026-07-28T19:19:50.466221"
+      "category": "macro",
+      "url": "https://decrypt.co/375935/china-zhibao-bitcoin-treasury-pivot",
+      "published_at": "Wed, 19 Aug 2026 13:31:04 +0000",
+      "score": 186.0
     },
     {
-      "title": "Morgan Stanley debuts ether, solana exchange-traded products after bitcoin fund success",
+      "title": "Solana leads bitcoin and ether higher while Korean chip stocks slide 7%",
       "source": "CoinDesk",
-      "category": "web3",
-      "url": "https://www.coindesk.com/markets/2026/07/28/morgan-stanley-debuts-ether-and-solana-etps-after-bitcoin-fund-success",
-      "published_at": "2026-07-28T14:32:36.471769"
+      "category": "market",
+      "url": "https://www.coindesk.com/markets/2026/08/19/solana-leads-bitcoin-and-ether-higher-while-korean-chip-stocks-slide-7",
+      "published_at": "Wed, 19 Aug 2026 04:25:42 +0000",
+      "score": 171.0
     },
     {
-      "title": "Is Your SSO Protected Against Modern Credential Attacks?",
+      "title": "Critical RCE flaw in Windows IKE Extension now actively exploited",
       "source": "BleepingComputer",
-      "category": "opsec",
-      "url": "https://www.bleepingcomputer.com/news/security/is-your-sso-protected-against-modern-credential-attacks/",
-      "published_at": "2026-07-28T14:17:07.680442"
+      "category": "macro",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-critical-windows-ike-extension-flaw-now-exploited-in-attacks/",
+      "published_at": "Wed, 19 Aug 2026 06:12:24 -0400",
+      "score": 150.0
     }
   ],
-  "updatedAt": "2026-07-29T01:42:42.088645+00:00"
+  "updatedAt": "2026-08-19T14:54:11.085039+00:00"
 }
