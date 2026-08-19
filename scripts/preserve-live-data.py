@@ -62,6 +62,8 @@ INTEL_ALWAYS_LIVE = {
     "hf-abliterated.json",
     "ai-labs.json",
     "ai-personas.json",
+    "infosec.json",
+    "cybersec-watchlist.json",
 }
 
 

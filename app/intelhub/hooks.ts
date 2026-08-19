@@ -1130,21 +1130,47 @@ export function useIntelData(activeTab: string = 'macro') {
           if (result.kev.length) liveHits += 1;
         }
       }),
-      fetchJson(proxy('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=12')).then((d) => {
-        if (d) {
-          result.cves = (d.vulnerabilities || []).map((v: any) => {
-            const cve = v.cve || {};
-            const m = cve.metrics?.cvssMetricV31?.[0]?.cvssData || cve.metrics?.cvssMetricV30?.[0]?.cvssData || {};
-            const desc = (cve.descriptions || []).find((x: any) => x.lang === 'en');
-            return { id: cve.id, severity: m.baseSeverity || 'N/A', score: m.baseScore || 0, description: (desc?.value || '').slice(0, 140), published: cve.published };
-          });
-          if (result.cves.length) liveHits += 1;
-        }
-      }),
+      (async () => {
+        const end = new Date();
+        const start = new Date(end.getTime() - 10 * 86400000);
+        const iso = (d: Date) => d.toISOString().replace(/\.\d{3}Z$/, '');
+        const qs = `pubStartDate=${iso(start)}&pubEndDate=${iso(end)}&resultsPerPage=40`;
+        const d = await fetchJson(proxy(`https://services.nvd.nist.gov/rest/json/cves/2.0?${qs}`));
+        if (!d) return;
+        const cutoff = Date.now() - 400 * 86400000;
+        const rows = (d.vulnerabilities || []).map((v: any) => {
+          const cve = v.cve || {};
+          const m = cve.metrics?.cvssMetricV31?.[0]?.cvssData
+            || cve.metrics?.cvssMetricV40?.[0]?.cvssData
+            || cve.metrics?.cvssMetricV30?.[0]?.cvssData
+            || {};
+          const desc = (cve.descriptions || []).find((x: any) => x.lang === 'en');
+          const score = Number(m.baseScore) || 0;
+          const published = cve.published || '';
+          return {
+            id: cve.id,
+            severity: m.baseSeverity || (score >= 9 ? 'CRITICAL' : score >= 7 ? 'HIGH' : 'N/A'),
+            score,
+            description: (desc?.value || '').slice(0, 220),
+            published,
+          };
+        }).filter((r: any) => {
+          if (!r.id || r.score < 7) return false;
+          const t = r.published ? new Date(r.published).getTime() : 0;
+          return !t || t > cutoff;
+        }).sort((a: any, b: any) => (b.severity === 'CRITICAL' ? 1 : 0) - (a.severity === 'CRITICAL' ? 1 : 0)
+          || (b.score || 0) - (a.score || 0)
+          || String(b.published || '').localeCompare(String(a.published || '')));
+        result.cves = rows.slice(0, 12);
+        if (result.cves.length) liveHits += 1;
+      })(),
       fetchJson(proxy('https://haveibeenpwned.com/api/v3/breaches')).then((d) => {
         if (d) {
+          const cutoff = new Date();
+          cutoff.setFullYear(cutoff.getFullYear() - 2);
+          const cut = cutoff.toISOString().slice(0, 10);
           const list = (Array.isArray(d) ? d : [])
-            .slice()
+            .filter((b: any) => !b.BreachDate || b.BreachDate >= cut)
             .sort((a: any, b: any) => String(b.BreachDate || '').localeCompare(String(a.BreachDate || '')))
             .slice(0, 12)
             .map((b: any) => ({

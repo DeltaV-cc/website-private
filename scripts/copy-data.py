@@ -133,53 +133,17 @@ os.makedirs(SIGNALS_DIR, exist_ok=True)
 shutil.copy(os.path.join(PUBLIC_DIR, 'picks.json'), os.path.join(SIGNALS_DIR, 'picks.json'))
 print('✓ picks.json copied to signals/')
 
-# --- Fetch CISA KEV ---
-print('Fetching CISA KEV...')
-kev = fetch_json('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json')
-if kev:
-    cached = {'kev': [], 'updatedAt': kev.get('dateReleased', '')}
-    for v in (kev.get('vulnerabilities') or [])[:8]:
-        cached['kev'].append({'cve': v.get('cveID'), 'product': v.get('product'), 'vendor': v.get('vendorProject'), 'name': v.get('vulnerabilityName'), 'dateAdded': v.get('dateAdded'), 'dueDate': v.get('dueDate')})
-    with open(os.path.join(PUBLIC_DIR, 'infosec.json'), 'w') as f:
-        json.dump(cached, f)
-    print(f'✓ {len(cached["kev"])} KEVs cached')
-
-# --- Fetch NVD CVEs ---
-print('Fetching NVD CVEs...')
-nvd = fetch_json('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=8')
-if nvd:
-    cves = []
-    for v in (nvd.get('vulnerabilities') or []):
-        cve = v.get('cve') or {}
-        m = (cve.get('metrics') or {}).get('cvssMetricV31') or [{}]
-        cvss = m[0].get('cvssData') or {}
-        desc = next((d.get('value','') for d in (cve.get('descriptions') or []) if d.get('lang')=='en'), '')
-        cves.append({'id': cve.get('id'), 'severity': cvss.get('baseSeverity','N/A'), 'score': cvss.get('baseScore', 0), 'description': desc[:140], 'published': cve.get('published')})
-    # Update infosec.json with CVEs
-    existing = {}
-    if os.path.exists(os.path.join(PUBLIC_DIR, 'infosec.json')):
-        with open(os.path.join(PUBLIC_DIR, 'infosec.json')) as f:
-            existing = json.load(f)
-    existing['cves'] = cves
-    with open(os.path.join(PUBLIC_DIR, 'infosec.json'), 'w') as f:
-        json.dump(existing, f)
-    print(f'✓ {len(cves)} CVEs cached')
-
-# --- Fetch HIBP breaches ---
-print('Fetching HIBP breaches...')
-hibp = fetch_json('https://haveibeenpwned.com/api/v3/breaches')
-if hibp and isinstance(hibp, list):
-    breaches = []
-    for b in hibp[:8]:
-        breaches.append({'name': b.get('Name') or b.get('Title',''), 'domain': b.get('Domain',''), 'date': b.get('BreachDate',''), 'count': b.get('PwnCount',0), 'data': ', '.join((b.get('DataClasses') or [])[:5])})
-    existing = {}
-    if os.path.exists(os.path.join(PUBLIC_DIR, 'infosec.json')):
-        with open(os.path.join(PUBLIC_DIR, 'infosec.json')) as f:
-            existing = json.load(f)
-    existing['breaches'] = breaches
-    with open(os.path.join(PUBLIC_DIR, 'infosec.json'), 'w') as f:
-        json.dump(existing, f)
-    print(f'✓ {len(breaches)} breaches cached')
+# Infosec snapshot: prefer fetch-infosec.py (dated NVD + sorted HIBP). Never
+# call NVD without a pubStartDate — that returns CVE-1999.
+print('Refreshing infosec snapshot via fetch-infosec.py...')
+try:
+    import subprocess
+    subprocess.run(
+        [sys.executable, os.path.join(os.path.dirname(__file__), 'fetch-infosec.py')],
+        check=False, timeout=90,
+    )
+except Exception as e:
+    print(f'  ⚠ fetch-infosec skipped: {e}')
 
 # --- Pre-fetch indices (SPX + CSI1000) ---
 print('Fetching indices...')

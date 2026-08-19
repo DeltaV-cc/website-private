@@ -77,7 +77,7 @@ Times are approximate. Exact cron expressions live in Hermes on the ops machine 
 | **Every ~15 min** | `python3 scripts/refresh-data.py` | [`refresh-data.py`](../scripts/refresh-data.py) | Macro / **trending HF** / crypto / liquid movers → `gh-pages/data/` |
 | **Hourly** | `python3 scripts/refresh-dashboard-snapshots.py` | [`refresh-dashboard-snapshots.py`](../scripts/refresh-dashboard-snapshots.py) | Fill Macro/Web3 holes (indices merge, stables, TVL, **chain-movers**) |
 | **Every ~30 min** | `layer0_watch.py` | ops Hermes | Intel ingest watchdog + AI-source staleness + **AI persona nitter fetch** |
-| **Every 6h** | `layer0_6h.py` | ops Hermes | HF watch, Artemis, arena, wiki backup, MetaMask phish, ETF, **abliterated recs**, **lab RSS** |
+| **Every 6h** | `layer0_6h.py` | ops Hermes | HF watch, Artemis, arena, wiki backup, MetaMask phish, ETF, **abliterated recs**, **lab RSS**, **infosec (KEV/CVE/HIBP/watchlist)** |
 | **Every 12h** | `layer0_12h.py` | ops Hermes | DEX matrix + BOLD yields |
 | **On every `main` deploy** | Actions → `pnpm build` → `preserve-live-data.py` → publish | [`deploy.yml`](../.github/workflows/deploy.yml) | New HTML; **keep** live JSON |
 

@@ -35,12 +35,23 @@ export default function InfosecDashboard({
 }) {
   const [sevFilter, setSevFilter] = useState<'all' | 'CRITICAL' | 'HIGH'>('all');
 
+  const yearCut = new Date().getFullYear() - 1;
   const kev: KevEntry[] = dd2?.kev || [];
-  const cves: CveEntry[] = dd2?.cves || [];
+  const cves: CveEntry[] = useMemo(() => {
+    const list: CveEntry[] = dd2?.cves || [];
+    return list.filter((c) => {
+      if ((c.score || 0) < 7 && c.severity !== 'CRITICAL' && c.severity !== 'HIGH') return false;
+      const y = c.published ? new Date(c.published).getFullYear() : 0;
+      return !y || y >= yearCut;
+    });
+  }, [dd2?.cves, yearCut]);
   const breaches: BreachEntry[] = useMemo(() => {
     const list: BreachEntry[] = dd2?.breaches || [];
-    return [...list].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
-  }, [dd2?.breaches]);
+    const cut = `${yearCut}-01-01`;
+    return [...list]
+      .filter((b) => !b.date || b.date >= cut)
+      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+  }, [dd2?.breaches, yearCut]);
   const cyberCat = catBoxes.find((c: any) => c.id === 'cybersec');
 
   const filteredCves = useMemo(() => {
@@ -79,15 +90,31 @@ export default function InfosecDashboard({
           <div>
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1">Threat Landscape</div>
             <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
-              {totalKEV || '...'} <span className="text-sm font-normal text-[var(--text-tertiary)]">active KEV exploits</span>
+              {totalKEV || '...'} <span className="text-sm font-normal text-[var(--text-tertiary)]">newest KEV in the wild</span>
             </div>
             <div className="mt-2">
               <PanelMeta
-                source={infosecMeta?.source === 'live' ? 'CISA · NVD · HIBP' : 'CISA · NVD · HIBP'}
+                source="CISA KEV · NVD last 10d · HIBP recent"
                 updated={metaUpdated}
                 note={staleNote}
               />
             </div>
+            {sortedKev.slice(0, 3).length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {sortedKev.slice(0, 3).map((v) => (
+                  <a
+                    key={v.cve}
+                    href={cisaKevUrl(v.cve)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--accent-red)]/[0.10] text-[var(--accent-red)] hover:bg-[var(--accent-red)]/[0.18] truncate max-w-[220px]"
+                    title={v.name}
+                  >
+                    {v.cve} · {v.vendor}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex items-center gap-6 md:gap-8 flex-wrap">
             <div className="text-right">
@@ -125,7 +152,7 @@ export default function InfosecDashboard({
               <span className="text-xs text-[var(--accent-red)] uppercase tracking-[1.5px] font-bold">CISA KEV</span>
               <span className="text-[10px] text-[var(--text-muted)]">Known Exploited Vulns</span>
             </div>
-            <PanelMeta source="CISA" />
+            <PanelMeta source="CISA" note="newest added first · in the wild" />
           </div>
           <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
             {sortedKev.length === 0 ? (
@@ -143,12 +170,15 @@ export default function InfosecDashboard({
                   <div className="flex items-center justify-between mb-0.5 gap-2">
                     <span className="text-xs font-mono font-semibold text-[var(--accent-red)]">{v.cve}</span>
                     <span className={`text-[10px] tabular-nums ${overdue ? 'text-[var(--accent-red)] font-semibold' : 'text-[var(--text-muted)]'}`}>
-                      {overdue ? 'OVERDUE · ' : 'Due: '}
-                      {v.dueDate ? new Date(v.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}
+                      {v.dateAdded ? `added ${new Date(v.dateAdded).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}` : ''}
+                      {overdue ? ' · OVERDUE' : v.dueDate ? ` · due ${new Date(v.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}` : ''}
                     </span>
                   </div>
                   <div className="text-xs text-[var(--text-secondary)] leading-snug mb-0.5 line-clamp-2">{v.name}</div>
-                  <div className="text-[10px] text-[var(--text-muted)]">{v.vendor} — {v.product}</div>
+                  <div className="text-[10px] text-[var(--text-muted)]">
+                    {v.vendor} — {v.product}
+                    {v.knownRansomware && String(v.knownRansomware).toLowerCase() === 'known' ? ' · ransomware: known' : ''}
+                  </div>
                 </a>
               );
             })}
@@ -160,7 +190,7 @@ export default function InfosecDashboard({
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-orange)]/[0.06] to-transparent">
             <div className="flex items-center gap-2">
               <span className="text-xs text-[var(--accent-orange)] uppercase tracking-[1.5px] font-bold">Recent CVEs</span>
-              <span className="text-[10px] text-[var(--text-muted)]">NVD Feed</span>
+              <span className="text-[10px] text-[var(--text-muted)]">NVD · HIGH/CRIT last 10d</span>
             </div>
             <div className="flex gap-1 text-[10px]">
               {(['all', 'CRITICAL', 'HIGH'] as const).map((k) => (
@@ -212,7 +242,7 @@ export default function InfosecDashboard({
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-amber)]/[0.06] to-transparent">
             <div className="flex items-center gap-2">
               <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Data Breaches</span>
-              <span className="text-[10px] text-[var(--text-muted)]">HIBP · by date</span>
+              <span className="text-[10px] text-[var(--text-muted)]">HIBP · last ~2 years</span>
             </div>
             <PanelMeta source="HIBP" />
           </div>
@@ -245,7 +275,7 @@ export default function InfosecDashboard({
                 <span className="text-xs text-[var(--accent-amber)] uppercase tracking-[1.5px] font-bold">Watchlist</span>
                 <span className="text-[10px] text-[var(--text-muted)]">{watchlist.length} items</span>
               </div>
-              <PanelMeta source="curated" />
+              <PanelMeta source="Bleeping · Krebs · CISA · Dark Reading" />
             </div>
             <div className="divide-y divide-white/[0.02] max-h-[180px] overflow-y-auto scrollbar-hide">
               {watchlist.length === 0 ? (

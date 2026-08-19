@@ -20,6 +20,7 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `collect-abliterated.py` | Hermes 6h bundle | HF search + curated ids | `hf-abliterated.json` — trending families + recs for **local / cybersecurity / film** |
 | `fetch-ai-labs.py` | Hermes 6h bundle | Lab RSS (DeepMind, OpenAI, Qwen, NVIDIA, …) | `ai-labs.json` — per-source cap so Google cannot dominate |
 | `fetch-ai-personas.py` | Hermes ~30m watchdog | Nitter / xcancel | `ai-personas.json` — ML / agent / local / gen-AI X handles |
+| `fetch-infosec.py` | Hermes 6h bundle | CISA KEV, NVD (dated), HIBP, security RSS | `infosec.json` + `cybersec-watchlist.json` — never CVE-1999 / 2011 HIBP dumps |
 | `_gh_pages_push.py` | Imported by fetch helpers | In-memory JSON map | Shared shallow-clone push of `data/*` only (`force-with-lease` + retry) |
 | `macro-pull.py` | Optional daily / manual (often local-only) | None (pure date math) | Regenerates `macro-calendar.json` and can invoke refresh push |
 | — | Optional Hermes job `*/30` | DefiLlama historical TVL | `chain-movers.json` — **chain TVL** movers for **Web3** only (not Macro price movers) |
