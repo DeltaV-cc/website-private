@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T20:23:01Z",
+  "updated_at": "2026-08-19T20:30:37Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,21 +82,21 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 68.76,
+        "price": 69.04,
         "change_24h": 19.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.003151,
+        "price": 0.003153,
         "change_24h": 11.8,
         "asset": "crypto"
       },
       {
         "symbol": "WLD",
         "name": "Worldcoin",
-        "price": 0.360923,
+        "price": 0.360988,
         "change_24h": 11.4,
         "asset": "crypto"
       },
@@ -110,7 +110,7 @@
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.083196,
+        "price": 0.083388,
         "change_24h": 10.4,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.375426,
+        "price": 0.383979,
         "change_24h": -13.8,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.102846,
+        "price": 0.102967,
         "change_24h": -3.5,
         "asset": "crypto"
       },
