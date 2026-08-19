@@ -56,6 +56,62 @@ const AI_PERSONAS = [
   'runwayml', 'lumalabsai', 'stabilityai', 'midjourney', 'thebloke',
 ];
 
+/** Labs / researcher blogs / chip press that belong on the AI Frontier strip. */
+const FRONTIER_SOURCES = [
+  'arxiv', 'hugging face', 'huggingface', 'openai', 'anthropic', 'deepmind',
+  'lesswrong', 'alignment forum', 'simon willison', 'interconnects', 'import ai',
+  'gwern', 'eleuther', 'qwen', 'nvidia', 'stanford hai', 'the batch',
+  'semiengineering', 'hpcwire', 'mit technology review', 'google ai', 'meta ai',
+  'mistral', 'xai', 'cerebras',
+];
+
+const FRONTIER_TITLE = /\b(llm|llms|gpt|claude|gemini|deepseek|qwen|mistral|llama|moe|transformer|inference|fine-?tun|rlhf|lora|agentic|foundation model|frontier model|abliterat|uncensor|gguf|hugging\s?face|openai|anthropic|gpu|hbm|tsmc|asml|foundry|semiconductor|nvidia|cerebras|groq|tpu|npu|alignment|jailbreak|text-to-video|text-to-image|diffusion|vlm|multimodal|machine learning|deep learning|neural net|large language|open.?weight|sora|wan2|hunyuan|ltx|flux|quantum comput|qubit|ai accelerator)\b/i;
+
+const FRONTIER_NOISE = /save \$|just \$|for just|combo deal|motherboard review|gaming build|gta vi|crude oil|gasoline inventor|distillate inventor|\$macro\b|etf netflow|whales? are shorting|send their pee|beer drinkers|crocodylian|mummies|coffee drinkers have less fat/i;
+
+const FRONTIER_BLOCKED_SRC = [
+  'coindesk', 'decrypt', 'the defiant', 'lookonchain', 'wublockchain',
+  'marketnews', 'dinosn', 'cvenew', 'science daily', 'bleepingcomputer',
+  'cryptoquant', 'glassnode', 'artemis', 'zachxbt', 'defillama',
+];
+
+function isPersonaSource(src: string): boolean {
+  const s = (src || '').toLowerCase();
+  const isX = s.startsWith('x:') || s.includes('nitter') || s.includes('twitter') || s.startsWith('@');
+  if (!isX) return false;
+  return AI_PERSONAS.some((p) => s.includes(p));
+}
+
+/** Allowlist for the AI Frontier ticker — AI / ML / AI-compute hardware / labs / people. */
+function isAiFrontierItem(it: { title?: string; source?: string; summary?: string; tag?: string; url?: string }): boolean {
+  const title = it.title || '';
+  const src = (it.source || '').toLowerCase();
+  const blob = `${title} ${it.summary || ''}`;
+  if (!title) return false;
+  if (FRONTIER_NOISE.test(title) || FRONTIER_NOISE.test(blob)) return false;
+  if (FRONTIER_BLOCKED_SRC.some((b) => src.includes(b))) return false;
+  if (src.includes("tom's hardware") || src.includes('tom’s hardware') || src.includes('phoronix') || src.includes('servethehome')) {
+    return FRONTIER_TITLE.test(blob);
+  }
+  if (isPersonaSource(src)) {
+    // Lab / model-lab accounts stay even on thin titles; hobby posters need an AI/ML token.
+    if (/openai|anthropic|deepmind|huggingface|karpathy|ylecun|sama|dario|qwen|deepseek|nvidia|plinius|teknium|ggerganov|nousresearch|unsloth|ollama|lmstudio|runway|luma|stability|midjourney|clementdelangue|osanseviero/i.test(src)) {
+      return true;
+    }
+    return FRONTIER_TITLE.test(blob);
+  }
+  if (FRONTIER_SOURCES.some((s) => src.includes(s))) {
+    // Core labs/arxiv/research blogs: always. General press still needs an AI/ML/chip token.
+    if (/arxiv|hugging|openai|anthropic|deepmind|lesswrong|alignment|simon willison|interconnects|import ai|gwern|eleuther|qwen/.test(src)) {
+      return true;
+    }
+    return FRONTIER_TITLE.test(blob);
+  }
+  if ((it.tag === 'ai' || it.tag === 'hardware') && FRONTIER_TITLE.test(blob)) return true;
+  if (FRONTIER_TITLE.test(blob) && (it.tag === 'ai' || it.tag === 'hardware' || !it.tag)) return true;
+  return false;
+}
+
 function describe(item: any): string {
   const pipeline = (item.pipeline || '').toLowerCase();
   if (PIPELINE_DESC[pipeline]) return PIPELINE_DESC[pipeline];
@@ -589,10 +645,26 @@ export default function AIDashboard({
     }).slice(0, 24);
   }, [items, dd?.aiPersonasSnap]);
 
+  const frontierItems = useMemo(() => {
+    const extra = [
+      ...((dd?.aiLabsSnap || []) as Item[]),
+      ...((dd?.aiPersonasSnap || []) as Item[]),
+    ];
+    const merged = [...extra, ...(items || [])];
+    const seen = new Set<string>();
+    return merged.filter((it) => {
+      if (!isAiFrontierItem(it)) return false;
+      const k = (it.url || it.title || '').toLowerCase().slice(0, 90);
+      if (!k || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    }).slice(0, 36);
+  }, [items, dd?.aiLabsSnap, dd?.aiPersonasSnap]);
+
   return (
     <div className="space-y-5">
       {/* ── DATA FIRST ── */}
-      <AIFrontierSignals items={items} ts={ts} />
+      <AIFrontierSignals items={frontierItems} ts={ts} />
 
       {/* HF watchlist stats */}
       <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 bg-gradient-to-r from-[var(--accent-cyan)]/[0.04] via-[var(--accent-purple)]/[0.04] to-transparent">

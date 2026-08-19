@@ -82,11 +82,22 @@ export default function IntelHubPage() {
     items.filter((it: any) => {
       if (activeKwSet.size === 0) return true;
       if (it.tag && excludedTags.includes(it.tag)) return false;
+      if (active === 'ai') {
+        const src = (it.source || '').toLowerCase();
+        const blob = `${it.title || ''} ${it.summary || ''}`;
+        if (/crude oil|gasoline inventor|distillate|\$macro\b|gta vi|save \$|combo deal|etf netflow|whales? are shorting/i.test(blob)) return false;
+        if (['coindesk', 'decrypt', 'the defiant', 'lookonchain', 'wublockchain', 'marketnews', 'dinosn', 'cvenew', 'science daily', 'cryptoquant'].some((b) => src.includes(b))) return false;
+        if (src.includes("tom's hardware") || src.includes('tom’s hardware') || src.includes('phoronix')) {
+          return /\b(nvidia|tsmc|gpu|hbm|foundry|semiconductor|cerebras|llm|ai accelerator)\b/i.test(blob);
+        }
+        // "intel" as a substring matches "intelligence" — require a real AI/ML/chip token for untagged items
+        if (it.tag === 'hardware' && !/\b(nvidia|tsmc|gpu|hbm|foundry|semiconductor|cerebras|asic|npu|tpu|wafer|lithograph)\b/i.test(blob)) return false;
+      }
       if (it.tag && tabKws.includes(it.tag)) return true;
       return activeCatBox.some((c: any) =>
         c.kw.some((k: string) => (it.title + ' ' + (it.summary || '')).toLowerCase().includes(k))
       );
-    }), [items, activeKwSet, activeCatBox, excludedTags, tabKws]);
+    }), [items, activeKwSet, activeCatBox, excludedTags, tabKws, active]);
 
   // Per-tab signal counts for badges
   const tabCounts = useMemo(() => {
