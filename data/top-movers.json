@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T11:00:17Z",
+  "updated_at": "2026-08-19T11:31:07Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.683537,
-        "change_24h": 92.6,
+        "price": 0.625083,
+        "change_24h": 85.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002978,
+        "price": 0.002991,
         "change_24h": 7.6,
         "asset": "crypto"
       },
@@ -97,58 +97,58 @@
         "symbol": "CAKE",
         "name": "PancakeSwap",
         "price": 1.55,
-        "change_24h": 5.3,
+        "change_24h": 6.3,
         "asset": "crypto"
       },
       {
         "symbol": "DOT",
         "name": "Polkadot",
-        "price": 0.775949,
-        "change_24h": 4.1,
+        "price": 0.775334,
+        "change_24h": 5.0,
         "asset": "crypto"
       },
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.57,
-        "change_24h": 3.9,
+        "price": 101.74,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
+        "symbol": "STABLE",
+        "name": "\u200b\u200bStable",
+        "price": 0.029163,
+        "change_24h": -5.4,
+        "asset": "crypto"
+      },
+      {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.02,
-        "change_24h": -5.1,
+        "price": 2.05,
+        "change_24h": -5.3,
         "asset": "crypto"
       },
       {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -3.8,
+        "change_24h": -3.9,
         "asset": "crypto"
       },
       {
-        "symbol": "STABLE",
-        "name": "\u200b\u200bStable",
-        "price": 0.029267,
-        "change_24h": -2.7,
+        "symbol": "LIT",
+        "name": "Lighter",
+        "price": 2.31,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
-        "symbol": "ICP",
-        "name": "Internet Computer",
-        "price": 2.19,
-        "change_24h": -2.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 58.49,
-        "change_24h": -2.2,
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.13,
+        "change_24h": -2.8,
         "asset": "crypto"
       }
     ]
