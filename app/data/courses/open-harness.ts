@@ -362,8 +362,8 @@ export const UI_COPY = {
     fr: 'Tous les termes de la leçon 01, sur une page.',
   },
   labsSub: {
-    en: 'drills: spend, key rotation, session control, prompt budget, webhooks, VPS, Kanban, failure studio.',
-    fr: 'exercices : budget, rotation des clés, contrôle de session, budget de prompt, webhooks, VPS, Kanban, atelier des pannes.',
+    en: 'drills: key rotation, failure studio, prompt budget, Kanban.',
+    fr: 'exercices : rotation des clés, atelier des pannes, budget de prompt, Kanban.',
   },
   reference: { en: 'Reference', fr: 'Référence' },
   endOfPartI: { en: 'End of Part I', fr: 'Fin de la Partie I' },
@@ -1687,7 +1687,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'None of that is memory, though. It only tidies the chat you are in. Everything Part II adds — notes it keeps, a folder of your own writing it can search, jobs that run while you sleep — starts from one idea: **if you want it kept, it has to be written to a file.** That is lesson 07.',
           ) },
           { k: 'links', items: [
-          { label: L('Lab: Session control studio'), href: '/forge/course/my-first-ai-agent/labs/session-control/' },
+          { label: L('Next: Making it remember'), href: '/forge/course/my-first-ai-agent/07/' },
         ] },
         ],
 
@@ -1736,7 +1736,6 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('I can narrate one Think → Act → Observe cycle from this mission'),
         ] },
           { k: 'links', items: [
-          { label: L('Lab: spend drill'), href: '/forge/course/my-first-ai-agent/labs/model-spend/' },
           { label: L('Lab: failure studio'), href: '/forge/course/my-first-ai-agent/labs/failure-studio/' },
           { label: L('Tips'), href: 'https://hermes-agent.nousresearch.com/docs/guides/tips' },
           { label: L('Next: Making it remember'), href: '/forge/course/my-first-ai-agent/07/' },
@@ -1884,7 +1883,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             explain: L('The file can be correct while this chat has not re-read it. Check the file, then open a new chat.'),
           } },
           { k: 'links', items: [
-          { label: L('Lab: Session control studio'), href: '/forge/course/my-first-ai-agent/labs/session-control/' },
+          { label: L('Lab: Prompt budget audit'), href: '/forge/course/my-first-ai-agent/labs/prompt-budget/' },
         ] },
         ],
 
@@ -2296,7 +2295,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Build one job'),
         blocks: [
           { k: 'callout', variant: 'note', text: L(
-          'Cron spend is easy to waste. Prefer script checks first; wake the model only when the check fails or changes, or use [webhooks](/forge/course/my-first-ai-agent/labs/webhooks/) instead of polling.',
+          'Cron spend is easy to waste. Prefer script checks first; wake the model only when the check fails or changes, or use [Hermes webhooks](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/webhooks) instead of polling.',
         ) },
           { k: 'steps', id: '1-steps', items: [{ title: L('Define a small job: for example weekday 08:00 — three headlines, short summary, deliver to your messaging app (or a local file if gateway is off).') }, { title: L('Write the prompt as if the agent has amnesia, starting from the [sample runbook](/courses/open-harness/samples/cron-runbook.example.md). Save as cron-runbook.md.') }, { title: L('Create it in the Desktop cron UI or [Hermes cron flow](https://hermes-agent.nousresearch.com/docs/guides/automate-with-cron) for your version.') }, { title: L('Run once manually if possible, then schedule — or stop after dry-run if offline.') }] },
         ],
@@ -2307,7 +2306,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'links', items: [
           { label: L('Cron feature docs'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/features/cron' },
           { label: L('Automate with cron (guide)'), href: 'https://hermes-agent.nousresearch.com/docs/guides/automate-with-cron' },
-          { label: L('Lab: webhooks'), href: '/forge/course/my-first-ai-agent/labs/webhooks/' },
+          { label: L('Webhooks (official)'), href: 'https://hermes-agent.nousresearch.com/docs/user-guide/messaging/webhooks' },
           { label: L('Sample runbook'), href: '/courses/open-harness/samples/cron-runbook.example.md' },
         ] },
         ],
