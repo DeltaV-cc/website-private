@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-08-19T15:47:16Z",
+  "updatedAt": "2026-08-19T21:12:20Z",
   "kev": [
+    {
+      "cve": "CVE-2026-64849",
+      "product": "MLflow",
+      "vendor": "MLflow",
+      "name": "MLflow Server-Side Request Forgery Vulnerability",
+      "dateAdded": "2026-08-19",
+      "dueDate": "2026-09-02",
+      "knownRansomware": "Unknown"
+    },
     {
       "cve": "CVE-2026-33824",
       "product": "Internet Key Exchange (IKE) Service Extensions",
@@ -116,15 +125,6 @@
       "name": "IBM Langflow Code Injection Vulnerability",
       "dateAdded": "2026-08-04",
       "dueDate": "2026-08-07",
-      "knownRansomware": "Unknown"
-    },
-    {
-      "cve": "CVE-2026-18577",
-      "product": "N-central",
-      "vendor": "N-able",
-      "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
-      "dateAdded": "2026-08-03",
-      "dueDate": "2026-08-06",
       "knownRansomware": "Unknown"
     }
   ],
