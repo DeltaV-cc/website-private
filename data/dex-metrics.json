@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T20:25:18Z",
+  "updated_at": "2026-08-19T21:11:13Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1258,9 +1258,9 @@
     },
     {
       "week": "2026-W34",
-      "curated": 18851734246.030003,
-      "filtered": 18851734246.030003,
-      "raw": 18851734246.030003
+      "curated": 18867096007.29,
+      "filtered": 18867096007.29,
+      "raw": 18867096007.29
     }
   ],
   "chains": [
