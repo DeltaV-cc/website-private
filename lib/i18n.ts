@@ -18,9 +18,25 @@ export const DEFAULT_LOCALE: Locale = 'en';
 /** Root-relative paths (no locale prefix) that exist in French. */
 export const TRANSLATED = ['/', '/contact/', '/ai/', '/web3/', '/forge/', '/opsec/'] as const;
 
+/** Strip `/fr` and force a trailing slash so `/forge` matches `/forge/`. */
+export function canonPath(path: string): string {
+  const noHash = path.split('#')[0] ?? path;
+  let clean = noHash.replace(/^\/fr(?=\/|$)/, '') || '/';
+  if (clean !== '/' && !clean.endsWith('/')) clean += '/';
+  return clean;
+}
+
 export function isTranslated(path: string): boolean {
-  const clean = path.replace(/^\/fr/, '') || '/';
-  return (TRANSLATED as readonly string[]).includes(clean);
+  const clean = canonPath(path);
+  if ((TRANSLATED as readonly string[]).includes(clean)) return true;
+  // Lessons + glossary, not Harness Labs (still English).
+  if (
+    clean.startsWith('/forge/course/my-first-ai-agent/') &&
+    !clean.includes('/labs/')
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /** Strip the locale prefix to get the canonical (English) path. */

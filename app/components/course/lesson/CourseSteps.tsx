@@ -69,7 +69,7 @@ export function CourseSteps({
               </button>
               <div className="course-step-body">
                 <div className={`course-step-title ${on ? 'is-on' : ''}`}>
-                  {formatCourseText(t(step.title, lang))}
+                  {formatCourseText(t(step.title, lang), lang)}
                 </div>
                 {step.code && (
                   <div className="course-step-code">
@@ -77,7 +77,7 @@ export function CourseSteps({
                   </div>
                 )}
                 {step.note && (
-                  <p className="course-step-note">{formatCourseText(t(step.note, lang))}</p>
+                  <p className="course-step-note">{formatCourseText(t(step.note, lang), lang)}</p>
                 )}
               </div>
             </li>

@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import { withBasePath } from '@/lib/site';
 import { PrivacyWarningChip } from '@/app/components/course/PrivacyWarningChip';
 import { TermChip } from '@/app/components/course/TermChip';
+import { hrefFor } from '@/lib/i18n';
+import type { CourseLang } from '@/app/data/courses/open-harness';
 
 /**
  * Lightweight course inline markup. Four channels, deliberately:
@@ -20,7 +22,7 @@ import { TermChip } from '@/app/components/course/TermChip';
 const TOKEN = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\))/g;
 const LINK = /^\[([^\]]+)\]\(([^)\s]+)\)$/;
 
-export function formatCourseText(text: string): ReactNode {
+export function formatCourseText(text: string, lang: CourseLang = 'en'): ReactNode {
   if (!text) return text;
   if (!text.includes('**') && !text.includes('`') && !text.includes('](')) return text;
 
@@ -63,18 +65,19 @@ export function formatCourseText(text: string): ReactNode {
         nodes.push(
           <span key={i} className="course-term">
             {label}
-            <TermChip termId={href.slice(1)} lang="en" />
+            <TermChip termId={href.slice(1)} lang={lang} />
           </span>,
         );
         return;
       }
 
       const external = /^https?:\/\//.test(href);
+      const localized = external ? href : hrefFor(href, lang);
       nodes.push(
         <a
           key={i}
           className="course-link"
-          href={external ? href : withBasePath(href)}
+          href={external ? href : withBasePath(localized)}
           {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
           {label}

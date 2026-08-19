@@ -16,6 +16,7 @@ import {
   type CourseProgressId,
 } from '@/lib/course-progress';
 import { formatCourseText } from '@/app/components/course/formatCourseText';
+import type { CourseLang } from '@/app/data/courses/open-harness';
 
 /* ─── Privacy (local-only) ─────────────────────────────── */
 
@@ -119,10 +120,12 @@ export function MarkCompleteButton({
   courseId,
   slug,
   accent = 'orange',
+  lang = 'en',
 }: {
   courseId: CourseProgressId;
   slug: string;
   accent?: 'orange' | 'cyan';
+  lang?: CourseLang;
 }) {
   const [done, setDone] = useState(false);
   useEffect(() => {
@@ -150,10 +153,18 @@ export function MarkCompleteButton({
             : undefined
         }
       >
-        {done ? '✓ Proof marked complete' : 'Mark proof complete'}
+        {done
+          ? lang === 'fr'
+            ? '✓ Preuve marquée'
+            : '✓ Proof marked complete'
+          : lang === 'fr'
+            ? 'Marquer la preuve'
+            : 'Mark proof complete'}
       </button>
       <p className="mt-2 course-t-meta text-[var(--text-muted)]">
-        Stored on this device only — not sent anywhere.
+        {lang === 'fr'
+          ? 'Stocké sur cet appareil seulement — n’est envoyé nulle part.'
+          : 'Stored on this device only — not sent anywhere.'}
       </p>
     </div>
   );
@@ -251,6 +262,7 @@ export function InteractiveChecklist({
   items,
   accent = 'orange',
   mode = 'checklist',
+  lang = 'en',
 }: {
   courseId: string;
   moduleSlug: string;
@@ -259,6 +271,7 @@ export function InteractiveChecklist({
   accent?: 'orange' | 'cyan' | 'green';
   /** checklist = default; steps = numbered; proof = end-of-module claim */
   mode?: 'checklist' | 'steps' | 'proof';
+  lang?: CourseLang;
 }) {
   const { flags, toggle } = useChecklistFlags(courseId, moduleSlug, sectionKey, items.length);
 
@@ -271,7 +284,17 @@ export function InteractiveChecklist({
 
   const checked = flags.filter(Boolean).length;
   const label =
-    mode === 'steps' ? 'Steps · tap to check' : mode === 'proof' ? 'Proof · this device' : 'Checklist · this device';
+    mode === 'steps'
+      ? lang === 'fr'
+        ? 'Étapes · touchez pour cocher'
+        : 'Steps · tap to check'
+      : mode === 'proof'
+        ? lang === 'fr'
+          ? 'Preuve · cet appareil'
+          : 'Proof · this device'
+        : lang === 'fr'
+          ? 'Checklist · cet appareil'
+          : 'Checklist · this device';
 
   return (
     <div className="mt-5 course-measure">
@@ -306,7 +329,7 @@ export function InteractiveChecklist({
                   {on ? '✓' : mode === 'steps' ? String(i + 1).padStart(2, '0') : ''}
                 </span>
                 <span className={on ? 'text-[var(--text-tertiary)]' : 'text-[var(--text-secondary)]'}>
-                  {formatCourseText(item)}
+                  {formatCourseText(item, lang)}
                 </span>
               </button>
             </li>
@@ -334,12 +357,14 @@ export function CourseQuizBlock({
   correct,
   explain,
   label = 'Check yourself',
+  lang = 'en',
 }: {
   question: string;
   options: string[];
   correct: string;
   explain: string;
   label?: string;
+  lang?: CourseLang;
 }) {
   // SSR uses given order; shuffle once after mount (stable key) to avoid hydration mismatch.
   const optionsKey = options.join('\0');
@@ -363,10 +388,16 @@ export function CourseQuizBlock({
         <span className="course-quiz-tag-mark" aria-hidden>
           ?
         </span>
-        <span>Exercise · {label}</span>
+        <span>
+          {lang === 'fr' ? 'Exercice' : 'Exercise'} · {label}
+        </span>
       </div>
       <p className="course-quiz-question">{question}</p>
-      <p className="course-quiz-hint">Pick one — the answer is revealed straight away.</p>
+      <p className="course-quiz-hint">
+        {lang === 'fr'
+          ? 'Choisissez une réponse — le résultat s’affiche tout de suite.'
+          : 'Pick one — the answer is revealed straight away.'}
+      </p>
       <div className="mt-3 space-y-2">
         {order.map((opt) => {
           let cls = 'course-quiz-opt';
@@ -392,7 +423,7 @@ export function CourseQuizBlock({
         <p
           className={`mt-3 course-t-small leading-relaxed ${ok ? 'text-[var(--accent-green)]' : 'text-[var(--accent-cyan)]'}`}
         >
-          {ok ? 'Correct. ' : 'Not quite. '}
+          {ok ? (lang === 'fr' ? 'Correct. ' : 'Correct. ') : lang === 'fr' ? 'Pas tout à fait. ' : 'Not quite. '}
           {explain}
         </p>
       )}

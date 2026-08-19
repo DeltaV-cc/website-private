@@ -1,11 +1,13 @@
 /**
- * My First AI Agent — curriculum. English only: the language toggle was removed
- * rather than ship a half-translated UI, so `L()` takes one string and
- * `LocaleString.fr` mirrors `en`. Re-add FR as a complete pass, not per string.
+ * My First AI Agent — curriculum.
+ * English is the source of truth in this file. French lives in
+ * `open-harness.fr.json` (complete pass) and is looked up by exact EN string.
+ * Pass a second `L(en, fr)` argument only to override the table.
  * Sources: Delta V ateliers + official Hermes docs.
  * Voice: formal, concise (offer-card tone). Basics/lexicon first; dedicated host preferred;
  * cloud models = data leaves the machine; everyday PC → Docker or VPS, not bare host.
  */
+import ohFr from './open-harness.fr.json';
 
 export type CourseLang = 'en' | 'fr';
 
@@ -154,8 +156,12 @@ export type CourseModule = {
   visualPlacement?: 'top' | 'none' | number;
 };
 
-/** EN is source of truth; omit `fr` to mirror EN until a full translate pass. */
-const L = (en: string, fr?: string): LocaleString => ({ en, fr: fr ?? en });
+/** EN is source of truth; `fr` falls back to the JSON table, then to EN. */
+const FR_TABLE = ohFr as Record<string, string>;
+const L = (en: string, fr?: string): LocaleString => ({
+  en,
+  fr: fr ?? FR_TABLE[en] ?? en,
+});
 
 export const OPEN_HARNESS_GLOSSARY: GlossaryTerm[] = [
   {
@@ -304,45 +310,88 @@ export const OPEN_HARNESS_META = {
   href: '/forge/course/my-first-ai-agent/',
   title: {
     en: 'My First AI Agent',
-    fr: 'My First AI Agent',
+    fr: 'Mon premier agent IA',
   } satisfies LocaleString,
   tagline: {
     en: 'Build your own agent harness — yours to run and change, step by step, in plain language.',
-    fr: 'Build your own agent harness — yours to run and change, step by step, in plain language.',
+    fr: 'Construisez votre harness d’agent — à vous de le faire tourner et de le changer, étape par étape, en langage clair.',
   } satisfies LocaleString,
   description: {
     en: 'Part I: simple words, install Hermes Desktop on a dedicated machine (preferred), give it a personality, reach it from a messaging app you choose, prove it can do a task. Part II: memory, notes, skills, security, and scheduled jobs. Prefer a spare PC or VPS — not the laptop you use every day. Cloud models (OpenRouter / OpenCode) send your conversation content to model hosts; if you stay on a personal machine, isolate with Docker or move the agent to a VPS.',
-    fr: 'Part I: simple words, install Hermes Desktop on a dedicated machine (preferred), give it a personality, reach it from a messaging app you choose, prove it can do a task. Part II: memory, notes, skills, security, and scheduled jobs. Prefer a spare PC or VPS — not the laptop you use every day. Cloud models (OpenRouter / OpenCode) send your conversation content to model hosts; if you stay on a personal machine, isolate with Docker or move the agent to a VPS.',
+    fr: 'Partie I : les mots simples, installer Hermes Desktop sur une machine dédiée (de préférence), lui donner une personnalité, le joindre depuis une messagerie de votre choix, prouver qu’il peut faire une tâche. Partie II : mémoire, notes, compétences, sécurité et tâches planifiées. Préférez un PC de rechange ou un VPS — pas le laptop du quotidien. Les modèles cloud (OpenRouter / OpenCode) envoient le contenu de conversation aux hôtes de modèles ; si vous restez sur une machine personnelle, isolez avec Docker ou déplacez l’agent sur un VPS.',
   } satisfies LocaleString,
   verifiedAsOf: '2026-08-06',
   revision: 'mvp-forge-2026-08',
 } as const;
 
 export const UI_COPY = {
-  modules: { en: 'Lessons', fr: 'Lessons' },
-  start: { en: 'Start from the beginning', fr: 'Start from the beginning' },
-  startPart2: { en: 'Part II (after Part I)', fr: 'Part II (after Part I)' },
-  next: { en: 'Next lesson', fr: 'Next lesson' },
-  prev: { en: 'Previous', fr: 'Previous' },
-  proof: { en: 'You are done when', fr: 'You are done when' },
+  modules: { en: 'Lessons', fr: 'Leçons' },
+  start: { en: 'Start from the beginning', fr: 'Commencer depuis le début' },
+  startPart2: { en: 'Part II (after Part I)', fr: 'Partie II (après la Partie I)' },
+  next: { en: 'Next lesson', fr: 'Leçon suivante' },
+  prev: { en: 'Previous', fr: 'Précédent' },
+  proof: { en: 'You are done when', fr: 'Vous avez fini quand' },
   minRead: { en: 'min', fr: 'min' },
-  backCourse: { en: 'My First AI Agent', fr: 'My First AI Agent' },
+  backCourse: { en: 'My First AI Agent', fr: 'Mon premier agent IA' },
   backForge: { en: 'Forge', fr: 'Forge' },
-  syllabus: { en: 'All lessons', fr: 'All lessons' },
-  outcomes: { en: 'What this gives you', fr: 'What this gives you' },
-  part: { en: 'Part', fr: 'Part' },
+  syllabus: { en: 'All lessons', fr: 'Toutes les leçons' },
+  outcomes: { en: 'What this gives you', fr: 'Ce que ça vous apporte' },
+  part: { en: 'Part', fr: 'Partie' },
   langEn: { en: 'EN', fr: 'EN' },
   langFr: { en: 'FR', fr: 'FR' },
-  downloadSoul: { en: 'Download template', fr: 'Download template' },
-  downloadDesktop: { en: 'Download Hermes Desktop', fr: 'Download Hermes Desktop' },
-  resources: { en: 'Resources', fr: 'Resources' },
-  courseLabel: { en: 'Free course · Beginner-friendly', fr: 'Free course · Beginner-friendly' },
-  glossary: { en: 'Glossary', fr: 'Glossary' },
-  quiz: { en: 'Check yourself', fr: 'Check yourself' },
-  primarySource: { en: 'Primary source', fr: 'Primary source' },
-  winWhen: { en: 'You win when', fr: 'You win when' },
-  remember: { en: 'Remember', fr: 'Remember' },
+  downloadSoul: { en: 'Download template', fr: 'Télécharger le modèle' },
+  downloadDesktop: { en: 'Download Hermes Desktop', fr: 'Télécharger Hermes Desktop' },
+  resources: { en: 'Resources', fr: 'Ressources' },
+  courseLabel: { en: 'Free course · Beginner-friendly', fr: 'Cours gratuit · Pour débutants' },
+  glossary: { en: 'Glossary', fr: 'Glossaire' },
+  quiz: { en: 'Check yourself', fr: 'Vérifiez-vous' },
+  primarySource: { en: 'Primary source', fr: 'Source principale' },
+  winWhen: { en: 'You win when', fr: 'Vous avez réussi quand' },
+  remember: { en: 'Remember', fr: 'À retenir' },
+  startLesson00: { en: 'Start lesson 00', fr: 'Commencer la leçon 00' },
+  continue: { en: 'Continue', fr: 'Continuer' },
+  lessonsWord: { en: 'lessons', fr: 'leçons' },
+  goFurther: { en: 'Go further', fr: 'Pour aller plus loin' },
+  goFurtherBlurb: {
+    en: 'Optional drills once the course is done — deeper practice, not new theory.',
+    fr: 'Exercices optionnels une fois le cours fini — de la pratique, pas de nouvelle théorie.',
+  },
+  printGlossary: { en: 'Printable glossary', fr: 'Glossaire imprimable' },
+  printGlossarySub: {
+    en: 'Every term from lesson 01, on one page.',
+    fr: 'Tous les termes de la leçon 01, sur une page.',
+  },
+  labsSub: {
+    en: 'drills: spend, key rotation, session control, prompt budget, webhooks, VPS, Kanban, failure studio.',
+    fr: 'exercices : budget, rotation des clés, contrôle de session, budget de prompt, webhooks, VPS, Kanban, atelier des pannes.',
+  },
+  reference: { en: 'Reference', fr: 'Référence' },
+  endOfPartI: { en: 'End of Part I', fr: 'Fin de la Partie I' },
+  endOfPartIBody: {
+    en: 'Part II starts next: memory, vault, skills, security, and cron — the compounding harness.',
+    fr: 'La Partie II commence ensuite : mémoire, coffre, compétences, sécurité et cron — le harness qui se compose.',
+  },
+  partIIBegins: { en: 'Part II begins', fr: 'La Partie II commence' },
+  partIIBeginsBody: {
+    en: 'You already have an agent. Now give it durable memory and ownership habits.',
+    fr: 'Vous avez déjà un agent. Donnez-lui maintenant une mémoire durable et des habitudes de propriété.',
+  },
+  otherDeploy: { en: 'Other ways to deploy', fr: 'Autres façons de déployer' },
+  contactNext: { en: 'Next →', fr: 'Ensuite →' },
+  contactDv: { en: 'Contact Delta V', fr: 'Contacter Delta V' },
+  seeGlossary: {
+    en: 'See full definition in the glossary',
+    fr: 'Voir la définition complète dans le glossaire',
+  },
+  minReadLong: { en: 'min read', fr: 'min de lecture' },
 } as const;
+
+/** Localized course URL prefix (lessons + glossary). Labs stay on the English path. */
+export function courseBase(lang: CourseLang): string {
+  return lang === 'fr'
+    ? '/fr/forge/course/my-first-ai-agent/'
+    : '/forge/course/my-first-ai-agent/';
+}
 
 /** Official Desktop download / product home — used on landing + install. */
 export const HERMES_DESKTOP_URL = 'https://hermes-agent.nousresearch.com/';

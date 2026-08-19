@@ -6,6 +6,7 @@ import {
   OPEN_HARNESS_MODULES,
   OPEN_HARNESS_PARTS,
   UI_COPY,
+  courseBase,
   type CourseLang,
   type CourseModule,
   type CoursePartId,
@@ -107,10 +108,10 @@ export function CourseToc({
       ))}
 
       <div className="course-nav-group">
-        <div className="course-nav-group-label">Reference</div>
+        <div className="course-nav-group-label">{t(UI_COPY.reference, lang)}</div>
         <ol>
           <li>
-            <Link href="/forge/course/my-first-ai-agent/glossary/" className="course-nav-item">
+            <Link href={`${courseBase(lang)}glossary/`} className="course-nav-item">
               <span className="course-nav-num" aria-hidden>
                 ·
               </span>
@@ -152,19 +153,19 @@ export function ModuleNav({
       {crossingToPart2 && (
         <p className="course-t-small text-[var(--text-secondary)] leading-relaxed course-measure">
           <span className="font-mono course-t-meta text-[var(--accent-cyan)] tracking-[1px] uppercase">
-            End of Part I
+            {t(UI_COPY.endOfPartI, lang)}
           </span>
           <br />
-          Part II starts next: memory, vault, skills, security, and cron — the compounding harness.
+          {t(UI_COPY.endOfPartIBody, lang)}
         </p>
       )}
       {crossingFromPart1 && (
         <p className="course-t-small text-[var(--text-secondary)] leading-relaxed course-measure">
           <span className="font-mono course-t-meta text-[var(--accent-cyan)] tracking-[1px] uppercase">
-            Part II begins
+            {t(UI_COPY.partIIBegins, lang)}
           </span>
           <br />
-          You already have an agent. Now give it durable memory and ownership habits.
+          {t(UI_COPY.partIIBeginsBody, lang)}
         </p>
       )}
       {/* Real targets, not 14px text links at 72% opacity. "Next" carries the
@@ -190,9 +191,12 @@ export function ModuleNav({
             <span className="course-nav-card-title">{t(next.title, lang)}</span>
           </Link>
         ) : (
-          <Link href="/contact/?topic=open-harness" className="course-nav-card course-nav-card--next">
-            <span className="course-nav-card-dir">Next →</span>
-            <span className="course-nav-card-title">Contact Delta V</span>
+          <Link
+            href={lang === 'fr' ? '/fr/contact/?topic=open-harness' : '/contact/?topic=open-harness'}
+            className="course-nav-card course-nav-card--next"
+          >
+            <span className="course-nav-card-dir">{t(UI_COPY.contactNext, lang)}</span>
+            <span className="course-nav-card-title">{t(UI_COPY.contactDv, lang)}</span>
           </Link>
         )}
       </div>

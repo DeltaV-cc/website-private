@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { OPEN_HARNESS_GLOSSARY, type CourseLang, t } from '@/app/data/courses/open-harness';
+import { OPEN_HARNESS_GLOSSARY, UI_COPY, courseBase, type CourseLang, t } from '@/app/data/courses/open-harness';
 
 export function TermChip({ termId, lang = 'en' }: { termId: string; lang: CourseLang }) {
   const [open, setOpen] = useState(false);
@@ -76,10 +76,10 @@ export function TermChip({ termId, lang = 'en' }: { termId: string; lang: Course
           {/* The glossary page sets id={term.id} on every entry, so this anchor
               always resolves. Lesson 01's lexicon cards use their own slugs. */}
           <Link
-            href={`/forge/course/my-first-ai-agent/glossary/#${termId}`}
+            href={`${courseBase(lang)}glossary/#${termId}`}
             className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--accent-cyan)] hover:underline"
           >
-            📖 See full definition in the glossary
+            📖 {t(UI_COPY.seeGlossary, lang)}
           </Link>
         </div>
       )}

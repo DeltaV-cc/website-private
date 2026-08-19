@@ -64,6 +64,7 @@ function CourseCard({
   ctaLabel,
   secondaryLabel,
   labels,
+  lang,
 }: {
   id: string;
   code: string;
@@ -78,9 +79,12 @@ function CourseCard({
   ctaLabel: string;
   secondaryLabel?: string;
   labels: { get: string; path: string; forWho: string };
+  lang: Locale;
 }) {
   const s = COURSE_STRUCTURE[id];
   const accent = s?.accent ?? 'var(--accent-orange)';
+  const primaryHref = hrefFor(s?.href ?? '/forge/', lang);
+  const secondaryHref = s?.secondaryHref ? hrefFor(s.secondaryHref, lang) : undefined;
 
   return (
     <article
@@ -158,18 +162,18 @@ function CourseCard({
         <div className="text-sm text-[var(--text-secondary)] mr-auto max-w-sm leading-relaxed">
           <span className="font-semibold text-[var(--text-primary)]">{labels.forWho}</span> {forWho}
         </div>
-        {secondaryLabel && s?.secondaryHref &&
+        {secondaryLabel && secondaryHref &&
           (s.secondaryTone === 'quiet' ? (
-            <Link href={s.secondaryHref} className="text-xs tracking-wide text-[var(--text-muted)] hover:text-[var(--text-secondary)] underline-offset-4 hover:underline transition-colors">
+            <Link href={secondaryHref} className="text-xs tracking-wide text-[var(--text-muted)] hover:text-[var(--text-secondary)] underline-offset-4 hover:underline transition-colors">
               {secondaryLabel}
             </Link>
           ) : (
-            <Link href={s.secondaryHref} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] rounded-xl text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all">
+            <Link href={secondaryHref} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-default)] rounded-xl text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all">
               {secondaryLabel}
             </Link>
           ))}
         <Link
-          href={s?.href ?? '/forge/'}
+          href={primaryHref}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
           style={{ background: accent, color: '#07100d' }}
         >
@@ -211,6 +215,7 @@ export default function ForgePageView({ lang }: { lang: Locale }) {
             ctaLabel={course.ctaLabel}
             secondaryLabel={course.secondaryLabel}
             labels={copy.cardLabels}
+            lang={lang}
           />
         ))}
       </PageContainer>

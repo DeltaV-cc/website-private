@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import {
   CourseLangProvider,
@@ -8,7 +9,14 @@ import {
   useOpenHarnessLang,
 } from '@/app/components/course/CourseShell';
 import { OnThisPage } from '@/app/components/course/OnThisPage';
-import { OPEN_HARNESS_MODULES, OPEN_HARNESS_PARTS, UI_COPY, t } from '@/app/data/courses/open-harness';
+import {
+  OPEN_HARNESS_MODULES,
+  OPEN_HARNESS_PARTS,
+  UI_COPY,
+  courseBase,
+  t,
+} from '@/app/data/courses/open-harness';
+import { localeFromPath } from '@/lib/i18n';
 
 export const OH2_BASE = '/forge/course/my-first-ai-agent/';
 
@@ -18,8 +26,10 @@ export const OH2_BASE = '/forge/course/my-first-ai-agent/';
  * Reuses CourseToc/OnThisPage; only the surface class and basePath differ.
  */
 export function AihChrome({ children, activeSlug }: { children: ReactNode; activeSlug?: string }) {
+  const pathname = usePathname() ?? '';
+  const lang = localeFromPath(pathname);
   return (
-    <CourseLangProvider>
+    <CourseLangProvider defaultLang={lang}>
       <AihChromeInner activeSlug={activeSlug}>{children}</AihChromeInner>
     </CourseLangProvider>
   );
@@ -27,6 +37,8 @@ export function AihChrome({ children, activeSlug }: { children: ReactNode; activ
 
 function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeSlug?: string }) {
   const lang = useOpenHarnessLang();
+  const base = courseBase(lang);
+  const forgeHref = lang === 'fr' ? '/fr/forge/' : '/forge/';
   const activeMod = activeSlug ? OPEN_HARNESS_MODULES.find((m) => m.slug === activeSlug) : null;
   const activePart = activeMod ? OPEN_HARNESS_PARTS.find((p) => p.id === activeMod.part) : null;
 
@@ -34,11 +46,11 @@ function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeS
     <div className="aih-surface min-h-screen">
       <div className="page-container pt-8 md:pt-10 pb-24">
         <nav className="course-crumbs" aria-label="Breadcrumb">
-          <Link href="/forge/">{t(UI_COPY.backForge, lang)}</Link>
+          <Link href={forgeHref}>{t(UI_COPY.backForge, lang)}</Link>
           <span aria-hidden>/</span>
           {activeSlug ? (
             <>
-              <Link href={OH2_BASE}>My First AI Agent</Link>
+              <Link href={base}>{t(UI_COPY.backCourse, lang)}</Link>
               <span aria-hidden>/</span>
               <span className="course-crumbs-here">
                 {activePart ? `${t(UI_COPY.part, lang)} ${activePart.code} · ` : ''}
@@ -46,13 +58,13 @@ function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeS
               </span>
             </>
           ) : (
-            <span className="course-crumbs-here">My First AI Agent</span>
+            <span className="course-crumbs-here">{t(UI_COPY.backCourse, lang)}</span>
           )}
         </nav>
 
         <div className="course-layout">
           <aside className="course-layout-nav">
-            <CourseToc activeSlug={activeSlug} lang={lang} basePath={OH2_BASE} />
+            <CourseToc activeSlug={activeSlug} lang={lang} basePath={base} />
           </aside>
           <div className="course-reading">{children}</div>
           <aside className="course-layout-rail">
@@ -66,10 +78,10 @@ function AihChromeInner({ children, activeSlug }: { children: ReactNode; activeS
               <span className="course-advanced-chevron" aria-hidden>
                 ▸
               </span>
-              <span>All lessons</span>
+              <span>{t(UI_COPY.syllabus, lang)}</span>
             </summary>
             <div className="course-disclose-body max-h-[50vh] overflow-y-auto overscroll-y-contain">
-              <CourseToc activeSlug={activeSlug} lang={lang} compact basePath={OH2_BASE} />
+              <CourseToc activeSlug={activeSlug} lang={lang} compact basePath={base} />
             </div>
           </details>
         </div>
