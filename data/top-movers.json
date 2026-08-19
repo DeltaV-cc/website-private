@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-19T09:45:12Z",
-  "source": "Yahoo Finance screener + CoinGecko markets",
+  "updated_at": "2026-08-19T09:45:42Z",
+  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
   "equities": {
     "gainers": [
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.711681,
-        "change_24h": 83.0,
+        "symbol": "ACE",
+        "name": "ACE",
+        "price": 0.2326,
+        "change_24h": 22.36,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "UTK",
+        "name": "UTK",
+        "price": 0.00795,
+        "change_24h": 16.23,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "HEMI",
+        "name": "HEMI",
+        "price": 0.00814,
+        "change_24h": 14.33,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.002991,
-        "change_24h": 7.3,
+        "name": "PUMP",
+        "price": 0.003001,
+        "change_24h": 8.07,
         "asset": "crypto"
       },
       {
-        "symbol": "CAKE",
-        "name": "PancakeSwap",
-        "price": 1.54,
-        "change_24h": 5.9,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 9.77,
-        "change_24h": 4.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "DOT",
-        "name": "Polkadot",
-        "price": 0.762888,
-        "change_24h": 3.5,
+        "symbol": "ALPINE",
+        "name": "ALPINE",
+        "price": 0.332,
+        "change_24h": 7.44,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "M",
-        "name": "MemeCore",
-        "price": 1.12,
-        "change_24h": -4.7,
+        "symbol": "GPS",
+        "name": "GPS",
+        "price": 0.012,
+        "change_24h": -30.72,
         "asset": "crypto"
       },
       {
-        "symbol": "MORPHO",
-        "name": "Morpho",
-        "price": 2.03,
-        "change_24h": -3.7,
+        "symbol": "TUT",
+        "name": "TUT",
+        "price": 0.03975,
+        "change_24h": -7.86,
         "asset": "crypto"
       },
       {
-        "symbol": "HTX",
-        "name": "HTX DAO",
-        "price": 2e-06,
-        "change_24h": -3.7,
+        "symbol": "SNXXB",
+        "name": "SNXXB",
+        "price": 15.59,
+        "change_24h": -6.59,
         "asset": "crypto"
       },
       {
-        "symbol": "ICP",
-        "name": "Internet Computer",
-        "price": 2.2,
-        "change_24h": -2.6,
+        "symbol": "SOXLB",
+        "name": "SOXLB",
+        "price": 127.77,
+        "change_24h": -5.85,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.089897,
-        "change_24h": -2.5,
+        "symbol": "MSTRB",
+        "name": "MSTRB",
+        "price": 92.87,
+        "change_24h": -3.72,
         "asset": "crypto"
       }
     ]
