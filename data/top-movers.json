@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-18T21:16:09Z",
-  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
+  "updated_at": "2026-08-19T06:55:13Z",
+  "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "ACE",
-        "name": "ACE",
-        "price": 0.2299,
-        "change_24h": 42.53,
+        "symbol": "BTW",
+        "name": "Bitway",
+        "price": 0.60063,
+        "change_24h": 58.3,
         "asset": "crypto"
       },
       {
-        "symbol": "ALPINE",
-        "name": "ALPINE",
-        "price": 0.378,
-        "change_24h": 20.0,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.002984,
+        "change_24h": 6.4,
         "asset": "crypto"
       },
       {
-        "symbol": "UTK",
-        "name": "UTK",
-        "price": 0.00795,
-        "change_24h": 16.23,
+        "symbol": "CAKE",
+        "name": "PancakeSwap",
+        "price": 1.53,
+        "change_24h": 4.5,
         "asset": "crypto"
       },
       {
-        "symbol": "RED",
-        "name": "RED",
-        "price": 0.0946,
-        "change_24h": 9.11,
+        "symbol": "OKB",
+        "name": "OKB",
+        "price": 101.31,
+        "change_24h": 3.8,
         "asset": "crypto"
       },
       {
-        "symbol": "GPS",
-        "name": "GPS",
-        "price": 0.01766,
-        "change_24h": 7.16,
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.056113,
+        "change_24h": 3.8,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "KORUB",
-        "name": "KORUB",
-        "price": 17.86,
-        "change_24h": -24.42,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.13,
+        "change_24h": -10.4,
         "asset": "crypto"
       },
       {
-        "symbol": "SNXXB",
-        "name": "SNXXB",
-        "price": 15.43,
-        "change_24h": -18.32,
+        "symbol": "HTX",
+        "name": "HTX DAO",
+        "price": 2e-06,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
-        "symbol": "SOXLB",
-        "name": "SOXLB",
-        "price": 127.91,
-        "change_24h": -15.54,
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.315676,
+        "change_24h": -3.3,
         "asset": "crypto"
       },
       {
-        "symbol": "GALA",
-        "name": "GALA",
-        "price": 0.001405,
-        "change_24h": -13.64,
+        "symbol": "NEAR",
+        "name": "NEAR Protocol",
+        "price": 1.61,
+        "change_24h": -2.6,
         "asset": "crypto"
       },
       {
-        "symbol": "SKHYB",
-        "name": "SKHYB",
-        "price": 155.3,
-        "change_24h": -9.61,
+        "symbol": "ICP",
+        "name": "Internet Computer",
+        "price": 2.21,
+        "change_24h": -2.4,
         "asset": "crypto"
       }
     ]
