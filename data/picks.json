@@ -1,6 +1,14 @@
 {
   "picks": [
     {
+      "title": "SilkParasite Threatens Central Asian Orgs With Flurry of RATs",
+      "source": "Dark Reading",
+      "category": "macro",
+      "url": "https://www.darkreading.com/threat-intelligence/silkparasite-central-asian-orgs-flurry-rats",
+      "published_at": "Wed, 19 Aug 2026 16:58:23 GMT",
+      "score": 210.0
+    },
+    {
       "title": "Chinese InsurTech Firm Zhibao Adds 2,380 Bitcoin in $154.7M Treasury Pivot",
       "source": "Decrypt",
       "category": "macro",
@@ -9,21 +17,13 @@
       "score": 186.0
     },
     {
-      "title": "Solana leads bitcoin and ether higher while Korean chip stocks slide 7%",
-      "source": "CoinDesk",
-      "category": "market",
-      "url": "https://www.coindesk.com/markets/2026/08/19/solana-leads-bitcoin-and-ether-higher-while-korean-chip-stocks-slide-7",
-      "published_at": "Wed, 19 Aug 2026 04:25:42 +0000",
-      "score": 171.0
-    },
-    {
-      "title": "Critical RCE flaw in Windows IKE Extension now actively exploited",
+      "title": "US warns of AI-powered attacks on Siemens PLCs in critical infrastructure",
       "source": "BleepingComputer",
       "category": "macro",
-      "url": "https://www.bleepingcomputer.com/news/security/cisa-critical-windows-ike-extension-flaw-now-exploited-in-attacks/",
-      "published_at": "Wed, 19 Aug 2026 06:12:24 -0400",
+      "url": "https://www.bleepingcomputer.com/news/security/us-warns-of-ai-powered-attacks-on-siemens-plcs-in-critical-infrastructure/",
+      "published_at": "Wed, 19 Aug 2026 13:50:01 -0400",
       "score": 150.0
     }
   ],
-  "updatedAt": "2026-08-19T19:00:17.160005+00:00"
+  "updatedAt": "2026-08-19T19:38:09.952855+00:00"
 }
