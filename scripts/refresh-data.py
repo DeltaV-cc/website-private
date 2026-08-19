@@ -232,32 +232,68 @@ def build_forex() -> dict:
     return out
 
 
+def _hf_row(repo_id: str, likes=0, downloads=0, extra=None) -> dict:
+    rid = repo_id or ""
+    row = {
+        "name": rid.split("/")[-1] if "/" in rid else rid,
+        "author": rid.split("/")[0] if "/" in rid else "",
+        "likes": likes or 0,
+        "downloads": downloads or 0,
+        "url": f"https://huggingface.co/{rid}" if rid else "https://huggingface.co/",
+    }
+    if extra:
+        row.update(extra)
+    return row
+
+
 def build_hf() -> dict:
-    models_raw = fetch_json("https://huggingface.co/api/models?sort=downloads&direction=-1&limit=6") or []
-    spaces_raw = fetch_json("https://huggingface.co/api/spaces?sort=likes&direction=-1&limit=5") or []
-    models = []
-    if isinstance(models_raw, list):
-        for m in models_raw:
-            mid = m.get("modelId") or m.get("id") or m.get("name") or ""
-            models.append({
-                "name": mid.split("/")[-1] if "/" in mid else mid,
-                "author": mid.split("/")[0] if "/" in mid else (m.get("author") or ""),
-                "likes": m.get("likes") or 0,
-                "downloads": m.get("downloads") or 0,
-                "url": f"https://huggingface.co/{mid}" if mid else "https://huggingface.co/",
-            })
-    spaces = []
-    if isinstance(spaces_raw, list):
-        for s in spaces_raw:
-            sid = s.get("id") or s.get("name") or ""
-            spaces.append({
-                "name": sid.split("/")[-1] if "/" in sid else sid,
-                "author": sid.split("/")[0] if "/" in sid else "",
-                "likes": s.get("likes") or 0,
-                "url": f"https://huggingface.co/spaces/{sid}" if sid else "https://huggingface.co/spaces/",
-            })
-    print(f"  ✓ hf models={len(models)} spaces={len(spaces)}")
-    return {"models": models, "spaces": spaces, "updated_at": utc_now()}
+    """Trending models/spaces — never sort-by-downloads (that surfaces BERT/MiniLM)."""
+    skip_pipes = {"feature-extraction", "sentence-similarity", "fill-mask", "token-classification"}
+    models, spaces = [], []
+
+    trending = fetch_json("https://huggingface.co/api/trending")
+    recent = trending.get("recentlyTrending") if isinstance(trending, dict) else None
+    if isinstance(recent, list):
+        for entry in recent:
+            repo = entry.get("repoData") or {}
+            rid = repo.get("id") or ""
+            if not rid:
+                continue
+            rtype = (entry.get("repoType") or "model").lower()
+            likes = repo.get("likes") or 0
+            downloads = repo.get("downloads") or repo.get("downloadsAllTime") or 0
+            pipe = (repo.get("pipeline_tag") or repo.get("pipelineTag") or "").lower()
+            if rtype == "space" and len(spaces) < 6:
+                spaces.append(_hf_row(rid, likes, extra={"sdk": repo.get("sdk") or ""}))
+            elif rtype != "space" and len(models) < 8 and pipe not in skip_pipes:
+                models.append(_hf_row(rid, likes, downloads, extra={"pipeline": pipe}))
+
+    if len(models) < 4:
+        fallback = fetch_json("https://huggingface.co/api/models?sort=lastModified&direction=-1&limit=16") or []
+        seen = {m.get("url") for m in models}
+        if isinstance(fallback, list):
+            for m in fallback:
+                mid = m.get("modelId") or m.get("id") or ""
+                pipe = (m.get("pipeline_tag") or "").lower()
+                if not mid or pipe in skip_pipes:
+                    continue
+                row = _hf_row(mid, m.get("likes") or 0, m.get("downloads") or 0, extra={"pipeline": pipe})
+                if row["url"] in seen:
+                    continue
+                models.append(row)
+                seen.add(row["url"])
+                if len(models) >= 8:
+                    break
+
+    if len(spaces) < 3:
+        spaces_raw = fetch_json("https://huggingface.co/api/spaces?sort=likes&direction=-1&limit=5") or []
+        if isinstance(spaces_raw, list) and not spaces:
+            for s in spaces_raw:
+                sid = s.get("id") or s.get("name") or ""
+                spaces.append(_hf_row(sid, s.get("likes") or 0))
+
+    print(f"  ✓ hf models={len(models)} spaces={len(spaces)} (trending)")
+    return {"models": models[:8], "spaces": spaces[:6], "updated": utc_now(), "updated_at": utc_now()}
 
 
 def build_crypto() -> dict | None:
@@ -418,34 +454,49 @@ def build_top_movers() -> dict | None:
     gainers = [r for r in equities if r["changePct"] > 0][:8]
     losers = sorted([r for r in equities if r["changePct"] < 0], key=lambda r: r["changePct"])[:8]
 
+    STABLES = {"USDT", "USDC", "DAI", "USDE", "FDUSD", "TUSD", "BUSD", "USDS", "PYUSD", "USD1"}
     crypto_rows = []
     cg = fetch_json(
         "https://api.coingecko.com/api/v3/coins/markets"
-        "?vs_currency=usd&order=market_cap_desc&per_page=40&page=1&sparkline=false&price_change_percentage=24h"
+        "?vs_currency=usd&order=market_cap_desc&per_page=80&page=1&sparkline=false&price_change_percentage=24h"
     )
     if isinstance(cg, list):
         for c in cg:
             chg = c.get("price_change_percentage_24h")
             if chg is None:
                 continue
+            sym = (c.get("symbol") or "").upper()
+            name = c.get("name") or sym
+            if sym in STABLES or "\u200b" in name:
+                continue
+            rank = c.get("market_cap_rank") or 99
+            if abs(float(chg)) > 40:
+                continue
+            if rank > 30 and abs(float(chg)) > 15:
+                continue
             crypto_rows.append({
-                "symbol": (c.get("symbol") or "").upper(),
-                "name": c.get("name") or c.get("symbol"),
+                "symbol": sym,
+                "name": name,
                 "price": c.get("current_price"),
+                "change_24h": round(float(chg), 2),
                 "changePct": round(float(chg), 2),
+                "asset": "crypto",
             })
-        crypto_rows.sort(key=lambda r: -abs(r["changePct"]))
-    cg_gain = [r for r in crypto_rows if r["changePct"] > 0][:8]
-    cg_lose = sorted([r for r in crypto_rows if r["changePct"] < 0], key=lambda r: r["changePct"])[:8]
+        crypto_rows.sort(key=lambda r: -abs(r["change_24h"]))
+    cg_gain = [r for r in crypto_rows if r["change_24h"] > 0][:5]
+    cg_lose = sorted([r for r in crypto_rows if r["change_24h"] < 0], key=lambda r: r["change_24h"])[:5]
 
-    # UI expects equities + crypto lists (mixed movers)
+    eq_gain = [{**r, "change_24h": r["changePct"], "asset": "equity"} for r in gainers[:5]]
+    eq_lose = [{**r, "change_24h": r["changePct"], "asset": "equity"} for r in losers[:5]]
+
+    # UI (MacroDashboard) reads equities.gainers / crypto.gainers
     out = {
         "updated_at": utc_now(),
         "source": "Yahoo · CoinGecko",
-        "equities": (gainers + losers)[:12] or equities[:8],
-        "crypto": (cg_gain + cg_lose)[:12] or crypto_rows[:8],
-        "equity_gainers": gainers,
-        "equity_losers": losers,
+        "equities": {"gainers": eq_gain, "losers": eq_lose},
+        "crypto": {"gainers": cg_gain, "losers": cg_lose},
+        "equity_gainers": eq_gain,
+        "equity_losers": eq_lose,
         "crypto_gainers": cg_gain,
         "crypto_losers": cg_lose,
     }

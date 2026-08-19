@@ -143,16 +143,24 @@ export default function CuratedIntel() {
       if (!res.ok) throw new Error(String(res.status));
       const data = await res.json();
       if (!Array.isArray(data)) throw new Error('unexpected shape');
+      const clean = (t: string) => t
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/&[#a-zA-Z0-9]+;/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/^p([A-Z])/, '$1')
+        .trim();
       return data
         .filter((x): x is IntelItem => !!x && typeof x === 'object' && typeof x.title === 'string' && typeof x.url === 'string')
+        .map((x) => ({ ...x, title: clean(x.title), summary: x.summary ? clean(x.summary) : x.summary }))
         .slice(0, 20);
     };
+    const bust = `?v=${Math.floor(Date.now() / 60_000)}`;
     (async () => {
       try {
-        setItems(await load(`${BASE_PATH}/data/curated-top20.json`));
+        setItems(await load(`${BASE_PATH}/data/curated-top20.json${bust}`));
       } catch {
         try {
-          setItems(await load(`${BASE_PATH}/data/raw-items.json`));
+          setItems(await load(`${BASE_PATH}/data/raw-items.json${bust}`));
         } catch {
           // Silent fail - component gracefully degrades
         }

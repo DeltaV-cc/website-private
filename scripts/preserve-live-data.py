@@ -56,6 +56,7 @@ def parse_dt(raw: str) -> datetime:
 INTEL_ALWAYS_LIVE = {
     "raw-items.json",
     "picks.json",
+    "curated-top20.json",
     "artemis-newsletter.json",
     "artemis-research.json",
 }
