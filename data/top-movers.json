@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T09:01:24Z",
+  "updated_at": "2026-08-19T09:15:21Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,72 +82,72 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.673195,
-        "change_24h": 84.2,
+        "price": 0.667862,
+        "change_24h": 83.0,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002976,
-        "change_24h": 5.7,
+        "price": 0.002966,
+        "change_24h": 7.3,
         "asset": "crypto"
       },
       {
         "symbol": "CAKE",
         "name": "PancakeSwap",
         "price": 1.54,
-        "change_24h": 5.0,
+        "change_24h": 5.9,
         "asset": "crypto"
       },
       {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.085242,
-        "change_24h": 3.2,
+        "symbol": "LINK",
+        "name": "Chainlink",
+        "price": 9.77,
+        "change_24h": 4.1,
         "asset": "crypto"
       },
       {
-        "symbol": "OKB",
-        "name": "OKB",
-        "price": 100.97,
-        "change_24h": 3.1,
+        "symbol": "DOT",
+        "name": "Polkadot",
+        "price": 0.762323,
+        "change_24h": 3.5,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.092,
+        "change_24h": -4.7,
+        "asset": "crypto"
+      },
+      {
         "symbol": "MORPHO",
         "name": "Morpho",
-        "price": 2.04,
-        "change_24h": -3.6,
+        "price": 2.03,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -3.6,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 58.32,
-        "change_24h": -2.9,
+        "change_24h": -3.7,
         "asset": "crypto"
       },
       {
         "symbol": "ICP",
         "name": "Internet Computer",
         "price": 2.21,
-        "change_24h": -2.7,
+        "change_24h": -2.6,
         "asset": "crypto"
       },
       {
-        "symbol": "NEAR",
-        "name": "NEAR Protocol",
-        "price": 1.61,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.089762,
         "change_24h": -2.5,
         "asset": "crypto"
       }
