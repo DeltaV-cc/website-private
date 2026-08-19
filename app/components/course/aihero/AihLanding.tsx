@@ -90,8 +90,8 @@ export function AihLanding() {
               <span className="aih-toc-title">
                 Harness Labs
                 <span className="aih-toc-sub">
-                  {HARNESS_LABS.length} drills: spend, key rotation, session control, prompt
-                  budget, webhooks, VPS, Kanban, failure studio.
+                  {HARNESS_LABS.length} drills: key rotation, failure studio, prompt budget,
+                  Kanban.
                 </span>
               </span>
               <span className="aih-toc-min">

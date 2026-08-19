@@ -511,30 +511,6 @@ export function LabsLandingVisual() {
 
 export function LabVisual({ slug }: { slug: string }) {
   const map: Record<string, React.ReactNode> = {
-    'desktop-cockpit': (
-      <ArchitectureFlow
-        title="Cockpit confirm only"
-        accent="orange"
-        steps={[
-          { label: 'Profile', detail: 'Already exists' },
-          { label: 'Skills panel', detail: 'Opens' },
-          { label: 'Tools glance', detail: 'Known on' },
-          { label: 'File path', detail: 'Write + open' },
-        ]}
-      />
-    ),
-    'model-spend': (
-      <ArchitectureFlow
-        title="Spend drill"
-        accent="amber"
-        steps={[
-          { label: 'Log primary', detail: 'Model ID' },
-          { label: 'Cheap task', detail: 'Compare' },
-          { label: 'Tighten cron', detail: 'Runbook' },
-          { label: 'Cut toolset', detail: 'Or justify' },
-        ]}
-      />
-    ),
     'api-key-hygiene': (
       <ArchitectureFlow
         title="Key drill"
@@ -547,54 +523,6 @@ export function LabVisual({ slug }: { slug: string }) {
         ]}
       />
     ),
-    webhooks: (
-      <ArchitectureFlow
-        title="Event → runbook"
-        accent="purple"
-        steps={[
-          { label: 'Event', detail: 'What fired' },
-          { label: 'Auth', detail: 'Secret / sig' },
-          { label: 'Runbook', detail: 'Amnesia prompt' },
-          { label: 'Fail path', detail: 'Alert human' },
-        ]}
-      />
-    ),
-    'vps-ship': (
-      <ArchitectureFlow
-        title="Ship on existing host"
-        accent="orange"
-        steps={[
-          { label: 'Host ready', detail: 'Hermes already there' },
-          { label: 'Scaffold dir', detail: 'Isolated path' },
-          { label: 'Human review', detail: 'Read code' },
-          { label: 'Serve + notes', detail: 'Restart / rollback' },
-        ]}
-      />
-    ),
-    'wiki-kanban': (
-      <ArchitectureFlow
-        title="Staged wiki"
-        accent="purple"
-        steps={[
-          { label: 'S1 Sources', detail: 'Vault exists' },
-          { label: 'S2 Notes', detail: '[[links]]' },
-          { label: 'S3 Gaps', detail: 'Open Qs' },
-          { label: 'S4 Retrieve', detail: 'Cite files' },
-        ]}
-      />
-    ),
-    'remote-access': (
-      <ArchitectureFlow
-        title="Mesh shell"
-        accent="cyan"
-        steps={[
-          { label: 'Mesh both ends', detail: 'Tailscale etc.' },
-          { label: 'SSH private', detail: 'No WAN :22' },
-          { label: 'hermes status', detail: 'Proof' },
-          { label: 'Document host', detail: 'remote-access.md' },
-        ]}
-      />
-    ),
     'failure-studio': (
       <ArchitectureFlow
         title="Failure studio"
@@ -604,18 +532,6 @@ export function LabVisual({ slug }: { slug: string }) {
           { label: 'Stuck approval', detail: 'Timeout path' },
           { label: 'Tool thrash', detail: 'Stop + scope' },
           { label: 'failure-log.md', detail: 'Three rows' },
-        ]}
-      />
-    ),
-    'session-control': (
-      <ArchitectureFlow
-        title="Session control"
-        accent="cyan"
-        steps={[
-          { label: '/context', detail: 'Budget map' },
-          { label: '/compress', detail: 'Keep last N' },
-          { label: '/undo', detail: 'Rewrite ask' },
-          { label: '/rollback', detail: 'Files only' },
         ]}
       />
     ),

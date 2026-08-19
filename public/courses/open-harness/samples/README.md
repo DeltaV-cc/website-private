@@ -11,7 +11,6 @@ Filled examples of course artifacts. Copy into your own notes folder; do not com
 | `../skills/unbroker-eu/` | 06 First agency — EU / UK lane |
 | `security-dials.example.md` | 10 Security |
 | `cron-runbook.example.md` | 11 Cron |
-| `cockpit-check.example.md` | Lab: desktop-cockpit |
 | `failure-log.example.md` | Lab: failure-studio |
 
 Back to course: `/forge/course/my-first-ai-agent/`

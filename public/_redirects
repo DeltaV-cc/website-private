@@ -8,3 +8,20 @@
 # not read this file.
 /forge/course/open-harness      /forge/course/my-first-ai-agent/          301
 /forge/course/open-harness/*    /forge/course/my-first-ai-agent/:splat    301
+# Dropped labs — send old bookmarks to the labs index
+/forge/course/my-first-ai-agent/labs/desktop-cockpit   /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/desktop-cockpit/  /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/model-spend       /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/model-spend/      /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/grok-wire         /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/grok-wire/        /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/webhooks          /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/webhooks/         /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/vps-ship          /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/vps-ship/         /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/wiki-kanban       /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/wiki-kanban/      /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/remote-access     /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/remote-access/    /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/session-control   /forge/course/my-first-ai-agent/labs/  301
+/forge/course/my-first-ai-agent/labs/session-control/  /forge/course/my-first-ai-agent/labs/  301
