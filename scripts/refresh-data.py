@@ -26,7 +26,7 @@ import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-REPO = os.environ.get("DASHBOARD_DATA_REPO", "https://github.com/DeltaV-cc/website-private.git")
+REPO = os.environ.get("DASHBOARD_DATA_REPO", "https://github.com/deltaVgit/website-private.git")
 BRANCH = "gh-pages"
 USER_AGENT = "Mozilla/5.0 (compatible; DeltaV-Refresh/1.1)"
 

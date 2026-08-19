@@ -24,7 +24,7 @@
                                             │
                                             ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  GitHub: DeltaV-cc/website-private                              │
+│  GitHub: deltaVgit/website-private                              │
 │                                                                 │
 │   branch main      = source code (Next.js app)                  │
 │   branch gh-pages  = live static site + data/*.json  ◄── SSOT   │
@@ -156,7 +156,7 @@ None are required for a default public run. All are **names only** here — put 
 
 | Variable | Default | Meaning |
 |----------|---------|---------|
-| `DASHBOARD_DATA_REPO` | `https://github.com/DeltaV-cc/website-private.git` | Repo the push targets |
+| `DASHBOARD_DATA_REPO` | `https://github.com/deltaVgit/website-private.git` | Repo the push targets |
 | `DASHBOARD_GIT_EMAIL` | `noreply@deltav.cc` | Commit author email on data commits |
 | `DASHBOARD_GIT_NAME` | `Delta V Bot` | Commit author name |
 | `HERMES_CRON_WORKDIR` | (empty) | If set, prefer `<workdir>/public/data` for local writes |
