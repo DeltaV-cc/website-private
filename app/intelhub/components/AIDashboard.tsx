@@ -49,6 +49,11 @@ const AI_PERSONAS = [
   'alexandr_wang', 'ilyasut', 'sarahookr', 'jimfan', 'nearcyan', 'levelsio',
   'andrew_n_carr', 'rasbt', 'stanfordnlp', 'metaai', 'googleresearch', 'googleai',
   'xai', 'lerobothf', 'prismml', 'elder_plinius', 'teknium1',
+  'darioamodei', 'yoheinakajima', 'hwchase17', 'langchainai', 'jxnlco',
+  'hamelhusain', 'ggerganov', 'ollama', 'lmstudioai', 'unslothai',
+  'nousresearch', 'deepseek_ai', 'alibaba_qwen', 'kimi_moonshot',
+  'teortaxestex', 'esyudkowsky', 'goodside', 'emollick',
+  'runwayml', 'lumalabsai', 'stabilityai', 'midjourney', 'thebloke',
 ];
 
 function describe(item: any): string {
@@ -109,25 +114,22 @@ function matchFilter(x: any, filter: string): boolean {
 function fmtBig(n: number): string { return fmtCompact(n); }
 
 function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
+  const [kind, setKind] = useState<'models' | 'spaces'>('models');
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
 
-  const baseItems = useMemo(
-    () => [
-      ...models.map((m) => enrichItem(m, 'model')),
-      ...spaces.map((s) => enrichItem(s, 'space')),
-    ],
-    [models, spaces],
-  );
+  const modelItems = useMemo(() => models.map((m) => enrichItem(m, 'model')), [models]);
+  const spaceItems = useMemo(() => spaces.map((s) => enrichItem(s, 'space')), [spaces]);
+  const pool = kind === 'models' ? modelItems : spaceItems;
 
   const filterCounts = useMemo(() => {
     const keys = ['all', 'new', 'downloads', 'agent', 'vision', 'moe'] as const;
     const out: Record<string, number> = {};
-    for (const k of keys) out[k] = baseItems.filter((x) => matchFilter(x, k)).length;
+    for (const k of keys) out[k] = pool.filter((x) => matchFilter(x, k)).length;
     return out;
-  }, [baseItems]);
+  }, [pool]);
 
   const filtered = useMemo(() => {
-    let allItems = baseItems.filter((x) => matchFilter(x, filter));
+    let allItems = pool.filter((x) => matchFilter(x, filter));
     if (filter === 'downloads' || filter === 'all') {
       allItems = [...allItems].sort((a, b) => (b.downloads || b.likes || 0) - (a.downloads || a.likes || 0));
     } else if (filter === 'new') {
@@ -135,19 +137,33 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
     } else {
       allItems = [...allItems].sort((a, b) => (b.likes || 0) - (a.likes || 0));
     }
-    return allItems.slice(0, 16);
-  }, [baseItems, filter]);
+    return allItems.slice(0, 8);
+  }, [pool, filter]);
+
+  const accent = kind === 'models' ? 'var(--accent-cyan)' : 'var(--accent-purple)';
 
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
         <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
-        <span className="text-[10px] text-[var(--text-muted)] shrink-0">HF models & spaces · enriched snapshot</span>
+        <div className="flex gap-1 text-[10px]">
+          {([
+            { key: 'models' as const, label: 'Models', n: modelItems.length },
+            { key: 'spaces' as const, label: 'Spaces', n: spaceItems.length },
+          ]).map((k) => (
+            <button key={k.key} onClick={() => setKind(k.key)}
+              className={`px-2.5 py-0.5 rounded-full transition-colors ${
+                kind === k.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
+              }`}>
+              {k.label} <span className="opacity-50">{k.n}</span>
+            </button>
+          ))}
+        </div>
         <div className="flex gap-1 text-[10px] ml-auto flex-wrap justify-end">
           {[
             { key: 'all', label: 'All' }, { key: 'new', label: 'New' }, { key: 'downloads', label: 'Popular' },
             { key: 'agent', label: 'Agent' }, { key: 'vision', label: 'Vision' }, { key: 'moe', label: 'MoE' },
-          ].map(f => (
+          ].map((f) => (
             <button key={f.key} onClick={() => setFilter(f.key as any)}
               className={`px-2.5 py-0.5 rounded-full transition-colors duration-150 ${
                 filter === f.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10]'
@@ -160,29 +176,29 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
         {filtered.length > 0 ? filtered.map((item: any, i: number) => (
-          <a key={`${item.name}-${i}`} href={item.url || '#'} target="_blank" rel="noopener noreferrer"
+          <a key={`${item.type}-${item.name}-${i}`} href={item.url || `https://huggingface.co/${item.author}/${item.name}`} target="_blank" rel="noopener noreferrer"
             className="block p-4 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-extrabold text-[var(--accent-cyan)] tabular-nums shrink-0 leading-none">#{i + 1}</span>
+                  <span className="text-lg font-extrabold tabular-nums shrink-0 leading-none" style={{ color: accent }}>#{i + 1}</span>
                   <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] truncate transition-colors">{item.name}</span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-medium ${
-                    item.type === 'model' ? 'text-[var(--accent-green)] bg-[var(--accent-green)]/[0.08]' : 'text-[var(--accent-purple)] bg-[var(--accent-purple)]/[0.08]'
-                  }`}>{item.type === 'model' ? 'M' : 'S'}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-medium uppercase tracking-wide ${
+                    item.type === 'model' ? 'text-[var(--accent-cyan)] bg-[var(--accent-cyan)]/[0.10]' : 'text-[var(--accent-purple)] bg-[var(--accent-purple)]/[0.10]'
+                  }`}>{item.type}</span>
                 </div>
                 <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 leading-snug">{describe(item)}</div>
               </div>
               <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
                 <span>{item.likes || 0} ♥</span>
-                {item.downloads != null && <span>{fmtNum(item.downloads || 0)} ↓</span>}
+                {item.type === 'model' && item.downloads != null && <span>{fmtNum(item.downloads || 0)} ↓</span>}
               </div>
             </div>
             <div className="mt-1.5 text-[10px] text-[var(--text-muted)]">{item.author || 'HF'}</div>
           </a>
         )) : (
           <div className="col-span-2 px-5 py-8 text-center text-[10px] text-[var(--text-disabled)]">
-            No matches for {filter}
+            No {kind} matching {filter}
           </div>
         )}
       </div>
@@ -190,70 +206,68 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
   );
 }
 
-function TopOrgs({ models }: { models: any[] }) {
-  const orgs = useMemo(() => {
-    const map = new Map<string, { org: string; models: number; downloads: number; likes: number }>();
-    for (const raw of models) {
-      const m = enrichItem(raw, 'model');
-      const org = (m.author || 'unknown').toLowerCase();
-      if (!org || org === 'unknown') continue;
-      const prev = map.get(org) || { org: m.author || org, models: 0, downloads: 0, likes: 0 };
-      prev.models += 1;
-      prev.downloads += m.downloads || 0;
-      prev.likes += m.likes || 0;
-      map.set(org, prev);
-    }
-    return [...map.values()].sort((a, b) => b.downloads - a.downloads).slice(0, 8);
-  }, [models]);
+const ABLIT_USES = [
+  { key: 'local', label: 'Local', hint: 'GGUF / workstation — llama.cpp, LM Studio, Ollama' },
+  { key: 'cybersecurity', label: 'Cyber', hint: 'Heretic / uncensored — red-team & jailbreak eval' },
+  { key: 'film', label: 'Film', hint: 'Image & video generation for local VFX' },
+] as const;
 
-  if (!orgs.length) return null;
-  const maxDl = orgs[0]?.downloads || 1;
-
-  return (
-    <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
-      <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between bg-gradient-to-r from-[var(--accent-purple)]/[0.06] to-transparent">
-        <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Top HF orgs</span>
-        <PanelMeta source="from watchlist models" note="by downloads" />
-      </div>
-      <div className="p-4 space-y-2 max-h-[280px] overflow-y-auto scrollbar-hide">
-        {orgs.map((o, i) => (
-          <a
-            key={o.org}
-            href={`https://huggingface.co/${encodeURIComponent(o.org)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2.5 text-xs group"
-          >
-            <span className="w-5 text-right tabular-nums text-[var(--text-disabled)]">#{i + 1}</span>
-            <span className="w-28 truncate text-[var(--text-secondary)] group-hover:text-[var(--accent-purple)]">{o.org}</span>
-            <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/70 to-[var(--accent-cyan)]/40"
-                style={{ width: `${Math.max(4, (o.downloads / maxDl) * 100)}%` }}
-              />
-            </div>
-            <span className="w-10 text-right text-[var(--text-muted)] tabular-nums">{o.models}</span>
-            <span className="w-16 text-right text-[var(--text-tertiary)] tabular-nums">{fmtCompact(o.downloads)}</span>
-          </a>
-        ))}
-        <div className="flex justify-between text-[9px] text-[var(--text-disabled)] pt-1">
-          <span>Org</span>
-          <span>models · downloads in snapshot</span>
-        </div>
-      </div>
-    </div>
-  );
+function familyKey(id: string): string {
+  const short = (id || '').split('/').pop() || id;
+  return short
+    .replace(/huihui-/i, '')
+    .replace(/-abliterated.*$/i, '')
+    .replace(/-uncensored.*$/i, '')
+    .replace(/-heretic.*$/i, '')
+    .replace(/-gguf.*$/i, '')
+    .replace(/-awq.*$/i, '')
+    .replace(/-nvfp4.*$/i, '')
+    .toLowerCase();
 }
 
-/** HF abliterated (refusal-removed) models — ranked by popularity × recentness.
- *  Data comes from the 6h cron snapshot (data/hf-abliterated.json, already sorted
- *  by `combo`); rendered defensively in case of missing sort. */
-function AbliteratedModels({ models, updated }: { models: any[]; updated?: string | null }) {
-  const rows = useMemo(() => {
-    const list = Array.isArray(models) ? [...models] : [];
-    const withCombo = list
-      .map((m: any) => (typeof m.combo === 'number' ? m : { ...m, combo: 0.5 }));
-    return withCombo.sort((a: any, b: any) => (b.combo ?? 0) - (a.combo ?? 0)).slice(0, 14);
+function classifyAbliterated(models: any[]): Record<string, any[]> {
+  const buckets: Record<string, any[]> = { local: [], cybersecurity: [], film: [] };
+  const seen: Record<string, Set<string>> = { local: new Set(), cybersecurity: new Set(), film: new Set() };
+  for (const m of models || []) {
+    const blob = `${m.id || ''} ${m.name || ''} ${m.pipeline || ''}`.toLowerCase();
+    const uses: string[] = Array.isArray(m.uses) && m.uses.length ? [...m.uses] : [];
+    if (!uses.length) {
+      if (/(video|i2v|t2v|flux|wan|ltx|hunyuan|muse|glimmer|diffusion|image-edit)/.test(blob)) uses.push('film');
+      if (/(heretic|jailbreak|uncensor|whiterabbit|abliterat)/.test(blob)) uses.push('cybersecurity');
+      if (/(gguf|q4_|awq|tiny|\b27b\b|\b30b\b|\b14b\b)/.test(blob)) uses.push('local');
+      if (!uses.length) uses.push('local');
+    }
+    const fam = familyKey(m.id || m.name || '');
+    for (const u of uses) {
+      if (!buckets[u] || seen[u].has(fam)) continue;
+      seen[u].add(fam);
+      buckets[u].push(m);
+    }
+  }
+  return buckets;
+}
+
+/** Abliterated recs by use — trending families stay visible, but the panel is not a GGUF dump. */
+function AbliteratedModels({
+  models, byUse, updated,
+}: {
+  models: any[]; byUse?: Record<string, any[]> | null; updated?: string | null;
+}) {
+  const [use, setUse] = useState<(typeof ABLIT_USES)[number]['key']>('local');
+  const classified = useMemo(() => classifyAbliterated(models), [models]);
+  const buckets = byUse && (byUse.local || byUse.film || byUse.cybersecurity) ? byUse : classified;
+  const recs = (buckets[use] || []).slice(0, 6);
+  const trending = useMemo(() => {
+    const seen = new Set<string>();
+    const out: any[] = [];
+    for (const m of models || []) {
+      const fam = familyKey(m.id || m.name || '');
+      if (!fam || seen.has(fam)) continue;
+      seen.add(fam);
+      out.push(m);
+      if (out.length >= 6) break;
+    }
+    return out;
   }, [models]);
 
   const updatedLabel = updated
@@ -263,22 +277,36 @@ function AbliteratedModels({ models, updated }: { models: any[]; updated?: strin
       })()
     : null;
 
+  const meta = ABLIT_USES.find((u) => u.key === use)!;
+
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Abliterated models</span>
-        <PanelMeta
-          source="HF live · search 'abliterated'"
-          note="ranked: popularity × recency"
-          updated={updatedLabel}
-        />
+        <div>
+          <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Abliterated recs</span>
+          <div className="text-[10px] text-[var(--text-muted)] mt-0.5">{meta.hint}</div>
+        </div>
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex gap-1 text-[10px]">
+            {ABLIT_USES.map((u) => (
+              <button key={u.key} onClick={() => setUse(u.key)}
+                className={`px-2.5 py-0.5 rounded-full transition-colors ${
+                  use === u.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
+                }`}>
+                {u.label}
+                <span className="ml-1 opacity-50">{(buckets[u.key] || []).length}</span>
+              </button>
+            ))}
+          </div>
+          <PanelMeta source="HF · abliterated / heretic / uncensored" note="families deduped" updated={updatedLabel} />
+        </div>
       </div>
-      {rows.length > 0 ? (
+      {recs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
-          {rows.map((m: any, i: number) => (
+          {recs.map((m: any, i: number) => (
             <a
               key={`${m.id || m.name}-${i}`}
-              href={m.url || `https://huggingface.co/${m.id || m.author}/${m.name}`}
+              href={m.url || `https://huggingface.co/${m.id || `${m.author}/${m.name}`}`}
               target="_blank"
               rel="noopener noreferrer"
               className="block p-4 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group"
@@ -288,8 +316,15 @@ function AbliteratedModels({ models, updated }: { models: any[]; updated?: strin
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-extrabold text-[var(--accent-green)] tabular-nums shrink-0 leading-none">#{i + 1}</span>
                     <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-green)] truncate transition-colors">{m.name || m.id}</span>
+                    {m.recommended && (
+                      <span className="text-[9px] uppercase tracking-wide px-1.5 py-0.5 rounded-full text-[var(--accent-green)] bg-[var(--accent-green)]/[0.10] shrink-0">rec</span>
+                    )}
                   </div>
-                  <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 truncate">{m.author || 'HF'}{m.daysAgo != null ? ` · ${m.daysAgo}d ago` : ''}</div>
+                  <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 line-clamp-2">
+                    {m.why || meta.hint}
+                    {m.author ? ` · ${m.author}` : ''}
+                    {m.daysAgo != null ? ` · ${m.daysAgo}d ago` : ''}
+                  </div>
                 </div>
                 <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
                   <span>{m.likes || 0} ♥</span>
@@ -303,6 +338,23 @@ function AbliteratedModels({ models, updated }: { models: any[]; updated?: strin
         <div className="space-y-3 p-5">
           <div className="skeleton-shimmer h-3 w-40 rounded" />
           <div className="skeleton-shimmer h-8 w-48 rounded" />
+        </div>
+      )}
+      {trending.length > 0 && (
+        <div className="px-5 py-3 border-t border-[var(--border-default)] flex flex-wrap gap-1.5 items-center">
+          <span className="text-[10px] uppercase tracking-wide text-[var(--text-disabled)] mr-1">Trending families</span>
+          {trending.map((m: any) => (
+            <a
+              key={m.id || m.name}
+              href={m.url || `https://huggingface.co/${m.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-green)] truncate max-w-[180px]"
+              title={m.id || m.name}
+            >
+              {(m.name || m.id || '').split('/').pop()}
+            </a>
+          ))}
         </div>
       )}
     </div>
@@ -464,6 +516,7 @@ export default function AIDashboard({
   const totalSpaces = spaces.length;
 
   const externalLabFeed: Item[] = dd?.aiLabFeed || [];
+  const labSnap: Item[] = dd?.aiLabsSnap || [];
 
   const labResearch = useMemo(() => {
     const fromSignals = (items || []).filter((it) => {
@@ -483,15 +536,20 @@ export default function AIDashboard({
       return false;
     });
 
-    const merged = [...externalLabFeed, ...fromSignals];
+    const perSrc: Record<string, number> = {};
+    const merged = [...labSnap, ...externalLabFeed, ...fromSignals];
     const seen = new Set<string>();
     return merged.filter((it) => {
       const k = (it.title || '').toLowerCase().slice(0, 90);
       if (!k || seen.has(k)) return false;
+      const src = (it.source || '').toLowerCase();
+      const cap = src.includes('google') ? 3 : 5;
+      perSrc[src] = (perSrc[src] || 0) + 1;
+      if (perSrc[src] > cap) return false;
       seen.add(k);
       return true;
-    }).slice(0, 16);
-  }, [items, externalLabFeed]);
+    }).slice(0, 18);
+  }, [items, externalLabFeed, labSnap]);
 
   const tweetFeed = useMemo(() => {
     const isX = (src: string) =>
@@ -520,15 +578,16 @@ export default function AIDashboard({
       return /scitechera|emostaque|ylecun|nono2357|huggingface|openai|anthropic|deepmind|metaai|karpathy|sama/.test(src);
     });
 
-    const merged = [...persona, ...pipelineX, ...aiX];
+    const snap: Item[] = dd?.aiPersonasSnap || [];
+    const merged = [...snap, ...persona, ...pipelineX, ...aiX];
     const seen = new Set<string>();
     return merged.filter((it) => {
       const k = `${(it.source || '').toLowerCase()}|${(it.title || '').toLowerCase().slice(0, 60)}`;
       if (seen.has(k)) return false;
       seen.add(k);
       return true;
-    }).slice(0, 16);
-  }, [items]);
+    }).slice(0, 24);
+  }, [items, dd?.aiPersonasSnap]);
 
   return (
     <div className="space-y-5">
@@ -551,21 +610,22 @@ export default function AIDashboard({
                 />
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {hfWatch.slice(0, 6).map((m: any) => (
-                  <a
-                    key={m.name}
-                    href={m.url || `https://huggingface.co/${m.name}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] truncate max-w-[160px]"
-                    title={m.name}
-                  >
-                    {(m.name || '').split('/').pop()}
-                  </a>
-                ))}
-                {hfWatch.length > 6 && (
-                  <span className="text-[10px] text-[var(--text-disabled)] self-center">+{hfWatch.length - 6} more</span>
-                )}
+                {hfWatch.map((m: any) => {
+                  const id = m.name || m.id || '';
+                  const href = m.url || `https://huggingface.co/${id}`;
+                  return (
+                    <a
+                      key={id}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/[0.10] truncate max-w-[220px]"
+                      title={id}
+                    >
+                      {id}
+                    </a>
+                  );
+                })}
               </div>
             </div>
             <div className="flex items-center gap-6">
@@ -591,12 +651,13 @@ export default function AIDashboard({
 
       <FrontierWatch models={hfDisplay} spaces={spaces} />
 
-      <AbliteratedModels models={dd?.abliterated || []} updated={dd?.abliteratedAt || null} />
+      <AbliteratedModels
+        models={dd?.abliterated || []}
+        byUse={dd?.abliteratedByUse || null}
+        updated={dd?.abliteratedAt || null}
+      />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <TopOrgs models={hfDisplay} />
-        <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
-      </div>
+      <ArenaLeaderboard lb={dd?.arenaLB} updated={dd?.arenaUpdated} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {aiCat && <CategoryBox cat={aiCat} ago={ago} TC={TC} />}
@@ -609,11 +670,11 @@ export default function AIDashboard({
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-cyan)]/[0.05] to-transparent">
             <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold">Lab research</span>
             <PanelMeta
-              source={dd?.aiFeedsUpdatedAt ? 'arXiv · HF · OpenAI · signals' : 'signals'}
-              updated={dd?.aiFeedsUpdatedAt
-                ? new Date(dd.aiFeedsUpdatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+              source={dd?.aiLabsUpdatedAt || dd?.aiFeedsUpdatedAt ? 'DeepMind · OpenAI · Qwen · HF · arXiv' : 'signals'}
+              updated={(dd?.aiLabsUpdatedAt || dd?.aiFeedsUpdatedAt)
+                ? new Date(dd.aiLabsUpdatedAt || dd.aiFeedsUpdatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
                 : null}
-              note={`${labResearch.length} items`}
+              note={`${labResearch.length} items · Google capped`}
             />
           </div>
           <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
@@ -635,7 +696,10 @@ export default function AIDashboard({
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
           <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-purple)]/[0.05] to-transparent">
             <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Persona posts</span>
-            <PanelMeta source="X / pipeline" note={`${tweetFeed.length} items · AI-related`} />
+            <PanelMeta
+              source={dd?.aiPersonasUpdatedAt ? 'nitter · X personas' : 'X / pipeline'}
+              note={`${tweetFeed.length} posts · agents / local / gen-AI`}
+            />
           </div>
           <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
             {tweetFeed.length === 0 ? (

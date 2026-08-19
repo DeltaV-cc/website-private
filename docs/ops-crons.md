@@ -72,13 +72,16 @@ Times are approximate. Exact cron expressions live in Hermes on the ops machine 
 
 | Cadence | Command (from website checkout root) | Script | Purpose |
 |---------|--------------------------------------|--------|---------|
-| **Every ~15 min** | `python3 scripts/refresh-data.py` | [`refresh-data.py`](../scripts/refresh-data.py) | Core Macro / market / HF / crypto snapshots → `gh-pages/data/` |
-| **Every ~15–30 min** | `python3 scripts/refresh-dashboard-snapshots.py` | [`refresh-dashboard-snapshots.py`](../scripts/refresh-dashboard-snapshots.py) | Fills empty Macro/Web3 slots (indices merge, stables, TVL, chain movers, …) |
-| **~Every 30 min** (optional / sibling) | chain TVL movers job | ops script (sometimes external) | `chain-movers.json` for **Web3** TVL gainers/losers (not equity price movers) |
-| **Manual / occasional** | `python3 scripts/fetch-etf-flows.py` | ETF flows | BTC/ETH ETF net flows for Web3 |
-| **Manual / occasional** | `python3 scripts/fetch-bold-yields.py` | BOLD yields | Liquity-related yields panel |
-| **Manual / occasional** | `python3 scripts/fetch-dex-matrix.py` | DEX matrix | DEX landscape metrics |
+| **Every ~15 min** (`:01`) | intel `pipeline.py` | ops Hermes | Ingest RSS/X → `intel/raw/` |
+| **Every ~15 min** (`:08`) | `sync-intel-to-site.py` | ops Hermes | Score + cap → `raw-items.json`, **`curated-top20.json`**, `picks.json` → gh-pages |
+| **Every ~15 min** | `python3 scripts/refresh-data.py` | [`refresh-data.py`](../scripts/refresh-data.py) | Macro / **trending HF** / crypto / liquid movers → `gh-pages/data/` |
+| **Hourly** | `python3 scripts/refresh-dashboard-snapshots.py` | [`refresh-dashboard-snapshots.py`](../scripts/refresh-dashboard-snapshots.py) | Fill Macro/Web3 holes (indices merge, stables, TVL, **chain-movers**) |
+| **Every ~30 min** | `layer0_watch.py` | ops Hermes | Intel ingest watchdog + AI-source staleness + **AI persona nitter fetch** |
+| **Every 6h** | `layer0_6h.py` | ops Hermes | HF watch, Artemis, arena, wiki backup, MetaMask phish, ETF, **abliterated recs**, **lab RSS** |
+| **Every 12h** | `layer0_12h.py` | ops Hermes | DEX matrix + BOLD yields |
 | **On every `main` deploy** | Actions → `pnpm build` → `preserve-live-data.py` → publish | [`deploy.yml`](../.github/workflows/deploy.yml) | New HTML; **keep** live JSON |
+
+Scripts folded into the 6h/12h/watch bundles still live in Hermes `scripts/` — they are not deleted. Individual cron rows are paused so they cannot race the bundle.
 
 > **Intel feed items** (`raw-items.json`, curated pulse, etc.) are produced by a **separate ops intel pipeline** (`DeltaV-ops/intel/…`, not fully vendored here). Caps and source lists live there. This repo only *displays* the JSON that ends up on `gh-pages/data/`.
 
@@ -88,7 +91,8 @@ Times are approximate. Exact cron expressions live in Hermes on the ops machine 
 
 ### `refresh-data.py` (main 15‑minute heart)
 
-Public APIs only (Yahoo Finance charts, CoinGecko, Hugging Face, CNN F&G, …).  
+Public APIs only (Yahoo Finance charts, CoinGecko, Hugging Face **trending**, CNN F&G, …).  
+`hf.json` is **never** sort-by-downloads (that used to surface BERT / MiniLM).  
 Pushes to **`gh-pages` branch → `data/`**:
 
 | File | Used roughly for |

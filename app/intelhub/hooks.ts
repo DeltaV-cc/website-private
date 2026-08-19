@@ -187,11 +187,13 @@ function getTag(title: string, summary?: string, source?: string): string {
 }
 
 const JHN = [/^Ask HN:/i, /^Tell HN:/i, /^Show HN:/i, /Who is hiring/i];
+const DEAL_NOISE = /save \$|just \$|for just|combo deal|discount on|gaming build|motherboard review|send their pee|beer drinkers/i;
 const XSOURCES = ['x:', 'nitter', 'twitter'];
 function rel(it: { title: string; source: string }) {
   // Prediction markets deliberately excluded from IntelHub surfaces for now
   const src = (it.source || '').toLowerCase();
   if (src.includes('polymarket') || src.includes('kalshi') || src.includes('predictit')) return false;
+  if (DEAL_NOISE.test(it.title || '')) return false;
   if (src.includes('hacker') || src.includes('y combinator'))
     return !JHN.some(p => p.test(it.title));
   return true;
@@ -635,8 +637,13 @@ export function useIntelData(activeTab: string = 'macro') {
         // live HF search as fallback so the panel never sits empty.
         (async () => {
           const snap = await fetchJson(dataUrl('/data/hf-abliterated.json'));
-          if (snap && Array.isArray(snap.models) && snap.models.length > 0) {
-            merge({ abliterated: snap.models, abliteratedAt: snap.updated || null });
+          const list = snap?.trending || snap?.models;
+          if (snap && Array.isArray(list) && list.length > 0) {
+            merge({
+              abliterated: list,
+              abliteratedByUse: snap.by_use || null,
+              abliteratedAt: snap.updated || null,
+            });
             return;
           }
           const live = await fetchJson(proxy(ABLITERATED_SEARCH));
@@ -644,6 +651,16 @@ export function useIntelData(activeTab: string = 'macro') {
             merge({ abliterated: mapAbliterated(live), abliteratedAt: new Date().toISOString() });
           }
         })(),
+        fetchJson(dataUrl('/data/ai-labs.json')).then((d) => {
+          if (d && Array.isArray(d.items) && d.items.length) {
+            merge({ aiLabsSnap: d.items, aiLabsUpdatedAt: d.updated || null });
+          }
+        }),
+        fetchJson(dataUrl('/data/ai-personas.json')).then((d) => {
+          if (d && Array.isArray(d.items) && d.items.length) {
+            merge({ aiPersonasSnap: d.items, aiPersonasUpdatedAt: d.updated || null });
+          }
+        }),
       );
     }
 
@@ -1053,14 +1070,19 @@ export function useIntelData(activeTab: string = 'macro') {
     const merge = (patch: any) => {
       if (patch && Object.keys(patch).length > 0) setDd((prev: any) => ({ ...prev, ...patch }));
     };
-    const feeds: { url: string; source: string }[] = [
-      { url: 'https://rss.arxiv.org/rss/cs.AI', source: 'arXiv cs.AI' },
-      { url: 'https://rss.arxiv.org/rss/cs.LG', source: 'arXiv cs.LG' },
-      { url: 'https://rss.arxiv.org/rss/cs.CL', source: 'arXiv cs.CL' },
-      { url: 'https://huggingface.co/blog/feed.xml', source: 'Hugging Face Blog' },
-      { url: 'https://openai.com/blog/rss.xml', source: 'OpenAI Blog' },
-      { url: 'https://www.anthropic.com/rss.xml', source: 'Anthropic' },
-      { url: 'https://blog.google/technology/ai/rss/', source: 'Google AI Blog' },
+    const feeds: { url: string; source: string; cap?: number }[] = [
+      { url: 'https://rss.arxiv.org/rss/cs.AI', source: 'arXiv cs.AI', cap: 4 },
+      { url: 'https://rss.arxiv.org/rss/cs.LG', source: 'arXiv cs.LG', cap: 3 },
+      { url: 'https://huggingface.co/blog/feed.xml', source: 'Hugging Face Blog', cap: 4 },
+      { url: 'https://openai.com/news/rss.xml', source: 'OpenAI', cap: 4 },
+      { url: 'https://www.deepmind.com/blog/rss.xml', source: 'Google DeepMind', cap: 4 },
+      { url: 'https://blog.google/technology/ai/rss/', source: 'Google AI Blog', cap: 3 },
+      { url: 'https://blogs.nvidia.com/blog/category/deep-learning/feed/', source: 'NVIDIA AI', cap: 3 },
+      { url: 'https://qwenlm.github.io/blog/index.xml', source: 'Qwen', cap: 4 },
+      { url: 'https://blog.eleuther.ai/index.xml', source: 'EleutherAI', cap: 3 },
+      { url: 'https://www.lesswrong.com/feed.xml?view=curated-rss', source: 'LessWrong', cap: 3 },
+      { url: 'https://simonwillison.net/atom/everything/', source: 'Simon Willison', cap: 3 },
+      { url: 'https://interconnects.ai/feed/', source: 'Interconnects', cap: 3 },
     ];
     const results = await Promise.allSettled(
       feeds.map(async (f) => {
@@ -1068,7 +1090,7 @@ export function useIntelData(activeTab: string = 'macro') {
         let xml = await fetchText(f.url, 10000);
         if (!xml) xml = await fetchText(proxy(f.url), 12000);
         if (!xml) return [] as Item[];
-        return parseRssItems(xml, f.source, 12);
+        return parseRssItems(xml, f.source, f.cap || 4);
       }),
     );
     const labFeed: Item[] = [];
