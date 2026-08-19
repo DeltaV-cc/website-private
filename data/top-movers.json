@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T07:46:06Z",
+  "updated_at": "2026-08-19T08:00:52Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.643836,
+        "price": 0.649958,
         "change_24h": 68.9,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.002986,
+        "price": 0.002976,
         "change_24h": 6.9,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "OKB",
         "name": "OKB",
-        "price": 101.33,
+        "price": 101.07,
         "change_24h": 4.1,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.085396,
+        "price": 0.085557,
         "change_24h": 3.7,
         "asset": "crypto"
       }
