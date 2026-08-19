@@ -1496,7 +1496,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** Loop diagram sits under the loop section — not a double stack under the title */
     visualPlacement: 'none',
     proof: L(
-      'Approval mode is Smart or Manual, you ran one real task end to end and made at least one deliberate approve or deny, and you noted which provider and model handled it.',
+      'Approval mode is Smart or Manual, you ran the Geneva no-ID footprint loop (Robinson + at least one broker that does not ask for an ID), made at least one deliberate approve or deny, and opened unbroker-receipt.md offline.',
     ),
     sections: [
       {
@@ -1542,28 +1542,40 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Put your agent to work'),
         blocks: [
           { k: 'p', text: L(
-            'Three things worth running the day your agent starts working. Do **any of them, in any order** — one is enough to prove the loop, and all three are genuinely useful. None need anything from Part II.',
+            'The required mission is a real privacy filing for **you**, in Geneva. Official Hermes `unbroker` is built for US people-search sites and California\'s DROP. That is the wrong default here. `unbroker-ge` files the Swiss requests that do **not** need a copy of your ID: the Robinson list, local.ch / search.ch, Moneyhouse, La Poste\'s mailing stop, and Dun & Bradstreet if you appear as a person.',
           ) },
           { k: 'p', text: L(
-            'Whichever you pick, the rule from the section above applies: read the approval prompt once, approve what stays inside the folder you named, deny anything that wanders outside it.',
+            'Read the approval prompt once. Approve steps that stay inside the folder you named and the official opt-out forms. Deny anything that deletes other files, wanders off, or tries to attach a pièce d\'identité.',
           ) },
-          { k: 'p', text: L(
-            '**1 · Clean your digital footprint.** Data brokers republish your name, address and phone. The official `Unbroker` skill scans them and files removals for you, with explicit consent per person.',
+          { k: 'callout', variant: 'warning', text: L(
+            'You only run this on **yourself**. The skill refuses third parties. It is not legal advice — the French letter follows the [EDÖB sample letters](https://www.edoeb.admin.ch/de/musterbriefe-datenschutz). CRIF, AZ Direct and Creditreform want an ID scan: they go in the receipt as homework, not in this session.',
           ) },
-          { k: 'steps', id: '3-steps', items: [{ title: L('Install it: `hermes skills install official/security/unbroker`') }, { title: L('Register yourself **with consent** — the skill refuses to run without it.') }, { title: L('Run the removal loop until it stops finding actions.') }] },
+          { k: 'copycards', items: [
+            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Geneva no-ID opt-out procedure the agent follows' },
+            { src: '/courses/open-harness/skills/unbroker-ge/templates/receipt.md', title: 'unbroker-receipt.md', why: 'Blank receipt — the file that proves the loop' },
+          ] },
+          { k: 'steps', id: '3-steps', items: [
+            { title: L('Copy `unbroker-ge` into a folder you own, then point Hermes at it (or paste the skill into chat). New session so it actually loads.') },
+            { title: L('Say this, with your real details: “I consent. I live in Geneva. Follow unbroker-ge for me only. Write the receipt to [folder I name]. Do not send any ID.”') },
+            { title: L('Approve the searches and the no-ID forms. Deny deletes, extra disclosure, and anything outside that folder.') },
+            { title: L('Open `unbroker-receipt.md` yourself, offline. If the file is missing, the mission failed.') },
+          ] },
+          { k: 'table', headers: [L('Who gets a demand today'), L('What you ask')], rows: [
+            [L('**Liste Robinson** (SDV)'), L('Stop cold addressed advertising — file this first')],
+            [L('**local.ch / search.ch**'), L('Hide or delete the private listing')],
+            [L('**Moneyhouse**'), L('Stop publishing the private person page')],
+            [L('**La Poste**'), L('Unsubscribe addressed mailings; Stop Pub sticker is on you')],
+            [L('**Dun & Bradstreet CH**'), L('Only if a person page exists')],
+          ] },
           { k: 'p', text: L(
-            '**2 · Teach it something long.** A book, a research paper, a technical manual, a standard, an internal spec — anything you would otherwise keep re-reading. Instead of pasting it into chat, `/learn` reads the source and writes itself a skill from it, so the knowledge is still there next session.',
-          ) },
-          { k: 'steps', id: '3b-steps', items: [{ title: L('Point it at a file you own: `/learn ~/papers/the-paper.pdf`') }, { title: L('It also takes a folder, a docs URL, or a workflow you just ran — same command.') }, { title: L('Approve the reads it asks for, and let it finish.') }, { title: L('Ask it a question only that source could answer.') }] },
-          { k: 'p', text: L(
-            '**3 · Point at your screen.** With the HUD you stop describing which window you mean — put the bar over it and say “this”. It is built into Desktop, so there is nothing to install.',
+            'If you still have time after the receipt exists: `/learn` on a file you own, or the Desktop HUD (“this” instead of describing a window). Neither replaces the footprint loop.',
           ) },
           { k: 'tweet', id: '2086130893811277833', author: '@imbabybrooklyn', height: 672,
             href: 'https://x.com/imbabybrooklyn/status/2086130893811277833',
-            caption: L('The HUD in use.'),
+            caption: L('The HUD in use — optional after the receipt exists.'),
           },
           { k: 'callout', variant: 'note', text: L(
-            'Every command above is copied from its official source — the [Unbroker skill page](https://hermes-agent.nousresearch.com/docs/user-guide/skills/optional/security/security-unbroker) and the [Hermes skills docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills). If a label moved, the docs win.',
+            'The skill lives with the course: [unbroker-ge / SKILL.md](/courses/open-harness/skills/unbroker-ge/SKILL.md). Official US Unbroker stays optional for a later week if you also have a US footprint.',
           ) },
           { k: 'quiz', quiz: {
             question: L('You deny a delete tool call. Next?'),
@@ -1642,7 +1654,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'You now have: free model path, Desktop, [soul](~soul), one messaging surface, vocabulary for **Think → Act → Observe**, and a file that proves the agent acted. Part II adds memory, vault, skills, security dials, and cron.',
           ) },
           { k: 'checklist', id: '11', items: [
-          L('Mission receipt on disk'),
+          L('unbroker-receipt.md exists and opens offline'),
           L('Approvals not set to full auto-approve'),
           L('Provider + model noted'),
           L('I can explain agent vs chat in one sentence'),
@@ -1958,7 +1970,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             ],
             [
               L('**Official hub** — `hermes skills install official/…`'),
-              L('Maintained skills like `official/security/unbroker`'),
+              L('Maintained hub skills — useful, still read them first'),
               L('High — but still read what it does first'),
             ],
             [
@@ -1990,7 +2002,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('**It survives the budget test** — see the next section. A shelf of unused skills costs tokens in every session.'),
         ] },
           { k: 'callout', variant: 'note', text: L(
-            'The one we do recommend by name is `official/security/unbroker`, which you met in [lesson 06](/forge/course/my-first-ai-agent/06/) — because scrubbing data brokers is a real, repeating job that nobody wants to do by hand.',
+            'The one we recommend by name is `unbroker-ge` from [lesson 06](/forge/course/my-first-ai-agent/06/) — Geneva brokers that accept a name and email, no ID scan. Official `unbroker` is the US people-search tool; only add it if you also have a US footprint.',
           ) },
           { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into a note in your vault, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
           { k: 'links', items: [
