@@ -645,7 +645,7 @@ Don't:
             label: L('Hermes configuration'),
             href: 'https://hermes-agent.nousresearch.com/docs/user-guide/configuration',
           },
-          { label: L('Optional: Harness lab — add Grok text'), href: '/forge/course/my-first-ai-agent/labs/grok-wire/' },
+          { label: L('Hermes providers'), href: 'https://hermes-agent.nousresearch.com/docs/integrations/providers' },
         ],
       },
       {

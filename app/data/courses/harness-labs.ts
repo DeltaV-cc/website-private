@@ -42,131 +42,16 @@ export const HARNESS_LABS_META = {
   title: 'Harness Labs',
   tagline: 'Drills after mastery — not a second install course.',
   description:
-    'Optional ops drills once My First AI Agent Part I is done. Mastery default is Hermes Desktop (profile + SOUL). Labs do not re-teach install, gateway setup from zero, or memory theory. Prefer finishing the mastery modules first; CLI-only learners map Desktop steps themselves.',
+    'Four optional drills after My First AI Agent Part I: rotate a key, break the harness on purpose, measure the empty-session budget, and try the Kanban plugin. Not a second install course.',
   href: '/forge/course/my-first-ai-agent/labs/',
   courseHref: '/forge/course/my-first-ai-agent/',
 };
 
 export const HARNESS_LABS: HarnessLab[] = [
   {
-    id: 'desktop-cockpit',
-    slug: 'desktop-cockpit',
-    number: '01',
-    title: 'Desktop cockpit checklist',
-    subtitle: 'Quick confirm only — install and SOUL live in mastery, not here.',
-    minutes: 10,
-    level: 'after-part-i',
-    tags: ['Desktop', 'Checklist'],
-    requires: 'My First AI Agent Part I (modules 03–06 proofs)',
-    assumes: 'Hermes Desktop already installed and chatting; profile + SOUL exist; gateway optional.',
-    ifNotHref: '/forge/course/my-first-ai-agent/03/',
-    ifNotLabel: 'Harness 03 — Install',
-    outcome:
-      'cockpit-check.md with four yes/no lines: profile, skills panel, tools glance, file write path. No install steps performed in this lab.',
-    sections: [
-      {
-        heading: 'Do not use this lab to install',
-        paragraphs: [
-          'Install, first Desktop run, SOUL writing, Telegram from zero, and first tool task are mastery topics. If any of those fail, leave this lab and open the linked modules.',
-        ],
-        links: [
-          { label: '03 Install (Desktop canonical)', href: '/forge/course/my-first-ai-agent/03/' },
-          { label: '04 Soul pack', href: '/forge/course/my-first-ai-agent/04/' },
-          { label: '05 Gateway', href: '/forge/course/my-first-ai-agent/05/' },
-          { label: '06 First agency', href: '/forge/course/my-first-ai-agent/06/' },
-        ],
-      },
-      {
-        heading: 'Checklist (5 minutes)',
-        steps: [
-          'Open Desktop on the profile you already use. Note profile name in cockpit-check.md.',
-          'Skills: confirm the panel opens (do not re-learn what a skill is — see mastery 09 if needed).',
-          'Tools: confirm you still know which toolsets are on for this profile.',
-          'If gateway was configured in mastery 05: one restart from UI + one phone ping. If not configured, write “gateway: N/A”.',
-          'One line task with an absolute path: write cockpit-check.md and open it offline.',
-        ],
-        callout: 'If Desktop will not start or chat fails, fix mastery 03 — do not improvise a second install guide here.',
-        calloutVariant: 'warning',
-      },
-    ],
-  },
-  {
-    id: 'model-spend',
-    slug: 'model-spend',
-    number: '02',
-    title: 'Spend drill: measure and cut',
-    subtitle: 'Mastery taught spend and cron. This lab only measures one job and cuts waste.',
-    minutes: 20,
-    level: 'after-part-i',
-    tags: ['Cost', 'Models'],
-    requires: 'My First AI Agent 06 (agency/spend intro); better after 09 if you have a cron',
-    assumes: 'Primary model already works. You are not choosing a provider for the first time.',
-    ifNotHref: '/forge/course/my-first-ai-agent/06/',
-    ifNotLabel: 'Harness 06 — First agency',
-    outcome:
-      'spend-log.md with primary model ID, one timed cheap task, one tightened runbook (or cron prompt), one toolset disabled or justified.',
-    sections: [
-      {
-        heading: 'Mastery owns the theory',
-        paragraphs: [
-          'Token tiers, tool catalogs, and cron-as-runbook are taught in My First AI Agent 06 and 09. Do not re-read a lecture here. Open those modules if the ideas are new.',
-        ],
-        links: [
-          { label: '06 Spend / tools intro', href: '/forge/course/my-first-ai-agent/06/' },
-          { label: '11 Cron runbooks', href: '/forge/course/my-first-ai-agent/11/' },
-        ],
-      },
-      {
-        heading: 'Drill',
-        steps: [
-          'Record primary model + provider in spend-log.md (already configured).',
-          'Run one light task on the cheapest acceptable model you can select; note time and quality vs primary.',
-          'Take one existing cron or candidate job from mastery; rewrite only the prompt to a full amnesia runbook; paste before/after into spend-log.md.',
-          'Disable one unused toolset for this profile, or write one sentence why it stays.',
-        ],
-        callout: 'Pass = measurement file. Fail = “I feel like it’s cheaper” with no log.',
-        calloutVariant: 'quote',
-      },
-    ],
-  },
-  {
-    id: 'grok-wire',
-    slug: 'grok-wire',
-    number: '03',
-    title: 'Add Grok as a text model',
-    subtitle: 'Optional provider wire after Hermes works. Image/Imagine setup belongs to Open Design.',
-    minutes: 15,
-    level: 'after-part-i',
-    tags: ['Models', 'Grok'],
-    requires: 'Hermes already chatting on another model (Harness 03 done)',
-    assumes: 'Install complete. This is “add a provider,” not “install Hermes.”',
-    ifNotHref: '/forge/course/my-first-ai-agent/03/',
-    ifNotLabel: 'Harness 03 — Install',
-    outcome:
-      'GROK_OK (or equivalent) reply on this profile. models-grok.md notes auth path. Imagine: “configure in Open Design 03/06” unless already done.',
-    sections: [
-      {
-        heading: 'Drill',
-        steps: [
-          'Desktop providers or hermes setup — add xAI/Grok with key/OAuth per current docs. Never paste keys into chat.',
-          'Select Grok. Prompt: “Reply with exactly: GROK_OK and your model name.”',
-          'Save model string to models-grok.md.',
-          'Images: do not deep-configure here. Write “Imagine → Open Design modules 03 and 06” unless you already use stills day-to-day.',
-        ],
-        links: [
-          {
-            label: 'Configuration',
-            href: 'https://hermes-agent.nousresearch.com/docs/user-guide/configuration',
-          },
-          { label: 'Open Design — models', href: '/forge/course/open-design/06/' },
-        ],
-      },
-    ],
-  },
-  {
     id: 'api-key-hygiene',
     slug: 'api-key-hygiene',
-    number: '04',
+    number: '01',
     title: 'Key rotation drill',
     subtitle: 'You already know what a key is (Harness 01/03). Prove rotation and no secrets in git.',
     minutes: 20,
@@ -201,161 +86,9 @@ export const HARNESS_LABS: HarnessLab[] = [
     ],
   },
   {
-    id: 'webhooks',
-    slug: 'webhooks',
-    number: '05',
-    title: 'Webhooks beyond cron',
-    subtitle: 'Extension of mastery automation — events, not “what is a cron.”',
-    minutes: 25,
-    level: 'after-part-ii',
-    tags: ['Automation', 'Webhooks'],
-    requires: 'My First AI Agent 11 cron proof (runbook-style job understood)',
-    assumes: 'You can write a full amnesia cron prompt. Hermes is installed and online.',
-    ifNotHref: '/forge/course/my-first-ai-agent/11/',
-    ifNotLabel: 'Harness 11 — Cron runbooks',
-    outcome:
-      'webhook-design.md fully filled (event, auth, runbook, failure). Working test or honest design-only pass.',
-    sections: [
-      {
-        heading: 'Why this is a lab',
-        paragraphs: [
-          'Mastery 11 owns cron pedagogy. This lab only adds event-driven wakes: form, CI, deploy — with auth and failure behavior.',
-        ],
-      },
-      {
-        heading: 'Fill every field',
-        callout: `Event:
-Source:
-Auth: [secret header | signature | IP allowlist]
-Trusted payload fields:
-Hermes runbook (amnesia):
-Success:
-Failure / retry / alert:
-Idempotency:
-Human approval for:`,
-        calloutVariant: 'note',
-      },
-      {
-        heading: 'Drill',
-        steps: [
-          'Pick one real event. Complete webhook-design.md with no empty lines.',
-          'Implement only if your Hermes version documents webhooks and you can protect the endpoint; else stop at design-only.',
-          'One test event logged, or explicit “deferred — no public URL yet.”',
-        ],
-        links: [{ label: 'Hermes docs', href: 'https://hermes-agent.nousresearch.com/docs/' }],
-      },
-    ],
-  },
-  {
-    id: 'vps-ship',
-    slug: 'vps-ship',
-    number: '06',
-    title: 'Ship a small app on an existing VPS',
-    subtitle: 'Runtime choice was mastery 02. This lab deploys one artifact on a box that already runs Hermes.',
-    minutes: 30,
-    level: 'after-part-ii',
-    tags: ['VPS', 'Deploy'],
-    requires: 'Hermes already on a host (local always-on or VPS from mastery 02)',
-    assumes: 'You are not learning SSH or “what is a VPS” for the first time here.',
-    ifNotHref: '/forge/course/my-first-ai-agent/02/',
-    ifNotLabel: 'Harness 02 — Where it runs',
-    outcome:
-      'URL or IP:port serves a reviewed page/API. deploy-notes.md with path, restart, rollback. Human-reviewed: yes.',
-    sections: [
-      {
-        heading: 'Scope',
-        paragraphs: [
-          'One static site or hello API. You read every file before anything listens on a port. Docker still optional.',
-        ],
-      },
-      {
-        heading: 'Drill',
-        steps: [
-          'SSH to the host that already runs Hermes. Create a dedicated app directory.',
-          'Hermes scaffolds only into that directory. You forbid system-wide changes without approval.',
-          'Review code. Reject surprise firewall-open or remote download scripts.',
-          'Serve safely; hit from phone; write deploy-notes.md (path, port, restart, rollback).',
-        ],
-        callout: 'No second “how to rent a VPS” essay. If you have no host, finish mastery 02 first.',
-        calloutVariant: 'note',
-      },
-    ],
-  },
-  {
-    id: 'wiki-kanban',
-    slug: 'wiki-kanban',
-    number: '07',
-    title: 'Staged wiki on an existing vault',
-    subtitle: 'Vault basics are mastery 08. This lab is stages + retrieval proof only.',
-    minutes: 30,
-    level: 'after-part-ii',
-    tags: ['Wiki', 'Kanban', 'Memory'],
-    requires: 'My First AI Agent 08 vault proof (Obsidian path linked, retrieval worked once)',
-    assumes: 'Vault folder exists and Hermes can read it. You are not installing Obsidian here.',
-    ifNotHref: '/forge/course/my-first-ai-agent/08/',
-    ifNotLabel: 'Harness 08 — Data vault',
-    outcome:
-      'BOARD.md (or Kanban) stages complete; ≥3 linked notes; one new-session answer cites vault files only.',
-    sections: [
-      {
-        heading: 'Mastery vs lab',
-        paragraphs: [
-          'Harness 08 owns inbox/sources/synthesis and first retrieval. This lab only enforces multi-stage work so research does not collapse into one muddy chat.',
-        ],
-        links: [{ label: 'Harness 08 — vault', href: '/forge/course/my-first-ai-agent/08/' }],
-      },
-      {
-        heading: 'BOARD.md',
-        callout: `## BOARD.md
-- [ ] S1 Collect: ≥3 sources under vault/sources/
-- [ ] S2 Synthesize: ≥2 notes with [[wikilinks]]
-- [ ] S3 Open questions / contradictions note
-- [ ] S4 Retrieval: new session answers from vault only + file citations`,
-        calloutVariant: 'note',
-      },
-      {
-        heading: 'Drill',
-        steps: [
-          'Use your existing vault path from mastery 08.',
-          'Run S1–S4. Tick BOARD.md.',
-          'Fail the lab if the agent invents a source not in the vault.',
-        ],
-      },
-    ],
-  },
-  {
-    id: 'remote-access',
-    slug: 'remote-access',
-    number: '08',
-    title: 'Remote shell via mesh',
-    subtitle: 'Gateway is chat (mastery 05). This lab is private SSH to a host that already runs Hermes.',
-    minutes: 25,
-    level: 'advanced',
-    tags: ['Remote', 'Tailscale'],
-    requires: 'Host already running Hermes (not a fresh install lab)',
-    assumes: 'You can already use the agent; you need shell without opening WAN SSH.',
-    ifNotHref: '/forge/course/my-first-ai-agent/05/',
-    ifNotLabel: 'Harness 05 — Gateway (chat remote)',
-    outcome:
-      'SSH over mesh from a second network; hermes status works; remote-access.md notes hostnames; public :22 not required.',
-    sections: [
-      {
-        heading: 'Drill',
-        steps: [
-          'Install mesh (e.g. Tailscale) on laptop + Hermes host; both online on the tailnet.',
-          'SSH via MagicDNS or tailnet IP (keys preferred).',
-          'Run hermes status / doctor. Truncated output → remote-access.md (no secrets).',
-          'Confirm you did not leave WAN SSH open “for the lab.”',
-        ],
-        callout: 'Mesh first. Do not disable host firewalls to force success.',
-        calloutVariant: 'warning',
-      },
-    ],
-  },
-  {
     id: 'failure-studio',
     slug: 'failure-studio',
-    number: '09',
+    number: '02',
     title: 'Failure studio',
     subtitle: 'Break it on purpose: doctor, logs, stuck approvals, bad tool loops — then fix.',
     minutes: 30,
@@ -431,74 +164,9 @@ Secrets: none pasted
     ],
   },
   {
-    id: 'session-control',
-    slug: 'session-control',
-    number: '10',
-    title: 'Session control studio',
-    subtitle: 'Long threads without a new session: /context, /compress, /undo, /rollback.',
-    minutes: 25,
-    level: 'after-part-i',
-    tags: ['Sessions', 'Context', 'Ops'],
-    requires: 'My First AI Agent 06 (tools proof); chat works on Desktop or CLI',
-    assumes: 'You can run a multi-turn conversation. You are not learning install here.',
-    ifNotHref: '/forge/course/my-first-ai-agent/06/',
-    ifNotLabel: 'Harness 06 — First agency',
-    outcome:
-      'session-control.md with: context snapshot, one compress result, one undo test, and a one-line note that file restore needs /rollback + checkpoints.',
-    sections: [
-      {
-        heading: 'Why this lab',
-        paragraphs: [
-          'Mastery 06–07 map session commands. This lab drills them so you stop burning a new session every time the window fills or a prompt goes wrong.',
-        ],
-        links: [
-          { label: 'Harness 06 — First agency', href: '/forge/course/my-first-ai-agent/06/' },
-          { label: 'Harness 07 — Making it remember', href: '/forge/course/my-first-ai-agent/07/' },
-        ],
-      },
-      {
-        heading: 'Commands under test',
-        bullets: [
-          '/context — budget and what consumes the window',
-          '/compress here N — keep last N exchanges full; summarize the rest',
-          '/compress focus <topic> — protect a subject while compressing elsewhere',
-          '/undo · /undo N — rewind user turns into the composer (conversation only)',
-          '/retry · /branch — same prompt again, or a side path without losing the first',
-          '/rollback + checkpoints — restore files Hermes already changed (not /undo)',
-        ],
-        callout:
-          '/undo rewinds chat. It does not restore files. For disk damage, use checkpoints and /rollback when enabled.',
-        calloutVariant: 'warning',
-      },
-      {
-        heading: 'Drill',
-        steps: [
-          'Open a throwaway session. Have a 6–10 turn chat about a fake task (no production paths).',
-          'Run /context. Paste redacted numbers into session-control.md (tokens used / remaining).',
-          'Run /compress here 3 (or Desktop equivalent). Note roughly how much room returned.',
-          'Send a deliberately wrong ask, then /undo. Edit and resend a corrected prompt. Confirm prior good turns remain.',
-          'Optional: enable checkpoints if available; touch one throwaway file; /rollback and confirm file restore vs /undo.',
-          'Write one sentence: when you will use compress vs new session vs undo.',
-        ],
-      },
-      {
-        heading: 'session-control.md template',
-        callout: `# session-control.md
-Profile: [...]
-/context: used […] remaining […]
-/compress: kept N=… · room after: […]
-/undo: worked yes/no · note: […]
-Files: /rollback needed for disk — tested yes/no
-Rule of thumb: […]
-`,
-        calloutVariant: 'note',
-      },
-    ],
-  },
-  {
     id: 'prompt-budget',
     slug: 'prompt-budget',
-    number: '11',
+    number: '03',
     title: 'Prompt budget audit',
     subtitle: 'Measure fixed empty-session cost; cut tools and skills; re-measure.',
     minutes: 20,
@@ -549,7 +217,7 @@ Still works: yes/no
   {
     id: 'kanban-board',
     slug: 'kanban-board',
-    number: '12',
+    number: '04',
     title: 'Kanban multi-profile',
     subtitle: 'Enable the official Desktop Kanban plugin; run one card across profiles.',
     minutes: 30,
