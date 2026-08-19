@@ -383,7 +383,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** The two-part strip carries the structure now that the prose section is gone. */
     visualPlacement: 0,
     proof: L(
-      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the lexicon (01).',
+      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the **AI Cheat Sheet (01)**.',
     ),
     sections: [
       {
@@ -433,7 +433,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Do **not skip 01** unless you can already explain agent vs chat, harness vs runtime, and Think → Act → Observe (the [printable glossary](/forge/course/my-first-ai-agent/glossary/) helps).'),
           L('Pick your **host** in lesson 02 before install (dedicated machine preferred).'),
           L('**Optional labs** exist after Part I for extra drills — not required to finish the main path.'),
-          L('**Next:** lesson 01 — lexicon (stack, loop, messages, then the rest).'),
+          L('**Next:** lesson 01 — The AI Cheat Sheet (stack, loop, messages, then the rest).'),
         ] },
           { k: 'links', items: [
           { label: L('Printable glossary'), href: '/forge/course/my-first-ai-agent/glossary/' },
@@ -451,8 +451,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '01',
     number: '01',
     part: 1,
-    title: L('Lexicon'),
-    subtitle: L('Words you will meet often.'),
+    title: L('The AI Cheat Sheet'),
+    subtitle: L('Speak the language of agents. First pass = the short “remember” lines; details wait for later lessons.'),
     minutes: 25,
     /** Diagrams sit under the sections they clarify — not in a pile under the title */
     visualPlacement: 'none',
@@ -830,7 +830,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Let’s get ready'),
     subtitle: L(
-      'Pick the machine, create one free model account, and have its API key ready to paste.',
+      'Pick where you’ll run Hermes (your laptop is fine). Sign up for one free AI account — we’ll link the exact page. Copy the long string the site calls an “API key.” Treat it like a password.',
     ),
     minutes: 10,
     proof: L(
@@ -1005,7 +1005,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Install Hermes Desktop'),
     subtitle: L(
-      'Install on the host you chose in 02. Connect a free model route if you accept cloud data leaving the box.',
+      'Install on the host you chose in 02. If you’re OK with prompts processed on a remote server, enable the free cloud model now. (Switch to local later.)',
     ),
     minutes: 30,
     proof: L(
@@ -1197,7 +1197,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     number: '04',
     part: 1,
     title: L('Soul pack'),
-    subtitle: L('Write identity into Hermes home. Keep project rules in project context files.'),
+    subtitle: L('Giving Your Agent a Personality: tell it who it is and the rules it must follow.'),
     minutes: 25,
     proof: L(
       'You adopted a personality file for this profile; the agent describes itself and its hard limits in that voice. You know personality files live with the app profile — not inside a random project folder.',
@@ -1490,7 +1490,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('First agency'),
     subtitle: L(
-      'Set the gate, know what it costs, then run something real: tools touch disk, you approve risk, and the result opens without Hermes.',
+      'Your First Real Task: opt out of data brokers, with your permission, and open a receipt on disk.',
     ),
     minutes: 40,
     /** Loop diagram sits under the loop section — not a double stack under the title */
@@ -1552,28 +1552,28 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'Read the approval prompt once. Approve official opt-out forms and writes inside the folder you named. Deny deletes, anything that wanders off, and any attempt to attach an identity document.',
           ) },
           { k: 'callout', variant: 'warning', text: L(
-            'You only run this on **yourself**. The engine refuses to plan without recorded consent. Not legal advice. Credit bureaus that demand an ID (CRIF, SCHUFA, Experian…) go in the digest — not in this session.',
+            'You only run this on **yourself**. The engine refuses to plan without recorded consent. Not legal advice. This course does **not** connect an email account: the agent submits **web forms** in the browser; anything that is a letter is a `.txt` draft **you** send from your own mailbox. Credit bureaus that demand an ID (CRIF, SCHUFA, Experian…) stay in the digest.',
           ) },
           { k: 'code', block: {
-            label: L('Lane A — Geneva / Switzerland'),
+            label: L('Lane A — Switzerland (after this PR is live)'),
             lang: 'sh',
             code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-ge',
-            note: L('Fallback: copy the `unbroker-ge` folder into `~/.hermes/skills/unbroker-ge/`.'),
+            note: L('Desktop fallback: copy the `unbroker-ge` folder into this profile’s skills dir, e.g. `%LOCALAPPDATA%\\hermes\\profiles\\<profile>\\skills\\security\\unbroker-ge\\` on Windows. Not `~/.hermes/skills` unless that is actually your install.'),
           } },
           { k: 'code', block: {
             label: L('Lane B — EU / UK resident'),
             lang: 'sh',
             code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-eu',
-            note: L('Fallback: copy the `unbroker-eu` folder into `~/.hermes/skills/unbroker-eu/`.'),
+            note: L('Same fallback: copy `unbroker-eu` into that profile’s `skills/security/` folder. New session after copy.'),
           } },
           { k: 'copycards', items: [
-            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'Geneva / CH — Robinson, local.ch, Moneyhouse, Poste' },
-            { src: '/courses/open-harness/skills/unbroker-eu/SKILL.md', title: 'unbroker-eu', why: 'EU / UK — YourOnlineChoices, Acxiom, Criteo, LiveRamp, Google' },
+            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'CH — Robinson, directories, Swiss/EU adtech, nLPD drafts' },
+            { src: '/courses/open-harness/skills/unbroker-eu/SKILL.md', title: 'unbroker-eu', why: 'EU/UK — YourOnlineChoices, Acxiom, Criteo, LiveRamp, Oracle, Google' },
           ] },
           { k: 'steps', id: '3-steps', items: [
             { title: L('Install **one** skill (lane A or B). New session so Hermes loads it.') },
             { title: L('Paste the matching line below. Give name, address, email, phone when it asks — once.') },
-            { title: L('Let it drain the queue. Approve searches and no-ID forms. Deny deletes and ID scans.') },
+            { title: L('Let it drain the queue. Approve searches and no-ID **forms**. Deny deletes and ID scans. Do not expect it to send email — copy drafts from `drafts/` into your own inbox.') },
             { title: L('When it stops, open `unbroker-receipt.md` offline. If the file is missing, the mission failed.') },
           ] },
           { k: 'code', block: {
@@ -1950,7 +1950,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Skills'),
     subtitle: L(
-      'On-demand procedural memory — progressive disclosure, and what an idle skill library costs you every session.',
+      'Teaching New Tricks: give your agent abilities it calls on when needed.',
     ),
     minutes: 18,
     proof: L(
@@ -2204,7 +2204,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Cron runbooks'),
     subtitle: L(
-      'Scheduled work as a full runbook. Each fire starts without prior session memory.',
+      'Set it and forget it: a job that runs on schedule, fresh each time.',
     ),
     minutes: 20,
     proof: L(
@@ -2306,7 +2306,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Own it forever'),
     subtitle: L(
-      'Backup, update habit, and growth map — without expanding the day-one path.',
+      'Keep it alive: back up, update, and level up — without redoing lesson 1.',
     ),
     minutes: 15,
     proof: L(
