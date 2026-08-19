@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-19T14:55:25Z",
-  "source": "Yahoo Finance screener + Binance 24hr ticker (fallback)",
+  "updated_at": "2026-08-19T14:56:50Z",
+  "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "BNTX",
         "name": "BioNTech SE",
-        "price": 113.47,
-        "change_24h": 22.33,
+        "price": 113.5,
+        "change_24h": 22.35,
         "asset": "equity"
       },
       {
         "symbol": "TWST",
         "name": "Twist Bioscience Corporation",
-        "price": 138.31,
-        "change_24h": 19.13,
+        "price": 138.38,
+        "change_24h": 19.19,
         "asset": "equity"
       },
       {
         "symbol": "TEM",
         "name": "Tempus AI, Inc.",
-        "price": 58.39,
-        "change_24h": 18.29,
+        "price": 58.13,
+        "change_24h": 17.77,
         "asset": "equity"
       },
       {
         "symbol": "PPC",
         "name": "Pilgrim's Pride Corporation",
-        "price": 32.71,
-        "change_24h": 14.81,
+        "price": 32.76,
+        "change_24h": 14.99,
         "asset": "equity"
       },
       {
         "symbol": "EXK",
         "name": "Endeavour Silver Corporation",
-        "price": 10.93,
-        "change_24h": 13.1,
+        "price": 10.94,
+        "change_24h": 13.25,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "AEHR",
         "name": "Aehr Test Systems",
-        "price": 110.64,
-        "change_24h": -10.23,
+        "price": 110.66,
+        "change_24h": -10.22,
         "asset": "equity"
       },
       {
         "symbol": "NBIS",
         "name": "Nebius Group N.V.",
-        "price": 223.7,
-        "change_24h": -9.95,
+        "price": 224.26,
+        "change_24h": -9.73,
         "asset": "equity"
       },
       {
         "symbol": "SEI",
         "name": "Solaris Energy Infrastructure, ",
-        "price": 56.71,
-        "change_24h": -8.44,
+        "price": 56.51,
+        "change_24h": -8.77,
         "asset": "equity"
       },
       {
         "symbol": "AXTI",
         "name": "AXT Inc",
-        "price": 75.16,
-        "change_24h": -8.69,
+        "price": 75.49,
+        "change_24h": -8.29,
         "asset": "equity"
       },
       {
         "symbol": "DOCN",
         "name": "DigitalOcean Holdings, Inc.",
-        "price": 114.32,
-        "change_24h": -8.73,
+        "price": 114.45,
+        "change_24h": -8.62,
         "asset": "equity"
       }
     ]
@@ -80,75 +80,75 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "HEMI",
-        "name": "HEMI",
-        "price": 0.00922,
-        "change_24h": 40.76,
+        "symbol": "PUMP",
+        "name": "Pump.fun",
+        "price": 0.003027,
+        "change_24h": 7.1,
         "asset": "crypto"
       },
       {
-        "symbol": "UTK",
-        "name": "UTK",
-        "price": 0.00795,
-        "change_24h": 16.23,
+        "symbol": "CAKE",
+        "name": "PancakeSwap",
+        "price": 1.55,
+        "change_24h": 6.1,
         "asset": "crypto"
       },
       {
-        "symbol": "EDEN",
-        "name": "EDEN",
-        "price": 0.0603,
-        "change_24h": 14.44,
+        "symbol": "SKY",
+        "name": "Sky",
+        "price": 0.057472,
+        "change_24h": 4.9,
         "asset": "crypto"
       },
       {
-        "symbol": "RE",
-        "name": "RE",
-        "price": 0.4393,
-        "change_24h": 12.58,
+        "symbol": "DOT",
+        "name": "Polkadot",
+        "price": 0.773815,
+        "change_24h": 4.6,
         "asset": "crypto"
       },
       {
-        "symbol": "CRCLB",
-        "name": "CRCLB",
-        "price": 79.71,
-        "change_24h": 9.93,
+        "symbol": "XDC",
+        "name": "XDC Network",
+        "price": 0.028037,
+        "change_24h": 3.7,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "GPS",
-        "name": "GPS",
-        "price": 0.01198,
-        "change_24h": -32.24,
+        "symbol": "MORPHO",
+        "name": "Morpho",
+        "price": 2.1,
+        "change_24h": -5.9,
         "asset": "crypto"
       },
       {
-        "symbol": "PORTAL",
-        "name": "PORTAL",
-        "price": 0.01089,
-        "change_24h": -22.44,
+        "symbol": "HTX",
+        "name": "HTX DAO",
+        "price": 2e-06,
+        "change_24h": -3.5,
         "asset": "crypto"
       },
       {
-        "symbol": "TUT",
-        "name": "TUT",
-        "price": 0.03679,
-        "change_24h": -13.17,
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.18,
+        "change_24h": -3.2,
         "asset": "crypto"
       },
       {
-        "symbol": "ACE",
-        "name": "ACE",
-        "price": 0.2017,
-        "change_24h": -11.92,
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 14.21,
+        "change_24h": -3.0,
         "asset": "crypto"
       },
       {
-        "symbol": "SNXXB",
-        "name": "SNXXB",
-        "price": 14.69,
-        "change_24h": -6.97,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.09089,
+        "change_24h": -1.9,
         "asset": "crypto"
       }
     ]
