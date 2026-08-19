@@ -17,6 +17,9 @@ Build and data helpers for the static site. Prefer `pnpm build` over calling the
 | `fetch-etf-flows.py` | Hermes / manual | Public ETF flow sources | `etf-flows.json` on gh-pages |
 | `refresh-data.py` | Ops / Hermes `no_agent` cron `*/15` | Yahoo, CoinGecko, HF, … | Market snapshots → local `public/data/` + **push `data/*` to `gh-pages`**. Includes **`top-movers.json`** (equity + crypto **price** movers for Macro) and **`macro-calendar.json`**. **Zero LLM tokens.** |
 | `refresh-dashboard-snapshots.py` | Ops / Hermes `no_agent` ~15–30m | Yahoo, DefiLlama, … | Fills Macro/Web3 gaps (`indices` merge, `stables`, `tvl-top`, `chain-movers`, …) → gh-pages |
+| `collect-abliterated.py` | Hermes 6h bundle | HF search + curated ids | `hf-abliterated.json` — trending families + recs for **local / cybersecurity / film** |
+| `fetch-ai-labs.py` | Hermes 6h bundle | Lab RSS (DeepMind, OpenAI, Qwen, NVIDIA, …) | `ai-labs.json` — per-source cap so Google cannot dominate |
+| `fetch-ai-personas.py` | Hermes ~30m watchdog | Nitter / xcancel | `ai-personas.json` — ML / agent / local / gen-AI X handles |
 | `_gh_pages_push.py` | Imported by fetch helpers | In-memory JSON map | Shared shallow-clone push of `data/*` only (`force-with-lease` + retry) |
 | `macro-pull.py` | Optional daily / manual (often local-only) | None (pure date math) | Regenerates `macro-calendar.json` and can invoke refresh push |
 | — | Optional Hermes job `*/30` | DefiLlama historical TVL | `chain-movers.json` — **chain TVL** movers for **Web3** only (not Macro price movers) |
