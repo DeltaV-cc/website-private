@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T22:15:22Z",
+  "updated_at": "2026-08-19T23:08:08Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.69,
-        "change_24h": 21.8,
+        "price": 71.07,
+        "change_24h": 20.3,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2275.74,
-        "change_24h": 19.3,
+        "price": 2247.06,
+        "change_24h": 17.6,
         "asset": "crypto"
       },
       {
         "symbol": "ENA",
         "name": "Ethena",
-        "price": 0.094019,
-        "change_24h": 13.7,
+        "price": 0.094511,
+        "change_24h": 13.4,
         "asset": "crypto"
       },
       {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.362504,
-        "change_24h": 13.4,
+        "symbol": "PEPE",
+        "name": "Pepe",
+        "price": 3e-06,
+        "change_24h": 12.0,
         "asset": "crypto"
       },
       {
         "symbol": "LINK",
         "name": "Chainlink",
-        "price": 10.72,
-        "change_24h": 13.3,
+        "price": 10.57,
+        "change_24h": 11.2,
         "asset": "crypto"
       }
     ],
@@ -119,35 +119,35 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.406883,
-        "change_24h": -6.8,
+        "price": 0.403049,
+        "change_24h": -2.9,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.103498,
-        "change_24h": -3.2,
+        "price": 0.104227,
+        "change_24h": -2.6,
         "asset": "crypto"
       },
       {
         "symbol": "LEO",
         "name": "LEO Token",
-        "price": 9.29,
-        "change_24h": -2.1,
+        "price": 9.3,
+        "change_24h": -2.0,
         "asset": "crypto"
       },
       {
-        "symbol": "HTX",
-        "name": "HTX DAO",
-        "price": 2e-06,
-        "change_24h": -0.6,
+        "symbol": "USDF",
+        "name": "Falcon USD",
+        "price": 0.995487,
+        "change_24h": -0.1,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.99953,
+        "price": 0.999711,
         "change_24h": 0.0,
         "asset": "crypto"
       }
