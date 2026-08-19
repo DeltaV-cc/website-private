@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T20:30:37Z",
+  "updated_at": "2026-08-19T21:09:00Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 69.04,
-        "change_24h": 19.2,
+        "price": 70.78,
+        "change_24h": 19.8,
         "asset": "crypto"
       },
       {
-        "symbol": "PUMP",
-        "name": "Pump.fun",
-        "price": 0.003153,
-        "change_24h": 11.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.360988,
-        "change_24h": 11.4,
+        "symbol": "ETH",
+        "name": "Ethereum",
+        "price": 2247.0,
+        "change_24h": 15.7,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.62,
-        "change_24h": 10.4,
+        "price": 2.71,
+        "change_24h": 13.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.367501,
+        "change_24h": 13.0,
         "asset": "crypto"
       },
       {
         "symbol": "ARB",
         "name": "Arbitrum",
-        "price": 0.083388,
-        "change_24h": 10.4,
+        "price": 0.085469,
+        "change_24h": 13.0,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.383979,
-        "change_24h": -13.8,
+        "price": 0.38073,
+        "change_24h": -9.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.102967,
-        "change_24h": -3.5,
+        "price": 0.102687,
+        "change_24h": -3.9,
         "asset": "crypto"
       },
       {
         "symbol": "FIGR_HELOC",
         "name": "Figure Heloc",
         "price": 1.008,
-        "change_24h": -3.1,
+        "change_24h": -2.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.28,
+        "change_24h": -2.1,
         "asset": "crypto"
       },
       {
         "symbol": "HTX",
         "name": "HTX DAO",
         "price": 2e-06,
-        "change_24h": -2.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.27,
-        "change_24h": -2.0,
+        "change_24h": -1.1,
         "asset": "crypto"
       }
     ]
