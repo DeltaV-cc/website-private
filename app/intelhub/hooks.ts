@@ -204,6 +204,41 @@ const proxy = (url: string) => `https://proxy.hub.deltav.cc/?url=${encodeURIComp
 const ABLITERATED_SEARCH =
   'https://huggingface.co/api/models?search=abliterated&limit=40&full=true';
 
+/** Row → category. Mirrors scripts/collect-abliterated.py -> bucket_model() and
+ *  AIDashboard.tsx -> bucketAbliterated(). Pipeline wins; name/tag cues for blanks. */
+const ABLIT_PIPES: Record<string, 'llm' | 'image_video' | 'multimodal'> = {
+  'text-to-image': 'image_video', 'text-to-video': 'image_video', 'image-to-image': 'image_video',
+  'image-to-video': 'image_video', 'video-to-video': 'image_video', 'video-text-to-text': 'image_video',
+  'image-text-to-text': 'multimodal', 'any-to-any': 'multimodal', 'image-to-text': 'multimodal',
+  'audio-text-to-text': 'multimodal', 'automatic-speech-recognition': 'multimodal',
+};
+const ABLIT_IMG_KEYS = ['flux', 'sdxl', 'stable-diffusion', 'diffusion', 'video', 'animate', 'wan2', 'ltx', 'kolors', 'cogvideo', 'pixart', 'sora', 'mochi', 'animatediff'];
+function bucketAbliterated(m: any): 'llm' | 'image_video' | 'multimodal' {
+  const p = (m.pipeline || m.pipeline_tag || '').toLowerCase();
+  const name = String(m.name || m.id || '').split('/').pop()?.toLowerCase() || '';
+  const tags = (m.tags || []).map((t: string) => t.toLowerCase());
+  const blob = `${name} ${tags.join(' ')}`;
+  if (ABLIT_PIPES[p] === 'image_video') return 'image_video';
+  if (ABLIT_PIPES[p] === 'multimodal') return 'multimodal';
+  if (p === 'text-generation' || p === 'text-generation-instruct' || tags.includes('text-generation')) return 'llm';
+  if (ABLIT_IMG_KEYS.some((k) => blob.includes(k))) return 'image_video';
+  if (tags.includes('multimodal') || tags.includes('vlm')) return 'multimodal';
+  return 'llm';
+}
+
+/** Bucket a flat row list into 3 categories, each capped at the top 5 by downloads. */
+function bucketAbliteratedRows(rows: any[]): Record<string, any[]> {
+  const out: Record<string, any[]> = { llm: [], image_video: [], multimodal: [] };
+  for (const r of rows) {
+    const b = bucketAbliterated(r);
+    out[b].push(r);
+  }
+  for (const k of Object.keys(out)) {
+    out[k] = out[k].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 5);
+  }
+  return out;
+}
+
 /** HF search result → dashboard row. Rank = blend of popularity (log downloads)
  *  and recentness (30-day half-life on lastModified). Keep in sync with
  *  scripts/collect-abliterated.py so snapshot and live fallback rank identically. */
@@ -224,7 +259,9 @@ function mapAbliterated(raw: any[]): any[] {
         url: `https://huggingface.co/${id}`,
         lastModified: last,
         daysAgo: last ? Math.max(0, Math.floor((now - new Date(last).getTime()) / 86400000)) : null,
-      };
+        pipeline: m.pipeline_tag || m.tag || '',
+        tags: Array.isArray(m.tags) ? m.tags.slice(0, 8) : [],
+      } as any;
     })
     .filter((r) => r.id && r.id.includes('/'));
   if (!rows.length) return [];
@@ -631,17 +668,37 @@ export function useIntelData(activeTab: string = 'macro') {
           const models = Array.isArray(d) ? d : (Array.isArray(d.models) ? d.models : []);
           merge({ arenaLB: models, arenaUpdated: d.updated || null });
         }),
-        // HF abliterated models — 6h cron snapshot first (collect-abliterated.py),
-        // live HF search as fallback so the panel never sits empty.
+        // HF abliterated / uncensored models — 6h cron snapshot first
+        // (collect-abliterated.py), live HF search as fallback so the panel never
+        // sits empty. Shape: { categories:{llm,image_video,multimodal}, models }.
         (async () => {
           const snap = await fetchJson(dataUrl('/data/hf-abliterated.json'));
-          if (snap && Array.isArray(snap.models) && snap.models.length > 0) {
-            merge({ abliterated: snap.models, abliteratedAt: snap.updated || null });
+          if (snap && (snap.categories || (Array.isArray(snap.models) && snap.models.length > 0))) {
+            const flat = Array.isArray(snap.models) && snap.models.length ? snap.models : null;
+            const cats = snap.categories && typeof snap.categories === 'object'
+              ? snap.categories
+              : flat ? bucketAbliteratedRows(flat) : null;
+            merge({
+              abliterated: {
+                categories: cats,
+                models: flat || (cats ? Object.values(cats).flat() : []),
+                rank: snap.rank || 'per-category top 5 by downloads',
+              },
+              abliteratedAt: snap.updated || null,
+            });
             return;
           }
           const live = await fetchJson(proxy(ABLITERATED_SEARCH));
           if (Array.isArray(live)) {
-            merge({ abliterated: mapAbliterated(live), abliteratedAt: new Date().toISOString() });
+            const flat = mapAbliterated(live);
+            merge({
+              abliterated: {
+                categories: bucketAbliteratedRows(flat),
+                models: flat,
+                rank: 'live fallback · search abliterated',
+              },
+              abliteratedAt: new Date().toISOString(),
+            });
           }
         })(),
       );

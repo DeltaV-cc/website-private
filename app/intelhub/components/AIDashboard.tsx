@@ -108,6 +108,22 @@ function matchFilter(x: any, filter: string): boolean {
 
 function fmtBig(n: number): string { return fmtCompact(n); }
 
+/** Curated frontier releases that top the watch up to ≥12 rows when the live
+ *  HF trending snapshot is thin (Marc 2026-08-19: "add one model to the frontier
+ *  watch to reach 12"). Fills shortfall only; deduped against the snapshot by id,
+ *  never displaces live items. Rendered with a ★ frontier tag (no fake stats). */
+const FRONTIER_SEED: any[] = [
+  { id: 'deepseek-ai/DeepSeek-V4-Pro', name: 'DeepSeek-V4-Pro', author: 'deepseek-ai', url: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro', type: 'model', seed: true },
+  { id: 'Qwen/Qwen3.8-27B', name: 'Qwen3.8-27B', author: 'Qwen', url: 'https://huggingface.co/Qwen/Qwen3.8-27B', type: 'model', seed: true },
+  { id: 'zai-org/GLM-5.2', name: 'GLM-5.2', author: 'zai-org', url: 'https://huggingface.co/zai-org/GLM-5.2', type: 'model', seed: true },
+  { id: 'moonshotai/Kimi-K3', name: 'Kimi-K3', author: 'moonshotai', url: 'https://huggingface.co/moonshotai/Kimi-K3', type: 'model', seed: true },
+  { id: 'MiniMaxAI/MiniMax-H3', name: 'MiniMax-H3', author: 'MiniMaxAI', url: 'https://huggingface.co/MiniMaxAI/MiniMax-H3', type: 'model', seed: true },
+  { id: 'ByteDance-Seed/UI-TARS-1.5-7B', name: 'UI-TARS-1.5-7B', author: 'ByteDance-Seed', url: 'https://huggingface.co/ByteDance-Seed/UI-TARS-1.5-7B', type: 'model', seed: true },
+  { id: 'internlm/Intern-S2-Mobius', name: 'Intern-S2-Mobius', author: 'internlm', url: 'https://huggingface.co/internlm/Intern-S2-Mobius', type: 'model', seed: true },
+  { id: 'stepfun-ai/Step-3.7-Flash', name: 'Step-3.7-Flash', author: 'stepfun-ai', url: 'https://huggingface.co/stepfun-ai/Step-3.7-Flash', type: 'model', seed: true },
+  { id: 'XiaomiMiMo/MiMo-V2.5', name: 'MiMo-V2.5', author: 'XiaomiMiMo', url: 'https://huggingface.co/XiaomiMiMo/MiMo-V2.5', type: 'model', seed: true },
+];
+
 function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
   const [filter, setFilter] = useState<'all' | 'new' | 'downloads' | 'agent' | 'vision' | 'moe'>('all');
 
@@ -128,6 +144,13 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
 
   const filtered = useMemo(() => {
     let allItems = baseItems.filter((x) => matchFilter(x, filter));
+    // ≥12 floor on the default 'all' view: top up with curated frontier seeds when
+    // the snapshot is thin. Dedupe by id lowercased; seeds never displace live items.
+    if (filter === 'all' && allItems.length < 12) {
+      const have = new Set(allItems.map((x: any) => (x.id || x.name || '').toLowerCase()));
+      const fill = FRONTIER_SEED.filter((s: any) => !have.has((s.id || s.name).toLowerCase()));
+      allItems = [...allItems, ...fill.slice(0, 12 - allItems.length)];
+    }
     if (filter === 'downloads' || filter === 'all') {
       allItems = [...allItems].sort((a, b) => (b.downloads || b.likes || 0) - (a.downloads || a.likes || 0));
     } else if (filter === 'new') {
@@ -142,7 +165,7 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center gap-2 flex-wrap bg-gradient-to-r from-[var(--accent-cyan)]/[0.06] to-transparent">
         <span className="text-xs text-[var(--accent-cyan)] uppercase tracking-[1.5px] font-bold shrink-0">Frontier Watch</span>
-        <span className="text-[10px] text-[var(--text-muted)] shrink-0">HF models & spaces · enriched snapshot</span>
+        <span className="text-[10px] text-[var(--text-muted)] shrink-0">HF snapshot + frontier seed · min 12</span>
         <div className="flex gap-1 text-[10px] ml-auto flex-wrap justify-end">
           {[
             { key: 'all', label: 'All' }, { key: 'new', label: 'New' }, { key: 'downloads', label: 'Popular' },
@@ -174,8 +197,14 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
                 <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 leading-snug">{describe(item)}</div>
               </div>
               <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
-                <span>{item.likes || 0} ♥</span>
-                {item.downloads != null && <span>{fmtNum(item.downloads || 0)} ↓</span>}
+                {item.seed ? (
+                  <span className="text-[var(--accent-cyan)] font-medium">★ frontier</span>
+                ) : (
+                  <>
+                    <span>{item.likes || 0} ♥</span>
+                    {item.downloads != null && <span>{fmtNum(item.downloads || 0)} ↓</span>}
+                  </>
+                )}
               </div>
             </div>
             <div className="mt-1.5 text-[10px] text-[var(--text-muted)]">{item.author || 'HF'}</div>
@@ -245,16 +274,62 @@ function TopOrgs({ models }: { models: any[] }) {
   );
 }
 
-/** HF abliterated (refusal-removed) models — ranked by popularity × recentness.
- *  Data comes from the 6h cron snapshot (data/hf-abliterated.json, already sorted
- *  by `combo`); rendered defensively in case of missing sort. */
-function AbliteratedModels({ models, updated }: { models: any[]; updated?: string | null }) {
-  const rows = useMemo(() => {
-    const list = Array.isArray(models) ? [...models] : [];
-    const withCombo = list
-      .map((m: any) => (typeof m.combo === 'number' ? m : { ...m, combo: 0.5 }));
-    return withCombo.sort((a: any, b: any) => (b.combo ?? 0) - (a.combo ?? 0)).slice(0, 14);
-  }, [models]);
+/** HF abliterated / uncensored (refusal-removed) models — grouped by capability.
+ *  Categories (per Marc 2026-08-19): LLM · Image/Video · Multimodal, each capped at
+ *  the top 5 by downloads. Data from the 6h cron snapshot (data/hf-abliterated.json)
+ *  or the live HF fallback — both expose { categories:{llm,image_video,multimodal},
+ *  models }. Bucketing mirrors scripts/collect-abliterated.py -> bucket_model(). */
+const ABLIT_PIPES: Record<string, 'llm' | 'image_video' | 'multimodal'> = {
+  'text-to-image': 'image_video',
+  'text-to-video': 'image_video',
+  'image-to-image': 'image_video',
+  'image-to-video': 'image_video',
+  'video-to-video': 'image_video',
+  'video-text-to-text': 'image_video',
+  'image-text-to-text': 'multimodal',
+  'any-to-any': 'multimodal',
+  'image-to-text': 'multimodal',
+  'audio-text-to-text': 'multimodal',
+  'automatic-speech-recognition': 'multimodal',
+};
+const ABLIT_IMG_KEYS = ['flux', 'sdxl', 'stable-diffusion', 'diffusion', 'video', 'animate', 'wan2', 'ltx', 'kolors', 'cogvideo', 'pixart', 'sora', 'mochi', 'animatediff'];
+
+function bucketAbliterated(m: any): 'llm' | 'image_video' | 'multimodal' {
+  const p = (m.pipeline || m.pipeline_tag || '').toLowerCase();
+  const name = String(m.name || m.id || '').split('/').pop()?.toLowerCase() || '';
+  const tags = (m.tags || []).map((t: string) => t.toLowerCase());
+  const blob = `${name} ${tags.join(' ')}`;
+  if (ABLIT_PIPES[p] === 'image_video') return 'image_video';
+  if (ABLIT_PIPES[p] === 'multimodal') return 'multimodal';
+  if (p === 'text-generation' || p === 'text-generation-instruct' || tags.includes('text-generation')) return 'llm';
+  if (ABLIT_IMG_KEYS.some((k) => blob.includes(k))) return 'image_video';
+  if (tags.includes('multimodal') || tags.includes('vlm')) return 'multimodal';
+  return 'llm';
+}
+
+const ABLIT_CATS: { key: 'llm' | 'image_video' | 'multimodal'; label: string; hint: string }[] = [
+  { key: 'llm', label: 'LLM', hint: 'text-generation · chat' },
+  { key: 'image_video', label: 'Image / Video', hint: 'generation' },
+  { key: 'multimodal', label: 'Multimodal', hint: 'VLM · any-to-any' },
+];
+
+function AbliteratedModels({ data, updated }: { data: any; updated?: string | null }) {
+  const cats = useMemo(() => {
+    const source = data && typeof data === 'object' && !Array.isArray(data) && data.categories
+      ? data.categories
+      : null;
+    const flat = source
+      ? []
+      : Array.isArray(data) ? data : Array.isArray(data?.models) ? data.models : [];
+    const out: Record<string, any[]> = { llm: [], image_video: [], multimodal: [] };
+    if (source) {
+      for (const k of Object.keys(out)) out[k] = Array.isArray(source[k]) ? [...source[k]] : [];
+    } else {
+      for (const m of flat) out[bucketAbliterated(m)].push(m);
+    }
+    for (const k of Object.keys(out)) out[k] = out[k].slice(0, 5);
+    return out;
+  }, [data]);
 
   const updatedLabel = updated
     ? (() => {
@@ -263,40 +338,50 @@ function AbliteratedModels({ models, updated }: { models: any[]; updated?: strin
       })()
     : null;
 
+  const total = cats.llm.length + cats.image_video.length + cats.multimodal.length;
+
   return (
     <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-5 py-3 border-b border-[var(--border-default)] flex items-center justify-between flex-wrap gap-2 bg-gradient-to-r from-[var(--accent-green)]/[0.06] to-transparent">
-        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Abliterated models</span>
+        <span className="text-xs text-[var(--accent-green)] uppercase tracking-[1.5px] font-bold">Abliterated / uncensored</span>
         <PanelMeta
-          source="HF live · search 'abliterated'"
-          note="ranked: popularity × recency"
+          source="HF snapshot · searches 'abliterated' + 'uncensored'"
+          note="3 categories · top 5 by downloads"
           updated={updatedLabel}
         />
       </div>
-      {rows.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-default)]">
-          {rows.map((m: any, i: number) => (
-            <a
-              key={`${m.id || m.name}-${i}`}
-              href={m.url || `https://huggingface.co/${m.id || m.author}/${m.name}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block p-4 bg-[var(--bg-deep)] hover:bg-[var(--bg-elevated)] transition-colors duration-150 group"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-extrabold text-[var(--accent-green)] tabular-nums shrink-0 leading-none">#{i + 1}</span>
-                    <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-green)] truncate transition-colors">{m.name || m.id}</span>
-                  </div>
-                  <div className="text-[10px] text-[var(--text-tertiary)] mt-0.5 truncate">{m.author || 'HF'}{m.daysAgo != null ? ` · ${m.daysAgo}d ago` : ''}</div>
-                </div>
-                <div className="text-right shrink-0 text-[10px] tabular-nums text-[var(--text-muted)] flex flex-col gap-0.5">
-                  <span>{m.likes || 0} ♥</span>
-                  {m.downloads != null && <span>{fmtCompact(m.downloads || 0)} ↓</span>}
-                </div>
+      {total > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--border-default)]">
+          {ABLIT_CATS.map((c) => (
+            <div key={c.key} className="bg-[var(--bg-deep)]">
+              <div className="px-4 pt-3 pb-1.5 flex items-baseline justify-between gap-2 border-b border-[var(--border-default)]/[0.5]">
+                <span className="text-[11px] font-bold text-[var(--accent-green)] uppercase tracking-wide">{c.label}</span>
+                <span className="text-[10px] text-[var(--text-tertiary)]">{c.hint}</span>
               </div>
-            </a>
+              <div className="px-4 py-2 flex flex-col gap-px">
+                {cats[c.key].length ? cats[c.key].map((m: any, i: number) => (
+                  <a
+                    key={`${m.id || m.name}-${i}`}
+                    href={m.url || `https://huggingface.co/${m.id || m.author}/${m.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-1.5 group rounded-lg hover:bg-[var(--bg-elevated)] transition-colors"
+                  >
+                    <span className="w-4 text-right text-[11px] font-extrabold text-[var(--accent-green)] tabular-nums shrink-0">#{i + 1}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-green)] truncate transition-colors">{m.name || m.id}</span>
+                      <span className="block text-[10px] text-[var(--text-tertiary)] truncate">{m.author || 'HF'}{m.daysAgo != null ? ` · ${m.daysAgo}d ago` : ''}</span>
+                    </span>
+                    <span className="shrink-0 text-right text-[10px] tabular-nums text-[var(--text-muted)]">
+                      <span className="block">{fmtCompact(m.downloads || 0)} ↓</span>
+                      <span className="block opacity-70">{m.likes || 0} ♥</span>
+                    </span>
+                  </a>
+                )) : (
+                  <div className="text-[10px] text-[var(--text-disabled)] py-2.5">no models this cycle</div>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       ) : (
@@ -408,11 +493,11 @@ export default function AIDashboard({
               <div className="mt-1.5 max-w-md">
                 <PanelMeta
                   source="Hugging Face multi-query snapshot"
-                  note="curated set (downloads · likes · gen · vision · moe · agent) — not the full HF catalog"
+                  note="top 6 models by downloads in the HF trending snapshot — not the full HF catalog"
                 />
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {models.slice(0, 6).map((m: any) => (
+                {[...models].sort((a: any, b: any) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 6).map((m: any) => (
                   <a
                     key={m.name}
                     href={m.url || `https://huggingface.co/${m.name}`}
@@ -452,7 +537,7 @@ export default function AIDashboard({
 
       <FrontierWatch models={models} spaces={spaces} />
 
-      <AbliteratedModels models={dd?.abliterated || []} updated={dd?.abliteratedAt || null} />
+      <AbliteratedModels data={dd?.abliterated} updated={dd?.abliteratedAt || null} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <TopOrgs models={models} />
