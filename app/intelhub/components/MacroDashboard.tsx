@@ -12,8 +12,8 @@ import { macroMoverLink } from '@/lib/entity-links';
 
 // Prefer jsDelivr tip (Pages CDN can lag Hermes pushes by hours).
 const DATA_BASES = [
-  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
-  'https://deltav-cc.github.io/website-private',
+  'https://cdn.jsdelivr.net/gh/deltaVgit/website-private@gh-pages',
+  'https://deltavgit.github.io/website-private',
 ] as const;
 
 /* -- Inline SVG Icons -- */

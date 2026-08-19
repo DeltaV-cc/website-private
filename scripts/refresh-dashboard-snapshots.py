@@ -31,7 +31,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-REPO = os.environ.get("DASHBOARD_DATA_REPO", "https://github.com/DeltaV-cc/website-private.git")
+REPO = os.environ.get("DASHBOARD_DATA_REPO", "https://github.com/deltaVgit/website-private.git")
 BRANCH = "gh-pages"
 PUBLIC_DIR = Path(__file__).resolve().parent.parent / "public" / "data"
 USER_AGENT = "Mozilla/5.0 (compatible; DeltaV-DashboardSnap/1.0)"

@@ -2,8 +2,8 @@
 
 Public site for **[Delta V](https://deltav.cc)**: sovereign AI engineering, Web3, and OpSec.
 
-**Live (GitHub Pages):** [deltav-cc.github.io/website-private](https://deltav-cc.github.io/website-private/)  
-**Repository:** [github.com/DeltaV-cc/website-private](https://github.com/DeltaV-cc/website-private)
+**Live (GitHub Pages):** [deltavgit.github.io/website-private](https://deltavgit.github.io/website-private/)  
+**Repository:** [github.com/deltaVgit/website-private](https://github.com/deltaVgit/website-private)
 
 > **Name note:** The GitHub repo and Pages project slug are still `website-private` for historical reasons. The product is **public** (MIT). A rename + `basePath` migration is planned when the site moves fully to the custom domain.
 

@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-REPO = os.environ.get("GITHUB_REPOSITORY", "DeltaV-cc/website-private")
+REPO = os.environ.get("GITHUB_REPOSITORY", "deltaVgit/website-private")
 BRANCH = "gh-pages"
 # Prefer HTTPS for Actions
 CLONE_URL = f"https://github.com/{REPO}.git"

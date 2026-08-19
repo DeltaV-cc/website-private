@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeltaV-cc/website-private.git"
+    "url": "https://github.com/deltaVgit/website-private.git"
   },
-  "homepage": "https://deltav-cc.github.io/website-private/",
+  "homepage": "https://deltavgit.github.io/website-private/",
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/run-py.mjs scripts/copy-data.py && node scripts/run-py.mjs scripts/generate-intelhub-rss.py",

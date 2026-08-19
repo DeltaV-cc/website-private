@@ -13,9 +13,9 @@ import { Item, PatentsData } from './types';
 const DATA_MIRRORS = [
   // Pages first: same-origin for the deployed site and always fresh.
   // jsDelivr caches @gh-pages and ignores query cache-busting, so it can be hours stale — fallback only.
-  'https://deltav-cc.github.io/website-private',
-  'https://cdn.jsdelivr.net/gh/DeltaV-cc/website-private@gh-pages',
-  'https://raw.githubusercontent.com/DeltaV-cc/website-private/gh-pages',
+  'https://deltavgit.github.io/website-private',
+  'https://cdn.jsdelivr.net/gh/deltaVgit/website-private@gh-pages',
+  'https://raw.githubusercontent.com/deltaVgit/website-private/gh-pages',
 ] as const;
 const DATA_BASE = DATA_MIRRORS[0]; // site asset base (HTML still on Pages)
 const BASE = DATA_BASE;

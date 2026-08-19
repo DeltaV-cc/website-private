@@ -24,7 +24,7 @@ def push_data_files(
     if not files:
         return []
     repo = repo or os.environ.get(
-        "DASHBOARD_DATA_REPO", "https://github.com/DeltaV-cc/website-private.git"
+        "DASHBOARD_DATA_REPO", "https://github.com/deltaVgit/website-private.git"
     )
     tmpdir = tempfile.mkdtemp(prefix="dv-data-push-")
     try:

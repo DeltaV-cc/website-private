@@ -1606,13 +1606,13 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           { k: 'code', block: {
             label: L('Lane A — Switzerland (after this PR is live)'),
             lang: 'sh',
-            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-ge',
+            code: 'hermes skills install github:deltaVgit/website-private/public/courses/open-harness/skills/unbroker-ge',
             note: L('Desktop fallback: copy the `unbroker-ge` folder into this profile’s skills dir, e.g. `%LOCALAPPDATA%\\hermes\\profiles\\<profile>\\skills\\security\\unbroker-ge\\` on Windows. Not `~/.hermes/skills` unless that is actually your install.'),
           } },
           { k: 'code', block: {
             label: L('Lane B — EU / UK resident'),
             lang: 'sh',
-            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-eu',
+            code: 'hermes skills install github:deltaVgit/website-private/public/courses/open-harness/skills/unbroker-eu',
             note: L('Same fallback: copy `unbroker-eu` into that profile’s `skills/security/` folder. New session after copy.'),
           } },
           { k: 'copycards', items: [
