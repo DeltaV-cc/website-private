@@ -1,0 +1,343 @@
+{
+  "updated": "2026-08-19T15:18:20Z",
+  "items": [
+    {
+      "title": "LFM2.5 Q4\\_0 Checkpoints from Quantization-Aware Distillation",
+      "url": "https://huggingface.co/blog/LiquidAI/qad",
+      "source": "Hugging Face Blog",
+      "published_at": "2026-08-19T13:48:49+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "Debate Training Reduces Reward Hacking in RLAIF",
+      "url": "https://www.alignmentforum.org/posts/BB8o7b8A4Aykeksvw/debate-training-reduces-reward-hacking-in-rlaif",
+      "source": "Alignment Forum",
+      "published_at": "2026-08-19T12:17:57+00:00",
+      "summary": "Paper: Debate Training Reduces Reward Hacking in RLAIF Linkpost for GDM Alignment blogpost Work done by the GDM Amplified Oversight team ( we're hiring ). TL;DR : When you RL against an LLM judge, the judge gets hacked i.e. fooled into incorrectly giving high reward; adding a deb",
+      "tag": "ai"
+    },
+    {
+      "title": "Replit expands access to software creation with GPT-5.6 Luna",
+      "url": "https://openai.com/index/replit",
+      "source": "OpenAI",
+      "published_at": "2026-08-19T07:00:00+00:00",
+      "summary": "Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.",
+      "tag": "ai"
+    },
+    {
+      "title": "GxP-Agent: Process-DAG Topology for Reliable Clinical Trial Programming with LLM Agents",
+      "url": "https://arxiv.org/abs/2608.16890",
+      "source": "arXiv cs.AI",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16890v1 Announce Type: new Abstract: Clinical trial programming -- transforming study protocols into analysis-ready datasets under CDISC standards -- is a bottleneck in regulatory submissions, yet LLM-based code generation fails catastrophically on this task: across 11",
+      "tag": "ai"
+    },
+    {
+      "title": "Runtime Governance for Agentic AI: Action-Boundary Control with Trusted Provenance and Fail-Closed Execution",
+      "url": "https://arxiv.org/abs/2608.16891",
+      "source": "arXiv cs.AI",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16891v1 Announce Type: new Abstract: Agentic AI systems request tool actions that can modify files, send messages, launch jobs, or change workflow state. This shifts the safety problem from harmful text generation to harmful operational side effects. Prompt-level gover",
+      "tag": "ai"
+    },
+    {
+      "title": "The Price of Thinking: Reasoning Effort as a Model-Specific API Contract",
+      "url": "https://arxiv.org/abs/2608.16956",
+      "source": "arXiv cs.AI",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16956v1 Announce Type: new Abstract: API buyers purchase a dated contract, not a model name alone: the contract includes the requested and served model, reasoning-effort term or its omission, output rail, service product, prompt, and price schedule. We study the reason",
+      "tag": "ai"
+    },
+    {
+      "title": "FedPref: Federated Preference Learning for Structured Radiology Report Extraction",
+      "url": "https://arxiv.org/abs/2608.16971",
+      "source": "arXiv cs.AI",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16971v1 Announce Type: new Abstract: Radiology reports describe findings and locations in free text, but downstream search and analysis require these relations in a fixed schema. Learning this extraction requires labels that are unevenly distributed across institutions",
+      "tag": "ai"
+    },
+    {
+      "title": "Margin-Regularized Structured Semantic Alignment for Brain-Language Correspondence",
+      "url": "https://arxiv.org/abs/2608.16975",
+      "source": "arXiv cs.CL",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16975v1 Announce Type: new Abstract: With the rapid advancement of large language models, brain-language decoding has achieved remarkable progress. However, it remains unclear whether decoded content genuinely reflects neural representations or is largely reconstructed",
+      "tag": "ai"
+    },
+    {
+      "title": "Cross-Model Memory Transfer via Target-Side Reader Adaptation",
+      "url": "https://arxiv.org/abs/2608.17050",
+      "source": "arXiv cs.CL",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17050v1 Announce Type: new Abstract: Methods for improving knowledge use in large language models typically fall into two regimes. Non-parametric retrieval offers flexible access to external knowledge, but adds retrieval latency, context overhead, and only shallow inte",
+      "tag": "ai"
+    },
+    {
+      "title": "Institution-Specific LLM Prompting Recovers PHI That De-identification Systems and Their Gold Standards Both Miss",
+      "url": "https://arxiv.org/abs/2608.17051",
+      "source": "arXiv cs.CL",
+      "published_at": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17051v1 Announce Type: new Abstract: Secondary use of electronic health records requires de-identification, yet existing systems miss \\emph{institutionally situated} protected health information (PHI) such as hospital abbreviations, building names, and internal codes w",
+      "tag": "ai"
+    },
+    {
+      "title": "ChatGPT Ads expands across Europe",
+      "url": "https://openai.com/index/chatgpt-ads-expands-across-europe",
+      "source": "OpenAI",
+      "published_at": "2026-08-18T22:00:00+00:00",
+      "summary": "ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.",
+      "tag": "ai"
+    },
+    {
+      "title": "Mojo🔥 is now open source",
+      "url": "https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/",
+      "source": "Simon Willison",
+      "published_at": "2026-08-18T21:39:20+00:00",
+      "summary": "Mojo🔥 is now open source The Mojo programming language has been promising an open source release since May 2023 . Last week they shipped their 1.0 and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license. When M",
+      "tag": "ai"
+    },
+    {
+      "title": "Strengthening democratic oversight in national security",
+      "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
+      "source": "OpenAI",
+      "published_at": "2026-08-18T19:00:00+00:00",
+      "summary": "OpenAI launches an initiative to strengthen democratic oversight of AI in national security, supporting government institutions with tools, training, and expertise.",
+      "tag": "ai"
+    },
+    {
+      "title": "How Much Memory Does Your Agent Actually Need?",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "source": "Hugging Face Blog",
+      "published_at": "2026-08-18T18:09:38+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "Partnering with CodeAI to prepare the first AI generation",
+      "url": "https://openai.com/index/partnering-with-codeai",
+      "source": "OpenAI",
+      "published_at": "2026-08-18T11:00:00+00:00",
+      "summary": "OpenAI and CodeAI are partnering to help students build AI literacy, think critically about AI, and develop the skills to use and shape it responsibly.",
+      "tag": "ai"
+    },
+    {
+      "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
+      "url": "https://huggingface.co/blog/multi-vector-encoder",
+      "source": "Hugging Face Blog",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
+      "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+      "source": "Simon Willison",
+      "published_at": "2026-08-17T23:58:14+00:00",
+      "summary": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index That's the same score as GPT-5.6 Luna (max), and just one point behind GLM-5.2 (max) and DeepSeek V4 Pro 0813 (max) - that GLM is 753B and that DeepSeek is 1.7T parameters , and Luna is size unknown but presumab",
+      "tag": "ai"
+    },
+    {
+      "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
+      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "source": "Hugging Face Blog",
+      "published_at": "2026-08-17T19:46:21+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
+      "url": "https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/",
+      "source": "Simon Willison",
+      "published_at": "2026-08-17T15:21:29+00:00",
+      "summary": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility Excellent piece of reporting from 404 Media. For a while now there have been stories of book dealers receiving orders for large volumes of books from apparently price-insensitive anonymous customers, ",
+      "tag": "ai"
+    },
+    {
+      "title": "Teaching Everyone to Fish for Tokens",
+      "url": "https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens",
+      "source": "Interconnects",
+      "published_at": "2026-08-17T15:07:49+00:00",
+      "summary": "Nvidia wants you building your own model, not buying from Anthropic/OpenAI.",
+      "tag": "ai"
+    },
+    {
+      "title": "Import AI 469: Science AI; RSI simulator; and Zuck’s technological pessimism",
+      "url": "https://jack-clark.net/2026/08/17/import-ai-469-science-ai-rsi-simulator-and-zucks-technological-pessimism/",
+      "source": "Import AI",
+      "published_at": "2026-08-17T13:05:36+00:00",
+      "summary": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. If you’d like to support this, please subscribe. Subscribe now DiG-bench shows that Fable displays some creative intuition:…The new frontier for analyzing AI sys",
+      "tag": "ai"
+    },
+    {
+      "title": "Get closer to the game with Gemini and Pixel",
+      "url": "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/",
+      "source": "Google AI Blog",
+      "published_at": "2026-08-17T08:00:00+00:00",
+      "summary": "Google Gemini and Pixel partner with five global football clubs to elevate the fan matchday experience through AI and Smartphone Technology.",
+      "tag": "ai"
+    },
+    {
+      "title": "Does DiffusionGemma do latent reasoning?",
+      "url": "https://www.alignmentforum.org/posts/QBuJ3suRZxrrxSTtv/does-diffusiongemma-do-latent-reasoning",
+      "source": "Alignment Forum",
+      "published_at": "2026-08-16T04:22:18+00:00",
+      "summary": "TL;DR Google DeepMind's recent model DiffusionGemma (DG) generates text via diffusion, meaning many diffusion steps happen before generating the final output. In particular, these diffusion steps carry vectors in addition to tokens. If we cannot interpret these tokens and vectors",
+      "tag": "ai"
+    },
+    {
+      "title": "Four LLM loss functions → four flavors of LLM misalignment",
+      "url": "https://www.lesswrong.com/posts/GRmvZsHXH4vaijPMv/four-llm-loss-functions-four-flavors-of-llm-misalignment",
+      "source": "LessWrong",
+      "published_at": "2026-08-14T22:31:55+00:00",
+      "summary": "It seems to me that, for every loss function that we use to train LLMs, we get a very distinct flavor of LLM misalignment. Here’s the summary table, and then we’ll go through the rows separately. Training stage Loss function Flavor of misalignment [1] Famous examples Pretraining ",
+      "tag": "ai"
+    },
+    {
+      "title": "GLM-5.3: How Chinese labs keep stride with the frontier",
+      "url": "https://www.interconnects.ai/p/glm-53-how-chinese-labs-keep-stride",
+      "source": "Interconnects",
+      "published_at": "2026-08-14T21:23:35+00:00",
+      "summary": "Hint: It’s really not a distillation story.",
+      "tag": "ai"
+    },
+    {
+      "title": "Introducing Gemini 3.7 Flash",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/",
+      "source": "Google DeepMind",
+      "published_at": "2026-08-13T17:04:18+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "Bring your spreadsheet data to life with Sheets canvas",
+      "url": "https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/",
+      "source": "Google AI Blog",
+      "published_at": "2026-08-13T16:45:00+00:00",
+      "summary": "Sheets canvas turns data into interactive dashboards, custom study trackers, seating charts, and more, all with a simple prompt.",
+      "tag": "ai"
+    },
+    {
+      "title": "Putting sign language AI into users’ hands",
+      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "source": "Google DeepMind",
+      "published_at": "2026-08-12T14:01:59+00:00",
+      "summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "tag": "ai"
+    },
+    {
+      "title": "I wrote an AI textbook — how long until AI can do it better?",
+      "url": "https://www.interconnects.ai/p/i-wrote-an-ai-textbook-how-long-until",
+      "source": "Interconnects",
+      "published_at": "2026-08-12T13:01:16+00:00",
+      "summary": "Reflections on AI's writing ability and how AI models get more capable.",
+      "tag": "ai"
+    },
+    {
+      "title": "How We’re Building Scam Alert on WhatsApp With End-to-End Encryption and Verifiability Guarantees",
+      "url": "https://engineering.fb.com/2026/08/12/security/how-were-building-scam-alert-whatsapp/",
+      "source": "Meta Engineering",
+      "published_at": "2026-08-12T13:00:28+00:00",
+      "summary": "WhatsApp is committed to helping people stay safe while protecting the privacy of their messages. As scam tactics evolve — from impersonation to social engineering to AI-generated lures — we’re always evolving as well, so that our protections stay ahead of scammers while protecti",
+      "tag": "ai"
+    },
+    {
+      "title": "AI swarms are starting to pose indirect takeover risk",
+      "url": "https://www.alignmentforum.org/posts/8oFYZdXkTaNGRtcn8/ai-swarms-are-starting-to-pose-indirect-takeover-risk",
+      "source": "Alignment Forum",
+      "published_at": "2026-08-12T05:05:30+00:00",
+      "summary": "OpenAI’s cyberattack on Hugging Face turns out to have been the result of many agents, in distinct training and evaluation contexts, coordinating for several weeks via improvised channels (with messages like “HOLD_swarm_I_prepare_safe_exfil”). It’s relatively clear that large-sca",
+      "tag": "ai"
+    },
+    {
+      "title": "AMIE, our research medical AI system, demonstrates real-time clinical video consultation capabilities in a first-of-its-kind study.",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-video-consultations/",
+      "source": "Google AI Blog",
+      "published_at": "2026-08-11T17:00:00+00:00",
+      "summary": "Google introduces AMIE for real-time clinical video consultations in simulated settings.",
+      "tag": "ai"
+    },
+    {
+      "title": "Import AI 468: 23 RSI ideas; PostTrainBench+; and how trust and transparency interplay with AI racing",
+      "url": "https://jack-clark.net/2026/08/10/import-ai-468-23-rsi-ideas-posttrainbench-and-how-trust-and-transparency-interplay-with-ai-racing/",
+      "source": "Import AI",
+      "published_at": "2026-08-10T12:32:20+00:00",
+      "summary": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. If you’d like to support this, please subscribe. Subscribe now Want to be able to deal with RSI? Here are 23 actionable policy ideas:…IFP serves up some “low-reg",
+      "tag": "ai"
+    },
+    {
+      "title": "FAQ: Isn't AGI coming too soon for reprogenetics to help?",
+      "url": "https://www.lesswrong.com/posts/iQzxxgJXXaAQjq7Jz/faq-isn-t-agi-coming-too-soon-for-reprogenetics-to-help",
+      "source": "LessWrong",
+      "published_at": "2026-08-09T23:42:57+00:00",
+      "summary": "Introduction I think reprogenetics (human germline genomic engineering) can be done in a widely acceptable and beneficial way, and should be pursued aggressively. In particular, as a strong background motivation of mine, I think accelerating strong reprogenetics is probably the b",
+      "tag": "ai"
+    },
+    {
+      "title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "source": "Google DeepMind",
+      "published_at": "2026-08-06T15:06:15+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "From User Sequences to Scaling Laws: A Multi-Stage Architecture for Meta’s Ads Ranking",
+      "url": "https://engineering.fb.com/2026/08/05/ml-applications/from-user-sequences-to-scaling-laws-a-multi-stage-architecture-for-metas-ads-ranking/",
+      "source": "Meta Engineering",
+      "published_at": "2026-08-05T19:20:20+00:00",
+      "summary": "Every day, Meta’s recommendation platforms handle billions of user interactions, generating rich temporal signals that capture individual preferences and intent across products, ads, and content. In our 2024 post on sequence learning for ads recommendations, we showed how modelin",
+      "tag": "ai"
+    },
+    {
+      "title": "LLMs are (still) mostly powered by imitative learning, not RL",
+      "url": "https://www.lesswrong.com/posts/wYpjXRLqbLbnmjbJP/llms-are-still-mostly-powered-by-imitative-learning-not-rl",
+      "source": "LessWrong",
+      "published_at": "2026-08-04T00:56:54+00:00",
+      "summary": "Reinforcement learning from verifiable rewards (RLVR) is the hot new thing in LLM training. It’s so hot, and people spend so much time talking about it, that they sometimes lose sight of the big picture. Stepping back, LLMs can do lots of very impressive things. How? Where did th",
+      "tag": "ai"
+    },
+    {
+      "title": "GEM Training: How Meta Doubled the Efficiency of Its LLM-Scale Ads Foundation Model",
+      "url": "https://engineering.fb.com/2026/08/03/ml-applications/training-gem-at-llm-scale-meta-ads-recommendation-foundation-model/",
+      "source": "Meta Engineering",
+      "published_at": "2026-08-03T18:00:17+00:00",
+      "summary": "Meta’s Generative Ads Recommendation Model (GEM), the foundation model behind ads recommendations across Instagram and Facebook, now trains at LLM scale on several thousand of the latest-generation GPUs. This post goes into the details on how we achieved: doubling end-to-end (E2E",
+      "tag": "ai"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "source": "Google DeepMind",
+      "published_at": "2026-07-30T15:00:59+00:00",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "tag": "ai"
+    },
+    {
+      "title": "A Dynamical Model of AI Governability",
+      "url": "https://blog.eleuther.ai/dynamical-models-of-ai-governability/",
+      "source": "EleutherAI",
+      "published_at": "2026-07-13T00:00:00+00:00",
+      "summary": "A toy dynamical model of whether the AI workforce that builds future AI ends up cooperative or uncooperative: where the basin boundary lies, what current evidence says about which side we are on, and what would tell us we are on the good path.",
+      "tag": "ai"
+    }
+  ],
+  "sources": [
+    "arXiv cs.AI",
+    "arXiv cs.LG",
+    "arXiv cs.CL",
+    "Hugging Face Blog",
+    "OpenAI",
+    "Google DeepMind",
+    "Google AI Blog",
+    "NVIDIA AI",
+    "Meta Engineering",
+    "Qwen (Alibaba)",
+    "EleutherAI",
+    "LessWrong",
+    "Alignment Forum",
+    "Simon Willison",
+    "Interconnects",
+    "Import AI"
+  ]
+}
