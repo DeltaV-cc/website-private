@@ -1,6 +1,807 @@
 {
-  "updated": "2026-08-19T16:11:13Z",
-  "items": [],
+  "updated": "2026-08-19T19:00:49Z",
+  "items": [
+    {
+      "title": "We are living the open-source AI singularity - every week we have a new model drop - each model incrementally closes the closed source gap - frontier RL training is on pause - open-source AI token usage is doubling month on month AI that is universally accessible AND close to bei",
+      "url": "https://x.com/bindureddy/status/2090149914504503475",
+      "source": "X: @bindureddy",
+      "handle": "bindureddy",
+      "lane": "nerds",
+      "published_at": "2026-08-19T18:52:27+00:00",
+      "summary": "We are living the open-source AI singularity - every week we have a new model drop - each model incrementally closes the closed source gap - frontier RL training is on pause - open-source AI token usage is doubling month on month AI that is",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @NousResearch: promise kept 😱",
+      "url": "https://x.com/karan4d/status/2090137168916222327",
+      "source": "X: @NousResearch",
+      "handle": "NousResearch",
+      "lane": "local",
+      "published_at": "2026-08-19T18:01:48+00:00",
+      "summary": "promise kept 😱 Nous Research (@NousResearch) —",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @hwchase17: come register & chat about one of the most important parts to owning your intelligence: turning your data into evals/environments to improve your agents some of the best folks/companies in the world making it possible with @willccbb @PrimeIntellect & @AEllisBloo",
+      "url": "https://x.com/Vtrivedy10/status/2090135387125522605",
+      "source": "X: @hwchase17",
+      "handle": "hwchase17",
+      "lane": "agents",
+      "published_at": "2026-08-19T17:54:43+00:00",
+      "summary": "come register & chat about one of the most important parts to owning your intelligence: turning your data into evals/environments to improve your agents some of the best folks/companies in the world making it possible with @willccbb @PrimeI",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @hwchase17: tap in we’re scaling self-verification",
+      "url": "https://x.com/willccbb/status/2090135226030956653",
+      "source": "X: @hwchase17",
+      "handle": "hwchase17",
+      "lane": "agents",
+      "published_at": "2026-08-19T17:54:05+00:00",
+      "summary": "tap in we’re scaling self-verification Harrison Chase (@hwchase17) top tier webinar tmrw! @Vtrivedy10 ( @LangChain ) @willccbb ( @PrimeIntellect ) @AEllisBloor ( @baseten ) and I will will be jamming on how to automate more parts of the age",
+      "tag": "ai"
+    },
+    {
+      "title": "top tier webinar tmrw! @Vtrivedy10 (@LangChain) @willccbb (@PrimeIntellect) @AEllisBloor (@baseten) and I will will be jamming on how to automate more parts of the agent improvement loop (eval and environment engineering in particular) Come join us: https://events.langchain.com/w",
+      "url": "https://x.com/hwchase17/status/2090134426118394077",
+      "source": "X: @hwchase17",
+      "handle": "hwchase17",
+      "lane": "agents",
+      "published_at": "2026-08-19T17:50:54+00:00",
+      "summary": "top tier webinar tmrw! @Vtrivedy10 ( @LangChain ) @willccbb ( @PrimeIntellect ) @AEllisBloor ( @baseten ) and I will will be jamming on how to automate more parts of the agent improvement loop (eval and environment engineering in particular",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ylecun: 5 million fewer people enrolled. Premiums more than doubled for millions. Republicans didn’t “reform” anything. They just pulled the ladder up and called it freedom. This wasn’t an accident. It was the plan. The November VOTE BLUE to #RestoreACATaxCredits",
+      "url": "https://x.com/mjfree/status/2090131681147535370",
+      "source": "X: @ylecun",
+      "handle": "ylecun",
+      "lane": "frontier",
+      "published_at": "2026-08-19T17:40:00+00:00",
+      "summary": "5 million fewer people enrolled. Premiums more than doubled for millions. Republicans didn’t “reform” anything. They just pulled the ladder up and called it freedom. This wasn’t an accident. It was the plan. The November VOTE BLUE to #Resto",
+      "tag": "ai"
+    },
+    {
+      "title": "+1 to this part of this is due to coding agent standards - agents.md and skills are just markdown files/directories!",
+      "url": "https://x.com/hwchase17/status/2090127205720641597",
+      "source": "X: @hwchase17",
+      "handle": "hwchase17",
+      "lane": "agents",
+      "published_at": "2026-08-19T17:22:13+00:00",
+      "summary": "+1 to this part of this is due to coding agent standards - agents.md and skills are just markdown files/directories! Sergio R. (@TheRealSergio91) agents are starting to look less like apps and more like directories instructions. skills. too",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @swyx: It's felt like harness month on Twitter. We're seeing much faster and cheaper gains on a bunch of benchmarks by focusing on harness improvement rather than model improvement. Allowing the harness to be updated during use is just another form of continual learning. Th",
+      "url": "https://x.com/bradenjhancock/status/2090114460828766567",
+      "source": "X: @swyx",
+      "handle": "swyx",
+      "lane": "agents",
+      "published_at": "2026-08-19T16:31:34+00:00",
+      "summary": "It's felt like harness month on Twitter. We're seeing much faster and cheaper gains on a bunch of benchmarks by focusing on harness improvement rather than model improvement. Allowing the harness to be updated during use is just another for",
+      "tag": "ai"
+    },
+    {
+      "title": "Most people sleep like this and then wonder why they have sleep problems 76F/24C is way too hot for sleep (should be 18C/64F) 1237 CO2 ppm is way too high (should be 600 max) 76% humidity is way too high (should be 40%)",
+      "url": "https://x.com/levelsio/status/2090106155032830149",
+      "source": "X: @levelsio",
+      "handle": "levelsio",
+      "lane": "nerds",
+      "published_at": "2026-08-19T15:58:34+00:00",
+      "summary": "Most people sleep like this and then wonder why they have sleep problems 76F/24C is way too hot for sleep (should be 18C/64F) 1237 CO2 ppm is way too high (should be 600 max) 76% humidity is way too high (should be 40%) eigen moomin (@eigen",
+      "tag": "ai"
+    },
+    {
+      "title": "We’re releasing new Qwen3.8-27B GGUFs with 10% higher accuracy. Unsloth Dynamic V3 outperforms others by >10% on Div-300, KLD & more benchmarks. We also release 1-bit quants that retain 77% accuracy. Run on 8GB RAM. Blog: https://unsloth.ai/docs/basics/dynamic-3.0-ggufs GGUF: htt",
+      "url": "https://x.com/UnslothAI/status/2090103470015828184",
+      "source": "X: @unslothai",
+      "handle": "unslothai",
+      "lane": "local",
+      "published_at": "2026-08-19T15:47:54+00:00",
+      "summary": "We’re releasing new Qwen3.8-27B GGUFs with 10% higher accuracy. Unsloth Dynamic V3 outperforms others by >10% on Div-300, KLD & more benchmarks. We also release 1-bit quants that retain 77% accuracy. Run on 8GB RAM. Blog: unsloth.ai/docs/ba",
+      "tag": "ai"
+    },
+    {
+      "title": "HY3 from @TencentHunyuan will remain free via Nous Portal through the end of the month",
+      "url": "https://x.com/NousResearch/status/2090094867070300618",
+      "source": "X: @NousResearch",
+      "handle": "NousResearch",
+      "lane": "local",
+      "published_at": "2026-08-19T15:13:43+00:00",
+      "summary": "HY3 from @TencentHunyuan will remain free via Nous Portal through the end of the month Video Tommy (@yeahfortommy) One more time by popular demand, HY3 free through the end of August enjoy your tokens —",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @runwayml: Get started: https://app.runwayml.com/",
+      "url": "https://x.com/runwayml/status/2090090528239161361",
+      "source": "X: @runwayml",
+      "handle": "runwayml",
+      "lane": "film",
+      "published_at": "2026-08-19T14:56:28+00:00",
+      "summary": "Get started: app.runwayml.com/ Link Runway Everything you need to make anything you want. app.runwayml.com",
+      "tag": "ai"
+    },
+    {
+      "title": "MiniMax H3 is now unlimited on Runway. For a limited time, Max plan users can generate as much as they want with no caps, no counting, just unlimited access to one of the best video models available. Get started now at the link below.",
+      "url": "https://x.com/runwayml/status/2090090516151243063",
+      "source": "X: @runwayml",
+      "handle": "runwayml",
+      "lane": "film",
+      "published_at": "2026-08-19T14:56:25+00:00",
+      "summary": "MiniMax H3 is now unlimited on Runway. For a limited time, Max plan users can generate as much as they want with no caps, no counting, just unlimited access to one of the best video models available. Get started now at the link below. Video",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ylecun: Last year at this time, Health and Human Services Secretary Kennedy terminated 22 mRNA research contracts worth $500 million. Same cost as Trump’s gifted Qatari plane. Today, Merck and Moderna announced that an experimental breakthrough vaccine treatment — develope",
+      "url": "https://x.com/RahmEmanuel/status/2090089629844136426",
+      "source": "X: @ylecun",
+      "handle": "ylecun",
+      "lane": "frontier",
+      "published_at": "2026-08-19T14:52:54+00:00",
+      "summary": "Last year at this time, Health and Human Services Secretary Kennedy terminated 22 mRNA research contracts worth $500 million. Same cost as Trump’s gifted Qatari plane. Today, Merck and Moderna announced that an experimental breakthrough vac",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @ClementDelangue: throwback from @rachelmetz https://www.technologyreview.com/2017/03/23/153062/three-weeks-with-a-chatbot-and-ive-made-a-new-friend/",
+      "url": "https://x.com/ClementDelangue/status/2090086763901452399",
+      "source": "X: @ClementDelangue",
+      "handle": "ClementDelangue",
+      "lane": "frontier",
+      "published_at": "2026-08-19T14:41:31+00:00",
+      "summary": "throwback from @rachelmetz technologyreview.com/2017/03… Link Three Weeks with a Chatbot and I’ve Made a New Friend It’s not quite Her, but an artificially intelligent chatbot from an app called Hugging Face elicits surprisingly real emotio",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @emollick: And, to make the point clear, \"sovereign AI\" has many meanings, in this case it really does appear to mean using sovereign models. (It can also mean control over data, harnesses, and a lot of other things as well)",
+      "url": "https://x.com/emollick/status/2090084858781405285",
+      "source": "X: @emollick",
+      "handle": "emollick",
+      "lane": "nerds",
+      "published_at": "2026-08-19T14:33:56+00:00",
+      "summary": "And, to make the point clear, \"sovereign AI\" has many meanings, in this case it really does appear to mean using sovereign models. (It can also mean control over data, harnesses, and a lot of other things as well)",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @emollick: There are AI applications that are equally inside the frontier for both Mistral and frontier models, but cyberdefense is definitely not one of them.",
+      "url": "https://x.com/emollick/status/2090083824549998962",
+      "source": "X: @emollick",
+      "handle": "emollick",
+      "lane": "nerds",
+      "published_at": "2026-08-19T14:29:50+00:00",
+      "summary": "There are AI applications that are equally inside the frontier for both Mistral and frontier models, but cyberdefense is definitely not one of them.",
+      "tag": "ai"
+    },
+    {
+      "title": "I don't know if this news is real, but it does point out a major issue with \"sovereign AI\" - if your sovereign models are far behind the frontier, then there is a substantial penalty to using lagging models to compete at frontier applications where the gap is biggest, like cyber",
+      "url": "https://x.com/emollick/status/2090083512653160832",
+      "source": "X: @emollick",
+      "handle": "emollick",
+      "lane": "nerds",
+      "published_at": "2026-08-19T14:28:35+00:00",
+      "summary": "I don't know if this news is real, but it does point out a major issue with \"sovereign AI\" - if your sovereign models are far behind the frontier, then there is a substantial penalty to using lagging models to compete at frontier applicatio",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @NousResearch: If you ever feel like you can’t keep up with how fast Hermes moves, definitely ask Hermes! It can create thoughtful, curated tours and tutorials just for you. Even on external websites or apps.",
+      "url": "https://x.com/imbabybrooklyn/status/2090077125688565964",
+      "source": "X: @NousResearch",
+      "handle": "NousResearch",
+      "lane": "local",
+      "published_at": "2026-08-19T14:03:13+00:00",
+      "summary": "If you ever feel like you can’t keep up with how fast Hermes moves, definitely ask Hermes! It can create thoughtful, curated tours and tutorials just for you. Even on external websites or apps. Brooklyn! (@imbabybrooklyn) Hermes can give yo",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @OpenAI: Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone.",
+      "url": "https://x.com/Replit/status/2090076648276185555",
+      "source": "X: @OpenAI",
+      "handle": "OpenAI",
+      "lane": "frontier",
+      "published_at": "2026-08-19T14:01:19+00:00",
+      "summary": "Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone. Video",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jxnlco: Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone.",
+      "url": "https://x.com/Replit/status/2090076648276185555",
+      "source": "X: @jxnlco",
+      "handle": "jxnlco",
+      "lane": "agents",
+      "published_at": "2026-08-19T14:01:19+00:00",
+      "summary": "Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone. Video",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ylecun: Trump promised to bring down the government’s debt. Instead, it’s continued to grow, passing 100% of GDP and on track to exceed its WWII record in the next few years. My @nytopinion Chart:",
+      "url": "https://x.com/SteveRattner/status/2090074730510401766",
+      "source": "X: @ylecun",
+      "handle": "ylecun",
+      "lane": "frontier",
+      "published_at": "2026-08-19T13:53:42+00:00",
+      "summary": "Trump promised to bring down the government’s debt. Instead, it’s continued to grow, passing 100% of GDP and on track to exceed its WWII record in the next few years. My @nytopinion Chart:",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ClementDelangue: Aloha! 🌺Introducing Ornith-1.5, a family of open-source LLMs spanning 9B Dense, 35B MoE, and 397B MoE, trained with self-improving strategies. It achieves state-of-the-art performance among open-source models of comparable size and delivers performance com",
+      "url": "https://x.com/ornith_/status/2090074077084127302",
+      "source": "X: @ClementDelangue",
+      "handle": "ClementDelangue",
+      "lane": "frontier",
+      "published_at": "2026-08-19T13:51:06+00:00",
+      "summary": "Aloha! 🌺Introducing Ornith-1.5, a family of open-source LLMs spanning 9B Dense, 35B MoE, and 397B MoE, trained with self-improving strategies. It achieves state-of-the-art performance among open-source models of comparable size and delivers",
+      "tag": "ai"
+    },
+    {
+      "title": "Anyone can explain why?",
+      "url": "https://x.com/levelsio/status/2090073047701033207",
+      "source": "X: @levelsio",
+      "handle": "levelsio",
+      "lane": "nerds",
+      "published_at": "2026-08-19T13:47:00+00:00",
+      "summary": "Anyone can explain why? Klaas (@forgebitz) looks like reddit is almost wiped from chatgpt sources the query fanout changes had a big impact and the past couple of days it seems to be almost completely removed from prompt responses promptwat",
+      "tag": "ai"
+    },
+    {
+      "title": "2018: HF is building a chatbot for teens OpenAI is building Open AI 2026: HF is building Open AI OpenAI is building a chatbot for teens",
+      "url": "https://x.com/ClementDelangue/status/2090071736121196649",
+      "source": "X: @ClementDelangue",
+      "handle": "ClementDelangue",
+      "lane": "frontier",
+      "published_at": "2026-08-19T13:41:48+00:00",
+      "summary": "2018: HF is building a chatbot for teens OpenAI is building Open AI 2026: HF is building Open AI OpenAI is building a chatbot for teens",
+      "tag": "ai"
+    },
+    {
+      "title": "Related @GeorgesStPierre one of the greatest UFC fighters ever doing his first 100kg/225lbs bench press PR It shows how completely disconnected most people's perception is of strength If you can do this you're stronger than 99% of people in society!",
+      "url": "https://x.com/levelsio/status/2090066346755121322",
+      "source": "X: @levelsio",
+      "handle": "levelsio",
+      "lane": "nerds",
+      "published_at": "2026-08-19T13:20:23+00:00",
+      "summary": "Related @GeorgesStPierre one of the greatest UFC fighters ever doing his first 100kg/225lbs bench press PR It shows how completely disconnected most people's perception is of strength If you can do this you're stronger than 99% of people in",
+      "tag": "ai"
+    },
+    {
+      "title": "This is a good paper and AI has definitely made the cheating problem worse but it is easy to overlook how bad it was before AI. Doing homework improved final test grades for 86% of college students students in 2008 but only 45% in 2017 because they were copying off the internet",
+      "url": "https://x.com/emollick/status/2090059088323375527",
+      "source": "X: @emollick",
+      "handle": "emollick",
+      "lane": "nerds",
+      "published_at": "2026-08-19T12:51:32+00:00",
+      "summary": "This is a good paper and AI has definitely made the cheating problem worse but it is easy to overlook how bad it was before AI. Doing homework improved final test grades for 86% of college students students in 2008 but only 45% in 2017 beca",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @lateinteraction: Awesome blog! And they evaluated on the congress ToT split of OBLIQ-Bench",
+      "url": "https://x.com/dianetc_/status/2090057728248996011",
+      "source": "X: @lateinteraction",
+      "handle": "lateinteraction",
+      "lane": "agents",
+      "published_at": "2026-08-19T12:46:08+00:00",
+      "summary": "Awesome blog! And they evaluated on the congress ToT split of OBLIQ-Bench Weaviate AI Database (@weaviate_io) Scaling Test-Time Compute is the easiest way to get higher quality outputs from AI systems, but it comes at a cost! ⚖️ How much ex",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @huggingface: Hello world",
+      "url": "https://x.com/llama_cpp/status/2090055766266745165",
+      "source": "X: @huggingface",
+      "handle": "huggingface",
+      "lane": "frontier",
+      "published_at": "2026-08-19T12:38:20+00:00",
+      "summary": "Hello world",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jxnlco: magic wand mic i made",
+      "url": "https://x.com/cowjuh/status/2090036341019136321",
+      "source": "X: @jxnlco",
+      "handle": "jxnlco",
+      "lane": "agents",
+      "published_at": "2026-08-19T11:21:09+00:00",
+      "summary": "magic wand mic i made",
+      "tag": "ai"
+    },
+    {
+      "title": "617 hours of high-precision human motion, openly released. Great to see it on the Hub!",
+      "url": "https://x.com/LeRobotHF/status/2090015011150139687",
+      "source": "X: @LeRobotHF",
+      "handle": "LeRobotHF",
+      "lane": "agents",
+      "published_at": "2026-08-19T09:56:23+00:00",
+      "summary": "617 hours of high-precision human motion, openly released. Great to see it on the Hub! Noitom Robotics (@noitomrobotics) Today we made HiPHI public: 617.5 hours of high-precision human motion and object interaction — one of the largest data",
+      "tag": "ai"
+    },
+    {
+      "title": "Kimi Work for Financial Analysts - Tutorial #2 Use Kimi Work for 3 common investment research tasks: - Build a live investor dashboard - Update financial models in spreadsheet - Process and generate reports in batch Stay tuned for more Kimi Work workflows!",
+      "url": "https://x.com/Kimi_Moonshot/status/2089979521412034787",
+      "source": "X: @Kimi_Moonshot",
+      "handle": "Kimi_Moonshot",
+      "lane": "frontier",
+      "published_at": "2026-08-19T07:35:22+00:00",
+      "summary": "Kimi Work for Financial Analysts - Tutorial #2 Use Kimi Work for 3 common investment research tasks: - Build a live investor dashboard - Update financial models in spreadsheet - Process and generate reports in batch Stay tuned for more Kimi",
+      "tag": "ai"
+    },
+    {
+      "title": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻",
+      "url": "https://x.com/Alibaba_Qwen/status/2089922175507865795",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:47:30+00:00",
+      "summary": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻 Vals AI (@ValsAI) On @harvey 's Leg",
+      "tag": "ai"
+    },
+    {
+      "title": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline",
+      "url": "https://x.com/Alibaba_Qwen/status/2089919106522976337",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:35:18+00:00",
+      "summary": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline Cline (@cline) Qwen3.8-27B is now the #1 local model in Cline after just 4 days. This ends a *4 month* streak by the previous winner Qwen2.5-Coder-7",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @ollama: Model page: https://ollama.com/library/kimi-k3",
+      "url": "https://x.com/ollama/status/2089914986797908051",
+      "source": "X: @ollama",
+      "handle": "ollama",
+      "lane": "local",
+      "published_at": "2026-08-19T03:18:56+00:00",
+      "summary": "Model page: ollama.com/library/kimi-k3 Link kimi-k3 Kimi K3 is an open-weight, native multimodal agentic model and our most capable model to date. ollama.com",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @Kimi_Moonshot: .@Kimi_Moonshot Kimi K3 is starting to roll out on Ollama's cloud subscriptions. We are working on improving Ollama's cloud to be much more transparent on the pricing to show the best performance / $. Try it with the tools you already use. Claude Code: ollam",
+      "url": "https://x.com/ollama/status/2089914983840989255",
+      "source": "X: @Kimi_Moonshot",
+      "handle": "Kimi_Moonshot",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:18:55+00:00",
+      "summary": ". @Kimi_Moonshot Kimi K3 is starting to roll out on Ollama's cloud subscriptions. We are working on improving Ollama's cloud to be much more transparent on the pricing to show the best performance / $. Try it with the tools you already use.",
+      "tag": "ai"
+    },
+    {
+      "title": ".@Kimi_Moonshot Kimi K3 is starting to roll out on Ollama's cloud subscriptions. We are working on improving Ollama's cloud to be much more transparent on the pricing to show the best performance / $. Try it with the tools you already use. Claude Code: ollama launch claude --mode",
+      "url": "https://x.com/ollama/status/2089914983840989255",
+      "source": "X: @ollama",
+      "handle": "ollama",
+      "lane": "local",
+      "published_at": "2026-08-19T03:18:55+00:00",
+      "summary": ". @Kimi_Moonshot Kimi K3 is starting to roll out on Ollama's cloud subscriptions. We are working on improving Ollama's cloud to be much more transparent on the pricing to show the best performance / $. Try it with the tools you already use.",
+      "tag": "ai"
+    },
+    {
+      "title": "Flash 3.7 beats GPT-Terra and is Google's Best Model - It's very fast - excellent chat model - follows instructions better than Terra - beats Claude hands down on research Surprised that it's so under-hyped",
+      "url": "https://x.com/bindureddy/status/2089873700090941751",
+      "source": "X: @bindureddy",
+      "handle": "bindureddy",
+      "lane": "nerds",
+      "published_at": "2026-08-19T00:34:52+00:00",
+      "summary": "Flash 3.7 beats GPT-Terra and is Google's Best Model - It's very fast - excellent chat model - follows instructions better than Terra - beats Claude hands down on research Surprised that it's so under-hyped",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jxnlco: Everyone working in AI in Silicon Valley should be required to talk to someone outside the bubble at least once a week My friends in the Midwest have wildly different perceptions of AI The gap between the conversation here and everywhere else feels wider than ever",
+      "url": "https://x.com/nickbaumann_/status/2089871695125655688",
+      "source": "X: @jxnlco",
+      "handle": "jxnlco",
+      "lane": "agents",
+      "published_at": "2026-08-19T00:26:54+00:00",
+      "summary": "Everyone working in AI in Silicon Valley should be required to talk to someone outside the bubble at least once a week My friends in the Midwest have wildly different perceptions of AI The gap between the conversation here and everywhere el",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jxnlco: real ones sew while talking to their agents",
+      "url": "https://x.com/covacut/status/2089870038862061745",
+      "source": "X: @jxnlco",
+      "handle": "jxnlco",
+      "lane": "agents",
+      "published_at": "2026-08-19T00:20:19+00:00",
+      "summary": "real ones sew while talking to their agents",
+      "tag": "ai"
+    },
+    {
+      "title": "Hermes Desktop now has a beautiful, adjustable matte transparency mode",
+      "url": "https://x.com/NousResearch/status/2089854759935066613",
+      "source": "X: @NousResearch",
+      "handle": "NousResearch",
+      "lane": "local",
+      "published_at": "2026-08-18T23:19:37+00:00",
+      "summary": "Hermes Desktop now has a beautiful, adjustable matte transparency mode Video",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @AnthropicAI: We're also publishing a technical report: https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf And open-sourcing our prompts and data here: https://huggingface.co/datasets/Anthropic/claude-protein-binder-design/tree/main",
+      "url": "https://x.com/AnthropicAI/status/2089842395722678689",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:29+00:00",
+      "summary": "We're also publishing a technical report: www-cdn.anthropic.com/30bf50… And open-sourcing our prompts and data here: huggingface.co/datasets/Anth…",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @AnthropicAI: For more on how Claude ran this experiment and the full results, see our blog: https://www.anthropic.com/research/Claude-accelerates-protein-design",
+      "url": "https://x.com/AnthropicAI/status/2089842394527301881",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:28+00:00",
+      "summary": "For more on how Claude ran this experiment and the full results, see our blog: anthropic.com/research/Claud… Link How Claude is accelerating protein design and analytical chemistry In this post, we share two results that show how Claude can",
+      "tag": "ai"
+    },
+    {
+      "title": "Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's meant weeks or months of expert work per t",
+      "url": "https://x.com/AnthropicAI/status/2089842387845804246",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:27+00:00",
+      "summary": "Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's me",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @RLanceMartin: Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's meant weeks or months",
+      "url": "https://x.com/AnthropicAI/status/2089842387845804246",
+      "source": "X: @RLanceMartin",
+      "handle": "RLanceMartin",
+      "lane": "agents",
+      "published_at": "2026-08-18T22:30:27+00:00",
+      "summary": "Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's me",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @swyx: Model routing is having a moment thanks to the $7B Stripe acquisition of OpenRouter. But it's also increasingly important in enterprises. We talk to @glean CEO @jainarvind about why model routing helps control AI costs for organizations. https://www.latent.space/p/gl",
+      "url": "https://x.com/latentspacepod/status/2089834053637661095",
+      "source": "X: @swyx",
+      "handle": "swyx",
+      "lane": "agents",
+      "published_at": "2026-08-18T21:57:20+00:00",
+      "summary": "Model routing is having a moment thanks to the $7B Stripe acquisition of OpenRouter. But it's also increasingly important in enterprises. We talk to @glean CEO @jainarvind about why model routing helps control AI costs for organizations. la",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ylecun: Trump's tariffs and disastrous war of choice with Iran yielded inflationary pressure which has pushed borrowing costs to the highest level since 2007. Trump doesn't care because he is paid off by his Emirati investors, but others don't have that luxury. https://tri",
+      "url": "https://x.com/KenRoth/status/2089830669102796976",
+      "source": "X: @ylecun",
+      "handle": "ylecun",
+      "lane": "frontier",
+      "published_at": "2026-08-18T21:43:53+00:00",
+      "summary": "Trump's tariffs and disastrous war of choice with Iran yielded inflationary pressure which has pushed borrowing costs to the highest level since 2007. Trump doesn't care because he is paid off by his Emirati investors, but others don't have",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @lateinteraction: He's right! 200k monthly downloads and not for nothing, here's the link for those who want to try it: https://huggingface.co/answerdotai/answerai-colbert-small-v1",
+      "url": "https://x.com/tomaarsen/status/2089820251869335993",
+      "source": "X: @lateinteraction",
+      "handle": "lateinteraction",
+      "lane": "agents",
+      "published_at": "2026-08-18T21:02:29+00:00",
+      "summary": "He's right! 200k monthly downloads and not for nothing, here's the link for those who want to try it: huggingface.co/answerdotai/a… Link answerdotai/answerai-colbert-small-v1 · Hugging Face We’re on a journey to advance and democratize arti",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @answerdotai: h/t to @bclavie for his amazing work on this model.",
+      "url": "https://x.com/jeremyphoward/status/2089817455745290693",
+      "source": "X: @jeremyphoward",
+      "handle": "jeremyphoward",
+      "lane": "nerds",
+      "published_at": "2026-08-18T20:51:23+00:00",
+      "summary": "h/t to @bclavie for his amazing work on this model.",
+      "tag": "ai"
+    },
+    {
+      "title": "The amazingly fast (only 30M!) and extremely accurate @answerdotai ColBERT model is now supported in Sentence Transformers to make it easy to create and query embedding indexes locally directly in Python! 🥳",
+      "url": "https://x.com/jeremyphoward/status/2089817361604063739",
+      "source": "X: @jeremyphoward",
+      "handle": "jeremyphoward",
+      "lane": "nerds",
+      "published_at": "2026-08-18T20:51:00+00:00",
+      "summary": "The amazingly fast (only 30M!) and extremely accurate @answerdotai ColBERT model is now supported in Sentence Transformers to make it easy to create and query embedding indexes locally directly in Python! 🥳 tomaarsen (@tomaarsen) 🚨I've just",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @sama: (We still expect to ship great new models soon; this impacts further-out releases.)",
+      "url": "https://x.com/sama/status/2089805495783813196",
+      "source": "X: @sama",
+      "handle": "sama",
+      "lane": "frontier",
+      "published_at": "2026-08-18T20:03:51+00:00",
+      "summary": "(We still expect to ship great new models soon; this impacts further-out releases.)",
+      "tag": "ai"
+    },
+    {
+      "title": "🤯",
+      "url": "https://x.com/elder_plinius/status/2089804349430280369",
+      "source": "X: @elder_plinius",
+      "handle": "elder_plinius",
+      "lane": "local",
+      "published_at": "2026-08-18T19:59:18+00:00",
+      "summary": "🤯 Sam Altman (@sama) We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, a",
+      "tag": "ai"
+    },
+    {
+      "title": "Yikes, OpenAI is PAUSING frontier model training 😅 This means that the open-source AI models will inevitably catch up to them in 12 weeks open-source AI victory gauranteed 🚀🚀",
+      "url": "https://x.com/bindureddy/status/2089800962374512946",
+      "source": "X: @bindureddy",
+      "handle": "bindureddy",
+      "lane": "nerds",
+      "published_at": "2026-08-18T19:45:50+00:00",
+      "summary": "Yikes, OpenAI is PAUSING frontier model training 😅 This means that the open-source AI models will inevitably catch up to them in 12 weeks open-source AI victory gauranteed 🚀🚀",
+      "tag": "ai"
+    },
+    {
+      "title": "we've been doing a lot of a/b testing of @aiDotEngineer youtube thumbnails. i always hated that it is such an opaque process. open sourcing/crowdsourcing our learnings today! https://ai-engineer-thumbnail-lab.swyx.chatgpt.site/#insights doing this in hopes that people can share t",
+      "url": "https://x.com/swyx/status/2089798658225266806",
+      "source": "X: @swyx",
+      "handle": "swyx",
+      "lane": "agents",
+      "published_at": "2026-08-18T19:36:41+00:00",
+      "summary": "we've been doing a lot of a/b testing of @aiDotEngineer youtube thumbnails. i always hated that it is such an opaque process. open sourcing/crowdsourcing our learnings today! ai-engineer-thumbnail-lab.sw… doing this in hopes that people can",
+      "tag": "ai"
+    },
+    {
+      "title": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we would take action if we felt that model ",
+      "url": "https://x.com/sama/status/2089787807611195475",
+      "source": "X: @sama",
+      "handle": "sama",
+      "lane": "frontier",
+      "published_at": "2026-08-18T18:53:34+00:00",
+      "summary": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we ",
+      "tag": "ai"
+    },
+    {
+      "title": "Pinned: we temporarily slowed scaling of our frontier training, including our largest planned frontier RL, to strengthen security and monitoring. we believe confidence in safety will increasingly set the pace of AI development:",
+      "url": "https://x.com/gdb/status/2089783608630284758",
+      "source": "X: @gdb",
+      "handle": "gdb",
+      "lane": "frontier",
+      "published_at": "2026-08-18T18:36:53+00:00",
+      "summary": "we temporarily slowed scaling of our frontier training, including our largest planned frontier RL, to strengthen security and monitoring. we believe confidence in safety will increasingly set the pace of AI development: OpenAI (@OpenAI) As ",
+      "tag": "ai"
+    },
+    {
+      "title": "As models become more capable, the risks associated with developing and testing them internally also grow. We temporarily paused reinforcement learning (RL) training on our latest models intended for deployment for two weeks while we hardened and red-teamed our research environme",
+      "url": "https://x.com/OpenAI/status/2089777845187031262",
+      "source": "X: @OpenAI",
+      "handle": "OpenAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T18:13:59+00:00",
+      "summary": "As models become more capable, the risks associated with developing and testing them internally also grow. We temporarily paused reinforcement learning (RL) training on our latest models intended for deployment for two weeks while we harden",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @OpenAI: We’re sharing the concrete changes we’re making to strengthen monitoring, security, and alignment as capabilities advance. We’ve introduced stronger workload and network isolation, continuous security testing, and expanded multistage monitoring for higher-risk train",
+      "url": "https://x.com/OpenAI/status/2089777846583763370",
+      "source": "X: @OpenAI",
+      "handle": "OpenAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T18:13:59+00:00",
+      "summary": "We’re sharing the concrete changes we’re making to strengthen monitoring, security, and alignment as capabilities advance. We’ve introduced stronger workload and network isolation, continuous security testing, and expanded multistage monito",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @swyx: Live now! our Generative Media Track from AI Engineer World's Fair 2026. Thesis: everything hard about generative media happens before and after the model runs. https://www.youtube.com/watch?v=-tviRdpmHvs&list=PLKfy8g4yBtRY - Training Krea 2, what matters in generati",
+      "url": "https://x.com/aiDotEngineer/status/2089766777106395544",
+      "source": "X: @swyx",
+      "handle": "swyx",
+      "lane": "agents",
+      "published_at": "2026-08-18T17:30:00+00:00",
+      "summary": "Live now! our Generative Media Track from AI Engineer World's Fair 2026. Thesis: everything hard about generative media happens before and after the model runs. piped.video/watch?v=-tviRdpm… - Training Krea 2, what matters in generative mod",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @elder_plinius: @zenitysec_labs Podcast Ep. 2 w/ my friend Ads Dawson + host @mbrg0 talking offensive AI + the future of red teaming: @elder_plinius's BT6 + the rise of AI red teaming StealthBench + agent stealth Building offensive AI harnesses AI agents for bug bounty Hack",
+      "url": "https://x.com/TakSec/status/2089765213419778246",
+      "source": "X: @elder_plinius",
+      "handle": "elder_plinius",
+      "lane": "local",
+      "published_at": "2026-08-18T17:23:47+00:00",
+      "summary": "@zenitysec_labs Podcast Ep. 2 w/ my friend Ads Dawson + host @mbrg0 talking offensive AI + the future of red teaming: @elder_plinius 's BT6 + the rise of AI red teaming StealthBench + agent stealth Building offensive AI harnesses AI agents ",
+      "tag": "ai"
+    },
+    {
+      "title": "excited to work together on this. thank you jensen!",
+      "url": "https://x.com/sama/status/2089758522678657212",
+      "source": "X: @sama",
+      "handle": "sama",
+      "lane": "frontier",
+      "published_at": "2026-08-18T16:57:12+00:00",
+      "summary": "excited to work together on this. thank you jensen! Jensen Huang (@JensenHuang) Article Securing the Infrastructure of Intelligence Land, power and shell: The next critical resource for AI factories. AI factories are the defining infrastruc",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jeremyphoward: I am a big fan of both Andy Hall and Alan Rozenshtein work and public commentary on AI. I am sure that they will continue to do important work as part of this new team at Anthropic, and sincerely congratulate them on what I am sure is an exciting next step f",
+      "url": "https://x.com/_NathanCalvin/status/2089750957043114236",
+      "source": "X: @jeremyphoward",
+      "handle": "jeremyphoward",
+      "lane": "nerds",
+      "published_at": "2026-08-18T16:27:08+00:00",
+      "summary": "I am a big fan of both Andy Hall and Alan Rozenshtein work and public commentary on AI. I am sure that they will continue to do important work as part of this new team at Anthropic, and sincerely congratulate them on what I am sure is an ex",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @huggingface: Sentence Transformers v6 has been released, and it is centered around Multi-Vector Embedding Models, what does that mean? Usually, when you build a semantic search or RAG-based system, you've probably used the @OpenAI embedding API or similar, as it allows to ",
+      "url": "https://x.com/NielsRogge/status/2089739711296201162",
+      "source": "X: @huggingface",
+      "handle": "huggingface",
+      "lane": "frontier",
+      "published_at": "2026-08-18T15:42:27+00:00",
+      "summary": "Sentence Transformers v6 has been released, and it is centered around Multi-Vector Embedding Models, what does that mean? Usually, when you build a semantic search or RAG-based system, you've probably used the @OpenAI embedding API or simil",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @levelsio: > be me > take wife to see machu picchu > stray cat follows us home, wife wants to keep it > last week of our trip spent changing hotel rooms every day because cat has fleas > cat throws up and shits all over me on train back to Cusco. Throw my clothes away b/c c",
+      "url": "https://x.com/MaxAnderson/status/2089732265525838036",
+      "source": "X: @levelsio",
+      "handle": "levelsio",
+      "lane": "nerds",
+      "published_at": "2026-08-18T15:12:52+00:00",
+      "summary": "> be me > take wife to see machu picchu > stray cat follows us home, wife wants to keep it > last week of our trip spent changing hotel rooms every day because cat has fleas > cat throws up and shits all over me on train back to Cusco. Thro",
+      "tag": "ai"
+    },
+    {
+      "title": "Today we wanted to share two new tools that give you different ways to work with Stable Audio 3.0: a new Stable Audio plugin that brings generation directly into your favorite DAW and an enhanced web experience on http://StableAudio.com, with more ways to edit and work with what ",
+      "url": "https://x.com/StabilityAI/status/2089729722368266451",
+      "source": "X: @StabilityAI",
+      "handle": "StabilityAI",
+      "lane": "film",
+      "published_at": "2026-08-18T15:02:45+00:00",
+      "summary": "Today we wanted to share two new tools that give you different ways to work with Stable Audio 3.0: a new Stable Audio plugin that brings generation directly into your favorite DAW and an enhanced web experience on StableAudio.com , with mor",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @GoogleDeepMind: Matrix multiplication is the basic computational operation that powers modern computing (including AI). Yet, the theoretical fastest speed at which computers can multiply matrices (omega ω) is still unknown and has been a longstanding challenge for complexi",
+      "url": "https://x.com/pushmeet/status/2089717134129565763",
+      "source": "X: @GoogleDeepMind",
+      "handle": "GoogleDeepMind",
+      "lane": "frontier",
+      "published_at": "2026-08-18T14:12:44+00:00",
+      "summary": "Matrix multiplication is the basic computational operation that powers modern computing (including AI). Yet, the theoretical fastest speed at which computers can multiply matrices (omega ω) is still unknown and has been a longstanding chall",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @huggingface: 🚨I've just released Sentence Transformers v6.0! MultiVectorEncoder joins the family: ColBERT-style late interaction models are now a first-class model type, for training, inference & interpretation, alongside dense, sparse & reranker models. Big thread 🧵",
+      "url": "https://x.com/tomaarsen/status/2089714037781143733",
+      "source": "X: @huggingface",
+      "handle": "huggingface",
+      "lane": "frontier",
+      "published_at": "2026-08-18T14:00:26+00:00",
+      "summary": "🚨I've just released Sentence Transformers v6.0! MultiVectorEncoder joins the family: ColBERT-style late interaction models are now a first-class model type, for training, inference & interpretation, alongside dense, sparse & reranker models",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @huggingface: Something super exciting happened quietly on HF over the past month: AI agents became AI builders, and they did it in the open! During our ICML reproduction challenge, 1,221 humans teamed up with coding agents to verify and reproduce 2,226 papers. But here's t",
+      "url": "https://x.com/ClementDelangue/status/2089706077667377316",
+      "source": "X: @huggingface",
+      "handle": "huggingface",
+      "lane": "frontier",
+      "published_at": "2026-08-18T13:28:48+00:00",
+      "summary": "Something super exciting happened quietly on HF over the past month: AI agents became AI builders, and they did it in the open! During our ICML reproduction challenge, 1,221 humans teamed up with coding agents to verify and reproduce 2,226 ",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @lateinteraction: We are happy users at Weaviate! 💚 Between BRIGHT and OBLIQ-Bench I think the retrieval community is \"benchmark-rich\" for now 😆 *I should caveat this by clarifying that we have just tested on the Congress subset so far. https://weaviate.io/blog/search-mode-",
+      "url": "https://x.com/CShorten30/status/2089703136470471075",
+      "source": "X: @lateinteraction",
+      "handle": "lateinteraction",
+      "lane": "agents",
+      "published_at": "2026-08-18T13:17:07+00:00",
+      "summary": "We are happy users at Weaviate! 💚 Between BRIGHT and OBLIQ-Bench I think the retrieval community is \"benchmark-rich\" for now 😆 *I should caveat this by clarifying that we have just tested on the Congress subset so far. weaviate.io/blog/sear",
+      "tag": "ai"
+    },
+    {
+      "title": "Use The Top AI For Your Use Case hard-coding - Fable 5 data analysis - GPT 5 Sol research - Flash 3.7 video - SeeDance 2.5 design - Opus 5 cheap agentic - Kimi K3 real-time - Grok 4.6 image - GPT Image 2 classifier - Qwen 3.8 27B Automatically route to the best model for your use",
+      "url": "https://x.com/bindureddy/status/2089614724518617470",
+      "source": "X: @bindureddy",
+      "handle": "bindureddy",
+      "lane": "nerds",
+      "published_at": "2026-08-18T07:25:48+00:00",
+      "summary": "Use The Top AI For Your Use Case hard-coding - Fable 5 data analysis - GPT 5 Sol research - Flash 3.7 video - SeeDance 2.5 design - Opus 5 cheap agentic - Kimi K3 real-time - Grok 4.6 image - GPT Image 2 classifier - Qwen 3.8 27B Automatica",
+      "tag": "ai"
+    },
+    {
+      "title": "One prompt, one shot. Qwen3.8-27B creates something incredible. 😎Now it's your turn to run it on your own laptop. Can't wait to see what you come up with!👀@ItsmeAjayKV",
+      "url": "https://x.com/Alibaba_Qwen/status/2089602715735519586",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-18T06:38:05+00:00",
+      "summary": "One prompt, one shot. Qwen3.8-27B creates something incredible. 😎Now it's your turn to run it on your own laptop. Can't wait to see what you come up with!👀 @ItsmeAjayKV AJ (@ItsmeAjayKV) Here's a comparison i never thought i would make Qwen",
+      "tag": "ai"
+    },
+    {
+      "title": "Strong enough to keep up with the frontier, light enough to run on your own laptop. Come see what it can do! ⚡",
+      "url": "https://x.com/Alibaba_Qwen/status/2089597078385446969",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-18T06:15:40+00:00",
+      "summary": "Strong enough to keep up with the frontier, light enough to run on your own laptop. Come see what it can do! ⚡ Xenova (@xenovacom) It's official: Qwen3.8-27B just scored 52 on the @ArtificialAnlys Intelligence Index. We now have an open-wei",
+      "tag": "ai"
+    },
+    {
+      "title": "Qwen3.8-27B Unsloth GGUF is now the #2 trending model on Hugging Face with 2.7M downloads! 💗 Unsloth also reached #3 trending on GitHub! Thanks so much for the love! Model: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF GitHub: https://github.com/unslothai/unsloth",
+      "url": "https://x.com/UnslothAI/status/2089541444466090064",
+      "source": "X: @unslothai",
+      "handle": "unslothai",
+      "lane": "local",
+      "published_at": "2026-08-18T02:34:36+00:00",
+      "summary": "Qwen3.8-27B Unsloth GGUF is now the #2 trending model on Hugging Face with 2.7M downloads! 💗 Unsloth also reached #3 trending on GitHub! Thanks so much for the love! Model: huggingface.co/unsloth/Qwen3… GitHub: github.com/unslothai/unsloth",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @rasbt: Clarification here. Somewhere in the comments, I agreed that one might have to rerun the LLM for checking for watermarks. That's not correct. I am not 100% which exact technique they use, but they mentioned that they base their method on the SynthID-Text method from ",
+      "url": "https://x.com/rasbt/status/2089527404138033497",
+      "source": "X: @rasbt",
+      "handle": "rasbt",
+      "lane": "nerds",
+      "published_at": "2026-08-18T01:38:49+00:00",
+      "summary": "Clarification here. Somewhere in the comments, I agreed that one might have to rerun the LLM for checking for watermarks. That's not correct. I am not 100% which exact technique they use, but they mentioned that they base their method on th",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @ClementDelangue: Alibaba's open-weight AI models accumulated 3 billion global downloads in the past 6 months — more than Meta Llama, more than Google Gemma, more than every Chinese domestic competitor combined. The most-downloaded AI on Earth right now was built in China a",
+      "url": "https://x.com/PeterDiamandis/status/2089475111384650057",
+      "source": "X: @ClementDelangue",
+      "handle": "ClementDelangue",
+      "lane": "frontier",
+      "published_at": "2026-08-17T22:11:01+00:00",
+      "summary": "Alibaba's open-weight AI models accumulated 3 billion global downloads in the past 6 months — more than Meta Llama, more than Google Gemma, more than every Chinese domestic competitor combined. The most-downloaded AI on Earth right now was ",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @UnslothAI: Local AI just got a major upgrade. Fine-tune and run AI models locally with @UnslothAI Desktop, plus get up to 20% faster llama.cpp performance (@ggerganov) with our new optimizations.",
+      "url": "https://x.com/NVIDIARTXSpark/status/2089462656998551937",
+      "source": "X: @unslothai",
+      "handle": "unslothai",
+      "lane": "local",
+      "published_at": "2026-08-17T21:21:32+00:00",
+      "summary": "Local AI just got a major upgrade. Fine-tune and run AI models locally with @UnslothAI Desktop, plus get up to 20% faster llama.cpp performance ( @ggerganov ) with our new optimizations. Video",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @ollama: luma.com/o9tv62y5",
+      "url": "https://x.com/ollama/status/2089458206640857253",
+      "source": "X: @ollama",
+      "handle": "ollama",
+      "lane": "local",
+      "published_at": "2026-08-17T21:03:51+00:00",
+      "summary": "luma.com/o9tv62y5 Link Open Models, Production Agents: The New Economics of AI-Native Engineering · Luma The era of AI-driven software development is here, are your teams ready? Join us for an evening exploring how open models and autonomou",
+      "tag": "ai"
+    },
+    {
+      "title": "Join us for a fun night this Thursday (August 20th) in San Francisco! RSVP link below! 👇",
+      "url": "https://x.com/ollama/status/2089458205302960380",
+      "source": "X: @ollama",
+      "handle": "ollama",
+      "lane": "local",
+      "published_at": "2026-08-17T21:03:51+00:00",
+      "summary": "Join us for a fun night this Thursday (August 20th) in San Francisco! RSVP link below! 👇 friendliai (@friendliai) This Thursday, August 20th, we’re bringing together four leaders at the forefront of open models, coding agents, and AI infras",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @yoheinakajima: Your agent can now discover new tools on its own. Introducing Monid Discover. Your agent can: > search across 1,300+ APIs & tools > compare providers > check pricing > call the tool and pay for it at runtime By the time you ask which tools it used, the work ",
+      "url": "https://x.com/shengkunye/status/2089419739970077058",
+      "source": "X: @yoheinakajima",
+      "handle": "yoheinakajima",
+      "lane": "agents",
+      "published_at": "2026-08-17T18:31:00+00:00",
+      "summary": "Your agent can now discover new tools on its own. Introducing Monid Discover. Your agent can: > search across 1,300+ APIs & tools > compare providers > check pricing > call the tool and pay for it at runtime By the time you ask which tools ",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @jeremyphoward: Similar story. My company http://Support.com was one of the handful of cos that could go public in the end of the dotcom IPO window bc we had $170m in bookings. Accel went on a jihad to replace me as CEO bc i was 32 and had never run a public co. They litera",
+      "url": "https://x.com/markpinc/status/2089419271495704626",
+      "source": "X: @jeremyphoward",
+      "handle": "jeremyphoward",
+      "lane": "nerds",
+      "published_at": "2026-08-17T18:29:08+00:00",
+      "summary": "Similar story. My company Support.com was one of the handful of cos that could go public in the end of the dotcom IPO window bc we had $170m in bookings. Accel went on a jihad to replace me as CEO bc i was 32 and had never run a public co. ",
+      "tag": "ai"
+    }
+  ],
   "handles": [
     "sama",
     "karpathy",
