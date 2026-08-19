@@ -383,7 +383,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     /** The two-part strip carries the structure now that the prose section is gone. */
     visualPlacement: 0,
     proof: L(
-      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the lexicon (01).',
+      'You can name one concrete output for **Part I** and one for Part II, and you know the next lesson is the **AI Cheat Sheet (01)**.',
     ),
     sections: [
       {
@@ -433,7 +433,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('Do **not skip 01** unless you can already explain agent vs chat, harness vs runtime, and Think → Act → Observe (the [printable glossary](/forge/course/my-first-ai-agent/glossary/) helps).'),
           L('Pick your **host** in lesson 02 before install (dedicated machine preferred).'),
           L('**Optional labs** exist after Part I for extra drills — not required to finish the main path.'),
-          L('**Next:** lesson 01 — lexicon (stack, loop, messages, then the rest).'),
+          L('**Next:** lesson 01 — The AI Cheat Sheet (stack, loop, messages, then the rest).'),
         ] },
           { k: 'links', items: [
           { label: L('Printable glossary'), href: '/forge/course/my-first-ai-agent/glossary/' },
@@ -451,8 +451,8 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     slug: '01',
     number: '01',
     part: 1,
-    title: L('Lexicon'),
-    subtitle: L('Words you will meet often.'),
+    title: L('The AI Cheat Sheet'),
+    subtitle: L('Speak the language of agents. First pass = the short “remember” lines; details wait for later lessons.'),
     minutes: 25,
     /** Diagrams sit under the sections they clarify — not in a pile under the title */
     visualPlacement: 'none',
@@ -830,7 +830,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Let’s get ready'),
     subtitle: L(
-      'Pick the machine, create one free model account, and have its API key ready to paste.',
+      'Pick where you’ll run Hermes (your laptop is fine). Sign up for one free AI account — we’ll link the exact page. Copy the long string the site calls an “API key.” Treat it like a password.',
     ),
     minutes: 10,
     proof: L(
@@ -1005,7 +1005,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('Install Hermes Desktop'),
     subtitle: L(
-      'Install on the host you chose in 02. Connect a free model route if you accept cloud data leaving the box.',
+      'Install on the host you chose in 02. If you’re OK with prompts processed on a remote server, enable the free cloud model now. (Switch to local later.)',
     ),
     minutes: 30,
     proof: L(
@@ -1197,7 +1197,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     number: '04',
     part: 1,
     title: L('Soul pack'),
-    subtitle: L('Write identity into Hermes home. Keep project rules in project context files.'),
+    subtitle: L('Giving Your Agent a Personality: tell it who it is and the rules it must follow.'),
     minutes: 25,
     proof: L(
       'You adopted a personality file for this profile; the agent describes itself and its hard limits in that voice. You know personality files live with the app profile — not inside a random project folder.',
@@ -1490,13 +1490,13 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 1,
     title: L('First agency'),
     subtitle: L(
-      'Set the gate, know what it costs, then run something real: tools touch disk, you approve risk, and the result opens without Hermes.',
+      'Your First Real Task: opt out of data brokers, with your permission, and open a receipt on disk.',
     ),
     minutes: 40,
     /** Loop diagram sits under the loop section — not a double stack under the title */
     visualPlacement: 'none',
     proof: L(
-      'Approval mode is Smart or Manual, you ran one real task end to end and made at least one deliberate approve or deny, and you noted which provider and model handled it.',
+      'Approval mode is Smart or Manual, you ran one lane (unbroker-ge or unbroker-eu) through the queue, made at least one deliberate approve or deny, and opened unbroker-receipt.md offline.',
     ),
     sections: [
       {
@@ -1542,28 +1542,66 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
         heading: L('Put your agent to work'),
         blocks: [
           { k: 'p', text: L(
-            'Three things worth running the day your agent starts working. Do **any of them, in any order** — one is enough to prove the loop, and all three are genuinely useful. None need anything from Part II.',
+            'Pick **one** lane. Same job either way: install the skill, consent once, drain the queue, open the receipt. Official Hermes `unbroker` is US people-search — not this mission.',
           ) },
+          { k: 'table', headers: [L('You are'), L('Skill'), L('Law')], rows: [
+            [L('Living in **Geneva / Switzerland**'), L('`unbroker-ge`'), L('nLPD / FADP, French letters')],
+            [L('An **EU or UK** resident'), L('`unbroker-eu`'), L('GDPR Arts. 17 and 21')],
+          ] },
           { k: 'p', text: L(
-            'Whichever you pick, the rule from the section above applies: read the approval prompt once, approve what stays inside the folder you named, deny anything that wanders outside it.',
+            'Read the approval prompt once. Approve official opt-out forms and writes inside the folder you named. Deny deletes, anything that wanders off, and any attempt to attach an identity document.',
           ) },
-          { k: 'p', text: L(
-            '**1 · Clean your digital footprint.** Data brokers republish your name, address and phone. The official `Unbroker` skill scans them and files removals for you, with explicit consent per person.',
+          { k: 'callout', variant: 'warning', text: L(
+            'You only run this on **yourself**. The engine refuses to plan without recorded consent. Not legal advice. This course does **not** connect an email account: the agent submits **web forms** in the browser; anything that is a letter is a `.txt` draft **you** send from your own mailbox. Credit bureaus that demand an ID (CRIF, SCHUFA, Experian…) stay in the digest.',
           ) },
-          { k: 'steps', id: '3-steps', items: [{ title: L('Install it: `hermes skills install official/security/unbroker`') }, { title: L('Register yourself **with consent** — the skill refuses to run without it.') }, { title: L('Run the removal loop until it stops finding actions.') }] },
+          { k: 'code', block: {
+            label: L('Lane A — Switzerland (after this PR is live)'),
+            lang: 'sh',
+            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-ge',
+            note: L('Desktop fallback: copy the `unbroker-ge` folder into this profile’s skills dir, e.g. `%LOCALAPPDATA%\\hermes\\profiles\\<profile>\\skills\\security\\unbroker-ge\\` on Windows. Not `~/.hermes/skills` unless that is actually your install.'),
+          } },
+          { k: 'code', block: {
+            label: L('Lane B — EU / UK resident'),
+            lang: 'sh',
+            code: 'hermes skills install github:DeltaV-cc/website-private/public/courses/open-harness/skills/unbroker-eu',
+            note: L('Same fallback: copy `unbroker-eu` into that profile’s `skills/security/` folder. New session after copy.'),
+          } },
+          { k: 'copycards', items: [
+            { src: '/courses/open-harness/skills/unbroker-ge/SKILL.md', title: 'unbroker-ge', why: 'CH — Robinson, directories, Swiss/EU adtech, nLPD drafts' },
+            { src: '/courses/open-harness/skills/unbroker-eu/SKILL.md', title: 'unbroker-eu', why: 'EU/UK — YourOnlineChoices, Acxiom, Criteo, LiveRamp, Oracle, Google' },
+          ] },
+          { k: 'steps', id: '3-steps', items: [
+            { title: L('Install **one** skill (lane A or B). New session so Hermes loads it.') },
+            { title: L('Paste the matching line below. Give name, address, email, phone when it asks — once.') },
+            { title: L('Let it drain the queue. Approve searches and no-ID **forms**. Deny deletes and ID scans. Do not expect it to send email — copy drafts from `drafts/` into your own inbox.') },
+            { title: L('When it stops, open `unbroker-receipt.md` offline. If the file is missing, the mission failed.') },
+          ] },
+          { k: 'code', block: {
+            label: L('Paste — lane A (Geneva)'),
+            lang: 'text',
+            code: 'Use unbroker-ge. I consent. I live in Geneva.',
+          } },
+          { k: 'code', block: {
+            label: L('Paste — lane B (EU / UK)'),
+            lang: 'text',
+            code: 'Use unbroker-eu. I consent. I live in the EU.',
+          } },
+          { k: 'table', headers: [L('Lane A files'), L('Lane B files')], rows: [
+            [L('Robinson (paper) + YourOnlineChoices (ads)'), L('YourOnlineChoices (ads) — first')],
+            [L('local.ch, Moneyhouse, KünzlerBachmann, Intrum'), L('Acxiom, Criteo, LiveRamp, Oracle Ads')],
+            [L('Poste + Google results + Criteo/Acxiom/LiveRamp'), L('Google results-about-you')],
+            [L('D&B if a person page exists'), L('D&B if found')],
+            [L('CRIF / AZ Direct / Creditreform → digest (ID)'), L('SCHUFA / Experian / CRIF-EU → digest (ID)')],
+          ] },
           { k: 'p', text: L(
-            '**2 · Teach it something long.** A book, a research paper, a technical manual, a standard, an internal spec — anything you would otherwise keep re-reading. Instead of pasting it into chat, `/learn` reads the source and writes itself a skill from it, so the knowledge is still there next session.',
-          ) },
-          { k: 'steps', id: '3b-steps', items: [{ title: L('Point it at a file you own: `/learn ~/papers/the-paper.pdf`') }, { title: L('It also takes a folder, a docs URL, or a workflow you just ran — same command.') }, { title: L('Approve the reads it asks for, and let it finish.') }, { title: L('Ask it a question only that source could answer.') }] },
-          { k: 'p', text: L(
-            '**3 · Point at your screen.** With the HUD you stop describing which window you mean — put the bar over it and say “this”. It is built into Desktop, so there is nothing to install.',
+            'If you still have time after the receipt exists: `/learn` on a file you own, or the Desktop HUD (“this” instead of describing a window). Neither replaces the footprint loop.',
           ) },
           { k: 'tweet', id: '2086130893811277833', author: '@imbabybrooklyn', height: 672,
             href: 'https://x.com/imbabybrooklyn/status/2086130893811277833',
-            caption: L('The HUD in use.'),
+            caption: L('The HUD in use — optional after the receipt exists.'),
           },
           { k: 'callout', variant: 'note', text: L(
-            'Every command above is copied from its official source — the [Unbroker skill page](https://hermes-agent.nousresearch.com/docs/user-guide/skills/optional/security/security-unbroker) and the [Hermes skills docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills). If a label moved, the docs win.',
+            'Skills live with the course: [unbroker-ge](/courses/open-harness/skills/unbroker-ge/SKILL.md) and [unbroker-eu](/courses/open-harness/skills/unbroker-eu/SKILL.md). Official US Unbroker stays optional if you also have a US footprint.',
           ) },
           { k: 'quiz', quiz: {
             question: L('You deny a delete tool call. Next?'),
@@ -1642,7 +1680,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             'You now have: free model path, Desktop, [soul](~soul), one messaging surface, vocabulary for **Think → Act → Observe**, and a file that proves the agent acted. Part II adds memory, vault, skills, security dials, and cron.',
           ) },
           { k: 'checklist', id: '11', items: [
-          L('Mission receipt on disk'),
+          L('unbroker-receipt.md exists and opens offline'),
           L('Approvals not set to full auto-approve'),
           L('Provider + model noted'),
           L('I can explain agent vs chat in one sentence'),
@@ -1912,7 +1950,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Skills'),
     subtitle: L(
-      'On-demand procedural memory — progressive disclosure, and what an idle skill library costs you every session.',
+      'Teaching New Tricks: give your agent abilities it calls on when needed.',
     ),
     minutes: 18,
     proof: L(
@@ -1958,7 +1996,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
             ],
             [
               L('**Official hub** — `hermes skills install official/…`'),
-              L('Maintained skills like `official/security/unbroker`'),
+              L('Maintained hub skills — useful, still read them first'),
               L('High — but still read what it does first'),
             ],
             [
@@ -1990,7 +2028,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
           L('**It survives the budget test** — see the next section. A shelf of unused skills costs tokens in every session.'),
         ] },
           { k: 'callout', variant: 'note', text: L(
-            'The one we do recommend by name is `official/security/unbroker`, which you met in [lesson 06](/forge/course/my-first-ai-agent/06/) — because scrubbing data brokers is a real, repeating job that nobody wants to do by hand.',
+            'The ones we recommend by name are `unbroker-ge` and `unbroker-eu` from [lesson 06](/forge/course/my-first-ai-agent/06/) — pick the lane that matches where you live. Official `unbroker` is the US people-search tool; only add it if you also have a US footprint.',
           ) },
           { k: 'steps', id: '2-steps', items: [{ title: L('Open Skills in Hermes Desktop and read the list you already have.') }, { title: L('Copy the names into a note in your vault, one line each on when you would use it.') }, { title: L('Run or inspect one bundled skill, following the [work-with-skills guide](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills).') }, { title: L('Install at most one new skill — and write down why you needed it.') }] },
           { k: 'links', items: [
@@ -2166,7 +2204,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Cron runbooks'),
     subtitle: L(
-      'Scheduled work as a full runbook. Each fire starts without prior session memory.',
+      'Set it and forget it: a job that runs on schedule, fresh each time.',
     ),
     minutes: 20,
     proof: L(
@@ -2268,7 +2306,7 @@ export const OPEN_HARNESS_MODULES: CourseModule[] = [
     part: 2,
     title: L('Own it forever'),
     subtitle: L(
-      'Backup, update habit, and growth map — without expanding the day-one path.',
+      'Keep it alive: back up, update, and level up — without redoing lesson 1.',
     ),
     minutes: 15,
     proof: L(
