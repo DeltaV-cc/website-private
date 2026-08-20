@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T10:45:21Z",
+  "updated_at": "2026-08-20T11:00:24Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 72.27,
+        "price": 72.45,
         "change_24h": 25.2,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2281.23,
+        "price": 2279.42,
         "change_24h": 18.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.104032,
+        "price": 0.104043,
         "change_24h": 15.4,
         "asset": "crypto"
       },
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.25,
+        "price": 1.24,
         "change_24h": 14.2,
         "asset": "crypto"
       },
@@ -119,28 +119,28 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105375,
+        "price": 0.105355,
         "change_24h": -1.5,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999396,
+        "price": 0.999236,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "USD0",
         "name": "Usual USD",
-        "price": 0.998548,
+        "price": 0.998536,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "GHO",
         "name": "GHO",
-        "price": 0.998554,
+        "price": 0.998559,
         "change_24h": 0.0,
         "asset": "crypto"
       },
