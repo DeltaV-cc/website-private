@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T08:18:49Z",
+  "updated_at": "2026-08-20T08:30:27Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,36 +82,36 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 72.07,
-        "change_24h": 23.1,
+        "price": 71.06,
+        "change_24h": 21.7,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2275.93,
-        "change_24h": 17.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.365697,
-        "change_24h": 14.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "PEPE",
-        "name": "Pepe",
-        "price": 3e-06,
-        "change_24h": 13.8,
+        "price": 2272.1,
+        "change_24h": 18.7,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.102518,
-        "change_24h": 13.7,
+        "price": 0.102746,
+        "change_24h": 14.9,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.3641,
+        "change_24h": 14.4,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "SOL",
+        "name": "Solana",
+        "price": 87.1,
+        "change_24h": 13.2,
         "asset": "crypto"
       }
     ],
@@ -119,35 +119,35 @@
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.058618,
-        "change_24h": -2.4,
+        "price": 0.058584,
+        "change_24h": -2.8,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105173,
-        "change_24h": -2.1,
+        "price": 0.105695,
+        "change_24h": -1.8,
         "asset": "crypto"
       },
       {
-        "symbol": "POL",
-        "name": "POL (ex-MATIC)",
-        "price": 0.082035,
-        "change_24h": -1.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "XMR",
-        "name": "Monero",
-        "price": 413.82,
-        "change_24h": -0.4,
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.21,
+        "change_24h": -0.3,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999442,
+        "price": 0.999465,
+        "change_24h": 0.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "USD0",
+        "name": "Usual USD",
+        "price": 0.998609,
         "change_24h": 0.0,
         "asset": "crypto"
       }
