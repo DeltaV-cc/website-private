@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-20T17:15:26Z",
+  "updated_at": "2026-08-20T17:30:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "MARA",
         "name": "MARA Holdings, Inc.",
-        "price": 10.78,
-        "change_24h": 11.66,
+        "price": 10.84,
+        "change_24h": 12.29,
         "asset": "equity"
       },
       {
         "symbol": "XXI",
         "name": "Twenty One Capital, Inc.",
-        "price": 6.16,
-        "change_24h": 10.99,
+        "price": 6.175,
+        "change_24h": 11.25,
         "asset": "equity"
       },
       {
         "symbol": "TEM",
         "name": "Tempus AI, Inc.",
-        "price": 67.07,
-        "change_24h": 9.51,
+        "price": 67.02,
+        "change_24h": 9.42,
         "asset": "equity"
       },
       {
         "symbol": "ANDG",
         "name": "Andersen Group Inc.",
-        "price": 49.46,
-        "change_24h": 9.86,
+        "price": 49.16,
+        "change_24h": 9.21,
         "asset": "equity"
       },
       {
-        "symbol": "IOVA",
-        "name": "Iovance Biotherapeutics, Inc.",
-        "price": 8.705,
-        "change_24h": 8.95,
+        "symbol": "BTDR",
+        "name": "Bitdeer Technologies Group",
+        "price": 10.46,
+        "change_24h": 8.62,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MRNA",
         "name": "Moderna, Inc.",
-        "price": 129.51,
-        "change_24h": -25.73,
+        "price": 130.13,
+        "change_24h": -25.38,
         "asset": "equity"
       },
       {
         "symbol": "AADX",
         "name": "Applied Aerospace & Defense, In",
-        "price": 15.29,
-        "change_24h": -11.43,
+        "price": 15.31,
+        "change_24h": -11.35,
         "asset": "equity"
       },
       {
         "symbol": "SHAZ",
         "name": "SharonAI Holdings, Inc.",
-        "price": 58.43,
-        "change_24h": -10.73,
-        "asset": "equity"
-      },
-      {
-        "symbol": "EQPT",
-        "name": "EquipmentShare.com Inc",
-        "price": 17.68,
-        "change_24h": -10.16,
+        "price": 58.45,
+        "change_24h": -10.7,
         "asset": "equity"
       },
       {
         "symbol": "KRMN",
         "name": "Karman Holdings Inc.",
-        "price": 52.74,
-        "change_24h": -9.38,
+        "price": 52.59,
+        "change_24h": -9.63,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AVAV",
+        "name": "AeroVironment, Inc.",
+        "price": 156.16,
+        "change_24h": -9.6,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.32,
+        "price": 1.31,
         "change_24h": 22.6,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 74.0,
+        "price": 73.21,
         "change_24h": 19.0,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.82,
+        "price": 2.76,
         "change_24h": 14.4,
         "asset": "crypto"
       },
       {
         "symbol": "FIL",
         "name": "Filecoin",
-        "price": 0.746869,
+        "price": 0.756521,
         "change_24h": 13.9,
         "asset": "crypto"
       },
       {
         "symbol": "DOGE",
         "name": "Dogecoin",
-        "price": 0.083083,
+        "price": 0.082579,
         "change_24h": 13.8,
         "asset": "crypto"
       }
@@ -126,14 +126,14 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.081811,
+        "price": 0.081778,
         "change_24h": -2.0,
         "asset": "crypto"
       },
       {
         "symbol": "XDC",
         "name": "XDC Network",
-        "price": 0.027786,
+        "price": 0.027877,
         "change_24h": -1.8,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "USD0",
         "name": "Usual USD",
-        "price": 0.998711,
+        "price": 0.998726,
         "change_24h": 0.0,
         "asset": "crypto"
       }
