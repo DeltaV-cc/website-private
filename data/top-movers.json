@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T12:45:27Z",
+  "updated_at": "2026-08-20T13:00:28Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.2,
+        "price": 71.58,
         "change_24h": 22.8,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2279.91,
+        "price": 2288.1,
         "change_24h": 19.7,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "XLM",
         "name": "Stellar",
-        "price": 0.182014,
+        "price": 0.182779,
         "change_24h": 15.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.00341,
+        "price": 0.003373,
         "change_24h": 14.8,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105464,
+        "price": 0.105742,
         "change_24h": -2.4,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.082104,
+        "price": 0.082079,
         "change_24h": -1.1,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999317,
+        "price": 0.99934,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "USD0",
         "name": "Usual USD",
-        "price": 0.99861,
+        "price": 0.998591,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "GHO",
         "name": "GHO",
-        "price": 0.998645,
+        "price": 0.99857,
         "change_24h": 0.0,
         "asset": "crypto"
       }
