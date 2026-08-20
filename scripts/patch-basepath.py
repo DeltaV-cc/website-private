@@ -14,7 +14,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _site_config import base_path
 
 OUT_DIR = "out"
-BASE_PATH = base_path() or "/website-private"
+BASE_PATH = base_path()
+
+# Root-domain targets (Cloudflare Pages / deltav.cc) build with an empty
+# basePath and need no rewriting at all. Do NOT fall back to a hard-coded
+# project path here: that silently prefixed every link with /website-private
+# on a root-domain build and broke the whole export.
+if not BASE_PATH:
+    print("basePath is empty (root-domain deploy) — nothing to rewrite.")
+    sys.exit(0)
+
 # bare slug without leading slash (used by some skip checks)
 BASE_SLUG = BASE_PATH.lstrip("/")
 

@@ -1,0 +1,124 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Publishes the root-domain build of main to the Cloudflare Pages project
+# `websitegit`, which serves deltav.cc and www.deltav.cc.
+#
+# This runs ALONGSIDE deploy.yml (GitHub Pages), it does not replace it.
+# The gh-pages branch must keep existing: it is one of the three live data
+# mirrors the IntelHub dashboards fetch at runtime (see DATA_MIRRORS), and
+# the Layer 0 crons push data/*.json there.
+#
+# The two hosts need different path shapes — deltavgit.github.io/website-private
+# needs a basePath prefix, deltav.cc is a root domain — so the build below
+# selects the `cloudflare` target from site.config.json first.
+
+permissions:
+  contents: read
+
+# Never let two deploys race onto the same production domain. No
+# cancel-in-progress: a half-uploaded deployment should finish rather than
+# leave the project mid-upload.
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    name: Lint & typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Version comes from package.json packageManager field
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
+  build-and-deploy:
+    name: Build & deploy to deltav.cc
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Version comes from package.json packageManager field
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Point basePath at the root domain BEFORE building. Rewrites the
+      # tracked site.config.json, which is fine in a throwaway CI checkout —
+      # nothing here is committed back.
+      - name: Select the cloudflare deploy target
+        run: python3 scripts/set-deploy-target.py cloudflare
+
+      # pnpm build runs copy-data + RSS, then next build, then
+      # patch-basepath.py — which no-ops because basePath is now empty.
+      - run: pnpm build
+
+      # CRITICAL: full HTML deploys must NOT roll back intel/market JSON.
+      # Layer 0 crons push fresher data/*.json to gh-pages; main's public/data
+      # is often a stale snapshot. Overlay live gh-pages data onto out/data.
+      - name: Preserve live data/*.json from gh-pages
+        run: python3 scripts/preserve-live-data.py out/data
+
+      # Guard against the failure mode that silently breaks every link and
+      # asset on a root-domain deploy: a stray /website-private path prefix.
+      - name: Assert the export has no basePath prefixes
+        run: |
+          if grep -rq '\(href\|src\)="/website-private' out/; then
+            echo "::error::Found /website-private path prefixes in out/ — the root-domain build is wrong. Refusing to deploy."
+            grep -ro '\(href\|src\)="/website-private[^"]*"' out/ | head -20
+            exit 1
+          fi
+          echo "OK: no basePath prefixes in the export."
+
+      - name: Publish out/ to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          pnpm exec wrangler pages deploy out \
+            --project-name websitegit \
+            --branch main \
+            --commit-dirty=true
+
+      # Cheap smoke test so a broken publish is loud instead of silent.
+      # Pages needs a moment to propagate the new deployment.
+      - name: Smoke-test the live site
+        run: |
+          sleep 45
+          fail=0
+          for path in / /ai/ /web3/ /opsec/ /intelhub/ /forge/ /blog/ /fr/ /data/crypto.json /sitemap.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://deltav.cc${path}")
+            if [ "$code" != "200" ]; then
+              echo "::error::https://deltav.cc${path} returned ${code}"
+              fail=$((fail+1))
+            else
+              echo "200  ${path}"
+            fi
+          done
+          exit $fail

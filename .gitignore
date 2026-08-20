@@ -1,6 +1,8 @@
 node_modules/
 .next/
 out/
+# Local wrangler state (deploy cache, telemetry) — never belongs in the repo
+.wrangler/
 .env
 .env.*
 !.env.example

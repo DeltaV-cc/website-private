@@ -2,5 +2,17 @@
   "basePath": "/website-private",
   "siteUrl": "https://deltavgit.github.io/website-private",
   "repoUrl": "https://github.com/deltaVgit/website-private",
-  "notes": "Single source of truth for GitHub Pages project path. Keep values in sync with production deploy. Prefer importing via lib/site.ts (TS) or scripts/_site_config.py (Python)."
+  "notes": "Single source of truth for deploy paths. The top-level values are the DEFAULT target (GitHub Pages). CI selects a target with `python3 scripts/set-deploy-target.py <name>`, which copies that entry over the top-level values before the build. Prefer importing via lib/site.ts (TS) or scripts/_site_config.py (Python).",
+  "targets": {
+    "ghpages": {
+      "basePath": "/website-private",
+      "siteUrl": "https://deltavgit.github.io/website-private",
+      "notes": "Project page at deltavgit.github.io/website-private — needs the basePath prefix, so the build runs scripts/patch-basepath.py."
+    },
+    "cloudflare": {
+      "basePath": "",
+      "siteUrl": "https://deltav.cc",
+      "notes": "Cloudflare Pages project `websitegit`, serving the apex deltav.cc and www.deltav.cc. Root domain, so basePath is empty and patch-basepath.py is a no-op."
+    }
+  }
 }
