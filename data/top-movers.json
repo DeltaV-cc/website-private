@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-20T18:30:29Z",
+  "updated_at": "2026-08-20T18:45:10Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "MARA",
-        "name": "MARA Holdings, Inc.",
-        "price": 10.91,
-        "change_24h": 13.06,
+        "symbol": "IOVA",
+        "name": "Iovance Biotherapeutics, Inc.",
+        "price": 8.9309,
+        "change_24h": 11.78,
         "asset": "equity"
       },
       {
-        "symbol": "IOVA",
-        "name": "Iovance Biotherapeutics, Inc.",
-        "price": 8.94,
-        "change_24h": 11.89,
+        "symbol": "MARA",
+        "name": "MARA Holdings, Inc.",
+        "price": 10.8,
+        "change_24h": 11.91,
         "asset": "equity"
       },
       {
         "symbol": "XXI",
         "name": "Twenty One Capital, Inc.",
-        "price": 6.115,
-        "change_24h": 10.18,
+        "price": 6.085,
+        "change_24h": 9.64,
         "asset": "equity"
       },
       {
         "symbol": "ANDG",
         "name": "Andersen Group Inc.",
-        "price": 49.38,
-        "change_24h": 9.68,
+        "price": 49.27,
+        "change_24h": 9.44,
         "asset": "equity"
       },
       {
-        "symbol": "CAI",
-        "name": "Caris Life Sciences, Inc.",
-        "price": 24.68,
-        "change_24h": 8.46,
+        "symbol": "TEM",
+        "name": "Tempus AI, Inc.",
+        "price": 66.93,
+        "change_24h": 9.27,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MRNA",
         "name": "Moderna, Inc.",
-        "price": 133.71,
-        "change_24h": -23.32,
+        "price": 134.57,
+        "change_24h": -22.83,
         "asset": "equity"
       },
       {
         "symbol": "SHAZ",
         "name": "SharonAI Holdings, Inc.",
-        "price": 58.42,
-        "change_24h": -10.74,
+        "price": 57.87,
+        "change_24h": -11.59,
         "asset": "equity"
       },
       {
         "symbol": "AADX",
         "name": "Applied Aerospace & Defense, In",
-        "price": 15.35,
-        "change_24h": -11.12,
-        "asset": "equity"
-      },
-      {
-        "symbol": "INIO",
-        "name": "INNIO N.V.",
-        "price": 22.64,
-        "change_24h": -10.23,
+        "price": 15.41,
+        "change_24h": -10.78,
         "asset": "equity"
       },
       {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 12.93,
-        "change_24h": -9.96,
+        "price": 12.89,
+        "change_24h": -10.2,
+        "asset": "equity"
+      },
+      {
+        "symbol": "INIO",
+        "name": "INNIO N.V.",
+        "price": 22.76,
+        "change_24h": -9.75,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.27,
+        "price": 1.25,
         "change_24h": 24.0,
         "asset": "crypto"
       },
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 72.16,
+        "price": 71.98,
         "change_24h": 19.4,
         "asset": "crypto"
       },
       {
         "symbol": "DOGE",
         "name": "Dogecoin",
-        "price": 0.081023,
+        "price": 0.080255,
         "change_24h": 14.2,
         "asset": "crypto"
       },
       {
         "symbol": "CRO",
         "name": "Cronos",
-        "price": 0.053292,
+        "price": 0.053278,
         "change_24h": 13.7,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.511341,
+        "price": 0.513045,
         "change_24h": 13.3,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.17,
+        "price": 1.18,
         "change_24h": -5.8,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.081697,
+        "price": 0.081679,
         "change_24h": -2.0,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.399262,
+        "price": 0.402044,
         "change_24h": -1.9,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 418.7,
+        "price": 417.21,
         "change_24h": -0.1,
         "asset": "crypto"
       }
