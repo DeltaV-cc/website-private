@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-20T14:45:31Z",
+  "updated_at": "2026-08-20T16:18:30Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
-        "symbol": "LB",
-        "name": "LandBridge Company LLC",
-        "price": 90.16,
-        "change_24h": 9.68,
+        "symbol": "TEM",
+        "name": "Tempus AI, Inc.",
+        "price": 68.1,
+        "change_24h": 11.18,
         "asset": "equity"
       },
       {
-        "symbol": "BTDR",
-        "name": "Bitdeer Technologies Group",
-        "price": 10.53,
-        "change_24h": 9.35,
+        "symbol": "XXI",
+        "name": "Twenty One Capital, Inc.",
+        "price": 6.1,
+        "change_24h": 9.91,
         "asset": "equity"
       },
       {
         "symbol": "MARA",
         "name": "MARA Holdings, Inc.",
-        "price": 10.48,
-        "change_24h": 8.6,
+        "price": 10.56,
+        "change_24h": 9.42,
         "asset": "equity"
       },
       {
-        "symbol": "TEM",
-        "name": "Tempus AI, Inc.",
-        "price": 66.55,
-        "change_24h": 8.65,
+        "symbol": "ANDG",
+        "name": "Andersen Group Inc.",
+        "price": 49.0,
+        "change_24h": 8.84,
         "asset": "equity"
       },
       {
         "symbol": "DE",
         "name": "Deere & Company",
-        "price": 622.33,
-        "change_24h": 7.18,
+        "price": 628.96,
+        "change_24h": 8.32,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MRNA",
         "name": "Moderna, Inc.",
-        "price": 139.77,
-        "change_24h": -19.88,
+        "price": 139.43,
+        "change_24h": -20.04,
         "asset": "equity"
       },
       {
-        "symbol": "KC",
-        "name": "Kingsoft Cloud Holdings Limited",
-        "price": 11.07,
-        "change_24h": -10.47,
+        "symbol": "SHAZ",
+        "name": "SharonAI Holdings, Inc.",
+        "price": 57.99,
+        "change_24h": -11.4,
+        "asset": "equity"
+      },
+      {
+        "symbol": "AADX",
+        "name": "Applied Aerospace & Defense, In",
+        "price": 15.6,
+        "change_24h": -9.67,
+        "asset": "equity"
+      },
+      {
+        "symbol": "COAG",
+        "name": "Hemab Therapeutics Holdings, In",
+        "price": 46.92,
+        "change_24h": -9.18,
         "asset": "equity"
       },
       {
         "symbol": "WMT",
         "name": "Walmart Inc.",
-        "price": 104.05,
-        "change_24h": -8.97,
-        "asset": "equity"
-      },
-      {
-        "symbol": "UPST",
-        "name": "Upstart Holdings, Inc.",
-        "price": 28.07,
-        "change_24h": -8.25,
-        "asset": "equity"
-      },
-      {
-        "symbol": "MWH",
-        "name": "SOLV Energy, Inc.",
-        "price": 27.62,
-        "change_24h": -7.85,
+        "price": 103.83,
+        "change_24h": -9.16,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.7,
-        "change_24h": 21.2,
+        "price": 73.05,
+        "change_24h": 22.5,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.24,
-        "change_24h": 20.7,
+        "price": 1.26,
+        "change_24h": 22.0,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2276.36,
-        "change_24h": 17.7,
+        "price": 2320.28,
+        "change_24h": 18.1,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.103055,
-        "change_24h": 15.8,
+        "symbol": "ARB",
+        "name": "Arbitrum",
+        "price": 0.089285,
+        "change_24h": 14.7,
         "asset": "crypto"
       },
       {
-        "symbol": "XLM",
-        "name": "Stellar",
-        "price": 0.181538,
-        "change_24h": 15.4,
+        "symbol": "MNT",
+        "name": "Mantle",
+        "price": 0.506514,
+        "change_24h": 13.0,
         "asset": "crypto"
       }
     ],
@@ -119,35 +119,35 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.081999,
-        "change_24h": -2.0,
+        "price": 0.081922,
+        "change_24h": -1.8,
         "asset": "crypto"
       },
       {
-        "symbol": "JST",
-        "name": "JUST",
-        "price": 0.105902,
-        "change_24h": -1.2,
+        "symbol": "XDC",
+        "name": "XDC Network",
+        "price": 0.027752,
+        "change_24h": -1.5,
         "asset": "crypto"
       },
       {
-        "symbol": "POL",
-        "name": "POL (ex-MATIC)",
-        "price": 0.081498,
-        "change_24h": -0.4,
+        "symbol": "USD0",
+        "name": "Usual USD",
+        "price": 0.99875,
+        "change_24h": 0.0,
         "asset": "crypto"
       },
       {
-        "symbol": "GT",
-        "name": "Gate",
-        "price": 6.81,
-        "change_24h": -0.1,
+        "symbol": "YLDS",
+        "name": "YLDS",
+        "price": 0.999932,
+        "change_24h": 0.0,
         "asset": "crypto"
       },
       {
-        "symbol": "USX",
-        "name": "USX",
-        "price": 0.999505,
+        "symbol": "GHO",
+        "name": "GHO",
+        "price": 0.998498,
         "change_24h": 0.0,
         "asset": "crypto"
       }
