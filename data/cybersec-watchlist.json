@@ -1,43 +1,99 @@
 [
   {
-    "title": "Microsoft says August Windows updates may cause gaming issues",
-    "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-august-windows-updates-may-cause-gaming-issues-reboots/",
-    "source": "BleepingComputer",
-    "summary": "Microsoft is investigating a potential issue with the August 2026 updates that may prevent some games from launching or cause them to crash on affected Windows 11 systems. [...]",
-    "added": "2026-08-20T06:51:03+00:00",
-    "expires": "2026-09-03T08:04:58Z"
+    "title": "Pakistan's Transparent Tribe Refreshes Toolset for Afghan Cyberattacks",
+    "url": "https://www.darkreading.com/cyberattacks-data-breaches/pakistan-transparent-tribe-afghan-cyberattacks",
+    "source": "Dark Reading",
+    "summary": "A nation-state threat actor is picking on immature organizations run by the Taliban, but failing against more prepared government agencies in India.",
+    "added": "2026-08-20T14:59:22+00:00",
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
-    "title": "Elementor Pro Flaw Could Let Unauthenticated Attackers Upload PHP and Execute Code",
-    "url": "https://thehackernews.com/2026/08/elementor-pro-flaw-could-let.html",
+    "title": "Critical Elementor Pro bug exposes WordPress sites to RCE attacks",
+    "url": "https://www.bleepingcomputer.com/news/security/critical-elementor-pro-bug-exposes-wordpress-sites-to-rce-attacks/",
+    "source": "BleepingComputer",
+    "summary": "A critical vulnerability in the Elementor Pro WordPress plugin could allow attackers to upload executable files for remote code execution on the server. [...]",
+    "added": "2026-08-20T14:39:48+00:00",
+    "expires": "2026-09-03T16:20:03Z"
+  },
+  {
+    "title": "New Cryptographic Context Injection Attack Could Let Web Pages Steal Grok Chat Data",
+    "url": "https://thehackernews.com/2026/08/new-cryptographic-context-injection.html",
     "source": "The Hacker News",
-    "summary": "Cybersecurity researchers have disclosed details of a critical flaw in the Elementor Pro WordPress plugin that, if successfully exploited, could lead to remote code execution. The vulnerability, tracked as CVE-2026-32475",
-    "added": "2026-08-20T06:04:34+00:00",
-    "expires": "2026-09-03T08:04:59Z"
+    "summary": "Adversa AI has disclosed an attack technique that it says can cause xAI's Grok chatbot to send a user's name, approximate location, subscription tier, and the prompts from the ongoing conversation to an attacker-controll",
+    "added": "2026-08-20T14:36:27+00:00",
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
-    "title": "OpenAI confirms ChatGPT is down as logins and signups fail",
-    "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-as-logins-and-signups-fail/",
+    "title": "How MSPs can catch phishing attacks email filters miss",
+    "url": "https://www.bleepingcomputer.com/news/security/how-msps-can-catch-phishing-attacks-email-filters-miss/",
     "source": "BleepingComputer",
-    "summary": "ChatGPT is experiencing a major outage, and users are unable to sign in, create accounts, or load chats, including previous conversations. [...]",
-    "added": "2026-08-20T00:20:55+00:00",
-    "expires": "2026-09-03T08:04:58Z"
+    "summary": "AI is making phishing attacks more personalized, convincing, and difficult for traditional email filters to detect. Kaseya explains how MSPs can monitor identity, email, and endpoint activity to detect and contain attack",
+    "added": "2026-08-20T14:01:11+00:00",
+    "expires": "2026-09-03T16:20:03Z"
   },
   {
-    "title": "Rogue ransomware affiliate poses as recovery firm to steal payments",
-    "url": "https://www.bleepingcomputer.com/news/security/rogue-ransomware-affiliate-ransom-busters-poses-as-recovery-firm/",
-    "source": "BleepingComputer",
-    "summary": "A suspected ransomware affiliate is posing as a ransomware recovery service called \"Ransom Busters,\" contacting the victims before the attacks become public and claiming to be able to provide decryption keys and delete s",
-    "added": "2026-08-19T20:59:58+00:00",
-    "expires": "2026-09-03T08:04:58Z"
+    "title": "Isolated-vm Flaw Lets Sandboxed JavaScript Escape to Host for Potential RCE",
+    "url": "https://thehackernews.com/2026/08/isolated-vm-flaw-lets-sandboxed.html",
+    "source": "The Hacker News",
+    "summary": "Cybersecurity researchers have disclosed a critical security flaw in isolated-vm, a popular open-source sandbox with more than 2,900 stars and 190 forks on GitHub, that could allow attackers to escape the confines of the",
+    "added": "2026-08-20T13:48:24+00:00",
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
-    "title": "Sakura Internet hack exposes data of up to 1.36 million accounts",
-    "url": "https://www.bleepingcomputer.com/news/security/sakura-internet-hack-exposes-data-of-up-to-136-million-accounts/",
+    "title": "Critical NetScaler Flaw Can Bypass Authentication on Certain Gateway and AAA Servers",
+    "url": "https://thehackernews.com/2026/08/critical-netscaler-flaw-can-bypass.html",
+    "source": "The Hacker News",
+    "summary": "Citrix has released updates to address two security flaws impacting NetScaler ADC and NetScaler Gateway deployments, including a critical-severity authentication bypass vulnerability. According to the cloud computing and",
+    "added": "2026-08-20T13:35:13+00:00",
+    "expires": "2026-09-03T16:20:05Z"
+  },
+  {
+    "title": "'Grandoreiro' Malware Resurfaces With Mexico Campaign",
+    "url": "https://www.darkreading.com/cyberattacks-data-breaches/grandoreiro-resurfaces-mexico-campaign",
+    "source": "Dark Reading",
+    "summary": "The banking Trojan, post-law enforcement takedown, is sprucing itself up with features that make detection and analysis harder.",
+    "added": "2026-08-20T13:30:00+00:00",
+    "expires": "2026-09-03T16:20:05Z"
+  },
+  {
+    "title": "Attackers Exploit Zimbra SNMP Flaw for Unauthenticated Remote Code Execution",
+    "url": "https://thehackernews.com/2026/08/attackers-exploit-zimbra-snmp-flaw-for.html",
+    "source": "The Hacker News",
+    "summary": "A now-patched security flaw impacting Zimbra Collaboration (ZCS) has come under active exploitation in the wild, according to the Polish Computer Emergency Response Team (CERT Polska). The vulnerability in question is CV",
+    "added": "2026-08-20T13:24:28+00:00",
+    "expires": "2026-09-03T16:20:05Z"
+  },
+  {
+    "title": "Citrix urges admins to patch new NetScaler flaws as soon as possible",
+    "url": "https://www.bleepingcomputer.com/news/security/citrix-urges-admins-to-patch-new-netscaler-flaws-as-soon-as-possible/",
     "source": "BleepingComputer",
-    "summary": "Japanese cloud and data center service provider Sakura Internet disclosed that hackers accessed its sales management system, where customer contract and membership information is stored. [...]",
-    "added": "2026-08-19T20:53:38+00:00",
-    "expires": "2026-09-03T08:04:58Z"
+    "summary": "Citrix has warned customers to immediately secure their systems against two vulnerabilities affecting NetScaler Gateway secure remote access solutions and NetScaler ADC networking appliances. [...]",
+    "added": "2026-08-20T12:14:38+00:00",
+    "expires": "2026-09-03T16:20:03Z"
+  },
+  {
+    "title": "Zombie Card Attack Can Revive Expired Visa Cards for Contactless Payments",
+    "url": "https://thehackernews.com/2026/08/zombie-card-attack-can-revive-expired.html",
+    "source": "The Hacker News",
+    "summary": "Researchers at the University of Massachusetts Amherst have demonstrated an attack that revives expired Visa contactless credit cards for real in-store purchases by rewriting the expiration date a point-of-sale (POS) ter",
+    "added": "2026-08-20T12:01:24+00:00",
+    "expires": "2026-09-03T16:20:05Z"
+  },
+  {
+    "title": "CISA warns of hackers exploiting critical MLflow vulnerability",
+    "url": "https://www.bleepingcomputer.com/news/security/cisa-warns-of-hackers-exploiting-critical-mlflow-vulnerability/",
+    "source": "BleepingComputer",
+    "summary": "The Cybersecurity and Infrastructure Security Agency (CISA) warned federal agencies that threat actors are now exploiting a critical vulnerability in the MLflow open-source AI engineering platform. [...]",
+    "added": "2026-08-20T11:06:14+00:00",
+    "expires": "2026-09-03T16:20:03Z"
+  },
+  {
+    "title": "New Manic Android malware can exfiltrate data through nearby devices",
+    "url": "https://www.bleepingcomputer.com/news/security/new-manic-android-malware-can-exfiltrate-data-through-nearby-devices/",
+    "source": "BleepingComputer",
+    "summary": "A new Android malware named Manic targeting users in multiple European countries has a fallback data exfiltration mechanism that uses nearby infected devices. [...]",
+    "added": "2026-08-20T10:02:02+00:00",
+    "expires": "2026-09-03T16:20:03Z"
   },
   {
     "title": "No-Filter 'Kriminal' AI Platform Raises Cybercrime Concerns",
@@ -45,47 +101,23 @@
     "source": "Dark Reading",
     "summary": "The AI company officially forbids illicit use, while offering guardrail-free social engineering, offensive cybercrime, and OSINT scanning to anyone with a bit of cryptocurrency.",
     "added": "2026-08-19T20:32:09+00:00",
-    "expires": "2026-09-03T08:04:59Z"
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
-    "title": "Healthtech firm CareCloud data breach impacts 3.7 million patients",
-    "url": "https://www.bleepingcomputer.com/news/security/healthtech-firm-carecloud-data-breach-impacts-37-million-patients/",
-    "source": "BleepingComputer",
-    "summary": "U.S. healthcare IT company CareCloud disclosed that the data breach incident it suffered earlier this year has impacted more than 3.7 million individuals. [...]",
-    "added": "2026-08-19T20:07:12+00:00",
-    "expires": "2026-09-03T08:04:58Z"
-  },
-  {
-    "title": "Cloudflare Workers Spectre Attack Leaks JWT From Co-Located Worker at 12 Bits/Second",
-    "url": "https://thehackernews.com/2026/08/cloudflare-workers-spectre-attack-leaks.html",
-    "source": "The Hacker News",
-    "summary": "Cybersecurity researchers have disclosed details of a remote Spectre attack against Cloudflare Workers that leaked a JSON Web Token (JWT) from a co-located Worker in the production environment at up to 12 bits per second",
-    "added": "2026-08-19T19:02:40+00:00",
-    "expires": "2026-09-03T08:04:59Z"
-  },
-  {
-    "title": "OpenAI Pauses Frontier RL Training as It Tightens Defenses Against Unsafe AI Behavior",
-    "url": "https://thehackernews.com/2026/08/openai-pauses-frontier-rl-training-as.html",
-    "source": "The Hacker News",
-    "summary": "OpenAI on Tuesday revealed that it paused reinforcement learning (RL) training for its latest artificial intelligence (AI) models for two weeks while it shored up additional defenses and increased the scope of its monito",
-    "added": "2026-08-19T18:06:44+00:00",
-    "expires": "2026-09-03T08:04:59Z"
+    "title": "Agentic AI Presents New Insider Threat Model for Orgs",
+    "url": "https://www.darkreading.com/cyberattacks-data-breaches/agentic-ai-new-insider-threat-model",
+    "source": "Dark Reading",
+    "summary": "Katie Moussouris of Luta Security talks with the Dark Reading News Desk about how enterprises will now need to monitor risks posed by their own agents in the wake of the recent Hugging Face attack.",
+    "added": "2026-08-19T19:54:43+00:00",
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
     "title": "SilkParasite Threatens Central Asian Orgs With Flurry of RATs",
     "url": "https://www.darkreading.com/threat-intelligence/silkparasite-central-asian-orgs-flurry-rats",
     "source": "Dark Reading",
-    "summary": "A spear-phishing campaign by a Chinese-nexus group linked to FamousSparrow provides insight into geopolitical, technical, and strategic global moves by China's APTs.",
+    "summary": "A spear-phishing campaign by a China-nexus group linked to FamousSparrow provides insight into geopolitical, technical, and strategic global moves by the country's APTs.",
     "added": "2026-08-19T16:58:23+00:00",
-    "expires": "2026-09-03T08:04:59Z"
-  },
-  {
-    "title": "SilkParasite Espionage Campaign Targets Central Asian Governments with Five New RATs",
-    "url": "https://thehackernews.com/2026/08/silkparasite-espionage-campaign-targets.html",
-    "source": "The Hacker News",
-    "summary": "A previously unreported cyber espionage operation dubbed SilkParasite has been observed targeting government bodies in Central Asia. The intrusion set makes use of seven remote access tool (RAT) families, five of which h",
-    "added": "2026-08-19T13:12:17+00:00",
-    "expires": "2026-09-03T08:04:59Z"
+    "expires": "2026-09-03T16:20:05Z"
   },
   {
     "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
@@ -93,38 +125,6 @@
     "source": "CISA Advisories",
     "summary": "CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2026-64849 MLflow Server-Side Request Forgery Vulnerability This type of vulnerabi",
     "added": "2026-08-19T12:00:00+00:00",
-    "expires": "2026-09-03T08:05:06Z"
-  },
-  {
-    "title": "Defending Against an Active Threat to Siemens S7 Series PLCs",
-    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-231a",
-    "source": "CISA Advisories",
-    "summary": "Executive summary Note: This advisory relates to an active threat to Siemens S7 Series programmable logic controllers (PLCs). However, ongoing PLC targeting activity is broader than Siemens PLCs. All PLC owners and opera",
-    "added": "2026-08-19T12:00:00+00:00",
-    "expires": "2026-09-03T08:05:06Z"
-  },
-  {
-    "title": "Hackers Compromised 14,500+ Dahua Devices Using Credential Attacks, Auth Bypasses, and P2P",
-    "url": "https://thehackernews.com/2026/08/hackers-compromised-14500-dahua-devices.html",
-    "source": "The Hacker News",
-    "summary": "Cybersecurity researchers at Hunt.io have disclosed details of a campaign that they say compromised more than 14,530 Dahua devices between June 17 and July 22, 2026, using credential attacks, two authentication-bypass fl",
-    "added": "2026-08-19T11:34:28+00:00",
-    "expires": "2026-09-03T08:04:59Z"
-  },
-  {
-    "title": "China-Linked Hacker Shows AI Capabilities in APAC Attack",
-    "url": "https://www.darkreading.com/cyberattacks-data-breaches/china-linked-hacker-ai-capabilities-apac-attack",
-    "source": "Dark Reading",
-    "summary": "In the first purported \"near-autonomous\" attack on a nation-state, a Chinese-language operator used a complex AI framework to target and compromise government agencies, likely in Taiwan.",
-    "added": "2026-08-19T01:00:00+00:00",
-    "expires": "2026-09-03T08:04:59Z"
-  },
-  {
-    "title": "Critical GitLab Zero-Click Flaw Poses Mitigation Challenges",
-    "url": "https://www.darkreading.com/application-security/critical-gitlab-zero-click-flaw-mitigation-challenges",
-    "source": "Dark Reading",
-    "summary": "A lack of technical details could make it hard for organizations running self-managed GitLab versions to detect potential exploitation of CVE-2026-19478.",
-    "added": "2026-08-18T21:25:58+00:00",
-    "expires": "2026-09-03T08:04:59Z"
+    "expires": "2026-09-03T16:20:05Z"
   }
 ]
