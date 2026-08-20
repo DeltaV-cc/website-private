@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T08:30:27Z",
+  "updated_at": "2026-08-20T10:02:42Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,72 +82,72 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.06,
-        "change_24h": 21.7,
+        "price": 73.0,
+        "change_24h": 25.2,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2272.1,
-        "change_24h": 18.7,
+        "price": 2275.5,
+        "change_24h": 18.5,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.102746,
-        "change_24h": 14.9,
+        "price": 0.103442,
+        "change_24h": 15.4,
         "asset": "crypto"
       },
       {
-        "symbol": "WLD",
-        "name": "Worldcoin",
-        "price": 0.3641,
-        "change_24h": 14.4,
+        "symbol": "M",
+        "name": "MemeCore",
+        "price": 1.25,
+        "change_24h": 14.2,
         "asset": "crypto"
       },
       {
-        "symbol": "SOL",
-        "name": "Solana",
-        "price": 87.1,
-        "change_24h": 13.2,
+        "symbol": "XRP",
+        "name": "XRP",
+        "price": 1.15,
+        "change_24h": 14.1,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.058584,
-        "change_24h": -2.8,
-        "asset": "crypto"
-      },
-      {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105695,
-        "change_24h": -1.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.21,
-        "change_24h": -0.3,
+        "price": 0.105595,
+        "change_24h": -1.5,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999465,
+        "price": 0.999407,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "USD0",
         "name": "Usual USD",
-        "price": 0.998609,
+        "price": 0.998543,
+        "change_24h": 0.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "GHO",
+        "name": "GHO",
+        "price": 0.998588,
+        "change_24h": 0.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "JAAA",
+        "name": "Janus Henderson Anemoy AAA CLO Fund",
+        "price": 1.046,
         "change_24h": 0.0,
         "asset": "crypto"
       }
