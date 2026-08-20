@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T12:15:26Z",
+  "updated_at": "2026-08-20T12:30:26Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.51,
+        "price": 71.32,
         "change_24h": 22.8,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2275.97,
+        "price": 2278.36,
         "change_24h": 19.7,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.18,
+        "price": 1.19,
         "change_24h": 17.9,
         "asset": "crypto"
       },
       {
         "symbol": "XLM",
         "name": "Stellar",
-        "price": 0.179762,
+        "price": 0.181319,
         "change_24h": 15.2,
         "asset": "crypto"
       },
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.003424,
+        "price": 0.003441,
         "change_24h": 14.8,
         "asset": "crypto"
       }
@@ -119,35 +119,35 @@
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105059,
+        "price": 0.105005,
         "change_24h": -2.4,
         "asset": "crypto"
       },
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.081975,
+        "price": 0.082238,
         "change_24h": -1.1,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999419,
+        "price": 0.999287,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "USD0",
         "name": "Usual USD",
-        "price": 0.998606,
+        "price": 0.998581,
         "change_24h": 0.0,
         "asset": "crypto"
       },
       {
         "symbol": "GHO",
         "name": "GHO",
-        "price": 0.998655,
+        "price": 0.99863,
         "change_24h": 0.0,
         "asset": "crypto"
       }
