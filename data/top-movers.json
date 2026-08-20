@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-20T14:30:18Z",
+  "updated_at": "2026-08-20T14:32:22Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "LB",
         "name": "LandBridge Company LLC",
-        "price": 90.33,
-        "change_24h": 9.88,
+        "price": 90.35,
+        "change_24h": 9.91,
         "asset": "equity"
       },
       {
         "symbol": "MARA",
         "name": "MARA Holdings, Inc.",
-        "price": 10.45,
-        "change_24h": 8.29,
+        "price": 10.46,
+        "change_24h": 8.34,
         "asset": "equity"
       },
       {
         "symbol": "BTDR",
         "name": "Bitdeer Technologies Group",
-        "price": 10.45,
-        "change_24h": 8.46,
+        "price": 10.39,
+        "change_24h": 7.94,
         "asset": "equity"
       },
       {
         "symbol": "AUPH",
         "name": "Aurinia Pharmaceuticals Inc",
-        "price": 17.45,
-        "change_24h": 7.95,
+        "price": 17.42,
+        "change_24h": 7.73,
         "asset": "equity"
       },
       {
-        "symbol": "DE",
-        "name": "Deere & Company",
-        "price": 622.41,
-        "change_24h": 7.2,
+        "symbol": "LIF",
+        "name": "Life360, Inc.",
+        "price": 45.86,
+        "change_24h": 6.18,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "MRNA",
         "name": "Moderna, Inc.",
-        "price": 144.3,
-        "change_24h": -17.25,
+        "price": 141.22,
+        "change_24h": -19.02,
         "asset": "equity"
       },
       {
         "symbol": "KC",
         "name": "Kingsoft Cloud Holdings Limited",
-        "price": 11.12,
-        "change_24h": -10.14,
+        "price": 11.09,
+        "change_24h": -10.38,
         "asset": "equity"
       },
       {
         "symbol": "WMT",
         "name": "Walmart Inc.",
-        "price": 103.71,
-        "change_24h": -9.27,
-        "asset": "equity"
-      },
-      {
-        "symbol": "UPST",
-        "name": "Upstart Holdings, Inc.",
-        "price": 28.12,
-        "change_24h": -8.12,
+        "price": 103.8,
+        "change_24h": -9.19,
         "asset": "equity"
       },
       {
         "symbol": "MWH",
         "name": "SOLV Energy, Inc.",
-        "price": 27.61,
-        "change_24h": -7.86,
+        "price": 27.57,
+        "change_24h": -8.02,
+        "asset": "equity"
+      },
+      {
+        "symbol": "UPST",
+        "name": "Upstart Holdings, Inc.",
+        "price": 28.11,
+        "change_24h": -8.15,
         "asset": "equity"
       }
     ]
@@ -82,7 +82,7 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 72.18,
+        "price": 72.21,
         "change_24h": 21.2,
         "asset": "crypto"
       },
@@ -96,21 +96,21 @@
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2275.94,
+        "price": 2273.74,
         "change_24h": 17.7,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.10299,
+        "price": 0.103002,
         "change_24h": 15.8,
         "asset": "crypto"
       },
       {
         "symbol": "XLM",
         "name": "Stellar",
-        "price": 0.182071,
+        "price": 0.182112,
         "change_24h": 15.4,
         "asset": "crypto"
       }
@@ -119,21 +119,21 @@
       {
         "symbol": "BDX",
         "name": "Beldex",
-        "price": 0.081957,
+        "price": 0.081803,
         "change_24h": -2.0,
         "asset": "crypto"
       },
       {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.105289,
+        "price": 0.10532,
         "change_24h": -1.2,
         "asset": "crypto"
       },
       {
         "symbol": "POL",
         "name": "POL (ex-MATIC)",
-        "price": 0.081675,
+        "price": 0.081819,
         "change_24h": -0.4,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999445,
+        "price": 0.999627,
         "change_24h": 0.0,
         "asset": "crypto"
       }
