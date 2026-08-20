@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T23:08:08Z",
+  "updated_at": "2026-08-20T08:00:39Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,72 +82,72 @@
       {
         "symbol": "HYPE",
         "name": "Hyperliquid",
-        "price": 71.07,
-        "change_24h": 20.3,
+        "price": 71.93,
+        "change_24h": 23.7,
         "asset": "crypto"
       },
       {
         "symbol": "ETH",
         "name": "Ethereum",
-        "price": 2247.06,
-        "change_24h": 17.6,
+        "price": 2248.46,
+        "change_24h": 18.5,
         "asset": "crypto"
       },
       {
-        "symbol": "ENA",
-        "name": "Ethena",
-        "price": 0.094511,
-        "change_24h": 13.4,
+        "symbol": "WLD",
+        "name": "Worldcoin",
+        "price": 0.360756,
+        "change_24h": 13.7,
         "asset": "crypto"
       },
       {
         "symbol": "PEPE",
         "name": "Pepe",
         "price": 3e-06,
-        "change_24h": 12.0,
+        "change_24h": 13.3,
         "asset": "crypto"
       },
       {
-        "symbol": "LINK",
-        "name": "Chainlink",
-        "price": 10.57,
-        "change_24h": 11.2,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.101867,
+        "change_24h": 12.6,
         "asset": "crypto"
       }
     ],
     "losers": [
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.403049,
-        "change_24h": -2.9,
-        "asset": "crypto"
-      },
-      {
         "symbol": "JST",
         "name": "JUST",
-        "price": 0.104227,
-        "change_24h": -2.6,
+        "price": 0.105211,
+        "change_24h": -1.4,
         "asset": "crypto"
       },
       {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.3,
-        "change_24h": -2.0,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "USDF",
-        "name": "Falcon USD",
-        "price": 0.995487,
-        "change_24h": -0.1,
+        "symbol": "POL",
+        "name": "POL (ex-MATIC)",
+        "price": 0.081135,
+        "change_24h": -0.6,
         "asset": "crypto"
       },
       {
         "symbol": "USX",
         "name": "USX",
-        "price": 0.999711,
+        "price": 0.999459,
+        "change_24h": 0.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "USD0",
+        "name": "Usual USD",
+        "price": 0.998577,
+        "change_24h": 0.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "GHO",
+        "name": "GHO",
+        "price": 0.998815,
         "change_24h": 0.0,
         "asset": "crypto"
       }
