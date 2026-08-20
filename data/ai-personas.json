@@ -1,204 +1,154 @@
 {
-  "updated": "2026-08-20T14:30:38Z",
+  "updated": "2026-08-20T16:19:12Z",
   "items": [
     {
-      "title": "HAHAHAHAHAHA non technical people are so incredibly cooked they are burnt thru can u imagine covering ai with zero context, zero reasoning, zero internal world model. it must be so delightfully joyful, everything is so amazing, face value is all you need, what a time to be alive",
-      "url": "https://x.com/swyx/status/2090314794456785263",
-      "source": "X: @swyx",
-      "handle": "swyx",
-      "lane": "agents",
-      "published_at": "2026-08-20T05:47:37+00:00",
-      "summary": "HAHAHAHAHAHA non technical people are so incredibly cooked they are burnt thru can u imagine covering ai with zero context, zero reasoning, zero internal world model. it must be so delightfully joyful, everything is so amazing, face value i",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @swyx: positive UBB take if you view openrouter in that lens",
-      "url": "https://x.com/swyx/status/2090259930662211615",
-      "source": "X: @swyx",
-      "handle": "swyx",
-      "lane": "agents",
-      "published_at": "2026-08-20T02:09:37+00:00",
-      "summary": "positive UBB take if you view openrouter in that lens Cristina Cordova (@cjc) Stripe has confirmed the singularity is here. And naturally, it will be usage-based billing. —",
-      "tag": "ai"
-    },
-    {
-      "title": "Nice case study on using optimized functions whenever possible (except for educational purposes, though 😆)",
-      "url": "https://x.com/rasbt/status/2090254955676414087",
-      "source": "X: @rasbt",
-      "handle": "rasbt",
+      "title": "R to @emollick: The Industrial Revolution worked out really well in the end, but along the way there was horrible disruption. It is an important reason why we need good policy and support to navigate the job changes brought by AI, no matter what they turn out to be over time.",
+      "url": "https://x.com/emollick/status/2090297553002672404",
+      "source": "X: @emollick",
+      "handle": "emollick",
       "lane": "nerds",
-      "published_at": "2026-08-20T01:49:51+00:00",
-      "summary": "Nice case study on using optimized functions whenever possible (except for educational purposes, though 😆) Giles Thomas (@gpjt) By switching from a hand-rolled GELU to PyTorch's built-in one, I improved my LLM training speed -- and much mor",
+      "published_at": "2026-08-20T04:39:07+00:00",
+      "summary": "The Industrial Revolution worked out really well in the end, but along the way there was horrible disruption. It is an important reason why we need good policy and support to navigate the job changes brought by AI, no matter what they turn ",
       "tag": "ai"
     },
     {
-      "title": "we support business privacy! https://openai.com/index/offering-zero-data-retention-for-frontier-models/",
-      "url": "https://x.com/sama/status/2090163991234453611",
-      "source": "X: @sama",
-      "handle": "sama",
-      "lane": "frontier",
-      "published_at": "2026-08-19T19:48:23+00:00",
-      "summary": "we support business privacy! openai.com/index/offering-ze… Link Offering Zero Data Retention for frontier models OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety w",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ylecun: 5 million fewer people enrolled. Premiums more than doubled for millions. Republicans didn’t “reform” anything. They just pulled the ladder up and called it freedom. This wasn’t an accident. It was the plan. The November VOTE BLUE to #RestoreACATaxCredits",
-      "url": "https://x.com/mjfree/status/2090131681147535370",
-      "source": "X: @ylecun",
-      "handle": "ylecun",
-      "lane": "frontier",
-      "published_at": "2026-08-19T17:40:00+00:00",
-      "summary": "5 million fewer people enrolled. Premiums more than doubled for millions. Republicans didn’t “reform” anything. They just pulled the ladder up and called it freedom. This wasn’t an accident. It was the plan. The November VOTE BLUE to #Resto",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ylecun: Remember, this is the technology that RFK and Trump are trying to kill.",
-      "url": "https://x.com/Noahpinion/status/2090089738413973848",
-      "source": "X: @ylecun",
-      "handle": "ylecun",
-      "lane": "frontier",
-      "published_at": "2026-08-19T14:53:20+00:00",
-      "summary": "Remember, this is the technology that RFK and Trump are trying to kill. The Kobeissi Letter (@KobeissiLetter) BREAKING: Moderna stock, $MRNA , surges over +110% after announcing the first ever positive Phase 3 results for a personalized can",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ylecun: Last year at this time, Health and Human Services Secretary Kennedy terminated 22 mRNA research contracts worth $500 million. Same cost as Trump’s gifted Qatari plane. Today, Merck and Moderna announced that an experimental breakthrough vaccine treatment — develope",
-      "url": "https://x.com/RahmEmanuel/status/2090089629844136426",
-      "source": "X: @ylecun",
-      "handle": "ylecun",
-      "lane": "frontier",
-      "published_at": "2026-08-19T14:52:54+00:00",
-      "summary": "Last year at this time, Health and Human Services Secretary Kennedy terminated 22 mRNA research contracts worth $500 million. Same cost as Trump’s gifted Qatari plane. Today, Merck and Moderna announced that an experimental breakthrough vac",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @sama: Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone.",
-      "url": "https://x.com/Replit/status/2090076648276185555",
-      "source": "X: @sama",
-      "handle": "sama",
-      "lane": "frontier",
-      "published_at": "2026-08-19T14:01:19+00:00",
-      "summary": "Replit Free Mode, powered by @OpenAI GPT-5.6 Luna. Let’s make intelligence accessible to everyone. Video",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @huggingface: Hello world",
-      "url": "https://x.com/llama_cpp/status/2090055766266745165",
-      "source": "X: @huggingface",
-      "handle": "huggingface",
-      "lane": "frontier",
-      "published_at": "2026-08-19T12:38:20+00:00",
-      "summary": "Hello world",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @huggingface: Today we made HiPHI public: 617.5 hours of high-precision human motion and object interaction — one of the largest datasets of its kind ever released. Free for research. Policies trained on it run on a real Unitree G1. https://huggingface.co/datasets/noitomrob",
-      "url": "https://x.com/noitomrobotics/status/2089927180277129384",
-      "source": "X: @huggingface",
-      "handle": "huggingface",
-      "lane": "frontier",
-      "published_at": "2026-08-19T04:07:23+00:00",
-      "summary": "Today we made HiPHI public: 617.5 hours of high-precision human motion and object interaction — one of the largest datasets of its kind ever released. Free for research. Policies trained on it run on a real Unitree G1. huggingface.co/datase",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @swyx: Model routing is having a moment thanks to the $7B Stripe acquisition of OpenRouter. But it's also increasingly important in enterprises. We talk to @glean CEO @jainarvind about why model routing helps control AI costs for organizations. https://www.latent.space/p/gl",
-      "url": "https://x.com/latentspacepod/status/2089834053637661095",
-      "source": "X: @swyx",
-      "handle": "swyx",
-      "lane": "agents",
-      "published_at": "2026-08-18T21:57:20+00:00",
-      "summary": "Model routing is having a moment thanks to the $7B Stripe acquisition of OpenRouter. But it's also increasingly important in enterprises. We talk to @glean CEO @jainarvind about why model routing helps control AI costs for organizations. la",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ylecun: Trump's tariffs and disastrous war of choice with Iran yielded inflationary pressure which has pushed borrowing costs to the highest level since 2007. Trump doesn't care because he is paid off by his Emirati investors, but others don't have that luxury. https://tri",
-      "url": "https://x.com/KenRoth/status/2089830669102796976",
-      "source": "X: @ylecun",
-      "handle": "ylecun",
-      "lane": "frontier",
-      "published_at": "2026-08-18T21:43:53+00:00",
-      "summary": "Trump's tariffs and disastrous war of choice with Iran yielded inflationary pressure which has pushed borrowing costs to the highest level since 2007. Trump doesn't care because he is paid off by his Emirati investors, but others don't have",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @sama: (We still expect to ship great new models soon; this impacts further-out releases.)",
-      "url": "https://x.com/sama/status/2089805495783813196",
-      "source": "X: @sama",
-      "handle": "sama",
-      "lane": "frontier",
-      "published_at": "2026-08-18T20:03:51+00:00",
-      "summary": "(We still expect to ship great new models soon; this impacts further-out releases.)",
-      "tag": "ai"
-    },
-    {
-      "title": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we would take action if we felt that model ",
-      "url": "https://x.com/sama/status/2089787807611195475",
-      "source": "X: @sama",
-      "handle": "sama",
-      "lane": "frontier",
-      "published_at": "2026-08-18T18:53:34+00:00",
-      "summary": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we ",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @huggingface: Sentence Transformers v6 has been released, and it is centered around Multi-Vector Embedding Models, what does that mean? Usually, when you build a semantic search or RAG-based system, you've probably used the @OpenAI embedding API or similar, as it allows to ",
-      "url": "https://x.com/NielsRogge/status/2089739711296201162",
-      "source": "X: @huggingface",
-      "handle": "huggingface",
-      "lane": "frontier",
-      "published_at": "2026-08-18T15:42:27+00:00",
-      "summary": "Sentence Transformers v6 has been released, and it is centered around Multi-Vector Embedding Models, what does that mean? Usually, when you build a semantic search or RAG-based system, you've probably used the @OpenAI embedding API or simil",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @huggingface: 🚨I've just released Sentence Transformers v6.0! MultiVectorEncoder joins the family: ColBERT-style late interaction models are now a first-class model type, for training, inference & interpretation, alongside dense, sparse & reranker models. Big thread 🧵",
-      "url": "https://x.com/tomaarsen/status/2089714037781143733",
-      "source": "X: @huggingface",
-      "handle": "huggingface",
-      "lane": "frontier",
-      "published_at": "2026-08-18T14:00:26+00:00",
-      "summary": "🚨I've just released Sentence Transformers v6.0! MultiVectorEncoder joins the family: ColBERT-style late interaction models are now a first-class model type, for training, inference & interpretation, alongside dense, sparse & reranker models",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @rasbt: Clarification here. Somewhere in the comments, I agreed that one might have to rerun the LLM for checking for watermarks. That's not correct. I am not 100% which exact technique they use, but they mentioned that they base their method on the SynthID-Text method from ",
-      "url": "https://x.com/rasbt/status/2089527404138033497",
-      "source": "X: @rasbt",
-      "handle": "rasbt",
+      "title": "R to @emollick: You probably want to replace the default writing and design skills that many harnesses have with something that suits your context and tastes.",
+      "url": "https://x.com/emollick/status/2090295625275367628",
+      "source": "X: @emollick",
+      "handle": "emollick",
       "lane": "nerds",
-      "published_at": "2026-08-18T01:38:49+00:00",
-      "summary": "Clarification here. Somewhere in the comments, I agreed that one might have to rerun the LLM for checking for watermarks. That's not correct. I am not 100% which exact technique they use, but they mentioned that they base their method on th",
+      "published_at": "2026-08-20T04:31:27+00:00",
+      "summary": "You probably want to replace the default writing and design skills that many harnesses have with something that suits your context and tastes.",
       "tag": "ai"
     },
     {
-      "title": "5 years later and most of the best players here have been bought",
-      "url": "https://x.com/swyx/status/2089221797254459822",
-      "source": "X: @swyx",
-      "handle": "swyx",
-      "lane": "agents",
-      "published_at": "2026-08-17T05:24:26+00:00",
-      "summary": "5 years later and most of the best players here have been bought swyx (@swyx) 🆕 Blog: Why Isn't Usage Based Billing A Bigger Category? dev.to/swyx/why-isn-t-usage-… Link Why Isn't Usage Based Billing A Bigger Category? Usage billing is the ",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @rasbt: I am curious, when will they start doing sth like that for code?",
-      "url": "https://x.com/rasbt/status/2088655931856888268",
-      "source": "X: @rasbt",
-      "handle": "rasbt",
+      "title": "Claude's skill creator (literally, just ask it to make a skill) is still the best way to make reusable skills if you care about the details. ChatGPT tends to want to do magic & just do it for you, while Claude does tests and shows results, repeatedly asking for input & feedback.",
+      "url": "https://x.com/emollick/status/2090293321142874168",
+      "source": "X: @emollick",
+      "handle": "emollick",
       "lane": "nerds",
-      "published_at": "2026-08-15T15:55:54+00:00",
-      "summary": "I am curious, when will they start doing sth like that for code?",
+      "published_at": "2026-08-20T04:22:18+00:00",
+      "summary": "Claude's skill creator (literally, just ask it to make a skill) is still the best way to make reusable skills if you care about the details. ChatGPT tends to want to do magic & just do it for you, while Claude does tests and shows results, ",
       "tag": "ai"
     },
     {
-      "title": "A short illustration of how the Claude's watermarking is supposed to work (based on my read of their released materials). In general, when we are generating tokens, there can be multiple high-scoring tokens at certain next-word positions. Usually, we sample with top-k or top-p sa",
-      "url": "https://x.com/rasbt/status/2088631263737364818",
-      "source": "X: @rasbt",
-      "handle": "rasbt",
+      "title": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI",
+      "url": "https://x.com/Alibaba_Qwen/status/2090289279037821023",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-20T04:06:14+00:00",
+      "summary": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI Unsloth AI (@UnslothAI) We’re releasing new Qwen3.8-27B GGUFs with 10% higher accurac",
+      "tag": "ai"
+    },
+    {
+      "title": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode",
+      "url": "https://x.com/Alibaba_Qwen/status/2090286602153295885",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-20T03:55:36+00:00",
+      "summary": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode Kilo (acq. by Anaconda) (@kilocode) Qwen3.8-Max landed #4 on Arena's Frontend Code leaderboard — one spot above Claude Fable 5. We ran both on the same 10 UI design",
+      "tag": "ai"
+    },
+    {
+      "title": "Technology's effect on jobs changes over time In the First Industrial Revolution, handweaving had a \"Golden Age\" for 20 years because early machines made cheap yarn, which drove up demand for weavers. Then the powerloom came along, and handweavers became the vanguard for Luddism",
+      "url": "https://x.com/emollick/status/2090259024939798658",
+      "source": "X: @emollick",
+      "handle": "emollick",
       "lane": "nerds",
-      "published_at": "2026-08-15T14:17:52+00:00",
-      "summary": "A short illustration of how the Claude's watermarking is supposed to work (based on my read of their released materials). In general, when we are generating tokens, there can be multiple high-scoring tokens at certain next-word positions. U",
+      "published_at": "2026-08-20T02:06:01+00:00",
+      "summary": "Technology's effect on jobs changes over time In the First Industrial Revolution, handweaving had a \"Golden Age\" for 20 years because early machines made cheap yarn, which drove up demand for weavers. Then the powerloom came along, and hand",
+      "tag": "ai"
+    },
+    {
+      "title": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻",
+      "url": "https://x.com/Alibaba_Qwen/status/2089922175507865795",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:47:30+00:00",
+      "summary": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻 Vals AI (@ValsAI) On @harvey 's Leg",
+      "tag": "ai"
+    },
+    {
+      "title": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline",
+      "url": "https://x.com/Alibaba_Qwen/status/2089919106522976337",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:35:18+00:00",
+      "summary": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline Cline (@cline) Qwen3.8-27B is now the #1 local model in Cline after just 4 days. This ends a *4 month* streak by the previous winner Qwen2.5-Coder-7",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @AnthropicAI: We're also publishing a technical report: https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf And open-sourcing our prompts and data here: https://huggingface.co/datasets/Anthropic/claude-protein-binder-design/tree/main",
+      "url": "https://x.com/AnthropicAI/status/2089842395722678689",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:29+00:00",
+      "summary": "We're also publishing a technical report: www-cdn.anthropic.com/30bf50… And open-sourcing our prompts and data here: huggingface.co/datasets/Anth…",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @AnthropicAI: For more on how Claude ran this experiment and the full results, see our blog: https://www.anthropic.com/research/Claude-accelerates-protein-design",
+      "url": "https://x.com/AnthropicAI/status/2089842394527301881",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:28+00:00",
+      "summary": "For more on how Claude ran this experiment and the full results, see our blog: anthropic.com/research/Claud… Link How Claude is accelerating protein design and analytical chemistry In this post, we share two results that show how Claude can",
+      "tag": "ai"
+    },
+    {
+      "title": "Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's meant weeks or months of expert work per t",
+      "url": "https://x.com/AnthropicAI/status/2089842387845804246",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-18T22:30:27+00:00",
+      "summary": "Many drugs work by binding to a specific target in the body and blocking or changing what it does. An important first step in the drug development process is designing a molecule that can bind tightly to its target. Traditionally, that's me",
+      "tag": "ai"
+    },
+    {
+      "title": "We’ve written an FAQ to answer some of the questions we've received about watermarking. In summary: • We’re implementing watermarking to comply with the EU AI Act. Other major model developers have signed the same Code of Practice and will also be implementing watermarking; • Our",
+      "url": "https://x.com/AnthropicAI/status/2088343978873966687",
+      "source": "X: @AnthropicAI",
+      "handle": "AnthropicAI",
+      "lane": "frontier",
+      "published_at": "2026-08-14T19:16:18+00:00",
+      "summary": "We’ve written an FAQ to answer some of the questions we've received about watermarking. In summary: • We’re implementing watermarking to comply with the EU AI Act. Other major model developers have signed the same Code of Practice and will ",
+      "tag": "ai"
+    },
+    {
+      "title": "New: A map of the most important skills in AI Engineering.",
+      "url": "https://x.com/AndrewYNg/status/2088302050706686198",
+      "source": "X: @AndrewYNg",
+      "handle": "AndrewYNg",
+      "lane": "frontier",
+      "published_at": "2026-08-14T16:29:42+00:00",
+      "summary": "New: A map of the most important skills in AI Engineering. Article The AI Engineering Skills Map I am delighted to present The AI Engineering Skills Map. AI allows us to build software very differently today than in 2022, and everyone with ",
+      "tag": "ai"
+    },
+    {
+      "title": "Thank you Mark, Alex and the whole Meta team for your contributions to open weight AI.",
+      "url": "https://x.com/AndrewYNg/status/2086845515665166398",
+      "source": "X: @AndrewYNg",
+      "handle": "AndrewYNg",
+      "lane": "frontier",
+      "published_at": "2026-08-10T16:01:57+00:00",
+      "summary": "Thank you Mark, Alex and the whole Meta team for your contributions to open weight AI. Mark Zuckerberg (@finkd) Today we're also opening the weights for Muse Glimmer, a great 30B parameter dense model that can run locally. Soon we'll also r",
+      "tag": "ai"
+    },
+    {
+      "title": "Congratulations @JeffDean, @Sanjay_Ghemawat, @OriolVinyalsML and @quocleix! Knowing you guys, this will be amazing. Cheering you on and wishing you well on your important work!",
+      "url": "https://x.com/AndrewYNg/status/2085056542341271840",
+      "source": "X: @AndrewYNg",
+      "handle": "AndrewYNg",
+      "lane": "frontier",
+      "published_at": "2026-08-05T17:33:12+00:00",
+      "summary": "Congratulations @JeffDean , @Sanjay_Ghemawat , @OriolVinyalsML and @quocleix ! Knowing you guys, this will be amazing. Cheering you on and wishing you well on your important work! Jeff Dean (@JeffDean) Announcing Discovery Loop! I am very e",
       "tag": "ai"
     },
     {
@@ -219,6 +169,16 @@
       "lane": "frontier",
       "published_at": "2026-08-02T03:00:09+00:00",
       "summary": "We're starting to leave the territory where you'd test an LLM by e.g. \"create an svg of pelican on a bicycle\". As one idea to generalize it, I was interested what Opus 5 would do if I gave it the first paragraph of the Lord of the Rings, a ",
+      "tag": "ai"
+    },
+    {
+      "title": "Fifteen years ago, @Coursera and online courses changed education. It worked better than almost anyone expected, expanding access by opening up where you can learn. But how you learn remains largely the same as it has for centuries: it is still one-size-fits-all, taught the same ",
+      "url": "https://x.com/AndrewYNg/status/2082199333920027009",
+      "source": "X: @AndrewYNg",
+      "handle": "AndrewYNg",
+      "lane": "frontier",
+      "published_at": "2026-07-28T20:19:41+00:00",
+      "summary": "Fifteen years ago, @Coursera and online courses changed education. It worked better than almost anyone expected, expanding access by opening up where you can learn. But how you learn remains largely the same as it has for centuries: it is s",
       "tag": "ai"
     },
     {
