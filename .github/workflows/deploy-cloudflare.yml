@@ -96,6 +96,14 @@ jobs:
           fi
           echo "OK: no basePath prefixes in the export."
 
+      # wrangler 4.x refuses to run on Node < 22, but the build above stays on
+      # Node 20 so it matches the GitHub Pages build exactly. Switch versions
+      # for the publish step only — wrangler is plain JS resolved out of
+      # node_modules, so it does not need reinstalling under the new version.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Publish out/ to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
