@@ -1,6 +1,14 @@
 {
   "picks": [
     {
+      "title": "CISA warns of hackers exploiting critical MLflow vulnerability",
+      "source": "BleepingComputer",
+      "category": "macro",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-warns-of-hackers-exploiting-critical-mlflow-vulnerability/",
+      "published_at": "Thu, 20 Aug 2026 07:06:14 -0400",
+      "score": 300.0
+    },
+    {
       "title": "SilkParasite Threatens Central Asian Orgs With Flurry of RATs",
       "source": "Dark Reading",
       "category": "macro",
@@ -15,15 +23,7 @@
       "url": "https://www.coindesk.com/tech/2026/08/20/live-updates-bitcoin-etfs-draw-usd517-million-ether-pulls-usd189-million-in-biggest-inflows-in-months",
       "published_at": "Thu, 20 Aug 2026 06:21:17 +0000",
       "score": 180.0
-    },
-    {
-      "title": "Trump Says AI Could Be 'Bigger Than the Internet' as He Pushes Light-Touch Regulation",
-      "source": "Decrypt",
-      "category": "macro",
-      "url": "https://decrypt.co/376026/trump-ai-bigger-than-internet-light-touch-regulation",
-      "published_at": "Wed, 19 Aug 2026 21:36:50 +0000",
-      "score": 120.0
     }
   ],
-  "updatedAt": "2026-08-20T11:08:17.402411+00:00"
+  "updatedAt": "2026-08-20T11:23:18.443809+00:00"
 }
