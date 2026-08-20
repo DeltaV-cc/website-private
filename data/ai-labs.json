@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20T08:04:31Z",
+  "updated": "2026-08-20T16:19:53Z",
   "items": [
     {
       "title": "Position: Collusion Risks Among AI Reasoning Agents Justify Certification Requirements for Making Market Decisions",
@@ -82,6 +82,14 @@
       "tag": "ai"
     },
     {
+      "title": "How ChatGPT Work helps Stampli move ideas to market",
+      "url": "https://openai.com/index/stampli",
+      "source": "OpenAI",
+      "published_at": "2026-08-20T00:00:00+00:00",
+      "summary": "With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.",
+      "tag": "ai"
+    },
+    {
       "title": "smolmachines / smolvm as a sandbox for untrusted Python & JavaScript",
       "url": "https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/",
       "source": "Simon Willison",
@@ -151,14 +159,6 @@
       "source": "OpenAI",
       "published_at": "2026-08-18T22:00:00+00:00",
       "summary": "ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.",
-      "tag": "ai"
-    },
-    {
-      "title": "Strengthening democratic oversight in national security",
-      "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
-      "source": "OpenAI",
-      "published_at": "2026-08-18T19:00:00+00:00",
-      "summary": "OpenAI launches an initiative to strengthen democratic oversight of AI in national security, supporting government institutions with tools, training, and expertise.",
       "tag": "ai"
     },
     {
