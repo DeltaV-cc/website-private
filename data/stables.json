@@ -1,68 +1,68 @@
 {
-  "updated_at": "2026-08-20T14:03:47Z",
+  "updated_at": "2026-08-20T16:18:43Z",
   "source": "https://stablecoins.llama.fi/stablecoins",
   "stablecoins": [
     {
       "name": "Tether",
       "symbol": "USDT",
-      "circulating": 182957449832.30038
+      "circulating": 182969371334.40445
     },
     {
       "name": "USD Coin",
       "symbol": "USDC",
-      "circulating": 72442117431.76292
+      "circulating": 72542522890.8863
     },
     {
       "name": "Sky Dollar",
       "symbol": "USDS",
-      "circulating": 6697191484.532771
+      "circulating": 6699956583.177005
     },
     {
       "name": "Dai",
       "symbol": "DAI",
-      "circulating": 4743183790.148298
+      "circulating": 4753709894.903507
     },
     {
       "name": "Ethena USDe",
       "symbol": "USDe",
-      "circulating": 4079759915.964685
+      "circulating": 4079123782.567407
     },
     {
       "name": "World Liberty Financial USD",
       "symbol": "USD1",
-      "circulating": 4006204246.795809
+      "circulating": 4006337657.930045
     },
     {
       "name": "Global Dollar",
       "symbol": "USDG",
-      "circulating": 3398957776.612421
+      "circulating": 3398918466.3158636
     },
     {
       "name": "Circle USYC",
       "symbol": "USYC",
-      "circulating": 2923126636.361113
+      "circulating": 2923155211.2851133
     },
     {
       "name": "PayPal USD",
       "symbol": "PYUSD",
-      "circulating": 2758923118.248438
+      "circulating": 2759244145.148754
     },
     {
       "name": "BlackRock USD",
       "symbol": "BUIDL",
-      "circulating": 2736146308.1504493
+      "circulating": 2736405451.500449
     },
     {
       "name": "Ondo US Dollar Yield",
       "symbol": "USDY",
-      "circulating": 2151680480.047039
+      "circulating": 2145184781.935538
     },
     {
       "name": "Ripple USD",
       "symbol": "RLUSD",
-      "circulating": 1837538447.7462447
+      "circulating": 1825515970.480426
     }
   ],
   "stablecoinChains": [],
-  "total_circulating": 290732279468.67053
+  "total_circulating": 290839446170.5348
 }
