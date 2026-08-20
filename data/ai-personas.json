@@ -1,6 +1,127 @@
 {
-  "updated": "2026-08-20T08:33:09Z",
-  "items": [],
+  "updated": "2026-08-20T11:00:52Z",
+  "items": [
+    {
+      "title": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI",
+      "url": "https://x.com/Alibaba_Qwen/status/2090289279037821023",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-20T04:06:14+00:00",
+      "summary": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI Unsloth AI (@UnslothAI) We’re releasing new Qwen3.8-27B GGUFs with 10% higher accurac",
+      "tag": "ai"
+    },
+    {
+      "title": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode",
+      "url": "https://x.com/Alibaba_Qwen/status/2090286602153295885",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-20T03:55:36+00:00",
+      "summary": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode Kilo (acq. by Anaconda) (@kilocode) Qwen3.8-Max landed #4 on Arena's Frontend Code leaderboard — one spot above Claude Fable 5. We ran both on the same 10 UI design",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @fchollet: The Singularity evidently started during the pandemic, in 2020",
+      "url": "https://x.com/fchollet/status/2090196539792904215",
+      "source": "X: @fchollet",
+      "handle": "fchollet",
+      "lane": "frontier",
+      "published_at": "2026-08-19T21:57:43+00:00",
+      "summary": "The Singularity evidently started during the pandemic, in 2020",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @HamelHusain: sat down and actually read @rosmine's research paper on this. https://deftwriting.com/research/distribution-fine-tuning first of all, i was guilty of having a \"take\" based on this post, pointing out how the copy in the screenshot is not a great example of what",
+      "url": "https://x.com/kmelve/status/2090188123997360578",
+      "source": "X: @HamelHusain",
+      "handle": "HamelHusain",
+      "lane": "agents",
+      "published_at": "2026-08-19T21:24:17+00:00",
+      "summary": "sat down and actually read @rosmine 's research paper on this. deftwriting.com/research/dis… first of all, i was guilty of having a \"take\" based on this post, pointing out how the copy in the screenshot is not a great example of what \"good ",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @fchollet: \"The Singularity is here\" -- if I, a mere human, can make sense of what happens this afternoon, then by definition no, the Singularity is not here.",
+      "url": "https://x.com/fchollet/status/2090179890184388901",
+      "source": "X: @fchollet",
+      "handle": "fchollet",
+      "lane": "frontier",
+      "published_at": "2026-08-19T20:51:34+00:00",
+      "summary": "\"The Singularity is here\" -- if I, a mere human, can make sense of what happens this afternoon, then by definition no, the Singularity is not here.",
+      "tag": "ai"
+    },
+    {
+      "title": "R to @fchollet: This is a bit like redefining \"the Apocalypse\" as \"Fall this year was rainier than usual\"",
+      "url": "https://x.com/fchollet/status/2090178026416021759",
+      "source": "X: @fchollet",
+      "handle": "fchollet",
+      "lane": "frontier",
+      "published_at": "2026-08-19T20:44:09+00:00",
+      "summary": "This is a bit like redefining \"the Apocalypse\" as \"Fall this year was rainier than usual\"",
+      "tag": "ai"
+    },
+    {
+      "title": "Incredible watering down -- the Singularity is now redefined to mean \"the rate of new firm creation has increased somewhat\" Vernor Vinge described the Singularity as an event horizon past which everything (e.g. what happens tomorrow) becomes entirely unimaginable and unpredictabl",
+      "url": "https://x.com/fchollet/status/2090177471962591625",
+      "source": "X: @fchollet",
+      "handle": "fchollet",
+      "lane": "frontier",
+      "published_at": "2026-08-19T20:41:57+00:00",
+      "summary": "Incredible watering down -- the Singularity is now redefined to mean \"the rate of new firm creation has increased somewhat\" Vernor Vinge described the Singularity as an event horizon past which everything (e.g. what happens tomorrow) become",
+      "tag": "ai"
+    },
+    {
+      "title": "Work with John! Super talented guy, excellent ML researcher and overall smart person. He's gonna get scooped up really fast.",
+      "url": "https://x.com/HamelHusain/status/2090093778950668547",
+      "source": "X: @HamelHusain",
+      "handle": "HamelHusain",
+      "lane": "agents",
+      "published_at": "2026-08-19T15:09:23+00:00",
+      "summary": "Work with John! Super talented guy, excellent ML researcher and overall smart person. He's gonna get scooped up really fast. Jonathan Whitaker (@johnowhitaker) I've officially left answer.ai I've had a good rest, with plenty of time for tra",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @HamelHusain: I've officially left https://answer.ai I've had a good rest, with plenty of time for travel & tinkering, and now I'm thinking about what to do next. I've got a few ideas to share soon, but I'm also open to suggestions - feel free to reach out :)",
+      "url": "https://x.com/johnowhitaker/status/2090055843354190073",
+      "source": "X: @HamelHusain",
+      "handle": "HamelHusain",
+      "lane": "agents",
+      "published_at": "2026-08-19T12:38:39+00:00",
+      "summary": "I've officially left answer.ai I've had a good rest, with plenty of time for travel & tinkering, and now I'm thinking about what to do next. I've got a few ideas to share soon, but I'm also open to suggestions - feel free to reach out :)",
+      "tag": "ai"
+    },
+    {
+      "title": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻",
+      "url": "https://x.com/Alibaba_Qwen/status/2089922175507865795",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:47:30+00:00",
+      "summary": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻 Vals AI (@ValsAI) On @harvey 's Leg",
+      "tag": "ai"
+    },
+    {
+      "title": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline",
+      "url": "https://x.com/Alibaba_Qwen/status/2089919106522976337",
+      "source": "X: @Alibaba_Qwen",
+      "handle": "Alibaba_Qwen",
+      "lane": "frontier",
+      "published_at": "2026-08-19T03:35:18+00:00",
+      "summary": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline Cline (@cline) Qwen3.8-27B is now the #1 local model in Cline after just 4 days. This ends a *4 month* streak by the previous winner Qwen2.5-Coder-7",
+      "tag": "ai"
+    },
+    {
+      "title": "RT by @HamelHusain: if you contribute to NumPy, pandas, pytest, Pydantic, Requests, Django, Git, OpenSSL, rustls, Serde, DuckDB, SQLite, Kafka, Postgres, JAX, Triton, Tokenizers, TypeScript, or Go and want to try Codex, let me know! reply with your GitHub profile and I’ll reach o",
+      "url": "https://x.com/jxnlco/status/2089793401864765744",
+      "source": "X: @HamelHusain",
+      "handle": "HamelHusain",
+      "lane": "agents",
+      "published_at": "2026-08-18T19:15:48+00:00",
+      "summary": "if you contribute to NumPy, pandas, pytest, Pydantic, Requests, Django, Git, OpenSSL, rustls, Serde, DuckDB, SQLite, Kafka, Postgres, JAX, Triton, Tokenizers, TypeScript, or Go and want to try Codex, let me know! reply with your GitHub prof",
+      "tag": "ai"
+    }
+  ],
   "handles": [
     "sama",
     "karpathy",
