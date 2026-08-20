@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T21:12:20Z",
+  "updatedAt": "2026-08-20T08:05:06Z",
   "kev": [
     {
       "cve": "CVE-2026-64849",
@@ -130,81 +130,88 @@
   ],
   "cves": [
     {
-      "id": "CVE-2026-15038",
+      "id": "CVE-2026-16299",
       "severity": "CRITICAL",
       "score": 9.8,
-      "description": "The InfiniteWP Client WordPress plugin before 1.13.6 does not properly verify the site-connection state and the authenticity of requests to its remote-management endpoint on WordPress Multisite installations, allowing un",
-      "published": "2026-08-09T06:17:16.393"
+      "description": "The Single Sign On For TNG WordPress plugin before 2.2.0 does not properly validate a password reset request, allowing unauthenticated attackers to reset the password of arbitrary users, including administrators, which c",
+      "published": "2026-08-10T07:16:48.163"
     },
     {
-      "id": "CVE-2026-71993",
+      "id": "CVE-2026-16298",
       "severity": "CRITICAL",
       "score": 9.8,
-      "description": "MSI Radix AXE6600 router firmware version v781521 contains a command injection vulnerability in the openvpn function that allows remote attackers to execute arbitrary commands on the affected device. Attackers can exploi",
-      "published": "2026-08-09T00:16:48.550"
+      "description": "The FoodBoxBooker WordPress plugin before 1.0.7 does not properly validate the password reset request, allowing unauthenticated attackers to reset the password of arbitrary users, including administrators, which could le",
+      "published": "2026-08-10T07:16:48.050"
     },
     {
-      "id": "CVE-2026-18473",
-      "severity": "CRITICAL",
-      "score": 9.1,
-      "description": "The WP Directory Kit WordPress plugin before 1.5.5 does not properly sanitise and escape a parameter before using it in a SQL statement, leading to a SQL injection exploitable by unauthenticated users.",
-      "published": "2026-08-09T06:19:05.773"
-    },
-    {
-      "id": "CVE-2026-17044",
+      "id": "CVE-2026-16985",
       "severity": "HIGH",
-      "score": 8.6,
-      "description": "The Iptanus File Upload WordPress plugin before 5.1.8 does not properly sanitise and escape a parameter before using it in a SQL statement, leading to an SQL injection exploitable by unauthenticated users.",
-      "published": "2026-08-09T06:18:22.520"
+      "score": 8.8,
+      "description": "The Squeeze WordPress plugin before 1.7.12 does not validate the file type or extension of the per-size image data written by one of its attachment-update actions, allowing users with the upload_files capability (Author ",
+      "published": "2026-08-10T07:16:48.380"
     },
     {
-      "id": "CVE-2026-17017",
+      "id": "CVE-2026-14293",
+      "severity": "HIGH",
+      "score": 8.8,
+      "description": "The Autopay WordPress plugin before 5.0.1 does not perform any capability or nonce check before saving a styling option from a public request, and does not escape that value when it is later output on the checkout page, ",
+      "published": "2026-08-10T07:16:47.160"
+    },
+    {
+      "id": "CVE-2026-13133",
+      "severity": "HIGH",
+      "score": 8.4,
+      "description": "A vulnerability has been identified in LineInst.exe (LINE for Windows) prior to version 26.4.0, where Msftedit.dll is loaded via a relative path without a secure DLL search path, allowing a malicious DLL placed in the in",
+      "published": "2026-08-10T07:16:46.173"
+    },
+    {
+      "id": "CVE-2026-16257",
+      "severity": "HIGH",
+      "score": 8.2,
+      "description": "The Arvow AI SEO Writer WordPress plugin before 1.5.4 does not properly restrict access to one of its REST endpoints, whose only access control can be bypassed by unauthenticated users through type juggling when the Arvo",
+      "published": "2026-08-10T07:16:47.933"
+    },
+    {
+      "id": "CVE-2026-13600",
       "severity": "HIGH",
       "score": 8.1,
-      "description": "The CubeWP Framework WordPress plugin before 1.1.31 does not properly sanitize and escape a parameter before using it in a SQL statement through an AJAX action, and does not include a capability check on that action, all",
-      "published": "2026-08-09T06:18:17.940"
+      "description": "The AutoNetTV Relay WordPress plugin before 3.0.14 does not perform any capability or authentication check before setting a WordPress administrator authentication cookie during its scheduled content-synchronization task.",
+      "published": "2026-08-10T07:16:46.473"
     },
     {
-      "id": "CVE-2026-18464",
+      "id": "CVE-2026-19381",
       "severity": "HIGH",
-      "score": 7.5,
-      "description": "The WP MAPS PRO WordPress plugin before 6.1.3 does not perform a capability check in one of its AJAX actions, which is also available to unauthenticated users, and does not restrict the operation it dispatches, allowing ",
-      "published": "2026-08-09T06:18:34.450"
+      "score": 7.8,
+      "description": "A security flaw has been discovered in Kingston FURY CTRL RGB Control Software 2.0.65.0. The impacted element is an unknown function in the library NTIOLib_KSFX.sys of the component Driver. Performing a manipulation resu",
+      "published": "2026-08-10T01:16:48.367"
     },
     {
-      "id": "CVE-2026-18357",
+      "id": "CVE-2026-19387",
       "severity": "HIGH",
-      "score": 7.5,
-      "description": "The WPC Order Tip for WooCommerce WordPress plugin before 3.3.1 does not perform authorisation or nonce checks in one of its reporting features, allowing unauthenticated attackers to retrieve sensitive order data belongi",
-      "published": "2026-08-09T06:18:34.330"
+      "score": 7.6,
+      "description": "A heap out-of-bounds write vulnerability was found in the GStreamer gst-plugins-bad adpcmdec element when decoding IMA/DVI ADPCM audio. Insufficient validation of the per-block sample count for multi-channel streams allo",
+      "published": "2026-08-10T03:16:40.223"
     },
     {
-      "id": "CVE-2026-18032",
+      "id": "CVE-2026-14206",
       "severity": "HIGH",
       "score": 7.5,
-      "description": "The WP Data Access WordPress plugin before 5.5.79 does not validate the column names it accepts on one of its unauthenticated AJAX actions, and the nonce guarding that action does not cover them, allowing unauthenticated",
-      "published": "2026-08-09T06:18:22.640"
+      "description": "The HT Contact Form WordPress plugin before 2.9.3 does not perform any authorization check on the endpoint that returns a saved form draft, allowing unauthenticated users to read the personal data (name, email, phone, ad",
+      "published": "2026-08-10T07:16:46.710"
     },
     {
-      "id": "CVE-2026-16988",
+      "id": "CVE-2026-19384",
       "severity": "HIGH",
-      "score": 7.5,
-      "description": "The GeoDirectory WordPress plugin before 2.8.169 does not perform any authorization check when returning map marker data for a single requested listing, allowing unauthenticated users to disclose the title and exact geog",
-      "published": "2026-08-09T06:17:55.887"
+      "score": 7.3,
+      "description": "A weakness has been identified in SourceCodester Simple Doctors Appointment System 1.0. The affected element is an unknown function of the file /admin/ajax.php?action=set_appointment. This manipulation of the argument ID",
+      "published": "2026-08-10T03:16:40.050"
     },
     {
-      "id": "CVE-2026-10595",
+      "id": "CVE-2026-19379",
       "severity": "HIGH",
-      "score": 7.5,
-      "description": "A path traversal vulnerability exists in parisneo/lollms version 2.1.0, specifically in the SPA catch-all route implemented in `backend/routers/ui.py`. The vulnerability arises from the improper handling of user-controll",
-      "published": "2026-08-09T04:17:29.400"
-    },
-    {
-      "id": "CVE-2026-17510",
-      "severity": "HIGH",
-      "score": 7.5,
-      "description": "Crypt::OpenSSL::PKCS12 versions before 1.98 for Perl allow a NULL pointer dereference in print_attribute via a zero length BMPSTRING attribute. print_attribute() sizes the destination buffer for a BMPSTRING attribute fro",
-      "published": "2026-08-09T02:16:34.117"
+      "score": 7.3,
+      "description": "A vulnerability was determined in EFM ipTIME AX8004M 15.09.0. Impacted is the function popen of the file /cgi/d.cgi of the component CGI Endpoint. This manipulation of the argument fname causes os command injection. The ",
+      "published": "2026-08-10T01:16:47.980"
     }
   ],
   "breaches": [

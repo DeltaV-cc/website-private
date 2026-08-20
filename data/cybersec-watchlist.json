@@ -1,11 +1,35 @@
 [
   {
-    "title": "Rogue ransomware affiliate poses as data recovery firm to steal payments",
-    "url": "https://www.bleepingcomputer.com/news/security/rogue-ransomware-affiliate-ransom-busters-poses-as-data-recovery-firm/",
+    "title": "Microsoft says August Windows updates may cause gaming issues",
+    "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-august-windows-updates-may-cause-gaming-issues-reboots/",
+    "source": "BleepingComputer",
+    "summary": "Microsoft is investigating a potential issue with the August 2026 updates that may prevent some games from launching or cause them to crash on affected Windows 11 systems. [...]",
+    "added": "2026-08-20T06:51:03+00:00",
+    "expires": "2026-09-03T08:04:58Z"
+  },
+  {
+    "title": "Elementor Pro Flaw Could Let Unauthenticated Attackers Upload PHP and Execute Code",
+    "url": "https://thehackernews.com/2026/08/elementor-pro-flaw-could-let.html",
+    "source": "The Hacker News",
+    "summary": "Cybersecurity researchers have disclosed details of a critical flaw in the Elementor Pro WordPress plugin that, if successfully exploited, could lead to remote code execution. The vulnerability, tracked as CVE-2026-32475",
+    "added": "2026-08-20T06:04:34+00:00",
+    "expires": "2026-09-03T08:04:59Z"
+  },
+  {
+    "title": "OpenAI confirms ChatGPT is down as logins and signups fail",
+    "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-as-logins-and-signups-fail/",
+    "source": "BleepingComputer",
+    "summary": "ChatGPT is experiencing a major outage, and users are unable to sign in, create accounts, or load chats, including previous conversations. [...]",
+    "added": "2026-08-20T00:20:55+00:00",
+    "expires": "2026-09-03T08:04:58Z"
+  },
+  {
+    "title": "Rogue ransomware affiliate poses as recovery firm to steal payments",
+    "url": "https://www.bleepingcomputer.com/news/security/rogue-ransomware-affiliate-ransom-busters-poses-as-recovery-firm/",
     "source": "BleepingComputer",
     "summary": "A suspected ransomware affiliate is posing as a ransomware recovery service called \"Ransom Busters,\" contacting the victims before the attacks become public and claiming to be able to provide decryption keys and delete s",
     "added": "2026-08-19T20:59:58+00:00",
-    "expires": "2026-09-02T21:12:19Z"
+    "expires": "2026-09-03T08:04:58Z"
   },
   {
     "title": "Sakura Internet hack exposes data of up to 1.36 million accounts",
@@ -13,7 +37,7 @@
     "source": "BleepingComputer",
     "summary": "Japanese cloud and data center service provider Sakura Internet disclosed that hackers accessed its sales management system, where customer contract and membership information is stored. [...]",
     "added": "2026-08-19T20:53:38+00:00",
-    "expires": "2026-09-02T21:12:19Z"
+    "expires": "2026-09-03T08:04:58Z"
   },
   {
     "title": "No-Filter 'Kriminal' AI Platform Raises Cybercrime Concerns",
@@ -21,7 +45,7 @@
     "source": "Dark Reading",
     "summary": "The AI company officially forbids illicit use, while offering guardrail-free social engineering, offensive cybercrime, and OSINT scanning to anyone with a bit of cryptocurrency.",
     "added": "2026-08-19T20:32:09+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "Healthtech firm CareCloud data breach impacts 3.7 million patients",
@@ -29,7 +53,7 @@
     "source": "BleepingComputer",
     "summary": "U.S. healthcare IT company CareCloud disclosed that the data breach incident it suffered earlier this year has impacted more than 3.7 million individuals. [...]",
     "added": "2026-08-19T20:07:12+00:00",
-    "expires": "2026-09-02T21:12:19Z"
+    "expires": "2026-09-03T08:04:58Z"
   },
   {
     "title": "Cloudflare Workers Spectre Attack Leaks JWT From Co-Located Worker at 12 Bits/Second",
@@ -37,15 +61,7 @@
     "source": "The Hacker News",
     "summary": "Cybersecurity researchers have disclosed details of a remote Spectre attack against Cloudflare Workers that leaked a JSON Web Token (JWT) from a co-located Worker in the production environment at up to 12 bits per second",
     "added": "2026-08-19T19:02:40+00:00",
-    "expires": "2026-09-02T21:12:20Z"
-  },
-  {
-    "title": "Hackers compromise 14,500 Dahua web cameras in 35-day campaign",
-    "url": "https://www.bleepingcomputer.com/news/security/hackers-compromise-14-500-dahua-web-cameras-in-35-day-campaign/",
-    "source": "BleepingComputer",
-    "summary": "In a large-scale campaign that researchers dubbed CameraSwarm, hackers compromised more than 14,500 Dahua IP cameras mostly in Ukraine and Russia. [...]",
-    "added": "2026-08-19T18:09:13+00:00",
-    "expires": "2026-09-02T21:12:19Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "OpenAI Pauses Frontier RL Training as It Tightens Defenses Against Unsafe AI Behavior",
@@ -53,15 +69,7 @@
     "source": "The Hacker News",
     "summary": "OpenAI on Tuesday revealed that it paused reinforcement learning (RL) training for its latest artificial intelligence (AI) models for two weeks while it shored up additional defenses and increased the scope of its monito",
     "added": "2026-08-19T18:06:44+00:00",
-    "expires": "2026-09-02T21:12:20Z"
-  },
-  {
-    "title": "US warns of AI-powered attacks on Siemens PLCs in critical infrastructure",
-    "url": "https://www.bleepingcomputer.com/news/security/us-warns-of-ai-powered-attacks-on-siemens-plcs-in-critical-infrastructure/",
-    "source": "BleepingComputer",
-    "summary": "U.S. cybersecurity agencies warn that threat actors are using AI-generated scripts to exploit Siemens S7 Series programmable logic controllers (PLCs) in U.S. critical infrastructure. [...]",
-    "added": "2026-08-19T17:50:01+00:00",
-    "expires": "2026-09-02T21:12:19Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "SilkParasite Threatens Central Asian Orgs With Flurry of RATs",
@@ -69,7 +77,7 @@
     "source": "Dark Reading",
     "summary": "A spear-phishing campaign by a Chinese-nexus group linked to FamousSparrow provides insight into geopolitical, technical, and strategic global moves by China's APTs.",
     "added": "2026-08-19T16:58:23+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "SilkParasite Espionage Campaign Targets Central Asian Governments with Five New RATs",
@@ -77,7 +85,7 @@
     "source": "The Hacker News",
     "summary": "A previously unreported cyber espionage operation dubbed SilkParasite has been observed targeting government bodies in Central Asia. The intrusion set makes use of seven remote access tool (RAT) families, five of which h",
     "added": "2026-08-19T13:12:17+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
@@ -85,7 +93,7 @@
     "source": "CISA Advisories",
     "summary": "CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2026-64849 MLflow Server-Side Request Forgery Vulnerability This type of vulnerabi",
     "added": "2026-08-19T12:00:00+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:05:06Z"
   },
   {
     "title": "Defending Against an Active Threat to Siemens S7 Series PLCs",
@@ -93,7 +101,7 @@
     "source": "CISA Advisories",
     "summary": "Executive summary Note: This advisory relates to an active threat to Siemens S7 Series programmable logic controllers (PLCs). However, ongoing PLC targeting activity is broader than Siemens PLCs. All PLC owners and opera",
     "added": "2026-08-19T12:00:00+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:05:06Z"
   },
   {
     "title": "Hackers Compromised 14,500+ Dahua Devices Using Credential Attacks, Auth Bypasses, and P2P",
@@ -101,15 +109,7 @@
     "source": "The Hacker News",
     "summary": "Cybersecurity researchers at Hunt.io have disclosed details of a campaign that they say compromised more than 14,530 Dahua devices between June 17 and July 22, 2026, using credential attacks, two authentication-bypass fl",
     "added": "2026-08-19T11:34:28+00:00",
-    "expires": "2026-09-02T21:12:20Z"
-  },
-  {
-    "title": "Phishing 3.0: The Fight Moves to Agent Versus Agent",
-    "url": "https://thehackernews.com/2026/08/phishing-30-fight-moves-to-agent-versus.html",
-    "source": "The Hacker News",
-    "summary": "Most email defenses still do the job they did a decade ago. Scan the message, look for something malicious, block it. That worked when the danger sat in the payload, a bad link or an attachment. It stopped working when t",
-    "added": "2026-08-19T11:30:00+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "China-Linked Hacker Shows AI Capabilities in APAC Attack",
@@ -117,7 +117,7 @@
     "source": "Dark Reading",
     "summary": "In the first purported \"near-autonomous\" attack on a nation-state, a Chinese-language operator used a complex AI framework to target and compromise government agencies, likely in Taiwan.",
     "added": "2026-08-19T01:00:00+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   },
   {
     "title": "Critical GitLab Zero-Click Flaw Poses Mitigation Challenges",
@@ -125,6 +125,6 @@
     "source": "Dark Reading",
     "summary": "A lack of technical details could make it hard for organizations running self-managed GitLab versions to detect potential exploitation of CVE-2026-19478.",
     "added": "2026-08-18T21:25:58+00:00",
-    "expires": "2026-09-02T21:12:20Z"
+    "expires": "2026-09-03T08:04:59Z"
   }
 ]
