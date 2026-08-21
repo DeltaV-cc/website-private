@@ -107,7 +107,7 @@ export default function ThreatIntelFeed({
             onClick={() => setSevFilter(k)}
             className={`px-2 py-0.5 rounded-md text-[10px] uppercase tracking-wider transition-colors ${
               sevFilter === k
-                ? 'bg-white/[0.08] text-[var(--text-primary)]'
+                ? 'bg-[var(--overlay)] text-[var(--text-primary)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >
@@ -117,7 +117,7 @@ export default function ThreatIntelFeed({
         ))}
       </div>
 
-      <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
+      <div className="divide-y divide-[var(--border-subtle)] max-h-[360px] overflow-y-auto scrollbar-hide">
         {!items ? (
           <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading threat feed…</div>
         ) : filtered.length === 0 ? (
@@ -129,7 +129,7 @@ export default function ThreatIntelFeed({
               href={it.link || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
+              className="block px-5 py-2.5 hover:bg-[var(--overlay-weak)] transition-colors"
             >
               <div className="flex items-start justify-between gap-2 mb-0.5">
                 <span className="text-xs text-[var(--text-primary)] leading-snug">{it.title}</span>

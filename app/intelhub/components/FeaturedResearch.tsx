@@ -18,7 +18,7 @@ const CAT_BADGE: Record<string, string> = {
   macro: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
   ai: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
   hardware: 'bg-green-500/15 text-green-400 border-green-500/20',
-  general: 'bg-white/5 text-white/40 border-white/10',
+  general: 'bg-[var(--overlay-soft)] text-[var(--text-muted)] border-[var(--border-subtle)]',
 };
 
 const CAT_ACCENT: Record<string, string> = {
@@ -26,7 +26,7 @@ const CAT_ACCENT: Record<string, string> = {
   macro: 'from-amber-500/20 to-transparent',
   ai: 'from-blue-500/20 to-transparent',
   hardware: 'from-green-500/20 to-transparent',
-  general: 'from-white/5 to-transparent',
+  general: 'from-[var(--overlay-soft)] to-transparent',
 };
 
 function fallbackImg(title: string) {
@@ -70,7 +70,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
             href={art.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group relative rounded-xl border border-[#222] bg-gradient-to-br ${CAT_ACCENT[art.category] || 'from-white/5 to-transparent'} bg-[#0d0d0d] overflow-hidden transition-all duration-300 hover:border-white/15 hover:shadow-lg hover:shadow-emerald-500/5 ${i === idx ? 'ring-1 ring-emerald-500/30' : ''}`}
+            className={`group relative rounded-xl border border-[var(--border-default)] bg-gradient-to-br ${CAT_ACCENT[art.category] || 'from-[var(--overlay-soft)] to-transparent'} bg-[var(--bg-card)] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:shadow-lg hover:shadow-emerald-500/5 ${i === idx ? 'ring-1 ring-emerald-500/30' : ''}`}
           >
             <div className="p-4">
               {/* Category badge */}
@@ -78,19 +78,19 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
                 <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border ${CAT_BADGE[art.category] || CAT_BADGE.general}`}>
                   {art.category === 'general' ? 'Research' : art.category.toUpperCase()}
                 </span>
-                <span className="text-[10px] text-white/20 font-mono">
+                <span className="text-[10px] text-[var(--text-muted)] font-mono">
                   {art.published_at ? new Date(art.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="text-sm font-medium leading-snug text-white/90 group-hover:text-white transition-colors line-clamp-3 mb-2">
+              <h3 className="text-sm font-medium leading-snug text-[var(--text-primary)] group-hover:text-[var(--text-primary)] transition-colors line-clamp-3 mb-2">
                 {art.title}
               </h3>
 
               {/* Summary */}
               {art.summary && (
-                <p className="text-xs text-white/40 leading-relaxed line-clamp-2 group-hover:text-white/50 transition-colors">
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed line-clamp-2 group-hover:text-[var(--text-primary)]/50 transition-colors">
                   {art.summary}
                 </p>
               )}
@@ -98,7 +98,7 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
 
             {/* Bottom bar */}
             <div className="px-4 pb-3 flex items-center gap-2">
-              <span className="text-[10px] text-white/20 truncate">
+              <span className="text-[10px] text-[var(--text-muted)] truncate">
                 {art.source?.replace('Artemis Research (', '').replace(')', '') || 'Artemis'}
               </span>
               <span className="ml-auto text-[10px] text-emerald-400/0 group-hover:text-emerald-400/60 transition-colors">
@@ -118,12 +118,12 @@ export default function FeaturedResearch({ articles }: { articles: ArtItem[] }) 
                 key={i}
                 onClick={() => setIdx(i)}
                 className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  i === idx ? 'w-4 bg-emerald-400/50' : 'bg-white/10 hover:bg-white/20'
+                  i === idx ? 'w-4 bg-emerald-400/50' : 'bg-[var(--overlay-strong)] hover:bg-[var(--overlay-strong)]'
                 }`}
               />
             ))}
           </div>
-          <span className="text-[10px] text-white/15 font-mono">
+          <span className="text-[10px] text-[var(--text-muted)] font-mono">
             {articles.length} articles
           </span>
         </div>

@@ -163,9 +163,9 @@ export default function IntelHubPage() {
   }, [items, filteredItems, pulseScope, searchQuery, sourceFilter]);
 
   return (
-    <div className="intelhub-shell min-h-screen text-[#ededed]">
+    <div className="intelhub-shell min-h-screen text-[var(--text-primary)]">
 
-      <div className="border-b border-[#222] bg-[#0a0a0a]/95 backdrop-blur-xl">
+      <div className="border-b border-[var(--border-default)] bg-[var(--bg-card)]/95 backdrop-blur-xl">
         <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-6 flex items-end justify-between relative gap-8">
           <div>
             <div className="text-[10px] font-mono tracking-[.2em] uppercase text-[var(--accent-cyan)] mb-3 flex items-center gap-2">
@@ -178,7 +178,7 @@ export default function IntelHubPage() {
                 />
               )}
               {lastFetch && (
-                <span className="normal-case tracking-normal text-[#ededed]/25 font-sans">
+                <span className="normal-case tracking-normal text-[var(--text-muted)] font-sans">
                   · feeds {ago(lastFetch.toISOString()) === 'now' ? 'just now' : `${ago(lastFetch.toISOString())} ago`}
                 </span>
               )}
@@ -186,7 +186,7 @@ export default function IntelHubPage() {
             <h1 className="text-4xl md:text-5xl font-semibold tracking-[-.06em] text-[var(--text-primary)]">
               IntelHub
             </h1>
-            <p className="text-[#ededed]/30 mt-1.5 text-base font-light tracking-wide">
+            <p className="text-[var(--text-muted)] mt-1.5 text-base font-light tracking-wide">
               Curated market data · AI &amp; Web3 signals · Onchain intelligence
             </p>
           </div>
@@ -216,7 +216,7 @@ export default function IntelHubPage() {
             <button
               type="button"
               onClick={() => setPulseScope('tab')}
-              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'tab' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'tab' ? 'bg-[var(--overlay-strong)] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
               title="Pulse follows active dashboard tab"
             >
               Tab pulse
@@ -224,7 +224,7 @@ export default function IntelHubPage() {
             <button
               type="button"
               onClick={() => setPulseScope('all')}
-              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'all' ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+              className={`px-2 py-1 rounded-md transition-colors ${pulseScope === 'all' ? 'bg-[var(--overlay-strong)] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
               title="Show all categories in the pulse"
             >
               All signals
@@ -236,7 +236,7 @@ export default function IntelHubPage() {
                 className={`text-[10px] px-2 py-0.5 rounded-full transition-colors ${
                   sourceFilter === s.name
                     ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/30'
-                    : 'bg-white/[0.04] text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-white/[0.08]'
+                    : 'bg-[var(--overlay-soft)] text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--overlay)]'
                 }`}>
                 {s.name} <span className="opacity-50">{s.count}</span>
               </button>
@@ -251,8 +251,8 @@ export default function IntelHubPage() {
         {loading && !items.length && (
           <div className="flex items-center justify-center py-24">
             <div className="flex flex-col items-center gap-4">
-              <div className="w-10 h-10 border-2 border-[#222] border-t-[#00f0ff] rounded-full animate-spin" />
-              <span className="text-sm text-[#ededed]/30">Loading intelligence feeds...</span>
+              <div className="w-10 h-10 border-2 border-[var(--border-default)] border-t-[var(--accent-cyan)] rounded-full animate-spin" />
+              <span className="text-sm text-[var(--text-muted)]">Loading intelligence feeds...</span>
             </div>
           </div>
         )}
@@ -261,9 +261,9 @@ export default function IntelHubPage() {
             <button key={d} onClick={() => setActive(d)}
               role="tab" aria-selected={active === d} aria-current={active === d ? 'page' : undefined}
               className={`px-1 pb-3 pt-2 text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
-                active === d ? `${tabAccent(d)}` : 'text-[#ededed]/35 hover:text-[#ededed]/70'
+                active === d ? `${tabAccent(d)}` : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
               }`}>{tabLabel(d)}
-              {tabCounts[d] != null && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/[0.06] text-[#ededed]/30">{tabCounts[d]}</span>}
+              {tabCounts[d] != null && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[var(--overlay)] text-[var(--text-muted)]">{tabCounts[d]}</span>}
             </button>
           ))}
         </div>

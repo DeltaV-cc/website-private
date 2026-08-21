@@ -141,7 +141,7 @@ export default function MacroDashboard({
             <PanelMeta source="Yahoo · Hermes snapshots" />
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 divide-x divide-y divide-white/[0.03]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 divide-x divide-y divide-[var(--border-subtle)]">
           {/* S&P 500 */}
           <div className="data-tile p-4 hover:bg-[var(--bg-elevated)] transition-colors duration-200">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] mb-1.5">S&P 500</div>
@@ -331,14 +331,14 @@ export default function MacroDashboard({
           <div className="max-h-[320px] overflow-y-auto scrollbar-hide">
             {calendarGroups.map((g) => (
               <div key={g.key}>
-                <div className="px-5 py-1.5 text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)] bg-white/[0.015] border-b border-white/[0.02] sticky top-0 backdrop-blur-sm">
+                <div className="px-5 py-1.5 text-[10px] uppercase tracking-[1.5px] text-[var(--text-muted)] bg-[var(--overlay-weak)] border-b border-[var(--border-subtle)] sticky top-0 backdrop-blur-sm">
                   {g.label}
                 </div>
-                <div className="divide-y divide-white/[0.02]">
+                <div className="divide-y divide-[var(--border-subtle)]">
                   {g.events.map((e: any, i: number) => {
                     const hi = HIGH_IMPACT.test(e.label || '');
                     return (
-                      <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors text-xs">
+                      <div key={i} className="flex items-center gap-3 px-5 py-2.5 hover:bg-[var(--overlay-weak)] transition-colors text-xs">
                         <span className="text-[var(--text-muted)] tabular-nums w-[4.5rem] shrink-0">
                           {new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                         </span>
@@ -369,7 +369,7 @@ export default function MacroDashboard({
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-[var(--text-muted)] uppercase tracking-wider border-b border-white/[0.02]">
+              <tr className="text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--border-subtle)]">
                 <th className="text-left px-5 py-2.5 font-semibold">Pair</th>
                 <th className="text-right px-4 py-2.5 font-semibold">Rate</th>
                 <th className="text-right px-4 py-2.5 font-semibold">Day Δ</th>
@@ -378,9 +378,9 @@ export default function MacroDashboard({
                 <th className="text-right px-4 py-2.5 font-semibold hidden lg:table-cell">10Y</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/[0.02]">
+            <tbody className="divide-y divide-[var(--border-subtle)]">
               {forexPairs.length > 0 ? forexPairs.map((p: any, i: number) => (
-                <tr key={i} className="hover:bg-white/[0.02] transition-colors duration-150">
+                <tr key={i} className="hover:bg-[var(--overlay-weak)] transition-colors duration-150">
                   <td className="px-5 py-2.5 text-[var(--text-secondary)] font-medium">USD/{p.label}</td>
                   <td className="px-4 py-2.5 text-right text-[var(--text-primary)] font-semibold tabular-nums">{p.rateStr}</td>
                   <td className="px-4 py-2.5 text-right">
@@ -458,7 +458,7 @@ export default function MacroDashboard({
               const row = (r: any, i: number, up: boolean) => {
                 const link = macroMoverLink(r);
                 return (
-                  <div key={i} className="flex items-center gap-1.5 py-1 border-b border-white/[0.02] last:border-0">
+                  <div key={i} className="flex items-center gap-1.5 py-1 border-b border-[var(--border-subtle)] last:border-0">
                     <span className={`text-[9px] font-bold shrink-0 w-5 ${r.asset === 'crypto' ? 'text-[var(--accent-cyan)]' : 'text-[var(--accent-amber)]'}`}>{badge(r)}</span>
                     <a
                       href={link.href}

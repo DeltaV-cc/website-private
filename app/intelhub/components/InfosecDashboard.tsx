@@ -127,7 +127,7 @@ export default function InfosecDashboard({
             </div>
             <PanelMeta source="CISA" />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[360px] overflow-y-auto scrollbar-hide">
             {sortedKev.length === 0 ? (
               <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading KEV…</div>
             ) : sortedKev.slice(0, 10).map((v: KevEntry, i: number) => {
@@ -138,7 +138,7 @@ export default function InfosecDashboard({
                   href={cisaKevUrl(v.cve)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
+                  className="block px-5 py-2.5 hover:bg-[var(--overlay-weak)] transition-colors"
                 >
                   <div className="flex items-center justify-between mb-0.5 gap-2">
                     <span className="text-xs font-mono font-semibold text-[var(--accent-red)]">{v.cve}</span>
@@ -170,8 +170,8 @@ export default function InfosecDashboard({
                   onClick={() => setSevFilter(k)}
                   className={`px-2 py-0.5 rounded-full transition-colors ${
                     sevFilter === k
-                      ? 'bg-white text-black font-medium'
-                      : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
+                      ? 'bg-[var(--surface-invert)] text-[var(--text-invert)] font-medium'
+                      : 'bg-[var(--overlay)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   {k === 'all' ? 'All' : k === 'CRITICAL' ? 'Crit' : 'High'}
@@ -179,7 +179,7 @@ export default function InfosecDashboard({
               ))}
             </div>
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[360px] overflow-y-auto scrollbar-hide">
             {filteredCves.length === 0 ? (
               <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
                 {cves.length === 0 ? 'Loading CVEs…' : 'No matches'}
@@ -190,7 +190,7 @@ export default function InfosecDashboard({
                 href={nvdUrl(cve.id)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
+                className="block px-5 py-2.5 hover:bg-[var(--overlay-weak)] transition-colors"
               >
                 <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                   <span className="text-xs font-mono font-semibold text-[var(--text-primary)]">{cve.id}</span>
@@ -216,11 +216,11 @@ export default function InfosecDashboard({
             </div>
             <PanelMeta source="HIBP" />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[360px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[360px] overflow-y-auto scrollbar-hide">
             {breaches.length === 0 ? (
               <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading breaches…</div>
             ) : breaches.slice(0, 10).map((b: BreachEntry, i: number) => (
-              <div key={b.name || i} className="px-5 py-2.5 hover:bg-white/[0.02] transition-colors">
+              <div key={b.name || i} className="px-5 py-2.5 hover:bg-[var(--overlay-weak)] transition-colors">
                 <div className="flex items-center justify-between mb-0.5">
                   <span className="text-xs font-semibold text-[var(--text-primary)]">{b.name}</span>
                   <span className="text-[10px] tabular-nums font-semibold text-[var(--accent-red)]">
@@ -247,7 +247,7 @@ export default function InfosecDashboard({
               </div>
               <PanelMeta source="curated" />
             </div>
-            <div className="divide-y divide-white/[0.02] max-h-[180px] overflow-y-auto scrollbar-hide">
+            <div className="divide-y divide-[var(--border-subtle)] max-h-[180px] overflow-y-auto scrollbar-hide">
               {watchlist.length === 0 ? (
                 <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No items</div>
               ) : watchlist.slice(0, 8).map((w: any, i: number) => (
@@ -256,7 +256,7 @@ export default function InfosecDashboard({
                   href={w.url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-5 py-2.5 hover:bg-white/[0.03] group"
+                  className="block px-5 py-2.5 hover:bg-[var(--overlay-soft)] group"
                 >
                   <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{w.title}</div>
                   <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
@@ -274,12 +274,12 @@ export default function InfosecDashboard({
                 <span className="text-xs text-[var(--accent-orange)] uppercase tracking-[1.5px] font-bold">{cyberCat.label} Signals</span>
                 <span className="text-[10px] text-[var(--text-muted)]">{cyberCat.items.length}</span>
               </div>
-              <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
+              <div className="divide-y divide-[var(--border-subtle)] max-h-[200px] overflow-y-auto scrollbar-hide">
                 {cyberCat.items.length === 0 ? (
                   <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No signals</div>
                 ) : cyberCat.items.slice(0, 10).map((it: any, j: number) => (
                   <a key={j} href={it.url} target="_blank" rel="noopener noreferrer"
-                    className="block px-5 py-2.5 hover:bg-white/[0.03] group">
+                    className="block px-5 py-2.5 hover:bg-[var(--overlay-soft)] group">
                     <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
                     <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
                       <span className="truncate max-w-[100px]">{it.source}</span>
@@ -301,9 +301,9 @@ export default function InfosecDashboard({
               <div className="text-xs text-[var(--text-muted)] uppercase tracking-[1.5px] font-bold">Delta V OpSec</div>
             </div>
             <div className="p-4 flex flex-wrap gap-2 text-xs">
-              <Link href="/opsec/sota-stack/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">SOTA Operator Stack</Link>
-              <Link href="/opsec/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">OpSec pillar</Link>
-              <Link href="/tutorials/" className="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-white/[0.08] transition-colors">Tutorials</Link>
+              <Link href="/opsec/sota-stack/" className="px-2.5 py-1 rounded-lg bg-[var(--overlay-soft)] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-[var(--overlay)] transition-colors">SOTA Operator Stack</Link>
+              <Link href="/opsec/" className="px-2.5 py-1 rounded-lg bg-[var(--overlay-soft)] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-[var(--overlay)] transition-colors">OpSec pillar</Link>
+              <Link href="/tutorials/" className="px-2.5 py-1 rounded-lg bg-[var(--overlay-soft)] text-[var(--text-tertiary)] hover:text-[var(--accent-amber)] hover:bg-[var(--overlay)] transition-colors">Tutorials</Link>
                           </div>
                         </div>
                       </div>

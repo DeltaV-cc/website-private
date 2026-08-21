@@ -196,7 +196,7 @@ export default function Blog() {
                       style={categoryCardStyle(post.accents)}
                     >
                       <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
-                        <span className="text-white/80">{post.date}</span>
+                        <span className="text-[var(--text-primary)]">{post.date}</span>
                         <span className="text-[var(--text-disabled)]">·</span>
                         <span className="text-[var(--text-muted)]">
                           {post.readingTime.replace(' read', '')}

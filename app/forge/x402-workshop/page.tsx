@@ -221,7 +221,7 @@ export default function X402WorkshopPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-orange)] text-white rounded-xl text-sm font-semibold hover:bg-[#d94d0f] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-orange)] text-[var(--on-accent)] rounded-xl text-sm font-semibold hover:bg-[var(--accent-orange-dark)] transition-colors"
             >
               Request workshop <ArrowRight />
             </Link>

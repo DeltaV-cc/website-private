@@ -20,11 +20,11 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-[var(--accent-cyan)] text-black hover:bg-white transition-colors duration-200',
-  secondary: 'bg-white/[0.06] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--border-hover)] hover:bg-white/[0.08] transition-all duration-200',
+  primary: 'bg-[var(--accent-cyan)] text-[var(--on-accent)] hover:bg-[var(--accent-primary-bright)] transition-colors duration-200',
+  secondary: 'bg-[var(--overlay)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--border-hover)] hover:bg-[var(--overlay)] transition-all duration-200',
   outline: 'border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/10 hover:border-[var(--accent-cyan)]/50 transition-all duration-200',
   ghost: 'text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors duration-150',
-  'accent-orange': 'bg-[var(--accent-orange)] text-white hover:bg-[#d94d0f] transition-colors duration-200',
+  'accent-orange': 'bg-[var(--accent-orange)] text-[var(--on-accent)] hover:bg-[var(--accent-orange-dark)] transition-colors duration-200',
   'accent-purple': 'bg-[var(--accent-purple)]/10 border border-[var(--accent-purple)]/30 text-[var(--accent-purple)] hover:bg-[var(--accent-purple)]/20 transition-all duration-200',
 };
 

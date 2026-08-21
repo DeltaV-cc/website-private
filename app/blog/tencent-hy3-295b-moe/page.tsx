@@ -19,25 +19,25 @@ export default function Hy3Post() {
       <h2>Specs at a Glance</h2>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#222] rounded-lg">
+        <table className="w-full text-sm border border-[var(--border-default)] rounded-lg">
           <thead>
-            <tr className="bg-[#111] text-[#aaa] text-left">
-              <th className="p-3 border-b border-[#222]">Property</th>
-              <th className="p-3 border-b border-[#222]">Value</th>
+            <tr className="bg-[var(--bg-elevated)] text-[var(--text-tertiary)] text-left">
+              <th className="p-3 border-b border-[var(--border-default)]">Property</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Value</th>
             </tr>
           </thead>
-          <tbody className="text-[#ccc]">
-            <tr className="border-b border-[#222]"><td className="p-3">Architecture</td><td className="p-3">Mixture-of-Experts (MoE)</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Total Parameters</td><td className="p-3 font-medium">295B</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Active Parameters</td><td className="p-3 font-medium text-emerald-400">21B</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">MTP Layer Parameters</td><td className="p-3">3.8B</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Layers</td><td className="p-3">80 + 1 MTP layer</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Experts</td><td className="p-3">192 experts, top-8 activated</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Attention</td><td className="p-3">64 heads, GQA, 8 KV heads, dim 128</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Hidden Size</td><td className="p-3">4,096</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Context Length</td><td className="p-3 font-medium">256K tokens</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">Vocabulary</td><td className="p-3">120,832</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">License</td><td className="p-3 text-emerald-400 font-medium">Apache 2.0</td></tr>
+          <tbody className="text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Architecture</td><td className="p-3">Mixture-of-Experts (MoE)</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Total Parameters</td><td className="p-3 font-medium">295B</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Active Parameters</td><td className="p-3 font-medium text-emerald-400">21B</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">MTP Layer Parameters</td><td className="p-3">3.8B</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Layers</td><td className="p-3">80 + 1 MTP layer</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Experts</td><td className="p-3">192 experts, top-8 activated</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Attention</td><td className="p-3">64 heads, GQA, 8 KV heads, dim 128</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Hidden Size</td><td className="p-3">4,096</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Context Length</td><td className="p-3 font-medium">256K tokens</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">Vocabulary</td><td className="p-3">120,832</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">License</td><td className="p-3 text-emerald-400 font-medium">Apache 2.0</td></tr>
             <tr><td className="p-3">Deployment</td><td className="p-3">vLLM, SGLang, BF16</td></tr>
           </tbody>
         </table>

@@ -7,7 +7,7 @@ type BadgeVariant = 'default' | 'ai' | 'web3' | 'opsec' | 'intel' | 'positive' |
 interface BadgeProps { children: React.ReactNode; variant?: BadgeVariant; className?: string; size?: 'sm' | 'md'; }
 
 const variantMap: Record<BadgeVariant, string> = {
-  default: 'bg-white/[0.06] text-[var(--text-secondary)] border-white/[0.08]',
+  default: 'bg-[var(--overlay)] text-[var(--text-secondary)] border-[var(--border-subtle)]',
   ai: 'bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border-[var(--accent-cyan)]/20',
   web3: 'bg-[var(--accent-orange)]/10 text-[var(--accent-orange)] border-[var(--accent-orange)]/20',
   opsec: 'bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] border-[var(--accent-amber)]/20',
@@ -15,7 +15,7 @@ const variantMap: Record<BadgeVariant, string> = {
   positive: 'bg-[var(--accent-green)]/10 text-[var(--accent-green)] border-[var(--accent-green)]/20',
   negative: 'bg-[var(--accent-red)]/10 text-[var(--accent-red)] border-[var(--accent-red)]/20',
   warning: 'bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] border-[var(--accent-amber)]/20',
-  count: 'bg-white/[0.06] text-[var(--text-tertiary)] border-transparent',
+  count: 'bg-[var(--overlay)] text-[var(--text-tertiary)] border-transparent',
 };
 const sizeMap = { sm: 'px-2 py-0.5 text-[10px] rounded-full', md: 'px-2.5 py-1 text-xs rounded-full' };
 

@@ -74,41 +74,41 @@ export default function OpenWorkerPost() {
       </ul>
 
       <div className="overflow-x-auto my-6">
-        <table className="w-full text-sm border border-[#222] rounded-lg">
+        <table className="w-full text-sm border border-[var(--border-default)] rounded-lg">
           <thead>
-            <tr className="bg-[#111] text-[#aaa] text-left">
-              <th className="p-3 border-b border-[#222]">Category</th>
-              <th className="p-3 border-b border-[#222]">Integrations</th>
-              <th className="p-3 border-b border-[#222]">Notes</th>
+            <tr className="bg-[var(--bg-elevated)] text-[var(--text-tertiary)] text-left">
+              <th className="p-3 border-b border-[var(--border-default)]">Category</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Integrations</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Notes</th>
             </tr>
           </thead>
-          <tbody className="text-[#ccc]">
-            <tr className="border-b border-[#222]">
+          <tbody className="text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Communication</td>
               <td className="p-3">Slack, Gmail, Outlook, Google Calendar</td>
               <td className="p-3 text-[var(--text-muted)]">Slack @-mention triggers desktop sessions</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Project Management</td>
               <td className="p-3">Jira, Linear, Notion, monday.com, HubSpot</td>
               <td className="p-3 text-[var(--text-muted)]">Cross-tool status aggregation</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Development</td>
               <td className="p-3">GitHub (issues, PRs, repos), Terminal, Filesystem</td>
               <td className="p-3 text-[var(--text-muted)]">Shell commands are approval-gated</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Model Providers</td>
               <td className="p-3">OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Mistral, Grok, Kimi, GLM, MiniMax, Inkling</td>
               <td className="p-3 text-[var(--text-muted)]">Bring your own key; switch anytime</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Open-Weight / Local</td>
               <td className="p-3">Together AI, Fireworks, Ollama</td>
               <td className="p-3 text-[var(--text-muted)]">Fully local operation via Ollama</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3 font-medium">Extensibility</td>
               <td className="p-3">MCP (Model Context Protocol)</td>
               <td className="p-3 text-[var(--text-muted)]">Per-tool enable/disable control</td>

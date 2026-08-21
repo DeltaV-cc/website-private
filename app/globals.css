@@ -6,7 +6,23 @@
    Tailwind CSS v4 · Zero new dependencies
    =============================================== */
 
-:root {
+/* -- Theming ----------------------------------
+   Two palettes, one token contract. `data-theme` is written on <html> by the
+   inline script in app/layout.tsx before first paint, and always holds a
+   *resolved* value ("light" or "dark") — the "system" preference is resolved
+   there, so the CSS below never has to know about prefers-color-scheme.
+   Everything visual should go through these tokens; a literal colour in a
+   component is a colour that only works in one theme.
+   --------------------------------------------- */
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Opaque page floor. Every surface token above it carries alpha so the Ink
+     Garden field can read through, which means something has to be solid. */
+  --bg-base: #080b0a;
+
   /* -- Backgrounds ----------------------------- */
   /* Widened luminance ramp so cards/surfaces separate from the page */
   --bg-deep:    rgba(10, 15, 13, .82);
@@ -19,6 +35,23 @@
   --bg-hover:   rgba(255, 255, 255, 0.03);
   --bg-active:  rgba(255, 255, 255, 0.06);
   --surface-secondary: rgba(16, 23, 20, 0.62);
+  /* Near-opaque sheet for things that float over content: nav menus, the
+     mobile table of contents. Readability wins over atmosphere here. */
+  --surface-overlay: rgba(8, 11, 10, 0.94);
+
+  /* Tint overlays. On the dark theme these lift a surface with white; on the
+     light theme they sink it with ink, which is why call sites must not spell
+     `bg-white/[0.06]` themselves — that ramp only exists in one direction. */
+  --overlay-weak:   rgba(255, 255, 255, 0.02);
+  --overlay-soft:   rgba(255, 255, 255, 0.04);
+  --overlay:        rgba(255, 255, 255, 0.06);
+  --overlay-strong: rgba(255, 255, 255, 0.10);
+
+  /* Page-shade / veil base, as an rgb triple so call sites can pick alpha. */
+  --shade-rgb: 8 11 10;
+
+  --scrollbar-thumb:       rgba(255, 255, 255, 0.08);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.18);
 
   /* -- Text ------------------------------------ */
   /* Alphas lifted for WCAG-AA legibility on the dark base */
@@ -44,6 +77,14 @@
   --accent-red:    #ef4444;
   --accent-green:  #8bd5a5;
   --accent-mist:   #c5b8e0;
+
+  /* Foreground for anything sitting *on* a filled accent (primary buttons, the
+     skip link, the selected calendar day). It flips with the theme because the
+     accents do: pale cyan on dark, deep teal on light. */
+  --on-accent: #07100d;
+  /* Inverted chip: text colour becomes the fill, page colour becomes the ink. */
+  --surface-invert: var(--text-primary);
+  --text-invert: #0a0f0d;
 
   /* -- Functional Accents ---------------------- */
   --accent-positive: #10b981;
@@ -117,6 +158,100 @@
   --space-24: 6rem;
 }
 
+/* -- Light theme ------------------------------
+   Only the tokens that carry luminance are restated; motion, spacing and
+   typography are theme-agnostic and stay inherited from the block above.
+
+   The accents are *not* the dark-theme accents on a pale background — pale
+   cyan (#8bc8cc) measures 1.9:1 on paper, so every link and eyebrow on the
+   site would fail AA. Each brand hue is re-cut at the same identity but a
+   luminance that clears 4.5:1 against --bg-base.
+   --------------------------------------------- */
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-base: #f2f5f2;
+
+  /* -- Backgrounds ----------------------------- */
+  --bg-deep:    rgba(246, 248, 246, .86);
+  --bg-surface: rgba(255, 255, 255, .88);
+  --bg-elevated:rgba(255, 255, 255, .95);
+  --bg-card:    rgba(252, 253, 252, .90);
+  --surface-card: rgba(255, 255, 255, .82);
+  /* Hover reads as a slight settle into the page, the mirror of the dark
+     theme lifting a card off it. */
+  --surface-card-hover: rgba(240, 244, 241, .92);
+  --surface-card-strong: rgba(255, 255, 255, .93);
+  --bg-hover:   rgba(18, 33, 28, 0.04);
+  --bg-active:  rgba(18, 33, 28, 0.07);
+  --surface-secondary: rgba(240, 244, 241, 0.72);
+  --surface-overlay: rgba(255, 255, 255, 0.96);
+
+  --overlay-weak:   rgba(18, 33, 28, 0.03);
+  --overlay-soft:   rgba(18, 33, 28, 0.05);
+  --overlay:        rgba(18, 33, 28, 0.07);
+  --overlay-strong: rgba(18, 33, 28, 0.11);
+
+  --shade-rgb: 255 255 255;
+
+  --scrollbar-thumb:       rgba(18, 33, 28, 0.16);
+  --scrollbar-thumb-hover: rgba(18, 33, 28, 0.30);
+
+  /* -- Text ------------------------------------ */
+  --text-primary:   #14211d;
+  --text-secondary: rgba(20, 33, 29, 0.78);
+  --text-tertiary:  rgba(20, 33, 29, 0.62);
+  --text-muted:     rgba(20, 33, 29, 0.50);
+  --text-disabled:  rgba(20, 33, 29, 0.32);
+
+  /* -- Brand Accents --------------------------- */
+  --accent-cyan:   #1f6068;
+  --accent-orange: #7d4772;
+  --accent-orange-dark: #6a3a61;
+  --accent-amber:  #6b5590;
+  --accent-purple: #57468a;
+  --accent-vibe-pink: #be1d63;
+  --accent-vibe-purple: #6d28d9;
+  --accent-vibe-cyan: #0e7490;
+  --accent-gold:   #7a5600;
+  --accent-red:    #b62222;
+  --accent-green:  #14653c;
+  --accent-mist:   #5f5189;
+
+  --accent-positive: #0f7a54;
+  --accent-negative: #b62222;
+  --accent-warning:  #91600a;
+  --accent-info:     #0b6f7c;
+
+  --on-accent: #ffffff;
+  --text-invert: #f6f8f6;
+
+  /* -- Course reading system ------------------- */
+  /* Gold on paper is unreadable; the course accent re-cuts to the same deep
+     teal the rest of the light theme links in. */
+  --course-accent:      #1f6068;
+  --course-veil:        rgba(252, 253, 252, 0.965);
+  --course-veil-edge:   rgba(252, 253, 252, 0.55);
+
+  /* -- Borders --------------------------------- */
+  --border-default: #d7dfd9;
+  --border-hover:   rgba(20, 33, 29, 0.18);
+  --border-active:  rgba(20, 33, 29, 0.30);
+  --border-accent-cyan:   rgba(31, 96, 104, 0.30);
+  --border-accent-orange: rgba(125, 71, 114, 0.30);
+  --border-accent-purple: rgba(87, 70, 138, 0.28);
+
+  /* -- Shadows & Elevation --------------------- */
+  --shadow-sm:    0 1px 2px rgba(20, 35, 30, 0.06);
+  --shadow-md:    0 4px 12px rgba(20, 35, 30, 0.10);
+  --shadow-lg:    0 12px 32px rgba(20, 35, 30, 0.14);
+  --shadow-xl:    0 24px 48px rgba(20, 35, 30, 0.18);
+  --glow-cyan:    0 0 24px rgba(31, 96, 104, 0.14);
+  --glow-orange:  0 0 24px rgba(125, 71, 114, 0.14);
+  --glow-purple:  0 0 24px rgba(87, 70, 138, 0.14);
+}
+
 @theme inline {
   --color-background: var(--bg-deep);
   --color-foreground: var(--text-primary);
@@ -125,6 +260,12 @@
 }
 
 /* -- Base ------------------------------------- */
+
+/* The surface tokens are translucent so the Ink Garden reads through them;
+   <html> is what they are translucent *against*. */
+html {
+  background: var(--bg-base);
+}
 
 body {
   background: var(--bg-deep);
@@ -137,7 +278,7 @@ body {
 /* -- Selection -------------------------------- */
 
 ::selection {
-  background: rgba(0, 240, 255, 0.20);
+  background: color-mix(in srgb, var(--accent-cyan) 26%, transparent);
   color: var(--text-primary);
 }
 
@@ -167,7 +308,7 @@ body {
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
   background: var(--accent-cyan);
-  color: #000;
+  color: var(--on-accent);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -175,7 +316,7 @@ body {
 }
 .skip-link:focus {
   top: 1rem;
-  outline: 2px solid #fff;
+  outline: 2px solid var(--text-invert);
   outline-offset: 2px;
 }
 
@@ -236,11 +377,11 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--scrollbar-thumb);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* -- Utility Classes -------------------------- */
@@ -272,9 +413,9 @@ body {
 }
 .section-title { font-size: clamp(2rem, 4vw, 3.5rem); line-height: .98; letter-spacing: -.06em; font-weight: 600; }
 .button-primary, .button-secondary { display: inline-flex; align-items: center; gap: .55rem; padding: .8rem 1.1rem; font-size: .82rem; font-weight: 600; transition: all var(--duration-base) var(--ease-smooth); }
-.button-primary { background: var(--accent-cyan); color: #07100d; }
+.button-primary { background: var(--accent-cyan); color: var(--on-accent); }
 .button-primary:hover { background: var(--accent-mist); transform: translateY(-1px); }
-.button-secondary { border: 1px solid var(--border-default); background: rgba(16, 23, 20, .24); color: var(--text-primary); }
+.button-secondary { border: 1px solid var(--border-default); background: var(--overlay-soft); color: var(--text-primary); }
 .button-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
 .button-secondary-purple { border-color: color-mix(in srgb, var(--accent-purple) 35%, var(--border-default)); color: var(--accent-purple); }
 .button-secondary-purple:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
@@ -345,8 +486,24 @@ body {
 .ink-garden-background .ascii-mist-label { display: none; }
 .ink-garden-background::before,
 .ink-garden-background canvas { animation: none; }
-.intelhub-shell { background: radial-gradient(circle at 80% 0%, rgba(81,150,119,.09), transparent 28rem), rgba(8,11,10,.84); }
-.intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: #294036; background: rgba(16,23,20,.78); }
+
+/* Light theme: the field is drawn from a dark photograph onto an opaque
+   near-black base, inside a worker that owns the canvas outright — there is no
+   palette to swap at runtime. Inverting the finished frame keeps every bit of
+   the field's structure, turns its floor into paper, and the hue-rotate puts
+   the brand teal and violet back where the inversion sent them. */
+:root[data-theme='light'] .ink-garden canvas {
+  filter: invert(1) hue-rotate(180deg) saturate(.7) contrast(.9);
+}
+:root[data-theme='light'] .ink-garden { background: var(--bg-card); }
+:root[data-theme='light'] .ink-garden-background { opacity: .34; }
+:root[data-theme='light'] .ink-garden-background.ink-garden-home { opacity: .36; }
+/* Screen lightens, which is invisible on paper — the same wash has to darken. */
+:root[data-theme='light'] .ink-garden-background::before,
+:root[data-theme='light'] .ink-garden::after { mix-blend-mode: multiply; }
+:root[data-theme='light'] .ascii-mist { color: color-mix(in srgb, var(--accent-mist) 82%, black); }
+.intelhub-shell { background: radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--accent-green) 12%, transparent), transparent 28rem), var(--surface-card-strong); }
+.intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: var(--border-default); background: var(--bg-surface); }
 .intelhub-tabs button { border-radius: 0; border-bottom: 1px solid transparent; }
 .intelhub-tabs button[aria-selected="true"] { border-bottom-color: currentColor; background: transparent; }
 @keyframes mistOrbit { to { transform: rotate(360deg) translateX(8px) rotate(-360deg); } }
@@ -360,8 +517,8 @@ body {
   100% { transform: translate3d(.35%, -.15%, 0) scale(1.012); opacity: .94; }
 }
 .home-hero-shade { display: none; }
-.home-page-shade { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(8, 11, 10, .30) 0%, rgba(8, 11, 10, .14) 36%, transparent 72%), linear-gradient(180deg, rgba(8, 11, 10, .14), rgba(8, 11, 10, .07) 38%, rgba(8, 11, 10, .12) 72%, rgba(8, 11, 10, .08)); }
-.spotlight-field { --spot-x: 50%; --spot-y: 50%; position: relative; min-height: 15rem; overflow: hidden; border: 1px solid var(--border-default); background: #0b1210; isolation: isolate; }
+.home-page-shade { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(var(--shade-rgb) / .30) 0%, rgb(var(--shade-rgb) / .14) 36%, transparent 72%), linear-gradient(180deg, rgb(var(--shade-rgb) / .14), rgb(var(--shade-rgb) / .07) 38%, rgb(var(--shade-rgb) / .12) 72%, rgb(var(--shade-rgb) / .08)); }
+.spotlight-field { --spot-x: 50%; --spot-y: 50%; position: relative; min-height: 15rem; overflow: hidden; border: 1px solid var(--border-default); background: var(--bg-card); isolation: isolate; }
 .spotlight-grid { position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(rgba(141,231,220,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(141,231,220,.12) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
 .spotlight-glow { position: absolute; inset: 0; background: radial-gradient(180px circle at var(--spot-x) var(--spot-y), rgba(141,231,220,.25), transparent 68%); opacity: .8; transition: opacity .25s ease; }
 .spotlight-glyph { position: absolute; width: 7rem; height: 7rem; left: 50%; top: 50%; transform: translate(-50%, -55%); color: var(--accent-mist); filter: drop-shadow(0 0 18px rgba(141,231,220,.18)); }
@@ -401,12 +558,12 @@ body {
 .capability-card:hover::before { transform: scaleY(1); }
 .calendar-nav, .calendar-close { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border-default); color: var(--text-secondary); transition: color .2s var(--ease-smooth), border-color .2s var(--ease-smooth), background-color .2s var(--ease-smooth); }
 .calendar-nav { width: 2rem; height: 2rem; border-radius: .5rem; }
-.calendar-nav:hover:not(:disabled), .calendar-close:hover { color: var(--text-primary); border-color: var(--accent-cyan); background: rgba(139, 200, 204, .08); }
+.calendar-nav:hover:not(:disabled), .calendar-close:hover { color: var(--text-primary); border-color: var(--accent-cyan); background: color-mix(in srgb, var(--accent-cyan) 10%, transparent); }
 .calendar-nav:disabled { cursor: not-allowed; opacity: .3; }
 .calendar-day { aspect-ratio: 1; border: 1px solid transparent; border-radius: .6rem; color: var(--text-secondary); font-size: .875rem; transition: color .2s var(--ease-smooth), background-color .2s var(--ease-smooth), border-color .2s var(--ease-smooth); }
-.calendar-day:hover:not(:disabled), .calendar-day:focus-visible { color: var(--text-primary); border-color: var(--accent-cyan); background: rgba(139, 200, 204, .08); outline: none; }
+.calendar-day:hover:not(:disabled), .calendar-day:focus-visible { color: var(--text-primary); border-color: var(--accent-cyan); background: color-mix(in srgb, var(--accent-cyan) 10%, transparent); outline: none; }
 .calendar-day:disabled { cursor: not-allowed; color: var(--text-disabled); }
-.calendar-day-selected { color: #07100f; background: var(--accent-cyan); border-color: var(--accent-cyan); font-weight: 700; }
+.calendar-day-selected { color: var(--on-accent); background: var(--accent-cyan); border-color: var(--accent-cyan); font-weight: 700; }
 .calendar-close { width: 2.25rem; height: 2.25rem; border-radius: 999px; font-size: 1.5rem; line-height: 1; }
 .cal-booker-shell [data-testid] { color: var(--text-primary); }
 .content-result { position: relative; padding: 1.5rem 0; transition: padding .25s var(--ease-out-expo), background .25s var(--ease-smooth); }
@@ -534,7 +691,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  background: linear-gradient(90deg, transparent, var(--overlay-soft), transparent);
   animation: shimmer 1.5s infinite;
 }
 
@@ -665,7 +822,7 @@ body {
   letter-spacing: -0.02em;
   scroll-margin-top: 6.5rem;
 }
-.article-reading-page { background: rgba(8, 11, 10, .58); }
+.article-reading-page { background: rgb(var(--shade-rgb) / .58); }
 .article-prose h2 { font-size: 1.6rem; margin-top: 2.4rem; margin-bottom: 0.2rem; }
 .article-prose h3 { font-size: 1.25rem; margin-top: 1.9rem; margin-bottom: 0.2rem; }
 .article-prose h4 { font-size: 1.05rem; margin-top: 1.5rem; }

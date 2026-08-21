@@ -36,7 +36,7 @@ export default function CICDPipelineHardeningPost() {
       </p>
 
       <h3>Install and run against your workflows</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Install via pip
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Install via pip
 pip install checkov
 
 # Scan all GitHub Actions workflows in a repo
@@ -60,7 +60,7 @@ checkov --file .github/workflows/deploy.yml --framework github_actions`}</code><
       <h2>Phase 2: Workflow Hardening Patterns</h2>
 
       <h3>Pattern 1: Lock down GITHUB_TOKEN</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# ALWAYS start with minimal permissions
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# ALWAYS start with minimal permissions
 # Then escalate per-job only where needed
 
 permissions: read-all  # top-level default
@@ -78,7 +78,7 @@ jobs:
     # now deploy has the access it needs, nothing more`}</code></pre>
 
       <h3>Pattern 2: Never run untrusted code with secrets</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# ❌ DANGEROUS: pull_request_target runs PR code in base context
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# ❌ DANGEROUS: pull_request_target runs PR code in base context
 on:
   pull_request_target:
     types: [opened, synchronize]
@@ -103,7 +103,7 @@ jobs:
       - run: npm install && npm test  # no secrets available`}</code></pre>
 
       <h3>Pattern 3: Pin all actions to commit SHAs</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# ❌ Vulnerable to tag/branch hijacking
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# ❌ Vulnerable to tag/branch hijacking
 - uses: actions/checkout@v4
 - uses: foundry-rs/foundry-toolchain@v1
 
@@ -112,7 +112,7 @@ jobs:
 - uses: foundry-rs/foundry-toolchain@8f1998e8558b88ef01ada84a3bd786e85e27ca15  # v1`}</code></pre>
 
       <h3>Pattern 4: Environment-based secret scoping</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Deployer keys should require explicit environment approval
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Deployer keys should require explicit environment approval
 # and NEVER be available to PR-triggered workflows
 
 jobs:
@@ -131,7 +131,7 @@ jobs:
         Your CI/CD configuration files themselves can leak secrets — hardcoded RPC URLs in workflow files, base64-encoded deployer keys in shell scripts, Terraform backends with embedded credentials. Semgrep catches these at the source code level.
       </p>
 
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Scan for Web3-specific secret patterns
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Scan for Web3-specific secret patterns
 # Create a custom Semgrep rule for your project:
 
 # rules/web3-secrets.yaml
@@ -162,7 +162,7 @@ semgrep --config rules/web3-secrets.yaml .github/ scripts/`}</code></pre>
         Octoscan's GitHub Actions analysis module examines your workflow files for insecure patterns that Checkov might miss — overly permissive <code>{'if:'}</code> conditions, script injection via <code>{'${{ }}'}</code> expressions, and dangerous third-party action usage.
       </p>
 
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Audit workflow security across your org
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Audit workflow security across your org
 octoscan --org your-org --token \$GITHUB_TOKEN --focus workflows
 
 # Specific checks Octoscan performs:
@@ -176,25 +176,25 @@ octoscan --org your-org --token \$GITHUB_TOKEN --focus workflows
       <p>Every CI/CD pipeline handling smart contract deployments should pass these checks:</p>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#222] rounded-lg">
+        <table className="w-full text-sm border border-[var(--border-default)] rounded-lg">
           <thead>
-            <tr className="bg-[#111] text-[#aaa] text-left">
-              <th className="p-3 border-b border-[#222]">#</th>
-              <th className="p-3 border-b border-[#222]">Check</th>
-              <th className="p-3 border-b border-[#222]">Tool</th>
-              <th className="p-3 border-b border-[#222]">Severity</th>
+            <tr className="bg-[var(--bg-elevated)] text-[var(--text-tertiary)] text-left">
+              <th className="p-3 border-b border-[var(--border-default)]">#</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Check</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Tool</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Severity</th>
             </tr>
           </thead>
-          <tbody className="text-[#ccc]">
-            <tr className="border-b border-[#222]"><td className="p-3">1</td><td className="p-3">No <code>pull_request_target</code> with checkout of PR code</td><td className="p-3">Checkov, Octoscan</td><td className="p-3 text-red-400">Critical</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">2</td><td className="p-3">Deployer keys scoped to environment with approval</td><td className="p-3">Manual</td><td className="p-3 text-red-400">Critical</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">3</td><td className="p-3">All actions pinned to SHA, not tags</td><td className="p-3">Checkov</td><td className="p-3 text-red-400">Critical</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">4</td><td className="p-3"><code>GITHUB_TOKEN</code> set to <code>read-all</code> by default</td><td className="p-3">Checkov, Octoscan</td><td className="p-3 text-amber-400">High</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">5</td><td className="p-3">No script injection via <code>{'${{ github.event.* }}'}</code> in shell</td><td className="p-3">Semgrep, Octoscan</td><td className="p-3 text-amber-400">High</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">6</td><td className="p-3">Secrets scoped to specific steps, not entire job</td><td className="p-3">Manual</td><td className="p-3 text-amber-400">High</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">7</td><td className="p-3">No self-hosted runners for public repos</td><td className="p-3">Checkov</td><td className="p-3 text-amber-400">High</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">8</td><td className="p-3">Build provenance (SLSA) enabled for releases</td><td className="p-3">Checkov</td><td className="p-3">Medium</td></tr>
-            <tr className="border-b border-[#222]"><td className="p-3">9</td><td className="p-3"><code>semgrep</code> secrets scan in CI for Web3 key patterns</td><td className="p-3">Semgrep</td><td className="p-3">Medium</td></tr>
+          <tbody className="text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">1</td><td className="p-3">No <code>pull_request_target</code> with checkout of PR code</td><td className="p-3">Checkov, Octoscan</td><td className="p-3 text-red-400">Critical</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">2</td><td className="p-3">Deployer keys scoped to environment with approval</td><td className="p-3">Manual</td><td className="p-3 text-red-400">Critical</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">3</td><td className="p-3">All actions pinned to SHA, not tags</td><td className="p-3">Checkov</td><td className="p-3 text-red-400">Critical</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">4</td><td className="p-3"><code>GITHUB_TOKEN</code> set to <code>read-all</code> by default</td><td className="p-3">Checkov, Octoscan</td><td className="p-3 text-amber-400">High</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">5</td><td className="p-3">No script injection via <code>{'${{ github.event.* }}'}</code> in shell</td><td className="p-3">Semgrep, Octoscan</td><td className="p-3 text-amber-400">High</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">6</td><td className="p-3">Secrets scoped to specific steps, not entire job</td><td className="p-3">Manual</td><td className="p-3 text-amber-400">High</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">7</td><td className="p-3">No self-hosted runners for public repos</td><td className="p-3">Checkov</td><td className="p-3 text-amber-400">High</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">8</td><td className="p-3">Build provenance (SLSA) enabled for releases</td><td className="p-3">Checkov</td><td className="p-3">Medium</td></tr>
+            <tr className="border-b border-[var(--border-default)]"><td className="p-3">9</td><td className="p-3"><code>semgrep</code> secrets scan in CI for Web3 key patterns</td><td className="p-3">Semgrep</td><td className="p-3">Medium</td></tr>
             <tr><td className="p-3">10</td><td className="p-3">Dependency review enabled for PRs</td><td className="p-3">GitHub native</td><td className="p-3">Medium</td></tr>
           </tbody>
         </table>

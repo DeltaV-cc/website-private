@@ -9,10 +9,10 @@ import { Item } from '../types';
 /* -- Skeleton Screens -- */
 export function SkeletonBlock({ className }: { className?: string }) {
   return (
-    <div className={`rounded relative overflow-hidden bg-white/[0.03] ${className || ''}`}>
+    <div className={`rounded relative overflow-hidden bg-[var(--overlay-soft)] ${className || ''}`}>
       <div className="absolute inset-0"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
+          background: 'linear-gradient(90deg, transparent 0%, var(--overlay-soft) 50%, transparent 100%)',
           animation: 'shimmer 1.5s infinite',
         }} />
     </div>
@@ -88,11 +88,11 @@ export function TileBox({
 }) {
   return (
     <div className={`rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] border-l-2 ${color} overflow-hidden`}>
-      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[var(--bg-elevated)] via-[var(--bg-elevated)] to-[var(--overlay-weak)] flex items-center justify-between">
         <span className={`text-xs uppercase tracking-[1.5px] font-bold ${accent}`}>{title}</span>
         <span className="text-[10px] text-[var(--text-muted)] tabular-nums">{count}</span>
       </div>
-      <div className={`divide-y divide-white/[0.02] ${maxH || 'max-h-[50vh]'} overflow-y-auto scrollbar-hide`}>{children}</div>
+      <div className={`divide-y divide-[var(--border-subtle)] ${maxH || 'max-h-[50vh]'} overflow-y-auto scrollbar-hide`}>{children}</div>
     </div>
   );
 }
@@ -100,7 +100,7 @@ export function TileBox({
 /* -- TileRow — compact feed density -- */
 export function TileRow({ it, ago }: { it: Item; ago: (iso: string) => string }) {
   return (
-    <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-5 py-2.5 hover:bg-white/[0.03] group">
+    <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label={it.title} className="block px-5 py-2.5 hover:bg-[var(--overlay-soft)] group">
       <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
       <div className="text-[10px] text-[var(--text-muted)] mt-0.5 tabular-nums">{ago(it.published_at)}</div>
     </a>
@@ -119,14 +119,14 @@ export function BarChart({
     <div className="space-y-2">
       {data.map((d, i) => (
         <div key={i} className="flex items-center gap-2 text-sm">
-          <span className="w-24 text-[#ededed]/40 truncate flex-shrink-0 leading-none">{d.name}</span>
-          <div className="flex-1 h-4 rounded-full bg-white/[0.04] overflow-hidden">
+          <span className="w-24 text-[var(--text-muted)] truncate flex-shrink-0 leading-none">{d.name}</span>
+          <div className="flex-1 h-4 rounded-full bg-[var(--overlay-soft)] overflow-hidden">
             <div
               className="h-full rounded-full transition-all duration-500"
               style={{ width: `${((d.value / m) * 100).toFixed(0)}%`, background: barColor }}
             />
           </div>
-          <span className="w-20 text-right text-[#ededed]/70 tabular-nums font-medium flex-shrink-0 leading-none">
+          <span className="w-20 text-right text-[var(--text-secondary)] tabular-nums font-medium flex-shrink-0 leading-none">
             {fmtCurrency(d.value)}
           </span>
         </div>
@@ -144,11 +144,11 @@ export function CategoryBox({
   const maxH = compact ? 'max-h-[320px]' : 'max-h-[280px]';
   return (
     <div className={`rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] ${cat.bg || ''} border-l-2 ${cat.color} overflow-hidden`}>
-      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[#111] via-[#111] to-white/[0.02] flex items-center justify-between">
+      <div className="px-5 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-[var(--bg-elevated)] via-[var(--bg-elevated)] to-[var(--overlay-weak)] flex items-center justify-between">
         <span className={`text-xs uppercase tracking-[1.5px] font-bold ${cat.accent}`}>{cat.label}</span>
         <span className="text-[10px] text-[var(--text-muted)] tabular-nums">{cat.count}</span>
       </div>
-      <div className={`divide-y divide-white/[0.02] ${maxH} overflow-y-auto scrollbar-hide`}>
+      <div className={`divide-y divide-[var(--border-subtle)] ${maxH} overflow-y-auto scrollbar-hide`}>
         {cat.items.length === 0 ? (
           <div className="px-5 py-6 text-[10px] text-[var(--text-disabled)] text-center">No signals</div>
         ) : (
@@ -159,7 +159,7 @@ export function CategoryBox({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={it.title}
-              className="block px-5 py-2.5 hover:bg-white/[0.03] group"
+              className="block px-5 py-2.5 hover:bg-[var(--overlay-soft)] group"
             >
               <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
               <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">

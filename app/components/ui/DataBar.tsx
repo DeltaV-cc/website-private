@@ -24,7 +24,7 @@ export default function DataBar({
   return (
     <div className={`flex items-center gap-3 text-xs ${className}`}>
       <span className="w-20 sm:w-24 text-[var(--text-tertiary)] truncate font-medium">{label}</span>
-      <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden">
+      <div className="flex-1 h-2.5 rounded-full bg-[var(--overlay-soft)] overflow-hidden">
         <div className={`h-full rounded-full bg-gradient-to-r ${colorMap[color]} transition-all duration-700`}
           style={{ width: `${pct}%` }} />
       </div>

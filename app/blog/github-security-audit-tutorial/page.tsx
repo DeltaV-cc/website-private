@@ -20,8 +20,8 @@ export default function GithubSecurityAuditPost() {
         Every Web3 team — from solo devs shipping a DeFi protocol to DAOs managing multi-sig governance — shares one attack surface: <strong>GitHub</strong>. Leaked private keys, overprivileged CI/CD workflows, rogue collaborators, and hardcoded RPC URLs are all sitting in repos right now. This tutorial shows you how to find them before an attacker does.
       </p>
 
-      <p className="text-sm text-[#888] italic">
-        Note: All tools in this tutorial are open-source and available in The Red Guild's <a href="https://github.com/theredguild/DevSecOps-toolkit" target="_blank" rel="noopener noreferrer" className="text-[#00f0ff] hover:underline">DevSecOps-toolkit</a> container. If you want a zero-install experience, run <code className="text-xs bg-[#222] px-1.5 py-0.5 rounded">make exec</code> and follow along.
+      <p className="text-sm text-[var(--text-muted)] italic">
+        Note: All tools in this tutorial are open-source and available in The Red Guild's <a href="https://github.com/theredguild/DevSecOps-toolkit" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-cyan)] hover:underline">DevSecOps-toolkit</a> container. If you want a zero-install experience, run <code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">make exec</code> and follow along.
       </p>
 
       <h2>Phase 1: Secrets Scanning with Trufflehog</h2>
@@ -30,7 +30,7 @@ export default function GithubSecurityAuditPost() {
       </p>
 
       <h3>Basic scan against a public repo</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Scan a remote GitHub repo for secrets
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Scan a remote GitHub repo for secrets
 trufflehog github --repo=https://github.com/your-org/your-repo --only-verified
 
 # Scan your entire GitHub org (requires PAT with repo scope)
@@ -49,7 +49,7 @@ trufflehog filesystem ./your-repo --only-verified`}</code></pre>
       </ul>
 
       <h3>Integrate into CI/CD</h3>
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# .github/workflows/secrets-scan.yml
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# .github/workflows/secrets-scan.yml
 name: Secrets Scan
 on: [push, pull_request]
 jobs:
@@ -71,7 +71,7 @@ jobs:
         Overprivileged GitHub orgs are the norm, not the exception. Legitify checks your org, repos, and members against security best practices — no write access to default branches, no stale admins, branch protection enabled, signed commits required.
       </p>
 
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Scan an entire organization
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Scan an entire organization
 legitify analyze --org your-org --token \$GITHUB_TOKEN
 
 # Scan a single repository
@@ -96,7 +96,7 @@ legitify analyze --repo your-org/your-repo --token \$GITHUB_TOKEN
         Not every contributor is who they claim to be. GitXRay analyzes contributor patterns — commit frequency, account age, repo associations, and behavioral anomalies. Useful for spotting fake contributors (a known attack vector in Web3 where malicious PRs get merged by compromised or planted accounts).
       </p>
 
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Analyze a repo's contributors
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Analyze a repo's contributors
 gitxray repo --url https://github.com/your-org/your-repo
 
 # Check a specific user's activity across GitHub
@@ -112,7 +112,7 @@ gitxray user --username suspicious-dev
         Octoscan searches repos for accidentally committed sensitive files — <code>.env</code> files, database dumps, wallet files, SSH configs, kubeconfigs, and anything else that shouldn't be in version control.
       </p>
 
-      <pre><code className="block bg-[#111] border border-[#222] rounded-lg p-4 text-sm text-[#ccc] overflow-x-auto">{`# Scan a remote GitHub repository
+      <pre><code className="block bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto">{`# Scan a remote GitHub repository
 octoscan --repo https://github.com/your-org/your-repo
 
 # Scan a GitHub organization (requires PAT)
@@ -131,43 +131,43 @@ octoscan --org your-org --token \$GITHUB_TOKEN
       </p>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#222] rounded-lg">
+        <table className="w-full text-sm border border-[var(--border-default)] rounded-lg">
           <thead>
-            <tr className="bg-[#111] text-[#aaa] text-left">
-              <th className="p-3 border-b border-[#222]">Step</th>
-              <th className="p-3 border-b border-[#222]">Tool</th>
-              <th className="p-3 border-b border-[#222]">Time</th>
-              <th className="p-3 border-b border-[#222]">What It Finds</th>
+            <tr className="bg-[var(--bg-elevated)] text-[var(--text-tertiary)] text-left">
+              <th className="p-3 border-b border-[var(--border-default)]">Step</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Tool</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Time</th>
+              <th className="p-3 border-b border-[var(--border-default)]">What It Finds</th>
             </tr>
           </thead>
-          <tbody className="text-[#ccc]">
-            <tr className="border-b border-[#222]">
+          <tbody className="text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">1</td>
-              <td className="p-3"><code className="text-xs bg-[#111] px-1.5 py-0.5 rounded">trufflehog</code></td>
+              <td className="p-3"><code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">trufflehog</code></td>
               <td className="p-3">5 min</td>
               <td className="p-3">Live secrets (keys, tokens, RPC URLs)</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">2</td>
-              <td className="p-3"><code className="text-xs bg-[#111] px-1.5 py-0.5 rounded">octoscan</code></td>
+              <td className="p-3"><code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">octoscan</code></td>
               <td className="p-3">3 min</td>
               <td className="p-3">Sensitive files (.env, kubeconfig, tfstate)</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">3</td>
-              <td className="p-3"><code className="text-xs bg-[#111] px-1.5 py-0.5 rounded">legitify</code></td>
+              <td className="p-3"><code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">legitify</code></td>
               <td className="p-3">5 min</td>
               <td className="p-3">Permission misconfigurations</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">4</td>
-              <td className="p-3"><code className="text-xs bg-[#111] px-1.5 py-0.5 rounded">gitxray</code></td>
+              <td className="p-3"><code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">gitxray</code></td>
               <td className="p-3">10 min</td>
               <td className="p-3">Suspicious contributors, sock puppets</td>
             </tr>
             <tr>
               <td className="p-3">5</td>
-              <td className="p-3"><code className="text-xs bg-[#111] px-1.5 py-0.5 rounded">manual</code></td>
+              <td className="p-3"><code className="text-xs bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">manual</code></td>
               <td className="p-3">7 min</td>
               <td className="p-3">Review findings, prioritize, write report</td>
             </tr>

@@ -10,13 +10,24 @@ This file is the visual source of truth for new pages, articles, tutorials and c
 - **Accents:** cyan for AI, orchid/orange for Web3, purple for Forge, amber for OpSec. The first hero bar uses the page accent; the two shorter bars stay cyan/purple.
 - **Motion:** use the existing duration/easing tokens. Respect `prefers-reduced-motion`; never add a continuous animation to a content card.
 
+## Themes
+
+The site ships a dark and a light palette. The reader's choice is `system` (the default), `light` or `dark`, stored under `dv-theme`; `system` is resolved against `prefers-color-scheme` and only the resolved value is written to `<html data-theme>`, before first paint, by `THEME_INIT_SCRIPT` (`lib/theme.ts`). CSS therefore never queries `prefers-color-scheme` — it reads `:root[data-theme='light']` in `app/globals.css`.
+
+Rules for new work:
+
+- **Never write a literal colour.** Every hex or `rgba()` in a component is a colour that only works in one theme. Use the tokens — including `--overlay-weak/-soft/--overlay/--overlay-strong` instead of `bg-white/[0.06]`, `--on-accent` for text on a filled accent, and `rgb(var(--shade-rgb) / .3)` for page shades and veils.
+- **Accents are re-cut, not reused.** The light palette darkens every brand hue so links, eyebrows and rails clear 4.5:1 on paper. Keep new accents in both blocks.
+- **Anything drawn in JS** (canvas, Mermaid, charts) has to be told the theme: read `document.documentElement.dataset.theme` and observe it for changes, as `app/components/Mermaid.tsx` does.
+
 ## Surfaces and cards
 
 The background must remain visible through content surfaces without sacrificing contrast.
 
-- `--surface-card`: canonical dark card surface, currently `rgba(8, 11, 10, .76)`.
-- `--surface-card-hover`: slightly lighter hover surface, currently `rgba(8, 11, 10, .68)`.
-- `--surface-card-strong`: featured/listing surface, currently `rgba(8, 11, 10, .82)`.
+- `--surface-card`: canonical card surface, currently `rgba(8, 11, 10, .76)` dark / `rgba(255, 255, 255, .82)` light.
+- `--surface-card-hover`: hover surface — lifts off the page on dark, settles into it on light.
+- `--surface-card-strong`: featured/listing surface.
+- `--surface-overlay`: near-opaque sheet for menus and floating panels.
 - `capability-card`: use for the three homepage pillars and Forge entry cards. It owns the number, optional mono label, title, text/link, border, surface, left accent rail and hover treatment.
 - `listing-card` / `listing-card-featured`: use for Blog and Tutorials content listings.
 - `listing-filter-panel`: use for listing filters; labels and counts must remain at least `text-secondary` contrast.

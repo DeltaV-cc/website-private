@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import type { ContentEntry } from '../data/content-index';
 import { hrefFor, isTranslated, localeFromPath, localePath, type Locale } from '@/lib/i18n';
 import Logo from './Logo';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_ITEMS = [
   { href: '/ai/', label: 'AI' },
@@ -171,13 +172,20 @@ export default function Navbar() {
                 <Link href={navHref('/forge/', navLang)} className="relative px-3 py-2 text-sm">Forge{isActive(pathname, '/forge/') && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>
                 <button type="button" aria-expanded={forgeOpen} aria-controls={forgeId} aria-label="Show Forge resources" onClick={() => setForgeOpen((value) => !value)} className="inline-flex min-h-[24px] min-w-[24px] items-center justify-center px-1 py-2 text-xs text-[var(--accent-purple)]">⌄</button>
               </div>
-              {forgeOpen && <div id={forgeId} className="absolute right-0 top-full z-50 w-64 border border-[var(--border-default)] bg-[rgba(8,11,10,0.94)] p-2 shadow-[var(--shadow-lg)]" role="menu">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} role="menuitem" className="block px-3 py-3 hover:bg-[var(--bg-hover)]" onClick={() => setForgeOpen(false)}><span className="block text-sm text-[var(--text-primary)]">{item.label}</span><span className="mt-1 block text-xs text-[var(--text-muted)]">{item.detail}</span></Link>)}</div>}
+              {forgeOpen && <div id={forgeId} className="absolute right-0 top-full z-50 w-64 border border-[var(--border-default)] bg-[var(--surface-overlay)] p-2 shadow-[var(--shadow-lg)]" role="menu">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} role="menuitem" className="block px-3 py-3 hover:bg-[var(--bg-hover)]" onClick={() => setForgeOpen(false)}><span className="block text-sm text-[var(--text-primary)]">{item.label}</span><span className="mt-1 block text-xs text-[var(--text-muted)]">{item.detail}</span></Link>)}</div>}
             </div>
             {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} aria-current={isActive(pathname, item.href) ? 'page' : undefined} className={`relative px-3 py-2 text-sm transition-colors ${isActive(pathname, item.href) ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>{item.label}{isActive(pathname, item.href) && <span className="absolute -bottom-[1px] left-3 right-3 h-px bg-[var(--accent-cyan)]" aria-hidden="true" />}</Link>)}
-            <LocaleToggle pathname={pathname} />
           </div>
 
-          <form className="relative ml-auto hidden w-44 items-center overflow-visible border-b border-[var(--border-default)] transition-colors focus-within:border-[var(--accent-cyan)] xl:w-56 md:flex" onSubmit={submitSearch} onFocus={() => setSearchFocused(true)} onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}>
+          {/* Preferences cluster: language, then theme, then search. These two
+              are settings rather than destinations, so they sit with the search
+              field on the right edge instead of trailing the nav links. */}
+          <div className="ml-auto hidden items-center gap-0.5 md:flex">
+            <LocaleToggle pathname={pathname} className="inline-flex min-h-[24px] items-center px-2 py-1.5 text-xs font-medium uppercase tracking-[1px] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors" />
+            <ThemeToggle />
+          </div>
+
+          <form className="relative hidden w-44 items-center overflow-visible border-b border-[var(--border-default)] transition-colors focus-within:border-[var(--accent-cyan)] xl:w-56 md:flex" onSubmit={submitSearch} onFocus={() => setSearchFocused(true)} onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}>
             <label htmlFor="nav-research" className="sr-only">Research</label>
             <svg className="h-4 w-4 flex-shrink-0 text-[var(--accent-cyan)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 5 5" strokeLinecap="round" /></svg>
             <input id="nav-research" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="look up" autoComplete="off" className="navbar-search-input min-w-0 w-full border-0 bg-transparent px-2 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none" />
@@ -201,11 +209,18 @@ export default function Navbar() {
         </div>
         {forgeOpen && <div className="border-l border-[var(--border-default)] pl-4">{FORGE_LINKS.map((item) => <Link key={item.href} href={item.href} className="block py-3 text-sm text-[var(--text-tertiary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}</div>}
         {NAV_ITEMS.slice(2).map((item) => <Link key={item.href} href={navHref(item.href, navLang)} className="block py-3 text-[var(--text-secondary)]" onClick={() => setMobileOpen(false)}>{item.label}</Link>)}
-        <LocaleToggle
-          pathname={pathname}
-          className="mt-2 block border-t border-[var(--border-default)] pt-4 text-sm font-medium uppercase tracking-[1px] text-[var(--text-tertiary)]"
-          onSelect={() => setMobileOpen(false)}
-        />
+        {/* Same pair as the desktop header, in the same order. */}
+        <div className="mt-2 flex items-center gap-4 border-t border-[var(--border-default)] pt-4">
+          <LocaleToggle
+            pathname={pathname}
+            className="inline-flex min-h-[24px] items-center text-sm font-medium uppercase tracking-[1px] text-[var(--text-tertiary)]"
+            onSelect={() => setMobileOpen(false)}
+          />
+          <ThemeToggle
+            className="inline-flex min-h-[24px] items-center py-1 text-sm text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent-cyan)]"
+            showLabel
+          />
+        </div>
       </div></div>}
     </nav>
   );

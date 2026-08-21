@@ -37,9 +37,9 @@ export default function ArenaLeaderboard({
           {updatedLabel && <span className="text-[var(--text-disabled)]">· {updatedLabel}</span>}
         </div>
       </div>
-      <div className="divide-y divide-white/[0.02] max-h-[300px] overflow-y-auto scrollbar-hide">
+      <div className="divide-y divide-[var(--border-subtle)] max-h-[300px] overflow-y-auto scrollbar-hide">
         {models.slice(0, 10).map((model, i) => (
-          <div key={model.name || model.model_name || i} className="flex items-center gap-3 px-5 py-2.5 text-xs hover:bg-white/[0.02] transition-colors">
+          <div key={model.name || model.model_name || i} className="flex items-center gap-3 px-5 py-2.5 text-xs hover:bg-[var(--overlay-weak)] transition-colors">
             <span className="w-5 text-right tabular-nums text-[var(--text-muted)] font-medium">{model.rank ?? i + 1}</span>
             <div className="flex-1 min-w-0">
               <span className="text-[var(--text-secondary)] truncate block">{model.name || model.model_name || ''}</span>

@@ -252,7 +252,7 @@ export default function OpSec({
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 rounded-xl border border-transparent px-2 py-2 -mx-2 hover:border-[var(--border-default)] hover:bg-white/[0.02] transition-colors group"
+                  className="flex items-start gap-3 rounded-xl border border-transparent px-2 py-2 -mx-2 hover:border-[var(--border-default)] hover:bg-[var(--overlay-weak)] transition-colors group"
                 >
                   <UsefulLogo id={item.logo} name={item.name} />
                   <div className="min-w-0 flex-1">

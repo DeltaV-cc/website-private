@@ -66,19 +66,19 @@ export default function RSSBanner({ activeSource }: RSSBannerProps) {
   };
 
   if (loading) {
-    return <div className="h-14 border-b border-white/10 bg-black/40" />;
+    return <div className="h-14 border-b border-[var(--border-subtle)] bg-[var(--overlay-strong)]" />;
   }
 
   if (sources.length === 0) {
     return (
-      <div className="border-b border-white/10 bg-black/40 py-3 px-6 text-sm text-white/50">
+      <div className="border-b border-[var(--border-subtle)] bg-[var(--overlay-strong)] py-3 px-6 text-sm text-[var(--text-tertiary)]">
         No sources loaded yet. Ingestion running...
       </div>
     );
   }
 
   return (
-    <div className="border-b border-white/10 bg-black/40">
+    <div className="border-b border-[var(--border-subtle)] bg-[var(--overlay-strong)]">
       <div className="max-w-7xl mx-auto px-6 py-3">
         <div className="flex flex-wrap gap-2">
           {sources.map((source, index) => (
@@ -87,7 +87,7 @@ export default function RSSBanner({ activeSource }: RSSBannerProps) {
               onClick={() => handleClick(source.source)}
               className={`
                 px-4 py-1.5 rounded-full border text-sm transition-all flex items-center gap-2
-                ${activeSource === source.source ? 'border-white bg-white/10' : getColor(source.signal_level)}
+                ${activeSource === source.source ? 'border-white bg-[var(--overlay-strong)]' : getColor(source.signal_level)}
               `}
             >
               <span className="font-medium">{source.source}</span>
