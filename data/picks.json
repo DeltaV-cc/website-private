@@ -1,29 +1,29 @@
 {
   "picks": [
     {
-      "title": "CISA warns of hackers exploiting critical MLflow vulnerability",
-      "source": "BleepingComputer",
-      "category": "macro",
-      "url": "https://www.bleepingcomputer.com/news/security/cisa-warns-of-hackers-exploiting-critical-mlflow-vulnerability/",
-      "published_at": "Thu, 20 Aug 2026 07:06:14 -0400",
-      "score": 300.0
-    },
-    {
-      "title": "U.S. CFTC chief puts staff on notice to create crypto regulations if Clarity Act fails",
+      "title": "Live updates: BTC tops $76,000; bitcoin, ether ETFs pull in $800 million",
       "source": "CoinDesk",
-      "category": "macro",
-      "url": "https://www.coindesk.com/policy/2026/08/20/u-s-cftc-chief-puts-staff-on-notice-to-create-crypto-regulations-if-clarity-act-fails",
-      "published_at": "Thu, 20 Aug 2026 18:54:18 +0000",
+      "category": "market",
+      "url": "https://www.coindesk.com/tech/2026/08/21/live-updates-bitcoin-ether-etfs-pull-in-usd800-million-as-inflows-surge-for-a-second-day",
+      "published_at": "Fri, 21 Aug 2026 06:43:24 +0000",
       "score": 180.0
     },
     {
-      "title": "Bitcoin Is Pumping But Prediction Market Traders Aren't Convinced",
+      "title": "Tensions Flare as CME, Kalshi Execs Clash Over Prediction Markets in DC",
       "source": "Decrypt",
+      "category": "macro",
+      "url": "https://decrypt.co/376158/tensions-flare-cme-kalshi-clash-prediction-markets-dc",
+      "published_at": "Thu, 20 Aug 2026 22:32:11 +0000",
+      "score": 180.0
+    },
+    {
+      "title": "The Fourth Humiliation",
+      "source": "LessWrong",
       "category": "market",
-      "url": "https://decrypt.co/376103/bitcoin-price-pumping-prediction-next-move",
-      "published_at": "Thu, 20 Aug 2026 19:16:05 +0000",
-      "score": 135.0
+      "url": "https://www.lesswrong.com/posts/JdNjeYC5bk83Kf2Cw/the-fourth-humiliation",
+      "published_at": "Thu, 20 Aug 2026 17:03:05 GMT",
+      "score": 90.0
     }
   ],
-  "updatedAt": "2026-08-20T19:53:16.647109+00:00"
+  "updatedAt": "2026-08-21T07:56:50.618109+00:00"
 }
