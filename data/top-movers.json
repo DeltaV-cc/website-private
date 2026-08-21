@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-21T17:45:46Z",
+  "updated_at": "2026-08-21T17:56:52Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "HOOD",
         "name": "Robinhood Markets, Inc.",
-        "price": 108.1,
-        "change_24h": 13.67,
+        "price": 108.31,
+        "change_24h": 13.89,
         "asset": "equity"
       },
       {
         "symbol": "USAR",
         "name": "USA Rare Earth, Inc.",
-        "price": 19.38,
-        "change_24h": 13.27,
+        "price": 19.45,
+        "change_24h": 13.68,
         "asset": "equity"
       },
       {
         "symbol": "SLS",
         "name": "SELLAS Life Sciences Group, Inc",
-        "price": 15.04,
-        "change_24h": 12.2,
+        "price": 15.1,
+        "change_24h": 12.69,
         "asset": "equity"
       },
       {
-        "symbol": "TGTX",
-        "name": "TG Therapeutics, Inc.",
-        "price": 56.36,
-        "change_24h": 11.47,
+        "symbol": "VIRT",
+        "name": "Virtu Financial, Inc.",
+        "price": 67.96,
+        "change_24h": 11.06,
         "asset": "equity"
       },
       {
         "symbol": "CVI",
         "name": "CVR Energy Inc.",
-        "price": 39.74,
-        "change_24h": 10.91,
+        "price": 39.59,
+        "change_24h": 10.48,
         "asset": "equity"
       }
     ],
@@ -43,22 +43,22 @@
       {
         "symbol": "HUT",
         "name": "Hut 8 Corp.",
-        "price": 79.27,
-        "change_24h": -10.58,
-        "asset": "equity"
-      },
-      {
-        "symbol": "OSIS",
-        "name": "OSI Systems, Inc.",
-        "price": 197.24,
-        "change_24h": -9.56,
+        "price": 79.55,
+        "change_24h": -10.27,
         "asset": "equity"
       },
       {
         "symbol": "CIFR",
         "name": "Cipher Digital Inc.",
-        "price": 15.62,
-        "change_24h": -9.24,
+        "price": 15.6,
+        "change_24h": -9.38,
+        "asset": "equity"
+      },
+      {
+        "symbol": "OSIS",
+        "name": "OSI Systems, Inc.",
+        "price": 198.48,
+        "change_24h": -8.99,
         "asset": "equity"
       },
       {
@@ -71,8 +71,8 @@
       {
         "symbol": "SA",
         "name": "Seabridge Gold, Inc.",
-        "price": 30.44,
-        "change_24h": -8.51,
+        "price": 30.57,
+        "change_24h": -8.12,
         "asset": "equity"
       }
     ]
@@ -82,35 +82,35 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 294.5,
+        "price": 294.46,
         "change_24h": 33.7,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 672.22,
+        "price": 667.92,
         "change_24h": 18.0,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 71.48,
+        "price": 71.46,
         "change_24h": 18.0,
         "asset": "crypto"
       },
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 111.76,
+        "price": 112.29,
         "change_24h": 15.0,
         "asset": "crypto"
       },
       {
         "symbol": "APT",
         "name": "Aptos",
-        "price": 0.633928,
+        "price": 0.634421,
         "change_24h": 11.3,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.12,
+        "price": 1.11,
         "change_24h": -5.6,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 408.41,
+        "price": 408.06,
         "change_24h": -2.2,
         "asset": "crypto"
       },
@@ -140,7 +140,7 @@
       {
         "symbol": "USDY",
         "name": "Ondo US Dollar Yield",
-        "price": 1.13,
+        "price": 1.14,
         "change_24h": -0.3,
         "asset": "crypto"
       },
