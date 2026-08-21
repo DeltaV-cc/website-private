@@ -63,11 +63,8 @@ export default function ThemeToggle({
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: light)');
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setChoice(isThemeChoice(stored) ? stored : 'system');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSystemIsLight(media.matches);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const sync = (event: MediaQueryListEvent) => setSystemIsLight(event.matches);
     media.addEventListener('change', sync);
