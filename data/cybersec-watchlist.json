@@ -5,7 +5,23 @@
     "source": "Dark Reading",
     "summary": "Government agencies with smaller budgets need support — and here's how you can help.",
     "added": "2026-08-21T14:00:00+00:00",
-    "expires": "2026-09-04T07:56:01Z"
+    "expires": "2026-09-04T10:57:37Z"
+  },
+  {
+    "title": "SickKids data breach exposes employee and job applicant info",
+    "url": "https://www.bleepingcomputer.com/news/security/sickkids-data-breach-exposes-employee-and-job-applicant-info/",
+    "source": "BleepingComputer",
+    "summary": "Toronto's Hospital for Sick Children (SickKids) says a cybersecurity incident exposed the personal information of some current and former employees and job applicants, stemming from a flaw in third-party software. Clinic",
+    "added": "2026-08-21T10:10:42+00:00",
+    "expires": "2026-09-04T10:57:36Z"
+  },
+  {
+    "title": "GitLab CVE-2026-19478 Comes Under Active Exploitation Within Days of Disclosure",
+    "url": "https://thehackernews.com/2026/08/gitlab-cve-2026-19478-comes-under.html",
+    "source": "The Hacker News",
+    "summary": "A newly disclosed security flaw in GitLab has come under active exploitation within days of public disclosure, according to watchTowr. The vulnerability in question is CVE-2026-19478 (CVSS score: 9.4), a case of code inj",
+    "added": "2026-08-21T07:04:25+00:00",
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Microsoft Entra ID Flaw (CVSS 10.0) Exploited in Wild, Allows Remote Code Execution",
@@ -13,7 +29,7 @@
     "source": "The Hacker News",
     "summary": "Microsoft on Thursday warned of a maximum-severity security flaw in Entra ID that it said has been exploited in the wild, but noted that no customer action is required. The vulnerability, tracked as CVE-2026-69836 (CVSS ",
     "added": "2026-08-21T06:06:11+00:00",
-    "expires": "2026-09-04T07:56:02Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "New CUSTODY Framework Constrains AI Agents Inside the Network",
@@ -21,7 +37,7 @@
     "source": "Dark Reading",
     "summary": "Enterprise cybersecurity expert Jake Williams joins the Dark Reading News Desk to explain why he decided to release his new agentic AI framework in the wake of the OpenAI attacks on Hugging Face.",
     "added": "2026-08-20T20:42:18+00:00",
-    "expires": "2026-09-04T07:56:01Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Rust Supply Chain Attack Puts Build-Time Malware in Crates with 245 Million Downloads",
@@ -29,7 +45,7 @@
     "source": "The Hacker News",
     "summary": "The Rust Project has deleted malicious versions of three widely used Rust crates from crates.io after a compromised maintainer account published releases that added a typosquatted dependency whose build script downloaded",
     "added": "2026-08-20T20:22:35+00:00",
-    "expires": "2026-09-04T07:56:02Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Suspected Russian Hackers Abuse Google OAuth and WhatsApp Linking to Hijack Accounts",
@@ -37,7 +53,7 @@
     "source": "The Hacker News",
     "summary": "Three distinct suspected Russian cyber espionage threat clusters have been observed leveraging legitimate authentication flows to single out individuals working in academia, aerospace and defense, governments, and think ",
     "added": "2026-08-20T19:59:19+00:00",
-    "expires": "2026-09-04T07:56:02Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "What We Missed: Delta Flight Disrupted With Wi-Fi Hack",
@@ -45,7 +61,7 @@
     "source": "Dark Reading",
     "summary": "In this video, Dark Reading editors discuss some of the news they didn't get a chance to cover, including some scary airplane security risks and the US government's newest \"hack back\" strategy.",
     "added": "2026-08-20T19:11:15+00:00",
-    "expires": "2026-09-04T07:56:01Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Hackers poison arrayref Rust crate to push infostealer malware",
@@ -53,7 +69,7 @@
     "source": "BleepingComputer",
     "summary": "Hackers compromised the maintainer account behind the widely used Rust crate arrayref to introduce malware that executed on developers' systems during compilation. [...]",
     "added": "2026-08-20T17:53:52+00:00",
-    "expires": "2026-09-04T07:56:00Z"
+    "expires": "2026-09-04T10:57:36Z"
   },
   {
     "title": "N-able Bug Exposes Password Vault Master Keys",
@@ -61,7 +77,7 @@
     "source": "Dark Reading",
     "summary": "The popular \"Passportal\" password manager, favored by MSPs and SMBs, remains risky even after its patch, thanks to its cloud-based design. Should these products stay away from the cloud entirely?",
     "added": "2026-08-20T17:39:24+00:00",
-    "expires": "2026-09-04T07:56:01Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Money and Mindset: The Two Biggest Roadblocks to Cyber Policing",
@@ -69,7 +85,7 @@
     "source": "Dark Reading",
     "summary": "Law enforcement training is not keeping pace with the volume and rapid evolution of cybercrimes, though officers really only need to learn the basics, but focus and budgets hinder progress.",
     "added": "2026-08-20T17:32:51+00:00",
-    "expires": "2026-09-04T07:56:01Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "ThreatsDay: Gogs 10.0 RCE, n8n Workflow-to-RCE, $10M Reward, GLM-5.3 AI Exploit, and More",
@@ -77,15 +93,7 @@
     "source": "The Hacker News",
     "summary": "A lot of this week’s trouble starts with something trusted doing exactly what it was allowed to do. Signed drivers get turned against defenses. Legitimate apps help malware blend in. A weak header check opens a path to c",
     "added": "2026-08-20T17:23:48+00:00",
-    "expires": "2026-09-04T07:56:02Z"
-  },
-  {
-    "title": "AI-Generated Exploit Scripts Target Siemens S7 PLCs in U.S. Critical Infrastructure",
-    "url": "https://thehackernews.com/2026/08/ai-generated-exploit-scripts-target.html",
-    "source": "The Hacker News",
-    "summary": "The U.S. government on Wednesday warned of an \"active threat\" targeting critical infrastructure organizations in the country using artificial intelligence (AI)-generated exploit scripts. The activity is targeting Siemens",
-    "added": "2026-08-20T16:59:44+00:00",
-    "expires": "2026-09-04T07:56:02Z"
+    "expires": "2026-09-04T10:57:37Z"
   },
   {
     "title": "Critical Elementor Pro bug exposes WordPress sites to RCE attacks",
@@ -93,7 +101,7 @@
     "source": "BleepingComputer",
     "summary": "A critical vulnerability in the Elementor Pro WordPress plugin could allow attackers to upload executable files for remote code execution on the server. [...]",
     "added": "2026-08-20T14:39:48+00:00",
-    "expires": "2026-09-04T07:56:00Z"
+    "expires": "2026-09-04T10:57:36Z"
   },
   {
     "title": "How MSPs can catch phishing attacks email filters miss",
@@ -101,7 +109,7 @@
     "source": "BleepingComputer",
     "summary": "AI is making phishing attacks more personalized, convincing, and difficult for traditional email filters to detect. Kaseya explains how MSPs can monitor identity, email, and endpoint activity to detect and contain attack",
     "added": "2026-08-20T14:01:11+00:00",
-    "expires": "2026-09-04T07:56:00Z"
+    "expires": "2026-09-04T10:57:36Z"
   },
   {
     "title": "Citrix urges admins to patch new NetScaler flaws as soon as possible",
@@ -109,7 +117,7 @@
     "source": "BleepingComputer",
     "summary": "Citrix has warned customers to immediately secure their systems against two vulnerabilities affecting NetScaler Gateway secure remote access solutions and NetScaler ADC networking appliances. [...]",
     "added": "2026-08-20T12:14:38+00:00",
-    "expires": "2026-09-04T07:56:00Z"
+    "expires": "2026-09-04T10:57:36Z"
   },
   {
     "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
@@ -117,14 +125,6 @@
     "source": "CISA Advisories",
     "summary": "CISA has added two new vulnerabilities to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2026-72529 TrueConf Server Missing Authentication for Critical Function Vulnerab",
     "added": "2026-08-20T12:00:00+00:00",
-    "expires": "2026-09-04T07:56:02Z"
-  },
-  {
-    "title": "Johnson Controls Simplex Incident Manager",
-    "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-232-01",
-    "source": "CISA Advisories",
-    "summary": "View CSAF Summary Successful exploitation of this vulnerability could allow a local attacker with low privileges to extract user credentials (passwords and authentication tokens) from system memory, potentially leading t",
-    "added": "2026-08-20T12:00:00+00:00",
-    "expires": "2026-09-04T07:56:02Z"
+    "expires": "2026-09-04T10:57:38Z"
   }
 ]
