@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T11:39:22Z",
+  "updated_at": "2026-08-21T11:45:57Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 261.64,
+        "price": 259.96,
         "change_24h": 21.2,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.37,
+        "price": 1.38,
         "change_24h": 20.6,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 71.14,
+        "price": 71.07,
         "change_24h": 18.8,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 635.74,
+        "price": 636.17,
         "change_24h": 17.5,
         "asset": "crypto"
       },
       {
         "symbol": "FLR",
         "name": "Flare",
-        "price": 0.00724,
+        "price": 0.007262,
         "change_24h": 13.9,
         "asset": "crypto"
       }
@@ -126,7 +126,7 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.71,
+        "price": 2.7,
         "change_24h": -2.5,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 412.1,
+        "price": 412.21,
         "change_24h": -1.5,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.564913,
+        "price": 0.568155,
         "change_24h": -1.0,
         "asset": "crypto"
       }
