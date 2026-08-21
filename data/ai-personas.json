@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21T07:54:42Z",
+  "updated": "2026-08-21T08:01:20Z",
   "items": [
     {
       "title": "huge milestone in our partnership with NVIDIA",
@@ -42,26 +42,6 @@
       "tag": "ai"
     },
     {
-      "title": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI",
-      "url": "https://x.com/Alibaba_Qwen/status/2090289279037821023",
-      "source": "X: @Alibaba_Qwen",
-      "handle": "Alibaba_Qwen",
-      "lane": "frontier",
-      "published_at": "2026-08-20T04:06:14+00:00",
-      "summary": "Huge thanks to Unsloth for the great work. This is wonderful news for the community! 🥳Qwen3.8-27B, smaller and sharper than ever. Let's try it! @UnslothAI Unsloth AI (@UnslothAI) We’re releasing new Qwen3.8-27B GGUFs with 10% higher accurac",
-      "tag": "ai"
-    },
-    {
-      "title": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode",
-      "url": "https://x.com/Alibaba_Qwen/status/2090286602153295885",
-      "source": "X: @Alibaba_Qwen",
-      "handle": "Alibaba_Qwen",
-      "lane": "frontier",
-      "published_at": "2026-08-20T03:55:36+00:00",
-      "summary": "Great UI starts with good code. Give Qwen3.8-Max a try on Kilo! 👀 @kilocode Kilo (acq. by Anaconda) (@kilocode) Qwen3.8-Max landed #4 on Arena's Frontend Code leaderboard — one spot above Claude Fable 5. We ran both on the same 10 UI design",
-      "tag": "ai"
-    },
-    {
       "title": "codex can power much more than coding tools: a tax-prep pilot processed 7,000 returns and cut preparation time by about a third. you can build your own products on our codex open-source harness:",
       "url": "https://x.com/gdb/status/2090246288478814281",
       "source": "X: @gdb",
@@ -92,36 +72,6 @@
       "tag": "ai"
     },
     {
-      "title": "617 hours of high-precision human motion, openly released. Great to see it on the Hub!",
-      "url": "https://x.com/LeRobotHF/status/2090015011150139687",
-      "source": "X: @LeRobotHF",
-      "handle": "LeRobotHF",
-      "lane": "agents",
-      "published_at": "2026-08-19T09:56:23+00:00",
-      "summary": "617 hours of high-precision human motion, openly released. Great to see it on the Hub! Noitom Robotics (@noitomrobotics) Today we made HiPHI public: 617.5 hours of high-precision human motion and object interaction — one of the largest data",
-      "tag": "ai"
-    },
-    {
-      "title": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻",
-      "url": "https://x.com/Alibaba_Qwen/status/2089922175507865795",
-      "source": "X: @Alibaba_Qwen",
-      "handle": "Alibaba_Qwen",
-      "lane": "frontier",
-      "published_at": "2026-08-19T03:47:30+00:00",
-      "summary": "#1 open-weight model on Harvey's Legal Agent benchmark! 🙌 Strong enough to handle professional tasks. Small enough to run on your local machine. Qwen3.8-27B is becoming part of your everyday workflows.🧑‍💻 Vals AI (@ValsAI) On @harvey 's Leg",
-      "tag": "ai"
-    },
-    {
-      "title": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline",
-      "url": "https://x.com/Alibaba_Qwen/status/2089919106522976337",
-      "source": "X: @Alibaba_Qwen",
-      "handle": "Alibaba_Qwen",
-      "lane": "frontier",
-      "published_at": "2026-08-19T03:35:18+00:00",
-      "summary": "4 days to the top.🏆Thank you to every builder who pushed Qwen3.8-27B to #1 on Cline! @cline Cline (@cline) Qwen3.8-27B is now the #1 local model in Cline after just 4 days. This ends a *4 month* streak by the previous winner Qwen2.5-Coder-7",
-      "tag": "ai"
-    },
-    {
       "title": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we would take action if we felt that model ",
       "url": "https://x.com/sama/status/2089787807611195475",
       "source": "X: @sama",
@@ -129,116 +79,6 @@
       "lane": "frontier",
       "published_at": "2026-08-18T18:53:34+00:00",
       "summary": "We have paused some frontier RL training to ensure that we can meet the appropriate alignment, security and monitoring standards for the new level of capabilities in front of us. Model progress is now extremely rapid, and we always said we ",
-      "tag": "ai"
-    },
-    {
-      "title": "Collecting robot data is still the slow part. You record episodes, wait on the upload, wait again for the download onto whatever GPU you managed to get, and then find out the scene drifted a third of the way through and half of it is junk. Full post with code examples: https://hu",
-      "url": "https://x.com/LeRobotHF/status/2088218343991886222",
-      "source": "X: @LeRobotHF",
-      "handle": "LeRobotHF",
-      "lane": "agents",
-      "published_at": "2026-08-14T10:57:05+00:00",
-      "summary": "Collecting robot data is still the slow part. You record episodes, wait on the upload, wait again for the download onto whatever GPU you managed to get, and then find out the scene drifted a third of the way through and half of it is junk. ",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @LeRobotHF: Full video: https://www.youtube.com/watch?v=KF4w0J4vhzg",
-      "url": "https://x.com/LeRobotHF/status/2085673889992941863",
-      "source": "X: @LeRobotHF",
-      "handle": "LeRobotHF",
-      "lane": "agents",
-      "published_at": "2026-08-07T10:26:19+00:00",
-      "summary": "Full video: piped.video/watch?v=KF4w0J4v… Link I Trained a Robot to Pick Up Socks… It Chased a Shadow In part 3, I trained a LeRobot SO101 arm to pick up socks using ACT... youtube.com",
-      "tag": "ai"
-    },
-    {
-      "title": "Picking up laundry with a 3D printed robot arm and LeRobot. It operates using SO-ARM101 arm mounted on a mobile base, relying on just a wrist and base camera. The base is controlled with an Xbox controller by a human operator. The arm is fully autonomous thanks to the ACT model. ",
-      "url": "https://x.com/LeRobotHF/status/2085673784195821701",
-      "source": "X: @LeRobotHF",
-      "handle": "LeRobotHF",
-      "lane": "agents",
-      "published_at": "2026-08-07T10:25:54+00:00",
-      "summary": "Picking up laundry with a 3D printed robot arm and LeRobot. It operates using SO-ARM101 arm mounted on a mobile base, relying on just a wrist and base camera. The base is controlled with an Xbox controller by a human operator. The arm is fu",
-      "tag": "ai"
-    },
-    {
-      "title": "R to @karpathy: More on the pelican on the bicycle test from @simonw: https://simonwillison.net/2025/Jun/6/six-months-in-llms/ I uploaded the source here so it's playable in the browser, forkable etc. https://karpathy.ai/lotr-movie/ Look out for GTA Hobbiton dropping before GTA V",
-      "url": "https://x.com/karpathy/status/2083948654377996480",
-      "source": "X: @karpathy",
-      "handle": "karpathy",
-      "lane": "frontier",
-      "published_at": "2026-08-02T16:10:51+00:00",
-      "summary": "More on the pelican on the bicycle test from @simonw : simonwillison.net/2025/Jun/6… I uploaded the source here so it's playable in the browser, forkable etc. karpathy.ai/lotr-movie/ Look out for GTA Hobbiton dropping before GTA VI :)",
-      "tag": "ai"
-    },
-    {
-      "title": "We're starting to leave the territory where you'd test an LLM by e.g. \"create an svg of pelican on a bicycle\". As one idea to generalize it, I was interested what Opus 5 would do if I gave it the first paragraph of the Lord of the Rings, a 1M token budget (~$10) and asked for thr",
-      "url": "https://x.com/karpathy/status/2083749667410727319",
-      "source": "X: @karpathy",
-      "handle": "karpathy",
-      "lane": "frontier",
-      "published_at": "2026-08-02T03:00:09+00:00",
-      "summary": "We're starting to leave the territory where you'd test an LLM by e.g. \"create an svg of pelican on a bicycle\". As one idea to generalize it, I was interested what Opus 5 would do if I gave it the first paragraph of the Lord of the Rings, a ",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ESYudkowsky: We call on OpenAI to pause model development now, in accordance with their Preparedness Framework. OpenAI's Preparedness Framework defines a \"Critical\" cybersecurity threshold: a model that can \"devise and execute end-to-end novel strategies for cyberattacks a",
-      "url": "https://x.com/FournesMaxime/status/2081710968103440754",
-      "source": "X: @ESYudkowsky",
-      "handle": "ESYudkowsky",
-      "lane": "nerds",
-      "published_at": "2026-07-27T11:59:05+00:00",
-      "summary": "We call on OpenAI to pause model development now, in accordance with their Preparedness Framework. OpenAI's Preparedness Framework defines a \"Critical\" cybersecurity threshold: a model that can \"devise and execute end-to-end novel strategie",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ESYudkowsky: New details about the Hugging Face incident from Reuters. The report says OpenAI noticed odd behavior before the event, including an agent leaving notes for future versions of itself with escape instructions.",
-      "url": "https://x.com/AndrewCurran_/status/2080793930279625134",
-      "source": "X: @ESYudkowsky",
-      "handle": "ESYudkowsky",
-      "lane": "nerds",
-      "published_at": "2026-07-24T23:15:06+00:00",
-      "summary": "New details about the Hugging Face incident from Reuters. The report says OpenAI noticed odd behavior before the event, including an agent leaving notes for future versions of itself with escape instructions. Deepa Seetharaman (@dseetharama",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ESYudkowsky: Awesome that Moran and Lieu are introducing a kill switch act. Crazy that there isn't an off switch for AI already, even as companies race to create superintelligence despite blatant misalignment.",
-      "url": "https://x.com/So8res/status/2080412452345541036",
-      "source": "X: @ESYudkowsky",
-      "handle": "ESYudkowsky",
-      "lane": "nerds",
-      "published_at": "2026-07-23T21:59:15+00:00",
-      "summary": "Awesome that Moran and Lieu are introducing a kill switch act. Crazy that there isn't an off switch for AI already, even as companies race to create superintelligence despite blatant misalignment. Ted Lieu (@tedlieu) Rep Moran and I introdu",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @ESYudkowsky: Launching Lightcone Commons! Our end-to-end platform for philanthropy. We are helping distribute $20M+ this summer, from Jaan Tallinn, Dustin Moskovitz, and others, then more every 3 months. Apply by August 23rd for funding, or join as a funder. Learn more in ",
-      "url": "https://x.com/ohabryka/status/2080365171420332117",
-      "source": "X: @ESYudkowsky",
-      "handle": "ESYudkowsky",
-      "lane": "nerds",
-      "published_at": "2026-07-23T18:51:22+00:00",
-      "summary": "Launching Lightcone Commons! Our end-to-end platform for philanthropy. We are helping distribute $20M+ this summer, from Jaan Tallinn, Dustin Moskovitz, and others, then more every 3 months. Apply by August 23rd for funding, or join as a fu",
-      "tag": "ai"
-    },
-    {
-      "title": "One pattern I find useful for working with LLMs is a nice long ramble session. Sometimes the LLM needs more bits to understand what you're trying to achieve, but you're too lazy to type them. In these cases I like to lean back, switch to /voice and just ramble for like 10 minutes",
-      "url": "https://x.com/karpathy/status/2079610838143623371",
-      "source": "X: @karpathy",
-      "handle": "karpathy",
-      "lane": "frontier",
-      "published_at": "2026-07-21T16:53:55+00:00",
-      "summary": "One pattern I find useful for working with LLMs is a nice long ramble session. Sometimes the LLM needs more bits to understand what you're trying to achieve, but you're too lazy to type them. In these cases I like to lean back, switch to /v",
-      "tag": "ai"
-    },
-    {
-      "title": "RT by @karpathy: Rewriting Bun in Rust https://bun.com/blog/bun-in-rust",
-      "url": "https://x.com/jarredsumner/status/2074973674332123157",
-      "source": "X: @karpathy",
-      "handle": "karpathy",
-      "lane": "frontier",
-      "published_at": "2026-07-08T21:47:29+00:00",
-      "summary": "Rewriting Bun in Rust bun.com/blog/bun-in-rust Link Rewriting Bun in Rust Why & how we rewrote Bun from Zig to Rust bun.com",
       "tag": "ai"
     }
   ],
