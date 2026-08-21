@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T10:55:12Z",
+  "updated_at": "2026-08-21T11:00:34Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.38,
+        "price": 1.39,
         "change_24h": 22.8,
         "asset": "crypto"
       },
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 262.55,
+        "price": 261.71,
         "change_24h": 20.2,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 661.14,
+        "price": 660.9,
         "change_24h": 15.5,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 72.07,
+        "price": 72.09,
         "change_24h": 14.6,
         "asset": "crypto"
       },
       {
         "symbol": "FLR",
         "name": "Flare",
-        "price": 0.00728,
+        "price": 0.007291,
         "change_24h": 14.2,
         "asset": "crypto"
       }
@@ -126,14 +126,14 @@
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.77,
+        "price": 2.76,
         "change_24h": -4.5,
         "asset": "crypto"
       },
       {
         "symbol": "ETHFI",
         "name": "Ether.fi",
-        "price": 0.5577,
+        "price": 0.559465,
         "change_24h": -2.2,
         "asset": "crypto"
       },
@@ -147,7 +147,7 @@
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.102937,
+        "price": 0.102975,
         "change_24h": -1.5,
         "asset": "crypto"
       }
