@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T12:16:04Z",
+  "updated_at": "2026-08-21T12:30:59Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,28 +82,28 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 262.09,
+        "price": 261.04,
         "change_24h": 21.4,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 71.03,
+        "price": 71.05,
         "change_24h": 17.8,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.35,
+        "price": 1.36,
         "change_24h": 17.2,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 630.25,
+        "price": 633.71,
         "change_24h": 13.3,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 411.14,
+        "price": 411.03,
         "change_24h": -1.1,
         "asset": "crypto"
       },
       {
         "symbol": "CC",
         "name": "Canton",
-        "price": 0.103601,
+        "price": 0.10456,
         "change_24h": -0.4,
         "asset": "crypto"
       }
