@@ -171,7 +171,7 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --bg-base: #f2f5f2;
+  --bg-base: #dbe8f2;
 
   /* -- Backgrounds ----------------------------- */
   --bg-deep:    rgba(246, 248, 246, .86);
@@ -487,20 +487,20 @@ body {
 .ink-garden-background::before,
 .ink-garden-background canvas { animation: none; }
 
-/* Light theme: the field is drawn from a dark photograph onto an opaque
-   near-black base, inside a worker that owns the canvas outright — there is no
-   palette to swap at runtime. Inverting the finished frame keeps every bit of
-   the field's structure, turns its floor into paper, and the hue-rotate puts
-   the brand teal and violet back where the inversion sent them. */
+/* Light theme, clear-blue pass: keep the art's whites (trees, the falling
+   star) white — no inversion. The canvas screen-blends over the light
+   gray-blue base, so its dark floor washes out to pale blue while the bright
+   parts stay bright, and the cyan/violet washes stay screen (lighten) instead
+   of multiplying into mud. */
 :root[data-theme='light'] .ink-garden canvas {
-  filter: invert(1) hue-rotate(180deg) saturate(.7) contrast(.9);
+  mix-blend-mode: screen;
+  filter: none;
 }
 :root[data-theme='light'] .ink-garden { background: var(--bg-card); }
-:root[data-theme='light'] .ink-garden-background { opacity: .34; }
-:root[data-theme='light'] .ink-garden-background.ink-garden-home { opacity: .36; }
-/* Screen lightens, which is invisible on paper — the same wash has to darken. */
-:root[data-theme='light'] .ink-garden-background::before,
-:root[data-theme='light'] .ink-garden::after { mix-blend-mode: multiply; }
+:root[data-theme='light'] .ink-garden-background { opacity: .5; }
+:root[data-theme='light'] .ink-garden-background.ink-garden-home { opacity: .55; }
+:root[data-theme='light'] .ink-garden-background::before { mix-blend-mode: screen; opacity: .55; }
+:root[data-theme='light'] .ink-garden::after { mix-blend-mode: screen; }
 :root[data-theme='light'] .ascii-mist { color: color-mix(in srgb, var(--accent-mist) 82%, black); }
 .intelhub-shell { background: radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--accent-green) 12%, transparent), transparent 28rem), var(--surface-card-strong); }
 .intelhub-shell .intelhub-panel { border-radius: .75rem; border-color: var(--border-default); background: var(--bg-surface); }
