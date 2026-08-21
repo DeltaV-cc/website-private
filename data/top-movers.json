@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T08:31:01Z",
+  "updated_at": "2026-08-21T10:55:12Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "BCH",
-        "name": "Bitcoin Cash",
-        "price": 264.72,
-        "change_24h": 22.7,
-        "asset": "crypto"
-      },
-      {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.35,
-        "change_24h": 18.3,
+        "price": 1.38,
+        "change_24h": 22.8,
         "asset": "crypto"
       },
       {
-        "symbol": "VVV",
-        "name": "Venice Token",
-        "price": 16.28,
-        "change_24h": 14.3,
+        "symbol": "BCH",
+        "name": "Bitcoin Cash",
+        "price": 262.55,
+        "change_24h": 20.2,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 635.42,
-        "change_24h": 14.2,
+        "price": 661.14,
+        "change_24h": 15.5,
         "asset": "crypto"
       },
       {
-        "symbol": "ADA",
-        "name": "Cardano",
-        "price": 0.212975,
-        "change_24h": 13.7,
+        "symbol": "WBT",
+        "name": "WhiteBIT Coin",
+        "price": 72.07,
+        "change_24h": 14.6,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "FLR",
+        "name": "Flare",
+        "price": 0.00728,
+        "change_24h": 14.2,
         "asset": "crypto"
       }
     ],
@@ -119,15 +119,22 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.13,
-        "change_24h": -7.8,
+        "price": 1.17,
+        "change_24h": -6.2,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.76,
-        "change_24h": -5.2,
+        "price": 2.77,
+        "change_24h": -4.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ETHFI",
+        "name": "Ether.fi",
+        "price": 0.5577,
+        "change_24h": -2.2,
         "asset": "crypto"
       },
       {
@@ -138,17 +145,10 @@
         "asset": "crypto"
       },
       {
-        "symbol": "WLFI",
-        "name": "World Liberty Financial",
-        "price": 0.061192,
-        "change_24h": -1.2,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "USDY",
-        "name": "Ondo US Dollar Yield",
-        "price": 1.14,
-        "change_24h": -0.6,
+        "symbol": "CC",
+        "name": "Canton",
+        "price": 0.102937,
+        "change_24h": -1.5,
         "asset": "crypto"
       }
     ]
