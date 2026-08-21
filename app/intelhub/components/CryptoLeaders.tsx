@@ -63,25 +63,25 @@ export default function CryptoLeaders({ items, ts }: { items: Item[]; ts: (iso: 
           {activeLeaders.length} live{watchingQuiet > 0 ? ` · ${watchingQuiet} watching` : ''}
         </span>
       </div>
-      <div className="divide-y divide-white/[0.02] max-h-[500px] overflow-y-auto">
+      <div className="divide-y divide-[var(--border-subtle)] max-h-[500px] overflow-y-auto">
         {activeLeaders.map((p, i) => (
-            <div key={i} className="px-3 py-2 hover:bg-white/[0.02]">
+            <div key={i} className="px-3 py-2 hover:bg-[var(--overlay-weak)]">
               <div className="flex items-center justify-between mb-0.5">
                 <a href={`https://x.com/${p.handle}`} target="_blank" rel="noopener noreferrer"
-                  className="text-xs font-medium text-[#ededed]/75 hover:text-white truncate">
+                  className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] truncate">
                   {p.name}
                 </a>
-                <span className="text-[10px] text-[#ededed]/25">{p.org} · {p.role}</span>
+                <span className="text-[10px] text-[var(--text-muted)]">{p.org} · {p.role}</span>
               </div>
               {p.latest ? (
                 <a href={p.latest.url || `https://x.com/${p.handle}`} target="_blank" rel="noopener noreferrer"
-                  className="text-[10px] text-[#ededed]/40 hover:text-[#ededed]/60 line-clamp-2 leading-relaxed">
+                  className="text-[10px] text-[var(--text-muted)] hover:text-[var(--text-tertiary)] line-clamp-2 leading-relaxed">
                   {(p.latest.title || '').replace(/https?:\/\/\S+/g, '').trim().slice(0, 140)}
                 </a>
               ) : (
-                <div className="text-[10px] text-[#ededed]/10 italic">no recent tweets in feed</div>
+                <div className="text-[10px] text-[var(--text-muted)] italic">no recent tweets in feed</div>
               )}
-              {p.latest && <div className="text-[10px] text-[#ededed]/15 mt-0.5 tabular-nums">{ts(p.latest.published_at)}</div>}
+              {p.latest && <div className="text-[10px] text-[var(--text-muted)] mt-0.5 tabular-nums">{ts(p.latest.published_at)}</div>}
             </div>
         ))}
       </div>

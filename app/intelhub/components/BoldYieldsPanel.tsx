@@ -93,7 +93,7 @@ export default function BoldYieldsPanel({
       </div>
 
       {/* Headline */}
-      <div className="px-5 py-4 border-b border-white/[0.03] grid grid-cols-2 gap-4">
+      <div className="px-5 py-4 border-b border-[var(--border-subtle)] grid grid-cols-2 gap-4">
         <div>
           <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">
             TVL-weighted SP APY
@@ -120,11 +120,11 @@ export default function BoldYieldsPanel({
       </div>
 
       {/* Stability pools */}
-      <div className="px-5 py-2 border-b border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between sticky top-0 z-[1] bg-[var(--bg-surface)]">
+      <div className="px-5 py-2 border-b border-[var(--border-subtle)] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between sticky top-0 z-[1] bg-[var(--bg-surface)]">
         <span>Stability Pool (Earn)</span>
         <span>APY · TVL</span>
       </div>
-      <div className="divide-y divide-white/[0.02]">
+      <div className="divide-y divide-[var(--border-subtle)]">
         {loading && sp.length === 0 && (
           <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">
             Loading BOLD yields…
@@ -149,7 +149,7 @@ export default function BoldYieldsPanel({
             href={row.url || data?.dune_dashboard || 'https://dune.com/liquity/bold-yields'}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between gap-3 px-5 py-2.5 text-xs hover:bg-white/[0.02] group"
+            className="flex items-center justify-between gap-3 px-5 py-2.5 text-xs hover:bg-[var(--overlay-weak)] group"
           >
             <div className="min-w-0">
               <div className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-green)]">
@@ -172,18 +172,18 @@ export default function BoldYieldsPanel({
       {/* External venues */}
       {venues.length > 0 && (
         <>
-          <div className="px-5 py-2 border-y border-white/[0.03] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between bg-white/[0.01]">
+          <div className="px-5 py-2 border-y border-[var(--border-subtle)] text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px] flex justify-between bg-[var(--overlay-weak)]">
             <span>BOLD venues (LP / vaults)</span>
             <span>APY · TVL</span>
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[200px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[200px] overflow-y-auto scrollbar-hide">
             {venues.slice(0, 8).map((row) => (
               <a
                 key={row.poolId || `${row.project}-${row.symbol}`}
                 href={row.url || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-3 px-5 py-2 text-xs hover:bg-white/[0.02] group"
+                className="flex items-center justify-between gap-3 px-5 py-2 text-xs hover:bg-[var(--overlay-weak)] group"
               >
                 <div className="min-w-0">
                   <div className="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] truncate">

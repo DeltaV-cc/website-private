@@ -134,7 +134,7 @@ function ContactContent({ lang }: { lang: Locale }) {
               />
               <button
                 type="submit"
-                className="w-full py-3 bg-[var(--accent-cyan)] text-black rounded-xl text-sm font-semibold hover:bg-white transition-colors"
+                className="w-full py-3 bg-[var(--accent-cyan)] text-[var(--on-accent)] rounded-xl text-sm font-semibold hover:bg-[var(--accent-primary-bright)] transition-colors"
               >
                 {copy.send}
               </button>

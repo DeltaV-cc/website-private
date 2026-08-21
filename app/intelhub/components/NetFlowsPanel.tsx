@@ -108,7 +108,7 @@ export default function NetFlowsPanel({
               type="button"
               onClick={() => setPeriod(p)}
               className={`px-2 py-1 rounded-md transition-colors ${
-                period === p ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+                period === p ? 'bg-[var(--overlay-strong)] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
               }`}
             >
               {p}
@@ -117,7 +117,7 @@ export default function NetFlowsPanel({
         </div>
       </div>
 
-      <div className="px-5 py-2 border-b border-white/[0.03] sticky top-0 z-[1] bg-[var(--bg-surface)] flex items-center justify-between text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px]">
+      <div className="px-5 py-2 border-b border-[var(--border-subtle)] sticky top-0 z-[1] bg-[var(--bg-surface)] flex items-center justify-between text-[10px] text-[var(--text-muted)] uppercase tracking-[1.5px]">
         <span>Token</span>
         <div className="flex gap-4">
           <span className="w-14 text-right">Rev</span>
@@ -126,7 +126,7 @@ export default function NetFlowsPanel({
         </div>
       </div>
 
-      <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
+      <div className="divide-y divide-[var(--border-subtle)] max-h-[340px] overflow-y-auto scrollbar-hide">
         {loading && !ranked.length && (
           <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">Loading net-flows…</div>
         )}
@@ -144,7 +144,7 @@ export default function NetFlowsPanel({
           </div>
         )}
         {ranked.slice(0, 12).map((r) => (
-          <div key={r.token} className="flex items-center justify-between gap-2 px-5 py-2.5 text-xs hover:bg-white/[0.02]">
+          <div key={r.token} className="flex items-center justify-between gap-2 px-5 py-2.5 text-xs hover:bg-[var(--overlay-weak)]">
             <div className="min-w-0">
               <a
                 href={`https://dromos.kitchen/dashboards/net-flows?period=${period}`}

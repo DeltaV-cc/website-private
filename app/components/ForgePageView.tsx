@@ -175,7 +175,7 @@ function CourseCard({
         <Link
           href={primaryHref}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
-          style={{ background: accent, color: '#07100d' }}
+          style={{ background: accent, color: 'var(--on-accent)' }}
         >
           {ctaLabel} <ArrowRight />
         </Link>

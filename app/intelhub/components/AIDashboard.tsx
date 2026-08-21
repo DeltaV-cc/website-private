@@ -153,7 +153,7 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
           ]).map((k) => (
             <button key={k.key} onClick={() => setKind(k.key)}
               className={`px-2.5 py-0.5 rounded-full transition-colors ${
-                kind === k.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
+                kind === k.key ? 'bg-[var(--surface-invert)] text-[var(--text-invert)] font-medium' : 'bg-[var(--overlay)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
               }`}>
               {k.label} <span className="opacity-50">{k.n}</span>
             </button>
@@ -166,7 +166,7 @@ function FrontierWatch({ models, spaces }: { models: any[]; spaces: any[] }) {
           ].map((f) => (
             <button key={f.key} onClick={() => setFilter(f.key as any)}
               className={`px-2.5 py-0.5 rounded-full transition-colors duration-150 ${
-                filter === f.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10]'
+                filter === f.key ? 'bg-[var(--surface-invert)] text-[var(--text-invert)] font-medium' : 'bg-[var(--overlay)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[var(--overlay-strong)]'
               }`}>
               {f.label}
               <span className="ml-1 opacity-50">{filterCounts[f.key] ?? 0}</span>
@@ -291,7 +291,7 @@ function AbliteratedModels({
             {ABLIT_USES.map((u) => (
               <button key={u.key} onClick={() => setUse(u.key)}
                 className={`px-2.5 py-0.5 rounded-full transition-colors ${
-                  use === u.key ? 'bg-white text-black font-medium' : 'bg-white/[0.06] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
+                  use === u.key ? 'bg-[var(--surface-invert)] text-[var(--text-invert)] font-medium' : 'bg-[var(--overlay)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)]'
                 }`}>
                 {u.label}
                 <span className="ml-1 opacity-50">{(buckets[u.key] || []).length}</span>
@@ -349,7 +349,7 @@ function AbliteratedModels({
               href={m.url || `https://huggingface.co/${m.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-green)] truncate max-w-[180px]"
+              className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--overlay-soft)] text-[var(--text-tertiary)] hover:text-[var(--accent-green)] truncate max-w-[180px]"
               title={m.id || m.name}
             >
               {(m.name || m.id || '').split('/').pop()}
@@ -619,7 +619,7 @@ export default function AIDashboard({
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/[0.10] truncate max-w-[220px]"
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--overlay-soft)] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/[0.10] truncate max-w-[220px]"
                       title={id}
                     >
                       {id}
@@ -677,12 +677,12 @@ export default function AIDashboard({
               note={`${labResearch.length} items · Google capped`}
             />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[340px] overflow-y-auto scrollbar-hide">
             {labResearch.length === 0 ? (
               <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No lab items</div>
             ) : labResearch.map((it, i) => (
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-                className="block px-5 py-2.5 hover:bg-white/[0.02] group">
+                className="block px-5 py-2.5 hover:bg-[var(--overlay-weak)] group">
                 <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
                 <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
                   <span className="truncate max-w-[140px]">{it.source}</span>
@@ -701,12 +701,12 @@ export default function AIDashboard({
               note={`${tweetFeed.length} posts · agents / local / gen-AI`}
             />
           </div>
-          <div className="divide-y divide-white/[0.02] max-h-[340px] overflow-y-auto scrollbar-hide">
+          <div className="divide-y divide-[var(--border-subtle)] max-h-[340px] overflow-y-auto scrollbar-hide">
             {tweetFeed.length === 0 ? (
               <div className="px-5 py-6 text-center text-[10px] text-[var(--text-disabled)]">No posts yet</div>
             ) : tweetFeed.map((it, i) => (
               <a key={i} href={it.url} target="_blank" rel="noopener noreferrer"
-                className="block px-5 py-2.5 hover:bg-white/[0.02] group">
+                className="block px-5 py-2.5 hover:bg-[var(--overlay-weak)] group">
                 <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">{it.title}</div>
                 <div className="flex items-center gap-2 mt-0.5 text-[10px] text-[var(--text-muted)]">
                   <span className="truncate max-w-[140px]">{(it.source || '').replace(/^(x:|X:)\s*/i, '@')}</span>

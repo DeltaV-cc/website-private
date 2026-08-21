@@ -169,14 +169,14 @@ function ETFAssetColumn({
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-xs">
-        <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+        <div className="rounded-xl bg-[var(--overlay-soft)] border border-[var(--border-subtle)] px-3 py-2">
           <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">vs prior session</div>
           <div className={`font-semibold tabular-nums ${vsPrior == null ? 'text-[var(--text-disabled)]' : vsPrior >= 0 ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
             {vsPrior == null ? '—' : fmtFlow(vsPrior)}
           </div>
           <div className="text-[9px] text-[var(--text-disabled)]">Δ day-over-day</div>
         </div>
-        <div className="rounded-xl bg-white/[0.03] border border-white/[0.04] px-3 py-2">
+        <div className="rounded-xl bg-[var(--overlay-soft)] border border-[var(--border-subtle)] px-3 py-2">
           <div className="text-[9px] uppercase tracking-[1px] text-[var(--text-muted)] mb-0.5">YTD cumulative</div>
           <div className={`font-semibold tabular-nums ${ytdColor}`}>
             {ytd == null ? '—' : fmtFlow(ytd, 0)}
@@ -385,7 +385,7 @@ export default function Web3Dashboard({
           <span className="text-xs text-[var(--accent-purple)] uppercase tracking-[1.5px] font-bold">Desk snapshot</span>
           <PanelMeta source="CMC · alt.me · Farside" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.03]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-[var(--border-subtle)]">
           <div className="data-tile p-3.5">
             <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-[1px] mb-1">Market cap</div>
             <div className="text-sm font-bold tabular-nums text-[var(--text-primary)]">
@@ -462,7 +462,7 @@ export default function Web3Dashboard({
                   <div className={`text-[10px] ${fgColor}/60`}>{fgLabel || '···'}</div>
                 </div>
                 <div className="relative w-3 h-16 bg-gradient-to-t from-red-500/40 via-amber-500/40 to-emerald-500/40 rounded-full overflow-hidden">
-                  <div className="absolute left-0 right-0 h-[3px] bg-white rounded-full transition-all duration-500"
+                  <div className="absolute left-0 right-0 h-[3px] bg-[var(--text-primary)] rounded-full transition-all duration-500"
                     style={{ bottom: `${Math.max(3, Math.min(97, fgVal))}%` }} />
                 </div>
               </div>
@@ -575,7 +575,7 @@ export default function Web3Dashboard({
                   type="button"
                   onClick={() => setChainView(t.k)}
                   className={`text-[10px] px-2 py-1 rounded-md transition-colors ${
-                    chainView === t.k ? 'bg-white/[0.10] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+                    chainView === t.k ? 'bg-[var(--overlay-strong)] text-[var(--text-primary)]' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
                   }`}
                 >
                   {t.label}
@@ -590,7 +590,7 @@ export default function Web3Dashboard({
                   <div key={i} className="flex items-center gap-2.5 text-xs">
                     <a href={defillamaChainUrl(d.name)} target="_blank" rel="noopener noreferrer"
                       className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors" title={`${d.name} · DeFi Llama`}>{d.name}</a>
-                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
+                    <div className="flex-1 h-2 rounded-full bg-[var(--overlay-soft)] overflow-hidden">
                       <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/40 to-[var(--accent-cyan)]/40"
                         style={{ width: `${Math.min(100, parseFloat(String(d.pct || ((d.tvl / maxTvl) * 100))) || 0)}%` }} />
                     </div>
@@ -610,7 +610,7 @@ export default function Web3Dashboard({
                         className="w-24 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-amber)] transition-colors" title={`${c.name} · DeFi Llama`}>
                         {c.name}
                       </a>
-                      <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div className="flex-1 h-2.5 rounded-full bg-[var(--overlay-soft)] overflow-hidden">
                         <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-amber)]/70 to-[var(--accent-orange)]/40 transition-all duration-700"
                           style={{ width: `${pct}%` }} />
                       </div>
@@ -636,7 +636,7 @@ export default function Web3Dashboard({
                         className="w-20 text-[var(--text-tertiary)] truncate flex-shrink-0 hover:text-[var(--accent-purple)] transition-colors" title={`${c.name} · DeFi Llama`}>
                         {c.name}
                       </a>
-                      <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden min-w-[48px]">
+                      <div className="flex-1 h-2.5 rounded-full bg-[var(--overlay-soft)] overflow-hidden min-w-[48px]">
                         <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-purple)]/70 to-[var(--accent-cyan)]/60 transition-all duration-700"
                           style={{ width: `${pct}%` }} />
                       </div>
@@ -722,7 +722,7 @@ export default function Web3Dashboard({
                 <div>
                   <div className="text-[10px] text-[var(--accent-green)] uppercase tracking-[1px] mb-1.5 font-semibold">▲ Gainers</div>
                   {moverGainers.slice(0, 4).map((c: any, i: number) => (
-                    <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                    <div key={i} className="flex items-center justify-between py-1 border-b border-[var(--border-subtle)] last:border-0 gap-2">
                       <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
                         className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-green)] transition-colors underline-offset-2 hover:underline"
                         title={`${c.name} · DeFi Llama`}>{c.name}</a>
@@ -735,7 +735,7 @@ export default function Web3Dashboard({
                 <div>
                   <div className="text-[10px] text-[var(--accent-red)] uppercase tracking-[1px] mb-1.5 font-semibold">▼ Losers</div>
                   {moverLosers.slice(0, 4).map((c: any, i: number) => (
-                    <div key={i} className="flex items-center justify-between py-1 border-b border-white/[0.02] last:border-0 gap-2">
+                    <div key={i} className="flex items-center justify-between py-1 border-b border-[var(--border-subtle)] last:border-0 gap-2">
                       <a href={defillamaChainUrl(c.name)} target="_blank" rel="noopener noreferrer"
                         className="text-[var(--text-secondary)] truncate max-w-[80px] hover:text-[var(--accent-red)] transition-colors underline-offset-2 hover:underline"
                         title={`${c.name} · DeFi Llama`}>{c.name}</a>
@@ -782,7 +782,7 @@ export default function Web3Dashboard({
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[var(--border-default)] bg-white/[0.015]">
+                <tr className="border-b border-[var(--border-default)] bg-[var(--overlay-weak)]">
                   <th className="text-left px-4 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">Protocol</th>
                   {((dd.dexMatrix.chains || []) as any[]).slice(0, 7).map((c: any) => (
                     <th key={c.chain} className="text-right px-3 py-2.5 text-[var(--text-muted)] font-medium uppercase tracking-wider text-[10px]">
@@ -799,9 +799,9 @@ export default function Web3Dashboard({
                   <th className="text-right px-3 py-2.5 text-[var(--accent-cyan)] font-medium uppercase tracking-wider text-[10px]">Total</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/[0.03]">
+              <tbody className="divide-y divide-[var(--border-subtle)]">
                 {((dd.dexMatrix.matrix || []) as any[]).slice(0, 12).map((row: any, i: number) => (
-                  <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? 'bg-white/[0.005]' : ''}`}>
+                  <tr key={i} className={`hover:bg-[var(--overlay-weak)] transition-colors ${i % 2 === 0 ? 'bg-[var(--overlay-weak)]' : ''}`}>
                     <td className="px-4 py-2.5 text-[var(--text-secondary)] font-medium truncate max-w-[160px]">
                       <a href={defillamaProtocolUrl(row.protocol)} target="_blank" rel="noopener noreferrer"
                         className="hover:text-[var(--accent-cyan)] transition-colors underline-offset-2 hover:underline"
@@ -823,7 +823,7 @@ export default function Web3Dashboard({
                           <span className={`tabular-nums text-[11px] ${isMax ? 'text-[var(--accent-cyan)] font-semibold' : 'text-[var(--text-tertiary)]'}`}>
                             {val > 1e6 ? `$${(val/1e6).toFixed(1)}M` : val > 1e3 ? `$${(val/1e3).toFixed(0)}K` : val > 0 ? `$${val.toFixed(0)}` : '·'}
                           </span>
-                          {val > 0 && <div className="h-0.5 mt-0.5 rounded-full bg-white/[0.04]"><div className="h-full rounded-full bg-[var(--accent-cyan)]/30" style={{width: `${Math.max(pct*100, 2)}%`}} /></div>}
+                          {val > 0 && <div className="h-0.5 mt-0.5 rounded-full bg-[var(--overlay-soft)]"><div className="h-full rounded-full bg-[var(--accent-cyan)]/30" style={{width: `${Math.max(pct*100, 2)}%`}} /></div>}
                         </td>
                       );
                     })}

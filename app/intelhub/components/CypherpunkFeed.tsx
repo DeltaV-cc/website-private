@@ -99,12 +99,12 @@ export default function CypherpunkFeed({
             core builders · privacy · research
           </span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-[var(--text-muted)] tabular-nums shrink-0">
+        <span className="text-[10px] px-2 py-0.5 rounded bg-[var(--overlay)] text-[var(--text-muted)] tabular-nums shrink-0">
           {posts.length} live
           {watching > 0 ? ` · ${watching} watching` : ''}
         </span>
       </div>
-      <div className="divide-y divide-white/[0.02] max-h-[320px] overflow-y-auto scrollbar-hide">
+      <div className="divide-y divide-[var(--border-subtle)] max-h-[320px] overflow-y-auto scrollbar-hide">
         {posts.length === 0 ? (
           <div className="px-4 py-8 text-center">
             <p className="text-xs text-[var(--text-disabled)]">
@@ -121,7 +121,7 @@ export default function CypherpunkFeed({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={it.title}
-                className="block px-4 py-2.5 hover:bg-white/[0.03] group"
+                className="block px-4 py-2.5 hover:bg-[var(--overlay-soft)] group"
               >
                 <div className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] line-clamp-2 leading-snug">
                   {it.title}

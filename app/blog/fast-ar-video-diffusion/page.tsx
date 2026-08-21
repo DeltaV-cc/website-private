@@ -48,29 +48,29 @@ export default function FastARVideoDiffusionPost() {
       <h2>Results: What Changes at Scale</h2>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#222] rounded-lg">
+        <table className="w-full text-sm border border-[var(--border-default)] rounded-lg">
           <thead>
-            <tr className="bg-[#111] text-[#aaa] text-left">
-              <th className="p-3 border-b border-[#222]">Metric</th>
-              <th className="p-3 border-b border-[#222]">Dense Attention (Baseline)</th>
-              <th className="p-3 border-b border-[#222]">FAST-AR</th>
-              <th className="p-3 border-b border-[#222]">Improvement</th>
+            <tr className="bg-[var(--bg-elevated)] text-[var(--text-tertiary)] text-left">
+              <th className="p-3 border-b border-[var(--border-default)]">Metric</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Dense Attention (Baseline)</th>
+              <th className="p-3 border-b border-[var(--border-default)]">FAST-AR</th>
+              <th className="p-3 border-b border-[var(--border-default)]">Improvement</th>
             </tr>
           </thead>
-          <tbody className="text-[#ccc]">
-            <tr className="border-b border-[#222]">
+          <tbody className="text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">End-to-end generation speed</td>
               <td className="p-3">Baseline (FlashAttention3)</td>
               <td className="p-3 text-emerald-400 font-medium">FAST-AR</td>
               <td className="p-3 text-emerald-400">5–10× faster</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">GPU memory over time</td>
               <td className="p-3">Linearly growing</td>
               <td className="p-3 text-emerald-400 font-medium">Constant (flat)</td>
               <td className="p-3 text-emerald-400">Unbounded → bounded</td>
             </tr>
-            <tr className="border-b border-[#222]">
+            <tr className="border-b border-[var(--border-default)]">
               <td className="p-3">Latency over long rollouts</td>
               <td className="p-3">Increasing per frame</td>
               <td className="p-3 text-emerald-400 font-medium">Stable per frame</td>

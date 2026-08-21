@@ -36,7 +36,7 @@ export default function ChainVolumeBar({ data, loading }: { data: ChainVol[]; lo
             >
               {d.chain}
             </a>
-            <div className="flex-1 h-3.5 rounded-full bg-white/[0.04] overflow-hidden relative">
+            <div className="flex-1 h-3.5 rounded-full bg-[var(--overlay-soft)] overflow-hidden relative">
               <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-cyan)]/80 to-[var(--accent-cyan)]/40 transition-all duration-500"
                 style={{ width: `${pct}%` }} />
             </div>

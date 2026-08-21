@@ -22,8 +22,8 @@ export default function MetricTile({
   if (loading) {
     return (
       <div className={`rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] ${s.padding} ${className} skeleton-shimmer`}>
-        <div className="h-3 w-16 bg-white/[0.06] rounded mb-2" />
-        <div className="h-8 w-28 bg-white/[0.06] rounded" />
+        <div className="h-3 w-16 bg-[var(--overlay)] rounded mb-2" />
+        <div className="h-8 w-28 bg-[var(--overlay)] rounded" />
       </div>
     );
   }

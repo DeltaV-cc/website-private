@@ -14,7 +14,7 @@ export default function QwenPost() {
       sourceUrl="https://x.com/HuggingModels/status/2069124265107145193"
     >
       <p>
-        On June 22, the Hugging Face model release bot flagged <a href="https://huggingface.co/QwenLM" className="text-[#00f0ff] hover:underline">QwenLM</a>&apos;s latest:{' '}
+        On June 22, the Hugging Face model release bot flagged <a href="https://huggingface.co/QwenLM" className="text-[var(--accent-cyan)] hover:underline">QwenLM</a>&apos;s latest:{' '}
         a 35 billion parameter Mixture-of-Experts vision-language model with only 3 billion active parameters per token.{' '}
         The model card is minimal. The community response is not — 5.5K views and climbing in hours.
       </p>
@@ -27,7 +27,7 @@ export default function QwenPost() {
       </p>
 
       {/* Architecture specs card */}
-      <div className="bg-[#111] border border-[#222] rounded-2xl p-6 my-8 grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-2xl p-6 my-8 grid grid-cols-2 md:grid-cols-5 gap-4">
         {[
           { label: 'Params', value: '35B · 3B active' },
           { label: 'Architecture', value: 'MoE Vision-Language' },
@@ -36,14 +36,14 @@ export default function QwenPost() {
           { label: 'License', value: 'MIT' },
         ].map((stat) => (
           <div key={stat.label} className="text-center">
-            <div className="text-xs text-[#666] uppercase tracking-[1px] mb-1">{stat.label}</div>
-            <div className="text-sm font-medium text-[#ededed]">{stat.value}</div>
+            <div className="text-xs text-[var(--text-muted)] uppercase tracking-[1px] mb-1">{stat.label}</div>
+            <div className="text-sm font-medium text-[var(--text-primary)]">{stat.value}</div>
           </div>
         ))}
       </div>
 
       {/* Architecture diagram */}
-      <div className="bg-[#111] border border-[#222] rounded-2xl p-6 md:p-8 my-8 overflow-x-auto">
+      <div className="bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-2xl p-6 md:p-8 my-8 overflow-x-auto">
         <svg viewBox="0 0 800 380" className="w-full max-w-[800px] mx-auto h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Background grid */}
           <defs>
@@ -156,12 +156,12 @@ export default function QwenPost() {
           <text x="317" y="204" textAnchor="middle" fill="#666" fontSize="8" fontFamily="monospace">35B total</text>
         </svg>
 
-        <p className="text-center text-[10px] text-[#555] mt-2 font-mono">
+        <p className="text-center text-[10px] text-[var(--text-muted)] mt-2 font-mono">
           Mixture of Experts — Router activates 2 of many experts per token (3B / 35B active)
         </p>
       </div>
 
-      <h2 className="text-2xl font-semibold text-[#ededed] mt-12 mb-4">Architecture at a Glance</h2>
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mt-12 mb-4">Architecture at a Glance</h2>
 
       <p>
         The MoE ratio here is striking: ~8.6% active parameters. That is an unusually sparse allocation,{' '}
@@ -175,7 +175,7 @@ export default function QwenPost() {
         representational capacity — it just doesn&apos;t pay the full activation cost on every token.
       </p>
 
-      <h2 className="text-2xl font-semibold text-[#ededed] mt-12 mb-4">Why &ldquo;Uncensored&rdquo; Matters for OpSec</h2>
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mt-12 mb-4">Why &ldquo;Uncensored&rdquo; Matters for OpSec</h2>
 
       <p>
         There is a legitimate category of use cases where refusal filters are harmful: penetration testing{' '}
@@ -184,15 +184,15 @@ export default function QwenPost() {
         is not safer — it is less capable for the people who need to understand them.
       </p>
 
-      <div className="bg-[#0d0d0d] border-l-2 border-[#C2410C] rounded-r-xl p-5 my-8">
-        <p className="text-sm text-[#aaa]">
-          <strong className="text-[#C2410C]">The sovereign AI position:</strong> The human stays in the loop for judgment calls,{' '}
+      <div className="bg-[var(--bg-card)] border-l-2 border-[var(--accent-orange)] rounded-r-xl p-5 my-8">
+        <p className="text-sm text-[var(--text-tertiary)]">
+          <strong className="text-[var(--accent-orange)]">The sovereign AI position:</strong> The human stays in the loop for judgment calls,{' '}
           not the safety filter. An uncensored model processes the input and returns its best answer;{' '}
           the operator decides what to do with it.
         </p>
       </div>
 
-      <h2 className="text-2xl font-semibold text-[#ededed] mt-12 mb-4">Local-First Deployment</h2>
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mt-12 mb-4">Local-First Deployment</h2>
 
       <p>
         The 3B active parameter count makes this one of the most capable uncensored VLMs that can{' '}
@@ -206,7 +206,7 @@ export default function QwenPost() {
         6-8GB for the active parameters, well within range of edge hardware or a laptop GPU.
       </p>
 
-      <h2 className="text-2xl font-semibold text-[#ededed] mt-12 mb-4">What to Watch</h2>
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mt-12 mb-4">What to Watch</h2>
 
       <p>Three open questions worth tracking:</p>
 
@@ -226,18 +226,18 @@ export default function QwenPost() {
           },
         ].map((item) => (
           <div key={item.title} className="flex gap-4">
-            <span className="w-6 h-6 rounded-full bg-[#00f0ff]/10 border border-[#00f0ff]/20 flex items-center justify-center shrink-0 mt-0.5">
+            <span className="w-6 h-6 rounded-full bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 flex items-center justify-center shrink-0 mt-0.5">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
             </span>
             <div>
-              <strong className="text-[#ededed]">{item.title}</strong>
-              <p className="text-[#aaa] mt-1">{item.desc}</p>
+              <strong className="text-[var(--text-primary)]">{item.title}</strong>
+              <p className="text-[var(--text-tertiary)] mt-1">{item.desc}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <p className="text-[#666] text-sm pt-8 border-t border-[#222]">
+      <p className="text-[var(--text-muted)] text-sm pt-8 border-t border-[var(--border-default)]">
         Qwen3.6-35B-A3B is available under MIT license on Hugging Face. Delta V does not endorse{' '}
         or oppose uncensored models — we analyze their utility for specific engineering contexts{' '}
         and opsec requirements.

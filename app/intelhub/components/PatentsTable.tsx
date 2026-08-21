@@ -38,7 +38,7 @@ export default function PatentsTable({ patents }: { patents: PatentsData }) {
               >
                 {h.name}
               </a>
-              <div className="flex-1 h-3 rounded-full bg-white/[0.04] overflow-hidden">
+              <div className="flex-1 h-3 rounded-full bg-[var(--overlay-soft)] overflow-hidden">
                 <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent-vibe-pink)]/80 to-[var(--accent-purple)]/60 transition-all duration-700"
                   style={{ width: `${pct}%` }} />
               </div>

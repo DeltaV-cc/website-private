@@ -397,7 +397,7 @@ export default function BlogPostLayout({
 
             {toc.length > 1 && (
               <details
-                className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] px-4 py-3"
+                className="lg:hidden mb-8 rounded-xl border border-[var(--border-default)] bg-[var(--surface-overlay)] px-4 py-3"
                 open
               >
                 <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[2px] text-[var(--text-secondary)]">
@@ -472,7 +472,7 @@ export default function BlogPostLayout({
               </p>
               <Link
                 href="/contact/"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent-orange)] text-white rounded-xl text-sm font-medium hover:bg-[#d94d0f] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent-orange)] text-[var(--on-accent)] rounded-xl text-sm font-medium hover:bg-[var(--accent-orange-dark)] transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -487,7 +487,7 @@ export default function BlogPostLayout({
             {toc.length > 1 && (
               <nav
                 aria-label="Table of contents"
-                className="sticky top-24 rounded-xl border border-[var(--border-default)] bg-[rgba(8,11,10,.9)] p-4 shadow-[0_16px_40px_rgba(0,0,0,.18)]"
+                className="sticky top-24 rounded-xl border border-[var(--border-default)] bg-[var(--surface-overlay)] p-4 shadow-[var(--shadow-lg)]"
               >
                 <button
                   type="button"
