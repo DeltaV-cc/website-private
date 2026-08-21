@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T08:15:59Z",
+  "updated_at": "2026-08-21T08:31:01Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,35 +82,35 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 259.43,
+        "price": 264.72,
         "change_24h": 22.7,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.34,
+        "price": 1.35,
         "change_24h": 18.3,
         "asset": "crypto"
       },
       {
         "symbol": "VVV",
         "name": "Venice Token",
-        "price": 16.29,
+        "price": 16.28,
         "change_24h": 14.3,
         "asset": "crypto"
       },
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 634.88,
+        "price": 635.42,
         "change_24h": 14.2,
         "asset": "crypto"
       },
       {
         "symbol": "ADA",
         "name": "Cardano",
-        "price": 0.21319,
+        "price": 0.212975,
         "change_24h": 13.7,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.14,
+        "price": 1.13,
         "change_24h": -7.8,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.75,
+        "price": 2.76,
         "change_24h": -5.2,
         "asset": "crypto"
       },
@@ -140,7 +140,7 @@
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.060939,
+        "price": 0.061192,
         "change_24h": -1.2,
         "asset": "crypto"
       },
