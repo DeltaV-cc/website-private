@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-08-20T16:20:05Z",
+  "updatedAt": "2026-08-21T07:56:02Z",
   "kev": [
+    {
+      "cve": "CVE-2026-72530",
+      "product": "Server",
+      "vendor": "TrueConf",
+      "name": "TrueConf Server Code Injection Vulnerability",
+      "dateAdded": "2026-08-20",
+      "dueDate": "2026-09-03",
+      "knownRansomware": "Unknown"
+    },
+    {
+      "cve": "CVE-2026-72529",
+      "product": "Server",
+      "vendor": "TrueConf",
+      "name": "TrueConf Server Missing Authentication for Critical Function Vulnerability",
+      "dateAdded": "2026-08-20",
+      "dueDate": "2026-08-23",
+      "knownRansomware": "Unknown"
+    },
     {
       "cve": "CVE-2026-64849",
       "product": "MLflow",
@@ -108,110 +126,71 @@
       "dateAdded": "2026-08-04",
       "dueDate": "2026-08-07",
       "knownRansomware": "Unknown"
-    },
-    {
-      "cve": "CVE-2026-34486",
-      "product": "Tomcat",
-      "vendor": "Apache",
-      "name": "Apache Tomcat Missing Encryption of Sensitive Data Vulnerability",
-      "dateAdded": "2026-08-04",
-      "dueDate": "2026-08-07",
-      "knownRansomware": "Unknown"
-    },
-    {
-      "cve": "CVE-2026-9198",
-      "product": "Langflow",
-      "vendor": "IBM",
-      "name": "IBM Langflow Code Injection Vulnerability",
-      "dateAdded": "2026-08-04",
-      "dueDate": "2026-08-07",
-      "knownRansomware": "Unknown"
     }
   ],
   "cves": [
     {
-      "id": "CVE-2026-16299",
+      "id": "CVE-2026-34265",
       "severity": "CRITICAL",
       "score": 9.8,
-      "description": "The Single Sign On For TNG WordPress plugin before 2.2.0 does not properly validate a password reset request, allowing unauthenticated attackers to reset the password of arbitrary users, including administrators, which c",
-      "published": "2026-08-10T07:16:48.163"
+      "description": "SAP NetWeaver Application Server ABAP allows an unauthenticated attacker to exploit logical errors in DIAG protocol parsing, resulting in memory corruption. This vulnerability could potentially disclose sensitive system ",
+      "published": "2026-08-11T01:17:20.240"
     },
     {
-      "id": "CVE-2026-16298",
+      "id": "CVE-2026-44758",
       "severity": "CRITICAL",
-      "score": 9.8,
-      "description": "The FoodBoxBooker WordPress plugin before 1.0.7 does not properly validate the password reset request, allowing unauthenticated attackers to reset the password of arbitrary users, including administrators, which could le",
-      "published": "2026-08-10T07:16:48.050"
+      "score": 9.1,
+      "description": "SAP Manufacturing Integration and Intelligence (MII) allows an attacker with high privileges to submit specially crafted input to certain affected functionality, which is processed without sufficient validation. Successf",
+      "published": "2026-08-11T01:17:20.670"
     },
     {
-      "id": "CVE-2026-16985",
+      "id": "CVE-2026-58243",
       "severity": "HIGH",
       "score": 8.8,
-      "description": "The Squeeze WordPress plugin before 1.7.12 does not validate the file type or extension of the per-size image data written by one of its attachment-update actions, allowing users with the upload_files capability (Author ",
-      "published": "2026-08-10T07:16:48.380"
+      "description": "SAP ABAP Development Tools does not perform necessary authorization checks for certain functionality, allowing an attacker with low privileges to execute unauthorized database operations against SAP NetWeaver AS ABAP. Su",
+      "published": "2026-08-11T01:17:22.160"
     },
     {
-      "id": "CVE-2026-14293",
-      "severity": "HIGH",
-      "score": 8.8,
-      "description": "The Autopay WordPress plugin before 5.0.1 does not perform any capability or nonce check before saving a styling option from a public request, and does not escape that value when it is later output on the checkout page, ",
-      "published": "2026-08-10T07:16:47.160"
-    },
-    {
-      "id": "CVE-2026-13133",
+      "id": "CVE-2026-8917",
       "severity": "HIGH",
       "score": 8.4,
-      "description": "A vulnerability has been identified in LineInst.exe (LINE for Windows) prior to version 26.4.0, where Msftedit.dll is loaded via a relative path without a secure DLL search path, allowing a malicious DLL placed in the in",
-      "published": "2026-08-10T07:16:46.173"
+      "description": "Untrusted Pointer Dereference in ASUS GPU Tweak III, GPUTweakII, AI Suite3, and VGAdll: An IOCTL vulnerability allows a local attacker to write a specific value to an arbitrary memory address, potentially leading to priv",
+      "published": "2026-08-11T03:18:01.900"
     },
     {
-      "id": "CVE-2026-16257",
+      "id": "CVE-2026-66763",
       "severity": "HIGH",
-      "score": 8.2,
-      "description": "The Arvow AI SEO Writer WordPress plugin before 1.5.4 does not properly restrict access to one of its REST endpoints, whose only access control can be bypassed by unauthenticated users through type juggling when the Arvo",
-      "published": "2026-08-10T07:16:47.933"
+      "score": 7.9,
+      "description": "SAP BusinessObjects Business Intelligence Platform stores certain sensitive credentials associated with user objects using a hard-coded cryptographic key. An attacker with high privileges and local access to the server c",
+      "published": "2026-08-11T01:17:23.000"
     },
     {
-      "id": "CVE-2026-13600",
-      "severity": "HIGH",
-      "score": 8.1,
-      "description": "The AutoNetTV Relay WordPress plugin before 3.0.14 does not perform any capability or authentication check before setting a WordPress administrator authentication cookie during its scheduled content-synchronization task.",
-      "published": "2026-08-10T07:16:46.473"
-    },
-    {
-      "id": "CVE-2026-19381",
-      "severity": "HIGH",
-      "score": 7.8,
-      "description": "A security flaw has been discovered in Kingston FURY CTRL RGB Control Software 2.0.65.0. The impacted element is an unknown function in the library NTIOLib_KSFX.sys of the component Driver. Performing a manipulation resu",
-      "published": "2026-08-10T01:16:48.367"
-    },
-    {
-      "id": "CVE-2026-19387",
+      "id": "CVE-2026-44763",
       "severity": "HIGH",
       "score": 7.6,
-      "description": "A heap out-of-bounds write vulnerability was found in the GStreamer gst-plugins-bad adpcmdec element when decoding IMA/DVI ADPCM audio. Insufficient validation of the per-block sample count for multi-channel streams allo",
-      "published": "2026-08-10T03:16:40.223"
+      "description": "SAP Manufacturing Integration and Intelligence allows a privileged attacker to exploit insufficient file path validation in certain functions using specially crafted input. Exploitation also requires a legitimate user to",
+      "published": "2026-08-11T01:17:20.930"
     },
     {
-      "id": "CVE-2026-14206",
+      "id": "CVE-2026-19424",
       "severity": "HIGH",
       "score": 7.5,
-      "description": "The HT Contact Form WordPress plugin before 2.9.3 does not perform any authorization check on the endpoint that returns a saved form draft, allowing unauthenticated users to read the personal data (name, email, phone, ad",
-      "published": "2026-08-10T07:16:46.710"
+      "description": "Chiline Cloud developed by Inventec Appliances has a Insecure Direct Object Reference vulnerability. Unauthenticated remote attackers can modify a specific parameter to read other users' sensitive data.",
+      "published": "2026-08-11T03:17:36.157"
     },
     {
-      "id": "CVE-2026-19384",
+      "id": "CVE-2026-44765",
       "severity": "HIGH",
       "score": 7.3,
-      "description": "A weakness has been identified in SourceCodester Simple Doctors Appointment System 1.0. The affected element is an unknown function of the file /admin/ajax.php?action=set_appointment. This manipulation of the argument ID",
-      "published": "2026-08-10T03:16:40.050"
+      "description": "Due to a Missing Authorization Check vulnerability in SAP Manufacturing Integration and Intelligence, an unauthenticated remote attacker could access scheduling-related application functions without proper authorization ",
+      "published": "2026-08-11T01:17:21.180"
     },
     {
-      "id": "CVE-2026-19379",
+      "id": "CVE-2026-58230",
       "severity": "HIGH",
-      "score": 7.3,
-      "description": "A vulnerability was determined in EFM ipTIME AX8004M 15.09.0. Impacted is the function popen of the file /cgi/d.cgi of the component CGI Endpoint. This manipulation of the argument fname causes os command injection. The ",
-      "published": "2026-08-10T01:16:47.980"
+      "score": 7.0,
+      "description": "SAP Approuter does not sufficiently validate certain token content under specific configurations. An unauthenticated attacker could send a specially crafted token to cause sensitive credential material to be sent to an a",
+      "published": "2026-08-11T01:17:21.307"
     }
   ],
   "breaches": [
