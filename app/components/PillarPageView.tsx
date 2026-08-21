@@ -2,6 +2,7 @@
 
 import { PageHero, PageContainer } from './PageShell';
 import EcosystemStack, { AI_ECOSYSTEM, WEB3_ECOSYSTEM } from './EcosystemStack';
+import HydraShowcase from './HydraShowcase';
 import OfferCard from './OfferCard';
 import OpSec from '../opsec/page';
 import { formatCourseText } from './course/formatCourseText';
@@ -34,6 +35,10 @@ export default function PillarPageView({
         backFallback={hrefFor('/', lang)}
         backLabel={copy.backLabel}
       />
+
+      {/* Before the offers: the cards say what we build, Hydra shows one we
+          already shipped, running. */}
+      {pillar === 'ai' && <HydraShowcase lang={lang} />}
 
       <PageContainer className="pb-16 space-y-5" as="section">
         {copy.offers.map((offer) => (
