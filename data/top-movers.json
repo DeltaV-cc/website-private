@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T20:00:55Z",
+  "updated_at": "2026-08-21T07:53:46Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -20,15 +20,15 @@
       {
         "symbol": "ANDG",
         "name": "Andersen Group Inc.",
-        "price": 50.43,
-        "change_24h": 12.01,
+        "price": 50.32,
+        "change_24h": 11.77,
         "asset": "equity"
       },
       {
         "symbol": "XXI",
         "name": "Twenty One Capital, Inc.",
-        "price": 6.17,
-        "change_24h": 11.17,
+        "price": 6.19,
+        "change_24h": 11.53,
         "asset": "equity"
       },
       {
@@ -50,15 +50,15 @@
       {
         "symbol": "AADX",
         "name": "Applied Aerospace & Defense, In",
-        "price": 15.47,
-        "change_24h": -10.39,
+        "price": 15.5,
+        "change_24h": -10.25,
         "asset": "equity"
       },
       {
         "symbol": "EROC",
         "name": "ERock, Inc.",
-        "price": 13.0,
-        "change_24h": -9.47,
+        "price": 13.01,
+        "change_24h": -9.4,
         "asset": "equity"
       },
       {
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "HYPE",
-        "name": "Hyperliquid",
-        "price": 72.42,
-        "change_24h": 16.6,
+        "symbol": "BCH",
+        "name": "Bitcoin Cash",
+        "price": 258.34,
+        "change_24h": 18.1,
         "asset": "crypto"
       },
       {
         "symbol": "XRP",
         "name": "XRP",
-        "price": 1.22,
-        "change_24h": 14.7,
+        "price": 1.31,
+        "change_24h": 17.7,
         "asset": "crypto"
       },
       {
-        "symbol": "MNT",
-        "name": "Mantle",
-        "price": 0.516566,
-        "change_24h": 13.8,
+        "symbol": "\u5e01\u5b89\u4eba\u751f",
+        "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+        "price": 0.515747,
+        "change_24h": 13.7,
         "asset": "crypto"
       },
       {
-        "symbol": "BTW",
-        "name": "Bitway",
-        "price": 0.399084,
-        "change_24h": 12.9,
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.209982,
+        "change_24h": 13.1,
         "asset": "crypto"
       },
       {
-        "symbol": "CRO",
-        "name": "Cronos",
-        "price": 0.053349,
-        "change_24h": 12.2,
+        "symbol": "VVV",
+        "name": "Venice Token",
+        "price": 16.11,
+        "change_24h": 12.4,
         "asset": "crypto"
       }
     ],
@@ -119,36 +119,36 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.17,
-        "change_24h": -3.7,
+        "price": 1.14,
+        "change_24h": -7.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LIT",
+        "name": "Lighter",
+        "price": 2.76,
+        "change_24h": -4.4,
         "asset": "crypto"
       },
       {
         "symbol": "WLFI",
         "name": "World Liberty Financial",
-        "price": 0.060971,
-        "change_24h": -2.1,
+        "price": 0.060587,
+        "change_24h": -2.9,
         "asset": "crypto"
       },
       {
-        "symbol": "USDY",
-        "name": "Ondo US Dollar Yield",
-        "price": 1.14,
-        "change_24h": -0.2,
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.026,
+        "change_24h": -1.6,
         "asset": "crypto"
       },
       {
-        "symbol": "RAIN",
-        "name": "Rain",
-        "price": 0.013913,
-        "change_24h": -0.1,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "USX",
-        "name": "USX",
-        "price": 0.999572,
-        "change_24h": 0.0,
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.27,
+        "change_24h": -1.0,
         "asset": "crypto"
       }
     ]
