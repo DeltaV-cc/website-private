@@ -1,50 +1,71 @@
 {
-  "updated_at": "2026-08-21T14:02:22Z",
+  "updated_at": "2026-08-21T17:08:48Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
         "symbol": "HOOD",
         "name": "Robinhood Markets, Inc.",
-        "price": 108.25,
-        "change_24h": 13.83,
+        "price": 107.91,
+        "change_24h": 13.47,
+        "asset": "equity"
+      },
+      {
+        "symbol": "USAR",
+        "name": "USA Rare Earth, Inc.",
+        "price": 19.29,
+        "change_24h": 12.74,
         "asset": "equity"
       },
       {
         "symbol": "MRNA",
         "name": "Moderna, Inc.",
-        "price": 150.01,
-        "change_24h": 12.52,
+        "price": 149.77,
+        "change_24h": 12.34,
         "asset": "equity"
       },
       {
-        "symbol": "BTDR",
-        "name": "Bitdeer Technologies Group",
-        "price": 11.55,
-        "change_24h": 10.74,
+        "symbol": "TGTX",
+        "name": "TG Therapeutics, Inc.",
+        "price": 56.61,
+        "change_24h": 11.97,
         "asset": "equity"
       },
       {
-        "symbol": "COIN",
-        "name": "Coinbase Global, Inc.",
-        "price": 188.62,
-        "change_24h": 9.44,
-        "asset": "equity"
-      },
-      {
-        "symbol": "CRCL",
-        "name": "Circle Internet Group, Inc.",
-        "price": 91.89,
-        "change_24h": 9.84,
+        "symbol": "SLS",
+        "name": "SELLAS Life Sciences Group, Inc",
+        "price": 14.94,
+        "change_24h": 11.46,
         "asset": "equity"
       }
     ],
     "losers": [
       {
+        "symbol": "HUT",
+        "name": "Hut 8 Corp.",
+        "price": 79.39,
+        "change_24h": -10.44,
+        "asset": "equity"
+      },
+      {
+        "symbol": "DAR",
+        "name": "Darling Ingredients Inc.",
+        "price": 60.98,
+        "change_24h": -10.11,
+        "asset": "equity"
+      },
+      {
+        "symbol": "CIFR",
+        "name": "Cipher Digital Inc.",
+        "price": 15.68,
+        "change_24h": -8.9,
+        "asset": "equity"
+      },
+      {
         "symbol": "OSIS",
         "name": "OSI Systems, Inc.",
-        "price": 199.53,
-        "change_24h": -8.51,
+        "price": 197.81,
+        "change_24h": -9.3,
         "asset": "equity"
       },
       {
@@ -52,27 +73,6 @@
         "name": "Telix Pharmaceuticals Limited",
         "price": 11.34,
         "change_24h": -8.7,
-        "asset": "equity"
-      },
-      {
-        "symbol": "UI",
-        "name": "Ubiquiti Inc.",
-        "price": 523.88,
-        "change_24h": -8.72,
-        "asset": "equity"
-      },
-      {
-        "symbol": "BABA",
-        "name": "Alibaba Group Holding Limited",
-        "price": 121.76,
-        "change_24h": -6.72,
-        "asset": "equity"
-      },
-      {
-        "symbol": "AEHR",
-        "name": "Aehr Test Systems",
-        "price": 101.52,
-        "change_24h": -4.2,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 269.4,
-        "change_24h": 24.3,
+        "price": 298.77,
+        "change_24h": 33.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 677.1,
+        "change_24h": 18.0,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 71.31,
-        "change_24h": 18.4,
+        "price": 71.49,
+        "change_24h": 18.0,
         "asset": "crypto"
       },
       {
-        "symbol": "XRP",
-        "name": "XRP",
-        "price": 1.42,
-        "change_24h": 18.2,
+        "symbol": "AAVE",
+        "name": "Aave",
+        "price": 111.51,
+        "change_24h": 15.0,
         "asset": "crypto"
       },
       {
         "symbol": "APT",
         "name": "Aptos",
-        "price": 0.6488,
-        "change_24h": 14.8,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "JUP",
-        "name": "Jupiter",
-        "price": 0.215227,
-        "change_24h": 14.6,
+        "price": 0.636008,
+        "change_24h": 11.3,
         "asset": "crypto"
       }
     ],
@@ -120,34 +120,34 @@
         "symbol": "M",
         "name": "MemeCore",
         "price": 1.14,
-        "change_24h": -6.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "FIGR_HELOC",
-        "name": "Figure Heloc",
-        "price": 1.026,
-        "change_24h": -1.6,
+        "change_24h": -5.6,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 414.41,
-        "change_24h": -0.8,
+        "price": 410.22,
+        "change_24h": -2.2,
         "asset": "crypto"
       },
       {
-        "symbol": "BDX",
-        "name": "Beldex",
-        "price": 0.082705,
-        "change_24h": -0.4,
+        "symbol": "FIGR_HELOC",
+        "name": "Figure Heloc",
+        "price": 1.027,
+        "change_24h": -1.3,
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.103962,
+        "symbol": "USDY",
+        "name": "Ondo US Dollar Yield",
+        "price": 1.14,
+        "change_24h": -0.3,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "LEO",
+        "name": "LEO Token",
+        "price": 9.29,
         "change_24h": -0.1,
         "asset": "crypto"
       }
