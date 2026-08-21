@@ -1,6 +1,14 @@
 {
   "picks": [
     {
+      "title": "CISA orders feds to patch actively exploited TrueConf Server flaws",
+      "source": "BleepingComputer",
+      "category": "macro",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-actively-exploited-trueconf-server-flaws/",
+      "published_at": "Fri, 21 Aug 2026 08:25:33 -0400",
+      "score": 210.0
+    },
+    {
       "title": "Live updates: BTC tops $76,000; bitcoin, ether ETFs pull in $800 million",
       "source": "CoinDesk",
       "category": "market",
@@ -15,15 +23,7 @@
       "url": "https://decrypt.co/376158/tensions-flare-cme-kalshi-clash-prediction-markets-dc",
       "published_at": "Thu, 20 Aug 2026 22:32:11 +0000",
       "score": 180.0
-    },
-    {
-      "title": "Mother tongue",
-      "source": "MIT Technology Review",
-      "category": "macro",
-      "url": "https://www.technologyreview.com/2026/08/21/1141726/mother-tongue-fiction/",
-      "published_at": "Fri, 21 Aug 2026 09:00:00 +0000",
-      "score": 150.0
     }
   ],
-  "updatedAt": "2026-08-21T12:23:22.811468+00:00"
+  "updatedAt": "2026-08-21T12:38:39.212232+00:00"
 }
