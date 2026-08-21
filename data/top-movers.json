@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T11:00:34Z",
+  "updated_at": "2026-08-21T11:15:32Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -80,38 +80,38 @@
   "crypto": {
     "gainers": [
       {
-        "symbol": "XRP",
-        "name": "XRP",
-        "price": 1.39,
-        "change_24h": 22.8,
-        "asset": "crypto"
-      },
-      {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 261.71,
-        "change_24h": 20.2,
+        "price": 261.96,
+        "change_24h": 21.2,
         "asset": "crypto"
       },
       {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 660.9,
-        "change_24h": 15.5,
+        "symbol": "XRP",
+        "name": "XRP",
+        "price": 1.38,
+        "change_24h": 20.6,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 72.09,
-        "change_24h": 14.6,
+        "price": 71.63,
+        "change_24h": 18.8,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 654.14,
+        "change_24h": 17.5,
         "asset": "crypto"
       },
       {
         "symbol": "FLR",
         "name": "Flare",
-        "price": 0.007291,
-        "change_24h": 14.2,
+        "price": 0.007281,
+        "change_24h": 13.9,
         "asset": "crypto"
       }
     ],
@@ -119,22 +119,15 @@
       {
         "symbol": "M",
         "name": "MemeCore",
-        "price": 1.17,
-        "change_24h": -6.2,
+        "price": 1.16,
+        "change_24h": -6.1,
         "asset": "crypto"
       },
       {
         "symbol": "LIT",
         "name": "Lighter",
-        "price": 2.76,
-        "change_24h": -4.5,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ETHFI",
-        "name": "Ether.fi",
-        "price": 0.559465,
-        "change_24h": -2.2,
+        "price": 2.74,
+        "change_24h": -2.5,
         "asset": "crypto"
       },
       {
@@ -145,10 +138,17 @@
         "asset": "crypto"
       },
       {
-        "symbol": "CC",
-        "name": "Canton",
-        "price": 0.102975,
+        "symbol": "XMR",
+        "name": "Monero",
+        "price": 410.8,
         "change_24h": -1.5,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ETHFI",
+        "name": "Ether.fi",
+        "price": 0.55548,
+        "change_24h": -1.0,
         "asset": "crypto"
       }
     ]
