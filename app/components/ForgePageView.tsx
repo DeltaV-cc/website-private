@@ -43,11 +43,6 @@ const COURSE_STRUCTURE: Record<
     secondaryTone: 'quiet',
     accent: 'var(--accent-orange)',
   },
-  'open-design': {
-    href: '/forge/course/open-design/',
-    secondaryHref: '/forge/course/my-first-ai-agent/',
-    accent: 'var(--accent-cyan)',
-  },
 };
 
 function CourseCard({
@@ -225,18 +220,17 @@ export default function ForgePageView({ lang }: { lang: Locale }) {
           {copy.roadmapLabel}
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
-          {copy.roadmap.map((item, i) => (
-            <Link
+          {copy.roadmap.map((item) => (
+            <div
               key={item.title}
-              href={i === 0 ? '/forge/course/open-video/' : '/forge/x402-workshop/'}
-              className="rounded-2xl border border-dashed border-[var(--border-default)] bg-[var(--bg-surface)] p-6 hover:border-[var(--accent-purple)]/40 transition-colors"
+              className="rounded-2xl border border-dashed border-[var(--border-default)] bg-[var(--bg-surface)] p-6"
             >
               <div className="font-mono text-[10px] tracking-[2px] uppercase text-[var(--accent-purple)]">
                 {copy.roadmapTag}
               </div>
               <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
               <p className="mt-2 text-sm text-[var(--text-tertiary)]">{item.blurb}</p>
-            </Link>
+            </div>
           ))}
         </div>
 

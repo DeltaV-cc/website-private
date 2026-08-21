@@ -43,7 +43,7 @@ const homeEn: HomeCopy = {
   ],
   pillarsEyebrow: 'What We Do',
   pillarsTitle: 'Three pillars. One mission.',
-  pillarsBlurbStrong: 'Stay at speed with AI and Web3',
+  pillarsBlurbStrong: 'Stay up to speed with AI and Web3',
   pillarsBlurbRest: ' through open-source solutions, expert engineers, and practical mentoring.',
   capabilities: [
     {
@@ -76,7 +76,7 @@ const homeEn: HomeCopy = {
     {
       title: 'My First AI Agent',
       badge: '100% free',
-      text: 'Thirteen free lessons to set up a real AI agent that reads your files, runs your errands, and answers on your phone.',
+      text: 'Thirteen free lessons to set up a real AI agent that reads your files, runs your errands, and answers to you on your phone.',
       cta: 'View Curriculum',
     },
     {
