@@ -180,8 +180,8 @@ export default function Navbar() {
           {/* Preferences cluster: language, then theme, then search. These two
               are settings rather than destinations, so they sit with the search
               field on the right edge instead of trailing the nav links. */}
-          <div className="ml-auto hidden items-center gap-0.5 md:flex">
-            <LocaleToggle pathname={pathname} className="inline-flex min-h-[24px] items-center px-2 py-1.5 text-xs font-medium uppercase tracking-[1px] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors" />
+          <div className="ml-auto hidden items-center gap-2 md:flex">
+            <LocaleToggle pathname={pathname} className="inline-flex min-h-[24px] items-center px-1.5 py-1.5 text-xs font-medium uppercase tracking-[1px] text-[var(--text-tertiary)] hover:text-[var(--accent-cyan)] transition-colors" />
             <ThemeToggle />
           </div>
 
@@ -216,10 +216,7 @@ export default function Navbar() {
             className="inline-flex min-h-[24px] items-center text-sm font-medium uppercase tracking-[1px] text-[var(--text-tertiary)]"
             onSelect={() => setMobileOpen(false)}
           />
-          <ThemeToggle
-            className="inline-flex min-h-[24px] items-center py-1 text-sm text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent-cyan)]"
-            showLabel
-          />
+          <ThemeToggle labelled />
         </div>
       </div></div>}
     </nav>
