@@ -1,11 +1,11 @@
 {
-  "updated": "2026-08-20T16:19:53Z",
+  "updated": "2026-08-21T07:55:44Z",
   "items": [
     {
       "title": "Position: Collusion Risks Among AI Reasoning Agents Justify Certification Requirements for Making Market Decisions",
       "url": "https://arxiv.org/abs/2608.18078",
       "source": "arXiv cs.AI",
-      "published_at": "2026-08-20T04:00:00+00:00",
+      "published_at": "2026-08-21T04:00:00+00:00",
       "summary": "arXiv:2608.18078v1 Announce Type: new Abstract: This position paper argues that AI agents with chain-of-thought reasoning capabilities are predisposed to exhibit collusive behavior and should be required to obtain behavioral certification before making decisions that affect econo",
       "tag": "ai"
     },
@@ -13,7 +13,7 @@
       "title": "Position: Profiling Game Worlds by Transition Complexity",
       "url": "https://arxiv.org/abs/2608.18079",
       "source": "arXiv cs.AI",
-      "published_at": "2026-08-20T04:00:00+00:00",
+      "published_at": "2026-08-21T04:00:00+00:00",
       "summary": "arXiv:2608.18079v1 Announce Type: new Abstract: Game world modeling (GWM) and reinforcement learning (RL) are often confounded because research papers rarely quantify how difficult the underlying transition prediction problem is at the declared interface (pixels/tokens/latents wi",
       "tag": "ai"
     },
@@ -21,7 +21,7 @@
       "title": "Large Language Models in Mental Health: A Systematic Review of Applications, Innovations, and Ethical Challenges",
       "url": "https://arxiv.org/abs/2608.18080",
       "source": "arXiv cs.AI",
-      "published_at": "2026-08-20T04:00:00+00:00",
+      "published_at": "2026-08-21T04:00:00+00:00",
       "summary": "arXiv:2608.18080v1 Announce Type: new Abstract: We present a review on the applications of large language models (LLMs) in health, e.g., social media analysis, clinical conversational agents, therapy support tools, prompt engineering, multimodal learning, and ethical consideratio",
       "tag": "ai"
     },
@@ -29,60 +29,92 @@
       "title": "Position: Behavioral Systems Require Behavioral Tests",
       "url": "https://arxiv.org/abs/2608.18081",
       "source": "arXiv cs.AI",
-      "published_at": "2026-08-20T04:00:00+00:00",
+      "published_at": "2026-08-21T04:00:00+00:00",
       "summary": "arXiv:2608.18081v1 Announce Type: new Abstract: Artificial agentic systems increasingly operate as behavioral systems by interacting with dynamic environments, pursuing goals, and adapting over time. Yet, current evaluation methods largely focus on performance outcomes, not the u",
       "tag": "ai"
     },
     {
-      "title": "Proactive Road Safety Intervention in Australia: Predicting Risky Driving Hotspots from Connected Vehicle Data",
-      "url": "https://arxiv.org/abs/2608.16913",
+      "title": "Towards On-Board Implementation of ML-Based Helicopter Weight Estimator",
+      "url": "https://arxiv.org/abs/2608.19210",
       "source": "arXiv cs.LG",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.16913v1 Announce Type: new Abstract: Road safety monitoring has historically been reactive, relying on crash-record analysis after fatalities and injuries have already occurred. Proactive identification of high-risk locations and dangerous driving behaviour before inci",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19210v1 Announce Type: new Abstract: This paper focuses on the implementation of a novel supervised Machine Learning model for estimating helicopter weight during takeoff, utilizing extensive datasets from Airbus's global in-service fleet. The study details a learning ",
       "tag": "ai"
     },
     {
-      "title": "Detecting and Discriminating Operator Misspecification in Hybrid PDE-Parameter Learning: a Reference-Free Instrument, with Discrimination Bounded In Sample",
-      "url": "https://arxiv.org/abs/2608.16925",
+      "title": "Triangular Fuzzy Rescaling Distance",
+      "url": "https://arxiv.org/abs/2608.19234",
       "source": "arXiv cs.LG",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.16925v1 Announce Type: new Abstract: We build an instrument that reads, from a single fit and with no oracle, whether the operator a hybrid PDE-parameter estimator postulates is wrong-and separates that from a merely unidentifiable parameter. On one self-adjoint parabo",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19234v1 Announce Type: new Abstract: Decision-making in complex systems often involves dealing with imprecise or uncertain information, frequently represented using fuzzy sets, particularly Triangular Fuzzy Numbers (TFNs). A crucial aspect of many fuzzy methods is the ",
       "tag": "ai"
     },
     {
-      "title": "Data-DPO: Direct Preference Optimization for Target Model Data Selection in LLM Post-Training",
-      "url": "https://arxiv.org/abs/2608.16926",
+      "title": "Holtercare-Bench: A Multimodal Benchmark for Evaluating Long-Term Dynamic ECG Analysis",
+      "url": "https://arxiv.org/abs/2608.19297",
       "source": "arXiv cs.LG",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.16926v1 Announce Type: new Abstract: Data selection in supervised fine-tuning aims to select a small set of effective samples from large-scale candidate data, reducing training cost while preserving model performance. However, existing methods usually treat data value ",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19297v1 Announce Type: new Abstract: While multimodal large language models (MLLMs) excel in medical applications, most of them favor static images or short-term signals. In the critical field of dynamic electrocardiograms (ECG), models struggle with complex temporal r",
       "tag": "ai"
     },
     {
-      "title": "LongNovel: A Multi-Scale Benchmark for Hallucination Detection in Long-Context Novel Summarization",
-      "url": "https://arxiv.org/abs/2608.18082",
+      "title": "A Virtual Member of a Community of Practice for the Society of Petroleum Engineers: From Prototype to Deployment",
+      "url": "https://arxiv.org/abs/2608.19199",
       "source": "arXiv cs.CL",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.18082v1 Announce Type: new Abstract: Although context windows have expanded significantly in recent years, hallucinations in long-context summarization remain a challenge. Long novels are better suited than news or papers for researching these hallucinations, due to th",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19199v1 Announce Type: new Abstract: We describe the evolution of a virtual assistant, called ATHENA, designed to support the capture, retrieval, and dissemination of knowledge for members of a Community of Practice (CoP) related to the Oil and Gas sector. An evaluatio",
       "tag": "ai"
     },
     {
-      "title": "Entity tracking emerges in sub-billion parameter language models and exceeds human performance in naturalistic narratives",
-      "url": "https://arxiv.org/abs/2608.18083",
+      "title": "Transformer Models for Text Summarization: A Comparative Study of BART, BERT, and RoBERTa",
+      "url": "https://arxiv.org/abs/2608.19200",
       "source": "arXiv cs.CL",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.18083v1 Announce Type: new Abstract: Understanding language requires tracking entities across discourse - i.e., knowing where things are and how they change, even when not explicitly stated. Whether language models perform such tracking in a human-like fashion remains ",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19200v1 Announce Type: new Abstract: Text summarization refers to the task of condensing a document into a shorter version while preserving its key information. Automatic text summarization (ATS), driven by advancements in natural language processing (NLP), has develop",
       "tag": "ai"
     },
     {
-      "title": "Compiler-Guided Adaptive Proof Search with Cross-Model Synergy on Context-Dependent Theorem Proving",
-      "url": "https://arxiv.org/abs/2608.18084",
+      "title": "Automatic bioinformatic software named entity recognition from literature",
+      "url": "https://arxiv.org/abs/2608.19201",
       "source": "arXiv cs.CL",
-      "published_at": "2026-08-20T04:00:00+00:00",
-      "summary": "arXiv:2608.18084v1 Announce Type: new Abstract: Theorem proving in real-world Lean 4 projects is challenging because proofs often depend on project-specific context. While iterative refinement can use compiler errors to repair failed proofs, reusing failed attempts requires caref",
+      "published_at": "2026-08-21T04:00:00+00:00",
+      "summary": "arXiv:2608.19201v1 Announce Type: new Abstract: Bioinformatics software and databases are essential components of modern life science research, yet their mentions in the scientific literature are often inconsistent and difficult to systematically identify at scale. The lack of a ",
       "tag": "ai"
     },
     {
-      "title": "How ChatGPT Work helps Stampli move ideas to market",
+      "title": "ChatGPT search now uses the site:operator at scale",
+      "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+      "source": "Simon Willison",
+      "published_at": "2026-08-20T23:57:32+00:00",
+      "summary": "ChatGPT search now uses the site:operator at scale Promptwatch is part of the emerging \"GEO\" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside too",
+      "tag": "ai"
+    },
+    {
+      "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
+      "source": "Hugging Face Blog",
+      "published_at": "2026-08-20T16:52:57+00:00",
+      "summary": "",
+      "tag": "ai"
+    },
+    {
+      "title": "A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView",
+      "url": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+      "source": "Simon Willison",
+      "published_at": "2026-08-20T15:37:00+00:00",
+      "summary": "Research: A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView Today saw the long awaited release of Bun 1.4 , the first stable version since the infamous Rust rewrite a few months ago . Interestingly, the Rust rewrite was downplayed in the release notes, which introduced a",
+      "tag": "ai"
+    },
+    {
+      "title": "Introducing AI Futures",
+      "url": "https://openai.com/index/introducing-ai-futures",
+      "source": "OpenAI",
+      "published_at": "2026-08-20T07:00:00+00:00",
+      "summary": "Introducing AI Futures, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.",
+      "tag": "ai"
+    },
+    {
+      "title": "Stampli cuts launch hours by 68% using ChatGPT Work",
       "url": "https://openai.com/index/stampli",
       "source": "OpenAI",
       "published_at": "2026-08-20T00:00:00+00:00",
@@ -95,22 +127,6 @@
       "source": "Simon Willison",
       "published_at": "2026-08-19T23:16:00+00:00",
       "summary": "Research: smolmachines / smolvm as a sandbox for untrusted Python & JavaScript I tasked Claude Fable 5 running in Claude Code for web with the following research task: Put https://smolmachines.com through its paces as a fast secure sandbox. Explore what it would take to use this ",
-      "tag": "ai"
-    },
-    {
-      "title": "Quoting Jeremy Morrell",
-      "url": "https://simonwillison.net/2026/Aug/19/jeremy-morrell/",
-      "source": "Simon Willison",
-      "published_at": "2026-08-19T22:56:31+00:00",
-      "summary": "My hypothesis is that there is a new opportunity for Extensible Software on the web . LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable ",
-      "tag": "ai"
-    },
-    {
-      "title": "Conceptual integrity and counting lines of code",
-      "url": "https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/",
-      "source": "Simon Willison",
-      "published_at": "2026-08-19T22:46:07+00:00",
-      "summary": "Last week I recorded an episode of the Talking Postgres podcast with Claire Giordano on the subject of \"How AI is changing software development\". We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: \"very minor",
       "tag": "ai"
     },
     {
@@ -130,14 +146,6 @@
       "tag": "ai"
     },
     {
-      "title": "LFM2.5 Q4\\_0 Checkpoints from Quantization-Aware Distillation",
-      "url": "https://huggingface.co/blog/LiquidAI/qad",
-      "source": "Hugging Face Blog",
-      "published_at": "2026-08-19T13:48:49+00:00",
-      "summary": "",
-      "tag": "ai"
-    },
-    {
       "title": "Debate Training Reduces Reward Hacking in RLAIF",
       "url": "https://www.alignmentforum.org/posts/BB8o7b8A4Aykeksvw/debate-training-reduces-reward-hacking-in-rlaif",
       "source": "Alignment Forum",
@@ -151,14 +159,6 @@
       "source": "OpenAI",
       "published_at": "2026-08-19T07:00:00+00:00",
       "summary": "Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.",
-      "tag": "ai"
-    },
-    {
-      "title": "ChatGPT Ads expands across Europe",
-      "url": "https://openai.com/index/chatgpt-ads-expands-across-europe",
-      "source": "OpenAI",
-      "published_at": "2026-08-18T22:00:00+00:00",
-      "summary": "ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.",
       "tag": "ai"
     },
     {
