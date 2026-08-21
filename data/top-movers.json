@@ -1,41 +1,41 @@
 {
-  "updated_at": "2026-08-21T17:56:52Z",
+  "updated_at": "2026-08-21T18:15:24Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
       {
+        "symbol": "SLS",
+        "name": "SELLAS Life Sciences Group, Inc",
+        "price": 15.44,
+        "change_24h": 15.21,
+        "asset": "equity"
+      },
+      {
         "symbol": "HOOD",
         "name": "Robinhood Markets, Inc.",
-        "price": 108.31,
-        "change_24h": 13.89,
+        "price": 108.54,
+        "change_24h": 14.13,
         "asset": "equity"
       },
       {
         "symbol": "USAR",
         "name": "USA Rare Earth, Inc.",
-        "price": 19.45,
-        "change_24h": 13.68,
-        "asset": "equity"
-      },
-      {
-        "symbol": "SLS",
-        "name": "SELLAS Life Sciences Group, Inc",
-        "price": 15.1,
-        "change_24h": 12.69,
+        "price": 19.21,
+        "change_24h": 12.27,
         "asset": "equity"
       },
       {
         "symbol": "VIRT",
         "name": "Virtu Financial, Inc.",
-        "price": 67.96,
-        "change_24h": 11.06,
+        "price": 67.98,
+        "change_24h": 11.1,
         "asset": "equity"
       },
       {
         "symbol": "CVI",
         "name": "CVR Energy Inc.",
-        "price": 39.59,
-        "change_24h": 10.48,
+        "price": 39.73,
+        "change_24h": 10.87,
         "asset": "equity"
       }
     ],
@@ -43,36 +43,36 @@
       {
         "symbol": "HUT",
         "name": "Hut 8 Corp.",
-        "price": 79.55,
-        "change_24h": -10.27,
+        "price": 79.81,
+        "change_24h": -9.97,
         "asset": "equity"
       },
       {
         "symbol": "CIFR",
         "name": "Cipher Digital Inc.",
-        "price": 15.6,
-        "change_24h": -9.38,
+        "price": 15.61,
+        "change_24h": -9.3,
         "asset": "equity"
       },
       {
         "symbol": "OSIS",
         "name": "OSI Systems, Inc.",
-        "price": 198.48,
-        "change_24h": -8.99,
+        "price": 198.81,
+        "change_24h": -8.84,
         "asset": "equity"
       },
       {
         "symbol": "TLX",
         "name": "Telix Pharmaceuticals Limited",
-        "price": 11.31,
-        "change_24h": -8.9,
+        "price": 11.34,
+        "change_24h": -8.7,
         "asset": "equity"
       },
       {
-        "symbol": "SA",
-        "name": "Seabridge Gold, Inc.",
-        "price": 30.57,
-        "change_24h": -8.12,
+        "symbol": "IOVA",
+        "name": "Iovance Biotherapeutics, Inc.",
+        "price": 8.2297,
+        "change_24h": -8.46,
         "asset": "equity"
       }
     ]
@@ -82,36 +82,36 @@
       {
         "symbol": "BCH",
         "name": "Bitcoin Cash",
-        "price": 294.46,
-        "change_24h": 33.7,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "ZEC",
-        "name": "Zcash",
-        "price": 667.92,
-        "change_24h": 18.0,
+        "price": 293.96,
+        "change_24h": 31.1,
         "asset": "crypto"
       },
       {
         "symbol": "WBT",
         "name": "WhiteBIT Coin",
-        "price": 71.46,
-        "change_24h": 18.0,
+        "price": 71.42,
+        "change_24h": 17.4,
         "asset": "crypto"
       },
       {
-        "symbol": "AAVE",
-        "name": "Aave",
-        "price": 112.29,
-        "change_24h": 15.0,
+        "symbol": "ZEC",
+        "name": "Zcash",
+        "price": 670.48,
+        "change_24h": 13.4,
         "asset": "crypto"
       },
       {
-        "symbol": "APT",
-        "name": "Aptos",
-        "price": 0.634421,
-        "change_24h": 11.3,
+        "symbol": "JUP",
+        "name": "Jupiter",
+        "price": 0.212038,
+        "change_24h": 10.0,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "ADA",
+        "name": "Cardano",
+        "price": 0.219048,
+        "change_24h": 9.9,
         "asset": "crypto"
       }
     ],
@@ -120,35 +120,35 @@
         "symbol": "M",
         "name": "MemeCore",
         "price": 1.11,
-        "change_24h": -5.6,
+        "change_24h": -5.7,
         "asset": "crypto"
       },
       {
         "symbol": "XMR",
         "name": "Monero",
-        "price": 408.06,
-        "change_24h": -2.2,
+        "price": 408.3,
+        "change_24h": -3.7,
+        "asset": "crypto"
+      },
+      {
+        "symbol": "OKB",
+        "name": "OKB",
+        "price": 105.21,
+        "change_24h": -2.5,
         "asset": "crypto"
       },
       {
         "symbol": "FIGR_HELOC",
         "name": "Figure Heloc",
         "price": 1.026,
-        "change_24h": -1.3,
+        "change_24h": -1.4,
         "asset": "crypto"
       },
       {
         "symbol": "USDY",
         "name": "Ondo US Dollar Yield",
         "price": 1.14,
-        "change_24h": -0.3,
-        "asset": "crypto"
-      },
-      {
-        "symbol": "LEO",
-        "name": "LEO Token",
-        "price": 9.3,
-        "change_24h": -0.1,
+        "change_24h": -0.7,
         "asset": "crypto"
       }
     ]
