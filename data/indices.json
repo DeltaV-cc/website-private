@@ -15,14 +15,14 @@
     "changePct": "-0.48%"
   },
   "stoxx": {
-    "price": "6434",
-    "change": 11.83984375,
+    "price": "6433",
+    "change": 11.27978515625,
     "changePct": "+0.18%"
   },
   "dax": {
-    "price": "26020",
-    "change": 36.650390625,
-    "changePct": "+0.14%"
+    "price": "26018",
+    "change": 34.830078125,
+    "changePct": "+0.13%"
   },
-  "updated_at": "2026-08-21T10:55:28.540507Z"
+  "updated_at": "2026-08-21T10:56:01Z"
 }
