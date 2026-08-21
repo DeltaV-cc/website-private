@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20",
+  "updated": "2026-08-21",
   "models": [
     {
       "rank": 1,
@@ -90,96 +90,6 @@
       "elo": 1490.0,
       "ci": 6.0,
       "votes": 14241
-    },
-    {
-      "rank": 11,
-      "name": "muse-spark",
-      "vendor": "Meta",
-      "license": "proprietary",
-      "elo": 1488.0,
-      "ci": 6.0,
-      "votes": 13581
-    },
-    {
-      "rank": 12,
-      "name": "claude-opus-5-max",
-      "vendor": "Anthropic",
-      "license": "proprietary",
-      "elo": 1487.0,
-      "ci": 6.0,
-      "votes": 12434
-    },
-    {
-      "rank": 13,
-      "name": "gemini-3.1-pro-preview",
-      "vendor": "Google",
-      "license": "proprietary",
-      "elo": 1486.0,
-      "ci": 3.0,
-      "votes": 98068
-    },
-    {
-      "rank": 14,
-      "name": "gemini-3-pro",
-      "vendor": "Google",
-      "license": "proprietary",
-      "elo": 1485.0,
-      "ci": 4.0,
-      "votes": 41496
-    },
-    {
-      "rank": 15,
-      "name": "glm-5.3-max",
-      "vendor": "Z.ai",
-      "license": "open",
-      "elo": 1484.0,
-      "ci": 11.0,
-      "votes": 2698
-    },
-    {
-      "rank": 16,
-      "name": "claude-opus-4-8-high",
-      "vendor": "Anthropic",
-      "license": "proprietary",
-      "elo": 1482.0,
-      "ci": 4.0,
-      "votes": 43616
-    },
-    {
-      "rank": 17,
-      "name": "qwen3.8-max",
-      "vendor": "Alibaba",
-      "license": "proprietary",
-      "elo": 1482.0,
-      "ci": 7.0,
-      "votes": 9271
-    },
-    {
-      "rank": 18,
-      "name": "gpt-5.6-sol-xhigh",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1482.0,
-      "ci": 5.0,
-      "votes": 18535
-    },
-    {
-      "rank": 19,
-      "name": "gpt-5.5-high",
-      "vendor": "OpenAI",
-      "license": "proprietary",
-      "elo": 1482.0,
-      "ci": 4.0,
-      "votes": 58479
-    },
-    {
-      "rank": 20,
-      "name": "gemini-3.6-flash-high",
-      "vendor": "Google",
-      "license": "proprietary",
-      "elo": 1481.0,
-      "ci": 6.0,
-      "votes": 16883
     }
   ]
 }
