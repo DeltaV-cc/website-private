@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-22T10:07:13Z",
+  "updated_at": "2026-08-22T10:15:19Z",
   "source": "Yahoo Finance screener + CoinGecko markets",
   "equities": {
     "gainers": [
@@ -82,14 +82,14 @@
       {
         "symbol": "ZEC",
         "name": "Zcash",
-        "price": 787.33,
+        "price": 783.15,
         "change_24h": 25.4,
         "asset": "crypto"
       },
       {
         "symbol": "AAVE",
         "name": "Aave",
-        "price": 122.06,
+        "price": 121.25,
         "change_24h": 14.3,
         "asset": "crypto"
       },
@@ -103,14 +103,14 @@
       {
         "symbol": "PUMP",
         "name": "Pump.fun",
-        "price": 0.004364,
+        "price": 0.004286,
         "change_24h": 11.8,
         "asset": "crypto"
       },
       {
         "symbol": "BTW",
         "name": "Bitway",
-        "price": 0.492997,
+        "price": 0.468057,
         "change_24h": 11.1,
         "asset": "crypto"
       }
@@ -119,14 +119,14 @@
       {
         "symbol": "ASTER",
         "name": "Aster",
-        "price": 0.655668,
+        "price": 0.652477,
         "change_24h": -7.4,
         "asset": "crypto"
       },
       {
         "symbol": "MNT",
         "name": "Mantle",
-        "price": 0.488283,
+        "price": 0.485177,
         "change_24h": -7.0,
         "asset": "crypto"
       },
@@ -140,14 +140,14 @@
       {
         "symbol": "KCS",
         "name": "KuCoin",
-        "price": 7.39,
+        "price": 7.38,
         "change_24h": -4.1,
         "asset": "crypto"
       },
       {
         "symbol": "NEXO",
         "name": "NEXO",
-        "price": 0.808167,
+        "price": 0.804744,
         "change_24h": -4.0,
         "asset": "crypto"
       }
