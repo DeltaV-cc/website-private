@@ -25,7 +25,7 @@ export type HydraCopy = {
 };
 
 const en: HydraCopy = {
-  label: 'Showcase · Hydra',
+  label: 'Live example · Hydra',
   title: 'The receptionist that never lets a lead go cold.',
   lead: 'An agent workspace we built and put online: mail, calendar, tasks and treasury on one surface, asked in plain language and answered with sources.',
   chips: ['Inbox to invoice', 'Read-only by default', 'Runs on a schedule'],
@@ -35,7 +35,7 @@ const en: HydraCopy = {
 };
 
 const fr: HydraCopy = {
-  label: 'Vitrine · Hydra',
+  label: 'Exemple réel · Hydra',
   title: 'La réceptionniste qui ne laisse jamais un prospect refroidir.',
   lead: "Un espace de travail agentique que nous avons construit et mis en ligne : messagerie, agenda, tâches et trésorerie sur une seule surface, interrogée en langage courant et répondue avec ses sources.",
   chips: ['De l’e-mail à la facture', 'Lecture seule par défaut', 'Tourne à l’heure dite'],
