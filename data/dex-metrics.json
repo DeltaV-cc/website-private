@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T17:09:08Z",
+  "updated_at": "2026-08-22T10:09:37Z",
   "source": "https://api.llama.fi/overview/dexs",
   "weekly": [
     {
@@ -1168,9 +1168,9 @@
     },
     {
       "week": "2026-W19",
-      "curated": 48609818136.049995,
-      "filtered": 48609818136.049995,
-      "raw": 48609818136.049995
+      "curated": 48609745082.049995,
+      "filtered": 48609745082.049995,
+      "raw": 48609745082.049995
     },
     {
       "week": "2026-W20",
@@ -1228,101 +1228,101 @@
     },
     {
       "week": "2026-W29",
-      "curated": 45629265815.9,
-      "filtered": 45629265815.9,
-      "raw": 45629265815.9
+      "curated": 45629378517.9,
+      "filtered": 45629378517.9,
+      "raw": 45629378517.9
     },
     {
       "week": "2026-W30",
-      "curated": 39485726299.87,
-      "filtered": 39485726299.87,
-      "raw": 39485726299.87
+      "curated": 39485941044.87,
+      "filtered": 39485941044.87,
+      "raw": 39485941044.87
     },
     {
       "week": "2026-W31",
-      "curated": 43454748424.65,
-      "filtered": 43454748424.65,
-      "raw": 43454748424.65
+      "curated": 43455172208.65,
+      "filtered": 43455172208.65,
+      "raw": 43455172208.65
     },
     {
       "week": "2026-W32",
-      "curated": 41697375884.14,
-      "filtered": 41697375884.14,
-      "raw": 41697375884.14
+      "curated": 41704552733.14,
+      "filtered": 41704552733.14,
+      "raw": 41704552733.14
     },
     {
       "week": "2026-W33",
-      "curated": 37329970837.380005,
-      "filtered": 37329970837.380005,
-      "raw": 37329970837.380005
+      "curated": 37339237853.05001,
+      "filtered": 37339237853.05001,
+      "raw": 37339237853.05001
     },
     {
       "week": "2026-W34",
-      "curated": 44974338376.65001,
-      "filtered": 44974338376.65001,
-      "raw": 44974338376.65001
+      "curated": 60583885415.66001,
+      "filtered": 60583885415.66001,
+      "raw": 60583885415.66001
     }
   ],
   "chains": [
     {
       "chain": "Orca DEX",
-      "volume_24h": 356491655.0,
-      "delta_pct": 27.96
+      "volume_24h": 672195353.0,
+      "delta_pct": 189.83
     },
     {
       "chain": "Raydium AMM",
-      "volume_24h": 246953562.0,
-      "delta_pct": 81.35
-    },
-    {
-      "chain": "Curve DEX",
-      "volume_24h": 170229700.0,
-      "delta_pct": -28.18
+      "volume_24h": 285984733.0,
+      "delta_pct": -1.15
     },
     {
       "chain": "PancakeSwap AMM",
-      "volume_24h": 94442167.0,
-      "delta_pct": 44.64
+      "volume_24h": 73016373.0,
+      "delta_pct": -22.69
+    },
+    {
+      "chain": "Curve DEX",
+      "volume_24h": 70978834.0,
+      "delta_pct": -52.66
     },
     {
       "chain": "Quickswap Dex",
-      "volume_24h": 11795300.0,
-      "delta_pct": 1.62
-    },
-    {
-      "chain": "DODO AMM",
-      "volume_24h": 5723034.0,
-      "delta_pct": 18.79
+      "volume_24h": 12142819.0,
+      "delta_pct": 2.95
     },
     {
       "chain": "SushiSwap",
-      "volume_24h": 1012846.0,
-      "delta_pct": 14.01
-    },
-    {
-      "chain": "Bancor V2.1",
-      "volume_24h": 239268.0,
-      "delta_pct": -30.59
+      "volume_24h": 1782079.0,
+      "delta_pct": 132.15
     },
     {
       "chain": "Balancer V1",
-      "volume_24h": 194552.0,
-      "delta_pct": -45.47
+      "volume_24h": 340480.0,
+      "delta_pct": 181.02
     },
     {
-      "chain": "Nerve",
-      "volume_24h": 128474.0,
-      "delta_pct": 114.43
+      "chain": "Bancor V2.1",
+      "volume_24h": 318456.0,
+      "delta_pct": 79.19
+    },
+    {
+      "chain": "Integral",
+      "volume_24h": 281876.0,
+      "delta_pct": 0.0
     },
     {
       "chain": "Pangolin V2",
-      "volume_24h": 107546.0,
-      "delta_pct": 75.84
+      "volume_24h": 169326.0,
+      "delta_pct": 152.05
     },
     {
       "chain": "Defi Swap",
-      "volume_24h": 86702.0,
-      "delta_pct": -21.04
+      "volume_24h": 158918.0,
+      "delta_pct": -53.48
+    },
+    {
+      "chain": "Nerve",
+      "volume_24h": 129752.0,
+      "delta_pct": 2.68
     }
   ]
 }
