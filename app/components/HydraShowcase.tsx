@@ -1,6 +1,6 @@
 'use client';
 
-import { HYDRA_SHOWCASE, HYDRA_URL } from '@/app/content/hydra';
+import { HYDRA_SHOWCASE, HYDRA_URL, HYDRA_VIDEO_URL } from '@/app/content/hydra';
 import type { Locale } from '@/lib/i18n';
 import { PageContainer } from './PageShell';
 
@@ -15,11 +15,15 @@ const ArrowUpRight = () => (
  *
  * It sits between the hero and the offer cards, so a reader meets a system we
  * actually shipped before reading what we offer to build. That position is
- * also why it stays small: the real showcase is hydra.deltav.cc, and every
- * extra line here is a line between the reader and the door to it.
+ * also why it stays small: every extra line here is a line between the reader
+ * and the door to it. The primary CTA is the demo video once one is published;
+ * until then it is the live demo, styled as a real button in the box.
  */
 export default function HydraShowcase({ lang }: { lang: Locale }) {
   const copy = HYDRA_SHOWCASE[lang];
+  const hasVideo = HYDRA_VIDEO_URL.length > 0;
+  const ctaHref = hasVideo ? HYDRA_VIDEO_URL : HYDRA_URL;
+  const ctaLabel = hasVideo ? copy.videoLabel : copy.demoLabel;
 
   return (
     <PageContainer className="pb-10" as="section">
@@ -33,15 +37,26 @@ export default function HydraShowcase({ lang }: { lang: Locale }) {
         </h2>
         <p className="max-w-3xl text-sm leading-relaxed text-[var(--text-secondary)]">{copy.lead}</p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
           <a
-            href={HYDRA_URL}
+            href={ctaHref}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex min-h-[24px] items-center gap-1.5 text-sm font-semibold text-[var(--accent-primary)] transition-colors hover:text-[var(--accent-primary-bright)]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent-primary)] px-5 py-2.5 text-sm font-semibold text-[var(--on-accent)] transition-colors hover:bg-[var(--accent-primary-bright)]"
           >
-            {copy.demoLabel} <ArrowUpRight />
+            {ctaLabel} <ArrowUpRight />
           </a>
+
+          {hasVideo && (
+            <a
+              href={HYDRA_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-default)] px-5 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-hover)]"
+            >
+              {copy.demoLabel}
+            </a>
+          )}
 
           <ul className="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[11px] text-[var(--text-tertiary)]">
             {copy.chips.map((chip) => (
