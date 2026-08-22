@@ -1,21 +1,7 @@
 {
-  "updated": "2026-08-21T18:45:25.778077Z",
-  "period": "2026-08-21 \u2192 2026-10-05",
+  "updated": "2026-08-22T09:45:51.129744Z",
+  "period": "2026-08-22 \u2192 2026-10-06",
   "events": [
-    {
-      "date": "2026-08-21",
-      "label": "US Durable Goods Orders",
-      "currency": "USD",
-      "impact": "medium",
-      "country": "US"
-    },
-    {
-      "date": "2026-08-21",
-      "label": "Japan CPI (YoY)",
-      "currency": "JPY",
-      "impact": "medium",
-      "country": "JP"
-    },
     {
       "date": "2026-08-25",
       "label": "US ISM Manufacturing PMI",
@@ -281,6 +267,20 @@
       "currency": "JPY",
       "impact": "high",
       "country": "JP"
+    },
+    {
+      "date": "2026-09-18",
+      "label": "Japan CPI (YoY)",
+      "currency": "JPY",
+      "impact": "medium",
+      "country": "JP"
+    },
+    {
+      "date": "2026-09-21",
+      "label": "PBoC Loan Prime Rate",
+      "currency": "CNY",
+      "impact": "high",
+      "country": "CN"
     }
   ]
 }
